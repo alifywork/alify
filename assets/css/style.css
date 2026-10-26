@@ -374,5 +374,23 @@
 
 body {
   font-family: var(--font-poppins);
+  background-color: var(--color-white);
+  color: var(--color-black);
   overflow-x: hidden;
+}
+
+body.drawer-open {
+  overflow: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
