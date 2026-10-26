@@ -24,6 +24,8 @@
 
     <link rel="stylesheet" href="assets/css/reusable-component-css/testimonials.css" />
 
+    <link rel="stylesheet" href="assets/css/reusable-component-css/industries.css" />
+
     <!-- Main Custom CSS (Includes Garet, Montserrat & Poppins @font-face) -->
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
@@ -438,6 +440,543 @@
           <span class="hero-marquee-item"><span class="hero-marquee-symbol">△</span> Design Systems</span>
         </div>
       </div>
+
+      <!-- Home Page Industries Slider Section (Header in .container, Slider in .container-fluid) -->
+      <section class="home-industries-section" aria-label="Industries We Serve">
+        <!-- Heading Area inside Bootstrap .container -->
+        <div class="container">
+          <div class="row industries-head-row">
+            <div class="col-12 col-lg-7">
+              <div class="industries-eyebrow">
+                <span class="industries-eyebrow-dot" aria-hidden="true"></span>
+                <span>Industries We Empower</span>
+              </div>
+              <h2 class="industries-sec-title">
+                Tailored Digital Ecosystems for <span>High-Growth Verticals.</span>
+              </h2>
+              <p class="industries-sec-desc">
+                Every sector demands specialized user psychology, regulatory trust, and performance architecture. Explore how ALIFY engineers market-leading products across nine core industries.
+              </p>
+            </div>
+
+            <div class="col-12 col-lg-5">
+              <div class="industries-head-actions">
+                <div class="industries-slider-controls" role="group" aria-label="Industries slider navigation">
+                  <button
+                    type="button"
+                    id="industriesPrevBtn"
+                    class="industries-nav-btn"
+                    aria-label="Previous industry slide"
+                  >
+                    <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                  </button>
+                  <button
+                    type="button"
+                    id="industriesNextBtn"
+                    class="industries-nav-btn"
+                    aria-label="Next industry slide"
+                  >
+                    <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                  </button>
+                </div>
+
+                <a href="industries.html" class="btn-start-project">
+                  <span class="btn-start-pill">All Industries</span>
+                  <span class="btn-start-circle" aria-hidden="true">
+                    <i class="fa-solid fa-arrow-up btn-start-arrow"></i>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Industries Card Slider inside Bootstrap .container-fluid -->
+        <div class="container-fluid industries-fluid-container">
+          <div
+            class="industries-slider-viewport"
+            id="industriesSliderViewport"
+            aria-label="Industries cards carousel"
+          >
+            <div class="industries-slider-track" id="industriesSliderTrack">
+              <div class="industry-slide">
+                <article class="industry-card">
+                    <div>
+                      <div class="industry-card-top">
+                        <span class="industry-card-icon" aria-hidden="true">
+                          <i class="fa-solid fa-landmark"></i>
+                        </span>
+                        <span class="industry-card-code">01 · FINTECH</span>
+                      </div>
+
+                      <h3 class="industry-card-title">
+                        <a href="industries.html#fintech">FinTech &amp; Digital Banking</a>
+                      </h3>
+
+                      <p class="industry-card-desc">
+                        High-trust payment interfaces, wealth management dashboards, and frictionless KYC onboarding flows engineered for compliance and conversion.
+                      </p>
+
+                      <ul class="industry-card-deliverables">
+                        <li>
+                          <span class="industry-deliverable-check" aria-hidden="true">
+                            <i class="fa-solid fa-check"></i>
+                          </span>
+                          <span>PCI-Ready Checkout &amp; Onboarding UX</span>
+                        </li>
+                        <li>
+                          <span class="industry-deliverable-check" aria-hidden="true">
+                            <i class="fa-solid fa-check"></i>
+                          </span>
+                          <span>Real-Time Portfolio &amp; Ledger UI</span>
+                        </li>
+                        <li>
+                          <span class="industry-deliverable-check" aria-hidden="true">
+                            <i class="fa-solid fa-check"></i>
+                          </span>
+                          <span>Institutional Brand &amp; Web Systems</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div class="industry-card-footer">
+                      <span class="industry-card-stat">Avg. +148% Qualified Pipeline</span>
+                      <a href="industries.html#fintech" class="industry-card-cta">
+                        <span class="industry-card-cta-pill">Explore</span>
+                        <span class="industry-card-cta-circle" aria-hidden="true">
+                          <i class="fa-solid fa-arrow-up industry-card-cta-arrow"></i>
+                        </span>
+                      </a>
+                    </div>
+                  </article>
+              </div>
+              <div class="industry-slide">
+                <article class="industry-card">
+                    <div>
+                      <div class="industry-card-top">
+                        <span class="industry-card-icon" aria-hidden="true">
+                          <i class="fa-solid fa-heart-pulse"></i>
+                        </span>
+                        <span class="industry-card-code">02 · HEALTHCARE</span>
+                      </div>
+
+                      <h3 class="industry-card-title">
+                        <a href="industries.html#healthcare">Healthcare &amp; MedTech</a>
+                      </h3>
+
+                      <p class="industry-card-desc">
+                        Accessible patient portals, telemedicine mobile apps, and intuitive clinical workflows crafted around clarity, privacy, and care.
+                      </p>
+
+                      <ul class="industry-card-deliverables">
+                        <li>
+                          <span class="industry-deliverable-check" aria-hidden="true">
+                            <i class="fa-solid fa-check"></i>
+                          </span>
+                          <span>WCAG-Accessible Patient Portals</span>
+                        </li>
+                        <li>
+                          <span class="industry-deliverable-check" aria-hidden="true">
+                            <i class="fa-solid fa-check"></i>
+                          </span>
+                          <span>Telehealth Booking &amp; Mobile Apps</span>
+                        </li>
+                        <li>
+                          <span class="industry-deliverable-check" aria-hidden="true">
+                            <i class="fa-solid fa-check"></i>
+                          </span>
+                          <span>Medical Device Product Storytelling</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div class="industry-card-footer">
+                      <span class="industry-card-stat">4.9★ Patient App Satisfaction</span>
+                      <a href="industries.html#healthcare" class="industry-card-cta">
+                        <span class="industry-card-cta-pill">Explore</span>
+                        <span class="industry-card-cta-circle" aria-hidden="true">
+                          <i class="fa-solid fa-arrow-up industry-card-cta-arrow"></i>
+                        </span>
+                      </a>
+                    </div>
+                  </article>
+              </div>
+              <div class="industry-slide">
+                <article class="industry-card">
+                    <div>
+                      <div class="industry-card-top">
+                        <span class="industry-card-icon" aria-hidden="true">
+                          <i class="fa-solid fa-cloud"></i>
+                        </span>
+                        <span class="industry-card-code">03 · B2B SAAS</span>
+                      </div>
+
+                      <h3 class="industry-card-title">
+                        <a href="industries.html#saas">SaaS &amp; Enterprise Cloud</a>
+                      </h3>
+
+                      <p class="industry-card-desc">
+                        Category-defining B2B marketing websites, multi-brand token design systems, and interactive product demos that accelerate demo bookings.
+                      </p>
+
+                      <ul class="industry-card-deliverables">
+                        <li>
+                          <span class="industry-deliverable-check" aria-hidden="true">
+                            <i class="fa-solid fa-check"></i>
+                          </span>
+                          <span>Conversion-Driven SaaS Websites</span>
+                        </li>
+                        <li>
+                          <span class="industry-deliverable-check" aria-hidden="true">
+                            <i class="fa-solid fa-check"></i>
+                          </span>
+                          <span>Scalable Multi-Product Design Systems</span>
+                        </li>
+                        <li>
+                          <span class="industry-deliverable-check" aria-hidden="true">
+                            <i class="fa-solid fa-check"></i>
+                          </span>
+                          <span>Self-Serve Onboarding Optimization</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div class="industry-card-footer">
+                      <span class="industry-card-stat">3.1x Enterprise Demo Velocity</span>
+                      <a href="industries.html#saas" class="industry-card-cta">
+                        <span class="industry-card-cta-pill">Explore</span>
+                        <span class="industry-card-cta-circle" aria-hidden="true">
+                          <i class="fa-solid fa-arrow-up industry-card-cta-arrow"></i>
+                        </span>
+                      </a>
+                    </div>
+                  </article>
+              </div>
+              <div class="industry-slide">
+                <article class="industry-card">
+                    <div>
+                      <div class="industry-card-top">
+                        <span class="industry-card-icon" aria-hidden="true">
+                          <i class="fa-solid fa-bag-shopping"></i>
+                        </span>
+                        <span class="industry-card-code">04 · COMMERCE</span>
+                      </div>
+
+                      <h3 class="industry-card-title">
+                        <a href="industries.html#ecommerce-retail">E-Commerce &amp; Luxury DTC</a>
+                      </h3>
+
+                      <p class="industry-card-desc">
+                        Sub-second headless storefronts, bespoke bundle builders, and editorial merchandising experiences built to lift average order value.
+                      </p>
+
+                      <ul class="industry-card-deliverables">
+                        <li>
+                          <span class="industry-deliverable-check" aria-hidden="true">
+                            <i class="fa-solid fa-check"></i>
+                          </span>
+                          <span>Headless &amp; Custom Storefront UX</span>
+                        </li>
+                        <li>
+                          <span class="industry-deliverable-check" aria-hidden="true">
+                            <i class="fa-solid fa-check"></i>
+                          </span>
+                          <span>High-Velocity Checkout Architecture</span>
+                        </li>
+                        <li>
+                          <span class="industry-deliverable-check" aria-hidden="true">
+                            <i class="fa-solid fa-check"></i>
+                          </span>
+                          <span>Retention &amp; Technical SEO Growth</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div class="industry-card-footer">
+                      <span class="industry-card-stat">+62% Checkout Completion</span>
+                      <a href="industries.html#ecommerce-retail" class="industry-card-cta">
+                        <span class="industry-card-cta-pill">Explore</span>
+                        <span class="industry-card-cta-circle" aria-hidden="true">
+                          <i class="fa-solid fa-arrow-up industry-card-cta-arrow"></i>
+                        </span>
+                      </a>
+                    </div>
+                  </article>
+              </div>
+              <div class="industry-slide">
+                <article class="industry-card">
+                    <div>
+                      <div class="industry-card-top">
+                        <span class="industry-card-icon" aria-hidden="true">
+                          <i class="fa-solid fa-building"></i>
+                        </span>
+                        <span class="industry-card-code">05 · PROPTECH</span>
+                      </div>
+
+                      <h3 class="industry-card-title">
+                        <a href="industries.html#real-estate">Real Estate &amp; PropTech</a>
+                      </h3>
+
+                      <p class="industry-card-desc">
+                        Immersive architectural showcases, interactive map-based search portals, and high-intent investor lead platforms for modern developments.
+                      </p>
+
+                      <ul class="industry-card-deliverables">
+                        <li>
+                          <span class="industry-deliverable-check" aria-hidden="true">
+                            <i class="fa-solid fa-check"></i>
+                          </span>
+                          <span>Interactive Property &amp; Map Search</span>
+                        </li>
+                        <li>
+                          <span class="industry-deliverable-check" aria-hidden="true">
+                            <i class="fa-solid fa-check"></i>
+                          </span>
+                          <span>Luxury Development Microsites</span>
+                        </li>
+                        <li>
+                          <span class="industry-deliverable-check" aria-hidden="true">
+                            <i class="fa-solid fa-check"></i>
+                          </span>
+                          <span>CRM-Integrated Lead Capture Flows</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div class="industry-card-footer">
+                      <span class="industry-card-stat">110k+ Monthly Active Buyers</span>
+                      <a href="industries.html#real-estate" class="industry-card-cta">
+                        <span class="industry-card-cta-pill">Explore</span>
+                        <span class="industry-card-cta-circle" aria-hidden="true">
+                          <i class="fa-solid fa-arrow-up industry-card-cta-arrow"></i>
+                        </span>
+                      </a>
+                    </div>
+                  </article>
+              </div>
+              <div class="industry-slide">
+                <article class="industry-card">
+                    <div>
+                      <div class="industry-card-top">
+                        <span class="industry-card-icon" aria-hidden="true">
+                          <i class="fa-solid fa-graduation-cap"></i>
+                        </span>
+                        <span class="industry-card-code">06 · EDTECH</span>
+                      </div>
+
+                      <h3 class="industry-card-title">
+                        <a href="industries.html#edtech">EdTech &amp; Learning Platforms</a>
+                      </h3>
+
+                      <p class="industry-card-desc">
+                        Engaging cohort learning portals, gamified mobile study apps, and subscription enrollment funnels that maximize student completion.
+                      </p>
+
+                      <ul class="industry-card-deliverables">
+                        <li>
+                          <span class="industry-deliverable-check" aria-hidden="true">
+                            <i class="fa-solid fa-check"></i>
+                          </span>
+                          <span>Interactive LMS &amp; Course Dashboards</span>
+                        </li>
+                        <li>
+                          <span class="industry-deliverable-check" aria-hidden="true">
+                            <i class="fa-solid fa-check"></i>
+                          </span>
+                          <span>Cross-Platform Student Mobile Apps</span>
+                        </li>
+                        <li>
+                          <span class="industry-deliverable-check" aria-hidden="true">
+                            <i class="fa-solid fa-check"></i>
+                          </span>
+                          <span>High-Converting Enrollment Funnels</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div class="industry-card-footer">
+                      <span class="industry-card-stat">+54% Course Completion Rate</span>
+                      <a href="industries.html#edtech" class="industry-card-cta">
+                        <span class="industry-card-cta-pill">Explore</span>
+                        <span class="industry-card-cta-circle" aria-hidden="true">
+                          <i class="fa-solid fa-arrow-up industry-card-cta-arrow"></i>
+                        </span>
+                      </a>
+                    </div>
+                  </article>
+              </div>
+              <div class="industry-slide">
+                <article class="industry-card">
+                    <div>
+                      <div class="industry-card-top">
+                        <span class="industry-card-icon" aria-hidden="true">
+                          <i class="fa-solid fa-microchip"></i>
+                        </span>
+                        <span class="industry-card-code">07 · AI &amp; DATA</span>
+                      </div>
+
+                      <h3 class="industry-card-title">
+                        <a href="industries.html#ai-deep-tech">AI &amp; Autonomous Systems</a>
+                      </h3>
+
+                      <p class="industry-card-desc">
+                        Human-centered AI copilot interfaces, developer documentation hubs, and high-impact launch narratives for frontier technology startups.
+                      </p>
+
+                      <ul class="industry-card-deliverables">
+                        <li>
+                          <span class="industry-deliverable-check" aria-hidden="true">
+                            <i class="fa-solid fa-check"></i>
+                          </span>
+                          <span>Conversational &amp; Agentic UI Design</span>
+                        </li>
+                        <li>
+                          <span class="industry-deliverable-check" aria-hidden="true">
+                            <i class="fa-solid fa-check"></i>
+                          </span>
+                          <span>Developer Docs &amp; API Portals</span>
+                        </li>
+                        <li>
+                          <span class="industry-deliverable-check" aria-hidden="true">
+                            <i class="fa-solid fa-check"></i>
+                          </span>
+                          <span>60fps Interactive Launch Websites</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div class="industry-card-footer">
+                      <span class="industry-card-stat">$40M+ Client Funding Raised</span>
+                      <a href="industries.html#ai-deep-tech" class="industry-card-cta">
+                        <span class="industry-card-cta-pill">Explore</span>
+                        <span class="industry-card-cta-circle" aria-hidden="true">
+                          <i class="fa-solid fa-arrow-up industry-card-cta-arrow"></i>
+                        </span>
+                      </a>
+                    </div>
+                  </article>
+              </div>
+              <div class="industry-slide">
+                <article class="industry-card">
+                    <div>
+                      <div class="industry-card-top">
+                        <span class="industry-card-icon" aria-hidden="true">
+                          <i class="fa-solid fa-truck-fast"></i>
+                        </span>
+                        <span class="industry-card-code">08 · MOBILITY</span>
+                      </div>
+
+                      <h3 class="industry-card-title">
+                        <a href="industries.html#logistics-mobility">Logistics &amp; Clean Mobility</a>
+                      </h3>
+
+                      <p class="industry-card-desc">
+                        Real-time fleet telemetry dashboards, EV reservation apps, and global supply-chain platforms engineered for operational speed.
+                      </p>
+
+                      <ul class="industry-card-deliverables">
+                        <li>
+                          <span class="industry-deliverable-check" aria-hidden="true">
+                            <i class="fa-solid fa-check"></i>
+                          </span>
+                          <span>EV &amp; Fleet Booking Mobile UX</span>
+                        </li>
+                        <li>
+                          <span class="industry-deliverable-check" aria-hidden="true">
+                            <i class="fa-solid fa-check"></i>
+                          </span>
+                          <span>Live Dispatch &amp; Tracking Portals</span>
+                        </li>
+                        <li>
+                          <span class="industry-deliverable-check" aria-hidden="true">
+                            <i class="fa-solid fa-check"></i>
+                          </span>
+                          <span>Enterprise B2B Freight Platforms</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div class="industry-card-footer">
+                      <span class="industry-card-stat">38s Avg. Booking Workflow</span>
+                      <a href="industries.html#logistics-mobility" class="industry-card-cta">
+                        <span class="industry-card-cta-pill">Explore</span>
+                        <span class="industry-card-cta-circle" aria-hidden="true">
+                          <i class="fa-solid fa-arrow-up industry-card-cta-arrow"></i>
+                        </span>
+                      </a>
+                    </div>
+                  </article>
+              </div>
+              <div class="industry-slide">
+                <article class="industry-card">
+                    <div>
+                      <div class="industry-card-top">
+                        <span class="industry-card-icon" aria-hidden="true">
+                          <i class="fa-solid fa-plane-departure"></i>
+                        </span>
+                        <span class="industry-card-code">09 · HOSPITALITY</span>
+                      </div>
+
+                      <h3 class="industry-card-title">
+                        <a href="industries.html#hospitality-travel">Hospitality &amp; Travel Tech</a>
+                      </h3>
+
+                      <p class="industry-card-desc">
+                        Direct-booking resort ecosystems, curated itinerary builders, and loyalty mobile experiences that eliminate third-party OTA friction.
+                      </p>
+
+                      <ul class="industry-card-deliverables">
+                        <li>
+                          <span class="industry-deliverable-check" aria-hidden="true">
+                            <i class="fa-solid fa-check"></i>
+                          </span>
+                          <span>Direct Booking &amp; Concierge Engines</span>
+                        </li>
+                        <li>
+                          <span class="industry-deliverable-check" aria-hidden="true">
+                            <i class="fa-solid fa-check"></i>
+                          </span>
+                          <span>Editorial Destination Storytelling</span>
+                        </li>
+                        <li>
+                          <span class="industry-deliverable-check" aria-hidden="true">
+                            <i class="fa-solid fa-check"></i>
+                          </span>
+                          <span>Member Loyalty Mobile Experiences</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div class="industry-card-footer">
+                      <span class="industry-card-stat">+76% Direct Commission-Free Bookings</span>
+                      <a href="industries.html#hospitality-travel" class="industry-card-cta">
+                        <span class="industry-card-cta-pill">Explore</span>
+                        <span class="industry-card-cta-circle" aria-hidden="true">
+                          <i class="fa-solid fa-arrow-up industry-card-cta-arrow"></i>
+                        </span>
+                      </a>
+                    </div>
+                  </article>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pagination Dots & Progress Bar inside Bootstrap .container -->
+        <div class="container">
+          <div class="industries-slider-footer">
+            <div
+              class="industries-slider-dots"
+              id="industriesSliderDots"
+              role="tablist"
+              aria-label="Industries slider pagination"
+            ></div>
+            <div class="industries-slider-progress" aria-hidden="true">
+              <div class="industries-slider-progress-bar" id="industriesSliderProgressBar"></div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <!-- Reusable 2-Row Testimonials Slider Section -->
       <section class="testimonials-slider-section js-testimonials-slider" aria-label="Client Testimonials">
@@ -1820,6 +2359,8 @@
     <script src="assets/js/reusable-component-js/forms.js"></script>
 
     <script src="assets/js/reusable-component-js/testimonials.js"></script>
+
+    <script src="assets/js/reusable-component-js/industries.js"></script>
 
     <!-- Main Custom JS -->
     <script src="assets/js/main.js"></script>
