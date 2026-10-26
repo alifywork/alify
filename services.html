@@ -25,6 +25,8 @@
 
     <link rel="stylesheet" href="assets/css/reusable-component-css/testimonials.css" />
 
+    <link rel="stylesheet" href="assets/css/reusable-component-css/services.css" />
+
     <!-- Main Custom CSS (Includes Garet, Montserrat & Poppins @font-face) -->
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
@@ -435,64 +437,543 @@
         </div>
       </section>
 
-      <!-- Service Capabilities Anchor Grid -->
-      <section class="inner-page-placeholder" aria-label="Core Services">
+      <!-- Dedicated Services Grid Section -->
+      <section class="services-grid-section" aria-label="Core Services">
         <div class="container">
-          <div class="row inner-section-grid-row">
-            <div class="col-12 col-md-6 col-lg-4">
-              <article id="web-development" class="inner-anchor-card">
-                <span class="inner-anchor-icon">
-                  <i class="fa-solid fa-code" aria-hidden="true"></i>
-                </span>
-                <h2 class="inner-anchor-title">Web Design &amp; Development</h2>
-                <p class="inner-anchor-text">
-                  Custom responsive websites, enterprise web applications, and performance-first frontend architecture.
-                </p>
-              </article>
+          <div class="row services-head-row">
+            <div class="col-12 col-lg-7">
+              <div class="services-eyebrow">
+                <span class="services-eyebrow-dot" aria-hidden="true"></span>
+                <span>Full-Spectrum Capabilities</span>
+              </div>
+              <h2 class="services-sec-title">
+                Specialized Squads Across <span>Design, Code &amp; Growth.</span>
+              </h2>
             </div>
-            <div class="col-12 col-md-6 col-lg-4">
-              <article id="ui-ux-branding" class="inner-anchor-card">
-                <span class="inner-anchor-icon">
-                  <i class="fa-solid fa-pen-nib" aria-hidden="true"></i>
-                </span>
-                <h2 class="inner-anchor-title">UI/UX &amp; Brand Identity</h2>
-                <p class="inner-anchor-text">
-                  Research-backed product interfaces, scalable design systems, and distinctive visual brand identities.
-                </p>
-              </article>
+            <div class="col-12 col-lg-5">
+              <p class="services-sec-desc">
+                Every engagement combines senior design direction, clean custom engineering, and measurable conversion architecture under one roof.
+              </p>
             </div>
-            <div class="col-12 col-md-6 col-lg-4">
-              <article id="app-development" class="inner-anchor-card">
-                <span class="inner-anchor-icon">
-                  <i class="fa-solid fa-mobile-screen-button" aria-hidden="true"></i>
-                </span>
-                <h2 class="inner-anchor-title">Mobile App Development</h2>
-                <p class="inner-anchor-text">
-                  Intuitive iOS and cross-platform mobile products engineered for speed, reliability, and retention.
-                </p>
-              </article>
+          </div>
+
+          <!-- Discipline Filter Bar -->
+          <div class="services-filter-bar">
+            <div class="services-filter-pills" role="tablist" aria-label="Filter services by discipline">
+              <button type="button" class="services-filter-btn js-service-filter is-active" data-filter="all" role="tab" aria-selected="true">
+                All Capabilities (9)
+              </button>
+              <button type="button" class="services-filter-btn js-service-filter" data-filter="design" role="tab" aria-selected="false">
+                Brand, UI/UX &amp; Motion (3)
+              </button>
+              <button type="button" class="services-filter-btn js-service-filter" data-filter="engineering" role="tab" aria-selected="false">
+                Web, Mobile &amp; AI Code (3)
+              </button>
+              <button type="button" class="services-filter-btn js-service-filter" data-filter="growth" role="tab" aria-selected="false">
+                Commerce, SEO &amp; CRO (3)
+              </button>
             </div>
-            <div class="col-12 col-md-6 col-lg-6">
-              <article id="digital-marketing" class="inner-anchor-card">
-                <span class="inner-anchor-icon">
-                  <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
-                </span>
-                <h2 class="inner-anchor-title">Digital Marketing &amp; SEO</h2>
-                <p class="inner-anchor-text">
-                  Technical SEO, conversion rate optimization, and full-funnel growth campaigns that drive qualified pipeline.
-                </p>
-              </article>
+            <p class="services-count-text" id="servicesCountLabel" aria-live="polite">
+              Showing 9 core studio capabilities
+            </p>
+          </div>
+
+          <!-- Responsive 3-Column Clipped-Polygon Services Grid -->
+          <div class="row services-grid-row" id="servicesGrid">
+            <div class="col-12 col-md-6 col-lg-4 service-grid-col" data-category="engineering">
+              <article id="web-development" class="service-card-wrap">
+                    <span class="service-notch-badge" aria-hidden="true">01 · WEB</span>
+                    <div class="service-card">
+                      <div class="service-card-inner">
+                        <div>
+                          <div class="service-card-top">
+                            <span class="service-card-icon" aria-hidden="true">
+                              <i class="fa-solid fa-code"></i>
+                            </span>
+                            <span class="service-card-tag">Engineering</span>
+                          </div>
+
+                          <h3 class="service-card-title">
+                            <a href="start-project.html">Web Design &amp; Development</a>
+                          </h3>
+
+                          <p class="service-card-desc">
+                            Bespoke responsive websites, enterprise web platforms, and performance-obsessed frontend architectures built to convert.
+                          </p>
+
+                          <ul class="service-card-points">
+                          <li>
+                            <span class="service-point-check" aria-hidden="true">
+                              <i class="fa-solid fa-check"></i>
+                            </span>
+                            <span>Custom Semantic HTML, CSS &amp; Next-Gen JS</span>
+                          </li>
+                          <li>
+                            <span class="service-point-check" aria-hidden="true">
+                              <i class="fa-solid fa-check"></i>
+                            </span>
+                            <span>99+ Core Web Vitals &amp; Edge Performance</span>
+                          </li>
+                          <li>
+                            <span class="service-point-check" aria-hidden="true">
+                              <i class="fa-solid fa-check"></i>
+                            </span>
+                            <span>CMS &amp; Enterprise API Integrations</span>
+                          </li>
+                          </ul>
+                        </div>
+
+                        <div class="service-card-bottom">
+                          <a href="start-project.html" class="service-card-cta">
+                            <span class="service-card-cta-pill">Start Project</span>
+                            <span class="service-card-cta-circle" aria-hidden="true">
+                              <i class="fa-solid fa-arrow-up service-card-cta-arrow"></i>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
             </div>
-            <div class="col-12 col-md-12 col-lg-6">
-              <article id="ecommerce" class="inner-anchor-card">
-                <span class="inner-anchor-icon">
-                  <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
-                </span>
-                <h2 class="inner-anchor-title">E-Commerce Solutions</h2>
-                <p class="inner-anchor-text">
-                  High-converting storefronts, custom checkout flows, and headless commerce platforms built to scale.
-                </p>
-              </article>
+            <div class="col-12 col-md-6 col-lg-4 service-grid-col" data-category="design">
+              <article id="ui-ux-branding" class="service-card-wrap">
+                    <span class="service-notch-badge" aria-hidden="true">02 · BRAND</span>
+                    <div class="service-card">
+                      <div class="service-card-inner">
+                        <div>
+                          <div class="service-card-top">
+                            <span class="service-card-icon" aria-hidden="true">
+                              <i class="fa-solid fa-pen-nib"></i>
+                            </span>
+                            <span class="service-card-tag">Design &amp; Identity</span>
+                          </div>
+
+                          <h3 class="service-card-title">
+                            <a href="start-project.html">UI/UX &amp; Brand Identity</a>
+                          </h3>
+
+                          <p class="service-card-desc">
+                            Research-backed product interfaces, iconic visual identities, and editorial design languages that command authority.
+                          </p>
+
+                          <ul class="service-card-points">
+                          <li>
+                            <span class="service-point-check" aria-hidden="true">
+                              <i class="fa-solid fa-check"></i>
+                            </span>
+                            <span>Complete Visual Identity &amp; Brand Guidelines</span>
+                          </li>
+                          <li>
+                            <span class="service-point-check" aria-hidden="true">
+                              <i class="fa-solid fa-check"></i>
+                            </span>
+                            <span>User Research, Wireframes &amp; Prototyping</span>
+                          </li>
+                          <li>
+                            <span class="service-point-check" aria-hidden="true">
+                              <i class="fa-solid fa-check"></i>
+                            </span>
+                            <span>High-Clarity SaaS &amp; Product Interfaces</span>
+                          </li>
+                          </ul>
+                        </div>
+
+                        <div class="service-card-bottom">
+                          <a href="start-project.html" class="service-card-cta">
+                            <span class="service-card-cta-pill">Start Project</span>
+                            <span class="service-card-cta-circle" aria-hidden="true">
+                              <i class="fa-solid fa-arrow-up service-card-cta-arrow"></i>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4 service-grid-col" data-category="engineering">
+              <article id="app-development" class="service-card-wrap">
+                    <span class="service-notch-badge" aria-hidden="true">03 · MOBILE</span>
+                    <div class="service-card">
+                      <div class="service-card-inner">
+                        <div>
+                          <div class="service-card-top">
+                            <span class="service-card-icon" aria-hidden="true">
+                              <i class="fa-solid fa-mobile-screen-button"></i>
+                            </span>
+                            <span class="service-card-tag">iOS &amp; Android</span>
+                          </div>
+
+                          <h3 class="service-card-title">
+                            <a href="start-project.html">Mobile App Development</a>
+                          </h3>
+
+                          <p class="service-card-desc">
+                            Intuitive native iOS, Android, and cross-platform mobile applications engineered for speed, retention, and delight.
+                          </p>
+
+                          <ul class="service-card-points">
+                          <li>
+                            <span class="service-point-check" aria-hidden="true">
+                              <i class="fa-solid fa-check"></i>
+                            </span>
+                            <span>Native-Feel iOS &amp; Cross-Platform Builds</span>
+                          </li>
+                          <li>
+                            <span class="service-point-check" aria-hidden="true">
+                              <i class="fa-solid fa-check"></i>
+                            </span>
+                            <span>Offline-Ready Sync &amp; Secure Auth Flows</span>
+                          </li>
+                          <li>
+                            <span class="service-point-check" aria-hidden="true">
+                              <i class="fa-solid fa-check"></i>
+                            </span>
+                            <span>App Store Launch &amp; Telemetry Setup</span>
+                          </li>
+                          </ul>
+                        </div>
+
+                        <div class="service-card-bottom">
+                          <a href="start-project.html" class="service-card-cta">
+                            <span class="service-card-cta-pill">Start Project</span>
+                            <span class="service-card-cta-circle" aria-hidden="true">
+                              <i class="fa-solid fa-arrow-up service-card-cta-arrow"></i>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4 service-grid-col" data-category="growth">
+              <article id="digital-marketing" class="service-card-wrap">
+                    <span class="service-notch-badge" aria-hidden="true">04 · GROWTH</span>
+                    <div class="service-card">
+                      <div class="service-card-inner">
+                        <div>
+                          <div class="service-card-top">
+                            <span class="service-card-icon" aria-hidden="true">
+                              <i class="fa-solid fa-chart-line"></i>
+                            </span>
+                            <span class="service-card-tag">SEO &amp; Demand</span>
+                          </div>
+
+                          <h3 class="service-card-title">
+                            <a href="start-project.html">Digital Marketing &amp; SEO</a>
+                          </h3>
+
+                          <p class="service-card-desc">
+                            Technical SEO architecture, authority content engines, and full-funnel demand campaigns that compound organic pipeline.
+                          </p>
+
+                          <ul class="service-card-points">
+                          <li>
+                            <span class="service-point-check" aria-hidden="true">
+                              <i class="fa-solid fa-check"></i>
+                            </span>
+                            <span>Technical SEO Audits &amp; Schema Systems</span>
+                          </li>
+                          <li>
+                            <span class="service-point-check" aria-hidden="true">
+                              <i class="fa-solid fa-check"></i>
+                            </span>
+                            <span>High-Intent Landing Page Ecosystems</span>
+                          </li>
+                          <li>
+                            <span class="service-point-check" aria-hidden="true">
+                              <i class="fa-solid fa-check"></i>
+                            </span>
+                            <span>Attribution Analytics &amp; Pipeline Tracking</span>
+                          </li>
+                          </ul>
+                        </div>
+
+                        <div class="service-card-bottom">
+                          <a href="start-project.html" class="service-card-cta">
+                            <span class="service-card-cta-pill">Start Project</span>
+                            <span class="service-card-cta-circle" aria-hidden="true">
+                              <i class="fa-solid fa-arrow-up service-card-cta-arrow"></i>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4 service-grid-col" data-category="growth">
+              <article id="ecommerce" class="service-card-wrap">
+                    <span class="service-notch-badge" aria-hidden="true">05 · COMMERCE</span>
+                    <div class="service-card">
+                      <div class="service-card-inner">
+                        <div>
+                          <div class="service-card-top">
+                            <span class="service-card-icon" aria-hidden="true">
+                              <i class="fa-solid fa-cart-shopping"></i>
+                            </span>
+                            <span class="service-card-tag">DTC &amp; B2B</span>
+                          </div>
+
+                          <h3 class="service-card-title">
+                            <a href="start-project.html">E-Commerce Solutions</a>
+                          </h3>
+
+                          <p class="service-card-desc">
+                            Sub-second headless storefronts, custom product configurators, and friction-free checkout experiences built to scale.
+                          </p>
+
+                          <ul class="service-card-points">
+                          <li>
+                            <span class="service-point-check" aria-hidden="true">
+                              <i class="fa-solid fa-check"></i>
+                            </span>
+                            <span>Shopify Plus &amp; Headless Storefronts</span>
+                          </li>
+                          <li>
+                            <span class="service-point-check" aria-hidden="true">
+                              <i class="fa-solid fa-check"></i>
+                            </span>
+                            <span>Custom Bundle Builders &amp; Subscriptions</span>
+                          </li>
+                          <li>
+                            <span class="service-point-check" aria-hidden="true">
+                              <i class="fa-solid fa-check"></i>
+                            </span>
+                            <span>Checkout Velocity &amp; AOV Optimization</span>
+                          </li>
+                          </ul>
+                        </div>
+
+                        <div class="service-card-bottom">
+                          <a href="start-project.html" class="service-card-cta">
+                            <span class="service-card-cta-pill">Start Project</span>
+                            <span class="service-card-cta-circle" aria-hidden="true">
+                              <i class="fa-solid fa-arrow-up service-card-cta-arrow"></i>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4 service-grid-col" data-category="design">
+              <article id="design-systems" class="service-card-wrap">
+                    <span class="service-notch-badge" aria-hidden="true">06 · SYSTEMS</span>
+                    <div class="service-card">
+                      <div class="service-card-inner">
+                        <div>
+                          <div class="service-card-top">
+                            <span class="service-card-icon" aria-hidden="true">
+                              <i class="fa-solid fa-layer-group"></i>
+                            </span>
+                            <span class="service-card-tag">DesignOps</span>
+                          </div>
+
+                          <h3 class="service-card-title">
+                            <a href="start-project.html">Scalable Design Systems</a>
+                          </h3>
+
+                          <p class="service-card-desc">
+                            Unified Figma token libraries and production component kits that let growing product teams ship UI 3x faster.
+                          </p>
+
+                          <ul class="service-card-points">
+                          <li>
+                            <span class="service-point-check" aria-hidden="true">
+                              <i class="fa-solid fa-check"></i>
+                            </span>
+                            <span>Multi-Brand Design Tokens &amp; Variables</span>
+                          </li>
+                          <li>
+                            <span class="service-point-check" aria-hidden="true">
+                              <i class="fa-solid fa-check"></i>
+                            </span>
+                            <span>WCAG AA Accessible Component Libraries</span>
+                          </li>
+                          <li>
+                            <span class="service-point-check" aria-hidden="true">
+                              <i class="fa-solid fa-check"></i>
+                            </span>
+                            <span>Interactive Governance &amp; Dev Handoff</span>
+                          </li>
+                          </ul>
+                        </div>
+
+                        <div class="service-card-bottom">
+                          <a href="start-project.html" class="service-card-cta">
+                            <span class="service-card-cta-pill">Start Project</span>
+                            <span class="service-card-cta-circle" aria-hidden="true">
+                              <i class="fa-solid fa-arrow-up service-card-cta-arrow"></i>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4 service-grid-col" data-category="design">
+              <article id="interactive-motion" class="service-card-wrap">
+                    <span class="service-notch-badge" aria-hidden="true">07 · MOTION</span>
+                    <div class="service-card">
+                      <div class="service-card-inner">
+                        <div>
+                          <div class="service-card-top">
+                            <span class="service-card-icon" aria-hidden="true">
+                              <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            </span>
+                            <span class="service-card-tag">GSAP &amp; 3D</span>
+                          </div>
+
+                          <h3 class="service-card-title">
+                            <a href="start-project.html">Interactive Motion &amp; Storytelling</a>
+                          </h3>
+
+                          <p class="service-card-desc">
+                            Silky 60fps GSAP scroll choreography, micro-interactions, and product launch experiences that captivate buyers.
+                          </p>
+
+                          <ul class="service-card-points">
+                          <li>
+                            <span class="service-point-check" aria-hidden="true">
+                              <i class="fa-solid fa-check"></i>
+                            </span>
+                            <span>GSAP ScrollTrigger Choreography</span>
+                          </li>
+                          <li>
+                            <span class="service-point-check" aria-hidden="true">
+                              <i class="fa-solid fa-check"></i>
+                            </span>
+                            <span>Tactile UI Micro-Interactions</span>
+                          </li>
+                          <li>
+                            <span class="service-point-check" aria-hidden="true">
+                              <i class="fa-solid fa-check"></i>
+                            </span>
+                            <span>Zero-Jank Hardware-Accelerated Motion</span>
+                          </li>
+                          </ul>
+                        </div>
+
+                        <div class="service-card-bottom">
+                          <a href="start-project.html" class="service-card-cta">
+                            <span class="service-card-cta-pill">Start Project</span>
+                            <span class="service-card-cta-circle" aria-hidden="true">
+                              <i class="fa-solid fa-arrow-up service-card-cta-arrow"></i>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4 service-grid-col" data-category="growth">
+              <article id="conversion-cro" class="service-card-wrap">
+                    <span class="service-notch-badge" aria-hidden="true">08 · CRO</span>
+                    <div class="service-card">
+                      <div class="service-card-inner">
+                        <div>
+                          <div class="service-card-top">
+                            <span class="service-card-icon" aria-hidden="true">
+                              <i class="fa-solid fa-bullseye"></i>
+                            </span>
+                            <span class="service-card-tag">Optimization</span>
+                          </div>
+
+                          <h3 class="service-card-title">
+                            <a href="start-project.html">Conversion Rate Optimization</a>
+                          </h3>
+
+                          <p class="service-card-desc">
+                            Data-backed UX audits, behavioral heatmaps, and rapid A/B testing programs that turn existing traffic into revenue.
+                          </p>
+
+                          <ul class="service-card-points">
+                          <li>
+                            <span class="service-point-check" aria-hidden="true">
+                              <i class="fa-solid fa-check"></i>
+                            </span>
+                            <span>Funnel Diagnostics &amp; UX Teardowns</span>
+                          </li>
+                          <li>
+                            <span class="service-point-check" aria-hidden="true">
+                              <i class="fa-solid fa-check"></i>
+                            </span>
+                            <span>Hypothesis-Driven Multivariate Testing</span>
+                          </li>
+                          <li>
+                            <span class="service-point-check" aria-hidden="true">
+                              <i class="fa-solid fa-check"></i>
+                            </span>
+                            <span>Demo &amp; Checkout Friction Removal</span>
+                          </li>
+                          </ul>
+                        </div>
+
+                        <div class="service-card-bottom">
+                          <a href="start-project.html" class="service-card-cta">
+                            <span class="service-card-cta-pill">Start Project</span>
+                            <span class="service-card-cta-circle" aria-hidden="true">
+                              <i class="fa-solid fa-arrow-up service-card-cta-arrow"></i>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4 service-grid-col" data-category="engineering">
+              <article id="ai-product-engineering" class="service-card-wrap">
+                    <span class="service-notch-badge" aria-hidden="true">09 · AI TECH</span>
+                    <div class="service-card">
+                      <div class="service-card-inner">
+                        <div>
+                          <div class="service-card-top">
+                            <span class="service-card-icon" aria-hidden="true">
+                              <i class="fa-solid fa-robot"></i>
+                            </span>
+                            <span class="service-card-tag">AI &amp; Workflows</span>
+                          </div>
+
+                          <h3 class="service-card-title">
+                            <a href="start-project.html">AI Product &amp; Workflow UX</a>
+                          </h3>
+
+                          <p class="service-card-desc">
+                            Human-centered AI copilot interfaces, intelligent search experiences, and automated internal tooling for modern teams.
+                          </p>
+
+                          <ul class="service-card-points">
+                          <li>
+                            <span class="service-point-check" aria-hidden="true">
+                              <i class="fa-solid fa-check"></i>
+                            </span>
+                            <span>Conversational &amp; Copilot Product UI</span>
+                          </li>
+                          <li>
+                            <span class="service-point-check" aria-hidden="true">
+                              <i class="fa-solid fa-check"></i>
+                            </span>
+                            <span>RAG Knowledge &amp; Smart Search UX</span>
+                          </li>
+                          <li>
+                            <span class="service-point-check" aria-hidden="true">
+                              <i class="fa-solid fa-check"></i>
+                            </span>
+                            <span>Custom Workflow Automation Portals</span>
+                          </li>
+                          </ul>
+                        </div>
+
+                        <div class="service-card-bottom">
+                          <a href="start-project.html" class="service-card-cta">
+                            <span class="service-card-cta-pill">Start Project</span>
+                            <span class="service-card-cta-circle" aria-hidden="true">
+                              <i class="fa-solid fa-arrow-up service-card-cta-arrow"></i>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
             </div>
           </div>
         </div>
@@ -1880,6 +2361,8 @@
     <script src="assets/js/reusable-component-js/forms.js"></script>
 
     <script src="assets/js/reusable-component-js/testimonials.js"></script>
+
+    <script src="assets/js/reusable-component-js/services.js"></script>
 
     <!-- Main Custom JS -->
     <script src="assets/js/main.js"></script>
