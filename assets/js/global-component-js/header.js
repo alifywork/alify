@@ -18,7 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const drawerDropdownToggle = drawerDropdownItem?.querySelector(".drawer-dropdown-toggle");
 
   // Highlight Active Page Link Automatically
-  const currentFile = window.location.pathname.split("/").pop() || "index.html";
+  const rawFile = window.location.pathname.split("/").pop() || "index.html";
+  const currentFile = rawFile === "blog-single.html" ? "blog.html" : rawFile;
   document.querySelectorAll(".header-nav-link, .drawer-nav-link").forEach((link) => {
     const href = link.getAttribute("href");
     if (!href) return;
