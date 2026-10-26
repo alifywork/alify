@@ -18,8 +18,6 @@
     <!-- Reusable Inner Hero & Blog CSS -->
     <link rel="stylesheet" href="assets/css/reusable-component-css/inner-hero.css" />
     <link rel="stylesheet" href="assets/css/reusable-component-css/blog.css" />
-    <link rel="stylesheet" href="assets/css/reusable-component-css/projects.css" />
-    <link rel="stylesheet" href="assets/css/reusable-component-css/single-pages.css" />
 
     <!-- Main Custom CSS (Includes Garet, Montserrat & Poppins @font-face) -->
     <link rel="stylesheet" href="assets/css/style.css" />
@@ -649,26 +647,26 @@
         </div>
       </section>
 
-      <!-- Related Projects Section (Placed at End of Single Blog Main Content) -->
-      <section class="single-related-projects-section" aria-label="Related Client Projects">
+      <!-- Related Blogs Section (Placed at End of Single Blog Main Content) -->
+      <section class="blog-related-section" aria-label="Related Blog Articles">
         <div class="container">
-          <div class="row single-related-head-row">
+          <div class="row blog-related-head-row">
             <div class="col-12 col-lg-7">
-              <div class="single-sec-eyebrow">
-                <span class="single-sec-eyebrow-dot" aria-hidden="true"></span>
-                <span>Applied Studio Work</span>
+              <div class="blog-related-eyebrow">
+                <span class="blog-related-eyebrow-dot" aria-hidden="true"></span>
+                <span>Continue Reading</span>
               </div>
-              <h2 class="single-sec-title">
-                Related Projects Where We <span>Shipped These Principles.</span>
+              <h2 class="blog-related-title">
+                Related Blogs &amp; <span>Engineering Insights.</span>
               </h2>
-              <p class="single-sec-desc">
-                See how ALIFY translates engineering and UX insights into measurable digital outcomes for ambitious global brands.
+              <p class="blog-related-desc">
+                Explore more hands-on guides from ALIFY on design systems, 60fps GSAP motion, conversion UX, and high-speed frontend engineering.
               </p>
             </div>
             <div class="col-12 col-lg-5">
-              <div class="single-related-actions">
-                <a href="work.html" class="btn-start-project">
-                  <span class="btn-start-pill">Explore All Projects</span>
+              <div class="blog-related-actions">
+                <a href="blog.html" class="btn-start-project">
+                  <span class="btn-start-pill">Explore All Articles</span>
                   <span class="btn-start-circle" aria-hidden="true">
                     <i class="fa-solid fa-arrow-up btn-start-arrow"></i>
                   </span>
@@ -677,77 +675,120 @@
             </div>
           </div>
 
-          <div class="row projects-grid-row" id="blogRelatedProjectsGrid">
-            <div class="col-12 col-md-6">
-              <article class="project-grid-card">
-                <div class="project-grid-card-bg" style="background-image: url('assets/images/projects/project-finpulse.jpg');" aria-hidden="true"></div>
-                <div class="project-panel-top">
-                  <div class="project-panel-badges">
-                    <span class="project-badge-glass">
-                      <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
-                      FinTech &amp; SaaS
+          <div class="row blog-grid-row" id="blogRelatedGrid">
+            <div class="col-12 col-md-6 col-lg-4 blog-grid-col">
+              <article class="blog-card">
+                <a href="blog-single.html?post=mastering-gsap-motion" class="blog-card-media">
+                  <span class="blog-card-category">Motion &amp; GSAP</span>
+                  <img
+                    src="assets/images/blog/blog-gsap-motion.jpg"
+                    alt="Mastering Web Motion: Crafting High-Performance Micro-Interactions with GSAP"
+                    class="blog-card-img"
+                    loading="lazy"
+                  />
+                </a>
+                <div class="blog-card-body">
+                  <div class="blog-card-meta">
+                    <span class="blog-card-meta-item">
+                      <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+                      <span>Oct 12, 2026</span>
                     </span>
-                    <span class="project-badge-glass">2026</span>
+                    <span class="blog-card-meta-item">
+                      <i class="fa-solid fa-clock" aria-hidden="true"></i>
+                      <span>7 Min Read</span>
+                    </span>
                   </div>
-                  <span class="project-metric-pill">
-                    <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
-                    +184% Demo Pipeline
-                  </span>
-                </div>
-                <div class="project-panel-bottom">
-                  <span class="project-client-label">FINPULSE AI · SAN FRANCISCO</span>
-                  <h3 class="project-panel-title">
-                    <a href="work-single.html?project=finpulse-platform">FinPulse Institutional Wealth &amp; AI Analytics Platform</a>
+                  <h3 class="blog-card-title">
+                    <a href="blog-single.html?post=mastering-gsap-motion">Mastering Web Motion: Crafting High-Performance Micro-Interactions with GSAP</a>
                   </h3>
-                  <p class="project-panel-desc">Re-architected the enterprise web ecosystem, design token system, and interactive portfolio dashboard to nearly triple enterprise demo bookings.</p>
-                  <div class="project-panel-footer">
-                    <div class="project-deliverable-chips">
-                      <span class="project-chip">Web Architecture</span>
-                      <span class="project-chip">Design System</span>
-                      <span class="project-chip">GSAP Motion</span>
-                    </div>
-                    <a href="work-single.html?project=finpulse-platform" class="project-cta-btn">
-                      <span class="project-cta-pill">View Project</span>
-                      <span class="project-cta-circle" aria-hidden="true">
-                        <i class="fa-solid fa-arrow-up project-cta-arrow"></i>
+                  <p class="blog-card-excerpt">
+                    Purposeful motion guides user attention, communicates spatial hierarchy, and elevates perceived brand quality — provided every frame runs...
+                  </p>
+                  <div class="blog-card-footer">
+                    <a href="blog-single.html?post=mastering-gsap-motion" class="blog-read-more">
+                      <span class="blog-read-more-pill">Read More</span>
+                      <span class="blog-read-more-circle" aria-hidden="true">
+                        <i class="fa-solid fa-arrow-up blog-read-more-arrow"></i>
                       </span>
                     </a>
                   </div>
                 </div>
               </article>
             </div>
-            <div class="col-12 col-md-6">
-              <article class="project-grid-card">
-                <div class="project-grid-card-bg" style="background-image: url('assets/images/projects/project-aura-atelier.jpg');" aria-hidden="true"></div>
-                <div class="project-panel-top">
-                  <div class="project-panel-badges">
-                    <span class="project-badge-glass">
-                      <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
-                      Headless E-Commerce
+
+            <div class="col-12 col-md-6 col-lg-4 blog-grid-col">
+              <article class="blog-card">
+                <a href="blog-single.html?post=conversion-ux-architecture" class="blog-card-media">
+                  <span class="blog-card-category">UX Strategy</span>
+                  <img
+                    src="assets/images/blog/blog-conversion-ux.jpg"
+                    alt="Conversion-Led UX Architecture: Turning B2B Traffic Into Qualified Pipeline"
+                    class="blog-card-img"
+                    loading="lazy"
+                  />
+                </a>
+                <div class="blog-card-body">
+                  <div class="blog-card-meta">
+                    <span class="blog-card-meta-item">
+                      <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+                      <span>Oct 05, 2026</span>
                     </span>
-                    <span class="project-badge-glass">2026</span>
+                    <span class="blog-card-meta-item">
+                      <i class="fa-solid fa-clock" aria-hidden="true"></i>
+                      <span>5 Min Read</span>
+                    </span>
                   </div>
-                  <span class="project-metric-pill">
-                    <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
-                    +62% Checkout Rate
-                  </span>
-                </div>
-                <div class="project-panel-bottom">
-                  <span class="project-client-label">AURA ATELIER · MILAN &amp; LONDON</span>
-                  <h3 class="project-panel-title">
-                    <a href="work-single.html?project=aura-atelier-commerce">Aura Atelier Luxury Headless Flagship Storefront</a>
+                  <h3 class="blog-card-title">
+                    <a href="blog-single.html?post=conversion-ux-architecture">Conversion-Led UX Architecture: Turning B2B Traffic Into Qualified Pipeline</a>
                   </h3>
-                  <p class="project-panel-desc">Crafted a sub-second headless commerce storefront and tactile editorial brand identity that lifted luxury checkout conversion by 62%.</p>
-                  <div class="project-panel-footer">
-                    <div class="project-deliverable-chips">
-                      <span class="project-chip">Brand Identity</span>
-                      <span class="project-chip">Headless DTC</span>
-                      <span class="project-chip">Checkout UX</span>
-                    </div>
-                    <a href="work-single.html?project=aura-atelier-commerce" class="project-cta-btn">
-                      <span class="project-cta-pill">View Project</span>
-                      <span class="project-cta-circle" aria-hidden="true">
-                        <i class="fa-solid fa-arrow-up project-cta-arrow"></i>
+                  <p class="blog-card-excerpt">
+                    Beautiful visuals capture attention in the first three seconds, but information architecture and friction-free conversion pathways are wha...
+                  </p>
+                  <div class="blog-card-footer">
+                    <a href="blog-single.html?post=conversion-ux-architecture" class="blog-read-more">
+                      <span class="blog-read-more-pill">Read More</span>
+                      <span class="blog-read-more-circle" aria-hidden="true">
+                        <i class="fa-solid fa-arrow-up blog-read-more-arrow"></i>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4 blog-grid-col">
+              <article class="blog-card">
+                <a href="blog-single.html?post=technical-seo-guide" class="blog-card-media">
+                  <span class="blog-card-category">Technical SEO</span>
+                  <img
+                    src="assets/images/blog/blog-technical-seo.jpg"
+                    alt="Core Web Vitals &amp; Technical SEO: The Engineering Guide to Organic Growth"
+                    class="blog-card-img"
+                    loading="lazy"
+                  />
+                </a>
+                <div class="blog-card-body">
+                  <div class="blog-card-meta">
+                    <span class="blog-card-meta-item">
+                      <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+                      <span>Sep 14, 2026</span>
+                    </span>
+                    <span class="blog-card-meta-item">
+                      <i class="fa-solid fa-clock" aria-hidden="true"></i>
+                      <span>8 Min Read</span>
+                    </span>
+                  </div>
+                  <h3 class="blog-card-title">
+                    <a href="blog-single.html?post=technical-seo-guide">Core Web Vitals &amp; Technical SEO: The Engineering Guide to Organic Growth</a>
+                  </h3>
+                  <p class="blog-card-excerpt">
+                    Learn how sub-second Largest Contentful Paint, clean semantic landmarks, and zero-CLS asset strategies compound organic search authority.
+                  </p>
+                  <div class="blog-card-footer">
+                    <a href="blog-single.html?post=technical-seo-guide" class="blog-read-more">
+                      <span class="blog-read-more-pill">Read More</span>
+                      <span class="blog-read-more-circle" aria-hidden="true">
+                        <i class="fa-solid fa-arrow-up blog-read-more-arrow"></i>
                       </span>
                     </a>
                   </div>
@@ -957,8 +998,6 @@
     <!-- Reusable Inner Hero & Blog JS -->
     <script src="assets/js/reusable-component-js/inner-hero.js"></script>
     <script src="assets/js/reusable-component-js/blog.js"></script>
-
-    <script src="assets/js/reusable-component-js/single-pages.js"></script>
 
     <!-- Main Custom JS -->
     <script src="assets/js/main.js"></script>

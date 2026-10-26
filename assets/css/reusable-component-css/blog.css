@@ -1202,4 +1202,88 @@
   .blog-author-card {
     flex-direction: column;
   }
+
+  .blog-related-section {
+    padding: 56px 0 72px;
+  }
 }
+
+/* --------------------------------------------------------------------------
+   6. Single Blog — Related Blogs Section (End of Main Content)
+   -------------------------------------------------------------------------- */
+
+.blog-related-section {
+  position: relative;
+  padding: 84px 0 96px;
+  background-color: var(--color-secondary);
+  border-top: 1px solid rgba(15, 52, 115, 0.1);
+}
+
+.blog-related-head-row {
+  align-items: flex-end;
+  row-gap: 20px;
+  margin-bottom: 40px;
+}
+
+.blog-related-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 16px;
+  border-radius: 999px;
+  background-color: var(--color-white);
+  border: 1px solid rgba(15, 52, 115, 0.14);
+  font-family: var(--font-poppins);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 14px;
+}
+
+.blog-related-eyebrow-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+}
+
+.blog-related-title {
+  font-family: var(--font-montserrat);
+  font-size: clamp(26px, 3vw, 40px);
+  font-weight: 800;
+  line-height: 1.16;
+  letter-spacing: -0.025em;
+  color: var(--color-black);
+  margin-bottom: 10px;
+}
+
+.blog-related-title span {
+  color: var(--color-primary);
+}
+
+.blog-related-desc {
+  font-family: var(--font-poppins);
+  font-size: 15.5px;
+  line-height: 1.72;
+  color: rgba(0, 0, 0, 0.68);
+  max-width: 600px;
+  margin: 0;
+}
+
+.blog-related-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 991.98px) {
+  .blog-related-section {
+    padding: 72px 0 84px;
+  }
+
+  .blog-related-actions {
+    justify-content: flex-start;
+  }
+}
+

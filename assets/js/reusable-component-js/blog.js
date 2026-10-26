@@ -714,4 +714,93 @@ function initSingleBlogPage() {
       if (shareStatus) shareStatus.textContent = "";
     }, 2500);
   });
+
+  // Dynamic Related Blogs Grid (End of Single Blog Main Content)
+  const relatedGrid = document.getElementById("blogRelatedGrid");
+  if (relatedGrid) {
+    const activeSlug = slug && ALIFY_BLOG_POSTS[slug] ? slug : "scalable-design-systems";
+    const relatedMap = {
+      "scalable-design-systems": [
+        "mastering-gsap-motion",
+        "conversion-ux-architecture",
+        "technical-seo-guide",
+      ],
+      "mastering-gsap-motion": [
+        "scalable-design-systems",
+        "conversion-ux-architecture",
+        "iconic-brand-identity",
+      ],
+      "conversion-ux-architecture": [
+        "headless-ecommerce-2026",
+        "scalable-design-systems",
+        "technical-seo-guide",
+      ],
+      "iconic-brand-identity": [
+        "scalable-design-systems",
+        "headless-ecommerce-2026",
+        "mastering-gsap-motion",
+      ],
+      "headless-ecommerce-2026": [
+        "conversion-ux-architecture",
+        "technical-seo-guide",
+        "iconic-brand-identity",
+      ],
+      "technical-seo-guide": [
+        "scalable-design-systems",
+        "conversion-ux-architecture",
+        "headless-ecommerce-2026",
+      ],
+    };
+
+    const chosenSlugs = (
+      relatedMap[activeSlug] ||
+      Object.keys(ALIFY_BLOG_POSTS).filter((k) => k !== activeSlug).slice(0, 3)
+    ).filter((k) => ALIFY_BLOG_POSTS[k] && k !== activeSlug);
+
+    relatedGrid.innerHTML = chosenSlugs
+      .map((relSlug) => {
+        const rp = ALIFY_BLOG_POSTS[relSlug];
+        const excerpt =
+          rp.lead.length > 142 ? `${rp.lead.slice(0, 139).trim()}...` : rp.lead;
+        return `
+          <div class="col-12 col-md-6 col-lg-4 blog-grid-col">
+            <article class="blog-card">
+              <a href="blog-single.html?post=${relSlug}" class="blog-card-media">
+                <span class="blog-card-category">${rp.category}</span>
+                <img
+                  src="${rp.image}"
+                  alt="${rp.title}"
+                  class="blog-card-img"
+                  loading="lazy"
+                />
+              </a>
+              <div class="blog-card-body">
+                <div class="blog-card-meta">
+                  <span class="blog-card-meta-item">
+                    <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+                    <span>${rp.date}</span>
+                  </span>
+                  <span class="blog-card-meta-item">
+                    <i class="fa-solid fa-clock" aria-hidden="true"></i>
+                    <span>${rp.readTime}</span>
+                  </span>
+                </div>
+                <h3 class="blog-card-title">
+                  <a href="blog-single.html?post=${relSlug}">${rp.title}</a>
+                </h3>
+                <p class="blog-card-excerpt">${excerpt}</p>
+                <div class="blog-card-footer">
+                  <a href="blog-single.html?post=${relSlug}" class="blog-read-more">
+                    <span class="blog-read-more-pill">Read More</span>
+                    <span class="blog-read-more-circle" aria-hidden="true">
+                      <i class="fa-solid fa-arrow-up blog-read-more-arrow"></i>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </article>
+          </div>`;
+      })
+      .join("");
+  }
 }

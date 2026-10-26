@@ -216,28 +216,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   // ------------------------------------------------------------------------
-  // A. Blog Single — Dynamic Related Projects Matcher
-  // ------------------------------------------------------------------------
-  const blogRelatedGrid = document.getElementById("blogRelatedProjectsGrid");
-  if (blogRelatedGrid) {
-    const postSlug = params.get("post") || "scalable-design-systems";
-    const postToProjects = {
-      "scalable-design-systems": ["finpulse-platform", "medcore-telehealth"],
-      "gsap-scroll-storytelling": ["finpulse-platform", "crestline-proptech"],
-      "conversion-ux-patterns": ["aura-atelier-commerce", "medcore-telehealth"],
-      "brand-identity-authority": ["solenne-skincare", "aura-atelier-commerce"],
-      "headless-ecommerce-2026": ["aura-atelier-commerce", "solenne-skincare"],
-      "technical-seo-guide": ["solenne-skincare", "finpulse-platform"],
-    };
-    const pair = postToProjects[postSlug] || [
-      "finpulse-platform",
-      "aura-atelier-commerce",
-    ];
-    blogRelatedGrid.innerHTML = pair.map(renderRelatedProjectCard).join("");
-  }
-
-  // ------------------------------------------------------------------------
-  // B. Service Single Page (service-single.html?service=<slug>)
+  // A. Service Single Page (service-single.html?service=<slug>)
   // ------------------------------------------------------------------------
   const serviceRoot = document.getElementById("serviceSingleRoot");
   if (serviceRoot) {
