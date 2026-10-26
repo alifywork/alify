@@ -4,40 +4,64 @@
 
 .inner-hero {
   position: relative;
-  background-color: var(--color-secondary);
-  padding: 78px 0 86px;
-  border-bottom: 1px solid rgba(15, 52, 115, 0.09);
+  background-color: var(--color-black);
+  color: var(--color-white);
+  padding: 82px 0 90px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   overflow: hidden;
+  isolation: isolate;
 }
 
-/* Architectural Grid Background Pattern */
+/* Directional Royal-Navy & Obsidian Editorial Scrim */
 .inner-hero::before {
   content: "";
   position: absolute;
   inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    106deg,
+    rgba(0, 0, 0, 0.86) 0%,
+    rgba(15, 52, 115, 0.68) 54%,
+    rgba(0, 0, 0, 0.56) 100%
+  );
+  pointer-events: none;
+}
+
+/* Subtle Architectural Grid Lines Over Scrim */
+.inner-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
   background-image:
-    linear-gradient(to right, rgba(15, 52, 115, 0.045) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(15, 52, 115, 0.045) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
   background-size: 56px 56px;
   pointer-events: none;
+}
+
+.inner-hero > .container {
+  position: relative;
+  z-index: 2;
 }
 
 .inner-hero-watermark {
   position: absolute;
   right: 4%;
   bottom: -48px;
+  z-index: 0;
   font-family: var(--font-garet);
   font-weight: 800;
   font-size: clamp(180px, 22vw, 300px);
   line-height: 1;
-  color: rgba(15, 52, 115, 0.045);
+  color: rgba(255, 255, 255, 0.05);
   pointer-events: none;
   user-select: none;
 }
 
 .inner-hero-row {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   align-items: center;
   row-gap: 36px;
 }
@@ -47,6 +71,8 @@
    -------------------------------------------------------------------------- */
 
 .breadcrumb-nav {
+  position: relative;
+  z-index: 2;
   margin-bottom: 26px;
 }
 
@@ -57,9 +83,11 @@
   gap: 10px;
   padding: 8px 18px;
   border-radius: 999px;
-  background-color: var(--color-white);
-  border: 1px solid rgba(15, 52, 115, 0.12);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03);
+  background-color: rgba(0, 0, 0, 0.44);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
   list-style: none;
   margin: 0;
 }
@@ -77,27 +105,27 @@
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  color: rgba(0, 0, 0, 0.68);
+  color: rgba(246, 244, 241, 0.8);
   font-weight: 500;
   transition: color 0.22s ease;
 }
 
 .breadcrumb-link:hover {
-  color: var(--color-primary);
+  color: var(--color-white);
 }
 
 .breadcrumb-home-icon {
   font-size: 12px;
-  color: var(--color-primary);
+  color: var(--color-white);
 }
 
 .breadcrumb-sep {
   font-size: 10px;
-  color: rgba(0, 0, 0, 0.35);
+  color: rgba(255, 255, 255, 0.44);
 }
 
 .breadcrumb-current {
-  color: var(--color-primary);
+  color: var(--color-white);
   font-weight: 600;
 }
 
@@ -109,20 +137,26 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  padding: 7px 15px;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   font-family: var(--font-poppins);
-  font-size: 12.5px;
+  font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
-  color: var(--color-primary);
-  margin-bottom: 14px;
+  color: var(--color-white);
+  margin-bottom: 16px;
 }
 
 .inner-hero-eyebrow-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: var(--color-primary);
+  background-color: var(--color-white);
 }
 
 .inner-hero-title {
@@ -131,20 +165,23 @@
   font-size: clamp(32px, 4.3vw, 54px);
   line-height: 1.12;
   letter-spacing: -0.025em;
-  color: var(--color-black);
+  color: var(--color-white);
   margin: 0 0 18px;
   max-width: 760px;
 }
 
 .inner-hero-title-accent {
-  color: var(--color-primary);
+  color: var(--color-secondary);
+  text-decoration: underline;
+  text-decoration-color: var(--color-primary);
+  text-underline-offset: 7px;
 }
 
 .inner-hero-desc {
   font-family: var(--font-poppins);
   font-size: 16.5px;
   line-height: 1.72;
-  color: rgba(0, 0, 0, 0.72);
+  color: rgba(246, 244, 241, 0.85);
   max-width: 620px;
   margin: 0;
 }
@@ -163,30 +200,32 @@
   gap: 8px;
   padding: 9px 16px;
   border-radius: 999px;
-  background-color: var(--color-white);
-  border: 1px solid rgba(15, 52, 115, 0.12);
+  background-color: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   font-family: var(--font-poppins);
   font-size: 13.5px;
   font-weight: 500;
-  color: var(--color-black);
+  color: var(--color-white);
   transition: background-color 0.24s ease, color 0.24s ease, border-color 0.24s ease, transform 0.24s ease;
 }
 
 a.inner-hero-tag:hover {
-  background-color: var(--color-primary);
-  border-color: var(--color-primary);
-  color: var(--color-white);
+  background-color: var(--color-white);
+  border-color: var(--color-white);
+  color: var(--color-primary);
   transform: translateY(-2px);
 }
 
 .inner-hero-tag i {
-  color: var(--color-primary);
+  color: var(--color-white);
   font-size: 13px;
   transition: color 0.24s ease;
 }
 
 a.inner-hero-tag:hover i {
-  color: var(--color-white);
+  color: var(--color-primary);
 }
 
 /* --------------------------------------------------------------------------

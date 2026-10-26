@@ -447,6 +447,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const bgEl = document.getElementById("srvBannerBg");
     if (bgEl) bgEl.style.backgroundImage = `url('${srv.bg}')`;
+    const heroBg = document.getElementById("innerHeroBg");
+    if (heroBg && params.get("service")) heroBg.style.backgroundImage = `url('${srv.bg}')`;
     setTxt("srvBannerPill", srv.title);
 
     const statsEl = document.getElementById("srvBannerStats");
@@ -768,6 +770,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const bgEl = document.getElementById("indBannerBg");
     if (bgEl) bgEl.style.backgroundImage = `url('${ind.bg}')`;
+    const heroBg = document.getElementById("innerHeroBg");
+    if (heroBg && params.get("industry")) heroBg.style.backgroundImage = `url('${ind.bg}')`;
     setTxt("indBannerPill", ind.title);
 
     const statsEl = document.getElementById("indBannerStats");
@@ -870,6 +874,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const heroFrame = document.getElementById("workHeroFrame");
     if (heroFrame) heroFrame.style.backgroundImage = `url('${proj.bg}')`;
+    const heroBg = document.getElementById("innerHeroBg");
+    if (heroBg && params.get("project")) heroBg.style.backgroundImage = `url('${proj.bg}')`;
 
     setTxt("workStoryBrief", proj.brief);
     setTxt("workStoryCraft", proj.craft);
@@ -1130,6 +1136,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const visEl = document.getElementById("csChapterVisual");
     if (visEl) visEl.style.backgroundImage = `url('${cs.bg}')`;
+    const heroBg = document.getElementById("innerHeroBg");
+    if (heroBg && params.get("case")) heroBg.style.backgroundImage = `url('${cs.bg}')`;
 
     setTxt("csCh1", cs.ch1);
     setTxt("csCh2", cs.ch2);

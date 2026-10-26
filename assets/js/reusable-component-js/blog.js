@@ -564,6 +564,8 @@ function initSingleBlogPage() {
       imgEl.src = post.image;
       imgEl.alt = post.title;
     }
+    const heroBg = document.getElementById("innerHeroBg");
+    if (heroBg) heroBg.style.backgroundImage = `url('${post.image}')`;
 
     let html = `<p class="blog-lead-paragraph">${post.lead}</p>`;
     post.sections.forEach((sec, idx) => {

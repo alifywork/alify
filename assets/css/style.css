@@ -401,39 +401,65 @@ ol {
 
 .home-hero {
   position: relative;
-  background-color: var(--color-secondary);
-  padding: 76px 0 88px;
+  background-color: var(--color-black);
+  color: var(--color-white);
+  padding: 84px 0 92px;
   overflow: hidden;
+  isolation: isolate;
 }
 
-/* Subtle Architectural Grid Overlay */
+.hero-bg-media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: scale(1.02);
+  animation: heroBgDrift 22s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes heroBgDrift {
+  0% {
+    transform: scale(1.02) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: scale(1.08) translate3d(-1%, -1%, 0);
+  }
+}
+
+/* Directional Royal-Navy & Obsidian Editorial Scrim */
 .home-hero::before {
   content: "";
   position: absolute;
   inset: 0;
-  background-image:
-    linear-gradient(to right, rgba(15, 52, 115, 0.045) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(15, 52, 115, 0.045) 1px, transparent 1px);
-  background-size: 64px 64px;
+  z-index: -1;
+  background: linear-gradient(
+    106deg,
+    rgba(0, 0, 0, 0.86) 0%,
+    rgba(15, 52, 115, 0.68) 54%,
+    rgba(0, 0, 0, 0.52) 100%
+  );
   pointer-events: none;
 }
 
-/* Ambient Soft Radial Accent */
+/* Subtle Architectural Grid Overlay */
 .home-hero::after {
   content: "";
   position: absolute;
-  top: -140px;
-  right: -120px;
-  width: 520px;
-  height: 520px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(15, 52, 115, 0.09) 0%, rgba(15, 52, 115, 0) 70%);
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
   pointer-events: none;
 }
 
 .home-hero-row {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   align-items: center;
   row-gap: 48px;
 }
@@ -445,15 +471,17 @@ ol {
   gap: 10px;
   padding: 8px 18px;
   border-radius: 999px;
-  background-color: var(--color-white);
-  border: 1px solid rgba(15, 52, 115, 0.14);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+  background-color: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
   font-family: var(--font-poppins);
   font-size: 12.5px;
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--color-primary);
+  color: var(--color-white);
   margin-bottom: 24px;
 }
 
@@ -462,7 +490,7 @@ ol {
   width: 9px;
   height: 9px;
   border-radius: 50%;
-  background-color: var(--color-primary);
+  background-color: var(--color-white);
 }
 
 .hero-status-dot::after {
@@ -470,7 +498,7 @@ ol {
   position: absolute;
   inset: -4px;
   border-radius: 50%;
-  border: 1.5px solid var(--color-primary);
+  border: 1.5px solid var(--color-white);
   animation: heroPulse 2s infinite ease-out;
 }
 
@@ -492,14 +520,14 @@ ol {
   font-size: clamp(38px, 4.9vw, 66px);
   line-height: 1.08;
   letter-spacing: -0.03em;
-  color: var(--color-black);
+  color: var(--color-white);
   margin: 0 0 22px;
 }
 
 .hero-title-highlight {
   position: relative;
   display: inline-block;
-  color: var(--color-primary);
+  color: var(--color-secondary);
 }
 
 .hero-title-highlight::after {
@@ -508,8 +536,8 @@ ol {
   left: 0;
   bottom: 4px;
   width: 100%;
-  height: 10px;
-  background-color: rgba(15, 52, 115, 0.12);
+  height: 11px;
+  background-color: rgba(15, 52, 115, 0.88);
   border-radius: 6px;
   z-index: -1;
 }
@@ -518,7 +546,7 @@ ol {
   font-family: var(--font-poppins);
   font-size: 17px;
   line-height: 1.74;
-  color: rgba(0, 0, 0, 0.72);
+  color: rgba(246, 244, 241, 0.86);
   max-width: 575px;
   margin: 0 0 34px;
 }
@@ -536,12 +564,22 @@ ol {
   height: 52px;
   padding: 0 28px;
   font-size: 15px;
+  background-color: var(--color-white);
+  color: var(--color-primary);
 }
 
 .hero-cta-group .btn-start-circle {
   width: 52px;
   height: 52px;
   font-size: 16px;
+  background-color: var(--color-white);
+  color: var(--color-primary);
+}
+
+.hero-cta-group .btn-start-project:hover .btn-start-pill,
+.hero-cta-group .btn-start-project:hover .btn-start-circle {
+  background-color: var(--color-primary);
+  color: var(--color-white);
 }
 
 .btn-hero-secondary {
@@ -552,28 +590,30 @@ ol {
   height: 52px;
   padding: 0 26px;
   border-radius: 999px;
-  background-color: var(--color-white);
-  border: 1.5px solid rgba(15, 52, 115, 0.18);
+  background-color: rgba(255, 255, 255, 0.12);
+  border: 1.5px solid rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   font-family: var(--font-poppins);
   font-size: 15px;
   font-weight: 500;
-  color: var(--color-black);
+  color: var(--color-white);
   transition: background-color 0.28s ease, color 0.28s ease, border-color 0.28s ease, transform 0.25s ease;
 }
 
 .btn-hero-secondary i {
-  color: var(--color-primary);
+  color: var(--color-white);
   transition: color 0.28s ease, transform 0.28s ease;
 }
 
 .btn-hero-secondary:hover {
-  background-color: var(--color-primary);
-  border-color: var(--color-primary);
-  color: var(--color-white);
+  background-color: var(--color-white);
+  border-color: var(--color-white);
+  color: var(--color-primary);
 }
 
 .btn-hero-secondary:hover i {
-  color: var(--color-white);
+  color: var(--color-primary);
   transform: rotate(25deg);
 }
 
@@ -584,7 +624,7 @@ ol {
   flex-wrap: wrap;
   gap: 32px;
   padding-top: 28px;
-  border-top: 1px solid rgba(15, 52, 115, 0.12);
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .hero-stat-item {
@@ -598,19 +638,19 @@ ol {
   font-weight: 800;
   font-size: 30px;
   line-height: 1.1;
-  color: var(--color-primary);
+  color: var(--color-white);
 }
 
 .hero-stat-label {
   font-family: var(--font-poppins);
   font-size: 13.5px;
-  color: rgba(0, 0, 0, 0.65);
+  color: rgba(246, 244, 241, 0.8);
 }
 
 .hero-stat-divider {
   width: 1px;
   height: 38px;
-  background-color: rgba(15, 52, 115, 0.14);
+  background-color: rgba(255, 255, 255, 0.22);
 }
 
 /* --------------------------------------------------------------------------
@@ -625,11 +665,14 @@ ol {
 /* Primary Navy Showcase Card */
 .hero-showcase-card {
   position: relative;
-  background-color: var(--color-primary);
+  background-color: rgba(15, 52, 115, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   color: var(--color-white);
   border-radius: 28px;
   padding: 32px;
-  box-shadow: 0 28px 60px rgba(15, 52, 115, 0.22);
+  box-shadow: 0 28px 64px rgba(0, 0, 0, 0.42);
   overflow: hidden;
 }
 
