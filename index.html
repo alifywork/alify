@@ -28,6 +28,8 @@
 
     <link rel="stylesheet" href="assets/css/reusable-component-css/services.css" />
 
+    <link rel="stylesheet" href="assets/css/reusable-component-css/projects.css" />
+
     <!-- Main Custom CSS (Includes Garet, Montserrat & Poppins @font-face) -->
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
@@ -1571,6 +1573,449 @@
         </div>
       </section>
 
+      <!-- Home Page Hover-Expanding Projects Panel Section (Header in .container, Panels in .container-fluid) -->
+      <section class="home-projects-section" aria-label="Featured Projects">
+        <!-- Heading Area inside Bootstrap .container -->
+        <div class="container">
+          <div class="row projects-head-row">
+            <div class="col-12 col-lg-7">
+              <div class="projects-eyebrow">
+                <span class="projects-eyebrow-dot" aria-hidden="true"></span>
+                <span>Selected Portfolio</span>
+              </div>
+              <h2 class="projects-sec-title">
+                Flagship Digital Products That <span>Redefined Their Category.</span>
+              </h2>
+              <p class="projects-sec-desc">
+                Hover or tap any panel below to explore how ALIFY combines design authority, custom engineering, and conversion strategy into measurable client outcomes.
+              </p>
+            </div>
+
+            <div class="col-12 col-lg-5">
+              <div class="projects-head-actions">
+                <div class="projects-active-counter" aria-live="polite">
+                  <strong id="projectsActiveCounterNum">01</strong>
+                  <span>/ 06 ACTIVE</span>
+                </div>
+
+                <a href="work.html" class="btn-start-project">
+                  <span class="btn-start-pill">All Projects</span>
+                  <span class="btn-start-circle" aria-hidden="true">
+                    <i class="fa-solid fa-arrow-up btn-start-arrow"></i>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hover-Expanding Project Panels inside Bootstrap .container-fluid -->
+        <div class="container-fluid projects-fluid-container">
+          <div
+            class="projects-accordion-stage"
+            id="projectsAccordionStage"
+            aria-label="Interactive expanding project showcase panels"
+          >
+            <article
+              class="project-panel is-active"
+              tabindex="0"
+              role="button"
+              aria-expanded="true"
+              aria-label="FinPulse AI Platform"
+            >
+              <div
+                class="project-panel-bg"
+                style="background-image: url('assets/images/projects/project-finpulse.jpg');"
+                aria-hidden="true"
+              ></div>
+
+              <!-- Collapsed Spine State -->
+              <div class="project-panel-collapsed" aria-hidden="true">
+                <span class="project-collapsed-num">01</span>
+                <div class="project-collapsed-vertical">
+                  <span class="project-collapsed-title">FinPulse AI Platform</span>
+                  <span class="project-collapsed-cat">FinTech &amp; SaaS</span>
+                </div>
+                <span class="project-collapsed-plus">
+                  <i class="fa-solid fa-plus"></i>
+                </span>
+              </div>
+
+              <!-- Expanded Full Showcase State -->
+              <div class="project-panel-expanded">
+                <div class="project-panel-top">
+                  <div class="project-panel-badges">
+                    <span class="project-badge-glass">
+                      <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+                      FinTech &amp; SaaS
+                    </span>
+                    <span class="project-badge-glass">2026</span>
+                  </div>
+                  <span class="project-metric-pill">
+                    <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
+                    +184% Demo Pipeline
+                  </span>
+                </div>
+
+                <div class="project-panel-bottom">
+                  <span class="project-client-label">FINPULSE AI · SAN FRANCISCO</span>
+                  <h3 class="project-panel-title">
+                    <a href="work.html#finpulse-platform">FinPulse Institutional Wealth &amp; AI Analytics Platform</a>
+                  </h3>
+                  <p class="project-panel-desc">
+                    Re-architected the enterprise web ecosystem, design token system, and interactive portfolio dashboard to nearly triple enterprise demo bookings.
+                  </p>
+
+                  <div class="project-panel-footer">
+                    <div class="project-deliverable-chips">
+                      <span class="project-chip">Web Architecture</span>
+                      <span class="project-chip">Design System</span>
+                      <span class="project-chip">GSAP Motion</span>
+                    </div>
+                    <a href="work.html#finpulse-platform" class="project-cta-btn">
+                      <span class="project-cta-pill">View Project</span>
+                      <span class="project-cta-circle" aria-hidden="true">
+                        <i class="fa-solid fa-arrow-up project-cta-arrow"></i>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article
+              class="project-panel"
+              tabindex="0"
+              role="button"
+              aria-expanded="false"
+              aria-label="Aura Atelier Flagship"
+            >
+              <div
+                class="project-panel-bg"
+                style="background-image: url('assets/images/projects/project-aura-atelier.jpg');"
+                aria-hidden="true"
+              ></div>
+
+              <!-- Collapsed Spine State -->
+              <div class="project-panel-collapsed" aria-hidden="true">
+                <span class="project-collapsed-num">02</span>
+                <div class="project-collapsed-vertical">
+                  <span class="project-collapsed-title">Aura Atelier Flagship</span>
+                  <span class="project-collapsed-cat">Headless E-Commerce</span>
+                </div>
+                <span class="project-collapsed-plus">
+                  <i class="fa-solid fa-plus"></i>
+                </span>
+              </div>
+
+              <!-- Expanded Full Showcase State -->
+              <div class="project-panel-expanded">
+                <div class="project-panel-top">
+                  <div class="project-panel-badges">
+                    <span class="project-badge-glass">
+                      <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+                      Headless E-Commerce
+                    </span>
+                    <span class="project-badge-glass">2026</span>
+                  </div>
+                  <span class="project-metric-pill">
+                    <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
+                    +62% Checkout Rate
+                  </span>
+                </div>
+
+                <div class="project-panel-bottom">
+                  <span class="project-client-label">AURA ATELIER · MILAN &amp; LONDON</span>
+                  <h3 class="project-panel-title">
+                    <a href="work.html#aura-atelier-commerce">Aura Atelier Luxury Headless Flagship Storefront</a>
+                  </h3>
+                  <p class="project-panel-desc">
+                    Crafted a sub-second headless commerce storefront and tactile editorial brand identity that lifted luxury checkout conversion by 62%.
+                  </p>
+
+                  <div class="project-panel-footer">
+                    <div class="project-deliverable-chips">
+                      <span class="project-chip">Brand Identity</span>
+                      <span class="project-chip">Headless DTC</span>
+                      <span class="project-chip">Checkout UX</span>
+                    </div>
+                    <a href="work.html#aura-atelier-commerce" class="project-cta-btn">
+                      <span class="project-cta-pill">View Project</span>
+                      <span class="project-cta-circle" aria-hidden="true">
+                        <i class="fa-solid fa-arrow-up project-cta-arrow"></i>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article
+              class="project-panel"
+              tabindex="0"
+              role="button"
+              aria-expanded="false"
+              aria-label="MedCore Patient App"
+            >
+              <div
+                class="project-panel-bg"
+                style="background-image: url('assets/images/projects/project-medcore-app.jpg');"
+                aria-hidden="true"
+              ></div>
+
+              <!-- Collapsed Spine State -->
+              <div class="project-panel-collapsed" aria-hidden="true">
+                <span class="project-collapsed-num">03</span>
+                <div class="project-collapsed-vertical">
+                  <span class="project-collapsed-title">MedCore Patient App</span>
+                  <span class="project-collapsed-cat">HealthTech Mobile</span>
+                </div>
+                <span class="project-collapsed-plus">
+                  <i class="fa-solid fa-plus"></i>
+                </span>
+              </div>
+
+              <!-- Expanded Full Showcase State -->
+              <div class="project-panel-expanded">
+                <div class="project-panel-top">
+                  <div class="project-panel-badges">
+                    <span class="project-badge-glass">
+                      <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+                      HealthTech Mobile
+                    </span>
+                    <span class="project-badge-glass">2026</span>
+                  </div>
+                  <span class="project-metric-pill">
+                    <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
+                    4.9★ App Store Rating
+                  </span>
+                </div>
+
+                <div class="project-panel-bottom">
+                  <span class="project-client-label">MEDCORE HEALTH · TORONTO</span>
+                  <h3 class="project-panel-title">
+                    <a href="work.html#medcore-telehealth">MedCore Telemedicine &amp; Biometric Care Super-App</a>
+                  </h3>
+                  <p class="project-panel-desc">
+                    Designed and engineered WCAG AA accessible iOS and Android patient workflows that transformed legacy clinic scheduling into a 4.9-star mobile product.
+                  </p>
+
+                  <div class="project-panel-footer">
+                    <div class="project-deliverable-chips">
+                      <span class="project-chip">iOS &amp; Android</span>
+                      <span class="project-chip">Clinical UX</span>
+                      <span class="project-chip">DesignOps</span>
+                    </div>
+                    <a href="work.html#medcore-telehealth" class="project-cta-btn">
+                      <span class="project-cta-pill">View Project</span>
+                      <span class="project-cta-circle" aria-hidden="true">
+                        <i class="fa-solid fa-arrow-up project-cta-arrow"></i>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article
+              class="project-panel"
+              tabindex="0"
+              role="button"
+              aria-expanded="false"
+              aria-label="Crestline 3D PropTech"
+            >
+              <div
+                class="project-panel-bg"
+                style="background-image: url('assets/images/projects/project-crestline-proptech.jpg');"
+                aria-hidden="true"
+              ></div>
+
+              <!-- Collapsed Spine State -->
+              <div class="project-panel-collapsed" aria-hidden="true">
+                <span class="project-collapsed-num">04</span>
+                <div class="project-collapsed-vertical">
+                  <span class="project-collapsed-title">Crestline 3D PropTech</span>
+                  <span class="project-collapsed-cat">PropTech Platform</span>
+                </div>
+                <span class="project-collapsed-plus">
+                  <i class="fa-solid fa-plus"></i>
+                </span>
+              </div>
+
+              <!-- Expanded Full Showcase State -->
+              <div class="project-panel-expanded">
+                <div class="project-panel-top">
+                  <div class="project-panel-badges">
+                    <span class="project-badge-glass">
+                      <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+                      PropTech Platform
+                    </span>
+                    <span class="project-badge-glass">2025</span>
+                  </div>
+                  <span class="project-metric-pill">
+                    <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
+                    110k+ Active Buyers
+                  </span>
+                </div>
+
+                <div class="project-panel-bottom">
+                  <span class="project-client-label">CRESTLINE DEVELOPMENTS · DUBAI</span>
+                  <h3 class="project-panel-title">
+                    <a href="work.html#crestline-proptech">Crestline Interactive 3D Architectural Discovery Hub</a>
+                  </h3>
+                  <p class="project-panel-desc">
+                    Built an immersive 3D residence explorer, live mortgage configurator, and investor lead engine serving over 110,000 monthly active buyers.
+                  </p>
+
+                  <div class="project-panel-footer">
+                    <div class="project-deliverable-chips">
+                      <span class="project-chip">Interactive Web</span>
+                      <span class="project-chip">Map Search UX</span>
+                      <span class="project-chip">CRM Funnel</span>
+                    </div>
+                    <a href="work.html#crestline-proptech" class="project-cta-btn">
+                      <span class="project-cta-pill">View Project</span>
+                      <span class="project-cta-circle" aria-hidden="true">
+                        <i class="fa-solid fa-arrow-up project-cta-arrow"></i>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article
+              class="project-panel"
+              tabindex="0"
+              role="button"
+              aria-expanded="false"
+              aria-label="VoltMobility EV Fleet"
+            >
+              <div
+                class="project-panel-bg"
+                style="background-image: url('assets/images/projects/project-voltmobility.jpg');"
+                aria-hidden="true"
+              ></div>
+
+              <!-- Collapsed Spine State -->
+              <div class="project-panel-collapsed" aria-hidden="true">
+                <span class="project-collapsed-num">05</span>
+                <div class="project-collapsed-vertical">
+                  <span class="project-collapsed-title">VoltMobility EV Fleet</span>
+                  <span class="project-collapsed-cat">Clean Mobility &amp; AI</span>
+                </div>
+                <span class="project-collapsed-plus">
+                  <i class="fa-solid fa-plus"></i>
+                </span>
+              </div>
+
+              <!-- Expanded Full Showcase State -->
+              <div class="project-panel-expanded">
+                <div class="project-panel-top">
+                  <div class="project-panel-badges">
+                    <span class="project-badge-glass">
+                      <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+                      Clean Mobility &amp; AI
+                    </span>
+                    <span class="project-badge-glass">2026</span>
+                  </div>
+                  <span class="project-metric-pill">
+                    <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
+                    38s EV Unlock Flow
+                  </span>
+                </div>
+
+                <div class="project-panel-bottom">
+                  <span class="project-client-label">VOLTMOBILITY · BERLIN</span>
+                  <h3 class="project-panel-title">
+                    <a href="work.html#voltmobility-ev">VoltMobility Autonomous EV Fleet &amp; Smart Charging App</a>
+                  </h3>
+                  <p class="project-panel-desc">
+                    Streamlined real-time vehicle telemetry, instant keyless EV reservation, and predictive charger routing into a sub-38-second mobile flow.
+                  </p>
+
+                  <div class="project-panel-footer">
+                    <div class="project-deliverable-chips">
+                      <span class="project-chip">Mobile Product</span>
+                      <span class="project-chip">Live Telemetry</span>
+                      <span class="project-chip">AI Routing</span>
+                    </div>
+                    <a href="work.html#voltmobility-ev" class="project-cta-btn">
+                      <span class="project-cta-pill">View Project</span>
+                      <span class="project-cta-circle" aria-hidden="true">
+                        <i class="fa-solid fa-arrow-up project-cta-arrow"></i>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article
+              class="project-panel"
+              tabindex="0"
+              role="button"
+              aria-expanded="false"
+              aria-label="Solenne Botanical DTC"
+            >
+              <div
+                class="project-panel-bg"
+                style="background-image: url('assets/images/projects/project-solenne-beauty.jpg');"
+                aria-hidden="true"
+              ></div>
+
+              <!-- Collapsed Spine State -->
+              <div class="project-panel-collapsed" aria-hidden="true">
+                <span class="project-collapsed-num">06</span>
+                <div class="project-collapsed-vertical">
+                  <span class="project-collapsed-title">Solenne Botanical DTC</span>
+                  <span class="project-collapsed-cat">Brand &amp; Growth SEO</span>
+                </div>
+                <span class="project-collapsed-plus">
+                  <i class="fa-solid fa-plus"></i>
+                </span>
+              </div>
+
+              <!-- Expanded Full Showcase State -->
+              <div class="project-panel-expanded">
+                <div class="project-panel-top">
+                  <div class="project-panel-badges">
+                    <span class="project-badge-glass">
+                      <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+                      Brand &amp; Growth SEO
+                    </span>
+                    <span class="project-badge-glass">2025</span>
+                  </div>
+                  <span class="project-metric-pill">
+                    <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
+                    2.8x Organic Revenue
+                  </span>
+                </div>
+
+                <div class="project-panel-bottom">
+                  <span class="project-client-label">SOLENNE PARIS · FRANCE</span>
+                  <h3 class="project-panel-title">
+                    <a href="work.html#solenne-skincare">Solenne Botanical Rebrand, Bundle Builder &amp; SEO Engine</a>
+                  </h3>
+                  <p class="project-panel-desc">
+                    Paired a Parisian packaging and digital rebrand with custom regimen builders and technical SEO architecture to grow organic revenue 2.8x.
+                  </p>
+
+                  <div class="project-panel-footer">
+                    <div class="project-deliverable-chips">
+                      <span class="project-chip">Visual Rebrand</span>
+                      <span class="project-chip">Bundle Builder</span>
+                      <span class="project-chip">Technical SEO</span>
+                    </div>
+                    <a href="work.html#solenne-skincare" class="project-cta-btn">
+                      <span class="project-cta-pill">View Project</span>
+                      <span class="project-cta-circle" aria-hidden="true">
+                        <i class="fa-solid fa-arrow-up project-cta-arrow"></i>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <!-- Reusable 2-Row Testimonials Slider Section -->
       <section class="testimonials-slider-section js-testimonials-slider" aria-label="Client Testimonials">
         <div class="container">
@@ -2956,6 +3401,8 @@
     <script src="assets/js/reusable-component-js/industries.js"></script>
 
     <script src="assets/js/reusable-component-js/services.js"></script>
+
+    <script src="assets/js/reusable-component-js/projects.js"></script>
 
     <!-- Main Custom JS -->
     <script src="assets/js/main.js"></script>
