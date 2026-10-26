@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Reusable Services Component Styles
+   Reusable Services Component Styles (With Topic-Matched Background Imagery)
    1. Shared Clipped-Polygon Service Card (.service-card-wrap / .service-card)
    2. Home Page Services Slider (.home-services-section: .container header + .container-fluid slider)
    3. Dedicated Services Page Grid (.services-grid-section)
@@ -90,15 +90,15 @@
   position: relative;
   height: 100%;
   scroll-margin-top: 112px;
-  filter: drop-shadow(0 10px 26px rgba(15, 52, 115, 0.05));
+  filter: drop-shadow(0 14px 30px rgba(0, 0, 0, 0.14));
   transition:
-    transform 0.34s cubic-bezier(0.22, 1, 0.36, 1),
-    filter 0.34s ease;
+    transform 0.36s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.36s ease;
 }
 
 .service-card-wrap:hover {
   transform: translateY(-6px);
-  filter: drop-shadow(0 20px 38px rgba(15, 52, 115, 0.12));
+  filter: drop-shadow(0 24px 44px rgba(15, 52, 115, 0.24));
 }
 
 /* Outer clipped border shell so the exact S-curve polygon gets a crisp 1.5px stroke */
@@ -106,10 +106,10 @@
   position: relative;
   height: 100%;
   padding: 1.5px;
-  background-color: rgba(15, 52, 115, 0.15);
+  background-color: rgba(15, 52, 115, 0.32);
   -webkit-clip-path: var(--service-card-clip);
   clip-path: var(--service-card-clip);
-  transition: background-color 0.3s ease;
+  transition: background-color 0.32s ease;
 }
 
 .service-card-wrap:hover .service-card {
@@ -117,19 +117,54 @@
 }
 
 .service-card-inner {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
   padding: 30px 26px 18px;
-  background-color: var(--color-secondary);
+  background-color: var(--color-black);
+  color: var(--color-white);
+  overflow: hidden;
+  isolation: isolate;
   -webkit-clip-path: var(--service-card-clip);
   clip-path: var(--service-card-clip);
-  transition: background-color 0.3s ease;
 }
 
-.service-card-wrap:hover .service-card-inner {
-  background-color: var(--color-white);
+/* Full-Bleed Service Background Photograph + Editorial Brand Scrim */
+.service-card-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -2;
+  transform: scale(1.01);
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.service-card-wrap:hover .service-card-bg {
+  transform: scale(1.09);
+}
+
+.service-card-inner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.42) 0%,
+    rgba(15, 52, 115, 0.78) 46%,
+    rgba(0, 0, 0, 0.94) 100%
+  );
+  transition: opacity 0.35s ease;
+}
+
+.service-card-content,
+.service-card-bottom {
+  position: relative;
+  z-index: 1;
 }
 
 /* Miniature index pill nestled cleanly inside the 31.747px bottom-left cutout pocket */
@@ -150,7 +185,7 @@
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  z-index: 2;
+  z-index: 3;
   pointer-events: none;
   transition: background-color 0.26s ease, transform 0.26s ease;
 }
@@ -165,26 +200,33 @@
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 22px;
+  margin-bottom: 24px;
 }
 
 .service-card-icon {
   width: 54px;
   height: 54px;
   border-radius: 16px;
-  background-color: var(--color-primary);
+  background-color: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   color: var(--color-white);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-size: 20px;
   flex-shrink: 0;
-  transition: background-color 0.28s ease, transform 0.28s ease;
+  transition:
+    background-color 0.28s ease,
+    border-color 0.28s ease,
+    transform 0.28s ease;
 }
 
 .service-card-wrap:hover .service-card-icon {
-  background-color: var(--color-black);
-  transform: scale(1.05);
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  transform: scale(1.06);
 }
 
 .service-card-tag {
@@ -192,17 +234,14 @@
   align-items: center;
   padding: 5px 12px;
   border-radius: 999px;
-  background-color: var(--color-white);
-  border: 1px solid rgba(15, 52, 115, 0.12);
+  background-color: rgba(0, 0, 0, 0.44);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
   font-family: var(--font-poppins);
   font-weight: 600;
   font-size: 11.5px;
-  color: var(--color-primary);
-  transition: background-color 0.25s ease;
-}
-
-.service-card-wrap:hover .service-card-tag {
-  background-color: var(--color-secondary);
+  color: var(--color-white);
 }
 
 .service-card-title {
@@ -211,9 +250,8 @@
   font-size: 21px;
   line-height: 1.26;
   letter-spacing: -0.02em;
-  color: var(--color-black);
+  color: var(--color-white);
   margin: 0 0 11px;
-  transition: color 0.22s ease;
 }
 
 .service-card-title a {
@@ -221,15 +259,11 @@
   text-decoration: none;
 }
 
-.service-card-wrap:hover .service-card-title {
-  color: var(--color-primary);
-}
-
 .service-card-desc {
   font-family: var(--font-poppins);
   font-size: 14px;
   line-height: 1.66;
-  color: rgba(0, 0, 0, 0.66);
+  color: rgba(255, 255, 255, 0.82);
   margin: 0 0 18px;
 }
 
@@ -249,15 +283,15 @@
   font-family: var(--font-poppins);
   font-size: 13px;
   font-weight: 500;
-  color: rgba(0, 0, 0, 0.8);
+  color: rgba(255, 255, 255, 0.92);
 }
 
 .service-point-check {
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background-color: rgba(15, 52, 115, 0.11);
-  color: var(--color-primary);
+  background-color: rgba(255, 255, 255, 0.18);
+  color: var(--color-white);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -272,7 +306,7 @@
   justify-content: flex-end;
   padding-left: 140px;
   padding-top: 12px;
-  border-top: 1px solid rgba(15, 52, 115, 0.09);
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
 }
 
 .service-card-cta {
@@ -287,26 +321,29 @@
   height: 36px;
   padding: 0 15px;
   border-radius: 999px;
-  background-color: var(--color-black);
-  color: var(--color-white);
+  background-color: var(--color-white);
+  color: var(--color-black);
   font-family: var(--font-poppins);
   font-size: 12.5px;
-  font-weight: 500;
-  transition: background-color 0.24s ease;
+  font-weight: 600;
+  transition: background-color 0.24s ease, color 0.24s ease;
 }
 
 .service-card-cta-circle {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background-color: var(--color-black);
-  color: var(--color-white);
+  background-color: var(--color-white);
+  color: var(--color-black);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-size: 12px;
   margin-left: -1px;
-  transition: background-color 0.24s ease, transform 0.24s ease;
+  transition:
+    background-color 0.24s ease,
+    color 0.24s ease,
+    transform 0.24s ease;
 }
 
 .service-card-cta-arrow {
@@ -317,11 +354,13 @@
 .service-card-wrap:hover .service-card-cta-pill,
 .service-card-cta:hover .service-card-cta-pill {
   background-color: var(--color-primary);
+  color: var(--color-white);
 }
 
 .service-card-wrap:hover .service-card-cta-circle,
 .service-card-cta:hover .service-card-cta-circle {
   background-color: var(--color-primary);
+  color: var(--color-white);
   transform: translateX(3px);
 }
 
@@ -453,7 +492,7 @@
 .services-slider-viewport {
   width: 100%;
   overflow: hidden;
-  padding: 10px 4px 18px;
+  padding: 12px 4px 22px;
   cursor: grab;
   user-select: none;
 }
@@ -487,7 +526,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  margin-top: 30px;
+  margin-top: 28px;
 }
 
 .services-slider-dots {
