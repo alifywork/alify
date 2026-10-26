@@ -352,9 +352,16 @@
    ========================================================================== */
 
 :root {
+  /* Fonts */
   --font-poppins: "Poppins", sans-serif;
   --font-montserrat: "Montserrat", sans-serif;
   --font-garet: "Garet", sans-serif;
+
+  /* Colors */
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+  --color-primary: #0F3473;
+  --color-secondary: #F6F4F1;
 }
 
 *,
