@@ -342,7 +342,7 @@ button.btn-start-project {
 
 .reusable-contact-section {
   position: relative;
-  background-color: var(--color-white);
+  background-color: var(--color-secondary);
   padding: 94px 0;
   border-top: 1px solid rgba(15, 52, 115, 0.08);
 }
@@ -408,7 +408,7 @@ button.btn-start-project {
   gap: 14px;
   padding: 16px 18px;
   border-radius: 16px;
-  background-color: var(--color-secondary);
+  background-color: var(--color-white);
   border: 1px solid rgba(15, 52, 115, 0.09);
 }
 
