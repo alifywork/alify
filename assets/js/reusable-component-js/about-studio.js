@@ -77,4 +77,43 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("scroll", syncLegalToc, { passive: true });
     syncLegalToc();
   }
+
+  // 3. Personalized Thank You Page Hydration (thank-you.html)
+  const thankYouRoot = document.getElementById("thankYouRoot");
+  if (thankYouRoot) {
+    let lead = null;
+    try {
+      const raw = sessionStorage.getItem("alifyLeadSubmission");
+      if (raw) lead = JSON.parse(raw);
+    } catch {
+      lead = null;
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const visitorName = (params.get("name") || lead?.name || "").trim();
+    const visitorEmail = (params.get("email") || lead?.email || "").trim();
+    const capability = (params.get("service") || lead?.capability || "").trim();
+    const refCode = (params.get("ref") || lead?.ref || "ALF-2026").trim();
+
+    const refEl = document.getElementById("thankYouRefCode");
+    if (refEl) refEl.textContent = `REF #${refCode}`;
+
+    if (visitorName) {
+      const firstName = visitorName.split(/\s+/)[0].replace(/[<>&"']/g, "");
+      const titleEl = document.getElementById("thankYouTitle");
+      if (titleEl && firstName) {
+        titleEl.innerHTML = `Thank You, ${firstName} — <span>Your Brief Is Confirmed.</span>`;
+      }
+    }
+
+    if (visitorEmail) {
+      const emailEl = document.getElementById("thankYouEmailVal");
+      if (emailEl) emailEl.textContent = visitorEmail;
+    }
+
+    if (capability) {
+      const capEl = document.getElementById("thankYouServiceVal");
+      if (capEl) capEl.textContent = capability;
+    }
+  }
 });

@@ -925,4 +925,349 @@
   .error-stage-card {
     padding: 40px 22px;
   }
+
+  .thankyou-summary-card,
+  .thankyou-step-card,
+  .thankyou-direct-banner {
+    padding: 24px 20px;
+  }
 }
+
+/* --------------------------------------------------------------------------
+   9. Thank You / Inquiry Confirmation Page (thank-you.html)
+   -------------------------------------------------------------------------- */
+.thankyou-hero {
+  position: relative;
+  padding: 138px 0 88px;
+  background-color: var(--color-black);
+  color: var(--color-white);
+  overflow: hidden;
+}
+
+.thankyou-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 18% 22%,
+    rgba(15, 52, 115, 0.72) 0%,
+    rgba(0, 0, 0, 0) 62%
+  );
+  pointer-events: none;
+}
+
+.thankyou-hero .container {
+  position: relative;
+  z-index: 2;
+}
+
+.thankyou-row {
+  align-items: center;
+  row-gap: 40px;
+}
+
+.thankyou-badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.thankyou-check-emblem {
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  background-color: var(--color-primary);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  color: var(--color-white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  box-shadow: 0 14px 32px rgba(15, 52, 115, 0.45);
+}
+
+.thankyou-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  font-family: var(--font-poppins);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--color-white);
+}
+
+.thankyou-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--color-white);
+}
+
+.thankyou-title {
+  font-family: var(--font-montserrat);
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  color: var(--color-white);
+  margin-bottom: 18px;
+}
+
+.thankyou-title span {
+  color: var(--color-secondary);
+  text-decoration: underline;
+  text-decoration-color: var(--color-primary);
+  text-underline-offset: 7px;
+}
+
+.thankyou-lead {
+  font-family: var(--font-poppins);
+  font-size: 16.5px;
+  line-height: 1.78;
+  color: rgba(246, 244, 241, 0.8);
+  max-width: 600px;
+  margin-bottom: 30px;
+}
+
+.thankyou-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+}
+
+.thankyou-secondary-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  height: 50px;
+  padding: 0 22px;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  font-family: var(--font-poppins);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-white);
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.thankyou-secondary-btn:hover {
+  background-color: var(--color-white);
+  color: var(--color-primary);
+  border-color: var(--color-white);
+}
+
+/* Right Submission Receipt Card */
+.thankyou-summary-card {
+  padding: 32px 30px;
+  border-radius: 26px;
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.thankyou-summary-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 18px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.thankyou-summary-heading {
+  font-family: var(--font-montserrat);
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--color-white);
+  margin: 0;
+}
+
+.thankyou-ref-pill {
+  padding: 5px 12px;
+  border-radius: 999px;
+  background-color: var(--color-primary);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  font-family: var(--font-montserrat);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--color-white);
+}
+
+.thankyou-summary-list {
+  list-style: none;
+  margin: 0 0 22px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.thankyou-summary-list li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.thankyou-summary-list li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.thankyou-sum-key {
+  font-family: var(--font-poppins);
+  font-size: 12.5px;
+  color: rgba(246, 244, 241, 0.68);
+}
+
+.thankyou-sum-val {
+  font-family: var(--font-poppins);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--color-white);
+  text-align: right;
+}
+
+.thankyou-direct-box {
+  padding: 16px 18px;
+  border-radius: 16px;
+  background-color: rgba(15, 52, 115, 0.42);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.thankyou-direct-label {
+  display: block;
+  font-family: var(--font-poppins);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(246, 244, 241, 0.78);
+  margin-bottom: 8px;
+}
+
+.thankyou-direct-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.thankyou-direct-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-poppins);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--color-white);
+  transition: opacity 0.2s ease;
+}
+
+.thankyou-direct-link:hover {
+  color: var(--color-white);
+  opacity: 0.82;
+}
+
+/* 3-Step Next Actions Section */
+.thankyou-steps-section {
+  padding: 92px 0;
+  background-color: var(--color-white);
+}
+
+.thankyou-steps-row {
+  row-gap: 24px;
+}
+
+.thankyou-step-card {
+  height: 100%;
+  padding: 34px 30px;
+  border-radius: 24px;
+  background-color: var(--color-secondary);
+  border: 1px solid rgba(15, 52, 115, 0.12);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 18px;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.thankyou-step-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-primary);
+  box-shadow: 0 22px 46px rgba(15, 52, 115, 0.1);
+}
+
+.thankyou-step-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.thankyou-step-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 19px;
+}
+
+.thankyou-step-window {
+  padding: 6px 13px;
+  border-radius: 999px;
+  background-color: var(--color-white);
+  border: 1px solid rgba(15, 52, 115, 0.14);
+  font-family: var(--font-poppins);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.thankyou-step-title {
+  font-family: var(--font-montserrat);
+  font-size: 21px;
+  font-weight: 800;
+  color: var(--color-black);
+  margin-bottom: 10px;
+}
+
+.thankyou-step-desc {
+  font-family: var(--font-poppins);
+  font-size: 14.8px;
+  line-height: 1.72;
+  color: rgba(0, 0, 0, 0.68);
+  margin: 0;
+}
+
+.thankyou-step-foot {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(15, 52, 115, 0.1);
+  font-family: var(--font-poppins);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+

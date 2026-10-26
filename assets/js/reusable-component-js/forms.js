@@ -1,5 +1,5 @@
 // ==========================================================================
-// Reusable Forms Validation & Submission Feedback Handler
+// Reusable Forms Validation, Session Context & Thank You Redirect Handler
 // Handles:
 // - Inner Hero Right-Side Lead Forms (.js-alify-form)
 // - Reusable Contact Section Forms (.js-alify-form)
@@ -52,15 +52,47 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      const successMessage =
-        form.getAttribute("data-success-msg") ||
-        "Thank you! Your inquiry has been received — a ALIFY project director will contact you within 24 hours.";
+      // Extract lead details for personalized Thank You page confirmation
+      const nameInput = form.querySelector("input[type='text']");
+      const emailInput = form.querySelector("input[type='email']");
+      const selectEl = form.querySelector("select");
+      const checkedPills = Array.from(
+        form.querySelectorAll("input[type='checkbox']:checked")
+      )
+        .map((cb) => cb.parentElement?.textContent?.trim())
+        .filter(Boolean);
+
+      let capability = "Custom Digital Strategy & Build";
+      if (checkedPills.length) {
+        capability = checkedPills.slice(0, 2).join(", ");
+      } else if (selectEl && selectEl.selectedIndex > 0) {
+        capability = selectEl.options[selectEl.selectedIndex].text.trim();
+      }
+
+      const refNum = `ALF-${Math.floor(1000 + Math.random() * 9000)}`;
+      const payload = {
+        name: nameInput?.value.trim() || "",
+        email: emailInput?.value.trim() || "",
+        capability,
+        ref: refNum,
+      };
+
+      try {
+        sessionStorage.setItem("alifyLeadSubmission", JSON.stringify(payload));
+      } catch {
+        // Ignore storage restrictions
+      }
 
       if (feedbackText) {
-        feedbackText.textContent = successMessage;
+        feedbackText.textContent =
+          "Thank you! Redirecting to your confirmation summary...";
       }
       feedback?.classList.add("is-visible");
       form.reset();
+
+      setTimeout(() => {
+        window.location.href = "thank-you.html";
+      }, 420);
     });
   });
 });
