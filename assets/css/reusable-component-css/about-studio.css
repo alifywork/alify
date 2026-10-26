@@ -1,0 +1,928 @@
+/* ==========================================================================
+   Reusable Studio About, Why Choose ALIFY, Execution Process, Legal & 404 CSS
+   Strict Palette: #FFFFFF, #000000, #0F3473, #F6F4F1 ONLY
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Shared Studio Section Headers
+   -------------------------------------------------------------------------- */
+.studio-sec-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 16px;
+  border-radius: 999px;
+  background-color: var(--color-secondary);
+  border: 1px solid rgba(15, 52, 115, 0.14);
+  font-family: var(--font-poppins);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 16px;
+}
+
+.studio-sec-eyebrow-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+}
+
+.studio-sec-title {
+  font-family: var(--font-montserrat);
+  font-size: clamp(28px, 3.4vw, 44px);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  color: var(--color-black);
+  margin-bottom: 14px;
+}
+
+.studio-sec-title span {
+  color: var(--color-primary);
+}
+
+.studio-sec-desc {
+  font-family: var(--font-poppins);
+  font-size: 16px;
+  line-height: 1.75;
+  color: rgba(0, 0, 0, 0.68);
+  max-width: 640px;
+  margin: 0;
+}
+
+.studio-sec-head {
+  margin-bottom: 46px;
+}
+
+.studio-sec-head-row {
+  align-items: flex-end;
+  row-gap: 20px;
+  margin-bottom: 46px;
+}
+
+.studio-sec-head-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* --------------------------------------------------------------------------
+   2. About Story & Home "Why Choose ALIFY" Studio Showcase Section
+   -------------------------------------------------------------------------- */
+.about-story-section,
+.home-why-section {
+  padding: 96px 0;
+  background-color: var(--color-white);
+}
+
+.home-why-section {
+  border-bottom: 1px solid rgba(15, 52, 115, 0.08);
+}
+
+.about-story-row {
+  align-items: center;
+  row-gap: 44px;
+}
+
+.about-story-copy {
+  padding-right: 16px;
+}
+
+.about-story-p {
+  font-family: var(--font-poppins);
+  font-size: 15.5px;
+  line-height: 1.82;
+  color: rgba(0, 0, 0, 0.72);
+  margin-bottom: 18px;
+}
+
+.about-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin: 28px 0 32px;
+}
+
+.about-pillar-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px 18px;
+  border-radius: 16px;
+  background-color: var(--color-secondary);
+  border: 1px solid rgba(15, 52, 115, 0.1);
+  transition: transform 0.28s ease, border-color 0.28s ease;
+}
+
+.about-pillar-item:hover {
+  transform: translateY(-3px);
+  border-color: rgba(15, 52, 115, 0.28);
+}
+
+.about-pillar-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+.about-pillar-title {
+  display: block;
+  font-family: var(--font-montserrat);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-black);
+  margin-bottom: 3px;
+}
+
+.about-pillar-sub {
+  display: block;
+  font-family: var(--font-poppins);
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.about-story-cta-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+}
+
+.about-founder-note {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-founder-name {
+  font-family: var(--font-montserrat);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-black);
+}
+
+.about-founder-role {
+  font-family: var(--font-poppins);
+  font-size: 12.5px;
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* Right Visual Frame */
+.about-visual-frame {
+  position: relative;
+  min-height: 520px;
+  border-radius: 28px;
+  overflow: hidden;
+  background-color: var(--color-primary);
+  box-shadow: 0 28px 64px rgba(15, 52, 115, 0.16);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 28px;
+}
+
+.about-visual-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.7s ease;
+}
+
+.about-visual-frame:hover .about-visual-bg {
+  transform: scale(1.04);
+}
+
+.about-visual-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.24) 0%,
+    rgba(15, 52, 115, 0.36) 48%,
+    rgba(0, 0, 0, 0.88) 100%
+  );
+  pointer-events: none;
+}
+
+.about-visual-top,
+.about-visual-bottom {
+  position: relative;
+  z-index: 2;
+}
+
+.about-visual-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.about-glass-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background-color: rgba(0, 0, 0, 0.56);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-family: var(--font-poppins);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--color-white);
+}
+
+.about-visual-card {
+  padding: 24px 26px;
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.66);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.about-visual-quote {
+  font-family: var(--font-poppins);
+  font-size: 15px;
+  line-height: 1.68;
+  color: rgba(255, 255, 255, 0.92);
+  margin-bottom: 16px;
+}
+
+.about-visual-mini-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.about-visual-mini-stat strong {
+  display: block;
+  font-family: var(--font-montserrat);
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--color-white);
+}
+
+.about-visual-mini-stat span {
+  font-family: var(--font-poppins);
+  font-size: 12px;
+  color: rgba(246, 244, 241, 0.78);
+}
+
+/* --------------------------------------------------------------------------
+   3. Animated Impact & Milestones Counter Strip (about.html)
+   -------------------------------------------------------------------------- */
+.about-metrics-section {
+  padding: 72px 0;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  position: relative;
+  overflow: hidden;
+}
+
+.about-metrics-row {
+  row-gap: 28px;
+}
+
+.about-metric-box {
+  padding: 28px 26px;
+  border-radius: 22px;
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  height: 100%;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.about-metric-box:hover {
+  transform: translateY(-4px);
+  background-color: rgba(255, 255, 255, 0.11);
+}
+
+.about-metric-num {
+  display: block;
+  font-family: var(--font-montserrat);
+  font-size: clamp(34px, 3.6vw, 48px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--color-white);
+  margin-bottom: 8px;
+}
+
+.about-metric-title {
+  display: block;
+  font-family: var(--font-montserrat);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: 6px;
+}
+
+.about-metric-desc {
+  font-family: var(--font-poppins);
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: rgba(246, 244, 241, 0.78);
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   4. Mission, Vision & Core Values Bento Section (about.html)
+   -------------------------------------------------------------------------- */
+.about-values-section {
+  padding: 96px 0;
+  background-color: var(--color-secondary);
+}
+
+.about-mv-row {
+  row-gap: 24px;
+  margin-bottom: 24px;
+}
+
+.about-mv-card {
+  height: 100%;
+  padding: 38px 34px;
+  border-radius: 24px;
+  background-color: var(--color-white);
+  border: 1px solid rgba(15, 52, 115, 0.12);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.04);
+}
+
+.about-mv-card.is-dark {
+  background-color: var(--color-black);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: var(--color-white);
+}
+
+.about-mv-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background-color: rgba(15, 52, 115, 0.09);
+  font-family: var(--font-poppins);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 18px;
+}
+
+.about-mv-card.is-dark .about-mv-badge {
+  background-color: rgba(255, 255, 255, 0.12);
+  color: var(--color-white);
+}
+
+.about-mv-title {
+  font-family: var(--font-montserrat);
+  font-size: clamp(22px, 2.4vw, 30px);
+  font-weight: 800;
+  line-height: 1.24;
+  color: var(--color-black);
+  margin-bottom: 14px;
+}
+
+.about-mv-card.is-dark .about-mv-title {
+  color: var(--color-white);
+}
+
+.about-mv-text {
+  font-family: var(--font-poppins);
+  font-size: 15.5px;
+  line-height: 1.78;
+  color: rgba(0, 0, 0, 0.7);
+  margin: 0;
+}
+
+.about-mv-card.is-dark .about-mv-text {
+  color: rgba(246, 244, 241, 0.8);
+}
+
+.about-principles-row {
+  row-gap: 24px;
+}
+
+.about-principle-card {
+  height: 100%;
+  padding: 30px 26px;
+  border-radius: 22px;
+  background-color: var(--color-white);
+  border: 1px solid rgba(15, 52, 115, 0.1);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-principle-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-primary);
+  box-shadow: 0 20px 44px rgba(15, 52, 115, 0.1);
+}
+
+.about-principle-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.about-principle-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 19px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.about-principle-card:hover .about-principle-icon {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.about-principle-num {
+  font-family: var(--font-montserrat);
+  font-size: 13px;
+  font-weight: 800;
+  color: rgba(15, 52, 115, 0.42);
+}
+
+.about-principle-title {
+  font-family: var(--font-montserrat);
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--color-black);
+  margin-bottom: 10px;
+}
+
+.about-principle-desc {
+  font-family: var(--font-poppins);
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: rgba(0, 0, 0, 0.68);
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   5. Reusable 4-Step Execution Process Section (Home & About)
+   -------------------------------------------------------------------------- */
+.studio-process-section {
+  padding: 96px 0;
+  background-color: var(--color-black);
+  color: var(--color-white);
+  position: relative;
+  overflow: hidden;
+}
+
+.studio-process-section .studio-sec-eyebrow {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.18);
+  color: var(--color-white);
+}
+
+.studio-process-section .studio-sec-eyebrow-dot {
+  background-color: var(--color-white);
+}
+
+.studio-process-section .studio-sec-title {
+  color: var(--color-white);
+}
+
+.studio-process-section .studio-sec-title span {
+  color: var(--color-secondary);
+  text-decoration: underline;
+  text-decoration-color: var(--color-primary);
+  text-underline-offset: 6px;
+}
+
+.studio-process-section .studio-sec-desc {
+  color: rgba(246, 244, 241, 0.74);
+}
+
+.studio-process-row {
+  row-gap: 24px;
+}
+
+.studio-process-card {
+  height: 100%;
+  padding: 32px 28px;
+  border-radius: 22px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 18px;
+  transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.studio-process-card:hover {
+  transform: translateY(-5px);
+  background-color: rgba(15, 52, 115, 0.45);
+  border-color: rgba(255, 255, 255, 0.32);
+}
+
+.studio-process-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.studio-process-badge {
+  display: inline-flex;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background-color: var(--color-primary);
+  font-family: var(--font-montserrat);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--color-white);
+}
+
+.studio-process-icon {
+  font-size: 20px;
+  color: rgba(246, 244, 241, 0.85);
+}
+
+.studio-process-title {
+  font-family: var(--font-montserrat);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-white);
+  margin: 14px 0 10px;
+}
+
+.studio-process-desc {
+  font-family: var(--font-poppins);
+  font-size: 14.5px;
+  line-height: 1.72;
+  color: rgba(246, 244, 241, 0.74);
+  margin: 0;
+}
+
+.studio-process-deliverable {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  font-family: var(--font-poppins);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--color-white);
+}
+
+/* --------------------------------------------------------------------------
+   6. Leadership & Practice Heads Grid (about.html)
+   -------------------------------------------------------------------------- */
+.about-team-section {
+  padding: 96px 0;
+  background-color: var(--color-white);
+}
+
+.about-team-row {
+  row-gap: 28px;
+}
+
+.about-leader-card {
+  height: 100%;
+  border-radius: 22px;
+  overflow: hidden;
+  background-color: var(--color-secondary);
+  border: 1px solid rgba(15, 52, 115, 0.12);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.32s ease, box-shadow 0.32s ease;
+}
+
+.about-leader-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 48px rgba(15, 52, 115, 0.12);
+}
+
+.about-leader-media {
+  position: relative;
+  aspect-ratio: 4 / 4.4;
+  overflow: hidden;
+  background-color: var(--color-primary);
+}
+
+.about-leader-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.55s ease;
+}
+
+.about-leader-card:hover .about-leader-img {
+  transform: scale(1.05);
+}
+
+.about-leader-social {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: var(--color-white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.about-leader-social:hover {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  transform: scale(1.08);
+}
+
+.about-leader-body {
+  padding: 24px 22px 26px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.about-leader-role {
+  font-family: var(--font-poppins);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 6px;
+}
+
+.about-leader-name {
+  font-family: var(--font-montserrat);
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--color-black);
+  margin-bottom: 10px;
+}
+
+.about-leader-bio {
+  font-family: var(--font-poppins);
+  font-size: 13.8px;
+  line-height: 1.65;
+  color: rgba(0, 0, 0, 0.68);
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   7. Legal Pages (Privacy Policy & Terms of Service) + 404 Utility Page
+   -------------------------------------------------------------------------- */
+.legal-doc-section {
+  padding: 84px 0 96px;
+  background-color: var(--color-white);
+}
+
+.legal-doc-row {
+  row-gap: 36px;
+  align-items: stretch;
+}
+
+.legal-toc-sticky {
+  position: sticky;
+  top: 108px;
+  padding: 28px 24px;
+  border-radius: 22px;
+  background-color: var(--color-secondary);
+  border: 1px solid rgba(15, 52, 115, 0.12);
+}
+
+.legal-toc-title {
+  font-family: var(--font-montserrat);
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--color-black);
+  margin-bottom: 6px;
+}
+
+.legal-toc-updated {
+  display: block;
+  font-family: var(--font-poppins);
+  font-size: 12.5px;
+  color: var(--color-primary);
+  font-weight: 600;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(15, 52, 115, 0.1);
+}
+
+.legal-toc-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.legal-toc-link {
+  display: block;
+  padding: 9px 14px;
+  border-radius: 10px;
+  font-family: var(--font-poppins);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.72);
+  transition: background-color 0.22s ease, color 0.22s ease;
+}
+
+.legal-toc-link:hover,
+.legal-toc-link.is-active {
+  background-color: var(--color-white);
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.legal-prose-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.legal-clause-card {
+  padding: 34px 32px;
+  border-radius: 22px;
+  background-color: var(--color-secondary);
+  border: 1px solid rgba(15, 52, 115, 0.1);
+  scroll-margin-top: 118px;
+}
+
+.legal-clause-num {
+  display: inline-block;
+  font-family: var(--font-poppins);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 8px;
+}
+
+.legal-clause-title {
+  font-family: var(--font-montserrat);
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--color-black);
+  margin-bottom: 12px;
+}
+
+.legal-clause-p {
+  font-family: var(--font-poppins);
+  font-size: 15px;
+  line-height: 1.78;
+  color: rgba(0, 0, 0, 0.72);
+  margin-bottom: 12px;
+}
+
+.legal-clause-p:last-child {
+  margin-bottom: 0;
+}
+
+/* 404 Error Stage */
+.error-stage-section {
+  position: relative;
+  padding: 150px 0 100px;
+  background-color: var(--color-black);
+  color: var(--color-white);
+  overflow: hidden;
+}
+
+.error-stage-card {
+  padding: 56px 44px;
+  border-radius: 30px;
+  background-color: rgba(15, 52, 115, 0.34);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  text-align: center;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.error-code-display {
+  display: block;
+  font-family: var(--font-montserrat);
+  font-size: clamp(72px, 12vw, 136px);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  color: var(--color-white);
+  margin-bottom: 18px;
+}
+
+.error-stage-title {
+  font-family: var(--font-montserrat);
+  font-size: clamp(26px, 3.2vw, 40px);
+  font-weight: 800;
+  color: var(--color-white);
+  margin-bottom: 14px;
+}
+
+.error-stage-desc {
+  font-family: var(--font-poppins);
+  font-size: 16px;
+  line-height: 1.75;
+  color: rgba(246, 244, 241, 0.78);
+  max-width: 560px;
+  margin: 0 auto 32px;
+}
+
+.error-quick-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+}
+
+.error-quick-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-family: var(--font-poppins);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-white);
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.error-quick-pill:hover {
+  background-color: var(--color-white);
+  color: var(--color-primary);
+  border-color: var(--color-white);
+}
+
+/* --------------------------------------------------------------------------
+   8. Responsive Breakpoints
+   -------------------------------------------------------------------------- */
+@media (max-width: 991.98px) {
+  .about-story-section,
+  .home-why-section,
+  .about-values-section,
+  .studio-process-section,
+  .about-team-section,
+  .legal-doc-section {
+    padding: 72px 0;
+  }
+
+  .studio-sec-head-actions {
+    justify-content: flex-start;
+  }
+
+  .about-story-copy {
+    padding-right: 0;
+  }
+
+  .about-visual-frame {
+    min-height: 430px;
+  }
+
+  .legal-toc-sticky {
+    position: static;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .about-pillars-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-mv-card,
+  .legal-clause-card {
+    padding: 26px 22px;
+  }
+
+  .error-stage-card {
+    padding: 40px 22px;
+  }
+}
