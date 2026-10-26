@@ -17,9 +17,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const drawerDropdownItem = document.querySelector(".drawer-nav-item.has-submenu");
   const drawerDropdownToggle = drawerDropdownItem?.querySelector(".drawer-dropdown-toggle");
 
-  // Highlight Active Page Link Automatically
+  // Highlight Active Page Link Automatically (including single detail pages)
   const rawFile = window.location.pathname.split("/").pop() || "index.html";
-  const currentFile = rawFile === "blog-single.html" ? "blog.html" : rawFile;
+  const parentPageMap = {
+    "blog-single.html": "blog.html",
+    "service-single.html": "services.html",
+    "industry-single.html": "industries.html",
+    "work-single.html": "work.html",
+    "case-study-single.html": "case-studies.html",
+  };
+  const currentFile = parentPageMap[rawFile] || rawFile;
   document.querySelectorAll(".header-nav-link, .drawer-nav-link").forEach((link) => {
     const href = link.getAttribute("href");
     if (!href) return;

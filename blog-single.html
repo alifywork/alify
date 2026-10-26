@@ -18,6 +18,8 @@
     <!-- Reusable Inner Hero & Blog CSS -->
     <link rel="stylesheet" href="assets/css/reusable-component-css/inner-hero.css" />
     <link rel="stylesheet" href="assets/css/reusable-component-css/blog.css" />
+    <link rel="stylesheet" href="assets/css/reusable-component-css/projects.css" />
+    <link rel="stylesheet" href="assets/css/reusable-component-css/single-pages.css" />
 
     <!-- Main Custom CSS (Includes Garet, Montserrat & Poppins @font-face) -->
     <link rel="stylesheet" href="assets/css/style.css" />
@@ -57,7 +59,7 @@
                   <div class="dropdown-panel" role="menu">
                     <ul class="dropdown-list">
                       <li>
-                        <a href="services.html#web-development" class="dropdown-item-link" role="menuitem">
+                        <a href="service-single.html?service=web-development" class="dropdown-item-link" role="menuitem">
                           <span class="dropdown-item-icon">
                             <i class="fa-solid fa-code" aria-hidden="true"></i>
                           </span>
@@ -65,7 +67,7 @@
                         </a>
                       </li>
                       <li>
-                        <a href="services.html#ui-ux-branding" class="dropdown-item-link" role="menuitem">
+                        <a href="service-single.html?service=ui-ux-branding" class="dropdown-item-link" role="menuitem">
                           <span class="dropdown-item-icon">
                             <i class="fa-solid fa-pen-nib" aria-hidden="true"></i>
                           </span>
@@ -73,7 +75,7 @@
                         </a>
                       </li>
                       <li>
-                        <a href="services.html#app-development" class="dropdown-item-link" role="menuitem">
+                        <a href="service-single.html?service=app-development" class="dropdown-item-link" role="menuitem">
                           <span class="dropdown-item-icon">
                             <i class="fa-solid fa-mobile-screen-button" aria-hidden="true"></i>
                           </span>
@@ -81,7 +83,7 @@
                         </a>
                       </li>
                       <li>
-                        <a href="services.html#digital-marketing" class="dropdown-item-link" role="menuitem">
+                        <a href="service-single.html?service=digital-marketing" class="dropdown-item-link" role="menuitem">
                           <span class="dropdown-item-icon">
                             <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
                           </span>
@@ -89,7 +91,7 @@
                         </a>
                       </li>
                       <li>
-                        <a href="services.html#ecommerce" class="dropdown-item-link" role="menuitem">
+                        <a href="service-single.html?service=ecommerce" class="dropdown-item-link" role="menuitem">
                           <span class="dropdown-item-icon">
                             <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
                           </span>
@@ -189,7 +191,7 @@
                     </a>
                   </li>
                   <li>
-                    <a href="services.html#web-development" class="drawer-submenu-link">
+                    <a href="service-single.html?service=web-development" class="drawer-submenu-link">
                       <span class="drawer-submenu-icon">
                         <i class="fa-solid fa-code" aria-hidden="true"></i>
                       </span>
@@ -197,7 +199,7 @@
                     </a>
                   </li>
                   <li>
-                    <a href="services.html#ui-ux-branding" class="drawer-submenu-link">
+                    <a href="service-single.html?service=ui-ux-branding" class="drawer-submenu-link">
                       <span class="drawer-submenu-icon">
                         <i class="fa-solid fa-pen-nib" aria-hidden="true"></i>
                       </span>
@@ -205,7 +207,7 @@
                     </a>
                   </li>
                   <li>
-                    <a href="services.html#app-development" class="drawer-submenu-link">
+                    <a href="service-single.html?service=app-development" class="drawer-submenu-link">
                       <span class="drawer-submenu-icon">
                         <i class="fa-solid fa-mobile-screen-button" aria-hidden="true"></i>
                       </span>
@@ -213,7 +215,7 @@
                     </a>
                   </li>
                   <li>
-                    <a href="services.html#digital-marketing" class="drawer-submenu-link">
+                    <a href="service-single.html?service=digital-marketing" class="drawer-submenu-link">
                       <span class="drawer-submenu-icon">
                         <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
                       </span>
@@ -221,7 +223,7 @@
                     </a>
                   </li>
                   <li>
-                    <a href="services.html#ecommerce" class="drawer-submenu-link">
+                    <a href="service-single.html?service=ecommerce" class="drawer-submenu-link">
                       <span class="drawer-submenu-icon">
                         <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
                       </span>
@@ -646,6 +648,115 @@
           </div>
         </div>
       </section>
+
+      <!-- Related Projects Section (Placed at End of Single Blog Main Content) -->
+      <section class="single-related-projects-section" aria-label="Related Client Projects">
+        <div class="container">
+          <div class="row single-related-head-row">
+            <div class="col-12 col-lg-7">
+              <div class="single-sec-eyebrow">
+                <span class="single-sec-eyebrow-dot" aria-hidden="true"></span>
+                <span>Applied Studio Work</span>
+              </div>
+              <h2 class="single-sec-title">
+                Related Projects Where We <span>Shipped These Principles.</span>
+              </h2>
+              <p class="single-sec-desc">
+                See how ALIFY translates engineering and UX insights into measurable digital outcomes for ambitious global brands.
+              </p>
+            </div>
+            <div class="col-12 col-lg-5">
+              <div class="single-related-actions">
+                <a href="work.html" class="btn-start-project">
+                  <span class="btn-start-pill">Explore All Projects</span>
+                  <span class="btn-start-circle" aria-hidden="true">
+                    <i class="fa-solid fa-arrow-up btn-start-arrow"></i>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="row projects-grid-row" id="blogRelatedProjectsGrid">
+            <div class="col-12 col-md-6">
+              <article class="project-grid-card">
+                <div class="project-grid-card-bg" style="background-image: url('assets/images/projects/project-finpulse.jpg');" aria-hidden="true"></div>
+                <div class="project-panel-top">
+                  <div class="project-panel-badges">
+                    <span class="project-badge-glass">
+                      <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+                      FinTech &amp; SaaS
+                    </span>
+                    <span class="project-badge-glass">2026</span>
+                  </div>
+                  <span class="project-metric-pill">
+                    <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
+                    +184% Demo Pipeline
+                  </span>
+                </div>
+                <div class="project-panel-bottom">
+                  <span class="project-client-label">FINPULSE AI · SAN FRANCISCO</span>
+                  <h3 class="project-panel-title">
+                    <a href="work-single.html?project=finpulse-platform">FinPulse Institutional Wealth &amp; AI Analytics Platform</a>
+                  </h3>
+                  <p class="project-panel-desc">Re-architected the enterprise web ecosystem, design token system, and interactive portfolio dashboard to nearly triple enterprise demo bookings.</p>
+                  <div class="project-panel-footer">
+                    <div class="project-deliverable-chips">
+                      <span class="project-chip">Web Architecture</span>
+                      <span class="project-chip">Design System</span>
+                      <span class="project-chip">GSAP Motion</span>
+                    </div>
+                    <a href="work-single.html?project=finpulse-platform" class="project-cta-btn">
+                      <span class="project-cta-pill">View Project</span>
+                      <span class="project-cta-circle" aria-hidden="true">
+                        <i class="fa-solid fa-arrow-up project-cta-arrow"></i>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </article>
+            </div>
+            <div class="col-12 col-md-6">
+              <article class="project-grid-card">
+                <div class="project-grid-card-bg" style="background-image: url('assets/images/projects/project-aura-atelier.jpg');" aria-hidden="true"></div>
+                <div class="project-panel-top">
+                  <div class="project-panel-badges">
+                    <span class="project-badge-glass">
+                      <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+                      Headless E-Commerce
+                    </span>
+                    <span class="project-badge-glass">2026</span>
+                  </div>
+                  <span class="project-metric-pill">
+                    <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
+                    +62% Checkout Rate
+                  </span>
+                </div>
+                <div class="project-panel-bottom">
+                  <span class="project-client-label">AURA ATELIER · MILAN &amp; LONDON</span>
+                  <h3 class="project-panel-title">
+                    <a href="work-single.html?project=aura-atelier-commerce">Aura Atelier Luxury Headless Flagship Storefront</a>
+                  </h3>
+                  <p class="project-panel-desc">Crafted a sub-second headless commerce storefront and tactile editorial brand identity that lifted luxury checkout conversion by 62%.</p>
+                  <div class="project-panel-footer">
+                    <div class="project-deliverable-chips">
+                      <span class="project-chip">Brand Identity</span>
+                      <span class="project-chip">Headless DTC</span>
+                      <span class="project-chip">Checkout UX</span>
+                    </div>
+                    <a href="work-single.html?project=aura-atelier-commerce" class="project-cta-btn">
+                      <span class="project-cta-pill">View Project</span>
+                      <span class="project-cta-circle" aria-hidden="true">
+                        <i class="fa-solid fa-arrow-up project-cta-arrow"></i>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <!-- Global Site Footer -->
@@ -753,19 +864,19 @@
             <h3 class="footer-col-title">Services</h3>
             <ul class="footer-link-list">
               <li>
-                <a href="services.html#web-development" class="footer-link">Web Design &amp; Development</a>
+                <a href="service-single.html?service=web-development" class="footer-link">Web Design &amp; Development</a>
               </li>
               <li>
-                <a href="services.html#ui-ux-branding" class="footer-link">UI/UX &amp; Brand Identity</a>
+                <a href="service-single.html?service=ui-ux-branding" class="footer-link">UI/UX &amp; Brand Identity</a>
               </li>
               <li>
-                <a href="services.html#app-development" class="footer-link">Mobile App Development</a>
+                <a href="service-single.html?service=app-development" class="footer-link">Mobile App Development</a>
               </li>
               <li>
-                <a href="services.html#digital-marketing" class="footer-link">Digital Marketing &amp; SEO</a>
+                <a href="service-single.html?service=digital-marketing" class="footer-link">Digital Marketing &amp; SEO</a>
               </li>
               <li>
-                <a href="services.html#ecommerce" class="footer-link">E-Commerce Solutions</a>
+                <a href="service-single.html?service=ecommerce" class="footer-link">E-Commerce Solutions</a>
               </li>
             </ul>
           </div>
@@ -846,6 +957,8 @@
     <!-- Reusable Inner Hero & Blog JS -->
     <script src="assets/js/reusable-component-js/inner-hero.js"></script>
     <script src="assets/js/reusable-component-js/blog.js"></script>
+
+    <script src="assets/js/reusable-component-js/single-pages.js"></script>
 
     <!-- Main Custom JS -->
     <script src="assets/js/main.js"></script>
