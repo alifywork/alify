@@ -1065,3 +1065,36 @@ ol {
   }
 }
 
+/* ==========================================================================
+   Global Non-Hero Eyebrow Rotating Triangle (△) & Motion Accessibility
+   ========================================================================== */
+
+@keyframes alifyEyebrowTriSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .studio-sec-eyebrow-dot,
+  .services-eyebrow-dot,
+  .industries-eyebrow-dot,
+  .projects-eyebrow-dot,
+  .cs-eyebrow-dot,
+  .testimonials-eyebrow-dot,
+  .faq-eyebrow-dot,
+  .blog-section-eyebrow-dot,
+  .blog-related-eyebrow-dot,
+  .contact-sec-eyebrow-dot,
+  .single-sec-eyebrow-dot,
+  .footer-cta-eyebrow-dot,
+  .about-mv-badge-dot,
+  .hero-bg-media {
+    animation: none !important;
+  }
+}
+
+

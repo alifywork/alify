@@ -38,18 +38,31 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Sticky Header Scroll State
-  const handleScroll = () => {
+  // Sticky Header Scroll State (with hysteresis to prevent layout-shrink jitter)
+  let isScrolledState = false;
+  let scrollTicking = false;
+  const syncHeaderScroll = () => {
+    scrollTicking = false;
     if (!header) return;
-    if (window.scrollY > 16) {
+    const y = window.scrollY;
+    if (!isScrolledState && y > 40) {
+      isScrolledState = true;
       header.classList.add("is-scrolled");
-    } else {
+    } else if (isScrolledState && y < 12) {
+      isScrolledState = false;
       header.classList.remove("is-scrolled");
     }
   };
 
+  const handleScroll = () => {
+    if (!scrollTicking) {
+      scrollTicking = true;
+      window.requestAnimationFrame(syncHeaderScroll);
+    }
+  };
+
   window.addEventListener("scroll", handleScroll, { passive: true });
-  handleScroll();
+  syncHeaderScroll();
 
   // Open / Close Right-Side Slide Drawer
   const openDrawer = () => {

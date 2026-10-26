@@ -234,10 +234,21 @@
 }
 
 .blog-section-eyebrow-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: var(--color-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  border-radius: 0;
+  background-color: transparent;
+  font-family: var(--font-garet);
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1;
+  color: currentColor;
+  transform-origin: 50% 56%;
+  animation: alifyEyebrowTriSpin 8s linear infinite;
+  flex-shrink: 0;
 }
 
 .blog-section-title {
@@ -1253,25 +1264,36 @@
 .blog-related-eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 7px 16px;
-  border-radius: 999px;
-  background-color: var(--color-white);
-  border: 1px solid rgba(15, 52, 115, 0.14);
+  gap: 9px;
+  padding: 0;
+  border-radius: 0;
+  background-color: transparent;
+  border: none;
   font-family: var(--font-poppins);
-  font-size: 12px;
+  font-size: 12.5px;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--color-primary);
   margin-bottom: 14px;
 }
 
 .blog-related-eyebrow-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background-color: var(--color-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  border-radius: 0;
+  background-color: transparent;
+  font-family: var(--font-garet);
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1;
+  color: currentColor;
+  transform-origin: 50% 56%;
+  animation: alifyEyebrowTriSpin 8s linear infinite;
+  flex-shrink: 0;
 }
 
 .blog-related-title {

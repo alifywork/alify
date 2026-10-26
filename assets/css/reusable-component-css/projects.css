@@ -58,11 +58,22 @@
 }
 
 .projects-eyebrow-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: var(--color-primary);
-  box-shadow: 0 0 0 4px rgba(15, 52, 115, 0.35);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  border-radius: 0;
+  background-color: transparent;
+  box-shadow: none;
+  font-family: var(--font-garet);
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1;
+  color: currentColor;
+  transform-origin: 50% 56%;
+  animation: alifyEyebrowTriSpin 8s linear infinite;
+  flex-shrink: 0;
 }
 
 .projects-sec-title {

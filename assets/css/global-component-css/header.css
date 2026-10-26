@@ -10,18 +10,28 @@
   z-index: 1000;
   background-color: var(--color-white);
   border-bottom: 1px solid rgba(15, 52, 115, 0.08);
-  transition: box-shadow 0.3s ease, background-color 0.3s ease, padding 0.3s ease;
+  transition:
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.35s ease,
+    border-color 0.35s ease;
 }
 
 .site-header.is-scrolled {
   background-color: rgba(255, 255, 255, 0.96);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom-color: rgba(15, 52, 115, 0.12);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
 }
 
 .header-row {
   align-items: center;
-  min-height: 86px;
+  min-height: 88px;
+  transition: min-height 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site-header.is-scrolled .header-row {
+  min-height: 60px;
 }
 
 /* --------------------------------------------------------------------------
@@ -45,7 +55,13 @@
   color: var(--color-black);
   text-decoration: none;
   user-select: none;
-  transition: opacity 0.25s ease;
+  transition:
+    opacity 0.25s ease,
+    font-size 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site-header.is-scrolled .brand-logo {
+  font-size: 22px;
 }
 
 .brand-logo:hover {
@@ -59,6 +75,11 @@
   line-height: 1;
   display: inline-block;
   transform: translateY(-1px);
+  transition: font-size 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site-header.is-scrolled .brand-logo-mark {
+  font-size: 23px;
 }
 
 /* --------------------------------------------------------------------------
@@ -103,7 +124,15 @@
   background: none;
   border: none;
   cursor: pointer;
-  transition: color 0.25s ease;
+  transition:
+    color 0.25s ease,
+    padding 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    font-size 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site-header.is-scrolled .header-nav-link {
+  padding: 5px 0;
+  font-size: 14.5px;
 }
 
 .header-nav-link::after {
@@ -263,7 +292,20 @@
   color: var(--color-primary);
   white-space: nowrap;
   cursor: pointer;
-  transition: background-color 0.28s ease, color 0.28s ease, border-color 0.28s ease, transform 0.25s ease;
+  transition:
+    background-color 0.28s ease,
+    color 0.28s ease,
+    border-color 0.28s ease,
+    transform 0.25s ease,
+    height 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    padding 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    font-size 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site-header.is-scrolled .header-desktop-ctas .btn-contact {
+  height: 38px;
+  padding: 0 18px;
+  font-size: 13.5px;
 }
 
 .btn-contact:hover {
@@ -295,7 +337,18 @@
   font-weight: 500;
   letter-spacing: -0.01em;
   white-space: nowrap;
-  transition: background-color 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    padding 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    font-size 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site-header.is-scrolled .header-desktop-ctas .btn-start-pill {
+  height: 38px;
+  padding: 0 19px;
+  font-size: 13.5px;
 }
 
 .btn-start-circle {
@@ -310,7 +363,18 @@
   color: var(--color-white);
   font-size: 15px;
   flex-shrink: 0;
-  transition: background-color 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    width 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    font-size 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site-header.is-scrolled .header-desktop-ctas .btn-start-circle {
+  width: 38px;
+  height: 38px;
+  font-size: 13.5px;
 }
 
 .btn-start-arrow {
@@ -345,7 +409,19 @@
   color: var(--color-primary);
   font-size: 18px;
   cursor: pointer;
-  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    width 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    font-size 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site-header.is-scrolled .mobile-menu-toggle {
+  width: 38px;
+  height: 38px;
+  font-size: 16px;
 }
 
 .mobile-menu-toggle:hover {
@@ -614,6 +690,10 @@
     min-height: 76px;
   }
 
+  .site-header.is-scrolled .header-row {
+    min-height: 56px;
+  }
+
   .header-nav-col {
     display: none;
   }
@@ -632,17 +712,35 @@
     min-height: 70px;
   }
 
+  .site-header.is-scrolled .header-row {
+    min-height: 52px;
+  }
+
   .brand-logo {
     font-size: 23px;
+  }
+
+  .site-header.is-scrolled .brand-logo {
+    font-size: 20px;
   }
 
   .brand-logo-mark {
     font-size: 24px;
   }
 
+  .site-header.is-scrolled .brand-logo-mark {
+    font-size: 21px;
+  }
+
   .mobile-menu-toggle {
     width: 42px;
     height: 42px;
     font-size: 17px;
+  }
+
+  .site-header.is-scrolled .mobile-menu-toggle {
+    width: 36px;
+    height: 36px;
+    font-size: 15px;
   }
 }

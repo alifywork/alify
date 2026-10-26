@@ -245,10 +245,21 @@
 }
 
 .testimonials-eyebrow-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: var(--color-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  border-radius: 0;
+  background-color: transparent;
+  font-family: var(--font-garet);
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1;
+  color: currentColor;
+  transform-origin: 50% 56%;
+  animation: alifyEyebrowTriSpin 8s linear infinite;
+  flex-shrink: 0;
 }
 
 .testimonials-sec-title {

@@ -9,25 +9,36 @@
 .studio-sec-eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 7px 16px;
-  border-radius: 999px;
-  background-color: var(--color-secondary);
-  border: 1px solid rgba(15, 52, 115, 0.14);
+  gap: 9px;
+  padding: 0;
+  border-radius: 0;
+  background-color: transparent;
+  border: none;
   font-family: var(--font-poppins);
-  font-size: 12px;
+  font-size: 12.5px;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--color-primary);
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .studio-sec-eyebrow-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background-color: var(--color-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  border-radius: 0;
+  background-color: transparent;
+  font-family: var(--font-garet);
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1;
+  color: currentColor;
+  transform-origin: 50% 56%;
+  animation: alifyEyebrowTriSpin 8s linear infinite;
+  flex-shrink: 0;
 }
 
 .studio-sec-title {
@@ -372,21 +383,37 @@
 .about-mv-badge {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 14px;
-  border-radius: 999px;
-  background-color: rgba(15, 52, 115, 0.09);
+  gap: 9px;
+  padding: 0;
+  border-radius: 0;
+  background-color: transparent;
   font-family: var(--font-poppins);
   font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--color-primary);
   margin-bottom: 18px;
 }
 
+.about-mv-badge-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  font-family: var(--font-garet);
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1;
+  color: currentColor;
+  transform-origin: 50% 56%;
+  animation: alifyEyebrowTriSpin 8s linear infinite;
+  flex-shrink: 0;
+}
+
 .about-mv-card.is-dark .about-mv-badge {
-  background-color: rgba(255, 255, 255, 0.12);
+  background-color: transparent;
   color: var(--color-white);
 }
 
@@ -494,13 +521,14 @@
 }
 
 .studio-process-section .studio-sec-eyebrow {
-  background-color: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.18);
+  background-color: transparent;
+  border: none;
   color: var(--color-white);
 }
 
 .studio-process-section .studio-sec-eyebrow-dot {
-  background-color: var(--color-white);
+  background-color: transparent;
+  color: var(--color-white);
 }
 
 .studio-process-section .studio-sec-title {
