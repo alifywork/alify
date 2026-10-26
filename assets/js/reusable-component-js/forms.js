@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const successMessage =
         form.getAttribute("data-success-msg") ||
-        "Thank you! Your inquiry has been received — a △LIFY project director will contact you within 24 hours.";
+        "Thank you! Your inquiry has been received — a ALIFY project director will contact you within 24 hours.";
 
       if (feedbackText) {
         feedbackText.textContent = successMessage;

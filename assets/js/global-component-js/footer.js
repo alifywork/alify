@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (newsletterMsg) {
-      newsletterMsg.textContent = "Thank you for subscribing to △LIFY insights!";
+      newsletterMsg.textContent = "Thank you for subscribing to ALIFY insights!";
     }
     if (newsletterInput) {
       newsletterInput.value = "";

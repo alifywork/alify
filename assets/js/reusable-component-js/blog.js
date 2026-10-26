@@ -13,7 +13,7 @@ const ALIFY_BLOG_POSTS = {
     readTime: "6 Min Read",
     image: "assets/images/blog/blog-design-systems.jpg",
     lead:
-      "When product teams scale across multiple web and mobile surfaces without a shared token architecture, design debt compounds every sprint. Here is how △LIFY structures multi-brand design systems built for velocity.",
+      "When product teams scale across multiple web and mobile surfaces without a shared token architecture, design debt compounds every sprint. Here is how ALIFY structures multi-brand design systems built for velocity.",
     quote:
       "A great design system doesn’t restrict creativity — it eliminates repetitive decisions so designers and engineers can focus on high-leverage product craft.",
     sections: [
@@ -59,7 +59,7 @@ const ALIFY_BLOG_POSTS = {
         id: "measuring-velocity-gains",
         heading: "5. Measuring Real Engineering Velocity",
         paragraphs: [
-          "Across △LIFY client engagements, transitioning to a token-backed component library reduces UI QA regressions by over 60% and cuts new page assembly from days to hours.",
+          "Across ALIFY client engagements, transitioning to a token-backed component library reduces UI QA regressions by over 60% and cuts new page assembly from days to hours.",
           "Teams spend less time debating pixel discrepancies and far more time testing conversion hypotheses, refining motion, and shipping customer value.",
         ],
       },
@@ -545,7 +545,7 @@ function initSingleBlogPage() {
 
   if (slug && ALIFY_BLOG_POSTS[slug]) {
     const post = ALIFY_BLOG_POSTS[slug];
-    document.title = `${post.title} — △LIFY`;
+    document.title = `${post.title} — ALIFY`;
 
     const bcCurrent = document.getElementById("blogSingleBreadcrumbCurrent");
     const catBadge = document.getElementById("blogSingleCategory");
@@ -583,7 +583,7 @@ function initSingleBlogPage() {
           <blockquote class="blog-callout-quote">
             <i class="fa-solid fa-quote-left blog-callout-quote-icon" aria-hidden="true"></i>
             <p>${post.quote}</p>
-            <cite>— △LIFY Product &amp; Design Studio</cite>
+            <cite>— ALIFY Product &amp; Design Studio</cite>
           </blockquote>`;
       }
     });
