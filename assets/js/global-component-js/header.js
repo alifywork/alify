@@ -17,6 +17,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const drawerDropdownItem = document.querySelector(".drawer-nav-item.has-submenu");
   const drawerDropdownToggle = drawerDropdownItem?.querySelector(".drawer-dropdown-toggle");
 
+  // Highlight Active Page Link Automatically
+  const currentFile = window.location.pathname.split("/").pop() || "index.html";
+  document.querySelectorAll(".header-nav-link, .drawer-nav-link").forEach((link) => {
+    const href = link.getAttribute("href");
+    if (!href) return;
+    const linkFile = href.split("#")[0];
+    if (linkFile === currentFile) {
+      link.classList.add("is-active");
+    } else {
+      link.classList.remove("is-active");
+    }
+  });
+
   // Sticky Header Scroll State
   const handleScroll = () => {
     if (!header) return;
@@ -68,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
   drawerClose?.addEventListener("click", closeDrawer);
   drawerOverlay?.addEventListener("click", closeDrawer);
 
-  // Close drawer when any regular link or CTA inside drawer is clicked
+  // Close drawer when any link inside drawer is clicked
   drawer?.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
       closeDrawer();
@@ -81,15 +94,14 @@ document.addEventListener("DOMContentLoaded", () => {
     drawerDropdownToggle.setAttribute("aria-expanded", String(isOpen));
   });
 
-  // Desktop Services Dropdown Click / Keyboard Accessibility
-  desktopDropdownTrigger?.addEventListener("click", (e) => {
-    e.preventDefault();
-    const isOpen = desktopDropdownItem.classList.toggle("is-open");
-    desktopDropdownTrigger.setAttribute("aria-expanded", String(isOpen));
+  // Desktop Services Dropdown Keyboard Accessibility
+  desktopDropdownItem?.addEventListener("focusin", () => {
+    desktopDropdownItem.classList.add("is-open");
+    desktopDropdownTrigger?.setAttribute("aria-expanded", "true");
   });
 
-  document.addEventListener("click", (e) => {
-    if (desktopDropdownItem && !desktopDropdownItem.contains(e.target)) {
+  desktopDropdownItem?.addEventListener("focusout", (e) => {
+    if (!desktopDropdownItem.contains(e.relatedTarget)) {
       desktopDropdownItem.classList.remove("is-open");
       desktopDropdownTrigger?.setAttribute("aria-expanded", "false");
     }
