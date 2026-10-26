@@ -13,7 +13,7 @@ const ALIFY_BLOG_POSTS = {
     readTime: "6 Min Read",
     image: "assets/images/blog/blog-design-systems.jpg",
     lead:
-      "When product teams scale across multiple web and mobile surfaces without a shared token architecture, design debt compounds every sprint. Here is how ALIFY structures multi-brand design systems built for velocity.",
+      "When product teams scale across multiple web and product surfaces without a shared token architecture, design debt compounds every sprint. Here is how ALIFY structures multi-brand design systems built for velocity.",
     quote:
       "A great design system doesn’t restrict creativity — it eliminates repetitive decisions so designers and engineers can focus on high-leverage product craft.",
     sections: [
@@ -249,7 +249,7 @@ const ALIFY_BLOG_POSTS = {
     lead:
       "Modern DTC and luxury retail brands demand sub-second page transitions alongside rich editorial storytelling. Here is when decoupled commerce pays off — and how to architect it.",
     quote:
-      "Every 100ms shaved off mobile product discovery directly lifts add-to-cart momentum and customer lifetime value.",
+        "Every 100ms shaved off storefront discovery directly lifts add-to-cart momentum and customer lifetime value.",
     sections: [
       {
         id: "decoupled-storefront-advantage",
