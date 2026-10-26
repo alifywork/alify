@@ -898,18 +898,6 @@
 
             <div class="col-12 col-lg-5">
               <div class="testimonials-head-actions">
-                <div class="testimonials-slider-controls" role="group" aria-label="Testimonials slider controls">
-                  <button type="button" class="testi-nav-btn js-testi-prev" aria-label="Previous testimonials">
-                    <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
-                  </button>
-                  <button type="button" class="testi-nav-btn js-testi-toggle" aria-label="Pause testimonials auto-scroll" aria-pressed="false">
-                    <i class="fa-solid fa-pause" aria-hidden="true"></i>
-                  </button>
-                  <button type="button" class="testi-nav-btn js-testi-next" aria-label="Next testimonials">
-                    <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                  </button>
-                </div>
-
                 <a href="testimonials.html" class="btn-start-project">
                   <span class="btn-start-pill">All Testimonials</span>
                   <span class="btn-start-circle" aria-hidden="true">
@@ -1427,6 +1415,18 @@
             </div>
           </div>
         </div>
+        <div class="container">
+          <div class="testimonials-slider-footer">
+            <div class="testimonials-slider-controls" role="group" aria-label="Testimonials slider controls">
+              <button type="button" class="testi-nav-btn js-testi-prev" aria-label="Previous testimonials">
+                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+              </button>
+              <button type="button" class="testi-nav-btn js-testi-next" aria-label="Next testimonials">
+                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+        </div>
       </section>
 
       <!-- FAQs Section (Placed Above Blog Slider Section) -->
@@ -1622,24 +1622,6 @@
 
             <div class="col-12 col-lg-5 blog-slider-controls-col">
               <div class="blog-slider-controls">
-                <div class="blog-slider-nav-btns">
-                  <button
-                    type="button"
-                    id="blogSliderPrev"
-                    class="blog-slider-arrow"
-                    aria-label="Previous blog posts"
-                  >
-                    <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
-                  </button>
-                  <button
-                    type="button"
-                    id="blogSliderNext"
-                    class="blog-slider-arrow"
-                    aria-label="Next blog posts"
-                  >
-                    <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                  </button>
-                </div>
                 <a href="blog.html" class="blog-view-all-link">
                   <span>View All Articles</span>
                   <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
@@ -1888,9 +1870,29 @@
           </div>
 
           <div class="blog-slider-footer">
-            <div class="blog-slider-dots" id="blogSliderDots" role="tablist" aria-label="Blog slider pagination"></div>
-            <div class="blog-slider-progress" aria-hidden="true">
-              <div class="blog-slider-progress-bar" id="blogSliderProgressBar"></div>
+            <div class="blog-slider-meta">
+              <div class="blog-slider-dots" id="blogSliderDots" role="tablist" aria-label="Blog slider pagination"></div>
+              <div class="blog-slider-progress" aria-hidden="true">
+                <div class="blog-slider-progress-bar" id="blogSliderProgressBar"></div>
+              </div>
+            </div>
+            <div class="blog-slider-nav-btns" role="group" aria-label="Blog slider navigation">
+              <button
+                type="button"
+                id="blogSliderPrev"
+                class="blog-slider-arrow"
+                aria-label="Previous blog posts"
+              >
+                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+              </button>
+              <button
+                type="button"
+                id="blogSliderNext"
+                class="blog-slider-arrow"
+                aria-label="Next blog posts"
+              >
+                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+              </button>
             </div>
           </div>
         </div>

@@ -380,6 +380,14 @@
   flex-shrink: 0;
 }
 
+/* Bottom-Right Slider Arrows Footer (inside .container) */
+.testimonials-slider-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 28px;
+}
+
 /* --------------------------------------------------------------------------
    3. Dedicated Testimonials Grid Page (.testimonials-grid-section)
    -------------------------------------------------------------------------- */

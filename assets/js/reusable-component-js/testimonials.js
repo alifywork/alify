@@ -22,7 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
     );
     const prevBtn = section.querySelector(".js-testi-prev");
     const nextBtn = section.querySelector(".js-testi-next");
-    const toggleBtn = section.querySelector(".js-testi-toggle");
 
     if (!stage || !row1Track || !row2Track) return;
 
@@ -89,21 +88,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const baseSpeedPxPerSec = 36; // Gentle, readable luxury glide speed
     let currentSpeedFactor = isUserPaused ? 0 : 1;
 
-    const updateToggleUI = () => {
-      if (!toggleBtn) return;
-      const icon = toggleBtn.querySelector("i");
-      if (isUserPaused) {
-        toggleBtn.setAttribute("aria-label", "Resume testimonials auto-scroll");
-        toggleBtn.setAttribute("aria-pressed", "true");
-        if (icon) icon.className = "fa-solid fa-play";
-      } else {
-        toggleBtn.setAttribute("aria-label", "Pause testimonials auto-scroll");
-        toggleBtn.setAttribute("aria-pressed", "false");
-        if (icon) icon.className = "fa-solid fa-pause";
-      }
-    };
-    updateToggleUI();
-
     const render = () => {
       const x1 = wrapOffset(pos1, period1);
       const x2 = wrapOffset(pos2, period2);
@@ -150,11 +134,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     nextBtn?.addEventListener("click", () => {
       manualVelocity -= stepSize;
-    });
-
-    toggleBtn?.addEventListener("click", () => {
-      isUserPaused = !isUserPaused;
-      updateToggleUI();
     });
 
     // Hover & Focus Pause

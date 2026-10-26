@@ -520,13 +520,27 @@
   min-width: 0;
 }
 
-/* Pagination & Progress Bar (inside .container) */
+/* Pagination, Progress Bar & Bottom-Right Arrows (inside .container) */
 .services-slider-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
+  flex-wrap: wrap;
+  gap: 20px;
   margin-top: 28px;
+}
+
+.services-slider-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  flex: 1;
+  min-width: 200px;
+}
+
+.services-slider-footer .services-slider-controls {
+  margin-left: auto;
 }
 
 .services-slider-dots {
@@ -681,13 +695,11 @@
   }
 
   .services-slider-footer {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
+    gap: 14px;
   }
 
   .services-slider-progress {
-    width: 100%;
-    max-width: none;
+    width: 120px;
+    max-width: 140px;
   }
 }
