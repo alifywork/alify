@@ -572,13 +572,12 @@
 
 .blog-single-row {
   row-gap: 40px;
-  align-items: flex-start;
 }
 
 /* LEFT COLUMN: Sticky Table of Contents */
 .blog-toc-sticky {
   position: sticky;
-  top: 108px;
+  top: 106px;
 }
 
 .blog-toc-card {
@@ -586,6 +585,9 @@
   border: 1px solid rgba(15, 52, 115, 0.1);
   border-radius: 20px;
   padding: 22px;
+  max-height: calc(100vh - 126px);
+  overflow-y: auto;
+  scrollbar-width: thin;
 }
 
 .blog-toc-header {
@@ -924,7 +926,7 @@
 /* RIGHT COLUMN: Sticky Blog Sidebar */
 .blog-sidebar-sticky {
   position: sticky;
-  top: 108px;
+  top: 106px;
   display: flex;
   flex-direction: column;
   gap: 24px;

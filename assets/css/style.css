@@ -376,7 +376,7 @@ body {
   font-family: var(--font-poppins);
   background-color: var(--color-white);
   color: var(--color-black);
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body.drawer-open {

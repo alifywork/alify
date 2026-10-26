@@ -1,8 +1,8 @@
 // ==========================================================================
 // Reusable Blog System Script:
-// 1. Responsive Home Blog Slider (1 / 2 / 3 per view + Drag/Swipe + Dots)
+// 1. Responsive Home/Global Blog Slider (1 / 2 / 3 per view + Drag/Swipe + Dots)
 // 2. Blog Archive Category & Search Filtering (blog.html)
-// 3. Single Blog Dynamic Post Loader + Left TOC Scroll-Spy (blog-single.html)
+// 3. Single Blog Dynamic Post Loader + Synchronized Sticky TOC & Sidebar Scroll
 // ==========================================================================
 
 const ALIFY_BLOG_POSTS = {
@@ -23,6 +23,7 @@ const ALIFY_BLOG_POSTS = {
         paragraphs: [
           "Many teams treat a design system as a static UI kit rather than a living product infrastructure. Without synchronized design tokens and strict component ownership, Figma libraries and production CSS drift apart within weeks.",
           "Successful systems start by codifying foundational primitives — color variables, typographic scales, spacing rhythms, and responsive grid rules — before building complex organisms.",
+          "When product managers, designers, and engineers share the exact same vocabulary for spacing, elevation, and interactive states, handoff friction disappears and visual consistency becomes automatic.",
         ],
       },
       {
@@ -30,6 +31,7 @@ const ALIFY_BLOG_POSTS = {
         heading: "2. Structuring a Token-First CSS Architecture",
         paragraphs: [
           "By anchoring every component to semantic custom properties, engineering teams gain effortless maintainability. Updating a primary brand hue or typographic hierarchy cascades cleanly across headers, cards, drawers, and interactive states.",
+          "Rather than scattering hardcoded hex values across dozens of stylesheets, a disciplined four-color studio token architecture guarantees crisp contrast across every viewport.",
         ],
         bullets: [
           "Define strict root color and font primitives before component styling.",
@@ -42,6 +44,7 @@ const ALIFY_BLOG_POSTS = {
         heading: "3. Designing Composable Component Patterns",
         paragraphs: [
           "Whether rendering a blog card inside a horizontal home carousel or a three-column archive grid, the component itself should remain layout-agnostic. Parent containers control column widths while the card manages its own internal hierarchy.",
+          "This separation of layout responsibility means a single card stylesheet powers carousels, filtered archives, and related-post modules without fragile overrides.",
         ],
       },
       {
@@ -49,6 +52,7 @@ const ALIFY_BLOG_POSTS = {
         heading: "4. Driving Cross-Functional Adoption",
         paragraphs: [
           "Documentation must live alongside real interactive examples. Pairing clear naming conventions with accessible markup ensures every developer on the team adopts shared patterns faster than writing one-off overrides.",
+          "Regular design-engineering critiques keep the component library lean, retiring redundant variants before they bloat production bundles.",
         ],
       },
       {
@@ -56,6 +60,7 @@ const ALIFY_BLOG_POSTS = {
         heading: "5. Measuring Real Engineering Velocity",
         paragraphs: [
           "Across △LIFY client engagements, transitioning to a token-backed component library reduces UI QA regressions by over 60% and cuts new page assembly from days to hours.",
+          "Teams spend less time debating pixel discrepancies and far more time testing conversion hypotheses, refining motion, and shipping customer value.",
         ],
       },
     ],
@@ -78,6 +83,7 @@ const ALIFY_BLOG_POSTS = {
         heading: "1. Choreography Over Scattered Animations",
         paragraphs: [
           "When every element animates independently, interfaces feel noisy. Using GSAP timelines with subtle 40ms–80ms staggers creates a cohesive editorial rhythm from eyebrow badge to headline and call-to-action.",
+          "Well-paced choreography directs the eye naturally from the value proposition toward primary conversion actions without overwhelming first-time visitors.",
         ],
       },
       {
@@ -85,6 +91,7 @@ const ALIFY_BLOG_POSTS = {
         heading: "2. Sticking to GPU-Composited Properties",
         paragraphs: [
           "Animating layout properties like top, left, or height triggers costly browser reflows. Restricting tweens to transform (translate, scale, rotate) and opacity keeps motion silky smooth even on mid-range mobile devices.",
+          "Cleaning up inline transforms once entrance animations finish ensures sticky positioning and responsive breakpoints behave predictably.",
         ],
         bullets: [
           "Use clearProps after entrance timelines so responsive CSS stays clean.",
@@ -97,6 +104,7 @@ const ALIFY_BLOG_POSTS = {
         heading: "3. Designing Tactile CTA Micro-Interactions",
         paragraphs: [
           "Signature details — such as a connected split-pill button whose circular arrow subtly shifts and rotates on hover — create memorable brand moments that measurably lift click-through rates.",
+          "Consistent hover curves across navigation links, cards, and drawer triggers give the entire platform an unmistakable studio polish.",
         ],
       },
       {
@@ -104,6 +112,7 @@ const ALIFY_BLOG_POSTS = {
         heading: "4. ScrollTrigger Patterns That Respect the Reader",
         paragraphs: [
           "Scroll-triggered motion works best when it reinforces comprehension, such as progressive data bars or live reading progress indicators that orient readers inside long-form guides.",
+          "Synchronized table-of-contents highlighting keeps technical decision-makers anchored as they scan deep architectural articles.",
         ],
       },
       {
@@ -133,6 +142,7 @@ const ALIFY_BLOG_POSTS = {
         heading: "1. Engineering Above-the-Fold Clarity",
         paragraphs: [
           "Vague taglines force prospects to work too hard. Pairing a specific outcome-driven headline with immediate social proof metrics establishes instant credibility above the fold.",
+          "Visual proof — such as real conversion trajectories and capability breakdowns — reassures stakeholders that aesthetic craft is backed by measurable execution.",
         ],
       },
       {
@@ -152,6 +162,7 @@ const ALIFY_BLOG_POSTS = {
         heading: "3. Reducing Cognitive Load Across Inner Pages",
         paragraphs: [
           "Consistent visual hierarchy, generous whitespace, and scannable section headings help busy executives evaluate technical capabilities in under two minutes.",
+          "Dedicated FAQ modules right above closing sections resolve timeline, scope, and support objections before a prospect ever hesitates.",
         ],
       },
       {
@@ -188,6 +199,7 @@ const ALIFY_BLOG_POSTS = {
         heading: "1. The Strategic Power of Palette Restraint",
         paragraphs: [
           "World-class digital brands commit to a focused palette — pairing a signature deep primary tone with warm architectural neutrals and crisp typographic contrast.",
+          "When every surface respects that strict color discipline, brand recognition strengthens on every scroll.",
         ],
       },
       {
@@ -207,6 +219,7 @@ const ALIFY_BLOG_POSTS = {
         heading: "3. Aligning Imagery With Interface Tokens",
         paragraphs: [
           "When editorial illustrations and photography echo the exact navy, cream, and monochrome tones of the UI, the entire digital experience feels custom-crafted.",
+          "Cohesive art direction turns blog archives and case study grids into visual extensions of the brand rather than disconnected stock collages.",
         ],
       },
       {
@@ -243,6 +256,7 @@ const ALIFY_BLOG_POSTS = {
         heading: "1. Why High-Growth Brands Choose Decoupled Frontends",
         paragraphs: [
           "Traditional monolithic templates often force teams to choose between rich brand storytelling and fast page loads. Decoupling the presentation layer unlocks bespoke UX without sacrificing backend reliability.",
+          "Merchandising teams gain creative freedom to launch campaign lookbooks while checkout infrastructure remains rock-solid.",
         ],
       },
       {
@@ -262,6 +276,7 @@ const ALIFY_BLOG_POSTS = {
         heading: "3. Designing Frictionless Checkout Journeys",
         paragraphs: [
           "Eliminating unnecessary form fields, supporting express wallets, and providing clear progress cues dramatically reduces cart abandonment.",
+          "Clear micro-copy around delivery windows and returns builds buyer confidence at the decisive moment.",
         ],
       },
       {
@@ -298,6 +313,7 @@ const ALIFY_BLOG_POSTS = {
         heading: "1. Semantic HTML & Structured Heading Hierarchies",
         paragraphs: [
           "Proper landmark elements — header, nav, main, article, aside, and footer — paired with a logical H1-to-H2 outline allow crawlers and assistive technologies to parse topical authority effortlessly.",
+          "Structured FAQ sections and clear table-of-contents anchors also help search engines surface rich passage snippets directly in search results.",
         ],
       },
       {
@@ -317,13 +333,14 @@ const ALIFY_BLOG_POSTS = {
         heading: "3. Breadcrumbs & Internal Link Equity",
         paragraphs: [
           "Clear breadcrumb trails and contextual sidebar links distribute authority across service, industry, and journal pages while reducing bounce rates.",
+          "Connecting service pages, industry verticals, and educational articles creates a cohesive topical cluster.",
         ],
       },
       {
         id: "interaction-to-next-paint",
         heading: "4. Keeping Interaction to Next Paint (INP) Crisp",
         paragraphs: [
-          "Lightweight vanilla JavaScript event handlers outperform bloated framework bundles, ensuring menus, sliders, and filters respond instantaneously.",
+          "Lightweight vanilla JavaScript event handlers outperform bloated framework bundles, ensuring menus, sliders, accordions, and filters respond instantaneously.",
         ],
       },
       {
@@ -339,15 +356,15 @@ const ALIFY_BLOG_POSTS = {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  initHomeBlogSlider();
+  initAllBlogSliders();
   initBlogArchiveFilter();
   initSingleBlogPage();
 });
 
 // ---------------------------------------------------------------------------
-// 1. Responsive Home Page Blog Slider
+// 1. Responsive Blog Slider (Supports Home & All Inner Pages)
 // ---------------------------------------------------------------------------
-function initHomeBlogSlider() {
+function initAllBlogSliders() {
   const viewport = document.getElementById("homeBlogSliderViewport");
   const track = document.getElementById("homeBlogSliderTrack");
   const prevBtn = document.getElementById("blogSliderPrev");
@@ -503,7 +520,6 @@ function initBlogArchiveFilter() {
 
   resetBtn?.addEventListener("click", () => applyFilter("all"));
 
-  // Apply URL query parameters (?category=... or ?q=...) from Single Post Sidebar
   const params = new URLSearchParams(window.location.search);
   const urlCat = params.get("category");
   const urlQuery = params.get("q");
@@ -517,7 +533,7 @@ function initBlogArchiveFilter() {
 }
 
 // ---------------------------------------------------------------------------
-// 3. Single Blog Page Loader + Left TOC Scroll-Spy + Progress Bar
+// 3. Single Blog Page Loader + Synchronized Sticky TOC & Sidebar Scroll
 // ---------------------------------------------------------------------------
 function initSingleBlogPage() {
   const articleContainer = document.getElementById("blogSingleProse");
@@ -527,7 +543,6 @@ function initSingleBlogPage() {
   const params = new URLSearchParams(window.location.search);
   const slug = params.get("post");
 
-  // Dynamically populate post content if ?post=<slug> matches one of our 6 articles
   if (slug && ALIFY_BLOG_POSTS[slug]) {
     const post = ALIFY_BLOG_POSTS[slug];
     document.title = `${post.title} — △LIFY`;
@@ -550,7 +565,6 @@ function initSingleBlogPage() {
       imgEl.alt = post.title;
     }
 
-    // Build Article Prose HTML
     let html = `<p class="blog-lead-paragraph">${post.lead}</p>`;
     post.sections.forEach((sec, idx) => {
       html += `<h2 id="${sec.id}">${sec.heading}</h2>`;
@@ -575,7 +589,6 @@ function initSingleBlogPage() {
     });
     articleContainer.innerHTML = html;
 
-    // Rebuild Tags
     if (tagsWrap && post.tags) {
       tagsWrap.innerHTML = post.tags
         .map(
@@ -586,7 +599,7 @@ function initSingleBlogPage() {
     }
   }
 
-  // Build / Sync Left Table of Contents from Article H2 Headings
+  // Build Left Table of Contents from Article H2 Headings
   const headings = Array.from(articleContainer.querySelectorAll("h2[id]"));
   tocList.innerHTML = headings
     .map(
@@ -599,8 +612,9 @@ function initSingleBlogPage() {
   const tocCard = document.getElementById("blogTocCard");
   const tocMobileBtn = document.getElementById("blogTocMobileBtn");
   const readingProgressFill = document.getElementById("blogReadingProgressFill");
+  const sidebarSticky = document.querySelector(".blog-sidebar-sticky");
+  const tocSticky = document.querySelector(".blog-toc-sticky");
 
-  // Smooth scroll when clicking TOC links
   tocLinks.forEach((link) => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
@@ -615,14 +629,41 @@ function initSingleBlogPage() {
     });
   });
 
-  // Mobile TOC Collapse Toggle
   tocMobileBtn?.addEventListener("click", () => {
     const collapsed = tocCard?.classList.toggle("is-collapsed");
     tocMobileBtn.setAttribute("aria-expanded", String(!collapsed));
   });
 
-  // Scroll-Spy + Live Reading Progress Bar
-  const onScrollSpy = () => {
+  // Bidirectional Smart Sticky Controller for Sidebar + TOC + Scroll-Spy
+  const HEADER_OFFSET = 106;
+  const BOTTOM_GAP = 24;
+  let lastScrollY = window.scrollY;
+  let sidebarTop = HEADER_OFFSET;
+
+  const updateBidirectionalSticky = (el, currentTop) => {
+    if (!el || window.innerWidth < 992) {
+      if (el) el.style.top = "";
+      return HEADER_OFFSET;
+    }
+
+    const vh = window.innerHeight;
+    const elHeight = el.offsetHeight;
+
+    // Fits comfortably inside viewport -> stay pinned right below sticky header
+    if (elHeight + HEADER_OFFSET + BOTTOM_GAP <= vh) {
+      el.style.top = `${HEADER_OFFSET}px`;
+      return HEADER_OFFSET;
+    }
+
+    // Taller than viewport -> smoothly scroll up & down with reader
+    const minTop = vh - elHeight - BOTTOM_GAP;
+    const delta = window.scrollY - lastScrollY;
+    const nextTop = Math.max(minTop, Math.min(HEADER_OFFSET, currentTop - delta));
+    el.style.top = `${nextTop}px`;
+    return nextTop;
+  };
+
+  const onScrollSync = () => {
     const scrollPos = window.scrollY + 150;
     let activeId = headings[0]?.id;
 
@@ -633,7 +674,8 @@ function initSingleBlogPage() {
     });
 
     tocLinks.forEach((link) => {
-      link.classList.toggle("is-active", link.getAttribute("href") === `#${activeId}`);
+      const isActive = link.getAttribute("href") === `#${activeId}`;
+      link.classList.toggle("is-active", isActive);
     });
 
     if (readingProgressFill) {
@@ -643,10 +685,20 @@ function initSingleBlogPage() {
       const pct = Math.max(0, Math.min(100, ((window.scrollY - articleTop) / articleHeight) * 100));
       readingProgressFill.style.width = `${pct}%`;
     }
+
+    if (tocSticky && window.innerWidth >= 992) {
+      tocSticky.style.top = `${HEADER_OFFSET}px`;
+    } else if (tocSticky) {
+      tocSticky.style.top = "";
+    }
+
+    sidebarTop = updateBidirectionalSticky(sidebarSticky, sidebarTop);
+    lastScrollY = window.scrollY;
   };
 
-  window.addEventListener("scroll", onScrollSpy, { passive: true });
-  onScrollSpy();
+  window.addEventListener("scroll", onScrollSync, { passive: true });
+  window.addEventListener("resize", onScrollSync);
+  onScrollSync();
 
   // Copy Share Link Button
   const copyBtn = document.getElementById("blogCopyLinkBtn");
