@@ -21,6 +21,8 @@
 
     <link rel="stylesheet" href="assets/css/reusable-component-css/blog.css" />
 
+    <link rel="stylesheet" href="assets/css/reusable-component-css/forms.css" />
+
     <!-- Main Custom CSS (Includes Garet, Montserrat & Poppins @font-face) -->
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
@@ -335,6 +337,265 @@
         </div>
       </section>
 
+
+
+      <!-- Complete Contact Us Form & Studio Directory Section -->
+      <section class="contact-page-section" aria-label="Complete Contact Form">
+        <div class="container">
+          <div class="row contact-page-row">
+            <!-- Left Column: Direct Studio Directory -->
+            <div class="col-12 col-lg-4">
+              <div class="contact-directory-card">
+                <h2 class="contact-directory-title">Direct Studio Channels</h2>
+                <p class="contact-directory-sub">
+                  Reach out directly or complete the inquiry form — every message goes straight to our senior leadership team.
+                </p>
+
+                <ul class="contact-directory-list">
+                  <li class="contact-directory-item">
+                    <span class="contact-directory-icon">
+                      <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                    </span>
+                    <div>
+                      <span class="contact-directory-label">New Projects &amp; Partnerships</span>
+                      <a href="mailto:hello@alify.studio" class="contact-directory-val">hello@alify.studio</a>
+                    </div>
+                  </li>
+                  <li class="contact-directory-item">
+                    <span class="contact-directory-icon">
+                      <i class="fa-solid fa-headset" aria-hidden="true"></i>
+                    </span>
+                    <div>
+                      <span class="contact-directory-label">Client Support Desk</span>
+                      <a href="mailto:support@alify.studio" class="contact-directory-val">support@alify.studio</a>
+                    </div>
+                  </li>
+                  <li class="contact-directory-item">
+                    <span class="contact-directory-icon">
+                      <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                    </span>
+                    <div>
+                      <span class="contact-directory-label">Phone &amp; WhatsApp</span>
+                      <a href="tel:+923001234567" class="contact-directory-val">+92 300 123 4567</a>
+                    </div>
+                  </li>
+                  <li class="contact-directory-item">
+                    <span class="contact-directory-icon">
+                      <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                    </span>
+                    <div>
+                      <span class="contact-directory-label">Studio Headquarters</span>
+                      <span class="contact-directory-val">Karachi, Sindh, PK — Global Delivery</span>
+                    </div>
+                  </li>
+                  <li class="contact-directory-item">
+                    <span class="contact-directory-icon">
+                      <i class="fa-solid fa-clock" aria-hidden="true"></i>
+                    </span>
+                    <div>
+                      <span class="contact-directory-label">Operating Hours</span>
+                      <span class="contact-directory-val">Mon – Fri, 9:00 AM – 7:00 PM PKT</span>
+                    </div>
+                  </li>
+                </ul>
+
+                <div class="contact-directory-socials" aria-label="Studio Social Profiles">
+                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="contact-dir-social" aria-label="LinkedIn">
+                    <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+                  </a>
+                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="contact-dir-social" aria-label="Instagram">
+                    <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                  </a>
+                  <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="contact-dir-social" aria-label="X Twitter">
+                    <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+                  </a>
+                  <a href="https://behance.net" target="_blank" rel="noopener noreferrer" class="contact-dir-social" aria-label="Behance">
+                    <i class="fa-brands fa-behance" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column: Complete Contact Form -->
+            <div class="col-12 col-lg-8">
+              <div class="contact-complete-card">
+                <div class="contact-sec-eyebrow">
+                  <span class="contact-sec-eyebrow-dot" aria-hidden="true"></span>
+                  <span>Complete Inquiry Form</span>
+                </div>
+                <h2 class="reusable-contact-card-title">Tell Us How We Can Help</h2>
+                <p class="reusable-contact-card-sub">
+                  Complete the fields below and our team will prepare a tailored response within one business day.
+                </p>
+
+                <form
+                  class="js-alify-form"
+                  data-success-msg="Thank you for contacting △LIFY! Your detailed inquiry has been logged and a project director will reach out within 24 hours."
+                  novalidate
+                >
+                  <div class="row alify-form-row">
+                    <div class="col-12 col-md-6">
+                      <div class="alify-field">
+                        <label class="alify-label" for="cpName">Full Name <span class="alify-req">*</span></label>
+                        <input
+                          type="text"
+                          id="cpName"
+                          class="alify-input"
+                          placeholder="Enter your full name"
+                          data-required="true"
+                        />
+                        <span class="alify-error-msg">Please enter your full name.</span>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <div class="alify-field">
+                        <label class="alify-label" for="cpEmail">Work Email <span class="alify-req">*</span></label>
+                        <input
+                          type="email"
+                          id="cpEmail"
+                          class="alify-input"
+                          placeholder="name@company.com"
+                          data-required="true"
+                        />
+                        <span class="alify-error-msg">Please enter a valid work email.</span>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <div class="alify-field">
+                        <label class="alify-label" for="cpPhone">Phone / WhatsApp <span class="alify-req">*</span></label>
+                        <input
+                          type="tel"
+                          id="cpPhone"
+                          class="alify-input"
+                          placeholder="+92 300 000 0000"
+                          data-required="true"
+                        />
+                        <span class="alify-error-msg">Please enter your phone number.</span>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <div class="alify-field">
+                        <label class="alify-label" for="cpCompany">Company / Organization</label>
+                        <input
+                          type="text"
+                          id="cpCompany"
+                          class="alify-input"
+                          placeholder="Company or brand name"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <div class="alify-field">
+                        <label class="alify-label" for="cpService">Department / Service <span class="alify-req">*</span></label>
+                        <select id="cpService" class="alify-select" data-required="true">
+                          <option value="">Select inquiry type</option>
+                          <option value="web">Web Design &amp; Development</option>
+                          <option value="uiux">UI/UX &amp; Brand Identity</option>
+                          <option value="mobile">Mobile App Development</option>
+                          <option value="seo">Digital Marketing &amp; SEO</option>
+                          <option value="ecommerce">E-Commerce Solutions</option>
+                          <option value="partnership">General / Agency Partnership</option>
+                        </select>
+                        <span class="alify-error-msg">Please select an inquiry type.</span>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <div class="alify-field">
+                        <label class="alify-label" for="cpBudget">Estimated Budget (Optional)</label>
+                        <select id="cpBudget" class="alify-select">
+                          <option value="">Select estimated range</option>
+                          <option value="3k-5k">$3,000 – $5,000</option>
+                          <option value="5k-15k">$5,000 – $15,000</option>
+                          <option value="15k-35k">$15,000 – $35,000</option>
+                          <option value="35k+">$35,000+</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="alify-field">
+                        <label class="alify-label" for="cpSubject">Subject <span class="alify-req">*</span></label>
+                        <input
+                          type="text"
+                          id="cpSubject"
+                          class="alify-input"
+                          placeholder="How can our studio help you?"
+                          data-required="true"
+                        />
+                        <span class="alify-error-msg">Please enter a subject.</span>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="alify-field">
+                        <span class="alify-label">Preferred Contact Channel</span>
+                        <div class="alify-choice-grid">
+                          <label class="alify-choice-pill">
+                            <input type="radio" name="preferred_channel" value="email" checked />
+                            <span class="alify-choice-label">
+                              <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                              Email
+                            </span>
+                          </label>
+                          <label class="alify-choice-pill">
+                            <input type="radio" name="preferred_channel" value="phone" />
+                            <span class="alify-choice-label">
+                              <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                              Phone Call
+                            </span>
+                          </label>
+                          <label class="alify-choice-pill">
+                            <input type="radio" name="preferred_channel" value="meeting" />
+                            <span class="alify-choice-label">
+                              <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
+                              Discovery Video Call
+                            </span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="alify-field">
+                        <label class="alify-label" for="cpMessage">Detailed Message <span class="alify-req">*</span></label>
+                        <textarea
+                          id="cpMessage"
+                          class="alify-textarea"
+                          placeholder="Share context about your brand, goals, key challenges, or timeline..."
+                          data-required="true"
+                        ></textarea>
+                        <span class="alify-error-msg">Please enter your message details.</span>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <label class="alify-check-label">
+                        <input type="checkbox" class="alify-check-input" checked />
+                        <span>Please keep my project details confidential under △LIFY’s standard mutual NDA policy.</span>
+                      </label>
+                    </div>
+                    <div class="col-12">
+                      <div class="alify-submit-bar">
+                        <span class="alify-nda-note">
+                          <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+                          <span>Guaranteed response within 24 business hours.</span>
+                        </span>
+                        <button type="submit" class="btn-start-project">
+                          <span class="btn-start-pill">Submit Complete Inquiry</span>
+                          <span class="btn-start-circle" aria-hidden="true">
+                            <i class="fa-solid fa-arrow-up btn-start-arrow"></i>
+                          </span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="alify-form-feedback" aria-live="polite">
+                    <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+                    <span class="alify-feedback-text"></span>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <!-- FAQs Section (Placed Above Blog Slider Section) -->
       <section class="faq-section" aria-label="Frequently Asked Questions">
@@ -1003,6 +1264,8 @@
     <script src="assets/js/reusable-component-js/faq.js"></script>
 
     <script src="assets/js/reusable-component-js/blog.js"></script>
+
+    <script src="assets/js/reusable-component-js/forms.js"></script>
 
     <!-- Main Custom JS -->
     <script src="assets/js/main.js"></script>

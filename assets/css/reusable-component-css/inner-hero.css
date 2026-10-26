@@ -38,7 +38,7 @@
 .inner-hero-row {
   position: relative;
   z-index: 1;
-  align-items: flex-end;
+  align-items: center;
   row-gap: 36px;
 }
 

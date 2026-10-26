@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "-=0.3"
     )
     .from(
-      ".inner-hero-card",
+      ".inner-hero-card, .hero-lead-form-card",
       {
         y: 24,
         opacity: 0,

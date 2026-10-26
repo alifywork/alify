@@ -21,6 +21,8 @@
 
     <link rel="stylesheet" href="assets/css/reusable-component-css/blog.css" />
 
+    <link rel="stylesheet" href="assets/css/reusable-component-css/forms.css" />
+
     <!-- Main Custom CSS (Includes Garet, Montserrat & Poppins @font-face) -->
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
@@ -335,6 +337,274 @@
         </div>
       </section>
 
+
+
+      <!-- Start a Project Discovery & Scope Builder Form Section -->
+      <section class="start-project-section" aria-label="Start a Project Form">
+        <div class="container">
+          <div class="row start-project-row">
+            <!-- Left Column: Multi-Step Scope Builder Form -->
+            <div class="col-12 col-lg-8">
+              <div class="scope-builder-card">
+                <form
+                  class="js-alify-form"
+                  data-success-msg="Awesome! Your project brief is in our hands — our strategy & engineering leads will send your roadmap within 48 hours."
+                  novalidate
+                >
+                  <!-- Step 01: Services -->
+                  <div class="scope-step-block">
+                    <div class="scope-step-head">
+                      <span class="scope-step-num">STEP 01</span>
+                      <h2 class="scope-step-title">Which capabilities do you need?</h2>
+                    </div>
+                    <div class="alify-choice-grid">
+                      <label class="alify-choice-pill">
+                        <input type="checkbox" name="scope_services" value="Web Design & Development" checked />
+                        <span class="alify-choice-label">
+                          <i class="fa-solid fa-code" aria-hidden="true"></i>
+                          Web Design &amp; Development
+                        </span>
+                      </label>
+                      <label class="alify-choice-pill">
+                        <input type="checkbox" name="scope_services" value="UI/UX & Brand Identity" />
+                        <span class="alify-choice-label">
+                          <i class="fa-solid fa-pen-nib" aria-hidden="true"></i>
+                          UI/UX &amp; Brand Identity
+                        </span>
+                      </label>
+                      <label class="alify-choice-pill">
+                        <input type="checkbox" name="scope_services" value="Mobile App Development" />
+                        <span class="alify-choice-label">
+                          <i class="fa-solid fa-mobile-screen-button" aria-hidden="true"></i>
+                          Mobile App Development
+                        </span>
+                      </label>
+                      <label class="alify-choice-pill">
+                        <input type="checkbox" name="scope_services" value="Digital Marketing & SEO" />
+                        <span class="alify-choice-label">
+                          <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
+                          Digital Marketing &amp; SEO
+                        </span>
+                      </label>
+                      <label class="alify-choice-pill">
+                        <input type="checkbox" name="scope_services" value="E-Commerce Solutions" />
+                        <span class="alify-choice-label">
+                          <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+                          E-Commerce Solutions
+                        </span>
+                      </label>
+                      <label class="alify-choice-pill">
+                        <input type="checkbox" name="scope_services" value="Design System" />
+                        <span class="alify-choice-label">
+                          <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+                          Scalable Design System
+                        </span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <!-- Step 02: Budget -->
+                  <div class="scope-step-block">
+                    <div class="scope-step-head">
+                      <span class="scope-step-num">STEP 02</span>
+                      <h2 class="scope-step-title">Estimated Project Investment</h2>
+                    </div>
+                    <div class="alify-choice-grid">
+                      <label class="alify-choice-pill">
+                        <input type="radio" name="project_budget" value="3k-5k" />
+                        <span class="alify-choice-label">$3k – $5k</span>
+                      </label>
+                      <label class="alify-choice-pill">
+                        <input type="radio" name="project_budget" value="5k-15k" checked />
+                        <span class="alify-choice-label">$5k – $15k</span>
+                      </label>
+                      <label class="alify-choice-pill">
+                        <input type="radio" name="project_budget" value="15k-35k" />
+                        <span class="alify-choice-label">$15k – $35k</span>
+                      </label>
+                      <label class="alify-choice-pill">
+                        <input type="radio" name="project_budget" value="35k+" />
+                        <span class="alify-choice-label">$35k+ Enterprise</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <!-- Step 03: Timeline -->
+                  <div class="scope-step-block">
+                    <div class="scope-step-head">
+                      <span class="scope-step-num">STEP 03</span>
+                      <h2 class="scope-step-title">Target Launch Timeline</h2>
+                    </div>
+                    <div class="alify-choice-grid">
+                      <label class="alify-choice-pill">
+                        <input type="radio" name="project_timeline" value="urgent" />
+                        <span class="alify-choice-label">Urgent (2–4 Weeks)</span>
+                      </label>
+                      <label class="alify-choice-pill">
+                        <input type="radio" name="project_timeline" value="1-2-months" checked />
+                        <span class="alify-choice-label">1 – 2 Months</span>
+                      </label>
+                      <label class="alify-choice-pill">
+                        <input type="radio" name="project_timeline" value="3-months" />
+                        <span class="alify-choice-label">3+ Months</span>
+                      </label>
+                      <label class="alify-choice-pill">
+                        <input type="radio" name="project_timeline" value="flexible" />
+                        <span class="alify-choice-label">Flexible</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <!-- Step 04: Client & Brief Details -->
+                  <div class="scope-step-block">
+                    <div class="scope-step-head">
+                      <span class="scope-step-num">STEP 04</span>
+                      <h2 class="scope-step-title">Your Details &amp; Project Brief</h2>
+                    </div>
+
+                    <div class="row alify-form-row">
+                      <div class="col-12 col-md-6">
+                        <div class="alify-field">
+                          <label class="alify-label" for="spName">Full Name <span class="alify-req">*</span></label>
+                          <input
+                            type="text"
+                            id="spName"
+                            class="alify-input"
+                            placeholder="Your full name"
+                            data-required="true"
+                          />
+                          <span class="alify-error-msg">Please enter your full name.</span>
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-6">
+                        <div class="alify-field">
+                          <label class="alify-label" for="spEmail">Work Email <span class="alify-req">*</span></label>
+                          <input
+                            type="email"
+                            id="spEmail"
+                            class="alify-input"
+                            placeholder="founder@company.com"
+                            data-required="true"
+                          />
+                          <span class="alify-error-msg">Please enter a valid work email.</span>
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-6">
+                        <div class="alify-field">
+                          <label class="alify-label" for="spPhone">Phone / WhatsApp <span class="alify-req">*</span></label>
+                          <input
+                            type="tel"
+                            id="spPhone"
+                            class="alify-input"
+                            placeholder="+92 300 000 0000"
+                            data-required="true"
+                          />
+                          <span class="alify-error-msg">Please enter your phone number.</span>
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-6">
+                        <div class="alify-field">
+                          <label class="alify-label" for="spWebsite">Company / Current Website</label>
+                          <input
+                            type="text"
+                            id="spWebsite"
+                            class="alify-input"
+                            placeholder="https://yourbrand.com"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <div class="alify-field">
+                          <label class="alify-label" for="spBrief">Project Overview, Goals &amp; Key Deliverables <span class="alify-req">*</span></label>
+                          <textarea
+                            id="spBrief"
+                            class="alify-textarea"
+                            placeholder="Describe what you want to build, target audience, inspiration links, or business metrics you want to move..."
+                            data-required="true"
+                          ></textarea>
+                          <span class="alify-error-msg">Please describe your project goals.</span>
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <label class="alify-check-label">
+                          <input type="checkbox" class="alify-check-input" checked />
+                          <span>Send me a signed mutual NDA before our discovery call.</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="alify-submit-bar">
+                    <span class="alify-nda-note">
+                      <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
+                      <span>Proposal &amp; sprint plan delivered within 48 hours.</span>
+                    </span>
+                    <button type="submit" class="btn-start-project">
+                      <span class="btn-start-pill">Submit Project Brief</span>
+                      <span class="btn-start-circle" aria-hidden="true">
+                        <i class="fa-solid fa-arrow-up btn-start-arrow"></i>
+                      </span>
+                    </button>
+                  </div>
+
+                  <div class="alify-form-feedback" aria-live="polite">
+                    <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+                    <span class="alify-feedback-text"></span>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <!-- Right Column: Sticky Onboarding Roadmap -->
+            <div class="col-12 col-lg-4">
+              <aside class="project-roadmap-sticky" aria-label="Onboarding Process">
+                <div class="project-roadmap-card">
+                  <h2 class="project-roadmap-title">What Happens Next?</h2>
+                  <ol class="project-roadmap-steps">
+                    <li class="project-roadmap-step">
+                      <span class="project-roadmap-badge">01</span>
+                      <div>
+                        <h3 class="project-roadmap-step-title">24h Architecture Review</h3>
+                        <p class="project-roadmap-step-desc">
+                          Our product director and lead engineer review your goals, market, and technical requirements.
+                        </p>
+                      </div>
+                    </li>
+                    <li class="project-roadmap-step">
+                      <span class="project-roadmap-badge">02</span>
+                      <div>
+                        <h3 class="project-roadmap-step-title">30-Min Strategy Call</h3>
+                        <p class="project-roadmap-step-desc">
+                          We align on scope priorities, conversion KPIs, and sprint milestones — zero generic sales pitches.
+                        </p>
+                      </div>
+                    </li>
+                    <li class="project-roadmap-step">
+                      <span class="project-roadmap-badge">03</span>
+                      <div>
+                        <h3 class="project-roadmap-step-title">Roadmap &amp; Sprint Kickoff</h3>
+                        <p class="project-roadmap-step-desc">
+                          Receive a clear fixed-scope proposal, timeline, and dedicated △LIFY squad ready to build.
+                        </p>
+                      </div>
+                    </li>
+                  </ol>
+                </div>
+
+                <div class="project-nda-card">
+                  <div class="project-nda-head">
+                    <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+                    <span>100% IP &amp; NDA Protection</span>
+                  </div>
+                  <p class="project-nda-text">
+                    Every brief, wireframe, and codebase belongs strictly to you from day one under our mutual confidentiality agreement.
+                  </p>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <!-- FAQs Section (Placed Above Blog Slider Section) -->
       <section class="faq-section" aria-label="Frequently Asked Questions">
@@ -1003,6 +1273,8 @@
     <script src="assets/js/reusable-component-js/faq.js"></script>
 
     <script src="assets/js/reusable-component-js/blog.js"></script>
+
+    <script src="assets/js/reusable-component-js/forms.js"></script>
 
     <!-- Main Custom JS -->
     <script src="assets/js/main.js"></script>
