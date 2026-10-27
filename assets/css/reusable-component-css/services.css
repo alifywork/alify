@@ -392,7 +392,7 @@
   position: absolute;
   inset: -14% 0;
   z-index: -2;
-  background-image: url("../../images/sections/bg-services-colorful.jpg");
+  background-image: url("../../images/sections/bg-services-agency.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -406,12 +406,14 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(
-    180deg,
-    rgba(246, 244, 241, 0.8) 0%,
-    rgba(255, 255, 255, 0.64) 50%,
-    rgba(246, 244, 241, 0.82) 100%
-  );
+  background:
+    radial-gradient(circle at 88% 16%, rgba(224, 90, 58, 0.07) 0%, rgba(246, 244, 241, 0) 46%),
+    linear-gradient(
+      180deg,
+      rgba(246, 244, 241, 0.92) 0%,
+      rgba(255, 255, 255, 0.85) 50%,
+      rgba(246, 244, 241, 0.93) 100%
+    );
   pointer-events: none;
 }
 

@@ -490,7 +490,7 @@
   position: absolute;
   inset: -14% 0;
   z-index: -2;
-  background-image: url("../../images/sections/bg-pricing-section.jpg");
+  background-image: url("../../images/sections/bg-pricing-agency.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -504,12 +504,14 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.84) 0%,
-    rgba(246, 244, 241, 0.72) 50%,
-    rgba(255, 255, 255, 0.84) 100%
-  );
+  background:
+    radial-gradient(circle at 86% 20%, rgba(224, 90, 58, 0.06) 0%, rgba(255, 255, 255, 0) 48%),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.93) 0%,
+      rgba(246, 244, 241, 0.87) 50%,
+      rgba(255, 255, 255, 0.94) 100%
+    );
   pointer-events: none;
 }
 

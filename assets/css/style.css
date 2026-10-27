@@ -476,9 +476,9 @@ h6 {
   inset: 0;
   z-index: -1;
   background:
-    radial-gradient(circle at 22% 28%, rgba(224, 90, 58, 0.2) 0%, rgba(0, 0, 0, 0) 48%),
-    radial-gradient(circle at 80% 72%, rgba(15, 52, 115, 0.28) 0%, rgba(0, 0, 0, 0) 52%),
-    linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.42) 44%, rgba(0, 0, 0, 0.8) 100%);
+    radial-gradient(circle at 22% 28%, rgba(224, 90, 58, 0.22) 0%, rgba(0, 0, 0, 0) 48%),
+    radial-gradient(circle at 80% 72%, rgba(15, 52, 115, 0.3) 0%, rgba(0, 0, 0, 0) 52%),
+    linear-gradient(180deg, rgba(7, 10, 16, 0.82) 0%, rgba(10, 14, 22, 0.64) 46%, rgba(7, 10, 16, 0.88) 100%);
   pointer-events: none;
 }
 

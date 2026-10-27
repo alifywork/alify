@@ -454,9 +454,16 @@
               id="workHeroFrame"
               class="work-hero-frame"
               style="background-image: url('assets/images/projects/project-finpulse.jpg');"
-              role="img"
-              aria-label="Project visual showcase"
-            ></div>
+              role="button"
+              tabindex="0"
+              data-lightbox-index="0"
+              aria-label="Open flagship project screen in lightbox"
+            >
+              <span class="work-hero-lightbox-pill">
+                <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                <span id="workHeroLightboxLabel">Explore Gallery · 06 Screens</span>
+              </span>
+            </div>
 
             <div class="row work-story-row">
               <div class="col-12 col-lg-6">
@@ -479,15 +486,126 @@
               </div>
             </div>
 
-            <div class="row work-gallery-row">
-              <div class="col-12 col-md-6">
-                <div id="workGallery1" class="work-gallery-card" style="background-image: url('assets/images/projects/project-finpulse.jpg');">
-                  <span class="work-gallery-caption">01 · Flagship Interface &amp; Visual Language</span>
+            <!-- Interactive Project Image Gallery (Opens in Lightbox) -->
+            <div class="work-gallery-showcase" id="workProjectGallery">
+              <div class="row work-gallery-head-row">
+                <div class="col-12 col-lg-8">
+                  <div class="single-sec-eyebrow">
+                    <span class="single-sec-eyebrow-dot" aria-hidden="true">△</span>
+                    <span>03 · Project Screens &amp; Deliverables</span>
+                  </div>
+                  <h2 class="single-sec-title">
+                    Interface Craft &amp; Visual <span>Gallery.</span>
+                  </h2>
+                  <p class="work-gallery-sub">
+                    Click any screen below to inspect full-resolution interfaces, design system tokens, and engineering deliverables in our interactive lightbox viewer.
+                  </p>
+                </div>
+                <div class="col-12 col-lg-4">
+                  <div class="work-gallery-head-actions">
+                    <button type="button" class="work-gallery-launch-btn" id="workOpenLightboxBtn">
+                      <i class="fa-solid fa-images" aria-hidden="true"></i>
+                      <span id="workOpenLightboxText">Open Lightbox (06)</span>
+                    </button>
+                  </div>
                 </div>
               </div>
-              <div class="col-12 col-md-6">
-                <div id="workGallery2" class="work-gallery-card" style="background-image: url('assets/images/services/service-web-dev.jpg');">
-                  <span class="work-gallery-caption">02 · Modular Component &amp; Responsive Architecture</span>
+
+              <div class="row work-gallery-row" id="workGalleryGrid">
+                <div class="col-12 col-md-6 col-lg-7">
+                  <button type="button" class="work-gallery-card" data-lightbox-index="0" aria-label="View 01 Institutional Treasury Command Interface in lightbox">
+                    <span class="work-gallery-media">
+                      <img src="assets/images/projects/project-finpulse.jpg" alt="Institutional Treasury Command Interface" class="work-gallery-img" loading="lazy" />
+                    </span>
+                    <span class="work-gallery-top">
+                      <span class="work-gallery-tag">01 · Flagship Platform</span>
+                      <span class="work-gallery-zoom-icon" aria-hidden="true"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+                    </span>
+                    <span class="work-gallery-meta">
+                      <span class="work-gallery-title">Institutional Treasury Command Interface</span>
+                      <span class="work-gallery-desc">Real-time multi-currency liquidity telemetry and sub-second market depth visualization.</span>
+                    </span>
+                  </button>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-5">
+                  <button type="button" class="work-gallery-card" data-lightbox-index="1" aria-label="View 02 48-Component Enterprise Design System in lightbox">
+                    <span class="work-gallery-media">
+                      <img src="assets/images/projects/work-gallery-design-system.jpg" alt="48-Component Enterprise Design System" class="work-gallery-img" loading="lazy" />
+                    </span>
+                    <span class="work-gallery-top">
+                      <span class="work-gallery-tag">02 · Design Tokens</span>
+                      <span class="work-gallery-zoom-icon" aria-hidden="true"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+                    </span>
+                    <span class="work-gallery-meta">
+                      <span class="work-gallery-title">48-Component Enterprise Design System</span>
+                      <span class="work-gallery-desc">Unified color tokens, data-table density rules, and modular UI primitives across web &amp; product.</span>
+                    </span>
+                  </button>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-5">
+                  <button type="button" class="work-gallery-card" data-lightbox-index="2" aria-label="View 03 Sub-Second Static-Edge Web Engineering in lightbox">
+                    <span class="work-gallery-media">
+                      <img src="assets/images/services/service-web-dev.jpg" alt="Sub-Second Static-Edge Web Engineering" class="work-gallery-img" loading="lazy" />
+                    </span>
+                    <span class="work-gallery-top">
+                      <span class="work-gallery-tag">03 · Edge Architecture</span>
+                      <span class="work-gallery-zoom-icon" aria-hidden="true"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+                    </span>
+                    <span class="work-gallery-meta">
+                      <span class="work-gallery-title">Sub-Second Static-Edge Web Engineering</span>
+                      <span class="work-gallery-desc">0.7s global LCP architecture with streaming telemetry previews and zero layout shift.</span>
+                    </span>
+                  </button>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-7">
+                  <button type="button" class="work-gallery-card" data-lightbox-index="3" aria-label="View 04 CFO Portfolio and Risk Scenario Simulator in lightbox">
+                    <span class="work-gallery-media">
+                      <img src="assets/images/industries/industry-fintech.jpg" alt="CFO Portfolio &amp; Risk Scenario Simulator" class="work-gallery-img" loading="lazy" />
+                    </span>
+                    <span class="work-gallery-top">
+                      <span class="work-gallery-tag">04 · Analytics UX</span>
+                      <span class="work-gallery-zoom-icon" aria-hidden="true"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+                    </span>
+                    <span class="work-gallery-meta">
+                      <span class="work-gallery-title">CFO Portfolio &amp; Risk Scenario Simulator</span>
+                      <span class="work-gallery-desc">Interactive yield and FX hedging calculator built directly into the enterprise evaluation funnel.</span>
+                    </span>
+                  </button>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-6">
+                  <button type="button" class="work-gallery-card" data-lightbox-index="4" aria-label="View 05 Automated Reconciliation and Audit Views in lightbox">
+                    <span class="work-gallery-media">
+                      <img src="assets/images/projects/case-ledgerflow-saas.jpg" alt="Automated Reconciliation &amp; Audit Views" class="work-gallery-img" loading="lazy" />
+                    </span>
+                    <span class="work-gallery-top">
+                      <span class="work-gallery-tag">05 · Data Workspace</span>
+                      <span class="work-gallery-zoom-icon" aria-hidden="true"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+                    </span>
+                    <span class="work-gallery-meta">
+                      <span class="work-gallery-title">Automated Reconciliation &amp; Audit Views</span>
+                      <span class="work-gallery-desc">Role-based institutional reporting dashboards engineered for SOC2-compliant workflows.</span>
+                    </span>
+                  </button>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-6">
+                  <button type="button" class="work-gallery-card" data-lightbox-index="5" aria-label="View 06 High-Intent Enterprise Demo Routing in lightbox">
+                    <span class="work-gallery-media">
+                      <img src="assets/images/services/service-conversion-cro.jpg" alt="High-Intent Enterprise Demo Routing" class="work-gallery-img" loading="lazy" />
+                    </span>
+                    <span class="work-gallery-top">
+                      <span class="work-gallery-tag">06 · Growth Funnel</span>
+                      <span class="work-gallery-zoom-icon" aria-hidden="true"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+                    </span>
+                    <span class="work-gallery-meta">
+                      <span class="work-gallery-title">High-Intent Enterprise Demo Routing</span>
+                      <span class="work-gallery-desc">Frictionless technical qualification flow that lifted institutional demo bookings by +184%.</span>
+                    </span>
+                  </button>
                 </div>
               </div>
             </div>
@@ -1987,6 +2105,94 @@
         </div>
       </div>
     </footer>
+
+    <!-- Interactive Project Gallery Lightbox Modal (Custom CSS) -->
+    <div
+      id="workLightbox"
+      class="work-lightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-hidden="true"
+      aria-labelledby="workLightboxTitle"
+    >
+      <div class="work-lightbox-backdrop" id="workLightboxBackdrop"></div>
+
+      <div class="work-lightbox-dialog">
+        <!-- Top Bar -->
+        <div class="work-lightbox-topbar">
+          <div class="work-lightbox-meta-pill">
+            <span class="work-lightbox-counter" id="workLightboxCounter">01 / 06</span>
+            <span class="work-lightbox-divider" aria-hidden="true"></span>
+            <span class="work-lightbox-tag" id="workLightboxTag">Flagship Platform</span>
+          </div>
+
+          <div class="work-lightbox-actions">
+            <button
+              type="button"
+              class="work-lightbox-icon-btn"
+              id="workLightboxZoom"
+              aria-label="Toggle image zoom"
+              title="Zoom in / out"
+            >
+              <i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i>
+            </button>
+            <button
+              type="button"
+              class="work-lightbox-icon-btn is-close"
+              id="workLightboxClose"
+              aria-label="Close gallery lightbox"
+              title="Close (Esc)"
+            >
+              <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Center Stage -->
+        <div class="work-lightbox-stage" id="workLightboxStage">
+          <button
+            type="button"
+            class="work-lightbox-nav is-prev"
+            id="workLightboxPrev"
+            aria-label="Previous project image"
+          >
+            <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+          </button>
+
+          <figure class="work-lightbox-figure" id="workLightboxFigure">
+            <img
+              id="workLightboxImg"
+              class="work-lightbox-img"
+              src="assets/images/projects/project-finpulse.jpg"
+              alt="Institutional Treasury Command Interface"
+            />
+          </figure>
+
+          <button
+            type="button"
+            class="work-lightbox-nav is-next"
+            id="workLightboxNext"
+            aria-label="Next project image"
+          >
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </button>
+        </div>
+
+        <!-- Bottom Caption & Thumbnail Strip -->
+        <div class="work-lightbox-footer">
+          <div class="work-lightbox-caption-wrap">
+            <h3 class="work-lightbox-title" id="workLightboxTitle">
+              Institutional Treasury Command Interface
+            </h3>
+            <p class="work-lightbox-caption" id="workLightboxCaption">
+              Real-time multi-currency liquidity telemetry and sub-second market depth visualization.
+            </p>
+          </div>
+
+          <div class="work-lightbox-thumbs" id="workLightboxThumbs" role="tablist" aria-label="Project gallery thumbnails"></div>
+        </div>
+      </div>
+    </div>
 
     <!-- Bootstrap Bundle JS -->
     <script src="assets/js/bootstrap-js/bootstrap.bundle.min.js"></script>

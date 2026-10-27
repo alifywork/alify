@@ -294,6 +294,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ".thankyou-steps-row",
     ".cs-tabs-row",
     "#relatedProjectsGrid",
+    ".work-gallery-row",
   ].join(", ");
 
   document.querySelectorAll(gridRowSelectors).forEach((gridRow) => {
@@ -441,7 +442,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // C. Window-Portal Inner Image Parallax (Frames, Showcases & Portfolio Cards)
   document
     .querySelectorAll(
-      ".about-visual-bg, .cs-visual-bg, .single-showcase-bg, .project-grid-card-bg, .service-card-bg, .industry-card-bg"
+      ".about-visual-bg, .cs-visual-bg, .single-showcase-bg, .project-grid-card-bg, .service-card-bg, .industry-card-bg, .work-gallery-media"
     )
     .forEach((bgEl) => {
       const parentFrame = bgEl.parentElement;
@@ -464,7 +465,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Direct background-image frames on Work Single & Case Study Single
   document
-    .querySelectorAll(".work-hero-frame, .work-gallery-card, .cs-chapter-visual")
+    .querySelectorAll(".work-hero-frame, .cs-chapter-visual")
     .forEach((frame) => {
       gsap.fromTo(
         frame,

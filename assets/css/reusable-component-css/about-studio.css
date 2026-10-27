@@ -317,7 +317,7 @@
   position: absolute;
   inset: -14% 0;
   z-index: -2;
-  background-image: url("../../images/sections/bg-about-metrics.jpg");
+  background-image: url("../../images/sections/bg-metrics-agency.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -331,12 +331,14 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(
-    112deg,
-    rgba(0, 0, 0, 0.78) 0%,
-    rgba(18, 21, 28, 0.62) 52%,
-    rgba(224, 90, 58, 0.32) 100%
-  );
+  background:
+    radial-gradient(circle at 86% 24%, rgba(224, 90, 58, 0.22) 0%, rgba(0, 0, 0, 0) 52%),
+    linear-gradient(
+      112deg,
+      rgba(7, 10, 16, 0.9) 0%,
+      rgba(14, 18, 28, 0.8) 52%,
+      rgba(8, 12, 20, 0.88) 100%
+    );
   pointer-events: none;
 }
 
@@ -572,7 +574,7 @@
   position: absolute;
   inset: -14% 0;
   z-index: -2;
-  background-image: url("../../images/sections/bg-process-warm.jpg");
+  background-image: url("../../images/sections/bg-process-agency.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -586,12 +588,14 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(
-    112deg,
-    rgba(0, 0, 0, 0.8) 0%,
-    rgba(18, 21, 28, 0.64) 52%,
-    rgba(0, 0, 0, 0.82) 100%
-  );
+  background:
+    radial-gradient(circle at 18% 24%, rgba(217, 138, 43, 0.16) 0%, rgba(0, 0, 0, 0) 48%),
+    linear-gradient(
+      112deg,
+      rgba(7, 10, 16, 0.91) 0%,
+      rgba(13, 17, 26, 0.8) 52%,
+      rgba(7, 10, 16, 0.91) 100%
+    );
   pointer-events: none;
 }
 

@@ -21,7 +21,7 @@
   position: absolute;
   inset: -14% 0;
   z-index: -2;
-  background-image: url("../../images/sections/bg-faq-section.jpg");
+  background-image: url("../../images/sections/bg-faq-agency.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -35,12 +35,14 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(
-    108deg,
-    rgba(246, 244, 241, 0.82) 0%,
-    rgba(246, 244, 241, 0.68) 55%,
-    rgba(255, 255, 255, 0.78) 100%
-  );
+  background:
+    radial-gradient(circle at 86% 22%, rgba(15, 52, 115, 0.06) 0%, rgba(246, 244, 241, 0) 48%),
+    linear-gradient(
+      108deg,
+      rgba(246, 244, 241, 0.93) 0%,
+      rgba(246, 244, 241, 0.86) 55%,
+      rgba(255, 255, 255, 0.92) 100%
+    );
   pointer-events: none;
 }
 

@@ -40,6 +40,44 @@ document.addEventListener("DOMContentLoaded", () => {
         ["0.7s", "Global LCP Load Time"],
         ["99/100", "Mobile Performance Score"],
       ],
+      gallery: [
+        {
+          src: "assets/images/projects/project-finpulse.jpg",
+          tag: "Flagship Platform",
+          title: "Institutional Treasury Command Interface",
+          caption: "Real-time multi-currency liquidity telemetry and sub-second market depth visualization.",
+        },
+        {
+          src: "assets/images/projects/work-gallery-design-system.jpg",
+          tag: "Design Tokens",
+          title: "48-Component Enterprise Design System",
+          caption: "Unified color tokens, data-table density rules, and modular UI primitives across web & product.",
+        },
+        {
+          src: "assets/images/services/service-web-dev.jpg",
+          tag: "Edge Architecture",
+          title: "Sub-Second Static-Edge Web Engineering",
+          caption: "0.7s global LCP architecture with streaming telemetry previews and zero layout shift.",
+        },
+        {
+          src: "assets/images/industries/industry-fintech.jpg",
+          tag: "Analytics UX",
+          title: "CFO Portfolio & Risk Scenario Simulator",
+          caption: "Interactive yield and FX hedging calculator built directly into the enterprise evaluation funnel.",
+        },
+        {
+          src: "assets/images/projects/case-ledgerflow-saas.jpg",
+          tag: "Data Workspace",
+          title: "Automated Reconciliation & Audit Views",
+          caption: "Role-based institutional reporting dashboards engineered for SOC2-compliant workflows.",
+        },
+        {
+          src: "assets/images/services/service-conversion-cro.jpg",
+          tag: "Growth Funnel",
+          title: "High-Intent Enterprise Demo Routing",
+          caption: "Frictionless technical qualification flow that lifted institutional demo bookings by +184%.",
+        },
+      ],
     },
     "aura-atelier-commerce": {
       slug: "aura-atelier-commerce",
@@ -65,6 +103,44 @@ document.addEventListener("DOMContentLoaded", () => {
         ["+62%", "Checkout Completion Lift"],
         ["+38%", "Average Order Value"],
         ["0.6s", "Median Storefront LCP"],
+      ],
+      gallery: [
+        {
+          src: "assets/images/projects/project-aura-atelier.jpg",
+          tag: "Flagship Storefront",
+          title: "Editorial Lookbook & Flagship Commerce",
+          caption: "Tactile luxury art direction paired with instant edge-cached product storytelling.",
+        },
+        {
+          src: "assets/images/services/service-ecommerce.jpg",
+          tag: "Headless Checkout",
+          title: "Multi-Currency Sub-Second Bag & Checkout",
+          caption: "Localized express checkout across 14 currencies that lifted mobile checkout completion by +62%.",
+        },
+        {
+          src: "assets/images/blog/blog-headless-commerce.jpg",
+          tag: "Merchandising",
+          title: "Modular Campaign & Capsule Builder",
+          caption: "Composable CMS blocks empowering editorial teams to launch seasonal drops in minutes.",
+        },
+        {
+          src: "assets/images/projects/work-gallery-design-system.jpg",
+          tag: "Commerce Tokens",
+          title: "Bespoke Typography & Storefront UI Library",
+          caption: "Responsive PDP cards, tactile swatch selectors, and micro-interaction states across viewports.",
+        },
+        {
+          src: "assets/images/industries/industry-ecommerce.jpg",
+          tag: "Mobile Flagship",
+          title: "Thumb-Zone Mobile Shopping Experience",
+          caption: "Slide-out wardrobe bundling, predictive search, and sticky size-guide ergonomics.",
+        },
+        {
+          src: "assets/images/services/service-interactive-motion.jpg",
+          tag: "Motion Craft",
+          title: "60fps Scroll-Choreographed Product Reveals",
+          caption: "Hardware-accelerated GSAP lookbook transitions engineered for zero frame drops.",
+        },
       ],
     },
     "medcore-telehealth": {
@@ -92,6 +168,44 @@ document.addEventListener("DOMContentLoaded", () => {
         ["-51%", "Missed Appointments"],
         ["-64%", "Support Call Volume"],
       ],
+      gallery: [
+        {
+          src: "assets/images/projects/project-medcore-portal.jpg",
+          tag: "Patient Portal",
+          title: "Unified 3-Step Patient Scheduling & Triage",
+          caption: "WCAG AA accessible appointment booking flow achieving a 99.4% patient satisfaction score.",
+        },
+        {
+          src: "assets/images/industries/industry-healthcare.jpg",
+          tag: "Clinical Suite",
+          title: "Clinician Live Consultation & Charting View",
+          caption: "Single-screen browser telehealth video, vitals history, and prescription refill management.",
+        },
+        {
+          src: "assets/images/projects/work-gallery-design-system.jpg",
+          tag: "Accessible Tokens",
+          title: "WCAG AA Healthcare Component Library",
+          caption: "High-contrast clinical typography, clear error states, and assistive-tech friendly UI primitives.",
+        },
+        {
+          src: "assets/images/services/service-ui-ux-branding.jpg",
+          tag: "UX Research",
+          title: "Symptom-Guided Intake Journey Architecture",
+          caption: "Calm progressive disclosure replacing an 11-screen legacy medical questionnaire maze.",
+        },
+        {
+          src: "assets/images/services/service-web-dev.jpg",
+          tag: "Portal Security",
+          title: "Zero-Trust Encrypted Web Engineering",
+          caption: "Sub-second portal rendering with strict session security and EHR interoperability.",
+        },
+        {
+          src: "assets/images/blog/blog-conversion-ux.jpg",
+          tag: "Care Continuity",
+          title: "Automated Care Plan & Refill Dashboard",
+          caption: "Self-serve follow-up reminders and prescription tracking that cut clinic phone volume by 64%.",
+        },
+      ],
     },
     "crestline-proptech": {
       slug: "crestline-proptech",
@@ -117,6 +231,44 @@ document.addEventListener("DOMContentLoaded", () => {
         ["110k+", "Monthly Active Buyers"],
         ["+136%", "Qualified Viewing Leads"],
         ["$48M+", "Digital Reservations"],
+      ],
+      gallery: [
+        {
+          src: "assets/images/projects/project-crestline-proptech.jpg",
+          tag: "3D Explorer",
+          title: "Interactive Waterfront Tower & Unit Explorer",
+          caption: "Real-time floorplate selection with sun-path orientation and panoramic marina view previews.",
+        },
+        {
+          src: "assets/images/industries/industry-real-estate.jpg",
+          tag: "Live Inventory",
+          title: "CRM-Synced Availability & Payment Configurator",
+          caption: "Multi-currency milestone payment schedules and live unit reservation status for global investors.",
+        },
+        {
+          src: "assets/images/services/service-interactive-motion.jpg",
+          tag: "Spatial Motion",
+          title: "Scroll-Choreographed Neighbourhood & Amenity Tour",
+          caption: "Immersive architectural storytelling serving 110,000+ monthly active luxury property buyers.",
+        },
+        {
+          src: "assets/images/projects/work-gallery-design-system.jpg",
+          tag: "Design System",
+          title: "PropTech Digital Identity & Investor UI Kit",
+          caption: "Modular floorplan comparison drawers, ROI yield widgets, and downloadable dossier templates.",
+        },
+        {
+          src: "assets/images/services/service-conversion-cro.jpg",
+          tag: "Concierge Funnel",
+          title: "Private Viewing & Broker Attribution Flow",
+          caption: "Instant private-viewing scheduler and advisor routing that grew qualified leads by +136%.",
+        },
+        {
+          src: "assets/images/blog/blog-technical-seo.jpg",
+          tag: "Search Engine",
+          title: "International Property Schema & Landing System",
+          caption: "Multilingual programmatic SEO hubs capturing cross-border real estate demand.",
+        },
       ],
     },
     "voltmobility-ev": {
@@ -144,6 +296,44 @@ document.addEventListener("DOMContentLoaded", () => {
         ["99.98%", "Telemetry Uptime"],
         ["+74%", "Repeat Weekly Riders"],
       ],
+      gallery: [
+        {
+          src: "assets/images/projects/project-voltmobility.jpg",
+          tag: "Fleet Telemetry",
+          title: "Live EV State-of-Charge & Metro Zone Map",
+          caption: "Real-time vehicle availability, battery range rings, and 38-second keyless reservation flow.",
+        },
+        {
+          src: "assets/images/industries/industry-logistics-mobility.jpg",
+          tag: "AI Routing",
+          title: "Predictive Fast-Charger & Route Planner",
+          caption: "Range-aware corridor routing across 18 European cities with live bay occupancy telemetry.",
+        },
+        {
+          src: "assets/images/services/service-ai-product.jpg",
+          tag: "Diagnostics UI",
+          title: "Cloud Battery Health & Fleet Command Center",
+          caption: "99.98% uptime operator dashboard surfacing predictive maintenance and depot balancing.",
+        },
+        {
+          src: "assets/images/projects/work-gallery-design-system.jpg",
+          tag: "Control-Room UI",
+          title: "High-Contrast Dark Telemetry Token System",
+          caption: "Glare-free status tokens, map pin clusters, and one-swipe billing components.",
+        },
+        {
+          src: "assets/images/services/service-design-systems.jpg",
+          tag: "Modular Widgets",
+          title: "Enterprise Fleet Sustainability & Usage Reports",
+          caption: "CO2 savings analytics and automated corporate mobility invoicing dashboards.",
+        },
+        {
+          src: "assets/images/blog/blog-gsap-motion.jpg",
+          tag: "Interactive Web",
+          title: "Connected Hardware & Rider Web Showcase",
+          caption: "Scroll-driven product launch experience lifting repeat weekly rider adoption by +74%.",
+        },
+      ],
     },
     "solenne-skincare": {
       slug: "solenne-skincare",
@@ -169,6 +359,44 @@ document.addEventListener("DOMContentLoaded", () => {
         ["2.8x", "Non-Paid Organic Revenue"],
         ["+47%", "Average Order Value"],
         ["98/100", "Core Web Vitals Score"],
+      ],
+      gallery: [
+        {
+          src: "assets/images/projects/project-solenne-beauty.jpg",
+          tag: "Brand Flagship",
+          title: "Parisian Botanical Rebrand & DTC Storefront",
+          caption: "Editorial skincare storytelling balanced with dermatologist-backed clinical proof.",
+        },
+        {
+          src: "assets/images/services/service-ecommerce.jpg",
+          tag: "Bundle Builder",
+          title: "4-Step Skin Diagnostic & Custom Regimen Quiz",
+          caption: "Interactive routine builder recommending tailored AM/PM bundles and lifting AOV by +47%.",
+        },
+        {
+          src: "assets/images/services/service-ui-ux-branding.jpg",
+          tag: "Visual System",
+          title: "Packaging Typography & Digital Art Direction",
+          caption: "Unified brand system spanning tactile botanical packaging, iconography, and web UI.",
+        },
+        {
+          src: "assets/images/projects/work-gallery-design-system.jpg",
+          tag: "Storefront Kit",
+          title: "Subscription & Replenishment UI Components",
+          caption: "Frictionless auto-ship cadence toggles, free-gift progress bars, and ingredient drawers.",
+        },
+        {
+          src: "assets/images/blog/blog-brand-identity.jpg",
+          tag: "Ingredient UX",
+          title: "Botanical Active & Clinical Study Cards",
+          caption: "Transparent sourcing provenance and clinical efficacy visuals directly on product pages.",
+        },
+        {
+          src: "assets/images/services/service-digital-marketing.jpg",
+          tag: "Organic SEO",
+          title: "Core Web Vitals & Editorial Search Architecture",
+          caption: "98/100 CWV performance and structured schema growing non-paid organic revenue 2.8x.",
+        },
       ],
     },
   };
@@ -858,10 +1086,251 @@ document.addEventListener("DOMContentLoaded", () => {
     setTxt("workStoryBrief", proj.brief);
     setTxt("workStoryCraft", proj.craft);
 
-    const gal1 = document.getElementById("workGallery1");
-    const gal2 = document.getElementById("workGallery2");
-    if (gal1) gal1.style.backgroundImage = `url('${proj.bg}')`;
-    if (gal2) gal2.style.backgroundImage = `url('${proj.gallery2}')`;
+    // Build Project Gallery Cards & Interactive Lightbox Viewer
+    const galleryItems = Array.isArray(proj.gallery) && proj.gallery.length
+      ? proj.gallery
+      : [
+          {
+            src: proj.bg,
+            tag: "Flagship Interface",
+            title: `${proj.shortTitle} — Primary Interface`,
+            caption: proj.desc,
+          },
+          {
+            src: proj.gallery2 || proj.bg,
+            tag: "Architecture",
+            title: `${proj.shortTitle} — Component System`,
+            caption: proj.craft,
+          },
+        ];
+
+    const padNum = (n) => String(n).padStart(2, "0");
+    const colClasses = [
+      "col-12 col-md-6 col-lg-7",
+      "col-12 col-md-6 col-lg-5",
+      "col-12 col-md-6 col-lg-5",
+      "col-12 col-md-6 col-lg-7",
+      "col-12 col-md-6 col-lg-6",
+      "col-12 col-md-6 col-lg-6",
+    ];
+
+    setTxt("workHeroLightboxLabel", `Explore Gallery · ${padNum(galleryItems.length)} Screens`);
+    setTxt("workOpenLightboxText", `Open Lightbox (${padNum(galleryItems.length)})`);
+
+    const galleryGrid = document.getElementById("workGalleryGrid");
+    if (galleryGrid) {
+      galleryGrid.innerHTML = galleryItems
+        .map((item, idx) => {
+          const num = padNum(idx + 1);
+          const colCls = colClasses[idx % colClasses.length];
+          return `
+            <div class="${colCls}">
+              <button
+                type="button"
+                class="work-gallery-card"
+                data-lightbox-index="${idx}"
+                aria-label="View ${num} ${item.title} in lightbox"
+              >
+                <span class="work-gallery-media">
+                  <img
+                    src="${item.src}"
+                    alt="${item.title}"
+                    class="work-gallery-img"
+                    loading="lazy"
+                  />
+                </span>
+                <span class="work-gallery-top">
+                  <span class="work-gallery-tag">${num} · ${item.tag}</span>
+                  <span class="work-gallery-zoom-icon" aria-hidden="true">
+                    <i class="fa-solid fa-magnifying-glass-plus"></i>
+                  </span>
+                </span>
+                <span class="work-gallery-meta">
+                  <span class="work-gallery-title">${item.title}</span>
+                  <span class="work-gallery-desc">${item.caption}</span>
+                </span>
+              </button>
+            </div>`;
+        })
+        .join("");
+    }
+
+    // Lightbox State & Event Wiring
+    const lightbox = document.getElementById("workLightbox");
+    const lbBackdrop = document.getElementById("workLightboxBackdrop");
+    const lbStage = document.getElementById("workLightboxStage");
+    const lbFigure = document.getElementById("workLightboxFigure");
+    const lbImg = document.getElementById("workLightboxImg");
+    const lbCounter = document.getElementById("workLightboxCounter");
+    const lbTag = document.getElementById("workLightboxTag");
+    const lbTitle = document.getElementById("workLightboxTitle");
+    const lbCaption = document.getElementById("workLightboxCaption");
+    const lbThumbs = document.getElementById("workLightboxThumbs");
+    const lbPrev = document.getElementById("workLightboxPrev");
+    const lbNext = document.getElementById("workLightboxNext");
+    const lbClose = document.getElementById("workLightboxClose");
+    const lbZoom = document.getElementById("workLightboxZoom");
+    const openBtn = document.getElementById("workOpenLightboxBtn");
+
+    if (lightbox && lbImg) {
+      let activeIndex = 0;
+      let isZoomed = false;
+      let lastTriggerEl = null;
+      let touchStartX = 0;
+      let touchStartY = 0;
+
+      const setZoomState = (zoomVal) => {
+        isZoomed = Boolean(zoomVal);
+        if (lbFigure) lbFigure.classList.toggle("is-zoomed", isZoomed);
+        if (lbZoom) {
+          lbZoom.innerHTML = isZoomed
+            ? '<i class="fa-solid fa-magnifying-glass-minus" aria-hidden="true"></i>'
+            : '<i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i>';
+        }
+      };
+
+      if (lbThumbs) {
+        lbThumbs.innerHTML = galleryItems
+          .map(
+            (item, idx) => `
+            <button
+              type="button"
+              class="work-lightbox-thumb${idx === 0 ? " is-active" : ""}"
+              data-thumb-index="${idx}"
+              role="tab"
+              aria-selected="${idx === 0 ? "true" : "false"}"
+              aria-label="Show screen ${padNum(idx + 1)}: ${item.title}"
+            >
+              <img src="${item.src}" alt="" loading="lazy" />
+            </button>`
+          )
+          .join("");
+      }
+
+      const updateLightboxSlide = (index) => {
+        const total = galleryItems.length;
+        activeIndex = ((index % total) + total) % total;
+        const current = galleryItems[activeIndex];
+        setZoomState(false);
+
+        lbImg.src = current.src;
+        lbImg.alt = current.title;
+        if (lbCounter) lbCounter.textContent = `${padNum(activeIndex + 1)} / ${padNum(total)}`;
+        if (lbTag) lbTag.textContent = current.tag;
+        if (lbTitle) lbTitle.textContent = current.title;
+        if (lbCaption) lbCaption.textContent = current.caption;
+
+        if (lbThumbs) {
+          lbThumbs.querySelectorAll(".work-lightbox-thumb").forEach((btn, idx) => {
+            const active = idx === activeIndex;
+            btn.classList.toggle("is-active", active);
+            btn.setAttribute("aria-selected", active ? "true" : "false");
+            if (active && typeof btn.scrollIntoView === "function") {
+              btn.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+            }
+          });
+        }
+      };
+
+      const openLightbox = (index, triggerEl) => {
+        lastTriggerEl = triggerEl || document.activeElement;
+        updateLightboxSlide(index);
+        lightbox.classList.add("is-open");
+        lightbox.setAttribute("aria-hidden", "false");
+        document.body.classList.add("is-lightbox-open");
+        if (lbClose) lbClose.focus({ preventScroll: true });
+      };
+
+      const closeLightbox = () => {
+        if (!lightbox.classList.contains("is-open")) return;
+        setZoomState(false);
+        lightbox.classList.remove("is-open");
+        lightbox.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("is-lightbox-open");
+        if (lastTriggerEl && typeof lastTriggerEl.focus === "function") {
+          lastTriggerEl.focus({ preventScroll: true });
+        }
+      };
+
+      if (galleryGrid) {
+        galleryGrid.addEventListener("click", (e) => {
+          const card = e.target.closest("[data-lightbox-index]");
+          if (!card) return;
+          openLightbox(Number(card.getAttribute("data-lightbox-index")) || 0, card);
+        });
+      }
+
+      if (heroFrame) {
+        heroFrame.addEventListener("click", () => openLightbox(0, heroFrame));
+        heroFrame.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            openLightbox(0, heroFrame);
+          }
+        });
+      }
+
+      if (openBtn) {
+        openBtn.addEventListener("click", () => openLightbox(0, openBtn));
+      }
+
+      if (lbPrev) lbPrev.addEventListener("click", () => updateLightboxSlide(activeIndex - 1));
+      if (lbNext) lbNext.addEventListener("click", () => updateLightboxSlide(activeIndex + 1));
+      if (lbClose) lbClose.addEventListener("click", closeLightbox);
+      if (lbBackdrop) lbBackdrop.addEventListener("click", closeLightbox);
+
+      if (lbStage) {
+        lbStage.addEventListener("click", (e) => {
+          if (e.target === lbStage) closeLightbox();
+        });
+        lbStage.addEventListener(
+          "touchstart",
+          (e) => {
+            if (!e.touches || !e.touches.length) return;
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+          },
+          { passive: true }
+        );
+        lbStage.addEventListener(
+          "touchend",
+          (e) => {
+            if (isZoomed || !e.changedTouches || !e.changedTouches.length) return;
+            const dx = e.changedTouches[0].clientX - touchStartX;
+            const dy = e.changedTouches[0].clientY - touchStartY;
+            if (Math.abs(dx) > 44 && Math.abs(dx) > Math.abs(dy)) {
+              updateLightboxSlide(dx < 0 ? activeIndex + 1 : activeIndex - 1);
+            }
+          },
+          { passive: true }
+        );
+      }
+
+      if (lbZoom) lbZoom.addEventListener("click", () => setZoomState(!isZoomed));
+      lbImg.addEventListener("click", () => setZoomState(!isZoomed));
+
+      if (lbThumbs) {
+        lbThumbs.addEventListener("click", (e) => {
+          const thumb = e.target.closest("[data-thumb-index]");
+          if (!thumb) return;
+          updateLightboxSlide(Number(thumb.getAttribute("data-thumb-index")) || 0);
+        });
+      }
+
+      document.addEventListener("keydown", (e) => {
+        if (!lightbox.classList.contains("is-open")) return;
+        if (e.key === "Escape") {
+          e.preventDefault();
+          closeLightbox();
+        } else if (e.key === "ArrowRight") {
+          e.preventDefault();
+          updateLightboxSlide(activeIndex + 1);
+        } else if (e.key === "ArrowLeft") {
+          e.preventDefault();
+          updateLightboxSlide(activeIndex - 1);
+        }
+      });
+    }
 
     const outEl = document.getElementById("workOutcomesMetrics");
     if (outEl) {

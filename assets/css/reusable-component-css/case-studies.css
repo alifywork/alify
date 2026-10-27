@@ -23,7 +23,7 @@
   position: absolute;
   inset: -14% 0;
   z-index: -2;
-  background-image: url("../../images/sections/bg-case-studies-section.jpg");
+  background-image: url("../../images/sections/bg-case-studies-agency.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -37,12 +37,14 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(
-    180deg,
-    rgba(246, 244, 241, 0.8) 0%,
-    rgba(246, 244, 241, 0.66) 48%,
-    rgba(255, 255, 255, 0.8) 100%
-  );
+  background:
+    radial-gradient(circle at 16% 20%, rgba(15, 138, 115, 0.06) 0%, rgba(246, 244, 241, 0) 48%),
+    linear-gradient(
+      180deg,
+      rgba(246, 244, 241, 0.92) 0%,
+      rgba(246, 244, 241, 0.85) 48%,
+      rgba(255, 255, 255, 0.93) 100%
+    );
   pointer-events: none;
 }
 
@@ -574,7 +576,7 @@
   position: absolute;
   inset: -12% 0;
   z-index: -2;
-  background-image: url("../../images/sections/bg-about-metrics.jpg");
+  background-image: url("../../images/sections/bg-metrics-agency.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -588,12 +590,14 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(
-    112deg,
-    rgba(0, 0, 0, 0.84) 0%,
-    rgba(18, 21, 28, 0.68) 55%,
-    rgba(224, 90, 58, 0.34) 100%
-  );
+  background:
+    radial-gradient(circle at 88% 26%, rgba(224, 90, 58, 0.24) 0%, rgba(0, 0, 0, 0) 52%),
+    linear-gradient(
+      112deg,
+      rgba(7, 10, 16, 0.91) 0%,
+      rgba(14, 18, 28, 0.82) 55%,
+      rgba(8, 12, 20, 0.89) 100%
+    );
   pointer-events: none;
 }
 
