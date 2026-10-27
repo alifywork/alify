@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // --------------------------------------------------------------------------
-  // 1. Home Hero Left / Right Entrance & KPI Counters
+  // 1. Centered Home Hero Entrance & KPI Counters
   // --------------------------------------------------------------------------
   const homeHero = document.querySelector(".home-hero");
   if (homeHero) {
@@ -20,76 +20,52 @@ document.addEventListener("DOMContentLoaded", () => {
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
       tl.from(".hero-status-pill", {
-        x: -40,
+        y: -18,
         opacity: 0,
-        duration: 0.5,
+        duration: 0.48,
         clearProps: "transform,opacity",
       })
         .from(
-          ".hero-display-title, .hero-lead",
+          ".hero-display-title",
           {
-            x: -54,
+            x: -42,
             opacity: 0,
             duration: 0.72,
-            stagger: 0.1,
             clearProps: "transform,opacity",
           },
-          "-=0.28"
+          "-=0.24"
+        )
+        .from(
+          ".hero-lead",
+          {
+            x: 42,
+            opacity: 0,
+            duration: 0.68,
+            clearProps: "transform,opacity",
+          },
+          "-=0.52"
         )
         .from(
           ".hero-cta-group > *",
           {
-            x: -36,
+            y: 18,
             opacity: 0,
-            duration: 0.52,
-            stagger: 0.08,
+            duration: 0.5,
+            stagger: 0.09,
             clearProps: "transform,opacity",
           },
-          "-=0.38"
+          "-=0.36"
         )
         .from(
           ".hero-stat-item",
           {
-            x: -28,
+            y: 18,
             opacity: 0,
             duration: 0.48,
             stagger: 0.08,
             clearProps: "transform,opacity",
           },
-          "-=0.32"
-        )
-        .from(
-          ".hero-showcase-card",
-          {
-            x: 60,
-            opacity: 0,
-            duration: 0.78,
-            clearProps: "transform,opacity",
-          },
-          "-=0.75"
-        )
-        .from(
-          ".hero-bar-fill",
-          {
-            scaleY: 0,
-            transformOrigin: "bottom center",
-            duration: 0.65,
-            stagger: 0.08,
-            ease: "power2.out",
-            clearProps: "transform",
-          },
-          "-=0.38"
-        )
-        .from(
-          ".hero-float-badge, .hero-float-review",
-          {
-            x: 36,
-            opacity: 0,
-            duration: 0.55,
-            stagger: 0.1,
-            clearProps: "transform,opacity",
-          },
-          "-=0.45"
+          "-=0.3"
         );
     }
 

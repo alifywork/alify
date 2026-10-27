@@ -524,7 +524,7 @@
   position: relative;
   background-color: var(--color-black);
   color: var(--color-white);
-  padding: 76px 0 80px;
+  padding: 146px 0 80px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   overflow: hidden;
   isolation: isolate;
@@ -1325,12 +1325,22 @@
 }
 
 @media (max-width: 991.98px) {
+  .blog-single-hero {
+    padding: 122px 0 66px;
+  }
+
   .blog-related-section {
     padding: 72px 0 84px;
   }
 
   .blog-related-actions {
     justify-content: flex-start;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .blog-single-hero {
+    padding: 108px 0 54px;
   }
 }
 

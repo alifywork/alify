@@ -6,7 +6,7 @@
   position: relative;
   background-color: var(--color-black);
   color: var(--color-white);
-  padding: 82px 0 90px;
+  padding: 148px 0 90px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   overflow: hidden;
   isolation: isolate;
@@ -361,13 +361,13 @@ a.inner-hero-tag:hover i {
 /* Responsive */
 @media (max-width: 991.98px) {
   .inner-hero {
-    padding: 56px 0 64px;
+    padding: 122px 0 66px;
   }
 }
 
 @media (max-width: 575.98px) {
   .inner-hero {
-    padding: 44px 0 52px;
+    padding: 108px 0 54px;
   }
 
   .inner-hero-desc {

@@ -38,17 +38,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Sticky Header Scroll State (with hysteresis to prevent layout-shrink jitter)
+  // Fixed Overlapping Header Scroll State (Transparent on Hero -> Solid Frosted on Scroll)
   let isScrolledState = false;
   let scrollTicking = false;
   const syncHeaderScroll = () => {
     scrollTicking = false;
     if (!header) return;
     const y = window.scrollY;
-    if (!isScrolledState && y > 40) {
+    if (!isScrolledState && y > 24) {
       isScrolledState = true;
       header.classList.add("is-scrolled");
-    } else if (isScrolledState && y < 12) {
+    } else if (isScrolledState && y <= 10) {
       isScrolledState = false;
       header.classList.remove("is-scrolled");
     }

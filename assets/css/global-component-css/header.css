@@ -3,13 +3,14 @@
    ========================================================================== */
 
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
-  background-color: var(--color-white);
-  border-bottom: 1px solid rgba(15, 52, 115, 0.08);
+  background-color: transparent;
+  border-bottom: 1px solid transparent;
+  box-shadow: none;
   transition:
     box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
     background-color 0.35s ease,
@@ -56,12 +57,28 @@
   text-decoration: none;
   user-select: none;
   transition:
+    color 0.3s ease,
     opacity 0.25s ease,
     font-size 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* Over Hero (Unscrolled): White Brand Logo; On Scroll: Black + Primary △ */
+.site-header .brand-logo {
+  color: var(--color-white);
+}
+
+.site-header .brand-logo:hover {
+  opacity: 0.88;
+  color: var(--color-white);
+}
+
 .site-header.is-scrolled .brand-logo {
   font-size: 22px;
+  color: var(--color-black);
+}
+
+.site-header.is-scrolled .brand-logo:hover {
+  color: var(--color-black);
 }
 
 .brand-logo:hover {
@@ -75,11 +92,18 @@
   line-height: 1;
   display: inline-block;
   transform: translateY(-1px);
-  transition: font-size 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  transition:
+    color 0.3s ease,
+    font-size 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site-header .brand-logo-mark {
+  color: var(--color-white);
 }
 
 .site-header.is-scrolled .brand-logo-mark {
   font-size: 23px;
+  color: var(--color-primary);
 }
 
 /* --------------------------------------------------------------------------
@@ -119,7 +143,7 @@
   font-family: var(--font-poppins);
   font-size: 15px;
   font-weight: 500;
-  color: var(--color-black);
+  color: rgba(255, 255, 255, 0.9);
   white-space: nowrap;
   background: none;
   border: none;
@@ -133,6 +157,7 @@
 .site-header.is-scrolled .header-nav-link {
   padding: 5px 0;
   font-size: 14.5px;
+  color: var(--color-black);
 }
 
 .header-nav-link::after {
@@ -142,17 +167,30 @@
   bottom: 2px;
   width: 100%;
   height: 2px;
-  background-color: var(--color-primary);
+  background-color: var(--color-white);
   border-radius: 2px;
   transform: scaleX(0);
   transform-origin: right center;
-  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  transition:
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.25s ease;
+}
+
+.site-header.is-scrolled .header-nav-link::after {
+  background-color: var(--color-primary);
 }
 
 .header-nav-link:hover,
 .header-nav-link.is-active,
 .header-nav-item.has-dropdown:hover > .header-nav-link,
 .header-nav-item.has-dropdown.is-open > .header-nav-link {
+  color: var(--color-white);
+}
+
+.site-header.is-scrolled .header-nav-link:hover,
+.site-header.is-scrolled .header-nav-link.is-active,
+.site-header.is-scrolled .header-nav-item.has-dropdown:hover > .header-nav-link,
+.site-header.is-scrolled .header-nav-item.has-dropdown.is-open > .header-nav-link {
   color: var(--color-primary);
 }
 
@@ -302,6 +340,25 @@
     font-size 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* Over Hero (Unscrolled) Desktop Header Buttons */
+.site-header:not(.is-scrolled) .header-desktop-ctas .btn-contact {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.32);
+  color: var(--color-white);
+}
+
+.site-header:not(.is-scrolled) .header-desktop-ctas .btn-contact:hover {
+  background-color: var(--color-white);
+  border-color: var(--color-white);
+  color: var(--color-primary);
+}
+
+.site-header:not(.is-scrolled) .header-desktop-ctas .btn-start-project:hover .btn-start-pill,
+.site-header:not(.is-scrolled) .header-desktop-ctas .btn-start-project:hover .btn-start-circle {
+  background-color: var(--color-white);
+  color: var(--color-primary);
+}
+
 .site-header.is-scrolled .header-desktop-ctas .btn-contact {
   height: 38px;
   padding: 0 18px;
@@ -416,6 +473,18 @@
     width 0.35s cubic-bezier(0.22, 1, 0.36, 1),
     height 0.35s cubic-bezier(0.22, 1, 0.36, 1),
     font-size 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site-header:not(.is-scrolled) .mobile-menu-toggle {
+  background-color: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: var(--color-white);
+}
+
+.site-header:not(.is-scrolled) .mobile-menu-toggle:hover {
+  background-color: var(--color-white);
+  border-color: var(--color-white);
+  color: var(--color-primary);
 }
 
 .site-header.is-scrolled .mobile-menu-toggle {
