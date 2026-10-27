@@ -11,38 +11,48 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$alify_email         = get_theme_mod( 'alify_email', 'info@alify.site' );
-$alify_whatsapp      = get_theme_mod( 'alify_whatsapp', '+90 301 9328094' );
-$alify_whatsapp_url  = get_theme_mod( 'alify_whatsapp_url', 'https://wa.me/903019328094' );
-$alify_hq            = get_theme_mod( 'alify_hq', 'Karachi, PK — Global Delivery' );
-$alify_contact_label = get_theme_mod( 'alify_contact_btn_text', 'Contact Us' );
-$alify_cta_label     = get_theme_mod( 'alify_cta_text', 'Start a Project' );
-$alify_col1_heading  = get_theme_mod( 'alify_footer_col1_title', 'Navigation' );
-$alify_col2_heading  = get_theme_mod( 'alify_footer_col2_title', 'Services' );
+$alify_gopt = function ( $field, $default ) {
+	return function_exists( 'alify_opt' ) ? alify_opt( 'global', $field, $default ) : $default;
+};
+
+$alify_email         = $alify_gopt( 'opt_email', get_theme_mod( 'alify_email', 'info@alify.site' ) );
+$alify_whatsapp      = $alify_gopt( 'opt_whatsapp', get_theme_mod( 'alify_whatsapp', '+90 301 9328094' ) );
+$alify_whatsapp_url  = $alify_gopt( 'opt_whatsapp_url', get_theme_mod( 'alify_whatsapp_url', 'https://wa.me/903019328094' ) );
+$alify_hq            = $alify_gopt( 'opt_hq', get_theme_mod( 'alify_hq', 'Karachi, PK — Global Delivery' ) );
+$alify_contact_label = $alify_gopt( 'opt_header_contact_text', get_theme_mod( 'alify_contact_btn_text', 'Contact Us' ) );
+$alify_cta_label     = $alify_gopt( 'opt_header_cta_text', get_theme_mod( 'alify_cta_text', 'Start a Project' ) );
+$alify_col1_heading  = $alify_gopt( 'opt_footer_col1_title', get_theme_mod( 'alify_footer_col1_title', 'Navigation' ) );
+$alify_col2_heading  = $alify_gopt( 'opt_footer_col2_title', get_theme_mod( 'alify_footer_col2_title', 'Services' ) );
+$alify_col3_heading  = $alify_gopt( 'opt_footer_col3_title', 'Get in Touch' );
+$alify_fcta_eyebrow  = $alify_gopt( 'opt_footer_cta_eyebrow', 'Ready to Scale Your Brand?' );
+$alify_fcta_title    = $alify_gopt( 'opt_footer_cta_title', 'Let’s Build Something Remarkable Together.' );
+$alify_fcta_desc     = $alify_gopt( 'opt_footer_cta_desc', 'Partner with ALIFY to craft high-converting digital products, iconic brand identities, and scalable web experiences.' );
+$alify_fbrand_desc   = $alify_gopt( 'opt_footer_brand_desc', 'A design-first digital studio engineering bespoke websites, brand systems, and scalable products for ambitious companies worldwide.' );
+$alify_fcopyright    = $alify_gopt( 'opt_footer_copyright', 'ALIFY Studio. All rights reserved.' );
 
 $alify_socials = array(
 	array(
-		'url'   => get_theme_mod( 'alify_linkedin', 'https://linkedin.com' ),
+		'url'   => $alify_gopt( 'opt_social_linkedin', get_theme_mod( 'alify_linkedin', 'https://linkedin.com' ) ),
 		'icon'  => 'fa-brands fa-linkedin-in',
 		'label' => 'LinkedIn',
 	),
 	array(
-		'url'   => get_theme_mod( 'alify_instagram', 'https://instagram.com' ),
+		'url'   => $alify_gopt( 'opt_social_instagram', get_theme_mod( 'alify_instagram', 'https://instagram.com' ) ),
 		'icon'  => 'fa-brands fa-instagram',
 		'label' => 'Instagram',
 	),
 	array(
-		'url'   => get_theme_mod( 'alify_twitter', 'https://x.com' ),
+		'url'   => $alify_gopt( 'opt_social_twitter', get_theme_mod( 'alify_twitter', 'https://x.com' ) ),
 		'icon'  => 'fa-brands fa-x-twitter',
 		'label' => 'X Twitter',
 	),
 	array(
-		'url'   => get_theme_mod( 'alify_behance', 'https://behance.net' ),
+		'url'   => $alify_gopt( 'opt_social_behance', get_theme_mod( 'alify_behance', 'https://behance.net' ) ),
 		'icon'  => 'fa-brands fa-behance',
 		'label' => 'Behance',
 	),
 	array(
-		'url'   => get_theme_mod( 'alify_dribbble', 'https://dribbble.com' ),
+		'url'   => $alify_gopt( 'opt_social_dribbble', get_theme_mod( 'alify_dribbble', 'https://dribbble.com' ) ),
 		'icon'  => 'fa-brands fa-dribbble',
 		'label' => 'Dribbble',
 	),
@@ -57,13 +67,13 @@ $alify_socials = array(
 				<div class="col-12 col-lg-7">
 					<span class="footer-cta-eyebrow">
 						<span class="footer-cta-eyebrow-dot" aria-hidden="true">△</span>
-						<?php esc_html_e( 'Ready to Scale Your Brand?', 'alify' ); ?>
+						<?php echo esc_html( $alify_fcta_eyebrow ); ?>
 					</span>
 					<h2 class="footer-cta-title">
-						<?php esc_html_e( 'Let’s Build Something Remarkable Together.', 'alify' ); ?>
+						<?php echo esc_html( $alify_fcta_title ); ?>
 					</h2>
 					<p class="footer-cta-desc">
-						<?php esc_html_e( 'Partner with ALIFY to craft high-converting digital products, iconic brand identities, and scalable web experiences.', 'alify' ); ?>
+						<?php echo esc_html( $alify_fcta_desc ); ?>
 					</p>
 				</div>
 				<div class="col-12 col-lg-5 footer-cta-actions-col">
@@ -86,7 +96,7 @@ $alify_socials = array(
 			<div class="col-12 col-lg-4">
 				<?php alify_render_brand_logo( 'footer-brand-logo', 'footer-brand-mark' ); ?>
 				<p class="footer-brand-desc">
-					<?php esc_html_e( 'A design-first digital studio engineering bespoke websites, brand systems, and scalable products for ambitious companies worldwide.', 'alify' ); ?>
+					<?php echo esc_html( $alify_fbrand_desc ); ?>
 				</p>
 
 				<?php
@@ -166,7 +176,7 @@ $alify_socials = array(
 
 			<!-- Column 4: Contact Info -->
 			<div class="col-12 col-md-4 col-lg-3">
-				<h3 class="footer-col-title"><?php esc_html_e( 'Get in Touch', 'alify' ); ?></h3>
+				<h3 class="footer-col-title"><?php echo esc_html( $alify_col3_heading ); ?></h3>
 				<ul class="footer-contact-list">
 					<li class="footer-contact-item">
 						<span class="footer-contact-icon">
@@ -204,7 +214,7 @@ $alify_socials = array(
 			<div class="row footer-bottom-row">
 				<div class="col-12 col-md-6">
 					<p class="footer-copyright">
-						&copy; <span id="footerYear"><?php echo esc_html( wp_date( 'Y' ) ); ?></span> ALIFY Studio. <?php esc_html_e( 'All rights reserved.', 'alify' ); ?>
+						&copy; <span id="footerYear"><?php echo esc_html( wp_date( 'Y' ) ); ?></span> <?php echo esc_html( $alify_fcopyright ); ?>
 					</p>
 				</div>
 				<div class="col-12 col-md-6">

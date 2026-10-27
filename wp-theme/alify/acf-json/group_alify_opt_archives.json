@@ -1,0 +1,1557 @@
+{
+  "key": "group_alify_opt_archives",
+  "title": "Archive & Hub Pages Content (All Inner Pages)",
+  "fields": [
+    {
+      "key": "field_alify_tab_a_srv",
+      "label": "Services Archive (/services/)",
+      "name": "",
+      "aria-label": "",
+      "type": "tab",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "placement": "top",
+      "endpoint": 0
+    },
+    {
+      "key": "field_arch_srv_hero_eyebrow",
+      "label": "Hero Eyebrow",
+      "name": "arch_srv_hero_eyebrow",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "35",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Our Capabilities",
+      "placeholder": ""
+    },
+    {
+      "key": "field_arch_srv_hero_title",
+      "label": "Hero Heading (`<span>` allowed)",
+      "name": "arch_srv_hero_title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "65",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "End-to-End <span class=\"inner-hero-title-accent\">Digital Solutions</span> Engineered for Growth.",
+      "placeholder": ""
+    },
+    {
+      "key": "field_arch_srv_hero_desc",
+      "label": "Hero Description",
+      "name": "arch_srv_hero_desc",
+      "aria-label": "",
+      "type": "textarea",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "From brand positioning and tokenized UI/UX systems to custom full-stack platforms and technical SEO — explore our 8 core disciplines.",
+      "placeholder": "",
+      "rows": 2,
+      "new_lines": ""
+    },
+    {
+      "key": "field_arch_srv_hero_bg",
+      "label": "Services Hero Background Image",
+      "name": "arch_srv_hero_bg",
+      "aria-label": "",
+      "type": "image",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "40",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "",
+      "return_format": "url",
+      "preview_size": "medium",
+      "library": "all"
+    },
+    {
+      "key": "field_arch_srv_sec_title",
+      "label": "Grid Section Heading (`<span>` allowed)",
+      "name": "arch_srv_sec_title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "60",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Specialized Squads Across <span>Design, Code & Growth.</span>",
+      "placeholder": ""
+    },
+    {
+      "key": "field_alify_tab_a_wrk",
+      "label": "Work Archive (/work/)",
+      "name": "",
+      "aria-label": "",
+      "type": "tab",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "placement": "top",
+      "endpoint": 0
+    },
+    {
+      "key": "field_arch_wrk_hero_eyebrow",
+      "label": "Hero Eyebrow",
+      "name": "arch_wrk_hero_eyebrow",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "35",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Selected Portfolio",
+      "placeholder": ""
+    },
+    {
+      "key": "field_arch_wrk_hero_title",
+      "label": "Hero Heading (`<span>` allowed)",
+      "name": "arch_wrk_hero_title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "65",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Crafted Platforms & Brands That <span class=\"inner-hero-title-accent\">Move the Needle.</span>",
+      "placeholder": ""
+    },
+    {
+      "key": "field_arch_wrk_hero_desc",
+      "label": "Hero Description",
+      "name": "arch_wrk_hero_desc",
+      "aria-label": "",
+      "type": "textarea",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Explore flagship websites, SaaS platforms, headless storefronts, and design systems shipped by ALIFY squads.",
+      "placeholder": "",
+      "rows": 2,
+      "new_lines": ""
+    },
+    {
+      "key": "field_arch_wrk_hero_bg",
+      "label": "Work Hero Background Image",
+      "name": "arch_wrk_hero_bg",
+      "aria-label": "",
+      "type": "image",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "40",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "",
+      "return_format": "url",
+      "preview_size": "medium",
+      "library": "all"
+    },
+    {
+      "key": "field_arch_wrk_sec_title",
+      "label": "Grid Section Heading (`<span>` allowed)",
+      "name": "arch_wrk_sec_title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "60",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Engineered for Impact Across <span>Every Digital Touchpoint.</span>",
+      "placeholder": ""
+    },
+    {
+      "key": "field_alify_tab_a_ind",
+      "label": "Industries & Case Studies (/industries/ & /case-studies/)",
+      "name": "",
+      "aria-label": "",
+      "type": "tab",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "placement": "top",
+      "endpoint": 0
+    },
+    {
+      "key": "field_arch_ind_hero_eyebrow",
+      "label": "Industries Hero Eyebrow",
+      "name": "arch_ind_hero_eyebrow",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "35",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Vertical Expertise",
+      "placeholder": ""
+    },
+    {
+      "key": "field_arch_ind_hero_title",
+      "label": "Industries Hero Heading (`<span>` allowed)",
+      "name": "arch_ind_hero_title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "65",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Domain-Focused Digital Craft Across <span class=\"inner-hero-title-accent\">Global Industries.</span>",
+      "placeholder": ""
+    },
+    {
+      "key": "field_arch_ind_hero_desc",
+      "label": "Industries Hero Description",
+      "name": "arch_ind_hero_desc",
+      "aria-label": "",
+      "type": "textarea",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "",
+      "rows": 2,
+      "new_lines": ""
+    },
+    {
+      "key": "field_arch_ind_hero_bg",
+      "label": "Industries Hero Background Image",
+      "name": "arch_ind_hero_bg",
+      "aria-label": "",
+      "type": "image",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "",
+      "return_format": "url",
+      "preview_size": "medium",
+      "library": "all"
+    },
+    {
+      "key": "field_arch_ind_sec_title",
+      "label": "Industries Grid Heading (`<span>` allowed)",
+      "name": "arch_ind_sec_title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Digital Products Engineered for <span>Every Vertical’s Reality.</span>",
+      "placeholder": ""
+    },
+    {
+      "key": "field_arch_cs_hero_eyebrow",
+      "label": "Case Studies Hero Eyebrow",
+      "name": "arch_cs_hero_eyebrow",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "35",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Proven Impact",
+      "placeholder": ""
+    },
+    {
+      "key": "field_arch_cs_hero_title",
+      "label": "Case Studies Hero Heading (`<span>` allowed)",
+      "name": "arch_cs_hero_title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "65",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Deep Dives Into <span class=\"inner-hero-title-accent\">Measurable Client</span> Transformations.",
+      "placeholder": ""
+    },
+    {
+      "key": "field_arch_cs_hero_desc",
+      "label": "Case Studies Hero Description",
+      "name": "arch_cs_hero_desc",
+      "aria-label": "",
+      "type": "textarea",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "",
+      "rows": 2,
+      "new_lines": ""
+    },
+    {
+      "key": "field_arch_cs_hero_bg",
+      "label": "Case Studies Hero Background Image",
+      "name": "arch_cs_hero_bg",
+      "aria-label": "",
+      "type": "image",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "",
+      "return_format": "url",
+      "preview_size": "medium",
+      "library": "all"
+    },
+    {
+      "key": "field_alify_tab_a_blog",
+      "label": "Blog Index (/blog/)",
+      "name": "",
+      "aria-label": "",
+      "type": "tab",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "placement": "top",
+      "endpoint": 0
+    },
+    {
+      "key": "field_arch_blog_hero_eyebrow",
+      "label": "Blog Hero Eyebrow",
+      "name": "arch_blog_hero_eyebrow",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "35",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Studio Journal",
+      "placeholder": ""
+    },
+    {
+      "key": "field_arch_blog_hero_title",
+      "label": "Blog Hero Heading (`<span>` allowed)",
+      "name": "arch_blog_hero_title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "65",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Perspectives on <span class=\"inner-hero-title-accent\">Design, Code</span> & Digital Growth.",
+      "placeholder": ""
+    },
+    {
+      "key": "field_arch_blog_hero_desc",
+      "label": "Blog Hero Description",
+      "name": "arch_blog_hero_desc",
+      "aria-label": "",
+      "type": "textarea",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Actionable guides, engineering deep dives, and brand strategy insights written by the product designers and developers at ALIFY.",
+      "placeholder": "",
+      "rows": 2,
+      "new_lines": ""
+    },
+    {
+      "key": "field_arch_blog_hero_bg",
+      "label": "Blog Hero Background Image",
+      "name": "arch_blog_hero_bg",
+      "aria-label": "",
+      "type": "image",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "40",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "",
+      "return_format": "url",
+      "preview_size": "medium",
+      "library": "all"
+    },
+    {
+      "key": "field_arch_blog_card_metric",
+      "label": "Hero Right Card Metric",
+      "name": "arch_blog_card_metric",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "30",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Weekly",
+      "placeholder": ""
+    },
+    {
+      "key": "field_arch_blog_card_cta",
+      "label": "Hero Right Card Link Label",
+      "name": "arch_blog_card_cta",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "30",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Work With Our Team",
+      "placeholder": ""
+    },
+    {
+      "key": "field_arch_blog_card_label",
+      "label": "Hero Right Card Description",
+      "name": "arch_blog_card_label",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "100",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Fresh perspectives on modern web craft, GSAP motion systems, and scalable UX.",
+      "placeholder": ""
+    },
+    {
+      "key": "field_alify_tab_a_pricing",
+      "label": "Pricing & 3 Tiers (/pricing/)",
+      "name": "",
+      "aria-label": "",
+      "type": "tab",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "placement": "top",
+      "endpoint": 0
+    },
+    {
+      "key": "field_arch_prc_hero_eyebrow",
+      "label": "Pricing Hero Eyebrow",
+      "name": "arch_prc_hero_eyebrow",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "35",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Transparent Investment",
+      "placeholder": ""
+    },
+    {
+      "key": "field_arch_prc_hero_title",
+      "label": "Pricing Hero Heading (`<span>` allowed)",
+      "name": "arch_prc_hero_title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "65",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Predictable <span class=\"inner-hero-title-accent\">Pricing Models.</span> Senior Studio Execution.",
+      "placeholder": ""
+    },
+    {
+      "key": "field_arch_prc_hero_desc",
+      "label": "Pricing Hero Description",
+      "name": "arch_prc_hero_desc",
+      "aria-label": "",
+      "type": "textarea",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "",
+      "rows": 2,
+      "new_lines": ""
+    },
+    {
+      "key": "field_arch_prc_hero_bg",
+      "label": "Pricing Hero Background Image",
+      "name": "arch_prc_hero_bg",
+      "aria-label": "",
+      "type": "image",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "",
+      "return_format": "url",
+      "preview_size": "medium",
+      "library": "all"
+    },
+    {
+      "key": "field_arch_prc_save_pill",
+      "label": "Retainer Toggle Discount Pill",
+      "name": "arch_prc_save_pill",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Save 15%",
+      "placeholder": ""
+    },
+    {
+      "key": "field_prc_t1_name",
+      "label": "Tier 1 Name",
+      "name": "prc_t1_name",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Launch Sprint",
+      "placeholder": ""
+    },
+    {
+      "key": "field_prc_t1_sprint",
+      "label": "Tier 1 Sprint Price",
+      "name": "prc_t1_sprint",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "$4,500",
+      "placeholder": ""
+    },
+    {
+      "key": "field_prc_t1_retainer",
+      "label": "Tier 1 Retainer Price",
+      "name": "prc_t1_retainer",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "$3,800",
+      "placeholder": ""
+    },
+    {
+      "key": "field_prc_t1_velocity",
+      "label": "Tier 1 Timeline",
+      "name": "prc_t1_velocity",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "3–4 Weeks",
+      "placeholder": ""
+    },
+    {
+      "key": "field_prc_t1_summary",
+      "label": "Tier 1 Summary",
+      "name": "prc_t1_summary",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": ""
+    },
+    {
+      "key": "field_prc_t1_features",
+      "label": "Tier 1 Bullet Features (1 per line)",
+      "name": "prc_t1_features",
+      "aria-label": "",
+      "type": "textarea",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "",
+      "rows": 3,
+      "new_lines": ""
+    },
+    {
+      "key": "field_prc_t2_name",
+      "label": "Tier 2 Name",
+      "name": "prc_t2_name",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Scale Ecosystem",
+      "placeholder": ""
+    },
+    {
+      "key": "field_prc_t2_sprint",
+      "label": "Tier 2 Sprint Price",
+      "name": "prc_t2_sprint",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "$9,500",
+      "placeholder": ""
+    },
+    {
+      "key": "field_prc_t2_retainer",
+      "label": "Tier 2 Retainer Price",
+      "name": "prc_t2_retainer",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "$7,900",
+      "placeholder": ""
+    },
+    {
+      "key": "field_prc_t2_velocity",
+      "label": "Tier 2 Timeline",
+      "name": "prc_t2_velocity",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "6–8 Weeks",
+      "placeholder": ""
+    },
+    {
+      "key": "field_prc_t2_summary",
+      "label": "Tier 2 Summary",
+      "name": "prc_t2_summary",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": ""
+    },
+    {
+      "key": "field_prc_t2_features",
+      "label": "Tier 2 Bullet Features (1 per line)",
+      "name": "prc_t2_features",
+      "aria-label": "",
+      "type": "textarea",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "",
+      "rows": 3,
+      "new_lines": ""
+    },
+    {
+      "key": "field_prc_t3_name",
+      "label": "Tier 3 Name",
+      "name": "prc_t3_name",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Enterprise Squad",
+      "placeholder": ""
+    },
+    {
+      "key": "field_prc_t3_sprint",
+      "label": "Tier 3 Sprint Price",
+      "name": "prc_t3_sprint",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "$18,500",
+      "placeholder": ""
+    },
+    {
+      "key": "field_prc_t3_retainer",
+      "label": "Tier 3 Retainer Price",
+      "name": "prc_t3_retainer",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "$14,800",
+      "placeholder": ""
+    },
+    {
+      "key": "field_prc_t3_velocity",
+      "label": "Tier 3 Timeline",
+      "name": "prc_t3_velocity",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "8–12 Weeks",
+      "placeholder": ""
+    },
+    {
+      "key": "field_prc_t3_summary",
+      "label": "Tier 3 Summary",
+      "name": "prc_t3_summary",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": ""
+    },
+    {
+      "key": "field_prc_t3_features",
+      "label": "Tier 3 Bullet Features (1 per line)",
+      "name": "prc_t3_features",
+      "aria-label": "",
+      "type": "textarea",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "",
+      "rows": 3,
+      "new_lines": ""
+    },
+    {
+      "key": "field_alify_tab_a_about",
+      "label": "About Us & Leadership (/about/)",
+      "name": "",
+      "aria-label": "",
+      "type": "tab",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "placement": "top",
+      "endpoint": 0
+    },
+    {
+      "key": "field_arch_abt_hero_eyebrow",
+      "label": "About Hero Eyebrow",
+      "name": "arch_abt_hero_eyebrow",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "35",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Who We Are",
+      "placeholder": ""
+    },
+    {
+      "key": "field_arch_abt_hero_title",
+      "label": "About Hero Heading (`<span>` allowed)",
+      "name": "arch_abt_hero_title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "65",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Design-Driven Minds Building <span class=\"inner-hero-title-accent\">Iconic Digital</span> Brands.",
+      "placeholder": ""
+    },
+    {
+      "key": "field_arch_abt_hero_desc",
+      "label": "About Hero Description",
+      "name": "arch_abt_hero_desc",
+      "aria-label": "",
+      "type": "textarea",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "",
+      "rows": 2,
+      "new_lines": ""
+    },
+    {
+      "key": "field_arch_abt_hero_bg",
+      "label": "About Hero Background Image",
+      "name": "arch_abt_hero_bg",
+      "aria-label": "",
+      "type": "image",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "",
+      "return_format": "url",
+      "preview_size": "medium",
+      "library": "all"
+    },
+    {
+      "key": "field_arch_abt_story_title",
+      "label": "Studio Story Heading (`<span>` allowed)",
+      "name": "arch_abt_story_title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Built for Founders Who Refuse <span>Average Digital Products.</span>",
+      "placeholder": ""
+    },
+    {
+      "key": "field_arch_abt_team_title",
+      "label": "Leadership Section Heading (`<span>` allowed)",
+      "name": "arch_abt_team_title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "100",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Meet the Principals Leading <span>Every Engagement.</span>",
+      "placeholder": ""
+    },
+    {
+      "key": "field_abt_leader_1_img",
+      "label": "Leader 01 Photo",
+      "name": "abt_leader_1_img",
+      "aria-label": "",
+      "type": "image",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "",
+      "return_format": "url",
+      "preview_size": "medium",
+      "library": "all"
+    },
+    {
+      "key": "field_abt_leader_1_name",
+      "label": "Leader 01 Name",
+      "name": "abt_leader_1_name",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Zayd Alvi",
+      "placeholder": ""
+    },
+    {
+      "key": "field_abt_leader_1_role",
+      "label": "Leader 01 Role",
+      "name": "abt_leader_1_role",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Founder & Managing Partner",
+      "placeholder": ""
+    },
+    {
+      "key": "field_abt_leader_1_bio",
+      "label": "Leader 01 Bio",
+      "name": "abt_leader_1_bio",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": ""
+    },
+    {
+      "key": "field_abt_leader_2_img",
+      "label": "Leader 02 Photo",
+      "name": "abt_leader_2_img",
+      "aria-label": "",
+      "type": "image",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "",
+      "return_format": "url",
+      "preview_size": "medium",
+      "library": "all"
+    },
+    {
+      "key": "field_abt_leader_2_name",
+      "label": "Leader 02 Name",
+      "name": "abt_leader_2_name",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Nadia Karim",
+      "placeholder": ""
+    },
+    {
+      "key": "field_abt_leader_2_role",
+      "label": "Leader 02 Role",
+      "name": "abt_leader_2_role",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Head of Design Systems",
+      "placeholder": ""
+    },
+    {
+      "key": "field_abt_leader_2_bio",
+      "label": "Leader 02 Bio",
+      "name": "abt_leader_2_bio",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": ""
+    },
+    {
+      "key": "field_abt_leader_3_img",
+      "label": "Leader 03 Photo",
+      "name": "abt_leader_3_img",
+      "aria-label": "",
+      "type": "image",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "",
+      "return_format": "url",
+      "preview_size": "medium",
+      "library": "all"
+    },
+    {
+      "key": "field_abt_leader_3_name",
+      "label": "Leader 03 Name",
+      "name": "abt_leader_3_name",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Tariq Mahmood",
+      "placeholder": ""
+    },
+    {
+      "key": "field_abt_leader_3_role",
+      "label": "Leader 03 Role",
+      "name": "abt_leader_3_role",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Principal Full-Stack Architect",
+      "placeholder": ""
+    },
+    {
+      "key": "field_abt_leader_3_bio",
+      "label": "Leader 03 Bio",
+      "name": "abt_leader_3_bio",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": ""
+    },
+    {
+      "key": "field_abt_leader_4_img",
+      "label": "Leader 04 Photo",
+      "name": "abt_leader_4_img",
+      "aria-label": "",
+      "type": "image",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "",
+      "return_format": "url",
+      "preview_size": "medium",
+      "library": "all"
+    },
+    {
+      "key": "field_abt_leader_4_name",
+      "label": "Leader 04 Name",
+      "name": "abt_leader_4_name",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Hira Siddiqui",
+      "placeholder": ""
+    },
+    {
+      "key": "field_abt_leader_4_role",
+      "label": "Leader 04 Role",
+      "name": "abt_leader_4_role",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Director of Growth & CRO",
+      "placeholder": ""
+    },
+    {
+      "key": "field_abt_leader_4_bio",
+      "label": "Leader 04 Bio",
+      "name": "abt_leader_4_bio",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": ""
+    },
+    {
+      "key": "field_alify_tab_a_other",
+      "label": "Testimonials, FAQ, Contact, Start Project, Book Call, Thank You & 404",
+      "name": "",
+      "aria-label": "",
+      "type": "tab",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "placement": "top",
+      "endpoint": 0
+    },
+    {
+      "key": "field_arch_tst_hero_title",
+      "label": "Testimonials Page Hero Heading (`<span>` allowed)",
+      "name": "arch_tst_hero_title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Real Words From Leaders Who <span class=\"inner-hero-title-accent\">Scaled With ALIFY.</span>",
+      "placeholder": ""
+    },
+    {
+      "key": "field_arch_faq_hero_title",
+      "label": "FAQ Hub Page Hero Heading (`<span>` allowed)",
+      "name": "arch_faq_hero_title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Transparent Answers on <span class=\"inner-hero-title-accent\">Scope, Craft & ROI.</span>",
+      "placeholder": ""
+    },
+    {
+      "key": "field_arch_cnt_hero_title",
+      "label": "Contact Page Hero Heading (`<span>` allowed)",
+      "name": "arch_cnt_hero_title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Let’s Start a Conversation About <span class=\"inner-hero-title-accent\">Your Next Move.</span>",
+      "placeholder": ""
+    },
+    {
+      "key": "field_arch_sp_hero_title",
+      "label": "Start Project Hero Heading (`<span>` allowed)",
+      "name": "arch_sp_hero_title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Share Your Vision — Let’s Build <span class=\"inner-hero-title-accent\">Something Iconic.</span>",
+      "placeholder": ""
+    },
+    {
+      "key": "field_arch_bc_hero_title",
+      "label": "Book a Call Hero Heading (`<span>` allowed)",
+      "name": "arch_bc_hero_title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Book a <span class=\"inner-hero-title-accent\">Strategy Call</span> With Our Principals.",
+      "placeholder": ""
+    },
+    {
+      "key": "field_arch_bc_host_name",
+      "label": "Book a Call Host Name",
+      "name": "arch_bc_host_name",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "ALIFY Principal Pod",
+      "placeholder": ""
+    },
+    {
+      "key": "field_arch_bc_host_role",
+      "label": "Book a Call Host Role",
+      "name": "arch_bc_host_role",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Managing Partner & Lead Architect · 30 Min",
+      "placeholder": ""
+    },
+    {
+      "key": "field_arch_ty_title",
+      "label": "Thank You Page Heading (`<span>` allowed)",
+      "name": "arch_ty_title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Thank You — <span>Your Brief Is With Our Principals.</span>",
+      "placeholder": ""
+    },
+    {
+      "key": "field_arch_404_title",
+      "label": "404 Page Heading",
+      "name": "arch_404_title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "This Route Doesn’t Exist — Let’s Get You Back on Track.",
+      "placeholder": ""
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "alify_options_screen",
+        "operator": "==",
+        "value": "archives"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": true,
+  "description": "",
+  "show_in_rest": 0,
+  "modified": 1761648000
+}

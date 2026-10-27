@@ -1,0 +1,785 @@
+{
+  "key": "group_alify_opt_home",
+  "title": "Home Page — Hero, Sections & 4-Sprint Process",
+  "fields": [
+    {
+      "key": "field_alify_tab_h_hero",
+      "label": "Home Hero & Stat Counters",
+      "name": "",
+      "aria-label": "",
+      "type": "tab",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "placement": "top",
+      "endpoint": 0
+    },
+    {
+      "key": "field_home_hero_bg",
+      "label": "Home Hero Background Image",
+      "name": "home_hero_bg",
+      "aria-label": "",
+      "type": "image",
+      "instructions": "Upload custom Home Hero background image (leave empty for default ALIFY hero artwork).",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "40",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "",
+      "return_format": "url",
+      "preview_size": "medium",
+      "library": "all"
+    },
+    {
+      "key": "field_home_status_pill",
+      "label": "Availability Status Pill",
+      "name": "home_status_pill",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "60",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Creative Digital Studio — Available for New Projects",
+      "placeholder": ""
+    },
+    {
+      "key": "field_home_title_before",
+      "label": "Hero H1 — Part 1",
+      "name": "home_title_before",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "33",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "We Craft Bold",
+      "placeholder": ""
+    },
+    {
+      "key": "field_home_title_accent",
+      "label": "Hero H1 — Highlighted Accent",
+      "name": "home_title_accent",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "34",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Digital Experiences",
+      "placeholder": ""
+    },
+    {
+      "key": "field_home_title_after",
+      "label": "Hero H1 — Part 2",
+      "name": "home_title_after",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "33",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "That Scale Brands.",
+      "placeholder": ""
+    },
+    {
+      "key": "field_home_lead",
+      "label": "Hero Lead Paragraph",
+      "name": "home_lead",
+      "aria-label": "",
+      "type": "textarea",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "ALIFY partners with visionary startups and category-defining brands to design, engineer, and launch high-converting websites, design systems, and digital products.",
+      "placeholder": "",
+      "rows": 2,
+      "new_lines": ""
+    },
+    {
+      "key": "field_home_primary_btn",
+      "label": "Hero Primary CTA Button Label",
+      "name": "home_primary_btn",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Start a Project",
+      "placeholder": ""
+    },
+    {
+      "key": "field_home_sec_btn",
+      "label": "Hero Secondary CTA Button Label",
+      "name": "home_sec_btn",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Explore Our Work",
+      "placeholder": ""
+    },
+    {
+      "key": "field_home_stat1_val",
+      "label": "Stat 1 Number",
+      "name": "home_stat1_val",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "11",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "150",
+      "placeholder": ""
+    },
+    {
+      "key": "field_home_stat1_suf",
+      "label": "Stat 1 Suffix",
+      "name": "home_stat1_suf",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "11",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "+",
+      "placeholder": ""
+    },
+    {
+      "key": "field_home_stat1_lbl",
+      "label": "Stat 1 Label",
+      "name": "home_stat1_lbl",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "11",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Projects Delivered",
+      "placeholder": ""
+    },
+    {
+      "key": "field_home_stat2_val",
+      "label": "Stat 2 Number",
+      "name": "home_stat2_val",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "11",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "98",
+      "placeholder": ""
+    },
+    {
+      "key": "field_home_stat2_suf",
+      "label": "Stat 2 Suffix",
+      "name": "home_stat2_suf",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "11",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "%",
+      "placeholder": ""
+    },
+    {
+      "key": "field_home_stat2_lbl",
+      "label": "Stat 2 Label",
+      "name": "home_stat2_lbl",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "11",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Client Retention",
+      "placeholder": ""
+    },
+    {
+      "key": "field_home_stat3_val",
+      "label": "Stat 3 Number",
+      "name": "home_stat3_val",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "11",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "12",
+      "placeholder": ""
+    },
+    {
+      "key": "field_home_stat3_suf",
+      "label": "Stat 3 Suffix",
+      "name": "home_stat3_suf",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "11",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "+",
+      "placeholder": ""
+    },
+    {
+      "key": "field_home_stat3_lbl",
+      "label": "Stat 3 Label",
+      "name": "home_stat3_lbl",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "12",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Global Markets",
+      "placeholder": ""
+    },
+    {
+      "key": "field_alify_tab_h_why",
+      "label": "Why Partner With ALIFY",
+      "name": "",
+      "aria-label": "",
+      "type": "tab",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "placement": "top",
+      "endpoint": 0
+    },
+    {
+      "key": "field_home_why_eyebrow",
+      "label": "Section Eyebrow",
+      "name": "home_why_eyebrow",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "35",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Why Partner With ALIFY",
+      "placeholder": ""
+    },
+    {
+      "key": "field_home_why_title",
+      "label": "Section Heading (`<span>` accent allowed)",
+      "name": "home_why_title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "65",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Senior Design Craft Meets <span>Revenue-Grade Engineering.</span>",
+      "placeholder": ""
+    },
+    {
+      "key": "field_home_why_desc",
+      "label": "Lead Paragraph",
+      "name": "home_why_desc",
+      "aria-label": "",
+      "type": "textarea",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Most agencies hand off static slides or bloated themes. ALIFY embeds a dedicated senior squad of strategists, system designers, and engineers to ship sub-second digital flagships built to dominate your category.",
+      "placeholder": "",
+      "rows": 3,
+      "new_lines": ""
+    },
+    {
+      "key": "field_home_why_image",
+      "label": "Right-Column Studio Visual Image",
+      "name": "home_why_image",
+      "aria-label": "",
+      "type": "image",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "",
+      "return_format": "url",
+      "preview_size": "medium",
+      "library": "all"
+    },
+    {
+      "key": "field_alify_tab_h_sliders",
+      "label": "Services, Industries, Projects & Case Studies Headings",
+      "name": "",
+      "aria-label": "",
+      "type": "tab",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "placement": "top",
+      "endpoint": 0
+    },
+    {
+      "key": "field_home_srv_eyebrow",
+      "label": "Services Section — Eyebrow",
+      "name": "home_srv_eyebrow",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "35",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Core Capabilities",
+      "placeholder": ""
+    },
+    {
+      "key": "field_home_srv_title",
+      "label": "Services Section — Heading (`<span>` allowed)",
+      "name": "home_srv_title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "65",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "End-to-End Digital Craft Built to <span>Move Markets.</span>",
+      "placeholder": ""
+    },
+    {
+      "key": "field_home_ind_eyebrow",
+      "label": "Industries Section — Eyebrow",
+      "name": "home_ind_eyebrow",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "35",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Industries We Transform",
+      "placeholder": ""
+    },
+    {
+      "key": "field_home_ind_title",
+      "label": "Industries Section — Heading (`<span>` allowed)",
+      "name": "home_ind_title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "65",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Tailored Digital Ecosystems for <span>High-Growth Verticals.</span>",
+      "placeholder": ""
+    },
+    {
+      "key": "field_home_prj_eyebrow",
+      "label": "Featured Work — Eyebrow",
+      "name": "home_prj_eyebrow",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "35",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Selected Portfolio",
+      "placeholder": ""
+    },
+    {
+      "key": "field_home_prj_title",
+      "label": "Featured Work — Heading (`<span>` allowed)",
+      "name": "home_prj_title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "65",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Flagship Digital Products That <span>Redefined Their Category.</span>",
+      "placeholder": ""
+    },
+    {
+      "key": "field_home_cs_eyebrow",
+      "label": "Case Studies — Eyebrow",
+      "name": "home_cs_eyebrow",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "35",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Verified Outcomes",
+      "placeholder": ""
+    },
+    {
+      "key": "field_home_cs_title",
+      "label": "Case Studies — Heading (`<span>` allowed)",
+      "name": "home_cs_title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "65",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Where Design Craft Meets <span>Hard Revenue Metrics.</span>",
+      "placeholder": ""
+    },
+    {
+      "key": "field_alify_tab_h_process",
+      "label": "4-Sprint Execution Process",
+      "name": "",
+      "aria-label": "",
+      "type": "tab",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "placement": "top",
+      "endpoint": 0
+    },
+    {
+      "key": "field_home_proc_eyebrow",
+      "label": "Process Eyebrow",
+      "name": "home_proc_eyebrow",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "35",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Execution Methodology",
+      "placeholder": ""
+    },
+    {
+      "key": "field_home_proc_title",
+      "label": "Process Heading (`<span>` allowed)",
+      "name": "home_proc_title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "65",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "From Strategic Discovery to <span>Sub-Second Launch.</span>",
+      "placeholder": ""
+    },
+    {
+      "key": "field_home_proc_desc",
+      "label": "Process Lead Description",
+      "name": "home_proc_desc",
+      "aria-label": "",
+      "type": "textarea",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Every ALIFY engagement runs on transparent weekly sprints with senior specialists — zero black-box handoffs, zero guesswork.",
+      "placeholder": "",
+      "rows": 2,
+      "new_lines": ""
+    },
+    {
+      "key": "field_home_proc_s1_title",
+      "label": "Sprint 01 Title",
+      "name": "home_proc_s1_title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "33",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Discovery & Blueprint",
+      "placeholder": ""
+    },
+    {
+      "key": "field_home_proc_s1_desc",
+      "label": "Sprint 01 Description",
+      "name": "home_proc_s1_desc",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "67",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Stakeholder alignment, competitor teardown, funnel diagnostics, and technical architecture roadmap.",
+      "placeholder": ""
+    },
+    {
+      "key": "field_home_proc_s2_title",
+      "label": "Sprint 02 Title",
+      "name": "home_proc_s2_title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "33",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "UX Systems & Brand Craft",
+      "placeholder": ""
+    },
+    {
+      "key": "field_home_proc_s2_desc",
+      "label": "Sprint 02 Description",
+      "name": "home_proc_s2_desc",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "67",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Interactive wireframes, Figma design tokens, signature UI direction, and conversion copywriting.",
+      "placeholder": ""
+    },
+    {
+      "key": "field_home_proc_s3_title",
+      "label": "Sprint 03 Title",
+      "name": "home_proc_s3_title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "33",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Full-Stack & GSAP Build",
+      "placeholder": ""
+    },
+    {
+      "key": "field_home_proc_s3_desc",
+      "label": "Sprint 03 Description",
+      "name": "home_proc_s3_desc",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "67",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Clean semantic code, 60fps GSAP scroll choreography, CMS/API integration, and Core Web Vitals tuning.",
+      "placeholder": ""
+    },
+    {
+      "key": "field_home_proc_s4_title",
+      "label": "Sprint 04 Title",
+      "name": "home_proc_s4_title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "33",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "QA, Launch & Growth",
+      "placeholder": ""
+    },
+    {
+      "key": "field_home_proc_s4_desc",
+      "label": "Sprint 04 Description",
+      "name": "home_proc_s4_desc",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "67",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Cross-device QA, technical SEO schema verification, zero-downtime deployment, and conversion tracking.",
+      "placeholder": ""
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "alify_options_screen",
+        "operator": "==",
+        "value": "home"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": true,
+  "description": "",
+  "show_in_rest": 0,
+  "modified": 1761648000
+}

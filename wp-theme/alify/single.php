@@ -13,8 +13,11 @@ get_header();
 
 while ( have_posts() ) :
 	the_post();
-	$pid     = get_the_ID();
-	$hero_bg = get_the_post_thumbnail_url( $pid, 'full' );
+	$pid        = get_the_ID();
+	$alify_sopt = function ( $k, $def ) {
+		return function_exists( 'alify_opt' ) ? alify_opt( 'singles', $k, $def ) : $def;
+	};
+	$hero_bg    = get_the_post_thumbnail_url( $pid, 'full' );
 	if ( empty( $hero_bg ) ) {
 		$meta_img = get_post_meta( $pid, '_alify_post_bg_image', true );
 		if ( ! empty( $meta_img ) ) {
@@ -23,15 +26,26 @@ while ( have_posts() ) :
 	}
 	$featured_img = $hero_bg ? $hero_bg : alify_asset_uri( 'assets/images/blog/blog-design-systems.jpg' );
 	if ( empty( $hero_bg ) ) {
-		$hero_bg = alify_asset_uri( 'assets/images/heroes/hero-blog.jpg' );
+		$hero_bg = $alify_sopt( 'sgl_blog_default_hero_bg', alify_asset_uri( 'assets/images/heroes/hero-blog.jpg' ) );
 	}
 
-	$cats       = get_the_category( $pid );
-	$cat_name   = ! empty( $cats ) ? $cats[0]->name : 'Engineering & UX';
-	$word_count = str_word_count( wp_strip_all_tags( get_post_field( 'post_content', $pid ) ) );
-	$read_mins  = max( 3, (int) ceil( $word_count / 200 ) );
-	$share_url  = rawurlencode( get_permalink( $pid ) );
-	$share_ttl  = rawurlencode( get_the_title( $pid ) );
+	$cats         = get_the_category( $pid );
+	$custom_badge = trim( (string) get_post_meta( $pid, '_alify_post_badge', true ) );
+	$cat_name     = '' !== $custom_badge ? $custom_badge : ( ! empty( $cats ) ? $cats[0]->name : 'Engineering & UX' );
+	$word_count   = str_word_count( wp_strip_all_tags( get_post_field( 'post_content', $pid ) ) );
+	$read_mins    = max( 3, (int) ceil( $word_count / 200 ) );
+	$custom_read  = trim( (string) get_post_meta( $pid, '_alify_post_read_time', true ) );
+	$read_label   = '' !== $custom_read ? $custom_read : ( $read_mins . ' Min Read' );
+	$custom_auth  = trim( (string) get_post_meta( $pid, '_alify_post_author_label', true ) );
+	$author_label = '' !== $custom_auth ? $custom_auth : ( get_the_author() ? get_the_author() : 'ALIFY Editorial Team' );
+	$toc_heading  = $alify_sopt( 'sgl_blog_toc_heading', 'Table of Contents' );
+	$sb_cta_title = $alify_sopt( 'sgl_blog_sidebar_cta_title', 'Have a Project in Mind?' );
+	$sb_cta_desc  = $alify_sopt( 'sgl_blog_sidebar_cta_desc', 'Let’s architect a fast, conversion-led digital platform tailored to your brand.' );
+	$sb_cta_btn   = $alify_sopt( 'sgl_blog_sidebar_cta_btn', get_theme_mod( 'alify_cta_text', 'Start a Project' ) );
+	$rel_eyebrow  = $alify_sopt( 'sgl_blog_related_eyebrow', 'Continue Reading' );
+	$rel_title    = $alify_sopt( 'sgl_blog_related_title', 'Related Blogs &amp; <span>Engineering Insights.</span>' );
+	$share_url    = rawurlencode( get_permalink( $pid ) );
+	$share_ttl    = rawurlencode( get_the_title( $pid ) );
 	$author_bio = get_the_author_meta( 'description' );
 	if ( empty( $author_bio ) ) {
 		$author_bio = __( 'Insights written by the senior designers and full-stack engineers at ALIFY Studio — helping ambitious brands ship faster, sharper digital products.', 'alify' );
@@ -77,7 +91,7 @@ while ( have_posts() ) :
 					<div class="blog-single-meta-bar">
 						<span class="blog-single-meta-entry">
 							<i class="fa-solid fa-user" aria-hidden="true"></i>
-							<span><?php echo esc_html( get_the_author() ? get_the_author() : 'ALIFY Editorial Team' ); ?></span>
+							<span><?php echo esc_html( $author_label ); ?></span>
 						</span>
 						<span class="blog-single-meta-entry">
 							<i class="fa-solid fa-calendar" aria-hidden="true"></i>
@@ -85,7 +99,7 @@ while ( have_posts() ) :
 						</span>
 						<span class="blog-single-meta-entry">
 							<i class="fa-solid fa-clock" aria-hidden="true"></i>
-							<span id="blogSingleReadTime"><?php echo esc_html( $read_mins . ' Min Read' ); ?></span>
+							<span id="blogSingleReadTime"><?php echo esc_html( $read_label ); ?></span>
 						</span>
 					</div>
 				</div>
@@ -103,7 +117,7 @@ while ( have_posts() ) :
 								<div class="blog-toc-header">
 									<h2 class="blog-toc-heading">
 										<i class="fa-solid fa-list-ul" aria-hidden="true"></i>
-										<span><?php esc_html_e( 'Table of Contents', 'alify' ); ?></span>
+										<span><?php echo esc_html( $toc_heading ); ?></span>
 									</h2>
 									<button
 										type="button"
@@ -296,12 +310,12 @@ while ( have_posts() ) :
 
 							<!-- Sidebar Studio CTA Card -->
 							<div class="blog-sidebar-cta">
-								<h2 class="blog-sidebar-cta-title"><?php esc_html_e( 'Have a Project in Mind?', 'alify' ); ?></h2>
+								<h2 class="blog-sidebar-cta-title"><?php echo esc_html( $sb_cta_title ); ?></h2>
 								<p class="blog-sidebar-cta-desc">
-									<?php esc_html_e( 'Let’s architect a fast, conversion-led digital platform tailored to your brand.', 'alify' ); ?>
+									<?php echo esc_html( $sb_cta_desc ); ?>
 								</p>
 								<a href="<?php echo esc_url( alify_page_url( 'start-project' ) ); ?>" class="btn-start-project btn-start-light">
-									<span class="btn-start-pill"><?php echo esc_html( get_theme_mod( 'alify_cta_text', 'Start a Project' ) ); ?></span>
+									<span class="btn-start-pill"><?php echo esc_html( $sb_cta_btn ); ?></span>
 									<span class="btn-start-circle" aria-hidden="true">
 										<i class="fa-solid fa-arrow-up btn-start-arrow"></i>
 									</span>
@@ -332,10 +346,10 @@ while ( have_posts() ) :
 						<div class="col-12 col-lg-7">
 							<div class="blog-related-eyebrow">
 								<span class="blog-related-eyebrow-dot" aria-hidden="true">△</span>
-								<span><?php esc_html_e( 'Continue Reading', 'alify' ); ?></span>
+								<span><?php echo esc_html( $rel_eyebrow ); ?></span>
 							</div>
 							<h2 class="blog-related-title">
-								<?php esc_html_e( 'Related Blogs &', 'alify' ); ?> <span><?php esc_html_e( 'Engineering Insights.', 'alify' ); ?></span>
+								<?php echo wp_kses( $rel_title, array( 'span' => array( 'class' => array() ), 'br' => array() ) ); ?>
 							</h2>
 							<p class="blog-related-desc">
 								<?php esc_html_e( 'Explore more hands-on guides from ALIFY on design systems, 60fps GSAP motion, conversion UX, and high-speed frontend engineering.', 'alify' ); ?>

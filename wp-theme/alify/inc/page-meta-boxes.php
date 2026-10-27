@@ -15,6 +15,9 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Register "ALIFY Page Hero & Section Controls" Meta Box on `page` Post Type.
  */
 function alify_register_page_hero_meta_box() {
+	if ( function_exists( 'acf_add_local_field_group' ) ) {
+		return;
+	}
 	add_meta_box(
 		'alify_page_hero_controls',
 		__( 'ALIFY Page Hero & Section Controls', 'alify' ),

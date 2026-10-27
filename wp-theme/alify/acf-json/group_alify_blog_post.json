@@ -1,0 +1,113 @@
+{
+  "key": "group_alify_blog_post",
+  "title": "ALIFY Blog Post — Hero Banner & Reading Metadata",
+  "fields": [
+    {
+      "key": "field_alify_post_bg_image_upload",
+      "label": "Upload Single Hero / Card Image Override",
+      "name": "alify_post_bg_image_upload",
+      "aria-label": "",
+      "type": "image",
+      "instructions": "Optional override if not using WordPress Featured Image.",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "",
+      "return_format": "url",
+      "preview_size": "medium",
+      "library": "all"
+    },
+    {
+      "key": "field_alify_post_bg_image",
+      "label": "Current / Fallback Image URL",
+      "name": "alify_post_bg_image",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": ""
+    },
+    {
+      "key": "field_alify_post_badge",
+      "label": "Custom Hero Category Badge Override",
+      "name": "alify_post_badge",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "34",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "Leave blank to use Post Category"
+    },
+    {
+      "key": "field_alify_post_read_time",
+      "label": "Custom Reading Time Override",
+      "name": "alify_post_read_time",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "33",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "e.g. 6 Min Read (auto-calculated if blank)"
+    },
+    {
+      "key": "field_alify_post_author_label",
+      "label": "Custom Author Byline Override",
+      "name": "alify_post_author_label",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "33",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "e.g. ALIFY Editorial Team"
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "post"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": true,
+  "description": "",
+  "show_in_rest": 0,
+  "modified": 1761648000
+}

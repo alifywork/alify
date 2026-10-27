@@ -1,0 +1,858 @@
+{
+  "key": "group_alify_cpt_project",
+  "title": "ALIFY Project — Showcase, Single Narrative & 6-Screen Lightbox",
+  "fields": [
+    {
+      "key": "field_alify_tab_proj_card",
+      "label": "Project Card & Metadata",
+      "name": "",
+      "aria-label": "",
+      "type": "tab",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "placement": "top",
+      "endpoint": 0
+    },
+    {
+      "key": "field_alify_proj_num",
+      "label": "Panel Number",
+      "name": "alify_proj_num",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "20",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "01"
+    },
+    {
+      "key": "field_alify_proj_short_title",
+      "label": "Short Spine Title",
+      "name": "alify_proj_short_title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "40",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "FinPulse AI Platform"
+    },
+    {
+      "key": "field_alify_proj_client",
+      "label": "Client & Location Label",
+      "name": "alify_proj_client",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "40",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "FINPULSE AI · SAN FRANCISCO"
+    },
+    {
+      "key": "field_alify_proj_sector",
+      "label": "Sector Badge Label",
+      "name": "alify_proj_sector",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "FinTech & SaaS"
+    },
+    {
+      "key": "field_alify_proj_filter",
+      "label": "Work Grid Filter Category",
+      "name": "alify_proj_filter",
+      "aria-label": "",
+      "type": "select",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "web-saas",
+      "placeholder": "",
+      "choices": {
+        "web-saas": "Web & SaaS",
+        "commerce-brand": "E-Commerce & Brand",
+        "ai-cloud": "AI, Health & PropTech"
+      },
+      "multiple": 0,
+      "allow_null": 0,
+      "ui": 0,
+      "return_format": "value"
+    },
+    {
+      "key": "field_alify_proj_year",
+      "label": "Launch Year",
+      "name": "alify_proj_year",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "2026"
+    },
+    {
+      "key": "field_alify_proj_sprint",
+      "label": "Sprint Duration",
+      "name": "alify_proj_sprint",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "10-Week Sprint"
+    },
+    {
+      "key": "field_alify_proj_metric",
+      "label": "Headline Outcome Metric",
+      "name": "alify_proj_metric",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "34",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "+184% Demo Pipeline"
+    },
+    {
+      "key": "field_alify_proj_chips",
+      "label": "Deliverable Chips (comma-separated)",
+      "name": "alify_proj_chips",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "33",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "Web Architecture, Design System, GSAP Motion"
+    },
+    {
+      "key": "field_alify_proj_case_slug",
+      "label": "Linked Case Study Slug (optional)",
+      "name": "alify_proj_case_slug",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "33",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "cs-finpulse"
+    },
+    {
+      "key": "field_alify_proj_bg_image_upload",
+      "label": "Upload Primary Project Image (Media Library)",
+      "name": "alify_proj_bg_image_upload",
+      "aria-label": "",
+      "type": "image",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "",
+      "return_format": "url",
+      "preview_size": "medium",
+      "library": "all"
+    },
+    {
+      "key": "field_alify_proj_bg_image",
+      "label": "Current / Fallback Project Image URL",
+      "name": "alify_proj_bg_image",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": ""
+    },
+    {
+      "key": "field_alify_tab_proj_story",
+      "label": "Single Page Story (Brief & Craft)",
+      "name": "",
+      "aria-label": "",
+      "type": "tab",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "placement": "top",
+      "endpoint": 0
+    },
+    {
+      "key": "field_alify_proj_brief",
+      "label": "The Brief / Challenge",
+      "name": "alify_proj_brief",
+      "aria-label": "",
+      "type": "textarea",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "",
+      "rows": 4,
+      "new_lines": ""
+    },
+    {
+      "key": "field_alify_proj_craft",
+      "label": "Engineering & Design Craft",
+      "name": "alify_proj_craft",
+      "aria-label": "",
+      "type": "textarea",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "",
+      "rows": 4,
+      "new_lines": ""
+    },
+    {
+      "key": "field_alify_tab_proj_gallery",
+      "label": "Interactive Lightbox Gallery (6 Screens)",
+      "name": "",
+      "aria-label": "",
+      "type": "tab",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "placement": "top",
+      "endpoint": 0
+    },
+    {
+      "key": "field_alify_proj_gal_1_upload",
+      "label": "Screen 01 — Upload Image",
+      "name": "alify_proj_gal_1_upload",
+      "aria-label": "",
+      "type": "image",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "",
+      "return_format": "url",
+      "preview_size": "medium",
+      "library": "all"
+    },
+    {
+      "key": "field_alify_proj_gal_1_url",
+      "label": "Screen 01 — Image URL",
+      "name": "alify_proj_gal_1_url",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": ""
+    },
+    {
+      "key": "field_alify_proj_gal_1_tag",
+      "label": "Screen 01 — Tag Pill",
+      "name": "alify_proj_gal_1_tag",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "20",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "UI Design"
+    },
+    {
+      "key": "field_alify_proj_gal_1_title",
+      "label": "Screen 01 — Title",
+      "name": "alify_proj_gal_1_title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "30",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": ""
+    },
+    {
+      "key": "field_alify_proj_gal_1_cap",
+      "label": "Screen 01 — Lightbox Caption",
+      "name": "alify_proj_gal_1_cap",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "100",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": ""
+    },
+    {
+      "key": "field_alify_proj_gal_2_upload",
+      "label": "Screen 02 — Upload Image",
+      "name": "alify_proj_gal_2_upload",
+      "aria-label": "",
+      "type": "image",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "",
+      "return_format": "url",
+      "preview_size": "medium",
+      "library": "all"
+    },
+    {
+      "key": "field_alify_proj_gal_2_url",
+      "label": "Screen 02 — Image URL",
+      "name": "alify_proj_gal_2_url",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": ""
+    },
+    {
+      "key": "field_alify_proj_gal_2_tag",
+      "label": "Screen 02 — Tag Pill",
+      "name": "alify_proj_gal_2_tag",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "20",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "UI Design"
+    },
+    {
+      "key": "field_alify_proj_gal_2_title",
+      "label": "Screen 02 — Title",
+      "name": "alify_proj_gal_2_title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "30",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": ""
+    },
+    {
+      "key": "field_alify_proj_gal_2_cap",
+      "label": "Screen 02 — Lightbox Caption",
+      "name": "alify_proj_gal_2_cap",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "100",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": ""
+    },
+    {
+      "key": "field_alify_proj_gal_3_upload",
+      "label": "Screen 03 — Upload Image",
+      "name": "alify_proj_gal_3_upload",
+      "aria-label": "",
+      "type": "image",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "",
+      "return_format": "url",
+      "preview_size": "medium",
+      "library": "all"
+    },
+    {
+      "key": "field_alify_proj_gal_3_url",
+      "label": "Screen 03 — Image URL",
+      "name": "alify_proj_gal_3_url",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": ""
+    },
+    {
+      "key": "field_alify_proj_gal_3_tag",
+      "label": "Screen 03 — Tag Pill",
+      "name": "alify_proj_gal_3_tag",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "20",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "UI Design"
+    },
+    {
+      "key": "field_alify_proj_gal_3_title",
+      "label": "Screen 03 — Title",
+      "name": "alify_proj_gal_3_title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "30",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": ""
+    },
+    {
+      "key": "field_alify_proj_gal_3_cap",
+      "label": "Screen 03 — Lightbox Caption",
+      "name": "alify_proj_gal_3_cap",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "100",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": ""
+    },
+    {
+      "key": "field_alify_proj_gal_4_upload",
+      "label": "Screen 04 — Upload Image",
+      "name": "alify_proj_gal_4_upload",
+      "aria-label": "",
+      "type": "image",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "",
+      "return_format": "url",
+      "preview_size": "medium",
+      "library": "all"
+    },
+    {
+      "key": "field_alify_proj_gal_4_url",
+      "label": "Screen 04 — Image URL",
+      "name": "alify_proj_gal_4_url",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": ""
+    },
+    {
+      "key": "field_alify_proj_gal_4_tag",
+      "label": "Screen 04 — Tag Pill",
+      "name": "alify_proj_gal_4_tag",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "20",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "UI Design"
+    },
+    {
+      "key": "field_alify_proj_gal_4_title",
+      "label": "Screen 04 — Title",
+      "name": "alify_proj_gal_4_title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "30",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": ""
+    },
+    {
+      "key": "field_alify_proj_gal_4_cap",
+      "label": "Screen 04 — Lightbox Caption",
+      "name": "alify_proj_gal_4_cap",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "100",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": ""
+    },
+    {
+      "key": "field_alify_proj_gal_5_upload",
+      "label": "Screen 05 — Upload Image",
+      "name": "alify_proj_gal_5_upload",
+      "aria-label": "",
+      "type": "image",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "",
+      "return_format": "url",
+      "preview_size": "medium",
+      "library": "all"
+    },
+    {
+      "key": "field_alify_proj_gal_5_url",
+      "label": "Screen 05 — Image URL",
+      "name": "alify_proj_gal_5_url",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": ""
+    },
+    {
+      "key": "field_alify_proj_gal_5_tag",
+      "label": "Screen 05 — Tag Pill",
+      "name": "alify_proj_gal_5_tag",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "20",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "UI Design"
+    },
+    {
+      "key": "field_alify_proj_gal_5_title",
+      "label": "Screen 05 — Title",
+      "name": "alify_proj_gal_5_title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "30",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": ""
+    },
+    {
+      "key": "field_alify_proj_gal_5_cap",
+      "label": "Screen 05 — Lightbox Caption",
+      "name": "alify_proj_gal_5_cap",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "100",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": ""
+    },
+    {
+      "key": "field_alify_proj_gal_6_upload",
+      "label": "Screen 06 — Upload Image",
+      "name": "alify_proj_gal_6_upload",
+      "aria-label": "",
+      "type": "image",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "",
+      "return_format": "url",
+      "preview_size": "medium",
+      "library": "all"
+    },
+    {
+      "key": "field_alify_proj_gal_6_url",
+      "label": "Screen 06 — Image URL",
+      "name": "alify_proj_gal_6_url",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "25",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": ""
+    },
+    {
+      "key": "field_alify_proj_gal_6_tag",
+      "label": "Screen 06 — Tag Pill",
+      "name": "alify_proj_gal_6_tag",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "20",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "UI Design"
+    },
+    {
+      "key": "field_alify_proj_gal_6_title",
+      "label": "Screen 06 — Title",
+      "name": "alify_proj_gal_6_title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "30",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": ""
+    },
+    {
+      "key": "field_alify_proj_gal_6_cap",
+      "label": "Screen 06 — Lightbox Caption",
+      "name": "alify_proj_gal_6_cap",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "100",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": ""
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "alify_project"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": true,
+  "description": "",
+  "show_in_rest": 0,
+  "modified": 1761648000
+}

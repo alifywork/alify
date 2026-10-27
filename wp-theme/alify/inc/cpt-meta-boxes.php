@@ -103,6 +103,9 @@ function alify_get_cpt_meta_schema() {
  * Register Meta Boxes on CPT Edit Screens.
  */
 function alify_register_cpt_meta_boxes() {
+	if ( function_exists( 'acf_add_local_field_group' ) ) {
+		return;
+	}
 	$schema = alify_get_cpt_meta_schema();
 	foreach ( $schema as $post_type => $box ) {
 		add_meta_box(

@@ -1,0 +1,137 @@
+{
+  "key": "group_alify_cpt_testimonial",
+  "title": "ALIFY Testimonial — Client Role, Rating & Verified Outcome",
+  "fields": [
+    {
+      "key": "field_alify_testi_role",
+      "label": "Client Role & Company",
+      "name": "alify_testi_role",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "40",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "VP of Marketing, FinPulse AI"
+    },
+    {
+      "key": "field_alify_testi_initials",
+      "label": "Avatar Initials (2 Letters)",
+      "name": "alify_testi_initials",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "20",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "SJ"
+    },
+    {
+      "key": "field_alify_testi_rating",
+      "label": "Star Rating Score",
+      "name": "alify_testi_rating",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "20",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "5.0",
+      "placeholder": ""
+    },
+    {
+      "key": "field_alify_testi_filter",
+      "label": "Archive Filter Tab",
+      "name": "alify_testi_filter",
+      "aria-label": "",
+      "type": "select",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "20",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "web",
+      "placeholder": "",
+      "choices": {
+        "web": "Web & Engineering",
+        "branding": "UI/UX & Branding",
+        "systems": "Design Systems",
+        "growth": "E-Commerce & SEO"
+      },
+      "multiple": 0,
+      "allow_null": 0,
+      "ui": 0,
+      "return_format": "value"
+    },
+    {
+      "key": "field_alify_testi_outcome",
+      "label": "Verified Outcome Pill",
+      "name": "alify_testi_outcome",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "+184% Demo Pipeline"
+    },
+    {
+      "key": "field_alify_testi_tag",
+      "label": "Footer Capability Tag",
+      "name": "alify_testi_tag",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "Web & Engineering"
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "alify_testimonial"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": true,
+  "description": "",
+  "show_in_rest": 0,
+  "modified": 1761648000
+}

@@ -1,0 +1,239 @@
+{
+  "key": "group_alify_page_controls",
+  "title": "ALIFY Page Hero Override & Section Visibility Controls",
+  "fields": [
+    {
+      "key": "field_alify_tab_pg_hero",
+      "label": "Page Hero Override",
+      "name": "",
+      "aria-label": "",
+      "type": "tab",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "placement": "top",
+      "endpoint": 0
+    },
+    {
+      "key": "field_alify_page_hero_eyebrow",
+      "label": "Hero Eyebrow Badge Text",
+      "name": "alify_page_hero_eyebrow",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "Leave blank to use default / Theme Settings copy.",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "35",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": ""
+    },
+    {
+      "key": "field_alify_page_hero_title",
+      "label": "Hero Main H1 Heading (`<span>` allowed for accent)",
+      "name": "alify_page_hero_title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "65",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": ""
+    },
+    {
+      "key": "field_alify_page_hero_desc",
+      "label": "Hero Lead Description",
+      "name": "alify_page_hero_desc",
+      "aria-label": "",
+      "type": "textarea",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "",
+      "rows": 2,
+      "new_lines": ""
+    },
+    {
+      "key": "field_alify_page_hero_bg_upload",
+      "label": "Upload Hero Background Image Override",
+      "name": "alify_page_hero_bg_upload",
+      "aria-label": "",
+      "type": "image",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "",
+      "return_format": "url",
+      "preview_size": "medium",
+      "library": "all"
+    },
+    {
+      "key": "field_alify_page_hero_bg",
+      "label": "Hero Background Image URL",
+      "name": "alify_page_hero_bg",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": ""
+    },
+    {
+      "key": "field_alify_tab_pg_vis",
+      "label": "Section Visibility Switches",
+      "name": "",
+      "aria-label": "",
+      "type": "tab",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "placement": "top",
+      "endpoint": 0
+    },
+    {
+      "key": "field_alify_page_hide_hero_form",
+      "label": "Hide Right-Side Hero Lead Form Card",
+      "name": "alify_page_hide_hero_form",
+      "aria-label": "",
+      "type": "true_false",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "33",
+        "class": "",
+        "id": ""
+      },
+      "default_value": 0,
+      "placeholder": "",
+      "ui": 1
+    },
+    {
+      "key": "field_alify_page_hide_testimonials",
+      "label": "Hide Reusable Testimonials Slider",
+      "name": "alify_page_hide_testimonials",
+      "aria-label": "",
+      "type": "true_false",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "33",
+        "class": "",
+        "id": ""
+      },
+      "default_value": 0,
+      "placeholder": "",
+      "ui": 1
+    },
+    {
+      "key": "field_alify_page_hide_faq",
+      "label": "Hide Reusable FAQs Section",
+      "name": "alify_page_hide_faq",
+      "aria-label": "",
+      "type": "true_false",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "34",
+        "class": "",
+        "id": ""
+      },
+      "default_value": 0,
+      "placeholder": "",
+      "ui": 1
+    },
+    {
+      "key": "field_alify_page_hide_blog_slider",
+      "label": "Hide Reusable Blog Slider",
+      "name": "alify_page_hide_blog_slider",
+      "aria-label": "",
+      "type": "true_false",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": 0,
+      "placeholder": "",
+      "ui": 1
+    },
+    {
+      "key": "field_alify_page_hide_contact",
+      "label": "Hide Bottom Reusable Contact Section",
+      "name": "alify_page_hide_contact",
+      "aria-label": "",
+      "type": "true_false",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": 0,
+      "placeholder": "",
+      "ui": 1
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "page"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": true,
+  "description": "",
+  "show_in_rest": 0,
+  "modified": 1761648000
+}
