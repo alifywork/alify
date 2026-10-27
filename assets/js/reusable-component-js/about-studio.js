@@ -115,5 +115,29 @@ document.addEventListener("DOMContentLoaded", () => {
       const capEl = document.getElementById("thankYouServiceVal");
       if (capEl) capEl.textContent = capability;
     }
+
+    if (lead?.isStrategyCall && lead?.bookingSlot) {
+      const statusTextEl = document.querySelector(".thankyou-status-pill span:last-child");
+      if (statusTextEl) {
+        statusTextEl.textContent = `Strategy Call Reserved · ${lead.bookingSlot}`;
+      }
+      const titleEl = document.getElementById("thankYouTitle");
+      if (titleEl) {
+        const firstName = visitorName ? visitorName.split(/\s+/)[0].replace(/[<>&"']/g, "") : "";
+        titleEl.innerHTML = firstName
+          ? `Confirmed, ${firstName} — <span>Your Strategy Call Is Booked.</span>`
+          : `Confirmed — <span>Your Strategy Call Is Booked.</span>`;
+      }
+      const summaryList = document.querySelector(".thankyou-summary-list");
+      if (summaryList && !document.getElementById("thankYouSlotRow")) {
+        const li = document.createElement("li");
+        li.id = "thankYouSlotRow";
+        li.innerHTML = `
+          <span class="thankyou-sum-key">Reserved Slot</span>
+          <span class="thankyou-sum-val">${lead.bookingSlot}</span>
+        `;
+        summaryList.prepend(li);
+      }
+    }
   }
 });

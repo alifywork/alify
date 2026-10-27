@@ -295,6 +295,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ".cs-tabs-row",
     "#relatedProjectsGrid",
     ".work-gallery-row",
+    ".book-outcomes-row",
   ].join(", ");
 
   document.querySelectorAll(gridRowSelectors).forEach((gridRow) => {
@@ -420,6 +421,8 @@ document.addEventListener("DOMContentLoaded", () => {
     ".testimonials-metrics-bar",
     ".work-outcomes-banner",
     ".cs-single-scoreboard",
+    ".faq-hub-cta-section",
+    ".book-outcomes-section",
   ].join(", ");
 
   document.querySelectorAll(parallaxSectionSelectors).forEach((sec) => {

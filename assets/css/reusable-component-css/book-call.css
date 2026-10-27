@@ -1,0 +1,639 @@
+/* ==========================================================================
+   Dedicated Book a Strategy Call Studio Page Styles (book-call.html)
+   Strictly Custom CSS + Bootstrap Grid Only (container / row / col-*)
+   ========================================================================== */
+
+/* Do NOT set overflow: hidden on .book-call-section so sticky left summary works */
+.book-call-section {
+  position: relative;
+  background-color: var(--color-white);
+  padding: 96px 0;
+  border-bottom: 1px solid rgba(15, 52, 115, 0.08);
+}
+
+.book-call-row {
+  row-gap: 42px;
+}
+
+.book-call-sidebar {
+  position: sticky;
+  top: 108px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.book-host-card {
+  padding: 30px 28px;
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 86% 18%, rgba(224, 90, 58, 0.22) 0%, rgba(0, 0, 0, 0) 50%),
+    linear-gradient(155deg, #0b0f18 0%, #121724 58%, #0e131e 100%);
+  color: var(--color-white);
+  box-shadow: 0 24px 56px rgba(12, 16, 24, 0.16);
+}
+
+.book-host-top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.book-host-avatar {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--color-accent);
+  flex-shrink: 0;
+}
+
+.book-host-kicker {
+  display: block;
+  font-family: var(--font-montserrat);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-amber);
+  margin-bottom: 2px;
+}
+
+.book-host-name {
+  font-family: var(--font-montserrat);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.28;
+  color: var(--color-white);
+  margin: 0;
+}
+
+.book-host-role {
+  display: block;
+  font-family: var(--font-poppins);
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.book-host-summary-box {
+  padding: 16px 18px;
+  border-radius: 18px;
+  background-color: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  margin-bottom: 20px;
+}
+
+.book-host-sum-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 13px;
+}
+
+.book-host-sum-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.book-host-sum-row:first-child {
+  padding-top: 0;
+}
+
+.book-host-sum-key {
+  font-family: var(--font-poppins);
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.book-host-sum-val {
+  font-family: var(--font-montserrat);
+  font-weight: 600;
+  color: var(--color-white);
+  text-align: right;
+}
+
+.book-agenda-title {
+  font-family: var(--font-montserrat);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.64);
+  margin: 0 0 12px;
+}
+
+.book-agenda-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.book-agenda-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.book-agenda-min {
+  padding: 3px 9px;
+  border-radius: 999px;
+  background-color: rgba(224, 90, 58, 0.2);
+  color: var(--color-accent);
+  font-family: var(--font-montserrat);
+  font-weight: 600;
+  font-size: 11px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.book-agenda-txt {
+  font-family: var(--font-poppins);
+  font-size: 13.2px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.book-direct-card {
+  padding: 24px;
+  border-radius: 22px;
+  background-color: var(--color-secondary);
+  border: 1px solid rgba(15, 52, 115, 0.1);
+}
+
+.book-direct-heading {
+  font-family: var(--font-montserrat);
+  font-weight: 600;
+  font-size: 16.5px;
+  color: var(--color-black);
+  margin: 0 0 6px;
+}
+
+.book-direct-sub {
+  font-family: var(--font-poppins);
+  font-size: 13.5px;
+  color: rgba(0, 0, 0, 0.68);
+  margin: 0 0 16px;
+}
+
+.book-direct-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.book-direct-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  border-radius: 14px;
+  background-color: var(--color-white);
+  border: 1px solid rgba(15, 52, 115, 0.1);
+  text-decoration: none;
+  color: var(--color-black);
+  transition: border-color 0.24s ease, transform 0.24s ease;
+}
+
+.book-direct-item:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
+  color: var(--color-black);
+}
+
+.book-direct-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: rgba(15, 52, 115, 0.08);
+  color: var(--color-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.book-direct-icon.is-wa {
+  background-color: rgba(15, 138, 115, 0.12);
+  color: var(--color-teal);
+}
+
+.book-direct-lbl {
+  display: block;
+  font-family: var(--font-poppins);
+  font-size: 11.5px;
+  color: rgba(0, 0, 0, 0.56);
+}
+
+.book-direct-val {
+  display: block;
+  font-family: var(--font-montserrat);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-black);
+}
+
+/* Right Column: Interactive Booking Studio Card */
+.book-studio-card {
+  padding: 38px 36px;
+  border-radius: 28px;
+  background-color: var(--color-white);
+  border: 1px solid rgba(15, 52, 115, 0.12);
+  box-shadow: 0 22px 58px rgba(15, 52, 115, 0.06);
+}
+
+.book-step-block {
+  margin-bottom: 30px;
+}
+
+.book-step-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.book-step-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-montserrat);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--color-black);
+  margin: 0;
+}
+
+.book-step-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: var(--color-charcoal);
+  color: var(--color-white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.book-track-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.book-track-btn {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 15px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(15, 52, 115, 0.14);
+  background-color: var(--color-secondary);
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.24s ease;
+}
+
+.book-track-btn i {
+  font-size: 16px;
+  color: var(--color-primary);
+  margin-top: 2px;
+}
+
+.book-track-name {
+  display: block;
+  font-family: var(--font-montserrat);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-black);
+  margin-bottom: 2px;
+}
+
+.book-track-meta {
+  display: block;
+  font-family: var(--font-poppins);
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.62);
+}
+
+.book-track-btn:hover {
+  border-color: var(--color-primary);
+}
+
+.book-track-btn.is-active {
+  background-color: var(--color-charcoal);
+  border-color: var(--color-charcoal);
+}
+
+.book-track-btn.is-active i {
+  color: var(--color-accent);
+}
+
+.book-track-btn.is-active .book-track-name {
+  color: var(--color-white);
+}
+
+.book-track-btn.is-active .book-track-meta {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.book-tz-select {
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 52, 115, 0.18);
+  background-color: var(--color-secondary);
+  font-family: var(--font-poppins);
+  font-size: 12.5px;
+  color: var(--color-black);
+  cursor: pointer;
+}
+
+.book-dates-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.book-date-tile {
+  padding: 13px 10px;
+  border-radius: 15px;
+  border: 1px solid rgba(15, 52, 115, 0.14);
+  background-color: var(--color-secondary);
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.22s ease;
+}
+
+.book-date-wk {
+  display: block;
+  font-family: var(--font-poppins);
+  font-size: 11.5px;
+  color: rgba(0, 0, 0, 0.56);
+}
+
+.book-date-md {
+  display: block;
+  font-family: var(--font-montserrat);
+  font-weight: 600;
+  font-size: 14.5px;
+  color: var(--color-black);
+  margin-top: 2px;
+}
+
+.book-date-tile:hover {
+  border-color: var(--color-primary);
+}
+
+.book-date-tile.is-active {
+  background-color: var(--color-charcoal);
+  border-color: var(--color-charcoal);
+}
+
+.book-date-tile.is-active .book-date-wk {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.book-date-tile.is-active .book-date-md {
+  color: var(--color-white);
+}
+
+.book-slots-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.book-slot-pill {
+  padding: 11px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(15, 52, 115, 0.14);
+  background-color: var(--color-white);
+  font-family: var(--font-montserrat);
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--color-black);
+  cursor: pointer;
+  transition: all 0.22s ease;
+}
+
+.book-slot-pill:hover {
+  border-color: var(--color-accent);
+}
+
+.book-slot-pill.is-active {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-white);
+}
+
+.book-channels-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.book-channel-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(15, 52, 115, 0.14);
+  background-color: var(--color-secondary);
+  font-family: var(--font-poppins);
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--color-black);
+  cursor: pointer;
+  transition: all 0.22s ease;
+}
+
+.book-channel-pill.is-active {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.book-submit-btn {
+  width: 100%;
+  height: 54px;
+  margin-top: 8px;
+  border-radius: 999px;
+  border: none;
+  background-color: var(--color-charcoal);
+  color: var(--color-white);
+  font-family: var(--font-montserrat);
+  font-weight: 600;
+  font-size: 14.5px;
+  letter-spacing: 0.03em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: background-color 0.26s ease, transform 0.26s ease, box-shadow 0.26s ease;
+}
+
+.book-submit-btn:hover {
+  background-color: var(--color-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px rgba(224, 90, 58, 0.3);
+}
+
+/* Dark Image-Backed Deliverable Outcomes Strip */
+.book-outcomes-section {
+  position: relative;
+  background-color: var(--color-charcoal);
+  color: var(--color-white);
+  padding: 88px 0;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.book-outcomes-section::before {
+  content: "";
+  position: absolute;
+  inset: -14% 0;
+  z-index: -2;
+  background-image: url("../../images/sections/bg-process-agency.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: translate3d(0, var(--sec-parallax-y, 0px), 0) scale(1.06);
+  will-change: transform;
+  pointer-events: none;
+}
+
+.book-outcomes-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 18% 24%, rgba(217, 138, 43, 0.16) 0%, rgba(0, 0, 0, 0) 48%),
+    linear-gradient(
+      112deg,
+      rgba(7, 10, 16, 0.91) 0%,
+      rgba(13, 17, 26, 0.81) 52%,
+      rgba(7, 10, 16, 0.91) 100%
+    );
+  pointer-events: none;
+}
+
+.book-outcomes-head {
+  max-width: 680px;
+  margin-bottom: 44px;
+}
+
+.book-outcomes-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-poppins);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.84);
+  margin-bottom: 12px;
+}
+
+.book-outcomes-eyebrow span:first-child {
+  font-family: var(--font-garet);
+  font-weight: 800;
+  color: var(--color-accent);
+  animation: alifyEyebrowTriSpin 8s linear infinite;
+}
+
+.book-outcomes-title {
+  font-family: var(--font-montserrat);
+  font-weight: 600;
+  font-size: clamp(28px, 3.3vw, 40px);
+  line-height: 1.28;
+  color: var(--color-white);
+  margin: 0;
+}
+
+.book-outcomes-title span {
+  color: var(--color-amber);
+}
+
+.book-outcomes-row {
+  row-gap: 24px;
+}
+
+.book-outcome-card {
+  height: 100%;
+  padding: 28px 26px;
+  border-radius: 22px;
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.book-outcome-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 13px;
+  background-color: rgba(224, 90, 58, 0.18);
+  color: var(--color-accent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  margin-bottom: 18px;
+}
+
+.book-outcome-card-title {
+  font-family: var(--font-montserrat);
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 1.32;
+  color: var(--color-white);
+  margin: 0 0 10px;
+}
+
+.book-outcome-card-desc {
+  font-family: var(--font-poppins);
+  font-size: 14.2px;
+  line-height: 1.68;
+  color: rgba(255, 255, 255, 0.76);
+  margin: 0;
+}
+
+@media (max-width: 991.98px) {
+  .book-call-section {
+    padding: 72px 0;
+  }
+
+  .book-call-sidebar {
+    position: static;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .book-studio-card {
+    padding: 26px 20px;
+    border-radius: 22px;
+  }
+
+  .book-track-grid,
+  .book-channels-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .book-dates-grid,
+  .book-slots-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
