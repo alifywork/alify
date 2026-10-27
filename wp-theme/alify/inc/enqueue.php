@@ -105,5 +105,36 @@ function alify_enqueue_assets() {
 
 	// 6. Main Custom JS (Loaded LAST so dynamic cards/galleries are already in DOM)
 	wp_enqueue_script( 'alify-main-js', alify_asset_uri( 'assets/js/main.js' ), $deps_for_main, alify_file_ver( 'assets/js/main.js' ), true );
+
+	// 7. Localize Live CPT Single Post Data (`window.ALIFY_CPT_SINGLE`) for CPT Permalinks & Query-String Detail Routes
+	if ( function_exists( 'alify_build_single_cpt_override' ) ) {
+		$cpt_post = null;
+		if ( is_singular( array( 'alify_service', 'alify_project', 'alify_industry', 'alify_case_study' ) ) ) {
+			$cpt_post = get_queried_object();
+		} else {
+			$qs_map = array(
+				'service'  => 'alify_service',
+				'project'  => 'alify_project',
+				'industry' => 'alify_industry',
+				'case'     => 'alify_case_study',
+			);
+			foreach ( $qs_map as $q_key => $ptype ) {
+				if ( ! empty( $_GET[ $q_key ] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+					$q_slug   = sanitize_title( wp_unslash( $_GET[ $q_key ] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+					$cpt_post = get_page_by_path( $q_slug, OBJECT, $ptype );
+					if ( $cpt_post ) {
+						break;
+					}
+				}
+			}
+		}
+
+		if ( $cpt_post ) {
+			$override = alify_build_single_cpt_override( $cpt_post );
+			if ( ! empty( $override ) ) {
+				wp_localize_script( 'alify-single-pages-js', 'ALIFY_CPT_SINGLE', $override );
+			}
+		}
+	}
 }
 add_action( 'wp_enqueue_scripts', 'alify_enqueue_assets' );

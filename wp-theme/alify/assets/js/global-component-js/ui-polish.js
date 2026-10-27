@@ -574,3 +574,44 @@
     mountStrategyCallModal();
   }
 })();
+
+// Sync Dynamic WordPress CPT Counts on Archive Filter Pills & Count Labels
+document.addEventListener("DOMContentLoaded", () => {
+  const archiveConfigs = [
+    { btnSel: ".js-service-filter", itemSel: ".service-grid-col", attr: "data-category", countId: "servicesCountLabel", suffix: "core studio capabilities" },
+    { btnSel: ".js-industry-filter", itemSel: ".industry-grid-col", attr: "data-sector", countId: "industriesCountLabel", suffix: "specialized industry verticals" },
+    { btnSel: ".js-project-filter", itemSel: ".project-grid-col", attr: "data-category", countId: "projectsCountLabel", suffix: "featured client projects" },
+    { btnSel: ".js-testi-filter", itemSel: ".testimonial-grid-col", attr: "data-category", countId: null, suffix: "" },
+  ];
+
+  archiveConfigs.forEach(({ btnSel, itemSel, attr, countId, suffix }) => {
+    const items = Array.from(document.querySelectorAll(itemSel));
+    if (!items.length) return;
+    document.querySelectorAll(btnSel).forEach((btn) => {
+      const f = btn.getAttribute("data-filter");
+      const cnt = f === "all" ? items.length : items.filter((el) => el.getAttribute(attr) === f).length;
+      btn.textContent = btn.textContent.trim().replace(/\(\d+\)$/, `(${cnt})`);
+    });
+    if (countId) {
+      const lbl = document.getElementById(countId);
+      if (lbl) lbl.textContent = `Showing ${items.length} ${suffix}`;
+    }
+  });
+
+  // Sync FAQ Knowledge Hub Pillar Pill Counts
+  const faqGroups = Array.from(document.querySelectorAll(".faq-hub-group"));
+  if (faqGroups.length) {
+    const totalFaq = document.querySelectorAll("#faqHubGroupsWrap .faq-item").length;
+    document.querySelectorAll(".faq-hub-pill").forEach((pill) => {
+      const cat = pill.getAttribute("data-filter-cat");
+      const badge = pill.querySelector(".faq-hub-pill-count");
+      if (!badge) return;
+      if (cat === "all") {
+        badge.textContent = String(totalFaq);
+      } else {
+        const grp = document.querySelector(`.faq-hub-group[data-faq-cat="${cat}"]`);
+        badge.textContent = String(grp ? grp.querySelectorAll(".faq-item").length : 0);
+      }
+    });
+  }
+});

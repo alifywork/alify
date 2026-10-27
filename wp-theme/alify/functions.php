@@ -18,5 +18,8 @@ require_once ALIFY_THEME_DIR . '/inc/nav-walkers.php';
 require_once ALIFY_THEME_DIR . '/inc/setup.php';
 require_once ALIFY_THEME_DIR . '/inc/customizer.php';
 require_once ALIFY_THEME_DIR . '/inc/post-types.php';
+require_once ALIFY_THEME_DIR . '/inc/cpt-meta-boxes.php';
+require_once ALIFY_THEME_DIR . '/inc/cpt-renderers.php';
+require_once ALIFY_THEME_DIR . '/inc/starter-importer.php';
 require_once ALIFY_THEME_DIR . '/inc/enqueue.php';
 require_once ALIFY_THEME_DIR . '/inc/ajax-forms.php';

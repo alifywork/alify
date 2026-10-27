@@ -62,7 +62,21 @@ All **5 navigation areas** are dynamically managed through **Appearance → Menu
 
 ---
 
-## 4. WordPress Customizer & Leads CRM Inbox
+## 4. Dynamic Custom Post Types, Native Meta Boxes & 1-Click Starter Importer
+
+All **6 Custom Post Types** + native WordPress **Blog Posts** are powered dynamically from the WordPress database (with zero third-party ACF plugin required):
+
+- **Services (`alify_service`)** — Notch code, discipline tag, Font Awesome icon, Media Library background image, bullet points, single-page stats & deliverables (`#servicesSliderTrack`, `#servicesGrid`, and `/services-item/<slug>/`).
+- **Projects (`alify_project`)** — Client, sector, year, sprint duration, headline metric, deliverable chips, brief/craft narrative, and **6-Screen Interactive Lightbox Gallery picker** (`#projectsAccordionStage`, `#projectsGrid`, and `/project/<slug>/`).
+- **Industries (`alify_industry`)** — Sector code, filter group, icon, benchmark stat, deliverables, and background image (`#industriesSliderTrack`, `#industriesGrid`, and `/industry/<slug>/`).
+- **Case Studies (`alify_case_study`)** — Before/After benchmarks, 01 Bottleneck, 02 ALIFY Architecture, 3 KPI tiles, architecture chips, and executive quote (`#caseStudiesStack` and `/case-study/<slug>/`).
+- **Testimonials (`alify_testimonial`)** — Client role, avatar initials, star rating, outcome pill, and capability filter (`.testimonials-dual-stage` 2-row carousel + `#testimonialsGrid`).
+- **FAQs (`alify_faq` + `faq_pillar` taxonomy)** — Knowledge Pillar grouping + global reusable FAQ toggle (`.faq-section` + `#faqHubGroupsWrap` 20-FAQ Hub).
+- **1-Click Starter Importer (`Appearance → ALIFY Starter Import`)** — Imports all **67 starter items** (8 Services, 6 Projects + 36 Lightbox Screens, 9 Industries, 6 Case Studies, 12 Testimonials, 20 FAQs, and 6 Blog Articles) idempotently in one click.
+
+---
+
+## 5. WordPress Customizer & Leads CRM Inbox
 
 - **Appearance → Customize → ALIFY Studio Settings**:
   - Studio Email (`info@alify.site`)

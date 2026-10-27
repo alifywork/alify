@@ -193,6 +193,7 @@
 
             <div class="col-12 col-lg-8">
               
+                <div id="faqHubGroupsWrap">
                 <div class="faq-hub-group" id="cat-scope-sprints" data-faq-cat="scope-sprints">
                   <div class="faq-hub-group-head">
                     <h2 class="faq-hub-group-title">
@@ -523,7 +524,8 @@
                     </div>
                   </div></div>
                 </div>
-              <div class="faq-hub-empty" id="faqHubEmpty">
+              </div>
+                <div class="faq-hub-empty" id="faqHubEmpty">
                 <h3 class="faq-hub-empty-title">No matching questions found</h3>
                 <p class="faq-hub-empty-desc">Try another keyword or book a complimentary 30-minute strategy call with our principals.</p>
                 <button type="button" class="faq-hub-reset-btn" id="faqHubResetBtn">Reset Search &amp; Filters</button>

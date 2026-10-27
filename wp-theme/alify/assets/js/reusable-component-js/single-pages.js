@@ -630,8 +630,10 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     };
 
-    const slug = params.get("service") || "web-development";
-    const srv = SERVICES[slug] || SERVICES["web-development"];
+    const wpSrvOvr = window.ALIFY_CPT_SINGLE && window.ALIFY_CPT_SINGLE.type === "service" ? window.ALIFY_CPT_SINGLE : null;
+    const slug = (wpSrvOvr && wpSrvOvr.slug) || params.get("service") || "web-development";
+    const baseSrv = SERVICES[slug] || SERVICES["web-development"];
+    const srv = wpSrvOvr ? { ...baseSrv, ...wpSrvOvr.data } : baseSrv;
 
     document.title = `${srv.title} — Services | ALIFY`;
     const setTxt = (id, val) => {
@@ -953,8 +955,10 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     };
 
-    const slug = params.get("industry") || "fintech";
-    const ind = INDUSTRIES[slug] || INDUSTRIES.fintech;
+    const wpIndOvr = window.ALIFY_CPT_SINGLE && window.ALIFY_CPT_SINGLE.type === "industry" ? window.ALIFY_CPT_SINGLE : null;
+    const slug = (wpIndOvr && wpIndOvr.slug) || params.get("industry") || "fintech";
+    const baseInd = INDUSTRIES[slug] || INDUSTRIES.fintech;
+    const ind = wpIndOvr ? { ...baseInd, ...wpIndOvr.data } : baseInd;
 
     document.title = `${ind.title} — Industries | ALIFY`;
     const setTxt = (id, val) => {
@@ -1052,8 +1056,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // ------------------------------------------------------------------------
   const workRoot = document.getElementById("workSingleRoot");
   if (workRoot) {
-    const slug = params.get("project") || "finpulse-platform";
-    const proj = PROJECTS[slug] || PROJECTS["finpulse-platform"];
+    const wpProjOvr = window.ALIFY_CPT_SINGLE && window.ALIFY_CPT_SINGLE.type === "project" ? window.ALIFY_CPT_SINGLE : null;
+    const slug = (wpProjOvr && wpProjOvr.slug) || params.get("project") || "finpulse-platform";
+    const baseProj = PROJECTS[slug] || PROJECTS["finpulse-platform"];
+    const proj = wpProjOvr ? { ...baseProj, ...wpProjOvr.data } : baseProj;
 
     document.title = `${proj.shortTitle} — Work | ALIFY`;
     const setTxt = (id, val) => {
@@ -1532,8 +1538,10 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     };
 
-    const caseId = params.get("case") || "cs-finpulse";
-    const cs = CASES[caseId] || CASES["cs-finpulse"];
+    const wpCsOvr = window.ALIFY_CPT_SINGLE && window.ALIFY_CPT_SINGLE.type === "case" ? window.ALIFY_CPT_SINGLE : null;
+    const caseId = (wpCsOvr && wpCsOvr.slug) || params.get("case") || "cs-finpulse";
+    const baseCs = CASES[caseId] || CASES["cs-finpulse"];
+    const cs = wpCsOvr ? { ...baseCs, ...wpCsOvr.data, author: (wpCsOvr.data && wpCsOvr.data.quoteAuthor) || baseCs.author } : baseCs;
 
     document.title = `${cs.client} Case Study — ALIFY`;
     const setTxt = (id, val) => {

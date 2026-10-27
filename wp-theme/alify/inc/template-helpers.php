@@ -75,6 +75,10 @@ function alify_current_route_slug() {
  * Rewrite static template HTML paths (`assets/...` & `*.html`) + Customizer contact values dynamically.
  */
 function alify_transform_markup( $html ) {
+	if ( function_exists( 'alify_inject_dynamic_cpts' ) ) {
+		$html = alify_inject_dynamic_cpts( $html );
+	}
+
 	$theme_assets_uri = untrailingslashit( ALIFY_THEME_URI ) . '/assets/';
 
 	// 1. Rewrite src="assets/...", href="assets/...", url('assets/...'), url("assets/...")

@@ -157,10 +157,10 @@ function alify_admin_seed_notice() {
 	}
 	$about_page = get_page_by_path( 'about' );
 	$locations  = get_theme_mod( 'nav_menu_locations', array() );
-	if ( ! $about_page || empty( $locations['primary'] ) ) {
-		$extra_arg = ( 'nav-menus' === $screen->id ) ? '&from_menus=1' : '';
-		$seed_url  = wp_nonce_url( admin_url( 'themes.php?alify_seed_pages=1' . $extra_arg ), 'alify_seed_pages_action' );
-		echo '<div class="notice notice-info"><p><strong>ALIFY Studio Theme Ready:</strong> Click <a href="' . esc_url( $seed_url ) . '" class="button button-primary" style="margin-left:8px;">Sync All ALIFY Pages &amp; 5 Menus Automatically</a> to publish all 21 agency pages &amp; pre-populate Appearance &rarr; Menus in one click.</p></div>';
+	$svc_count  = post_type_exists( 'alify_service' ) ? (int) wp_count_posts( 'alify_service' )->publish : 0;
+	if ( ! $about_page || empty( $locations['primary'] ) || 0 === $svc_count ) {
+		$import_page_url = admin_url( 'themes.php?page=alify-starter-import' );
+		echo '<div class="notice notice-info"><p><strong>ALIFY Studio Dynamic CMS Ready:</strong> Open <a href="' . esc_url( $import_page_url ) . '" class="button button-primary" style="margin-left:8px;">1-Click ALIFY Starter Content Importer</a> to publish all 21 pages, 5 menus, 8 Services, 6 Projects, 9 Industries, 6 Case Studies, 12 Testimonials, 20 FAQs &amp; 6 Blog Posts into WordPress Admin.</p></div>';
 	}
 }
 add_action( 'admin_notices', 'alify_admin_seed_notice' );

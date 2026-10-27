@@ -1,0 +1,927 @@
+{
+  "services": [
+    {
+      "slug": "web-development",
+      "title": "Web Design & Development",
+      "excerpt": "Bespoke responsive websites, enterprise web platforms, and performance-obsessed frontend architectures built to convert.",
+      "filter": "engineering",
+      "notch": "01 · WEB",
+      "tag": "Engineering",
+      "icon": "fa-solid fa-code",
+      "bg": "assets/images/services/service-web-dev.jpg",
+      "points": [
+        "Custom Semantic HTML, CSS & Next-Gen JS",
+        "99+ Core Web Vitals & Edge Performance",
+        "CMS & Enterprise API Integrations"
+      ]
+    },
+    {
+      "slug": "ui-ux-branding",
+      "title": "UI/UX & Brand Identity",
+      "excerpt": "Research-backed product interfaces, iconic visual identities, and editorial design languages that command authority.",
+      "filter": "design",
+      "notch": "02 · BRAND",
+      "tag": "Design & Identity",
+      "icon": "fa-solid fa-pen-nib",
+      "bg": "assets/images/services/service-ui-ux-branding.jpg",
+      "points": [
+        "Complete Visual Identity & Brand Guidelines",
+        "User Research, Wireframes & Prototyping",
+        "High-Clarity SaaS & Product Interfaces"
+      ]
+    },
+    {
+      "slug": "digital-marketing",
+      "title": "Digital Marketing & SEO",
+      "excerpt": "Technical SEO architecture, authority content engines, and full-funnel demand campaigns that compound organic pipeline.",
+      "filter": "growth",
+      "notch": "03 · GROWTH",
+      "tag": "SEO & Demand",
+      "icon": "fa-solid fa-chart-line",
+      "bg": "assets/images/services/service-digital-marketing.jpg",
+      "points": [
+        "Technical SEO Audits & Schema Systems",
+        "High-Intent Landing Page Ecosystems",
+        "Attribution Analytics & Pipeline Tracking"
+      ]
+    },
+    {
+      "slug": "ecommerce",
+      "title": "E-Commerce Solutions",
+      "excerpt": "Sub-second headless storefronts, custom product configurators, and friction-free checkout experiences built to scale.",
+      "filter": "growth",
+      "notch": "04 · COMMERCE",
+      "tag": "DTC & B2B",
+      "icon": "fa-solid fa-cart-shopping",
+      "bg": "assets/images/services/service-ecommerce.jpg",
+      "points": [
+        "Shopify Plus & Headless Storefronts",
+        "Custom Bundle Builders & Subscriptions",
+        "Checkout Velocity & AOV Optimization"
+      ]
+    },
+    {
+      "slug": "design-systems",
+      "title": "Scalable Design Systems",
+      "excerpt": "Unified Figma token libraries and production component kits that let growing product teams ship UI 3x faster.",
+      "filter": "design",
+      "notch": "05 · SYSTEMS",
+      "tag": "DesignOps",
+      "icon": "fa-solid fa-layer-group",
+      "bg": "assets/images/services/service-design-systems.jpg",
+      "points": [
+        "Multi-Brand Design Tokens & Variables",
+        "WCAG AA Accessible Component Libraries",
+        "Interactive Governance & Dev Handoff"
+      ]
+    },
+    {
+      "slug": "interactive-motion",
+      "title": "Interactive Motion & Storytelling",
+      "excerpt": "Silky 60fps GSAP scroll choreography, micro-interactions, and product launch experiences that captivate buyers.",
+      "filter": "design",
+      "notch": "06 · MOTION",
+      "tag": "GSAP & 3D",
+      "icon": "fa-solid fa-wand-magic-sparkles",
+      "bg": "assets/images/services/service-interactive-motion.jpg",
+      "points": [
+        "GSAP ScrollTrigger Choreography",
+        "Tactile UI Micro-Interactions",
+        "Zero-Jank Hardware-Accelerated Motion"
+      ]
+    },
+    {
+      "slug": "conversion-cro",
+      "title": "Conversion Rate Optimization",
+      "excerpt": "Data-backed UX audits, behavioral heatmaps, and rapid A/B testing programs that turn existing traffic into revenue.",
+      "filter": "growth",
+      "notch": "07 · CRO",
+      "tag": "Optimization",
+      "icon": "fa-solid fa-bullseye",
+      "bg": "assets/images/services/service-conversion-cro.jpg",
+      "points": [
+        "Funnel Diagnostics & UX Teardowns",
+        "Hypothesis-Driven Multivariate Testing",
+        "Demo & Checkout Friction Removal"
+      ]
+    },
+    {
+      "slug": "ai-product-engineering",
+      "title": "AI Product & Workflow UX",
+      "excerpt": "Human-centered AI copilot interfaces, intelligent search experiences, and automated internal tooling for modern teams.",
+      "filter": "engineering",
+      "notch": "08 · AI TECH",
+      "tag": "AI & Workflows",
+      "icon": "fa-solid fa-robot",
+      "bg": "assets/images/services/service-ai-product.jpg",
+      "points": [
+        "Conversational & Copilot Product UI",
+        "RAG Knowledge & Smart Search UX",
+        "Custom Workflow Automation Portals"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "slug": "finpulse-platform",
+      "num": "01",
+      "short_title": "FinPulse AI Platform",
+      "title": "FinPulse Institutional Wealth & AI Analytics Platform",
+      "client": "FINPULSE AI · SAN FRANCISCO",
+      "sector": "FinTech & SaaS",
+      "filter": "web-saas",
+      "year": "2026",
+      "sprint": "10 Weeks",
+      "metric": "+184% Demo Pipeline",
+      "excerpt": "Re-architected the enterprise web ecosystem, design token system, and interactive portfolio dashboard to nearly triple enterprise demo bookings.",
+      "bg": "assets/images/projects/project-finpulse.jpg",
+      "chips": "Web Architecture, Design System, GSAP Motion",
+      "case_slug": "cs-finpulse",
+      "brief": "FinPulse AI needed to evolve from an early-stage developer tool into an institutional-grade financial intelligence brand capable of winning Fortune 500 treasury teams.",
+      "craft": "ALIFY unified marketing and product surfaces under a 48-component token system, engineered sub-second static-edge pages, and built an interactive live portfolio simulator.",
+      "gallery": [
+        "assets/images/projects/project-finpulse.jpg | Flagship Platform | Institutional Treasury Command Interface | Real-time multi-currency liquidity telemetry and sub-second market depth visualization.",
+        "assets/images/projects/work-gallery-design-system.jpg | Design Tokens | 48-Component Enterprise Design System | Unified color tokens, data-table density rules, and modular UI primitives across web & product.",
+        "assets/images/services/service-web-dev.jpg | Edge Architecture | Sub-Second Static-Edge Web Engineering | 0.7s global LCP architecture with streaming telemetry previews and zero layout shift.",
+        "assets/images/industries/industry-fintech.jpg | Analytics UX | CFO Portfolio & Risk Scenario Simulator | Interactive yield and FX hedging calculator built directly into the enterprise evaluation funnel.",
+        "assets/images/projects/case-ledgerflow-saas.jpg | Data Workspace | Automated Reconciliation & Audit Views | Role-based institutional reporting dashboards engineered for SOC2-compliant workflows.",
+        "assets/images/services/service-conversion-cro.jpg | Growth Funnel | High-Intent Enterprise Demo Routing | Frictionless technical qualification flow that lifted institutional demo bookings by +184%."
+      ]
+    },
+    {
+      "slug": "aura-atelier-commerce",
+      "num": "02",
+      "short_title": "Aura Atelier Flagship",
+      "title": "Aura Atelier Luxury Headless Flagship Storefront",
+      "client": "AURA ATELIER · MILAN & LONDON",
+      "sector": "Headless E-Commerce",
+      "filter": "commerce-brand",
+      "year": "2026",
+      "sprint": "12 Weeks",
+      "metric": "+62% Checkout Rate",
+      "excerpt": "Crafted a sub-second headless commerce storefront and tactile editorial brand identity that lifted luxury checkout conversion by 62%.",
+      "bg": "assets/images/projects/project-aura-atelier.jpg",
+      "chips": "Brand Identity, Headless DTC, Checkout UX",
+      "case_slug": "cs-aura",
+      "brief": "High-traffic seasonal capsule drops were stalling on mobile due to heavy unoptimized lookbooks and a rigid five-step legacy checkout sequence.",
+      "craft": "We paired bespoke art direction with an edge-rendered headless storefront, instant slide-out wardrobe bundling, and one-tap multi-currency express checkout.",
+      "gallery": [
+        "assets/images/projects/project-aura-atelier.jpg | Flagship Storefront | Editorial Lookbook & Flagship Commerce | Tactile luxury art direction paired with instant edge-cached product storytelling.",
+        "assets/images/services/service-ecommerce.jpg | Headless Checkout | Multi-Currency Sub-Second Bag & Checkout | Localized express checkout across 14 currencies that lifted mobile checkout completion by +62%.",
+        "assets/images/blog/blog-headless-commerce.jpg | Merchandising | Modular Campaign & Capsule Builder | Composable CMS blocks empowering editorial teams to launch seasonal drops in minutes.",
+        "assets/images/projects/work-gallery-design-system.jpg | Commerce Tokens | Bespoke Typography & Storefront UI Library | Responsive PDP cards, tactile swatch selectors, and micro-interaction states across viewports.",
+        "assets/images/industries/industry-ecommerce.jpg | Mobile Flagship | Thumb-Zone Mobile Shopping Experience | Slide-out wardrobe bundling, predictive search, and sticky size-guide ergonomics.",
+        "assets/images/services/service-interactive-motion.jpg | Motion Craft | 60fps Scroll-Choreographed Product Reveals | Hardware-accelerated GSAP lookbook transitions engineered for zero frame drops."
+      ]
+    },
+    {
+      "slug": "medcore-telehealth",
+      "num": "03",
+      "short_title": "MedCore Patient Portal",
+      "title": "MedCore Telemedicine & Accessible Patient Web Portal",
+      "client": "MEDCORE HEALTH · TORONTO",
+      "sector": "HealthTech Web",
+      "filter": "ai-cloud",
+      "year": "2026",
+      "sprint": "14 Weeks",
+      "metric": "99.4% Patient CSAT",
+      "excerpt": "Designed and engineered WCAG AA accessible patient scheduling and virtual care web workflows that cut support calls by 64%.",
+      "bg": "assets/images/projects/project-medcore-portal.jpg",
+      "chips": "Web Portal, Clinical UX, WCAG AA",
+      "case_slug": "cs-medcore",
+      "brief": "Patients struggled with an 11-screen legacy appointment maze, causing high drop-off among older users and overwhelming clinic phone lines.",
+      "craft": "Through usability sessions with 40+ patients and clinicians, ALIFY compressed appointment booking, prescription refills, and browser video triage into three calm steps.",
+      "gallery": [
+        "assets/images/projects/project-medcore-portal.jpg | Patient Portal | Unified 3-Step Patient Scheduling & Triage | WCAG AA accessible appointment booking flow achieving a 99.4% patient satisfaction score.",
+        "assets/images/industries/industry-healthcare.jpg | Clinical Suite | Clinician Live Consultation & Charting View | Single-screen browser telehealth video, vitals history, and prescription refill management.",
+        "assets/images/projects/work-gallery-design-system.jpg | Accessible Tokens | WCAG AA Healthcare Component Library | High-contrast clinical typography, clear error states, and assistive-tech friendly UI primitives.",
+        "assets/images/services/service-ui-ux-branding.jpg | UX Research | Symptom-Guided Intake Journey Architecture | Calm progressive disclosure replacing an 11-screen legacy medical questionnaire maze.",
+        "assets/images/services/service-web-dev.jpg | Portal Security | Zero-Trust Encrypted Web Engineering | Sub-second portal rendering with strict session security and EHR interoperability.",
+        "assets/images/blog/blog-conversion-ux.jpg | Care Continuity | Automated Care Plan & Refill Dashboard | Self-serve follow-up reminders and prescription tracking that cut clinic phone volume by 64%."
+      ]
+    },
+    {
+      "slug": "crestline-proptech",
+      "num": "04",
+      "short_title": "Crestline 3D PropTech",
+      "title": "Crestline Interactive 3D Architectural Discovery Hub",
+      "client": "CRESTLINE DEVELOPMENTS · DUBAI",
+      "sector": "PropTech Platform",
+      "filter": "web-saas",
+      "year": "2025",
+      "sprint": "12 Weeks",
+      "metric": "110k+ Active Buyers",
+      "excerpt": "Built an immersive 3D residence explorer, live mortgage configurator, and investor lead engine serving over 110,000 monthly active buyers.",
+      "bg": "assets/images/projects/project-crestline-proptech.jpg",
+      "chips": "Interactive Web, Map Search UX, CRM Funnel",
+      "case_slug": "cs-crestline",
+      "brief": "Cross-border luxury buyers needed confidence to reserve off-plan waterfront residences digitally without relying on static PDF floorplans.",
+      "craft": "ALIFY engineered an interactive tower explorer with real-time unit availability, sun-path view previews, multi-currency payment schedules, and instant CRM routing.",
+      "gallery": [
+        "assets/images/projects/project-crestline-proptech.jpg | 3D Explorer | Interactive Waterfront Tower & Unit Explorer | Real-time floorplate selection with sun-path orientation and panoramic marina view previews.",
+        "assets/images/industries/industry-real-estate.jpg | Live Inventory | CRM-Synced Availability & Payment Configurator | Multi-currency milestone payment schedules and live unit reservation status for global investors.",
+        "assets/images/services/service-interactive-motion.jpg | Spatial Motion | Scroll-Choreographed Neighbourhood & Amenity Tour | Immersive architectural storytelling serving 110,000+ monthly active luxury property buyers.",
+        "assets/images/projects/work-gallery-design-system.jpg | Design System | PropTech Digital Identity & Investor UI Kit | Modular floorplan comparison drawers, ROI yield widgets, and downloadable dossier templates.",
+        "assets/images/services/service-conversion-cro.jpg | Concierge Funnel | Private Viewing & Broker Attribution Flow | Instant private-viewing scheduler and advisor routing that grew qualified leads by +136%.",
+        "assets/images/blog/blog-technical-seo.jpg | Search Engine | International Property Schema & Landing System | Multilingual programmatic SEO hubs capturing cross-border real estate demand."
+      ]
+    },
+    {
+      "slug": "voltmobility-ev",
+      "num": "05",
+      "short_title": "VoltMobility EV Fleet",
+      "title": "VoltMobility Autonomous EV Fleet & Cloud Telemetry Hub",
+      "client": "VOLTMOBILITY · BERLIN",
+      "sector": "Clean Mobility & AI",
+      "filter": "ai-cloud",
+      "year": "2026",
+      "sprint": "11 Weeks",
+      "metric": "38s EV Unlock Flow",
+      "excerpt": "Streamlined real-time vehicle telemetry, instant fleet reservation, and predictive charger routing into a sub-38-second cloud web workflow.",
+      "bg": "assets/images/projects/project-voltmobility.jpg",
+      "chips": "Cloud Platform, Live Telemetry, AI Routing",
+      "case_slug": "cs-ledgerflow",
+      "brief": "Urban commuters needed instant keyless EV access and accurate range-aware charger routing across 18 European metro zones.",
+      "craft": "We crafted a high-contrast dark-mode rider interface with live battery telemetry, NFC tap-to-unlock, and one-swipe trip billing.",
+      "gallery": [
+        "assets/images/projects/project-voltmobility.jpg | Fleet Telemetry | Live EV State-of-Charge & Metro Zone Map | Real-time vehicle availability, battery range rings, and 38-second keyless reservation flow.",
+        "assets/images/industries/industry-logistics-mobility.jpg | AI Routing | Predictive Fast-Charger & Route Planner | Range-aware corridor routing across 18 European cities with live bay occupancy telemetry.",
+        "assets/images/services/service-ai-product.jpg | Diagnostics UI | Cloud Battery Health & Fleet Command Center | 99.98% uptime operator dashboard surfacing predictive maintenance and depot balancing.",
+        "assets/images/projects/work-gallery-design-system.jpg | Control-Room UI | High-Contrast Dark Telemetry Token System | Glare-free status tokens, map pin clusters, and one-swipe billing components.",
+        "assets/images/services/service-design-systems.jpg | Modular Widgets | Enterprise Fleet Sustainability & Usage Reports | CO2 savings analytics and automated corporate mobility invoicing dashboards.",
+        "assets/images/blog/blog-gsap-motion.jpg | Interactive Web | Connected Hardware & Rider Web Showcase | Scroll-driven product launch experience lifting repeat weekly rider adoption by +74%."
+      ]
+    },
+    {
+      "slug": "solenne-skincare",
+      "num": "06",
+      "short_title": "Solenne Botanical DTC",
+      "title": "Solenne Botanical Rebrand, Bundle Builder & SEO Engine",
+      "client": "SOLENNE PARIS · FRANCE",
+      "sector": "Brand & Growth SEO",
+      "filter": "commerce-brand",
+      "year": "2025",
+      "sprint": "10 Weeks",
+      "metric": "2.8x Organic Revenue",
+      "excerpt": "Paired a Parisian packaging and digital rebrand with custom regimen builders and technical SEO architecture to grow organic revenue 2.8x.",
+      "bg": "assets/images/projects/project-solenne-beauty.jpg",
+      "chips": "Visual Rebrand, Bundle Builder, Technical SEO",
+      "case_slug": "cs-solenne",
+      "brief": "Rising paid social CAC demanded an organic search moat and higher first-order basket sizes across Solenne’s botanical skincare line.",
+      "craft": "ALIFY overhauled technical schema and Core Web Vitals while launching an interactive 4-question skin diagnostic quiz that builds personalized routines.",
+      "gallery": [
+        "assets/images/projects/project-solenne-beauty.jpg | Brand Flagship | Parisian Botanical Rebrand & DTC Storefront | Editorial skincare storytelling balanced with dermatologist-backed clinical proof.",
+        "assets/images/services/service-ecommerce.jpg | Bundle Builder | 4-Step Skin Diagnostic & Custom Regimen Quiz | Interactive routine builder recommending tailored AM/PM bundles and lifting AOV by +47%.",
+        "assets/images/services/service-ui-ux-branding.jpg | Visual System | Packaging Typography & Digital Art Direction | Unified brand system spanning tactile botanical packaging, iconography, and web UI.",
+        "assets/images/projects/work-gallery-design-system.jpg | Storefront Kit | Subscription & Replenishment UI Components | Frictionless auto-ship cadence toggles, free-gift progress bars, and ingredient drawers.",
+        "assets/images/blog/blog-brand-identity.jpg | Ingredient UX | Botanical Active & Clinical Study Cards | Transparent sourcing provenance and clinical efficacy visuals directly on product pages.",
+        "assets/images/services/service-digital-marketing.jpg | Organic SEO | Core Web Vitals & Editorial Search Architecture | 98/100 CWV performance and structured schema growing non-paid organic revenue 2.8x."
+      ]
+    }
+  ],
+  "industries": [
+    {
+      "slug": "fintech",
+      "title": "FinTech & Digital Banking",
+      "excerpt": "High-trust payment interfaces, wealth management dashboards, and frictionless KYC onboarding flows engineered for compliance and conversion.",
+      "sector_group": "finance-cloud",
+      "code": "01 · FINTECH",
+      "icon": "fa-solid fa-landmark",
+      "bg": "assets/images/industries/industry-fintech.jpg",
+      "points": [
+        "PCI-Ready Checkout & Onboarding UX",
+        "Real-Time Portfolio & Ledger UI",
+        "Institutional Brand & Web Systems"
+      ],
+      "stat": "Avg. +148% Qualified Pipeline"
+    },
+    {
+      "slug": "healthcare",
+      "title": "Healthcare & MedTech",
+      "excerpt": "Accessible patient portals, virtual care web platforms, and intuitive clinical workflows crafted around clarity, privacy, and care.",
+      "sector_group": "health-edu-mobility",
+      "code": "02 · HEALTHCARE",
+      "icon": "fa-solid fa-heart-pulse",
+      "bg": "assets/images/industries/industry-healthcare.jpg",
+      "points": [
+        "WCAG-Accessible Patient Portals",
+        "Telehealth Booking & Patient Portals",
+        "Medical Device Product Storytelling"
+      ],
+      "stat": "99.4% Patient Portal CSAT"
+    },
+    {
+      "slug": "saas",
+      "title": "SaaS & Enterprise Cloud",
+      "excerpt": "Category-defining B2B marketing websites, multi-brand token design systems, and interactive product demos that accelerate demo bookings.",
+      "sector_group": "finance-cloud",
+      "code": "03 · B2B SAAS",
+      "icon": "fa-solid fa-cloud",
+      "bg": "assets/images/industries/industry-saas.jpg",
+      "points": [
+        "Conversion-Driven SaaS Websites",
+        "Scalable Multi-Product Design Systems",
+        "Self-Serve Onboarding Optimization"
+      ],
+      "stat": "3.1x Enterprise Demo Velocity"
+    },
+    {
+      "slug": "ecommerce-retail",
+      "title": "E-Commerce & Luxury DTC",
+      "excerpt": "Sub-second headless storefronts, bespoke bundle builders, and editorial merchandising experiences built to lift average order value.",
+      "sector_group": "commerce-property",
+      "code": "04 · COMMERCE",
+      "icon": "fa-solid fa-bag-shopping",
+      "bg": "assets/images/industries/industry-ecommerce.jpg",
+      "points": [
+        "Headless & Custom Storefront UX",
+        "High-Velocity Checkout Architecture",
+        "Retention & Technical SEO Growth"
+      ],
+      "stat": "+62% Checkout Completion"
+    },
+    {
+      "slug": "real-estate",
+      "title": "Real Estate & PropTech",
+      "excerpt": "Immersive architectural showcases, interactive map-based search portals, and high-intent investor lead platforms for modern developments.",
+      "sector_group": "commerce-property",
+      "code": "05 · PROPTECH",
+      "icon": "fa-solid fa-building",
+      "bg": "assets/images/industries/industry-real-estate.jpg",
+      "points": [
+        "Interactive Property & Map Search",
+        "Luxury Development Microsites",
+        "CRM-Integrated Lead Capture Flows"
+      ],
+      "stat": "110k+ Monthly Active Buyers"
+    },
+    {
+      "slug": "edtech",
+      "title": "EdTech & Learning Platforms",
+      "excerpt": "Engaging cohort learning portals, interactive cloud learning platforms, and subscription enrollment funnels that maximize student completion.",
+      "sector_group": "health-edu-mobility",
+      "code": "06 · EDTECH",
+      "icon": "fa-solid fa-graduation-cap",
+      "bg": "assets/images/industries/industry-edtech.jpg",
+      "points": [
+        "Interactive LMS & Course Dashboards",
+        "Interactive Cohort & Student Portals",
+        "High-Converting Enrollment Funnels"
+      ],
+      "stat": "+54% Course Completion Rate"
+    },
+    {
+      "slug": "ai-deep-tech",
+      "title": "AI & Autonomous Systems",
+      "excerpt": "Human-centered AI copilot interfaces, developer documentation hubs, and high-impact launch narratives for frontier technology startups.",
+      "sector_group": "finance-cloud",
+      "code": "07 · AI & DATA",
+      "icon": "fa-solid fa-microchip",
+      "bg": "assets/images/industries/industry-ai-deeptech.jpg",
+      "points": [
+        "Conversational & Agentic UI Design",
+        "Developer Docs & API Portals",
+        "60fps Interactive Launch Websites"
+      ],
+      "stat": "$40M+ Client Funding Raised"
+    },
+    {
+      "slug": "logistics-mobility",
+      "title": "Logistics & Clean Mobility",
+      "excerpt": "Real-time fleet telemetry dashboards, EV reservation portals, and global supply-chain platforms engineered for operational speed.",
+      "sector_group": "health-edu-mobility",
+      "code": "08 · MOBILITY",
+      "icon": "fa-solid fa-truck-fast",
+      "bg": "assets/images/industries/industry-logistics-mobility.jpg",
+      "points": [
+        "EV & Fleet Booking Web Portals",
+        "Live Dispatch & Tracking Portals",
+        "Enterprise B2B Freight Platforms"
+      ],
+      "stat": "38s Avg. Booking Workflow"
+    },
+    {
+      "slug": "hospitality-travel",
+      "title": "Hospitality & Travel Tech",
+      "excerpt": "Direct-booking resort ecosystems, curated itinerary builders, and member loyalty portals that eliminate third-party OTA friction.",
+      "sector_group": "commerce-property",
+      "code": "09 · HOSPITALITY",
+      "icon": "fa-solid fa-plane-departure",
+      "bg": "assets/images/industries/industry-hospitality-travel.jpg",
+      "points": [
+        "Direct Booking & Concierge Engines",
+        "Editorial Destination Storytelling",
+        "Member Loyalty Web Portals"
+      ],
+      "stat": "+76% Direct Commission-Free Bookings"
+    }
+  ],
+  "case_studies": [
+    {
+      "slug": "cs-finpulse",
+      "title": "Nearly Tripling Institutional Demo Pipeline With a Sub-Second Web Ecosystem",
+      "filter": "fintech-saas",
+      "kicker": "FINPULSE AI · SAN FRANCISCO",
+      "client_short": "Finpulse Ai",
+      "sector_badge": "Enterprise FinTech",
+      "duration_badge": "10-Week Transformation",
+      "bg": "assets/images/projects/project-finpulse.jpg",
+      "benchmarks": [
+        "Mobile Speed | 41 | 99",
+        "Demo CVR | 1.3% | 3.8%"
+      ],
+      "bottleneck": "Legacy enterprise pages suffered from 4.8-second mobile load times and fragmented product messaging, causing high-intent CFO traffic to bounce before booking a demo.",
+      "architecture": "ALIFY architected a modular token-driven web platform, interactive ROI calculator, and frictionless 2-step enterprise demo scheduler backed by real-time analytics.",
+      "kpis": [
+        "+184% | Qualified Enterprise Demos",
+        "0.7s | Global LCP Load Time",
+        "3.4x | Pipeline ROI in 60 Days"
+      ],
+      "chips": "Multi-Brand Figma Token System, Custom Semantic Frontend & GSAP, Interactive Treasury ROI Simulator, HubSpot & Segment Attribution",
+      "quote": "Inbound enterprise demo bookings nearly tripled within sixty days of launch.",
+      "quote_author": "Sarah Jenkins — VP of Marketing, FinPulse AI"
+    },
+    {
+      "slug": "cs-aura",
+      "title": "Blending Editorial Luxury With Sub-Second Headless Checkout Velocity",
+      "filter": "commerce-brand",
+      "kicker": "AURA ATELIER · MILAN & LONDON",
+      "client_short": "Aura Atelier",
+      "sector_badge": "Headless E-Commerce",
+      "duration_badge": "12-Week Flagship Build",
+      "bg": "assets/images/projects/project-aura-atelier.jpg",
+      "benchmarks": [
+        "Storefront LCP | 3.9s | 0.6s",
+        "Checkout Completion | 29% | 47%"
+      ],
+      "bottleneck": "Aura’s monolithic storefront throttled lookbook storytelling and suffered a 71% mobile cart abandonment rate during international capsule drops.",
+      "architecture": "We crafted a tactile Parisian-Milanese digital identity paired with an edge-cached headless storefront, slide-out wardrobe builder, and 1-tap express checkout.",
+      "kpis": [
+        "+62% | Checkout Completion Lift",
+        "+38% | Average Order Value",
+        "99.99% | Drop-Day Edge Uptime"
+      ],
+      "chips": "Headless Storefront Architecture, Custom Lookbook & Bundle Drawer, Multi-Currency Express Checkout, Editorial Motion Choreography",
+      "quote": "ALIFY understood both luxury editorial typography and ruthless checkout psychology.",
+      "quote_author": "Marcus Vance — Founder & CEO, Aura Atelier"
+    },
+    {
+      "slug": "cs-medcore",
+      "title": "Transforming Legacy Patient Scheduling Into a High-Trust Telemedicine Web Portal",
+      "filter": "healthtech-proptech",
+      "kicker": "MEDCORE HEALTH · TORONTO",
+      "client_short": "Medcore Health",
+      "sector_badge": "Clinical Web Platform",
+      "duration_badge": "14-Week Product Overhaul",
+      "bg": "assets/images/projects/project-medcore-portal.jpg",
+      "benchmarks": [
+        "Portal CSAT | 61% | 99.4%",
+        "Booking Steps | 11 Screens | 3 Steps"
+      ],
+      "bottleneck": "Patients faced an 11-screen booking maze with low accessibility contrast, driving support calls up and leaving patient portal satisfaction stuck at 61%.",
+      "architecture": "ALIFY conducted clinical UX testing with 40+ patients, shipping a WCAG AA patient web portal that books appointments and browser video consults in 3 steps.",
+      "kpis": [
+        "99.4% | Patient Portal CSAT",
+        "-51% | Missed Appointment Rate",
+        "-64% | Support Ticket Volume"
+      ],
+      "chips": "WCAG AA Accessible Design System, Accessible Patient Web Portal UI, Biometric One-Tap Telehealth Join, Automated Smart Triage Reminders",
+      "quote": "Their product designers obsessed over every micro-interaction for real patients.",
+      "quote_author": "Zainab Ahmed — Chief Product Officer, MedCore"
+    },
+    {
+      "slug": "cs-ledgerflow",
+      "title": "Positioning an Autonomous Treasury Startup to Close an Oversubscribed $6.5M Seed",
+      "filter": "fintech-saas",
+      "kicker": "LEDGERFLOW CLOUD · NEW YORK",
+      "client_short": "Ledgerflow Cloud",
+      "sector_badge": "B2B SaaS & Brand",
+      "duration_badge": "8-Week Launch Sprint",
+      "bg": "assets/images/projects/case-ledgerflow-saas.jpg",
+      "benchmarks": [
+        "Time on Site | 0:48 | 3:24",
+        "Pilot Signups | 12/mo | 64/mo"
+      ],
+      "bottleneck": "With an institutional-grade backend but developer-made UI, LedgerFlow needed category authority before pitching tier-one venture funds and enterprise pilots.",
+      "architecture": "We delivered a complete visual identity, interactive product sandbox, and investor-ready web narrative that turned complex reconciliation workflows into instant clarity.",
+      "kpis": [
+        "$6.5M | Oversubscribed Seed Raised",
+        "5.3x | Enterprise Pilot Requests",
+        "-44% | Product Onboarding Drop-Off"
+      ],
+      "chips": "Category Positioning & Brand Identity, Interactive Browser Product Tour, Self-Serve SaaS Onboarding UI, Technical Docs & Security Trust Hub",
+      "quote": "Investors specifically praised our interactive product narrative during our seed round.",
+      "quote_author": "Hamza Siddiqui — Co-Founder, LedgerFlow Cloud"
+    },
+    {
+      "slug": "cs-crestline",
+      "title": "Scaling Off-Plan Luxury Property Sales With Interactive 3D Tower Discovery",
+      "filter": "healthtech-proptech",
+      "kicker": "CRESTLINE DEVELOPMENTS · DUBAI",
+      "client_short": "Crestline Developments",
+      "sector_badge": "3D Real Estate Tech",
+      "duration_badge": "12-Week Platform Build",
+      "bg": "assets/images/projects/project-crestline-proptech.jpg",
+      "benchmarks": [
+        "Lead Quality | 18% | 52%",
+        "Page Load | 5.2s | 0.9s"
+      ],
+      "bottleneck": "International real-estate investors struggled to evaluate floorplans and view corridors from static PDF brochures, slowing cross-border reservation velocity.",
+      "architecture": "ALIFY engineered an interactive residence discovery platform featuring live unit availability, view-angle previews, and instant multi-currency payment calculators.",
+      "kpis": [
+        "110k+ | Monthly Active Investors",
+        "+136% | Qualified Viewing Requests",
+        "$48M+ | Attributed Digital Reservations"
+      ],
+      "chips": "Interactive 3D Floorplan Explorer, Multi-Currency Mortgage Engine, Direct WhatsApp & CRM Lead Routing, Multilingual RTL/LTR Architecture",
+      "quote": "ALIFY engineered our flagship property platform on schedule with zero regressions.",
+      "quote_author": "Omar Al-Mansoor — Managing Director, Crestline"
+    },
+    {
+      "slug": "cs-solenne",
+      "title": "Compounding Non-Paid DTC Revenue 2.8x Through Technical SEO & Regimen UX",
+      "filter": "commerce-brand",
+      "kicker": "SOLENNE SKINCARE · PARIS",
+      "client_short": "Solenne Skincare",
+      "sector_badge": "DTC Growth & SEO",
+      "duration_badge": "10-Week Growth Sprint",
+      "bg": "assets/images/projects/project-solenne-beauty.jpg",
+      "benchmarks": [
+        "Organic Clicks | 19k/mo | 68k/mo",
+        "Bundle AOV | $64 | $94"
+      ],
+      "bottleneck": "Rising paid acquisition costs squeezed margins while duplicate faceted URLs and slow mobile templates suppressed Solenne’s organic search visibility.",
+      "architecture": "We executed a full technical SEO re-architecture alongside an interactive skin-diagnostic regimen builder that lifted both organic rankings and bundle AOV.",
+      "kpis": [
+        "2.8x | Non-Paid Organic Revenue",
+        "+47% | Average Order Value Lift",
+        "98/100 | Core Web Vitals Score"
+      ],
+      "chips": "Technical SEO & Schema Overhaul, Interactive Skin Quiz & Bundle UX, Subscription Retention Portal, High-Intent Editorial Landing Hubs",
+      "quote": "Non-paid organic revenue grew 2.8x in four months without increasing ad spend.",
+      "quote_author": "Claire Moreau — CMO, Solenne Skincare"
+    }
+  ],
+  "testimonials": [
+    {
+      "slug": "review-sarah-jenkins",
+      "name": "Sarah Jenkins",
+      "role": "VP of Marketing, FinPulse AI",
+      "initials": "SJ",
+      "rating": "5.0",
+      "outcome": "+184% Demo Pipeline",
+      "quote": "ALIFY rebuilt our enterprise marketing architecture from the ground up. Page speed jumped to 99 on mobile and inbound enterprise demo bookings nearly tripled within sixty days.",
+      "tag": "Web & Engineering",
+      "filter": "web"
+    },
+    {
+      "slug": "review-marcus-vance",
+      "name": "Marcus Vance",
+      "role": "Founder & CEO, Aura Atelier",
+      "initials": "MR",
+      "rating": "5.0",
+      "outcome": "3.1x Brand Recall",
+      "quote": "Rarely do you find a studio that understands both luxury editorial typography and conversion psychology. Our rebrand transformed how institutional partners perceive us.",
+      "tag": "UI/UX & Branding",
+      "filter": "branding"
+    },
+    {
+      "slug": "review-zainab-ahmed",
+      "name": "Zainab Ahmed",
+      "role": "Chief Product Officer, MedCore Health",
+      "initials": "ZA",
+      "rating": "5.0",
+      "outcome": "99.4% Patient CSAT",
+      "quote": "Our patient booking portal went from clunky legacy workflows to an effortless WCAG AA web experience. Their product designers obsessed over every micro-interaction.",
+      "tag": "Design Systems",
+      "filter": "systems"
+    },
+    {
+      "slug": "review-david-lindqvist",
+      "name": "David Lindqvist",
+      "role": "Head of E-Commerce, Nordik Home",
+      "initials": "DL",
+      "rating": "5.0",
+      "outcome": "+62% Checkout Rate",
+      "quote": "Migrating to a custom headless storefront with ALIFY cut load times under a second and lifted our checkout completion rate by 62% ahead of peak holiday traffic.",
+      "tag": "E-Commerce & SEO",
+      "filter": "growth"
+    },
+    {
+      "slug": "review-hamza-siddiqui",
+      "name": "Hamza Siddiqui",
+      "role": "Co-Founder, LedgerFlow Cloud",
+      "initials": "HS",
+      "rating": "5.0",
+      "outcome": "$6.5M Seed Closed",
+      "quote": "Investors specifically complimented our product narrative and interactive web experience during our $6.5M seed round. ALIFY operates like an in-house founding design team.",
+      "tag": "Web & Engineering",
+      "filter": "web"
+    },
+    {
+      "slug": "review-elena-rostova",
+      "name": "Elena Rostova",
+      "role": "Design Operations Lead, VerveOS",
+      "initials": "ER",
+      "rating": "5.0",
+      "outcome": "48+ Token Components",
+      "quote": "The multi-brand Figma and code design system ALIFY delivered cut our feature shipping cycle in half. Clean tokens, zero bloat, and rock-solid documentation.",
+      "tag": "UI/UX & Branding",
+      "filter": "branding"
+    },
+    {
+      "slug": "review-omar-al-mansoor",
+      "name": "Omar Al-Mansoor",
+      "role": "Managing Director, Crestline PropTech",
+      "initials": "OA",
+      "rating": "5.0",
+      "outcome": "110k+ Active Users",
+      "quote": "From interactive 3D property tours to instant mortgage calculators, ALIFY engineered our flagship 3D web platform on schedule with zero post-launch regressions.",
+      "tag": "Design Systems",
+      "filter": "systems"
+    },
+    {
+      "slug": "review-claire-moreau",
+      "name": "Claire Moreau",
+      "role": "CMO, Solenne Skincare",
+      "initials": "CM",
+      "rating": "5.0",
+      "outcome": "2.8x Organic Revenue",
+      "quote": "Their technical SEO overhaul paired with high-converting landing systems grew our non-paid organic revenue 2.8x in four months without increasing ad spend.",
+      "tag": "E-Commerce & SEO",
+      "filter": "growth"
+    },
+    {
+      "slug": "review-ryan-takahashi",
+      "name": "Ryan Takahashi",
+      "role": "CTO, Kinetix Robotics",
+      "initials": "RT",
+      "rating": "5.0",
+      "outcome": "99.99% Edge Uptime",
+      "quote": "Writing custom GSAP motion that still scores green across Core Web Vitals is hard. ALIFY nailed smooth 60fps storytelling without sacrificing clean engineering.",
+      "tag": "Web & Engineering",
+      "filter": "web"
+    },
+    {
+      "slug": "review-ayesha-noor",
+      "name": "Ayesha Noor",
+      "role": "Founder, Loom & Legacy",
+      "initials": "AN",
+      "rating": "5.0",
+      "outcome": "+47% Average Order",
+      "quote": "Every bespoke bundle builder and editorial lookbook they crafted directly increased our average order value. Communication was transparent every single week.",
+      "tag": "E-Commerce & SEO",
+      "filter": "growth"
+    },
+    {
+      "slug": "review-julian-brooks",
+      "name": "Julian Brooks",
+      "role": "VP Product, PulseMetrics SaaS",
+      "initials": "JB",
+      "rating": "5.0",
+      "outcome": "-44% Onboarding Drop",
+      "quote": "ALIFY redesigned our analytics onboarding flow and reduced first-session drop-off by 44%. Every UX recommendation was backed by user testing, not guesswork.",
+      "tag": "UI/UX & Branding",
+      "filter": "branding"
+    },
+    {
+      "slug": "review-sophia-kowalski",
+      "name": "Sophia Kowalski",
+      "role": "Director of Digital, VoltMobility",
+      "initials": "SK",
+      "rating": "5.0",
+      "outcome": "38s Fleet Booking",
+      "quote": "Riders can unlock and reserve EVs in under 38 seconds thanks to ALIFY’s streamlined cloud booking UX. Hands-down the sharpest digital product partner we have hired.",
+      "tag": "Design Systems",
+      "filter": "systems"
+    }
+  ],
+  "faqs": [
+    {
+      "slug": "faq-how-quickly-can-alify-kick-off-a-new-digital-pro",
+      "question": "How quickly can ALIFY kick off a new digital product or website sprint?",
+      "answer": "Most engagements kick off within 5 to 7 business days after scope alignment and deposit confirmation. During pre-kickoff, we provision your shared Slack channel, Figma workspace, staging repository, and milestone calendar so Day 1 starts with senior execution.",
+      "pillar": "scope-sprints",
+      "show_reusable": "1"
+    },
+    {
+      "slug": "faq-who-actually-works-on-our-project-senior-special",
+      "question": "Who actually works on our project — senior specialists or junior handoffs?",
+      "answer": "Every ALIFY pod is 100% senior-led. The Managing Partner, Lead Product Designer, and Principal Full-Stack Engineer you meet on your strategy call are the exact builders shipping your design system, frontend architecture, and launch QA.",
+      "pillar": "scope-sprints",
+      "show_reusable": "1"
+    },
+    {
+      "slug": "faq-how-do-weekly-design-and-engineering-reviews-wor",
+      "question": "How do weekly design and engineering reviews work across timezones?",
+      "answer": "We work asynchronously-first via Loom walkthroughs, live Figma prototypes, and edge-deployed staging URLs, paired with a structured weekly 30-minute sprint review across US, UK, EU, Gulf, and APAC business hours.",
+      "pillar": "scope-sprints",
+      "show_reusable": "0"
+    },
+    {
+      "slug": "faq-what-if-our-requirements-evolve-mid-sprint-as-we",
+      "question": "What if our requirements evolve mid-sprint as we see interactive prototypes?",
+      "answer": "Refinements within the agreed deliverable boundary are built directly into our iterative Figma and staging cycles. If you decide to add net-new modules, we scope a transparent mini-addendum before writing code — never surprise invoices.",
+      "pillar": "scope-sprints",
+      "show_reusable": "0"
+    },
+    {
+      "slug": "faq-do-you-offer-fixed-price-sprints-or-monthly-reta",
+      "question": "Do you offer fixed-price sprints or monthly retainers?",
+      "answer": "Both. Clear-scope launches (flagship websites, SaaS web apps, headless storefronts, and rebrands) run on fixed-price milestone sprints, while ongoing product roadmaps, CRO experimentation, and technical SEO run on flexible monthly pods.",
+      "pillar": "pricing-billing",
+      "show_reusable": "1"
+    },
+    {
+      "slug": "faq-how-are-milestone-payments-structured-on-fixed-s",
+      "question": "How are milestone payments structured on fixed-scope projects?",
+      "answer": "Our standard schedule is 50% at kickoff to reserve your dedicated pod, 25% upon interactive Figma design system and prototype sign-off, and the final 25% once staging QA passes and your platform is ready for production launch.",
+      "pillar": "pricing-billing",
+      "show_reusable": "1"
+    },
+    {
+      "slug": "faq-which-currencies-and-payment-methods-does-alify",
+      "question": "Which currencies and payment methods does ALIFY accept?",
+      "answer": "We issue compliant commercial invoices payable via international bank wire (SWIFT / ACH / SEPA / IBAN) in USD, EUR, GBP, AED, or PKR, with itemized milestone receipts for your finance team.",
+      "pillar": "pricing-billing",
+      "show_reusable": "0"
+    },
+    {
+      "slug": "faq-can-we-start-with-a-paid-discovery-architecture",
+      "question": "Can we start with a paid Discovery & Architecture Blueprint before full build?",
+      "answer": "Yes. For complex multi-stakeholder platforms, we offer a focused 2-week Architecture & UX Blueprint sprint delivering clickable wireframes, technical stack specs, and a fixed build quote — 100% credited if you proceed to build.",
+      "pillar": "pricing-billing",
+      "show_reusable": "0"
+    },
+    {
+      "slug": "faq-what-core-web-vitals-and-page-speed-benchmarks-d",
+      "question": "What Core Web Vitals and page-speed benchmarks do you guarantee?",
+      "answer": "Every ALIFY web build is engineered for 95+ Lighthouse performance scores, sub-second Largest Contentful Paint (LCP), zero Cumulative Layout Shift (CLS), and 60fps hardware-accelerated motion across desktop and mobile devices.",
+      "pillar": "engineering-stack",
+      "show_reusable": "1"
+    },
+    {
+      "slug": "faq-which-frontend-cms-and-e-commerce-stacks-do-you",
+      "question": "Which frontend, CMS, and e-commerce stacks do you specialize in?",
+      "answer": "We build bespoke semantic HTML5/CSS3/JS ecosystems, React & Next.js web platforms, headless CMS architectures (Sanity, Strapi, Contentful, custom WordPress), and high-converting Shopify Plus & headless commerce storefronts.",
+      "pillar": "engineering-stack",
+      "show_reusable": "1"
+    },
+    {
+      "slug": "faq-can-alify-integrate-our-crm-analytics-and-custom",
+      "question": "Can ALIFY integrate our CRM, analytics, and custom APIs?",
+      "answer": "Absolutely. We routinely wire HubSpot, Salesforce, Pipedrive, GA4, Segment, Stripe, booking calendars, and proprietary REST/GraphQL endpoints with clean server-side attribution and error handling.",
+      "pillar": "engineering-stack",
+      "show_reusable": "0"
+    },
+    {
+      "slug": "faq-how-do-you-handle-technical-seo-during-a-website",
+      "question": "How do you handle technical SEO during a website redesign or migration?",
+      "answer": "We execute a full URL redirect matrix, semantic heading hierarchy, canonical tags, OpenGraph metadata, XML sitemaps, and structured schema markup prior to cutover so organic rankings compound rather than dip.",
+      "pillar": "engineering-stack",
+      "show_reusable": "0"
+    },
+    {
+      "slug": "faq-do-we-own-100-of-the-source-code-figma-files-and",
+      "question": "Do we own 100% of the source code, Figma files, and intellectual property?",
+      "answer": "Yes — unconditionally. Upon final milestone completion, 100% of custom source code, Git repositories, Figma component libraries, design tokens, and brand assets transfer cleanly to your organization with zero licensing lock-in.",
+      "pillar": "design-ownership",
+      "show_reusable": "0"
+    },
+    {
+      "slug": "faq-will-our-internal-team-be-able-to-edit-pages-wit",
+      "question": "Will our internal team be able to edit pages without developer bottlenecks?",
+      "answer": "Yes. Every project includes a modular component library and clean documentation so your marketing and product teams can launch new landing pages, case studies, and campaigns in minutes without breaking layout integrity.",
+      "pillar": "design-ownership",
+      "show_reusable": "0"
+    },
+    {
+      "slug": "faq-do-you-build-accessible-wcag-aa-compliant-interf",
+      "question": "Do you build accessible WCAG AA compliant interfaces?",
+      "answer": "Accessibility is baked into our design token scale from Day 1 — including high-contrast color pairings, full keyboard focus choreography, semantic ARIA landmarks, and reduced-motion preferences.",
+      "pillar": "design-ownership",
+      "show_reusable": "0"
+    },
+    {
+      "slug": "faq-can-you-work-within-our-existing-brand-guideline",
+      "question": "Can you work within our existing brand guidelines or create a new identity?",
+      "answer": "Both. We can either elevate and codify your existing visual identity into a digital-first token system, or lead a complete visual rebrand including typography, color architecture, art direction, and verbal positioning.",
+      "pillar": "design-ownership",
+      "show_reusable": "0"
+    },
+    {
+      "slug": "faq-what-post-launch-support-is-included-after-our-p",
+      "question": "What post-launch support is included after our platform goes live?",
+      "answer": "Every fixed-scope launch includes a complimentary 30-day hypercare warranty covering production monitoring, cross-browser edge fixes, analytics verification, and recorded training walkthroughs for your team.",
+      "pillar": "support-retainers",
+      "show_reusable": "0"
+    },
+    {
+      "slug": "faq-can-alify-deploy-to-our-cloud-infrastructure-ver",
+      "question": "Can ALIFY deploy to our cloud infrastructure (Vercel, AWS, Cloudflare, cPanel)?",
+      "answer": "Yes. We configure CI/CD deployment pipelines, SSL certificates, CDN caching rules, and staging previews directly inside your own Vercel, Netlify, AWS, Cloudflare, or dedicated server accounts.",
+      "pillar": "support-retainers",
+      "show_reusable": "0"
+    },
+    {
+      "slug": "faq-how-do-ongoing-monthly-growth-product-retainers",
+      "question": "How do ongoing monthly growth & product retainers work?",
+      "answer": "Retainer partners get a dedicated senior design + engineering velocity allocation each month for A/B conversion testing, new product modules, SEO content hubs, and priority SLA support — with zero long-term lock-in.",
+      "pillar": "support-retainers",
+      "show_reusable": "0"
+    },
+    {
+      "slug": "faq-how-do-we-reach-alify-immediately-for-urgent-pro",
+      "question": "How do we reach ALIFY immediately for urgent project inquiries?",
+      "answer": "You can book a 30-minute strategy call directly on our site, email our partners at info@alify.site, or message our studio directly on WhatsApp at +90 301 9328094 for same-day executive triage.",
+      "pillar": "support-retainers",
+      "show_reusable": "0"
+    }
+  ],
+  "blog_posts": [
+    {
+      "slug": "scalable-design-systems",
+      "title": "Scalable Design Systems: How Modern Teams Ship UI 3x Faster",
+      "category": "Design Systems",
+      "date": "Oct 18, 2026",
+      "image": "assets/images/blog/blog-design-systems.jpg",
+      "tags": [
+        "Design Systems",
+        "Frontend Architecture",
+        "UI Tokens",
+        "CSS Craft"
+      ],
+      "content": "<h2>1. Why Most Design Systems Stall After Launch</h2>\nundefined\n\n<h2>2. Structuring a Token-First CSS Architecture</h2>\nundefined\n\n<h2>3. Designing Composable Component Patterns</h2>\nundefined\n\n<h2>4. Driving Cross-Functional Adoption</h2>\nundefined\n\n<h2>5. Measuring Real Engineering Velocity</h2>\nundefined"
+    },
+    {
+      "slug": "mastering-gsap-motion",
+      "title": "Mastering Web Motion: Crafting High-Performance Micro-Interactions with GSAP",
+      "category": "Motion & GSAP",
+      "date": "Oct 12, 2026",
+      "image": "assets/images/blog/blog-gsap-motion.jpg",
+      "tags": [
+        "GSAP",
+        "Web Animation",
+        "ScrollTrigger",
+        "Micro-Interactions"
+      ],
+      "content": "<h2>1. Choreography Over Scattered Animations</h2>\nundefined\n\n<h2>2. Sticking to GPU-Composited Properties</h2>\nundefined\n\n<h2>3. Designing Tactile CTA Micro-Interactions</h2>\nundefined\n\n<h2>4. ScrollTrigger Patterns That Respect the Reader</h2>\nundefined\n\n<h2>5. Building Motion as Progressive Enhancement</h2>\nundefined"
+    },
+    {
+      "slug": "conversion-ux-architecture",
+      "title": "Conversion-Led UX Architecture: Turning B2B Traffic Into Qualified Pipeline",
+      "category": "UX Strategy",
+      "date": "Oct 05, 2026",
+      "image": "assets/images/blog/blog-conversion-ux.jpg",
+      "tags": [
+        "UX Strategy",
+        "Conversion Optimization",
+        "B2B Web",
+        "Information Architecture"
+      ],
+      "content": "<h2>1. Engineering Above-the-Fold Clarity</h2>\nundefined\n\n<h2>2. Supporting High-Intent and Exploratory Visitors</h2>\nundefined\n\n<h2>3. Reducing Cognitive Load Across Inner Pages</h2>\nundefined\n\n<h2>4. Optimizing Mobile Navigation Ergonomics</h2>\nundefined\n\n<h2>5. Iterating With Post-Launch Analytics</h2>\nundefined"
+    },
+    {
+      "slug": "iconic-brand-identity",
+      "title": "Beyond the Logo: Building Iconic Digital Brand Identities That Endure",
+      "category": "Brand Identity",
+      "date": "Sep 28, 2026",
+      "image": "assets/images/blog/blog-brand-identity.jpg",
+      "tags": [
+        "Brand Identity",
+        "Typography",
+        "Art Direction",
+        "Visual Systems"
+      ],
+      "content": "<h2>1. The Strategic Power of Palette Restraint</h2>\nundefined\n\n<h2>2. Pairing Display Character With Editorial Legibility</h2>\nundefined\n\n<h2>3. Aligning Imagery With Interface Tokens</h2>\nundefined\n\n<h2>4. Creating Repeatable Signature Motifs</h2>\nundefined\n\n<h2>5. Scaling Brand Systems Across Touchpoints</h2>\nundefined"
+    },
+    {
+      "slug": "headless-ecommerce-2026",
+      "title": "Headless E-Commerce in 2026: Speed, Storytelling, and Checkout Velocity",
+      "category": "E-Commerce",
+      "date": "Sep 19, 2026",
+      "image": "assets/images/blog/blog-headless-commerce.jpg",
+      "tags": [
+        "E-Commerce",
+        "Headless Commerce",
+        "Performance",
+        "Checkout UX"
+      ],
+      "content": "<h2>1. Why High-Growth Brands Choose Decoupled Frontends</h2>\nundefined\n\n<h2>2. Blending Editorial Storytelling With Instant Filtering</h2>\nundefined\n\n<h2>3. Designing Frictionless Checkout Journeys</h2>\nundefined\n\n<h2>4. Smart Caching for Global Storefronts</h2>\nundefined\n\n<h2>5. Turning First-Time Buyers Into Repeat Advocates</h2>\nundefined"
+    },
+    {
+      "slug": "technical-seo-guide",
+      "title": "Core Web Vitals & Technical SEO: The Engineering Guide to Organic Growth",
+      "category": "Technical SEO",
+      "date": "Sep 10, 2026",
+      "image": "assets/images/blog/blog-technical-seo.jpg",
+      "tags": [
+        "Technical SEO",
+        "Core Web Vitals",
+        "Semantic HTML",
+        "Web Performance"
+      ],
+      "content": "<h2>1. Semantic HTML & Structured Heading Hierarchies</h2>\nundefined\n\n<h2>2. Self-Hosted WOFF2 Fonts & Zero Layout Shift</h2>\nundefined\n\n<h2>3. Breadcrumbs & Internal Link Equity</h2>\nundefined\n\n<h2>4. Keeping Interaction to Next Paint (INP) Crisp</h2>\nundefined\n\n<h2>5. Turning Technical Health Into Compounding Traffic</h2>\nundefined"
+    }
+  ]
+}
