@@ -829,13 +829,13 @@ function alify_inject_dynamic_cpts( $html ) {
 
 				$slides .= '<div class="blog-slide"><article class="blog-card">';
 				$slides .= '<a href="' . esc_url( $plink ) . '" class="blog-card-media">';
-				$slides .= '<img src="' . esc_url( $thumb ) . '" alt="' . esc_attr( get_the_title( $bp->ID ) ) . '" loading="lazy" />';
 				$slides .= '<span class="blog-card-category">' . esc_html( $cat_name ) . '</span>';
+				$slides .= '<img src="' . esc_url( $thumb ) . '" alt="' . esc_attr( get_the_title( $bp->ID ) ) . '" class="blog-card-img" loading="lazy" />';
 				$slides .= '</a><div class="blog-card-body">';
-				$slides .= '<div class="blog-card-meta"><span><i class="fa-regular fa-calendar" aria-hidden="true"></i> ' . esc_html( $date_str ) . '</span></div>';
+				$slides .= '<div class="blog-card-meta"><span class="blog-card-meta-item"><i class="fa-solid fa-calendar" aria-hidden="true"></i> <span>' . esc_html( $date_str ) . '</span></span></div>';
 				$slides .= '<h3 class="blog-card-title"><a href="' . esc_url( $plink ) . '">' . esc_html( get_the_title( $bp->ID ) ) . '</a></h3>';
 				$slides .= '<p class="blog-card-excerpt">' . esc_html( $excerpt ) . '</p>';
-				$slides .= '<div class="blog-card-footer"><a href="' . esc_url( $plink ) . '" class="blog-read-more"><span>Read More</span><span class="blog-read-more-icon" aria-hidden="true"><i class="fa-solid fa-arrow-up"></i></span></a></div>';
+				$slides .= '<div class="blog-card-footer"><a href="' . esc_url( $plink ) . '" class="blog-read-more"><span class="blog-read-more-pill">Read More</span><span class="blog-read-more-circle" aria-hidden="true"><i class="fa-solid fa-arrow-up blog-read-more-arrow"></i></span></a></div>';
 				$slides .= '</div></article></div>';
 			}
 			$html = alify_replace_container_inner( $html, 'id="homeBlogSliderTrack"', 'div', $slides );

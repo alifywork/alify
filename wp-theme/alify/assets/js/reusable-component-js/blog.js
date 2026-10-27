@@ -604,7 +604,12 @@ function initSingleBlogPage() {
     }
   }
 
-  // Build Left Table of Contents from Article H2 Headings
+  // Build Left Table of Contents from Article H2 Headings (Auto-ID Gutenberg H2s without explicit id)
+  Array.from(articleContainer.querySelectorAll("h2")).forEach((h, idx) => {
+    if (!h.id) {
+      h.id = "section-" + (idx + 1) + "-" + h.textContent.trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    }
+  });
   const headings = Array.from(articleContainer.querySelectorAll("h2[id]"));
   tocList.innerHTML = headings
     .map(

@@ -17,6 +17,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 function alify_upsert_starter_post( $post_type, $slug, $title, $content, $excerpt, $order = 0 ) {
 	$existing = get_page_by_path( $slug, OBJECT, $post_type );
 	if ( $existing ) {
+		if ( false !== strpos( (string) $existing->post_content, 'undefined' ) ) {
+			wp_update_post(
+				array(
+					'ID'           => $existing->ID,
+					'post_content' => $content,
+					'post_excerpt' => $excerpt,
+				)
+			);
+		}
 		return (int) $existing->ID;
 	}
 

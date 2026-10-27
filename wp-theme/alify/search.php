@@ -109,12 +109,12 @@ $alify_type_labels = array(
 						<div class="col-12 col-md-6 col-lg-4 blog-grid-col">
 							<article <?php post_class( 'blog-card' ); ?>>
 								<a href="<?php the_permalink(); ?>" class="blog-card-media">
-									<img src="<?php echo esc_url( $thumb_url ); ?>" alt="<?php the_title_attribute(); ?>" loading="lazy" />
 									<span class="blog-card-category"><?php echo esc_html( $type_badge ); ?></span>
+									<img src="<?php echo esc_url( $thumb_url ); ?>" alt="<?php the_title_attribute(); ?>" class="blog-card-img" loading="lazy" />
 								</a>
 								<div class="blog-card-body">
 									<div class="blog-card-meta">
-										<span><i class="fa-regular fa-calendar" aria-hidden="true"></i> <?php echo esc_html( get_the_date( 'M j, Y' ) ); ?></span>
+										<span class="blog-card-meta-item"><i class="fa-solid fa-calendar" aria-hidden="true"></i> <span><?php echo esc_html( get_the_date( 'M j, Y' ) ); ?></span></span>
 									</div>
 									<h2 class="blog-card-title">
 										<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
@@ -122,8 +122,8 @@ $alify_type_labels = array(
 									<p class="blog-card-excerpt"><?php echo esc_html( $excerpt ); ?></p>
 									<div class="blog-card-footer">
 										<a href="<?php the_permalink(); ?>" class="blog-read-more">
-											<span><?php esc_html_e( 'Explore Page', 'alify' ); ?></span>
-											<span class="blog-read-more-icon" aria-hidden="true"><i class="fa-solid fa-arrow-up"></i></span>
+											<span class="blog-read-more-pill"><?php esc_html_e( 'Explore Page', 'alify' ); ?></span>
+											<span class="blog-read-more-circle" aria-hidden="true"><i class="fa-solid fa-arrow-up blog-read-more-arrow"></i></span>
 										</a>
 									</div>
 								</div>
