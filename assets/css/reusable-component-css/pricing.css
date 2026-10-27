@@ -70,7 +70,24 @@
 .pricing-tiers-section {
   padding: 96px 0 88px;
   background-color: var(--color-secondary);
+  background-image:
+    radial-gradient(circle at 86% 12%, rgba(15, 52, 115, 0.085) 0%, rgba(15, 52, 115, 0) 48%),
+    radial-gradient(circle at 12% 86%, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0) 52%);
   position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.pricing-tiers-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: radial-gradient(rgba(15, 52, 115, 0.12) 1.25px, transparent 1.25px);
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(ellipse 76% 68% at 50% 38%, #000000 22%, transparent 86%);
+  mask-image: radial-gradient(ellipse 76% 68% at 50% 38%, #000000 22%, transparent 86%);
+  pointer-events: none;
 }
 
 .pricing-head-row {

@@ -283,9 +283,25 @@
 .home-industries-section {
   position: relative;
   background-color: var(--color-secondary);
+  background-image:
+    radial-gradient(circle at 90% 14%, rgba(15, 52, 115, 0.09) 0%, rgba(15, 52, 115, 0) 48%),
+    radial-gradient(circle at 8% 88%, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0) 50%);
   padding: 96px 0;
   border-bottom: 1px solid rgba(15, 52, 115, 0.08);
   overflow: hidden;
+  isolation: isolate;
+}
+
+.home-industries-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: radial-gradient(rgba(15, 52, 115, 0.14) 1.25px, transparent 1.25px);
+  background-size: 24px 24px;
+  -webkit-mask-image: radial-gradient(ellipse 76% 70% at 50% 46%, #000000 24%, transparent 88%);
+  mask-image: radial-gradient(ellipse 76% 70% at 50% 46%, #000000 24%, transparent 88%);
+  pointer-events: none;
 }
 
 .industries-head-row {

@@ -343,8 +343,38 @@ button.btn-start-project {
 .reusable-contact-section {
   position: relative;
   background-color: var(--color-secondary);
-  padding: 94px 0;
-  border-top: 1px solid rgba(15, 52, 115, 0.08);
+  padding: 96px 0;
+  border-top: 1px solid rgba(15, 52, 115, 0.1);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.reusable-contact-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image: url("../../images/about/about-studio-space.jpg");
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.03);
+  pointer-events: none;
+}
+
+.reusable-contact-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    112deg,
+    rgba(246, 244, 241, 0.95) 0%,
+    rgba(246, 244, 241, 0.9) 54%,
+    rgba(15, 52, 115, 0.18) 100%
+  );
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  pointer-events: none;
 }
 
 .reusable-contact-row {

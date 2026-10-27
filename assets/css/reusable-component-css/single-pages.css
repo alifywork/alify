@@ -339,9 +339,28 @@
 .single-process-section {
   position: relative;
   background-color: var(--color-black);
+  background-image:
+    radial-gradient(ellipse 78% 64% at 16% 18%, rgba(15, 52, 115, 0.82) 0%, rgba(15, 52, 115, 0) 64%),
+    radial-gradient(ellipse 68% 60% at 88% 86%, rgba(15, 52, 115, 0.58) 0%, rgba(0, 0, 0, 0) 68%);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
   color: var(--color-white);
   padding: 92px 0;
   overflow: hidden;
+  isolation: isolate;
+}
+
+.single-process-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse 78% 74% at 50% 50%, #000000 28%, transparent 90%);
+  mask-image: radial-gradient(ellipse 78% 74% at 50% 50%, #000000 28%, transparent 90%);
+  pointer-events: none;
 }
 
 .single-process-section .single-sec-eyebrow {

@@ -17,23 +17,34 @@
   color: var(--color-white);
   padding: 100px 0;
   overflow: hidden;
+  isolation: isolate;
 }
 
 .home-projects-section::before {
   content: "";
   position: absolute;
-  top: -180px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(920px, 94vw);
-  height: 360px;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(15, 52, 115, 0.38) 0%,
-    rgba(15, 52, 115, 0) 72%
-  );
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(15, 52, 115, 0.46) 0%, rgba(15, 52, 115, 0) 58%),
+    radial-gradient(circle at 12% 92%, rgba(15, 52, 115, 0.28) 0%, rgba(0, 0, 0, 0) 48%);
   pointer-events: none;
+}
+
+.home-projects-section::after {
+  content: "△";
+  position: absolute;
+  right: -36px;
+  top: -64px;
+  z-index: -1;
+  font-family: var(--font-garet);
+  font-weight: 800;
+  font-size: clamp(260px, 32vw, 440px);
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.065);
+  pointer-events: none;
+  user-select: none;
 }
 
 .projects-head-row {

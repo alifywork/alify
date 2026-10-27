@@ -12,9 +12,29 @@
 .home-case-studies-section {
   position: relative;
   background-color: var(--color-secondary);
+  background-image:
+    radial-gradient(circle at 12% 16%, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0) 48%),
+    linear-gradient(135deg, rgba(246, 244, 241, 0.6) 0%, rgba(15, 52, 115, 0.075) 100%);
   padding: 100px 0;
-  border-bottom: 1px solid rgba(15, 52, 115, 0.08);
+  border-bottom: 1px solid rgba(15, 52, 115, 0.1);
   overflow: hidden;
+  isolation: isolate;
+}
+
+.home-case-studies-section::after {
+  content: "△";
+  position: absolute;
+  right: -28px;
+  bottom: -74px;
+  z-index: -1;
+  font-family: var(--font-garet);
+  font-weight: 800;
+  font-size: clamp(240px, 30vw, 420px);
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(15, 52, 115, 0.085);
+  pointer-events: none;
+  user-select: none;
 }
 
 .cs-head-row {

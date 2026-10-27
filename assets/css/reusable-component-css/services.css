@@ -378,9 +378,38 @@
 .home-services-section {
   position: relative;
   background-color: var(--color-white);
+  background-image:
+    radial-gradient(circle at 86% 12%, rgba(15, 52, 115, 0.075) 0%, rgba(15, 52, 115, 0) 46%),
+    linear-gradient(
+      180deg,
+      var(--color-secondary) 0%,
+      var(--color-secondary) 56%,
+      var(--color-white) 56%,
+      var(--color-white) 100%
+    );
   padding: 96px 0;
+  border-top: 1px solid rgba(15, 52, 115, 0.08);
   border-bottom: 1px solid rgba(15, 52, 115, 0.08);
   overflow: hidden;
+  isolation: isolate;
+}
+
+.home-services-section::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 56%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(15, 52, 115, 0) 0%,
+    rgba(15, 52, 115, 0.14) 22%,
+    rgba(15, 52, 115, 0.14) 78%,
+    rgba(15, 52, 115, 0) 100%
+  );
+  z-index: -1;
+  pointer-events: none;
 }
 
 .services-head-row {
