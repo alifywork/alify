@@ -17,6 +17,7 @@ require_once ALIFY_THEME_DIR . '/inc/template-helpers.php';
 require_once ALIFY_THEME_DIR . '/inc/nav-walkers.php';
 require_once ALIFY_THEME_DIR . '/inc/setup.php';
 require_once ALIFY_THEME_DIR . '/inc/customizer.php';
+require_once ALIFY_THEME_DIR . '/inc/page-meta-boxes.php';
 require_once ALIFY_THEME_DIR . '/inc/post-types.php';
 require_once ALIFY_THEME_DIR . '/inc/cpt-meta-boxes.php';
 require_once ALIFY_THEME_DIR . '/inc/cpt-renderers.php';

@@ -76,7 +76,20 @@ All **6 Custom Post Types** + native WordPress **Blog Posts** are powered dynami
 
 ---
 
-## 5. WordPress Customizer & Leads CRM Inbox
+## 5. Editable Heroes, Custom Logo Sizing & Dynamic Pricing Controls
+
+- **Site Identity Custom Logo (`Appearance → Customize → Site Identity`)**:
+  - Upload an image logo + adjust **Custom Logo Max Height (24–72px)**, or leave blank to display the signature `△LIFY` Garet logo.
+- **Home Page Hero Customizer (`Appearance → Customize → ALIFY Home Page Hero`)**:
+  - Edit Availability Status Pill, 3-part Display Headline (`Part 1`, `Highlighted`, `Part 2`), Lead Paragraph, Secondary CTA Label, Home Hero Background Image (`WP_Customize_Image_Control`), and all 3 Animated Stat Counters (`150+`, `98%`, `12+`).
+- **Per-Page Hero & Visibility Meta Box (`WP Admin → Pages → Edit Page`)**:
+  - Override any page's Hero Eyebrow, `H1` Heading, Subtitle, and Background Image (via Media Library picker or WordPress Featured Image), plus toggle visibility of the Right-Side Hero Lead Form, Testimonials Slider, FAQs, Blog Slider, and Bottom Contact section per page.
+- **Pricing Tiers Customizer (`Appearance → Customize → ALIFY Pricing Tiers & Billing`)**:
+  - Edit all 3 Studio Pricing Plans (`Launch Sprint`, `Scale Ecosystem`, `Enterprise Squad`) — Sprint prices, Monthly Retainer prices, Sprint timelines, summaries, and feature lists sync automatically with the interactive Sprint/Retainer toggle and `Start a Project` handoff.
+
+---
+
+## 6. Studio Contact & Leads CRM Inbox
 
 - **Appearance → Customize → ALIFY Studio Settings**:
   - Studio Email (`info@alify.site`)
