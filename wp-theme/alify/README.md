@@ -89,12 +89,13 @@ All **6 Custom Post Types** + native WordPress **Blog Posts** are powered dynami
 
 ---
 
-## 6. Studio Contact & Leads CRM Inbox
+## 6. Studio Contact & Executive Leads CRM (`WP Admin → ALIFY Leads & Calls`)
 
-- **Appearance → Customize → ALIFY Studio Settings**:
-  - Studio Email (`info@alify.site`)
-  - WhatsApp Display Number (`+90 301 9328094`) & `wa.me` Link (`https://wa.me/903019328094`)
-  - Studio Headquarters (`Karachi, PK — Global Delivery`)
-  - Header CTA Label (`Start a Project`) & Social Profile Links
-- **WP Admin → ALIFY Leads & Calls**:
-  - Every submission from the Hero Lead Form, Reusable Contact Form, Contact Page, Start a Project Brief, Book a Call Page, and Global Strategy Call Modal is saved in WordPress Admin **AND** emailed via `wp_mail()` to your configured Studio Email (`info@alify.site`).
+- **Appearance → Customize → ALIFY Studio Contact & Brand**:
+  - Studio Email (`info@alify.site`), WhatsApp (`+90 301 9328094` / `https://wa.me/903019328094`), Headquarters, Header Button Labels, and Social Links.
+- **WP Admin → ALIFY Leads & Calls (`inc/ajax-forms.php` & `inc/leads-crm.php`)**:
+  - Captures Hero Lead Forms, Reusable Contact Forms, Contact Page, Start a Project Briefs (including Company & Budget), Book a Strategy Call Slots, Global Strategy Call Modal, and Footer Newsletter Subscribers (deduplicated by email) + emails `info@alify.site` via `wp_mail()`.
+  - **Unread Counter Bubble** in WP Admin sidebar for `New` leads.
+  - **Custom CRM Columns** (`Ref & Type`, `Status`, `Client & Direct WhatsApp / Email`, `Capability & Budget`, `Booked Slot / Source`, `Received`).
+  - **Admin Filter Dropdowns** by Lead Type (`Strategy Call`, `Project Brief`, `General Inquiry`, `Newsletter`) & Pipeline Status (`New`, `Contacted`, `Qualified`, `Closed / Won`).
+  - **1-Click `Export Leads CSV`** button (UTF-8 BOM Excel-ready CSV download) + **Internal Studio Team Notes** meta box.

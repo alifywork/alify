@@ -33,6 +33,14 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    if (window.alifyPostLeadToWP) {
+      window.alifyPostLeadToWP({
+        email,
+        leadType: "newsletter",
+        capability: "Studio Insights Newsletter",
+      });
+    }
+
     if (newsletterMsg) {
       newsletterMsg.textContent = "Thank you for subscribing to ALIFY insights!";
     }

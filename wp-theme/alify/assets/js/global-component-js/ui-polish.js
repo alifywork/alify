@@ -13,6 +13,9 @@
     const fd = new FormData();
     fd.append("action", "alify_submit_lead");
     fd.append("nonce", cfg.nonce || "");
+    if (!payload || !payload.sourceUrl) {
+      fd.append("sourceUrl", window.location.pathname + window.location.search);
+    }
     Object.keys(payload || {}).forEach((k) => fd.append(k, payload[k] || ""));
     return fetch(cfg.ajaxUrl, { method: "POST", body: fd, credentials: "same-origin" }).catch(() => {});
   };

@@ -83,6 +83,19 @@ document.addEventListener("DOMContentLoaded", () => {
         // Ignore storage restrictions
       }
 
+      const msgVal = (form.querySelector("textarea")?.value || "").trim();
+      const phVal = (form.querySelector("input[type='tel']")?.value || "").trim();
+      const compEl = form.querySelector("input[name*='company' i], input[id*='company' i], input[placeholder*='Company' i]");
+      const companyVal = (compEl && compEl !== nameInput ? compEl.value : "").trim();
+      const checkedBudget = form.querySelector("input[type='radio']:checked");
+      let budgetVal = checkedBudget ? (checkedBudget.parentElement?.textContent?.trim() || checkedBudget.value || "") : "";
+      if (!budgetVal) {
+        const selects = Array.from(form.querySelectorAll("select"));
+        if (selects.length > 1 && selects[1].selectedIndex > 0) {
+          budgetVal = selects[1].options[selects[1].selectedIndex].text.trim();
+        }
+      }
+
       if (feedbackText) {
         feedbackText.textContent =
           "Thank you! Redirecting to your confirmation summary...";
@@ -90,9 +103,9 @@ document.addEventListener("DOMContentLoaded", () => {
       feedback?.classList.add("is-visible");
       form.reset();
 
-      const msgVal = (form.querySelector("textarea")?.value || "").trim();
-      const phVal = (form.querySelector("input[type='tel']")?.value || "").trim();
-      const sendPromise = window.alifyPostLeadToWP ? window.alifyPostLeadToWP({ ...payload, phone: phVal, message: msgVal }) : Promise.resolve();
+      const sendPromise = window.alifyPostLeadToWP
+        ? window.alifyPostLeadToWP({ ...payload, phone: phVal, company: companyVal, budget: budgetVal, message: msgVal })
+        : Promise.resolve();
       sendPromise.finally(() => {
         setTimeout(() => {
           window.location.href = (window.ALIFY_WP && window.ALIFY_WP.thankYouUrl) || "thank-you.html";
