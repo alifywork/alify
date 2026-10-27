@@ -89,27 +89,35 @@ $alify_socials = array(
 					<?php esc_html_e( 'A design-first digital studio engineering bespoke websites, brand systems, and scalable products for ambitious companies worldwide.', 'alify' ); ?>
 				</p>
 
-				<label for="footerNewsletterInput" class="footer-newsletter-label">
-					<?php esc_html_e( 'Subscribe to Studio Insights', 'alify' ); ?>
-				</label>
-				<form class="footer-newsletter-form" id="footerNewsletterForm" novalidate>
-					<input
-						type="email"
-						id="footerNewsletterInput"
-						class="footer-newsletter-input"
-						placeholder="<?php esc_attr_e( 'Enter your work email', 'alify' ); ?>"
-						aria-label="<?php esc_attr_e( 'Work email address', 'alify' ); ?>"
-						required
-					/>
-					<button
-						type="submit"
-						class="footer-newsletter-btn"
-						aria-label="<?php esc_attr_e( 'Subscribe', 'alify' ); ?>"
-					>
-						<i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
-					</button>
-				</form>
-				<p class="footer-newsletter-msg" id="footerNewsletterMsg" aria-live="polite"></p>
+				<?php
+				if ( function_exists( 'alify_render_form_template_html' ) ) {
+					echo alify_render_form_template_html( 'newsletter' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				} else {
+					?>
+					<label for="footerNewsletterInput" class="footer-newsletter-label">
+						<?php esc_html_e( 'Subscribe to Studio Insights', 'alify' ); ?>
+					</label>
+					<form class="footer-newsletter-form" id="footerNewsletterForm" novalidate>
+						<input
+							type="email"
+							id="footerNewsletterInput"
+							class="footer-newsletter-input"
+							placeholder="<?php esc_attr_e( 'Enter your work email', 'alify' ); ?>"
+							aria-label="<?php esc_attr_e( 'Work email address', 'alify' ); ?>"
+							required
+						/>
+						<button
+							type="submit"
+							class="footer-newsletter-btn"
+							aria-label="<?php esc_attr_e( 'Subscribe', 'alify' ); ?>"
+						>
+							<i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+						</button>
+					</form>
+					<p class="footer-newsletter-msg" id="footerNewsletterMsg" aria-live="polite"></p>
+					<?php
+				}
+				?>
 
 				<div class="footer-socials" aria-label="<?php esc_attr_e( 'Social Media Links', 'alify' ); ?>">
 					<?php foreach ( $alify_socials as $soc ) : ?>

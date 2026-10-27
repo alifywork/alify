@@ -17,7 +17,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Newsletter Form Feedback
   const newsletterForm = document.getElementById("footerNewsletterForm");
-  const newsletterInput = document.getElementById("footerNewsletterInput");
+  const newsletterInput =
+    document.getElementById("footerNewsletterInput") ||
+    newsletterForm?.querySelector("input[type='email']");
   const newsletterMsg = document.getElementById("footerNewsletterMsg");
 
   newsletterForm?.addEventListener("submit", (e) => {
@@ -35,6 +37,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (window.alifyPostLeadToWP) {
       window.alifyPostLeadToWP({
+        formTemplate: newsletterForm.dataset.formTemplate || "newsletter",
+        alify_hp: newsletterForm.querySelector("input[name='alify_hp']")?.value || "",
         email,
         leadType: "newsletter",
         capability: "Studio Insights Newsletter",
@@ -42,7 +46,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (newsletterMsg) {
-      newsletterMsg.textContent = "Thank you for subscribing to ALIFY insights!";
+      newsletterMsg.textContent =
+        newsletterForm.dataset.successMsg ||
+        "Thank you for subscribing to ALIFY insights!";
     }
     if (newsletterInput) {
       newsletterInput.value = "";

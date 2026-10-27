@@ -9,7 +9,7 @@
 
   window.alifyPostLeadToWP = function (payload) {
     const cfg = window.ALIFY_WP;
-    if (!cfg || !cfg.ajaxUrl) return Promise.resolve();
+    if (!cfg || !cfg.ajaxUrl) return Promise.resolve(null);
     const fd = new FormData();
     fd.append("action", "alify_submit_lead");
     fd.append("nonce", cfg.nonce || "");
@@ -17,7 +17,9 @@
       fd.append("sourceUrl", window.location.pathname + window.location.search);
     }
     Object.keys(payload || {}).forEach((k) => fd.append(k, payload[k] || ""));
-    return fetch(cfg.ajaxUrl, { method: "POST", body: fd, credentials: "same-origin" }).catch(() => {});
+    return fetch(cfg.ajaxUrl, { method: "POST", body: fd, credentials: "same-origin" })
+      .then((r) => r.json())
+      .catch(() => null);
   };
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -254,12 +256,21 @@
       });
     }
 
-    const timeSlots = ["10:00 AM", "11:30 AM", "02:00 PM", "03:30 PM", "05:00 PM", "06:30 PM"];
-    const channels = [
-      { id: "Google Meet", icon: "fa-solid fa-video", label: "Google Meet" },
-      { id: "Zoom Video", icon: "fa-solid fa-desktop", label: "Zoom Video" },
-      { id: "WhatsApp Call", icon: "fa-brands fa-whatsapp", label: "WhatsApp Call" },
-    ];
+    const scCfg = (window.ALIFY_WP && window.ALIFY_WP.strategyCall) || {};
+    const scDisabled = scCfg.mode === "disabled";
+    const timeSlots = Array.isArray(scCfg.slots) && scCfg.slots.length
+      ? scCfg.slots
+      : ["10:00 AM", "11:30 AM", "02:00 PM", "03:30 PM", "05:00 PM", "06:30 PM"];
+    const rawChannels = Array.isArray(scCfg.channels) && scCfg.channels.length
+      ? scCfg.channels
+      : ["Google Meet", "Zoom Video", "WhatsApp Call"];
+    const channels = rawChannels.map((lbl) => ({
+      id: lbl,
+      icon: /zoom/i.test(lbl) ? "fa-solid fa-desktop" : /whatsapp/i.test(lbl) ? "fa-brands fa-whatsapp" : "fa-solid fa-video",
+      label: lbl,
+    }));
+    const waUrl = (window.ALIFY_WP && window.ALIFY_WP.whatsappUrl) || "https://wa.me/903019328094";
+    const waLabel = (window.ALIFY_WP && window.ALIFY_WP.whatsapp) || "+90 301 9328094";
 
     // Floating Quick Action Dock (WhatsApp + Book Strategy Call)
     if (!document.querySelector(".alify-quick-dock")) {
@@ -267,17 +278,17 @@
       dock.className = "alify-quick-dock";
       dock.innerHTML = `
         <a
-          href="https://wa.me/903019328094"
+          href="${waUrl}"
           target="_blank"
           rel="noopener noreferrer"
           class="alify-dock-wa"
-          aria-label="Chat on WhatsApp +90 301 9328094"
-          title="WhatsApp: +90 301 9328094"
+          aria-label="Chat on WhatsApp ${waLabel}"
+          title="WhatsApp: ${waLabel}"
         >
           <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
         </a>
         ${
-          isBookCallPage
+          isBookCallPage || scDisabled
             ? ""
             : `<button type="button" class="alify-dock-call-btn" data-open-book-call>
                 <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
@@ -287,6 +298,8 @@
       `;
       document.body.appendChild(dock);
     }
+
+    if (scDisabled) return;
 
     const modal = document.createElement("div");
     modal.id = "alifyBookCallModal";
@@ -309,13 +322,13 @@
               <div>
                 <span class="alify-book-badge">
                   <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
-                  30-Min Executive Discovery
+                  ${scCfg.badge || "30-Min Executive Discovery"}
                 </span>
                 <h2 class="alify-book-aside-title" id="alifyBookModalTitle">
-                  Book a Strategy Call With ALIFY.
+                  ${scCfg.title || "Book a Strategy Call With ALIFY."}
                 </h2>
                 <p class="alify-book-aside-desc">
-                  Speak directly with a Senior Product Architect &amp; Managing Partner — zero junior sales scripts, concrete roadmap &amp; fixed sprint clarity.
+                  ${scCfg.subtitle || "Speak directly with a Senior Product Architect &amp; Managing Partner — zero junior sales scripts, concrete roadmap &amp; fixed sprint clarity."}
                 </p>
 
                 <ul class="alify-book-agenda">
@@ -540,7 +553,8 @@
 
       const tz = tzSelect ? tzSelect.value : "PKT (UTC+5)";
       const slotSummary = `${upcomingDates[selDateIdx].label}, ${selSlot} (${tz})`;
-      const refNum = `CALL-${Math.floor(1000 + Math.random() * 9000)}`;
+      const callPrefix = (window.ALIFY_WP && window.ALIFY_WP.callRefPrefix) || "CALL-";
+      const refNum = `${callPrefix}${Math.floor(1000 + Math.random() * 9000)}`;
 
       try {
         sessionStorage.setItem(
@@ -558,10 +572,28 @@
         // Ignore storage restrictions
       }
 
-      window.alifyPostLeadToWP({ name: nameVal, email: emailVal, capability: `30-Min Strategy Call · ${selChannel}`, bookingSlot: slotSummary, message: (modal.querySelector("#alifyBookNote")?.value || "").trim(), ref: refNum }).finally(() => {
-        closeModal();
-        window.location.href = (window.ALIFY_WP && window.ALIFY_WP.thankYouUrl) || "thank-you.html";
-      });
+      window
+        .alifyPostLeadToWP({
+          formTemplate: "strategy_call",
+          leadType: "strategy_call",
+          name: nameVal,
+          email: emailVal,
+          capability: `30-Min Strategy Call · ${selChannel}`,
+          bookingSlot: slotSummary,
+          message: (modal.querySelector("#alifyBookNote")?.value || "").trim(),
+          ref: refNum,
+        })
+        .then((res) => {
+          closeModal();
+          const behavior = (res && res.data && res.data.submissionBehavior) || (window.ALIFY_WP && window.ALIFY_WP.submissionBehavior) || "redirect";
+          if (behavior === "inline") return;
+          const targetUrl =
+            (scCfg && scCfg.redirectUrl) ||
+            (res && res.data && res.data.redirectUrl) ||
+            (window.ALIFY_WP && window.ALIFY_WP.thankYouUrl) ||
+            "thank-you.html";
+          window.location.href = targetUrl;
+        });
     });
   };
 

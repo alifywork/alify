@@ -52,25 +52,30 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // Extract lead details for personalized Thank You page confirmation
-      const nameInput = form.querySelector("input[type='text']");
+      // Extract lead details for CRM, Email & Thank You page confirmation
+      const hpInput = form.querySelector("input[name='alify_hp']");
+      const nameInput = Array.from(form.querySelectorAll("input[type='text']")).find((el) => el !== hpInput);
       const emailInput = form.querySelector("input[type='email']");
       const selectEl = form.querySelector("select");
       const checkedPills = Array.from(
-        form.querySelectorAll("input[type='checkbox']:checked")
+        form.querySelectorAll("input[name='scope_services']:checked")
       )
-        .map((cb) => cb.parentElement?.textContent?.trim())
+        .map((cb) => cb.value || cb.parentElement?.textContent?.trim())
         .filter(Boolean);
 
       let capability = "Custom Digital Strategy & Build";
       if (checkedPills.length) {
-        capability = checkedPills.slice(0, 2).join(", ");
+        capability = checkedPills.slice(0, 3).join(", ");
       } else if (selectEl && selectEl.selectedIndex > 0) {
         capability = selectEl.options[selectEl.selectedIndex].text.trim();
       }
 
-      const refNum = `ALF-${Math.floor(1000 + Math.random() * 9000)}`;
+      const refPrefix = (window.ALIFY_WP && window.ALIFY_WP.leadRefPrefix) || "ALF-";
+      const refNum = `${refPrefix}${Math.floor(1000 + Math.random() * 9000)}`;
       const payload = {
+        formTemplate: form.dataset.formTemplate || "",
+        leadType: form.dataset.leadType || "",
+        alify_hp: hpInput?.value || "",
         name: nameInput?.value.trim() || "",
         email: emailInput?.value.trim() || "",
         capability,
@@ -85,30 +90,67 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const msgVal = (form.querySelector("textarea")?.value || "").trim();
       const phVal = (form.querySelector("input[type='tel']")?.value || "").trim();
-      const compEl = form.querySelector("input[name*='company' i], input[id*='company' i], input[placeholder*='Company' i]");
+      const compEl = form.querySelector("input[name='company'], input[id*='Company'], input[id*='Website']");
       const companyVal = (compEl && compEl !== nameInput ? compEl.value : "").trim();
-      const checkedBudget = form.querySelector("input[type='radio']:checked");
-      let budgetVal = checkedBudget ? (checkedBudget.parentElement?.textContent?.trim() || checkedBudget.value || "") : "";
+      const subjEl = form.querySelector("input[name='subject'], input[id*='Subject']");
+      const subjectVal = (subjEl && subjEl !== nameInput ? subjEl.value : "").trim();
+      const timelineRadio = form.querySelector("input[name='project_timeline']:checked");
+      const timelineVal = timelineRadio ? (timelineRadio.value || "") : "";
+      const channelRadio = form.querySelector("input[name='preferred_channel']:checked");
+      const channelVal = channelRadio ? (channelRadio.value || "") : "";
+
+      const checkedBudget = form.querySelector("input[name='project_budget']:checked");
+      let budgetVal = checkedBudget ? (checkedBudget.value || checkedBudget.parentElement?.textContent?.trim() || "") : "";
       if (!budgetVal) {
-        const selects = Array.from(form.querySelectorAll("select"));
-        if (selects.length > 1 && selects[1].selectedIndex > 0) {
-          budgetVal = selects[1].options[selects[1].selectedIndex].text.trim();
+        const budgetSelect = form.querySelector("select[name='budget'], #cpBudget");
+        if (budgetSelect && budgetSelect.selectedIndex > 0) {
+          budgetVal = budgetSelect.options[budgetSelect.selectedIndex].text.trim();
         }
       }
 
+      const redirectMode =
+        form.dataset.redirectMode ||
+        (window.ALIFY_WP && window.ALIFY_WP.submissionBehavior) ||
+        "redirect";
+      const inlineMsg =
+        form.dataset.successMsg ||
+        "Thank you! Your request has been received — our team will reply within 24 hours.";
+
       if (feedbackText) {
         feedbackText.textContent =
-          "Thank you! Redirecting to your confirmation summary...";
+          redirectMode === "inline"
+            ? `${inlineMsg} (Ref: ${refNum})`
+            : "Thank you! Redirecting to your confirmation summary...";
       }
       feedback?.classList.add("is-visible");
       form.reset();
 
       const sendPromise = window.alifyPostLeadToWP
-        ? window.alifyPostLeadToWP({ ...payload, phone: phVal, company: companyVal, budget: budgetVal, message: msgVal })
-        : Promise.resolve();
-      sendPromise.finally(() => {
+        ? window.alifyPostLeadToWP({
+            ...payload,
+            phone: phVal,
+            company: companyVal,
+            budget: budgetVal,
+            timeline: timelineVal,
+            subject: subjectVal,
+            channel: channelVal,
+            message: msgVal,
+          })
+        : Promise.resolve(null);
+
+      sendPromise.then((res) => {
+        const finalMode =
+          (res && res.data && res.data.submissionBehavior) || redirectMode;
+        if (finalMode === "inline") {
+          return;
+        }
+        const targetUrl =
+          form.dataset.redirectUrl ||
+          (res && res.data && res.data.redirectUrl) ||
+          (window.ALIFY_WP && window.ALIFY_WP.thankYouUrl) ||
+          "thank-you.html";
         setTimeout(() => {
-          window.location.href = (window.ALIFY_WP && window.ALIFY_WP.thankYouUrl) || "thank-you.html";
+          window.location.href = targetUrl;
         }, 320);
       });
     });

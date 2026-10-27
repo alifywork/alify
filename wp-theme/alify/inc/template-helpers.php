@@ -81,6 +81,9 @@ function alify_transform_markup( $html ) {
 	if ( function_exists( 'alify_apply_page_and_customizer_overrides' ) ) {
 		$html = alify_apply_page_and_customizer_overrides( $html );
 	}
+	if ( function_exists( 'alify_apply_dynamic_form_templates' ) ) {
+		$html = alify_apply_dynamic_form_templates( $html );
+	}
 	if ( function_exists( 'alify_inject_dynamic_cpts' ) ) {
 		$html = alify_inject_dynamic_cpts( $html );
 	}

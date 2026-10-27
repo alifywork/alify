@@ -188,26 +188,31 @@ function alify_enqueue_assets() {
 	wp_enqueue_script( 'alify-footer-js', alify_asset_uri( 'assets/js/global-component-js/footer.js' ), array(), alify_file_ver( 'assets/js/global-component-js/footer.js' ), true );
 	wp_enqueue_script( 'alify-ui-polish-js', alify_asset_uri( 'assets/js/global-component-js/ui-polish.js' ), array(), alify_file_ver( 'assets/js/global-component-js/ui-polish.js' ), true );
 
+	$forms_js_cfg = function_exists( 'alify_get_frontend_forms_js_config' ) ? alify_get_frontend_forms_js_config() : array();
+
 	wp_localize_script(
 		'alify-ui-polish-js',
 		'ALIFY_WP',
-		array(
-			'ajaxUrl'          => admin_url( 'admin-ajax.php' ),
-			'nonce'            => wp_create_nonce( 'alify_ajax_nonce' ),
-			'themeUri'         => untrailingslashit( ALIFY_THEME_URI ),
-			'homeUrl'          => home_url( '/' ),
-			'thankYouUrl'      => alify_page_url( 'thank-you' ),
-			'bookCallUrl'      => alify_page_url( 'book-call' ),
-			'startProjectUrl'  => alify_page_url( 'start-project' ),
-			'blogUrl'          => alify_page_url( 'blog' ),
-			'workUrl'          => alify_page_url( 'work' ),
-			'workSingleUrl'    => alify_page_url( 'work-single' ),
-			'caseSingleUrl'    => alify_page_url( 'case-study-single' ),
-			'serviceSingleUrl' => alify_page_url( 'service-single' ),
-			'blogSingleUrl'    => alify_page_url( 'blog-single' ),
-			'email'            => get_theme_mod( 'alify_email', 'info@alify.site' ),
-			'whatsapp'         => get_theme_mod( 'alify_whatsapp', '+90 301 9328094' ),
-			'whatsappUrl'      => get_theme_mod( 'alify_whatsapp_url', 'https://wa.me/903019328094' ),
+		array_merge(
+			array(
+				'ajaxUrl'          => admin_url( 'admin-ajax.php' ),
+				'nonce'            => wp_create_nonce( 'alify_ajax_nonce' ),
+				'themeUri'         => untrailingslashit( ALIFY_THEME_URI ),
+				'homeUrl'          => home_url( '/' ),
+				'thankYouUrl'      => alify_page_url( 'thank-you' ),
+				'bookCallUrl'      => alify_page_url( 'book-call' ),
+				'startProjectUrl'  => alify_page_url( 'start-project' ),
+				'blogUrl'          => alify_page_url( 'blog' ),
+				'workUrl'          => alify_page_url( 'work' ),
+				'workSingleUrl'    => alify_page_url( 'work-single' ),
+				'caseSingleUrl'    => alify_page_url( 'case-study-single' ),
+				'serviceSingleUrl' => alify_page_url( 'service-single' ),
+				'blogSingleUrl'    => alify_page_url( 'blog-single' ),
+				'email'            => get_theme_mod( 'alify_email', 'info@alify.site' ),
+				'whatsapp'         => get_theme_mod( 'alify_whatsapp', '+90 301 9328094' ),
+				'whatsappUrl'      => get_theme_mod( 'alify_whatsapp_url', 'https://wa.me/903019328094' ),
+			),
+			$forms_js_cfg
 		)
 	);
 

@@ -89,16 +89,20 @@ All **6 Custom Post Types** + native WordPress **Blog Posts** are powered dynami
 
 ---
 
-## 6. Studio Contact & Executive Leads CRM (`WP Admin → ALIFY Leads & Calls`)
+## 6. Studio Contact, Executive Leads CRM, Form Templates & Forms Settings (`WP Admin → ALIFY Leads & Calls`)
 
 - **Appearance → Customize → ALIFY Studio Contact & Brand**:
   - Studio Email (`info@alify.site`), WhatsApp (`+90 301 9328094` / `https://wa.me/903019328094`), Headquarters, Header Button Labels, and Social Links.
-- **WP Admin → ALIFY Leads & Calls (`inc/ajax-forms.php` & `inc/leads-crm.php`)**:
-  - Captures Hero Lead Forms, Reusable Contact Forms, Contact Page, Start a Project Briefs (including Company & Budget), Book a Strategy Call Slots, Global Strategy Call Modal, and Footer Newsletter Subscribers (deduplicated by email) + emails `info@alify.site` via `wp_mail()`.
+- **WP Admin → ALIFY Leads & Calls → All Leads & Calls (`inc/leads-crm.php`)**:
+  - Captures Hero Lead Forms, Reusable Contact Forms, Contact Page, Start a Project Briefs (including Company, Budget & Timeline), Book a Strategy Call Slots, Global Strategy Call Modal, Footer Newsletter Subscribers (deduplicated by email), and any Custom Shortcode Form!
   - **Unread Counter Bubble** in WP Admin sidebar for `New` leads.
-  - **Custom CRM Columns** (`Ref & Type`, `Status`, `Client & Direct WhatsApp / Email`, `Capability & Budget`, `Booked Slot / Source`, `Received`).
-  - **Admin Filter Dropdowns** by Lead Type (`Strategy Call`, `Project Brief`, `General Inquiry`, `Newsletter`) & Pipeline Status (`New`, `Contacted`, `Qualified`, `Closed / Won`).
-  - **1-Click `Export Leads CSV`** button (UTF-8 BOM Excel-ready CSV download) + **Internal Studio Team Notes** meta box.
+  - **Custom CRM Columns** (`Ref & Type`, `Status`, `Client & Direct WhatsApp / Email`, `Capability & Budget`, `Form Template / Booked Slot / Source`, `Received`).
+  - **Admin Filter Dropdowns** by Lead Type & Pipeline Status + **1-Click `Export Leads CSV`** button + **Internal Studio Team Notes** meta box.
+- **WP Admin → ALIFY Leads & Calls → Form Templates (`inc/forms-manager.php`)**:
+  - Visual editor for all **6 Built-In Theme Forms** (`reusable_contact`, `contact_page`, `start_project`, `hero_lead`, `strategy_call`, `newsletter`) — edit Titles, Subtitles, Submit Button Labels, Services/Capabilities options, Budget ranges, Timeline pills, Strategy Call Tracks/Slots/Channels, Custom Redirect URLs, Per-Form Recipient Overrides, or switch any form to an **External Plugin Shortcode** (Contact Form 7, WPForms, Fluent Forms) or **Hidden**.
+  - **WordPress Shortcode `[alify_form id="..."]`** — embed any built-in form or create unlimited **Custom Form Templates (`+ Create New Form Template`)** for any WordPress page or blog post.
+- **WP Admin → ALIFY Leads & Calls → Forms Settings (`inc/forms-manager.php` & `inc/ajax-forms.php`)**:
+  - Manage Admin Email Notifications (multiple To, CC, BCC, Sender Name/Email, Subject tags, and **1-Click Test Email**), **Client Auto-Responder Confirmation Emails**, **Redirect vs. Inline Confirmation Mode**, **Honeypot + IP Rate Limiting + Blocked Spam Domains**, and **Outbound CRM Webhooks (Zapier / Make / Slack)**.
 
 ---
 

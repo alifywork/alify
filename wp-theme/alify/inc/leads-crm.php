@@ -149,12 +149,16 @@ function alify_lead_render_custom_column( $column, $post_id ) {
 			echo '<br /><strong style="color:#0f3473;font-size:12px;">Budget: ' . esc_html( $budget ) . '</strong>';
 		}
 	} elseif ( 'alify_slot' === $column ) {
+		$tpl_slug = get_post_meta( $post_id, '_alify_lead_template', true );
+		if ( ! empty( $tpl_slug ) ) {
+			echo '<span style="display:inline-block;margin-bottom:3px;padding:1px 7px;border-radius:4px;background:#f3f4f6;color:#374151;font-size:11px;font-weight:600;">Form: ' . esc_html( $tpl_slug ) . '</span><br />';
+		}
 		if ( ! empty( $slot ) ) {
 			echo '<strong style="color:#0f8a73;">' . esc_html( $slot ) . '</strong><br />';
 		}
 		if ( ! empty( $src ) ) {
 			echo '<code style="font-size:11px;">' . esc_html( $src ) . '</code>';
-		} elseif ( empty( $slot ) ) {
+		} elseif ( empty( $slot ) && empty( $tpl_slug ) ) {
 			echo '—';
 		}
 	}
@@ -226,8 +230,14 @@ function alify_leads_extra_tablenav( $which ) {
 		'alify_lead_status'      => isset( $_GET['alify_lead_status'] ) ? sanitize_key( wp_unslash( $_GET['alify_lead_status'] ) ) : '', // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	);
 	$export_url  = wp_nonce_url( add_query_arg( $export_args, admin_url( 'edit.php?post_type=alify_lead' ) ), 'alify_export_leads_csv_action' );
+	$tpls_url    = add_query_arg( array( 'post_type' => 'alify_lead', 'page' => 'alify-form-templates' ), admin_url( 'edit.php' ) );
+	$settings_url= add_query_arg( array( 'post_type' => 'alify_lead', 'page' => 'alify-forms-settings' ), admin_url( 'edit.php' ) );
 
-	echo '<div class="alignleft actions"><a href="' . esc_url( $export_url ) . '" class="button button-primary">' . esc_html__( 'Export Leads CSV', 'alify' ) . '</a></div>';
+	echo '<div class="alignleft actions" style="display:inline-flex;gap:6px;">';
+	echo '<a href="' . esc_url( $export_url ) . '" class="button button-primary">' . esc_html__( 'Export Leads CSV', 'alify' ) . '</a>';
+	echo '<a href="' . esc_url( $tpls_url ) . '" class="button">' . esc_html__( 'Form Templates', 'alify' ) . '</a>';
+	echo '<a href="' . esc_url( $settings_url ) . '" class="button">' . esc_html__( 'Forms Settings', 'alify' ) . '</a>';
+	echo '</div>';
 }
 add_action( 'manage_posts_extra_tablenav', 'alify_leads_extra_tablenav' );
 
@@ -342,11 +352,15 @@ function alify_render_lead_detail_meta_box( $post ) {
 	$details = array(
 		'Reference ID'       => get_post_meta( $pid, '_alify_lead_ref', true ),
 		'Lead Type'          => $type,
+		'Form Template'      => get_post_meta( $pid, '_alify_lead_template', true ),
 		'Client Name'        => get_post_meta( $pid, '_alify_lead_name', true ),
 		'Email Address'      => $email,
 		'Phone / WhatsApp'   => $phone,
 		'Company'            => get_post_meta( $pid, '_alify_lead_company', true ),
 		'Estimated Budget'   => get_post_meta( $pid, '_alify_lead_budget', true ),
+		'Target Timeline'    => get_post_meta( $pid, '_alify_lead_timeline', true ),
+		'Subject'            => get_post_meta( $pid, '_alify_lead_subject', true ),
+		'Preferred Channel'  => get_post_meta( $pid, '_alify_lead_channel', true ),
 		'Capability / Track' => get_post_meta( $pid, '_alify_lead_capability', true ),
 		'Reserved Slot'      => get_post_meta( $pid, '_alify_lead_slot', true ),
 		'Submitted From'     => get_post_meta( $pid, '_alify_lead_source_url', true ),

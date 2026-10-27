@@ -126,9 +126,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const nameVal = form.querySelector("#bookVisitorName")?.value.trim() || "";
     const emailVal = form.querySelector("#bookVisitorEmail")?.value.trim() || "";
+    const companyVal = form.querySelector("#bookVisitorCompany")?.value.trim() || "";
+    const hpVal = form.querySelector("input[name='alify_hp']")?.value || "";
     const tz = tzSelect ? tzSelect.value : "PKT (UTC+5)";
     const slotSummary = `${dates[activeDateIdx].md}, ${activeSlot} (${tz})`;
-    const refCode = `CALL-${Math.floor(1000 + Math.random() * 9000)}`;
+    const callPrefix = (window.ALIFY_WP && window.ALIFY_WP.callRefPrefix) || "CALL-";
+    const refCode = `${callPrefix}${Math.floor(1000 + Math.random() * 9000)}`;
 
     try {
       sessionStorage.setItem(
@@ -147,14 +150,47 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const fb = form.querySelector(".alify-form-feedback");
+    const fbTxt = fb?.querySelector(".alify-feedback-text");
+    const redirectMode =
+      form.dataset.redirectMode ||
+      (window.ALIFY_WP && window.ALIFY_WP.submissionBehavior) ||
+      "redirect";
+    if (fbTxt && redirectMode === "inline") {
+      fbTxt.textContent = `${form.dataset.successMsg || "Your 30-minute strategy call slot is confirmed!"} (Ref: ${refCode})`;
+    }
     fb?.classList.add("is-visible");
 
     const phVal = form.querySelector("#bookVisitorWhatsapp")?.value.trim() || "";
     const noteVal = form.querySelector("#bookVisitorAgenda")?.value.trim() || "";
-    const sendPromise = window.alifyPostLeadToWP ? window.alifyPostLeadToWP({ name: nameVal, email: emailVal, phone: phVal, capability: `${activeTrack} · ${activeChannel}`, bookingSlot: slotSummary, message: noteVal, ref: refCode }) : Promise.resolve();
-    sendPromise.finally(() => {
+    const sendPromise = window.alifyPostLeadToWP
+      ? window.alifyPostLeadToWP({
+          formTemplate: "strategy_call",
+          leadType: "strategy_call",
+          alify_hp: hpVal,
+          name: nameVal,
+          email: emailVal,
+          phone: phVal,
+          company: companyVal,
+          capability: `${activeTrack} · ${activeChannel}`,
+          bookingSlot: slotSummary,
+          message: noteVal,
+          ref: refCode,
+        })
+      : Promise.resolve(null);
+
+    sendPromise.then((res) => {
+      const finalMode = (res && res.data && res.data.submissionBehavior) || redirectMode;
+      if (finalMode === "inline") {
+        form.reset();
+        return;
+      }
+      const targetUrl =
+        form.dataset.redirectUrl ||
+        (res && res.data && res.data.redirectUrl) ||
+        (window.ALIFY_WP && window.ALIFY_WP.thankYouUrl) ||
+        "thank-you.html";
       setTimeout(() => {
-        window.location.href = (window.ALIFY_WP && window.ALIFY_WP.thankYouUrl) || "thank-you.html";
+        window.location.href = targetUrl;
       }, 300);
     });
   });
