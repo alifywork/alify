@@ -157,6 +157,7 @@
   height: 8px;
   border-radius: 50%;
   background-color: var(--color-white);
+  flex-shrink: 0;
 }
 
 .inner-hero-title {
@@ -367,14 +368,47 @@ a.inner-hero-tag:hover i {
 
 @media (max-width: 575.98px) {
   .inner-hero {
-    padding: 108px 0 54px;
+    padding: 104px 0 50px;
+  }
+
+  .breadcrumb-nav {
+    margin-bottom: 18px;
+  }
+
+  .breadcrumb-list {
+    padding: 7px 13px;
+    border-radius: 16px;
+    gap: 7px;
+    max-width: 100%;
+  }
+
+  .breadcrumb-item-entry {
+    font-size: 12px;
+    gap: 7px;
+  }
+
+  .inner-hero-eyebrow {
+    font-size: 11px;
+    padding: 6px 12px;
+    max-width: 100%;
+  }
+
+  .inner-hero-title {
+    font-size: clamp(27px, 7.6vw, 34px);
+    line-height: 1.15;
   }
 
   .inner-hero-desc {
-    font-size: 15px;
+    font-size: 14.8px;
+    line-height: 1.66;
+  }
+
+  .inner-hero-tag {
+    font-size: 12.5px;
+    padding: 7px 13px;
   }
 
   .inner-hero-card {
-    padding: 22px;
+    padding: 20px 18px;
   }
 }

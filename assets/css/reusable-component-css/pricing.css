@@ -70,9 +70,6 @@
 .pricing-tiers-section {
   padding: 96px 0 88px;
   background-color: var(--color-secondary);
-  background-image:
-    radial-gradient(circle at 86% 12%, rgba(15, 52, 115, 0.085) 0%, rgba(15, 52, 115, 0) 48%),
-    radial-gradient(circle at 12% 86%, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0) 52%);
   position: relative;
   overflow: hidden;
   isolation: isolate;
@@ -82,11 +79,25 @@
   content: "";
   position: absolute;
   inset: 0;
+  z-index: -2;
+  background-image: url("../../images/sections/bg-pricing-section.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+.pricing-tiers-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
   z-index: -1;
-  background-image: radial-gradient(rgba(15, 52, 115, 0.12) 1.25px, transparent 1.25px);
-  background-size: 26px 26px;
-  -webkit-mask-image: radial-gradient(ellipse 76% 68% at 50% 38%, #000000 22%, transparent 86%);
-  mask-image: radial-gradient(ellipse 76% 68% at 50% 38%, #000000 22%, transparent 86%);
+  background: linear-gradient(
+    180deg,
+    rgba(246, 244, 241, 0.88) 0%,
+    rgba(255, 255, 255, 0.74) 48%,
+    rgba(246, 244, 241, 0.88) 100%
+  );
   pointer-events: none;
 }
 
@@ -944,5 +955,20 @@
   .pricing-mode-btn {
     width: 100%;
     justify-content: center;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .pricing-guarantees-strip {
+    padding: 22px 18px;
+  }
+
+  .pricing-summary-meta-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pricing-module-box {
+    flex-wrap: wrap;
+    padding: 13px 14px;
   }
 }

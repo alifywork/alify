@@ -339,10 +339,7 @@
 .single-process-section {
   position: relative;
   background-color: var(--color-black);
-  background-image:
-    radial-gradient(ellipse 78% 64% at 16% 18%, rgba(15, 52, 115, 0.82) 0%, rgba(15, 52, 115, 0) 64%),
-    radial-gradient(ellipse 68% 60% at 88% 86%, rgba(15, 52, 115, 0.58) 0%, rgba(0, 0, 0, 0) 68%);
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
   color: var(--color-white);
   padding: 92px 0;
   overflow: hidden;
@@ -353,13 +350,25 @@
   content: "";
   position: absolute;
   inset: 0;
+  z-index: -2;
+  background-image: url("../../images/sections/bg-process-section.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+.single-process-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
   z-index: -1;
-  background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-  background-size: 56px 56px;
-  -webkit-mask-image: radial-gradient(ellipse 78% 74% at 50% 50%, #000000 28%, transparent 90%);
-  mask-image: radial-gradient(ellipse 78% 74% at 50% 50%, #000000 28%, transparent 90%);
+  background: linear-gradient(
+    112deg,
+    rgba(0, 0, 0, 0.82) 0%,
+    rgba(15, 52, 115, 0.62) 52%,
+    rgba(0, 0, 0, 0.82) 100%
+  );
   pointer-events: none;
 }
 
@@ -391,13 +400,16 @@
   height: 100%;
   padding: 28px 24px;
   border-radius: 22px;
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  transition: border-color 0.28s ease, transform 0.28s ease;
+  background-color: rgba(0, 0, 0, 0.48);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: border-color 0.28s ease, transform 0.28s ease, background-color 0.28s ease;
 }
 
 .single-process-card:hover {
-  border-color: var(--color-primary);
+  background-color: rgba(15, 52, 115, 0.45);
+  border-color: rgba(255, 255, 255, 0.34);
   transform: translateY(-4px);
 }
 
@@ -441,8 +453,10 @@
   gap: 16px;
   padding: 22px 26px;
   border-radius: 20px;
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background-color: rgba(0, 0, 0, 0.48);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .single-stack-label {
@@ -982,6 +996,37 @@
 
   .work-outcomes-banner,
   .cs-single-scoreboard {
-    padding: 24px 22px;
+    padding: 24px 20px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .single-banner-stats-bar {
+    padding: 16px;
+  }
+
+  .work-outcomes-metrics {
+    gap: 20px;
+  }
+
+  .work-outcomes-banner .btn-start-project {
+    width: 100%;
+  }
+
+  .work-outcomes-banner .btn-start-pill {
+    flex: 1;
+  }
+
+  .work-story-card,
+  .cs-chapter-card,
+  .cs-exec-quote-card,
+  .cs-profile-card,
+  .single-process-card,
+  .single-bento-card {
+    padding: 22px 18px;
+  }
+
+  .single-stack-strip {
+    padding: 18px;
   }
 }

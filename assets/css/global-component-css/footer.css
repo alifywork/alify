@@ -394,6 +394,7 @@
   font-size: 14px;
   font-weight: 500;
   color: var(--color-secondary);
+  overflow-wrap: anywhere;
   transition: color 0.22s ease;
 }
 
@@ -487,9 +488,19 @@ a.footer-contact-value:hover {
 }
 
 @media (max-width: 575.98px) {
+  .site-footer {
+    padding-top: 52px;
+  }
+
+  .footer-main-row {
+    row-gap: 34px;
+    padding-bottom: 44px;
+  }
+
   .footer-cta-banner {
-    padding: 30px 22px;
+    padding: 28px 20px;
     border-radius: 22px;
+    margin-bottom: 44px;
   }
 
   .footer-cta-actions {

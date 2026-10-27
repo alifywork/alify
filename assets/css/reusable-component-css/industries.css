@@ -201,6 +201,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: 12px;
   padding-top: 18px;
   border-top: 1px solid rgba(255, 255, 255, 0.15);
@@ -231,6 +232,7 @@
   font-family: var(--font-poppins);
   font-size: 12.5px;
   font-weight: 600;
+  white-space: nowrap;
   transition: background-color 0.24s ease, color 0.24s ease;
 }
 
@@ -283,11 +285,8 @@
 .home-industries-section {
   position: relative;
   background-color: var(--color-secondary);
-  background-image:
-    radial-gradient(circle at 90% 14%, rgba(15, 52, 115, 0.09) 0%, rgba(15, 52, 115, 0) 48%),
-    radial-gradient(circle at 8% 88%, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0) 50%);
   padding: 96px 0;
-  border-bottom: 1px solid rgba(15, 52, 115, 0.08);
+  border-bottom: 1px solid rgba(15, 52, 115, 0.1);
   overflow: hidden;
   isolation: isolate;
 }
@@ -296,11 +295,25 @@
   content: "";
   position: absolute;
   inset: 0;
+  z-index: -2;
+  background-image: url("../../images/sections/bg-industries-section.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+.home-industries-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
   z-index: -1;
-  background-image: radial-gradient(rgba(15, 52, 115, 0.14) 1.25px, transparent 1.25px);
-  background-size: 24px 24px;
-  -webkit-mask-image: radial-gradient(ellipse 76% 70% at 50% 46%, #000000 24%, transparent 88%);
-  mask-image: radial-gradient(ellipse 76% 70% at 50% 46%, #000000 24%, transparent 88%);
+  background: linear-gradient(
+    180deg,
+    rgba(246, 244, 241, 0.88) 0%,
+    rgba(246, 244, 241, 0.72) 52%,
+    rgba(255, 255, 255, 0.88) 100%
+  );
   pointer-events: none;
 }
 
@@ -359,7 +372,7 @@
   font-family: var(--font-poppins);
   font-size: 15.5px;
   line-height: 1.7;
-  color: rgba(0, 0, 0, 0.66);
+  color: rgba(0, 0, 0, 0.74);
   max-width: 560px;
   margin: 0;
 }
@@ -614,7 +627,7 @@
 
 @media (max-width: 679.98px) {
   .home-industries-section {
-    padding: 64px 0;
+    padding: 60px 0;
   }
 
   .industries-slider-track {
@@ -623,16 +636,38 @@
   }
 
   .industry-card {
-    padding: 26px 22px 24px;
+    padding: 24px 18px 22px;
     border-radius: 20px;
   }
 
+  .industry-card-stat {
+    font-size: 12px;
+  }
+
   .industries-slider-footer {
-    gap: 14px;
+    gap: 12px;
+  }
+
+  .industries-slider-meta {
+    min-width: 0;
+    gap: 12px;
   }
 
   .industries-slider-progress {
-    width: 120px;
-    max-width: 140px;
+    display: none;
+  }
+
+  .industries-nav-btn {
+    width: 42px;
+    height: 42px;
+  }
+
+  .industries-filter-pills {
+    gap: 8px;
+  }
+
+  .industries-filter-btn {
+    padding: 8px 14px;
+    font-size: 12.5px;
   }
 }

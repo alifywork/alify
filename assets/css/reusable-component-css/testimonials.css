@@ -557,7 +557,13 @@
   }
 
   .testimonial-slide-item {
-    width: 304px;
+    width: min(300px, 82vw);
+  }
+
+  .testimonials-trust-pill {
+    font-size: 12px;
+    padding: 6px 12px;
+    border-radius: 16px;
   }
 
   .testimonial-card {

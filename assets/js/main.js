@@ -94,9 +94,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const animated = new WeakSet();
   const isMobile = window.innerWidth < 768;
-  const distStrong = isMobile ? 38 : 64;
-  const distMed = isMobile ? 32 : 52;
-  const distSoft = isMobile ? 26 : 42;
+  const distStrong = isMobile ? 24 : 64;
+  const distMed = isMobile ? 20 : 52;
+  const distSoft = isMobile ? 16 : 42;
 
   const revealX = (target, fromX, opts = {}) => {
     if (!target || animated.has(target)) return;

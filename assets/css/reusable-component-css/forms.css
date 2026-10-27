@@ -342,9 +342,10 @@ button.btn-start-project {
 
 .reusable-contact-section {
   position: relative;
-  background-color: var(--color-secondary);
+  background-color: var(--color-black);
+  color: var(--color-white);
   padding: 96px 0;
-  border-top: 1px solid rgba(15, 52, 115, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
   overflow: hidden;
   isolation: isolate;
 }
@@ -354,10 +355,10 @@ button.btn-start-project {
   position: absolute;
   inset: 0;
   z-index: -2;
-  background-image: url("../../images/about/about-studio-space.jpg");
+  background-image: url("../../images/sections/bg-contact-section.jpg");
   background-size: cover;
   background-position: center;
-  transform: scale(1.03);
+  background-repeat: no-repeat;
   pointer-events: none;
 }
 
@@ -367,13 +368,11 @@ button.btn-start-project {
   inset: 0;
   z-index: -1;
   background: linear-gradient(
-    112deg,
-    rgba(246, 244, 241, 0.95) 0%,
-    rgba(246, 244, 241, 0.9) 54%,
-    rgba(15, 52, 115, 0.18) 100%
+    106deg,
+    rgba(0, 0, 0, 0.82) 0%,
+    rgba(15, 52, 115, 0.64) 54%,
+    rgba(0, 0, 0, 0.74) 100%
   );
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
   pointer-events: none;
 }
 
@@ -393,6 +392,10 @@ button.btn-start-project {
   text-transform: uppercase;
   color: var(--color-primary);
   margin-bottom: 12px;
+}
+
+.reusable-contact-section .contact-sec-eyebrow {
+  color: var(--color-secondary);
 }
 
 .contact-sec-eyebrow-dot {
@@ -427,6 +430,17 @@ button.btn-start-project {
   color: var(--color-primary);
 }
 
+.reusable-contact-section .contact-sec-title {
+  color: var(--color-white);
+}
+
+.reusable-contact-section .contact-sec-title span {
+  color: var(--color-secondary);
+  text-decoration: underline;
+  text-decoration-color: var(--color-primary);
+  text-underline-offset: 6px;
+}
+
 .contact-sec-desc {
   font-family: var(--font-poppins);
   font-size: 15.5px;
@@ -434,6 +448,10 @@ button.btn-start-project {
   color: rgba(0, 0, 0, 0.68);
   max-width: 460px;
   margin: 0 0 30px;
+}
+
+.reusable-contact-section .contact-sec-desc {
+  color: rgba(246, 244, 241, 0.84);
 }
 
 .contact-info-cards {
@@ -449,8 +467,10 @@ button.btn-start-project {
   gap: 14px;
   padding: 16px 18px;
   border-radius: 16px;
-  background-color: var(--color-white);
-  border: 1px solid rgba(15, 52, 115, 0.09);
+  background-color: rgba(0, 0, 0, 0.48);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .contact-info-tile-icon {
@@ -470,27 +490,29 @@ button.btn-start-project {
   display: block;
   font-family: var(--font-poppins);
   font-size: 12px;
-  color: rgba(0, 0, 0, 0.54);
+  color: rgba(246, 244, 241, 0.68);
 }
 
 .contact-info-tile-val {
   font-family: var(--font-poppins);
   font-size: 14.5px;
   font-weight: 600;
-  color: var(--color-black);
+  color: var(--color-white);
+  overflow-wrap: anywhere;
   transition: color 0.22s ease;
 }
 
 a.contact-info-tile-val:hover {
-  color: var(--color-primary);
+  color: var(--color-secondary);
 }
 
 .reusable-contact-card {
   background-color: var(--color-white);
+  color: var(--color-black);
   border: 1px solid rgba(15, 52, 115, 0.12);
   border-radius: 26px;
   padding: 38px;
-  box-shadow: 0 22px 54px rgba(15, 52, 115, 0.07);
+  box-shadow: 0 28px 64px rgba(0, 0, 0, 0.34);
 }
 
 .reusable-contact-card-title {

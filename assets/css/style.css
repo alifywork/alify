@@ -372,11 +372,44 @@
   padding: 0;
 }
 
+html {
+  overflow-x: clip;
+  max-width: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
   font-family: var(--font-poppins);
   background-color: var(--color-white);
   color: var(--color-black);
   overflow-x: clip;
+  width: 100%;
+  max-width: 100%;
+}
+
+main,
+section {
+  overflow-x: clip;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
+@media (max-width: 991.98px) {
+  html,
+  body {
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  main {
+    overflow-x: hidden;
+    width: 100%;
+  }
 }
 
 body.drawer-open {
@@ -496,6 +529,7 @@ ol {
   height: 9px;
   border-radius: 50%;
   background-color: var(--color-white);
+  flex-shrink: 0;
 }
 
 .hero-status-dot::after {
@@ -732,17 +766,41 @@ ol {
 
 @media (max-width: 575.98px) {
   .home-hero {
-    padding: 116px 0 66px;
+    padding: 108px 0 60px;
+  }
+
+  .hero-status-pill {
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    padding: 7px 14px;
+    border-radius: 16px;
+    max-width: 100%;
+    line-height: 1.4;
+    margin-bottom: 20px;
+  }
+
+  .hero-display-title {
+    font-size: clamp(30px, 8.2vw, 38px);
+    line-height: 1.12;
+    margin-bottom: 18px;
+  }
+
+  .hero-title-highlight::after {
+    height: 7px;
+    bottom: 2px;
   }
 
   .hero-lead {
-    font-size: 15.5px;
+    font-size: 15px;
+    line-height: 1.68;
+    margin-bottom: 30px;
   }
 
   .hero-cta-group {
     width: 100%;
     flex-direction: column;
     align-items: stretch;
+    margin-bottom: 38px;
   }
 
   .hero-cta-group .btn-start-project {
@@ -762,7 +820,19 @@ ol {
   }
 
   .hero-stats-bar {
-    gap: 24px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    padding-top: 22px;
+  }
+
+  .hero-stat-number {
+    font-size: 24px;
+  }
+
+  .hero-stat-label {
+    font-size: 11.5px;
+    line-height: 1.3;
   }
 }
 
