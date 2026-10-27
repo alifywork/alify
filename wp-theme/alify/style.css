@@ -72,6 +72,18 @@ body.admin-bar .alify-scroll-progress {
   border-radius: 16px;
 }
 
+/* WordPress Custom Image Logo Support */
+.alify-custom-logo-img {
+  max-height: 40px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.site-header.is-scrolled .alify-custom-logo-img {
+  max-height: 34px;
+}
+
 /* Native WordPress Custom Page & Post Entry Styling */
 .wp-custom-page-section {
   padding: 96px 0;

@@ -9,13 +9,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const drawerClose = document.querySelector(".drawer-close");
   const drawerOverlay = document.getElementById("drawerOverlay");
 
-  // Desktop Services Dropdown
-  const desktopDropdownItem = document.querySelector(".header-nav-item.has-dropdown");
-  const desktopDropdownTrigger = desktopDropdownItem?.querySelector(".header-nav-link");
+  // Desktop Dropdowns (Supports all dropdown items configured in Appearance -> Menus)
+  const desktopDropdownItems = Array.from(document.querySelectorAll(".header-nav-item.has-dropdown"));
 
-  // Mobile Services Accordion inside Drawer
-  const drawerDropdownItem = document.querySelector(".drawer-nav-item.has-submenu");
-  const drawerDropdownToggle = drawerDropdownItem?.querySelector(".drawer-dropdown-toggle");
+  // Mobile Accordion Submenus inside Drawer (Supports multiple submenus)
+  const drawerDropdownItems = Array.from(document.querySelectorAll(".drawer-nav-item.has-submenu"));
 
   // Highlight Active Page Link Automatically (including single detail pages)
   const rawSeg = window.location.pathname.replace(/\/+$/, "").split("/").pop() || "index.html";
@@ -110,31 +108,39 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Mobile Services Submenu Accordion Toggle
-  drawerDropdownToggle?.addEventListener("click", () => {
-    const isOpen = drawerDropdownItem.classList.toggle("is-open");
-    drawerDropdownToggle.setAttribute("aria-expanded", String(isOpen));
+  // Mobile Submenu Accordion Toggles (All .has-submenu items)
+  drawerDropdownItems.forEach((item) => {
+    const toggleBtn = item.querySelector(".drawer-dropdown-toggle");
+    toggleBtn?.addEventListener("click", () => {
+      const isOpen = item.classList.toggle("is-open");
+      toggleBtn.setAttribute("aria-expanded", String(isOpen));
+    });
   });
 
-  // Desktop Services Dropdown Keyboard Accessibility
-  desktopDropdownItem?.addEventListener("focusin", () => {
-    desktopDropdownItem.classList.add("is-open");
-    desktopDropdownTrigger?.setAttribute("aria-expanded", "true");
-  });
+  // Desktop Dropdowns Keyboard Accessibility (All .has-dropdown items)
+  desktopDropdownItems.forEach((item) => {
+    const trigger = item.querySelector(".header-nav-link");
+    item.addEventListener("focusin", () => {
+      item.classList.add("is-open");
+      trigger?.setAttribute("aria-expanded", "true");
+    });
 
-  desktopDropdownItem?.addEventListener("focusout", (e) => {
-    if (!desktopDropdownItem.contains(e.relatedTarget)) {
-      desktopDropdownItem.classList.remove("is-open");
-      desktopDropdownTrigger?.setAttribute("aria-expanded", "false");
-    }
+    item.addEventListener("focusout", (e) => {
+      if (!item.contains(e.relatedTarget)) {
+        item.classList.remove("is-open");
+        trigger?.setAttribute("aria-expanded", "false");
+      }
+    });
   });
 
   // Escape Key & Desktop Resize Cleanup
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
       closeDrawer();
-      desktopDropdownItem?.classList.remove("is-open");
-      desktopDropdownTrigger?.setAttribute("aria-expanded", "false");
+      desktopDropdownItems.forEach((item) => {
+        item.classList.remove("is-open");
+        item.querySelector(".header-nav-link")?.setAttribute("aria-expanded", "false");
+      });
     }
   });
 

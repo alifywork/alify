@@ -48,7 +48,21 @@ On theme activation (`after_switch_theme`), ALIFY automatically creates all **21
 
 ---
 
-## 3. WordPress Customizer & Leads CRM Inbox
+## 3. Dynamic WordPress Menus (`Appearance → Menus`)
+
+All **5 navigation areas** are dynamically managed through **Appearance → Menus** via custom ALIFY `Walker_Nav_Menu` classes (`inc/nav-walkers.php`) and are **automatically created & assigned** on theme activation:
+
+1. **Primary Header Navigation (`primary`)** — Supports multi-level dropdown panels (`About Us`, `Services`, or any custom dropdown) with Font Awesome submenu icons and active route highlighting.
+2. **Mobile Slide Drawer Navigation (`mobile_drawer`)** — Supports unlimited collapsible accordion submenus inside the right-side mobile drawer.
+3. **Footer Quick Links (`footer_nav`)** — Populates Footer Column 2 (`Navigation`).
+4. **Footer Services Links (`footer_services`)** — Populates Footer Column 3 (`Services`).
+5. **Footer Bottom Legal Links (`footer_legal`)** — Populates Footer bottom legal links (`Privacy Policy`, `Terms of Service`).
+
+- **Custom Submenu Icons:** Every menu item in **Appearance → Menus** includes an **"ALIFY Font Awesome Icon Class (Submenu)"** input field (e.g. `fa-solid fa-code`, `fa-solid fa-calendar-check`), plus automatic keyword icon fallback if left blank.
+
+---
+
+## 4. WordPress Customizer & Leads CRM Inbox
 
 - **Appearance → Customize → ALIFY Studio Settings**:
   - Studio Email (`info@alify.site`)

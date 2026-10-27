@@ -44,6 +44,7 @@ function alify_theme_setup() {
 			'mobile_drawer'   => __( 'Mobile Slide Drawer Navigation', 'alify' ),
 			'footer_nav'      => __( 'Footer Quick Links', 'alify' ),
 			'footer_services' => __( 'Footer Services Links', 'alify' ),
+			'footer_legal'    => __( 'Footer Bottom Legal Links', 'alify' ),
 		)
 	);
 }
@@ -118,12 +119,16 @@ function alify_seed_default_pages() {
 		update_option( 'page_on_front', $home_id );
 	}
 
+	if ( function_exists( 'alify_seed_default_menus' ) ) {
+		alify_seed_default_menus();
+	}
+
 	flush_rewrite_rules();
 }
 add_action( 'after_switch_theme', 'alify_seed_default_pages' );
 
 /**
- * Allow manual one-click page sync from WP Admin (?alify_seed_pages=1).
+ * Allow manual one-click page & menu sync from WP Admin (?alify_seed_pages=1).
  */
 function alify_handle_manual_page_seed() {
 	if ( ! is_admin() || ! current_user_can( 'manage_options' ) ) {
@@ -131,7 +136,8 @@ function alify_handle_manual_page_seed() {
 	}
 	if ( isset( $_GET['alify_seed_pages'] ) && check_admin_referer( 'alify_seed_pages_action' ) ) {
 		alify_seed_default_pages();
-		wp_safe_redirect( admin_url( 'edit.php?post_type=page&alify_seeded=1' ) );
+		$redirect_to = isset( $_GET['from_menus'] ) ? 'nav-menus.php?alify_seeded=1' : 'edit.php?post_type=page&alify_seeded=1';
+		wp_safe_redirect( admin_url( $redirect_to ) );
 		exit;
 	}
 }
@@ -142,17 +148,19 @@ function alify_admin_seed_notice() {
 		return;
 	}
 	$screen = get_current_screen();
-	if ( ! $screen || ! in_array( $screen->id, array( 'themes', 'edit-page' ), true ) ) {
+	if ( ! $screen || ! in_array( $screen->id, array( 'themes', 'edit-page', 'nav-menus' ), true ) ) {
 		return;
 	}
 	if ( isset( $_GET['alify_seeded'] ) ) {
-		echo '<div class="notice notice-success is-dismissible"><p><strong>ALIFY Studio:</strong> All 21 theme pages and templates have been synced and published.</p></div>';
+		echo '<div class="notice notice-success is-dismissible"><p><strong>ALIFY Studio:</strong> All 21 theme pages and 5 navigation menus have been synced and assigned.</p></div>';
 		return;
 	}
 	$about_page = get_page_by_path( 'about' );
-	if ( ! $about_page ) {
-		$seed_url = wp_nonce_url( admin_url( 'themes.php?alify_seed_pages=1' ), 'alify_seed_pages_action' );
-		echo '<div class="notice notice-info"><p><strong>ALIFY Studio Theme Ready:</strong> Click <a href="' . esc_url( $seed_url ) . '" class="button button-primary" style="margin-left:8px;">Create All ALIFY Pages Automatically</a> to publish all 21 agency pages &amp; assign templates in one click.</p></div>';
+	$locations  = get_theme_mod( 'nav_menu_locations', array() );
+	if ( ! $about_page || empty( $locations['primary'] ) ) {
+		$extra_arg = ( 'nav-menus' === $screen->id ) ? '&from_menus=1' : '';
+		$seed_url  = wp_nonce_url( admin_url( 'themes.php?alify_seed_pages=1' . $extra_arg ), 'alify_seed_pages_action' );
+		echo '<div class="notice notice-info"><p><strong>ALIFY Studio Theme Ready:</strong> Click <a href="' . esc_url( $seed_url ) . '" class="button button-primary" style="margin-left:8px;">Sync All ALIFY Pages &amp; 5 Menus Automatically</a> to publish all 21 agency pages &amp; pre-populate Appearance &rarr; Menus in one click.</p></div>';
 	}
 }
 add_action( 'admin_notices', 'alify_admin_seed_notice' );

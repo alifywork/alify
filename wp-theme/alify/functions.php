@@ -14,6 +14,7 @@ define( 'ALIFY_THEME_DIR', get_template_directory() );
 define( 'ALIFY_THEME_URI', get_template_directory_uri() );
 
 require_once ALIFY_THEME_DIR . '/inc/template-helpers.php';
+require_once ALIFY_THEME_DIR . '/inc/nav-walkers.php';
 require_once ALIFY_THEME_DIR . '/inc/setup.php';
 require_once ALIFY_THEME_DIR . '/inc/customizer.php';
 require_once ALIFY_THEME_DIR . '/inc/post-types.php';

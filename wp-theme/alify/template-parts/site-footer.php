@@ -1,185 +1,229 @@
+<?php
+/**
+ * Global Site Footer Partial
+ * Powered dynamically by WordPress `wp_nav_menu()` (`footer_nav`, `footer_services`, `footer_legal`)
+ * + Live Customizer Contact, Social & Brand Settings.
+ *
+ * @package ALIFY
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+$alify_email         = get_theme_mod( 'alify_email', 'info@alify.site' );
+$alify_whatsapp      = get_theme_mod( 'alify_whatsapp', '+90 301 9328094' );
+$alify_whatsapp_url  = get_theme_mod( 'alify_whatsapp_url', 'https://wa.me/903019328094' );
+$alify_hq            = get_theme_mod( 'alify_hq', 'Karachi, PK — Global Delivery' );
+$alify_contact_label = get_theme_mod( 'alify_contact_btn_text', 'Contact Us' );
+$alify_cta_label     = get_theme_mod( 'alify_cta_text', 'Start a Project' );
+$alify_col1_heading  = get_theme_mod( 'alify_footer_col1_title', 'Navigation' );
+$alify_col2_heading  = get_theme_mod( 'alify_footer_col2_title', 'Services' );
+
+$alify_socials = array(
+	array(
+		'url'   => get_theme_mod( 'alify_linkedin', 'https://linkedin.com' ),
+		'icon'  => 'fa-brands fa-linkedin-in',
+		'label' => 'LinkedIn',
+	),
+	array(
+		'url'   => get_theme_mod( 'alify_instagram', 'https://instagram.com' ),
+		'icon'  => 'fa-brands fa-instagram',
+		'label' => 'Instagram',
+	),
+	array(
+		'url'   => get_theme_mod( 'alify_twitter', 'https://x.com' ),
+		'icon'  => 'fa-brands fa-x-twitter',
+		'label' => 'X Twitter',
+	),
+	array(
+		'url'   => get_theme_mod( 'alify_behance', 'https://behance.net' ),
+		'icon'  => 'fa-brands fa-behance',
+		'label' => 'Behance',
+	),
+	array(
+		'url'   => get_theme_mod( 'alify_dribbble', 'https://dribbble.com' ),
+		'icon'  => 'fa-brands fa-dribbble',
+		'label' => 'Dribbble',
+	),
+);
+?>
 <footer class="site-footer">
-      <div class="container">
-        <!-- Pre-Footer Primary CTA Banner -->
-        <div class="footer-cta-banner">
-          <span class="footer-cta-watermark" aria-hidden="true">△</span>
-          <div class="row footer-cta-row">
-            <div class="col-12 col-lg-7">
-              <span class="footer-cta-eyebrow">
-                <span class="footer-cta-eyebrow-dot" aria-hidden="true">△</span>
-                Ready to Scale Your Brand?
-              </span>
-              <h2 class="footer-cta-title">
-                Let’s Build Something Remarkable Together.
-              </h2>
-              <p class="footer-cta-desc">
-                Partner with ALIFY to craft high-converting digital products, iconic brand identities, and scalable web experiences.
-              </p>
-            </div>
-            <div class="col-12 col-lg-5 footer-cta-actions-col">
-              <div class="footer-cta-actions">
-                <a href="start-project.html" class="btn-start-project btn-start-light">
-                  <span class="btn-start-pill">Start a Project</span>
-                  <span class="btn-start-circle" aria-hidden="true">
-                    <i class="fa-solid fa-arrow-up btn-start-arrow"></i>
-                  </span>
-                </a>
-                <a href="contact.html" class="btn-footer-outline">Contact Us</a>
-              </div>
-            </div>
-          </div>
-        </div>
+	<div class="container">
+		<!-- Pre-Footer Primary CTA Banner -->
+		<div class="footer-cta-banner">
+			<span class="footer-cta-watermark" aria-hidden="true">△</span>
+			<div class="row footer-cta-row">
+				<div class="col-12 col-lg-7">
+					<span class="footer-cta-eyebrow">
+						<span class="footer-cta-eyebrow-dot" aria-hidden="true">△</span>
+						<?php esc_html_e( 'Ready to Scale Your Brand?', 'alify' ); ?>
+					</span>
+					<h2 class="footer-cta-title">
+						<?php esc_html_e( 'Let’s Build Something Remarkable Together.', 'alify' ); ?>
+					</h2>
+					<p class="footer-cta-desc">
+						<?php esc_html_e( 'Partner with ALIFY to craft high-converting digital products, iconic brand identities, and scalable web experiences.', 'alify' ); ?>
+					</p>
+				</div>
+				<div class="col-12 col-lg-5 footer-cta-actions-col">
+					<div class="footer-cta-actions">
+						<a href="<?php echo esc_url( alify_page_url( 'start-project' ) ); ?>" class="btn-start-project btn-start-light">
+							<span class="btn-start-pill"><?php echo esc_html( $alify_cta_label ); ?></span>
+							<span class="btn-start-circle" aria-hidden="true">
+								<i class="fa-solid fa-arrow-up btn-start-arrow"></i>
+							</span>
+						</a>
+						<a href="<?php echo esc_url( alify_page_url( 'contact' ) ); ?>" class="btn-footer-outline"><?php echo esc_html( $alify_contact_label ); ?></a>
+					</div>
+				</div>
+			</div>
+		</div>
 
-        <!-- Main Footer Navigation Columns -->
-        <div class="row footer-main-row">
-          <!-- Column 1: Brand & Newsletter -->
-          <div class="col-12 col-lg-4">
-            <a href="index.html" class="footer-brand-logo" aria-label="ALIFY Home">
-              <span class="footer-brand-mark" aria-hidden="true">△</span>LIFY
-            </a>
-            <p class="footer-brand-desc">
-              A design-first digital studio engineering bespoke websites, brand systems, and scalable products for ambitious companies worldwide.
-            </p>
+		<!-- Main Footer Navigation Columns -->
+		<div class="row footer-main-row">
+			<!-- Column 1: Brand & Newsletter -->
+			<div class="col-12 col-lg-4">
+				<?php alify_render_brand_logo( 'footer-brand-logo', 'footer-brand-mark' ); ?>
+				<p class="footer-brand-desc">
+					<?php esc_html_e( 'A design-first digital studio engineering bespoke websites, brand systems, and scalable products for ambitious companies worldwide.', 'alify' ); ?>
+				</p>
 
-            <label for="footerNewsletterInput" class="footer-newsletter-label">
-              Subscribe to Studio Insights
-            </label>
-            <form class="footer-newsletter-form" id="footerNewsletterForm" novalidate>
-              <input
-                type="email"
-                id="footerNewsletterInput"
-                class="footer-newsletter-input"
-                placeholder="Enter your work email"
-                aria-label="Work email address"
-                required
-              />
-              <button
-                type="submit"
-                class="footer-newsletter-btn"
-                aria-label="Subscribe"
-              >
-                <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
-              </button>
-            </form>
-            <p class="footer-newsletter-msg" id="footerNewsletterMsg" aria-live="polite"></p>
+				<label for="footerNewsletterInput" class="footer-newsletter-label">
+					<?php esc_html_e( 'Subscribe to Studio Insights', 'alify' ); ?>
+				</label>
+				<form class="footer-newsletter-form" id="footerNewsletterForm" novalidate>
+					<input
+						type="email"
+						id="footerNewsletterInput"
+						class="footer-newsletter-input"
+						placeholder="<?php esc_attr_e( 'Enter your work email', 'alify' ); ?>"
+						aria-label="<?php esc_attr_e( 'Work email address', 'alify' ); ?>"
+						required
+					/>
+					<button
+						type="submit"
+						class="footer-newsletter-btn"
+						aria-label="<?php esc_attr_e( 'Subscribe', 'alify' ); ?>"
+					>
+						<i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+					</button>
+				</form>
+				<p class="footer-newsletter-msg" id="footerNewsletterMsg" aria-live="polite"></p>
 
-            <div class="footer-socials" aria-label="Social Media Links">
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="LinkedIn">
-                <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
-              </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Instagram">
-                <i class="fa-brands fa-instagram" aria-hidden="true"></i>
-              </a>
-              <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="X Twitter">
-                <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
-              </a>
-              <a href="https://behance.net" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Behance">
-                <i class="fa-brands fa-behance" aria-hidden="true"></i>
-              </a>
-              <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Dribbble">
-                <i class="fa-brands fa-dribbble" aria-hidden="true"></i>
-              </a>
-            </div>
-          </div>
+				<div class="footer-socials" aria-label="<?php esc_attr_e( 'Social Media Links', 'alify' ); ?>">
+					<?php foreach ( $alify_socials as $soc ) : ?>
+						<?php if ( ! empty( $soc['url'] ) ) : ?>
+							<a href="<?php echo esc_url( $soc['url'] ); ?>" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="<?php echo esc_attr( $soc['label'] ); ?>">
+								<i class="<?php echo esc_attr( $soc['icon'] ); ?>" aria-hidden="true"></i>
+							</a>
+						<?php endif; ?>
+					<?php endforeach; ?>
+				</div>
+			</div>
 
-          <!-- Column 2: Quick Links -->
-          <div class="col-6 col-md-4 col-lg-2">
-            <h3 class="footer-col-title">Navigation</h3>
-            <ul class="footer-link-list">
-              <li><a href="index.html" class="footer-link">Home</a></li>
-              <li><a href="about.html" class="footer-link">About Us</a></li>
-              <li><a href="services.html" class="footer-link">Services</a></li>
-              <li><a href="industries.html" class="footer-link">Industries</a></li>
-              <li><a href="work.html" class="footer-link">Work</a></li>
-              <li><a href="pricing.html" class="footer-link">Pricing</a></li>
-              <li><a href="blog.html" class="footer-link">Blog</a></li>
-              <li><a href="case-studies.html" class="footer-link">Case Studies</a></li>
-              <li><a href="testimonials.html" class="footer-link">Testimonials</a></li>
-              <li><a href="faq.html" class="footer-link">FAQs</a></li>
-              <li><a href="book-call.html" class="footer-link">Book a Strategy Call</a></li>
-            </ul>
-          </div>
+			<!-- Column 2: Quick Links (`footer_nav` Menu Location) -->
+			<div class="col-6 col-md-4 col-lg-2">
+				<h3 class="footer-col-title"><?php echo esc_html( $alify_col1_heading ); ?></h3>
+				<?php
+				wp_nav_menu(
+					array(
+						'theme_location' => 'footer_nav',
+						'container'      => false,
+						'menu_class'     => 'footer-link-list',
+						'depth'          => 1,
+						'walker'         => new ALIFY_Footer_Link_Walker(),
+						'fallback_cb'    => 'alify_fallback_footer_nav',
+					)
+				);
+				?>
+			</div>
 
-          <!-- Column 3: Services -->
-          <div class="col-6 col-md-4 col-lg-3">
-            <h3 class="footer-col-title">Services</h3>
-            <ul class="footer-link-list">
-              <li>
-                <a href="service-single.html?service=web-development" class="footer-link">Web Design &amp; Development</a>
-              </li>
-              <li>
-                <a href="service-single.html?service=ui-ux-branding" class="footer-link">UI/UX &amp; Brand Identity</a>
-              </li>
-              <li>
-                <a href="service-single.html?service=design-systems" class="footer-link">Design Systems &amp; UI Kits</a>
-              </li>
-              <li>
-                <a href="service-single.html?service=digital-marketing" class="footer-link">Digital Marketing &amp; SEO</a>
-              </li>
-              <li>
-                <a href="service-single.html?service=ecommerce" class="footer-link">E-Commerce Solutions</a>
-              </li>
-            </ul>
-          </div>
+			<!-- Column 3: Services (`footer_services` Menu Location) -->
+			<div class="col-6 col-md-4 col-lg-3">
+				<h3 class="footer-col-title"><?php echo esc_html( $alify_col2_heading ); ?></h3>
+				<?php
+				wp_nav_menu(
+					array(
+						'theme_location' => 'footer_services',
+						'container'      => false,
+						'menu_class'     => 'footer-link-list',
+						'depth'          => 1,
+						'walker'         => new ALIFY_Footer_Link_Walker(),
+						'fallback_cb'    => 'alify_fallback_footer_services',
+					)
+				);
+				?>
+			</div>
 
-          <!-- Column 4: Contact Info -->
-          <div class="col-12 col-md-4 col-lg-3">
-            <h3 class="footer-col-title">Get in Touch</h3>
-            <ul class="footer-contact-list">
-              <li class="footer-contact-item">
-                <span class="footer-contact-icon">
-                  <i class="fa-solid fa-envelope" aria-hidden="true"></i>
-                </span>
-                <div class="footer-contact-meta">
-                  <span class="footer-contact-label">Email Us</span>
-                  <a href="mailto:info@alify.site" class="footer-contact-value">info@alify.site</a>
-                </div>
-              </li>
-              <li class="footer-contact-item">
-                <span class="footer-contact-icon">
-                  <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
-                </span>
-                <div class="footer-contact-meta">
-                  <span class="footer-contact-label">WhatsApp</span>
-                  <a href="https://wa.me/903019328094" target="_blank" rel="noopener noreferrer" class="footer-contact-value">+90 301 9328094</a>
-                </div>
-              </li>
-              <li class="footer-contact-item">
-                <span class="footer-contact-icon">
-                  <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
-                </span>
-                <div class="footer-contact-meta">
-                  <span class="footer-contact-label">Headquarters</span>
-                  <span class="footer-contact-value">Karachi, PK — Global Delivery</span>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
+			<!-- Column 4: Contact Info -->
+			<div class="col-12 col-md-4 col-lg-3">
+				<h3 class="footer-col-title"><?php esc_html_e( 'Get in Touch', 'alify' ); ?></h3>
+				<ul class="footer-contact-list">
+					<li class="footer-contact-item">
+						<span class="footer-contact-icon">
+							<i class="fa-solid fa-envelope" aria-hidden="true"></i>
+						</span>
+						<div class="footer-contact-meta">
+							<span class="footer-contact-label"><?php esc_html_e( 'Email Us', 'alify' ); ?></span>
+							<a href="mailto:<?php echo esc_attr( sanitize_email( $alify_email ) ); ?>" class="footer-contact-value"><?php echo esc_html( $alify_email ); ?></a>
+						</div>
+					</li>
+					<li class="footer-contact-item">
+						<span class="footer-contact-icon">
+							<i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+						</span>
+						<div class="footer-contact-meta">
+							<span class="footer-contact-label"><?php esc_html_e( 'WhatsApp', 'alify' ); ?></span>
+							<a href="<?php echo esc_url( $alify_whatsapp_url ); ?>" target="_blank" rel="noopener noreferrer" class="footer-contact-value"><?php echo esc_html( $alify_whatsapp ); ?></a>
+						</div>
+					</li>
+					<li class="footer-contact-item">
+						<span class="footer-contact-icon">
+							<i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+						</span>
+						<div class="footer-contact-meta">
+							<span class="footer-contact-label"><?php esc_html_e( 'Headquarters', 'alify' ); ?></span>
+							<span class="footer-contact-value"><?php echo esc_html( $alify_hq ); ?></span>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
 
-        <!-- Bottom Bar -->
-        <div class="footer-bottom">
-          <div class="row footer-bottom-row">
-            <div class="col-12 col-md-6">
-              <p class="footer-copyright">
-                &copy; <span id="footerYear">2026</span> ALIFY Studio. All rights reserved.
-              </p>
-            </div>
-            <div class="col-12 col-md-6">
-              <div class="footer-bottom-right">
-                <a href="privacy-policy.html" class="footer-legal-link">Privacy Policy</a>
-                <a href="terms-of-service.html" class="footer-legal-link">Terms of Service</a>
-                <button
-                  type="button"
-                  id="backToTopBtn"
-                  class="back-to-top-btn"
-                  aria-label="Scroll back to top"
-                >
-                  <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
+		<!-- Bottom Bar -->
+		<div class="footer-bottom">
+			<div class="row footer-bottom-row">
+				<div class="col-12 col-md-6">
+					<p class="footer-copyright">
+						&copy; <span id="footerYear"><?php echo esc_html( wp_date( 'Y' ) ); ?></span> ALIFY Studio. <?php esc_html_e( 'All rights reserved.', 'alify' ); ?>
+					</p>
+				</div>
+				<div class="col-12 col-md-6">
+					<div class="footer-bottom-right">
+						<?php
+						wp_nav_menu(
+							array(
+								'theme_location' => 'footer_legal',
+								'container'      => false,
+								'items_wrap'     => '%3$s',
+								'depth'          => 1,
+								'walker'         => new ALIFY_Footer_Legal_Walker(),
+								'fallback_cb'    => 'alify_fallback_footer_legal',
+							)
+						);
+						?>
+						<button
+							type="button"
+							id="backToTopBtn"
+							class="back-to-top-btn"
+							aria-label="<?php esc_attr_e( 'Scroll back to top', 'alify' ); ?>"
+						>
+							<i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>

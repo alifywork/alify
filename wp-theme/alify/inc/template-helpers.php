@@ -135,3 +135,24 @@ function alify_render_partial( $rel_file ) {
 		echo alify_transform_markup( $out ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 }
+
+/**
+ * Render Brand Logo (Uses WordPress Custom Logo if uploaded, else signature △LIFY logo).
+ */
+function alify_render_brand_logo( $link_class = 'brand-logo', $mark_class = 'brand-logo-mark' ) {
+	$home_url = home_url( '/' );
+	if ( function_exists( 'has_custom_logo' ) && has_custom_logo() ) {
+		$logo_id  = (int) get_theme_mod( 'custom_logo' );
+		$logo_src = $logo_id ? wp_get_attachment_image_url( $logo_id, 'full' ) : '';
+		if ( ! empty( $logo_src ) ) {
+			echo '<a href="' . esc_url( $home_url ) . '" class="' . esc_attr( $link_class . ' has-custom-logo-img' ) . '" aria-label="' . esc_attr( get_bloginfo( 'name' ) ) . '">';
+			echo '<img src="' . esc_url( $logo_src ) . '" alt="' . esc_attr( get_bloginfo( 'name' ) ) . '" class="alify-custom-logo-img" />';
+			echo '</a>';
+			return;
+		}
+	}
+
+	echo '<a href="' . esc_url( $home_url ) . '" class="' . esc_attr( $link_class ) . '" aria-label="ALIFY Home">';
+	echo '<span class="' . esc_attr( $mark_class ) . '" aria-hidden="true">△</span>LIFY';
+	echo '</a>';
+}

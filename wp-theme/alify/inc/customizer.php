@@ -20,16 +20,19 @@ function alify_customize_register( $wp_customize ) {
 	);
 
 	$fields = array(
-		'alify_email'        => array( 'Studio Email Address', 'info@alify.site', 'sanitize_email' ),
-		'alify_whatsapp'     => array( 'WhatsApp Display Number', '+90 301 9328094', 'sanitize_text_field' ),
-		'alify_whatsapp_url' => array( 'WhatsApp Direct Link (wa.me)', 'https://wa.me/903019328094', 'esc_url_raw' ),
-		'alify_hq'           => array( 'Studio Headquarters Label', 'Karachi, PK — Global Delivery', 'sanitize_text_field' ),
-		'alify_cta_text'     => array( 'Header Primary CTA Label', 'Start a Project', 'sanitize_text_field' ),
-		'alify_linkedin'     => array( 'LinkedIn URL', 'https://linkedin.com', 'esc_url_raw' ),
-		'alify_instagram'    => array( 'Instagram URL', 'https://instagram.com', 'esc_url_raw' ),
-		'alify_twitter'      => array( 'X / Twitter URL', 'https://x.com', 'esc_url_raw' ),
-		'alify_behance'      => array( 'Behance URL', 'https://behance.net', 'esc_url_raw' ),
-		'alify_dribbble'     => array( 'Dribbble URL', 'https://dribbble.com', 'esc_url_raw' ),
+		'alify_email'             => array( 'Studio Email Address', 'info@alify.site', 'sanitize_email' ),
+		'alify_whatsapp'          => array( 'WhatsApp Display Number', '+90 301 9328094', 'sanitize_text_field' ),
+		'alify_whatsapp_url'      => array( 'WhatsApp Direct Link (wa.me)', 'https://wa.me/903019328094', 'esc_url_raw' ),
+		'alify_hq'                => array( 'Studio Headquarters Label', 'Karachi, PK — Global Delivery', 'sanitize_text_field' ),
+		'alify_contact_btn_text'  => array( 'Header Secondary Button Label', 'Contact Us', 'sanitize_text_field' ),
+		'alify_cta_text'          => array( 'Header Primary CTA Label', 'Start a Project', 'sanitize_text_field' ),
+		'alify_footer_col1_title' => array( 'Footer Menu 1 Heading', 'Navigation', 'sanitize_text_field' ),
+		'alify_footer_col2_title' => array( 'Footer Menu 2 Heading', 'Services', 'sanitize_text_field' ),
+		'alify_linkedin'          => array( 'LinkedIn URL', 'https://linkedin.com', 'esc_url_raw' ),
+		'alify_instagram'         => array( 'Instagram URL', 'https://instagram.com', 'esc_url_raw' ),
+		'alify_twitter'           => array( 'X / Twitter URL', 'https://x.com', 'esc_url_raw' ),
+		'alify_behance'           => array( 'Behance URL', 'https://behance.net', 'esc_url_raw' ),
+		'alify_dribbble'          => array( 'Dribbble URL', 'https://dribbble.com', 'esc_url_raw' ),
 	);
 
 	foreach ( $fields as $key => $cfg ) {
