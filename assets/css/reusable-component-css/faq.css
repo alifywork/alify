@@ -3,7 +3,8 @@
    Strictly Custom CSS + Brand Variables (--color-white/black/primary/secondary)
    ========================================================================== */
 
-/* NOTE: Do NOT add overflow: hidden on .faq-section so .faq-intro-sticky stays sticky! */
+/* NOTE: Do NOT add overflow: hidden on .faq-section so .faq-intro-sticky stays sticky!
+   clip-path: inset(0) clips the parallax ::before layer cleanly without creating a scroll container. */
 .faq-section {
   position: relative;
   background-color: var(--color-secondary);
@@ -11,17 +12,21 @@
   border-top: 1px solid rgba(15, 52, 115, 0.1);
   border-bottom: 1px solid rgba(15, 52, 115, 0.1);
   isolation: isolate;
+  -webkit-clip-path: inset(0);
+  clip-path: inset(0);
 }
 
 .faq-section::before {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: -14% 0;
   z-index: -2;
   background-image: url("../../images/sections/bg-faq-section.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  transform: translate3d(0, var(--sec-parallax-y, 0px), 0) scale(1.06);
+  will-change: transform;
   pointer-events: none;
 }
 
@@ -32,11 +37,17 @@
   z-index: -1;
   background: linear-gradient(
     108deg,
-    rgba(246, 244, 241, 0.88) 0%,
-    rgba(246, 244, 241, 0.75) 55%,
-    rgba(255, 255, 255, 0.84) 100%
+    rgba(246, 244, 241, 0.82) 0%,
+    rgba(246, 244, 241, 0.68) 55%,
+    rgba(255, 255, 255, 0.78) 100%
   );
   pointer-events: none;
+}
+
+/* Prevent consecutive image sections on 404.html (.error-stage-section + .faq-section) */
+.error-stage-section + .faq-section::before,
+.error-stage-section + .faq-section::after {
+  display: none;
 }
 
 .faq-row {
@@ -74,7 +85,7 @@
   font-size: 14px;
   font-weight: 800;
   line-height: 1;
-  color: currentColor;
+  color: var(--color-accent);
   transform-origin: 50% 56%;
   animation: alifyEyebrowTriSpin 8s linear infinite;
   flex-shrink: 0;
@@ -82,10 +93,10 @@
 
 .faq-title {
   font-family: var(--font-montserrat);
-  font-weight: 800;
-  font-size: clamp(28px, 3.5vw, 44px);
-  line-height: 1.15;
-  letter-spacing: -0.025em;
+  font-weight: 600;
+  font-size: clamp(28px, 3.4vw, 42px);
+  line-height: 1.26;
+  letter-spacing: -0.015em;
   color: var(--color-black);
   margin: 0 0 16px;
 }
@@ -134,8 +145,9 @@
 
 .faq-support-title {
   font-family: var(--font-montserrat);
-  font-weight: 700;
+  font-weight: 600;
   font-size: 17px;
+  line-height: 1.38;
   color: var(--color-black);
   margin: 0;
 }
@@ -214,9 +226,9 @@
 
 .faq-question-text {
   font-family: var(--font-montserrat);
-  font-weight: 700;
+  font-weight: 600;
   font-size: 16.5px;
-  line-height: 1.38;
+  line-height: 1.42;
   color: var(--color-black);
   transition: color 0.25s ease;
 }
@@ -241,7 +253,7 @@
 }
 
 .faq-item.is-open .faq-toggle-icon {
-  background-color: var(--color-primary);
+  background-color: var(--color-accent);
   color: var(--color-white);
   transform: rotate(45deg);
 }

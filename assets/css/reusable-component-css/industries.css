@@ -31,20 +31,21 @@
     box-shadow 0.36s ease;
 }
 
-/* Full-Bleed Industry Background Photograph + Editorial Brand Scrim */
+/* Full-Bleed Industry Background Photograph + True-Color Editorial Scrim */
 .industry-card-bg {
   position: absolute;
-  inset: 0;
+  inset: -6% 0;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   z-index: -2;
-  transform: scale(1.01);
+  transform: scale(1.03);
   transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
 }
 
 .industry-card:hover .industry-card-bg {
-  transform: scale(1.09);
+  transform: scale(1.1);
 }
 
 .industry-card::after {
@@ -54,9 +55,9 @@
   z-index: -1;
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.4) 0%,
-    rgba(15, 52, 115, 0.78) 48%,
-    rgba(0, 0, 0, 0.94) 100%
+    rgba(0, 0, 0, 0.18) 0%,
+    rgba(0, 0, 0, 0.56) 48%,
+    rgba(0, 0, 0, 0.92) 100%
   );
   transition: opacity 0.35s ease;
 }
@@ -69,7 +70,7 @@
   right: 0;
   height: 3px;
   z-index: 2;
-  background-color: var(--color-white);
+  background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-amber) 100%);
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform 0.36s cubic-bezier(0.22, 1, 0.36, 1);
@@ -77,8 +78,8 @@
 
 .industry-card:hover {
   transform: translateY(-6px);
-  border-color: var(--color-primary);
-  box-shadow: 0 24px 48px rgba(15, 52, 115, 0.24);
+  border-color: rgba(224, 90, 58, 0.65);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.24);
 }
 
 .industry-card:hover::before {
@@ -120,8 +121,8 @@
 }
 
 .industry-card:hover .industry-card-icon {
-  background-color: var(--color-primary);
-  border-color: var(--color-primary);
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
   transform: scale(1.06);
 }
 
@@ -144,10 +145,10 @@
 
 .industry-card-title {
   font-family: var(--font-montserrat);
-  font-weight: 800;
-  font-size: 21px;
-  line-height: 1.26;
-  letter-spacing: -0.02em;
+  font-weight: 600;
+  font-size: 20.5px;
+  line-height: 1.35;
+  letter-spacing: -0.012em;
   color: var(--color-white);
   margin: 0 0 12px;
 }
@@ -211,7 +212,7 @@
   font-family: var(--font-poppins);
   font-size: 12.5px;
   font-weight: 600;
-  color: var(--color-secondary);
+  color: #F4B860;
 }
 
 .industry-card-cta {
@@ -260,13 +261,13 @@
 
 .industry-card:hover .industry-card-cta-pill,
 .industry-card-cta:hover .industry-card-cta-pill {
-  background-color: var(--color-primary);
+  background-color: var(--color-charcoal);
   color: var(--color-white);
 }
 
 .industry-card:hover .industry-card-cta-circle,
 .industry-card-cta:hover .industry-card-cta-circle {
-  background-color: var(--color-primary);
+  background-color: var(--color-accent);
   color: var(--color-white);
   transform: translateX(3px);
 }
@@ -278,8 +279,7 @@
 
 /* --------------------------------------------------------------------------
    2. Home Page Industries Slider Section (.home-industries-section)
-      - Header inside .container
-      - Slider inside .container-fluid
+      - Clean Warm Alabaster Rest Zone (Alternates cleanly between Services & Projects)
    -------------------------------------------------------------------------- */
 
 .home-industries-section {
@@ -287,34 +287,6 @@
   background-color: var(--color-secondary);
   padding: 96px 0;
   border-bottom: 1px solid rgba(15, 52, 115, 0.1);
-  overflow: hidden;
-  isolation: isolate;
-}
-
-.home-industries-section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  background-image: url("../../images/sections/bg-industries-section.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  pointer-events: none;
-}
-
-.home-industries-section::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: linear-gradient(
-    180deg,
-    rgba(246, 244, 241, 0.88) 0%,
-    rgba(246, 244, 241, 0.72) 52%,
-    rgba(255, 255, 255, 0.88) 100%
-  );
-  pointer-events: none;
 }
 
 .industries-head-row {
@@ -348,7 +320,7 @@
   font-size: 14px;
   font-weight: 800;
   line-height: 1;
-  color: currentColor;
+  color: var(--color-accent);
   transform-origin: 50% 56%;
   animation: alifyEyebrowTriSpin 8s linear infinite;
   flex-shrink: 0;
@@ -356,10 +328,10 @@
 
 .industries-sec-title {
   font-family: var(--font-montserrat);
-  font-weight: 800;
-  font-size: clamp(28px, 3.6vw, 44px);
-  line-height: 1.14;
-  letter-spacing: -0.025em;
+  font-weight: 600;
+  font-size: clamp(28px, 3.5vw, 42px);
+  line-height: 1.26;
+  letter-spacing: -0.015em;
   color: var(--color-black);
   margin: 0 0 12px;
 }

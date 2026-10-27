@@ -177,7 +177,7 @@
 }
 
 .site-header.is-scrolled .header-nav-link::after {
-  background-color: var(--color-primary);
+  background-color: var(--color-accent);
 }
 
 .header-nav-link:hover,
@@ -441,11 +441,12 @@
 }
 
 .btn-start-project:hover .btn-start-pill {
-  background-color: var(--color-black);
+  background-color: var(--color-charcoal);
 }
 
 .btn-start-project:hover .btn-start-circle {
-  background-color: var(--color-black);
+  background-color: var(--color-accent);
+  color: var(--color-white);
   transform: translateX(3px);
 }
 

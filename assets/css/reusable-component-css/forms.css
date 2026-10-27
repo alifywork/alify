@@ -32,7 +32,7 @@
 }
 
 .alify-req {
-  color: var(--color-primary);
+  color: var(--color-accent);
 }
 
 .alify-input,
@@ -286,10 +286,10 @@ button.btn-start-project {
 
 .hero-lead-title {
   font-family: var(--font-montserrat);
-  font-weight: 800;
-  font-size: 21px;
-  line-height: 1.25;
-  letter-spacing: -0.02em;
+  font-weight: 600;
+  font-size: 20.5px;
+  line-height: 1.34;
+  letter-spacing: -0.012em;
   color: var(--color-black);
   margin: 0 0 6px;
 }
@@ -353,12 +353,14 @@ button.btn-start-project {
 .reusable-contact-section::before {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: -14% 0;
   z-index: -2;
-  background-image: url("../../images/sections/bg-contact-section.jpg");
+  background-image: url("../../images/sections/bg-contact-warm.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  transform: translate3d(0, var(--sec-parallax-y, 0px), 0) scale(1.06);
+  will-change: transform;
   pointer-events: none;
 }
 
@@ -369,9 +371,9 @@ button.btn-start-project {
   z-index: -1;
   background: linear-gradient(
     106deg,
-    rgba(0, 0, 0, 0.82) 0%,
-    rgba(15, 52, 115, 0.64) 54%,
-    rgba(0, 0, 0, 0.74) 100%
+    rgba(0, 0, 0, 0.78) 0%,
+    rgba(18, 21, 28, 0.54) 54%,
+    rgba(0, 0, 0, 0.72) 100%
   );
   pointer-events: none;
 }
@@ -410,18 +412,22 @@ button.btn-start-project {
   font-size: 14px;
   font-weight: 800;
   line-height: 1;
-  color: currentColor;
+  color: var(--color-accent);
   transform-origin: 50% 56%;
   animation: alifyEyebrowTriSpin 8s linear infinite;
   flex-shrink: 0;
 }
 
+.reusable-contact-section .contact-sec-eyebrow-dot {
+  color: var(--color-amber);
+}
+
 .contact-sec-title {
   font-family: var(--font-montserrat);
-  font-weight: 800;
-  font-size: clamp(28px, 3.5vw, 44px);
-  line-height: 1.15;
-  letter-spacing: -0.025em;
+  font-weight: 600;
+  font-size: clamp(28px, 3.4vw, 42px);
+  line-height: 1.26;
+  letter-spacing: -0.015em;
   color: var(--color-black);
   margin: 0 0 16px;
 }
@@ -437,7 +443,7 @@ button.btn-start-project {
 .reusable-contact-section .contact-sec-title span {
   color: var(--color-secondary);
   text-decoration: underline;
-  text-decoration-color: var(--color-primary);
+  text-decoration-color: var(--color-accent);
   text-underline-offset: 6px;
 }
 
@@ -477,7 +483,7 @@ button.btn-start-project {
   width: 42px;
   height: 42px;
   border-radius: 12px;
-  background-color: var(--color-primary);
+  background-color: var(--color-accent);
   color: var(--color-white);
   display: inline-flex;
   align-items: center;
@@ -517,8 +523,9 @@ a.contact-info-tile-val:hover {
 
 .reusable-contact-card-title {
   font-family: var(--font-montserrat);
-  font-weight: 700;
-  font-size: 22px;
+  font-weight: 600;
+  font-size: 21.5px;
+  line-height: 1.35;
   color: var(--color-black);
   margin: 0 0 6px;
 }
@@ -545,32 +552,46 @@ a.contact-info-tile-val:hover {
 }
 
 .contact-directory-card {
-  background-color: var(--color-primary);
+  background-color: var(--color-charcoal);
   color: var(--color-white);
   border-radius: 26px;
   padding: 36px 32px;
   position: relative;
   overflow: hidden;
+  isolation: isolate;
+}
+
+.contact-directory-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image: url("../../images/sections/bg-contact-warm.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  pointer-events: none;
 }
 
 .contact-directory-card::after {
-  content: "△";
+  content: "";
   position: absolute;
-  right: -18px;
-  bottom: -36px;
-  font-family: var(--font-garet);
-  font-weight: 800;
-  font-size: 170px;
-  line-height: 1;
-  color: rgba(255, 255, 255, 0.06);
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    155deg,
+    rgba(0, 0, 0, 0.84) 0%,
+    rgba(18, 21, 28, 0.72) 55%,
+    rgba(224, 90, 58, 0.34) 100%
+  );
   pointer-events: none;
 }
 
 .contact-directory-title {
   font-family: var(--font-montserrat);
-  font-weight: 800;
-  font-size: 24px;
-  line-height: 1.25;
+  font-weight: 600;
+  font-size: 23.5px;
+  line-height: 1.32;
   margin: 0 0 10px;
 }
 
@@ -721,8 +742,9 @@ a.contact-directory-val:hover {
 
 .scope-step-title {
   font-family: var(--font-montserrat);
-  font-weight: 700;
+  font-weight: 600;
   font-size: 18px;
+  line-height: 1.36;
   color: var(--color-black);
   margin: 0;
 }
@@ -745,8 +767,9 @@ a.contact-directory-val:hover {
 
 .project-roadmap-title {
   font-family: var(--font-montserrat);
-  font-weight: 800;
-  font-size: 19px;
+  font-weight: 600;
+  font-size: 18.5px;
+  line-height: 1.36;
   color: var(--color-black);
   margin: 0 0 20px;
 }
@@ -783,8 +806,9 @@ a.contact-directory-val:hover {
 
 .project-roadmap-step-title {
   font-family: var(--font-montserrat);
-  font-weight: 700;
+  font-weight: 600;
   font-size: 15px;
+  line-height: 1.38;
   color: var(--color-black);
   margin: 0 0 4px;
 }
@@ -798,10 +822,11 @@ a.contact-directory-val:hover {
 }
 
 .project-nda-card {
-  background-color: var(--color-primary);
+  background: linear-gradient(135deg, var(--color-charcoal) 0%, #0F3473 100%);
   color: var(--color-white);
   border-radius: 22px;
   padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .project-nda-head {
@@ -809,9 +834,14 @@ a.contact-directory-val:hover {
   align-items: center;
   gap: 10px;
   font-family: var(--font-montserrat);
-  font-weight: 700;
+  font-weight: 600;
   font-size: 16px;
+  line-height: 1.38;
   margin-bottom: 8px;
+}
+
+.project-nda-head i {
+  color: #2FD4B4;
 }
 
 .project-nda-text {

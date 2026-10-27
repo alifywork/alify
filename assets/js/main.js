@@ -325,6 +325,276 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // --------------------------------------------------------------------------
+  // 3. Parallax & Multi-Depth Scroll Choreography (Home + All 19 Inner Pages)
+  // --------------------------------------------------------------------------
+  const secParallaxShift = isMobile ? 28 : 54;
+  const isDesktop = window.innerWidth >= 992;
+
+  // A. Multi-Plane Hero Parallax (Background Media + Watermark + Foreground Depth)
+  document
+    .querySelectorAll(".home-hero, .inner-hero, .blog-single-hero, .thankyou-hero, .error-stage-section")
+    .forEach((hero) => {
+      const bg = hero.querySelector(".hero-bg-media");
+      if (bg) {
+        gsap.fromTo(
+          bg,
+          { yPercent: -5, scale: 1.04 },
+          {
+            yPercent: isMobile ? 10 : 17,
+            scale: 1.12,
+            ease: "none",
+            scrollTrigger: {
+              trigger: hero,
+              start: "top top",
+              end: "bottom top",
+              scrub: 0.45,
+            },
+          }
+        );
+      }
+
+      const watermark = hero.querySelector(".inner-hero-watermark");
+      if (watermark) {
+        gsap.to(watermark, {
+          yPercent: 28,
+          xPercent: -6,
+          ease: "none",
+          scrollTrigger: {
+            trigger: hero,
+            start: "top top",
+            end: "bottom top",
+            scrub: 0.65,
+          },
+        });
+      }
+
+      if (isDesktop) {
+        const heroCopy = hero.querySelector(
+          ".hero-content-col, .inner-hero-copy-col, .blog-single-hero-inner"
+        );
+        if (heroCopy) {
+          gsap.to(heroCopy, {
+            y: -26,
+            ease: "none",
+            scrollTrigger: {
+              trigger: hero,
+              start: "top top",
+              end: "bottom top",
+              scrub: 0.55,
+            },
+          });
+        }
+
+        const heroLeadCard = hero.querySelector(".hero-lead-form-card");
+        if (heroLeadCard) {
+          gsap.to(heroLeadCard, {
+            y: 20,
+            ease: "none",
+            scrollTrigger: {
+              trigger: hero,
+              start: "top top",
+              end: "bottom top",
+              scrub: 0.6,
+            },
+          });
+        }
+      }
+    });
+
+  // B. Scrubbed Section & Executive Banner Background Image Parallax (--sec-parallax-y)
+  const parallaxSectionSelectors = [
+    ".home-services-section",
+    ".home-projects-section",
+    ".home-case-studies-section",
+    ".faq-section",
+    ".reusable-contact-section",
+    ".about-metrics-section",
+    ".studio-process-section.has-section-bg",
+    ".single-process-section",
+    ".single-related-projects-section",
+    ".blog-related-section",
+    ".pricing-calc-section",
+    ".cs-impact-banner",
+    ".testimonials-metrics-bar",
+    ".work-outcomes-banner",
+    ".cs-single-scoreboard",
+  ].join(", ");
+
+  document.querySelectorAll(parallaxSectionSelectors).forEach((sec) => {
+    gsap.fromTo(
+      sec,
+      { "--sec-parallax-y": `${-secParallaxShift}px` },
+      {
+        "--sec-parallax-y": `${secParallaxShift}px`,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sec,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 0.5,
+        },
+      }
+    );
+  });
+
+  // C. Window-Portal Inner Image Parallax (Frames, Showcases & Portfolio Cards)
+  document
+    .querySelectorAll(
+      ".about-visual-bg, .cs-visual-bg, .single-showcase-bg, .project-grid-card-bg, .service-card-bg, .industry-card-bg"
+    )
+    .forEach((bgEl) => {
+      const parentFrame = bgEl.parentElement;
+      if (!parentFrame) return;
+      gsap.fromTo(
+        bgEl,
+        { yPercent: -5.5 },
+        {
+          yPercent: 5.5,
+          ease: "none",
+          scrollTrigger: {
+            trigger: parentFrame,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 0.55,
+          },
+        }
+      );
+    });
+
+  // Direct background-image frames on Work Single & Case Study Single
+  document
+    .querySelectorAll(".work-hero-frame, .work-gallery-card, .cs-chapter-visual")
+    .forEach((frame) => {
+      gsap.fromTo(
+        frame,
+        { backgroundPositionY: "36%" },
+        {
+          backgroundPositionY: "64%",
+          ease: "none",
+          scrollTrigger: {
+            trigger: frame,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 0.55,
+          },
+        }
+      );
+    });
+
+  // D. Differential Column Speed Drift & Watermark Parallax (Parallax-Like Depth)
+  if (isDesktop) {
+    document
+      .querySelectorAll(
+        ".about-visual-frame, .reusable-contact-card, .contact-directory-card, .thankyou-summary-card"
+      )
+      .forEach((card) => {
+        const triggerRow = card.closest(".row") || card;
+        gsap.fromTo(
+          card,
+          { y: 24 },
+          {
+            y: -24,
+            ease: "none",
+            scrollTrigger: {
+              trigger: triggerRow,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 0.75,
+            },
+          }
+        );
+      });
+
+    // Staggered odd/even column vertical velocity on process & principle grids
+    document
+      .querySelectorAll(
+        ".about-principles-row, .studio-process-row, .single-process-row, .thankyou-steps-row"
+      )
+      .forEach((row) => {
+        const cards = row.querySelectorAll(
+          ".about-principle-card, .studio-process-card, .single-process-card, .thankyou-step-card"
+        );
+        cards.forEach((card, idx) => {
+          const offset = idx % 2 === 0 ? -14 : 18;
+          gsap.fromTo(
+            card,
+            { y: offset },
+            {
+              y: -offset,
+              ease: "none",
+              scrollTrigger: {
+                trigger: row,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 0.75,
+              },
+            }
+          );
+        });
+      });
+  }
+
+  document.querySelectorAll(".footer-cta-watermark").forEach((wm) => {
+    const banner = wm.closest(".footer-cta-banner") || wm;
+    gsap.fromTo(
+      wm,
+      { yPercent: 18, xPercent: 4 },
+      {
+        yPercent: -20,
+        xPercent: -6,
+        ease: "none",
+        scrollTrigger: {
+          trigger: banner,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 0.7,
+        },
+      }
+    );
+  });
+
+  // E. Interactive Spatial 3D Pointer Parallax on Visual Showcase Windows (Fine Pointer)
+  if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    document
+      .querySelectorAll(".about-visual-frame, .cs-visual-frame, .single-showcase-banner")
+      .forEach((stage) => {
+        const fg = stage.querySelector(
+          ".about-visual-card, .cs-benchmark-dock, .single-banner-stats-bar"
+        );
+        const topBar = stage.querySelector(
+          ".about-visual-top, .cs-visual-top, .single-banner-top"
+        );
+        if (!fg) return;
+
+        const fgX = gsap.quickTo(fg, "x", { duration: 0.45, ease: "power3.out" });
+        const fgY = gsap.quickTo(fg, "y", { duration: 0.45, ease: "power3.out" });
+        const topX = topBar ? gsap.quickTo(topBar, "x", { duration: 0.45, ease: "power3.out" }) : null;
+        const topY = topBar ? gsap.quickTo(topBar, "y", { duration: 0.45, ease: "power3.out" }) : null;
+
+        stage.addEventListener("mousemove", (e) => {
+          const rect = stage.getBoundingClientRect();
+          const nx = (e.clientX - rect.left) / rect.width - 0.5;
+          const ny = (e.clientY - rect.top) / rect.height - 0.5;
+          fgX(nx * 14);
+          fgY(ny * 10);
+          if (topX && topY) {
+            topX(nx * -10);
+            topY(ny * -8);
+          }
+        });
+
+        stage.addEventListener("mouseleave", () => {
+          fgX(0);
+          fgY(0);
+          if (topX && topY) {
+            topX(0);
+            topY(0);
+          }
+        });
+      });
+  }
+
   // Refresh ScrollTrigger positions once fonts & images finish settling
   window.addEventListener(
     "load",

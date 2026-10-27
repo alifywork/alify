@@ -33,12 +33,12 @@
 
 .footer-cta-banner {
   position: relative;
-  background-color: var(--color-primary);
+  background: linear-gradient(128deg, #0D182E 0%, #0F3473 50%, #B8442A 100%);
   border-radius: 28px;
   padding: 52px 54px;
   margin-bottom: 72px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.14);
 }
 
 .footer-cta-watermark {
@@ -88,7 +88,7 @@
   font-size: 14px;
   font-weight: 800;
   line-height: 1;
-  color: var(--color-white);
+  color: var(--color-amber);
   transform-origin: 50% 56%;
   animation: alifyEyebrowTriSpin 8s linear infinite;
   flex-shrink: 0;
@@ -96,10 +96,10 @@
 
 .footer-cta-title {
   font-family: var(--font-montserrat);
-  font-weight: 800;
-  font-size: clamp(26px, 3.2vw, 40px);
-  line-height: 1.18;
-  letter-spacing: -0.02em;
+  font-weight: 600;
+  font-size: clamp(26px, 3.1vw, 38px);
+  line-height: 1.26;
+  letter-spacing: -0.015em;
   color: var(--color-white);
   margin: 0 0 12px;
 }
@@ -256,7 +256,7 @@
   height: 38px;
   border-radius: 50%;
   border: none;
-  background-color: var(--color-primary);
+  background-color: var(--color-accent);
   color: var(--color-white);
   display: inline-flex;
   align-items: center;
@@ -304,8 +304,8 @@
 }
 
 .footer-social-link:hover {
-  background-color: var(--color-primary);
-  border-color: var(--color-primary);
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
   color: var(--color-white);
   transform: translateY(-3px);
 }
@@ -313,9 +313,10 @@
 /* Footer Navigation Headings & Lists */
 .footer-col-title {
   font-family: var(--font-montserrat);
-  font-weight: 700;
-  font-size: 15px;
-  letter-spacing: 0.04em;
+  font-weight: 600;
+  font-size: 14.5px;
+  line-height: 1.38;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--color-white);
   margin: 0 0 22px;

@@ -21,12 +21,14 @@
 .home-case-studies-section::before {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: -14% 0;
   z-index: -2;
   background-image: url("../../images/sections/bg-case-studies-section.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  transform: translate3d(0, var(--sec-parallax-y, 0px), 0) scale(1.06);
+  will-change: transform;
   pointer-events: none;
 }
 
@@ -37,9 +39,9 @@
   z-index: -1;
   background: linear-gradient(
     180deg,
-    rgba(246, 244, 241, 0.88) 0%,
-    rgba(246, 244, 241, 0.74) 48%,
-    rgba(255, 255, 255, 0.86) 100%
+    rgba(246, 244, 241, 0.8) 0%,
+    rgba(246, 244, 241, 0.66) 48%,
+    rgba(255, 255, 255, 0.8) 100%
   );
   pointer-events: none;
 }
@@ -75,7 +77,7 @@
   font-size: 14px;
   font-weight: 800;
   line-height: 1;
-  color: currentColor;
+  color: var(--color-accent);
   transform-origin: 50% 56%;
   animation: alifyEyebrowTriSpin 8s linear infinite;
   flex-shrink: 0;
@@ -83,10 +85,10 @@
 
 .cs-sec-title {
   font-family: var(--font-montserrat);
-  font-weight: 800;
-  font-size: clamp(28px, 3.6vw, 44px);
-  line-height: 1.14;
-  letter-spacing: -0.025em;
+  font-weight: 600;
+  font-size: clamp(28px, 3.5vw, 42px);
+  line-height: 1.26;
+  letter-spacing: -0.015em;
   color: var(--color-black);
   margin: 0 0 12px;
 }
@@ -190,16 +192,16 @@
 }
 
 .cs-tab-btn.is-active .cs-tab-status-dot {
-  background-color: var(--color-primary);
-  box-shadow: 0 0 0 4px rgba(15, 52, 115, 0.16);
+  background-color: var(--color-teal);
+  box-shadow: 0 0 0 4px rgba(15, 138, 115, 0.16);
 }
 
 .cs-tab-client {
   display: block;
   font-family: var(--font-montserrat);
-  font-weight: 800;
+  font-weight: 600;
   font-size: 16.5px;
-  line-height: 1.25;
+  line-height: 1.35;
   color: var(--color-black);
   margin-bottom: 4px;
 }
@@ -211,7 +213,7 @@
   font-family: var(--font-poppins);
   font-size: 12.5px;
   font-weight: 600;
-  color: var(--color-primary);
+  color: var(--color-teal);
 }
 
 /* Animated Auto-Cycle Progress Bar on Bottom of Each Tab */
@@ -228,7 +230,7 @@
   display: block;
   width: 0%;
   height: 100%;
-  background-color: var(--color-primary);
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-accent) 100%);
 }
 
 /* Split-Bento Case Study Stage Card */
@@ -272,17 +274,18 @@
 
 .cs-visual-bg {
   position: absolute;
-  inset: 0;
+  inset: -6% 0;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   z-index: -2;
-  transform: scale(1.01);
+  transform: scale(1.03);
   transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
 }
 
 .cs-visual-frame:hover .cs-visual-bg {
-  transform: scale(1.07);
+  transform: scale(1.09);
 }
 
 .cs-visual-frame::after {
@@ -292,9 +295,9 @@
   z-index: -1;
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.32) 0%,
-    rgba(15, 52, 115, 0.36) 52%,
-    rgba(0, 0, 0, 0.9) 100%
+    rgba(0, 0, 0, 0.18) 0%,
+    rgba(0, 0, 0, 0.36) 52%,
+    rgba(0, 0, 0, 0.88) 100%
   );
 }
 
@@ -381,9 +384,9 @@
 .cs-bench-after {
   padding: 2px 9px;
   border-radius: 6px;
-  background-color: var(--color-primary);
+  background-color: var(--color-teal);
   color: var(--color-white);
-  font-weight: 700;
+  font-weight: 600;
   font-size: 12.5px;
 }
 
@@ -399,20 +402,20 @@
 .cs-client-kicker {
   display: inline-block;
   font-family: var(--font-montserrat);
-  font-weight: 700;
+  font-weight: 600;
   font-size: 11.5px;
   letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: var(--color-primary);
+  color: var(--color-accent);
   margin-bottom: 8px;
 }
 
 .cs-case-title {
   font-family: var(--font-montserrat);
-  font-weight: 800;
-  font-size: clamp(22px, 2.4vw, 30px);
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+  font-weight: 600;
+  font-size: clamp(22px, 2.3vw, 29px);
+  line-height: 1.32;
+  letter-spacing: -0.012em;
   color: var(--color-black);
   margin: 0 0 20px;
 }
@@ -439,8 +442,9 @@
 .cs-diagnosis-head {
   display: block;
   font-family: var(--font-montserrat);
-  font-weight: 800;
+  font-weight: 600;
   font-size: 11.5px;
+  line-height: 1.38;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--color-black);
@@ -480,7 +484,7 @@
 }
 
 .cs-kpi-tile.is-highlight {
-  background-color: var(--color-primary);
+  background: linear-gradient(135deg, var(--color-charcoal) 0%, var(--color-primary) 100%);
   border-color: var(--color-primary);
   color: var(--color-white);
 }
@@ -488,10 +492,10 @@
 .cs-kpi-value {
   display: block;
   font-family: var(--font-montserrat);
-  font-weight: 800;
+  font-weight: 600;
   font-size: 24px;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
   color: var(--color-primary);
   margin-bottom: 5px;
 }
@@ -555,11 +559,42 @@
 }
 
 .cs-impact-banner {
-  padding: 32px 34px;
+  position: relative;
+  padding: 36px 36px;
   border-radius: 24px;
   background-color: var(--color-black);
   color: var(--color-white);
   margin-bottom: 48px;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.cs-impact-banner::before {
+  content: "";
+  position: absolute;
+  inset: -12% 0;
+  z-index: -2;
+  background-image: url("../../images/sections/bg-about-metrics.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: translate3d(0, var(--sec-parallax-y, 0px), 0) scale(1.06);
+  will-change: transform;
+  pointer-events: none;
+}
+
+.cs-impact-banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    112deg,
+    rgba(0, 0, 0, 0.84) 0%,
+    rgba(18, 21, 28, 0.68) 55%,
+    rgba(224, 90, 58, 0.34) 100%
+  );
+  pointer-events: none;
 }
 
 .cs-impact-row {
@@ -568,7 +603,7 @@
 
 .cs-impact-stat {
   padding: 4px 12px;
-  border-right: 1px solid rgba(255, 255, 255, 0.12);
+  border-right: 1px solid rgba(255, 255, 255, 0.14);
 }
 
 .cs-impact-row > div:last-child .cs-impact-stat {
@@ -578,9 +613,9 @@
 .cs-impact-val {
   display: block;
   font-family: var(--font-montserrat);
-  font-weight: 800;
-  font-size: clamp(26px, 3vw, 36px);
-  line-height: 1.1;
+  font-weight: 600;
+  font-size: clamp(26px, 3vw, 35px);
+  line-height: 1.15;
   color: var(--color-white);
   margin-bottom: 6px;
 }

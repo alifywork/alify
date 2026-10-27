@@ -12,18 +12,20 @@
   isolation: isolate;
 }
 
-/* Directional Royal-Navy & Obsidian Editorial Scrim */
+/* True-Color Editorial Scrim with Subtle Warm Coral Glow */
 .inner-hero::before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(
-    106deg,
-    rgba(0, 0, 0, 0.86) 0%,
-    rgba(15, 52, 115, 0.68) 54%,
-    rgba(0, 0, 0, 0.56) 100%
-  );
+  background:
+    radial-gradient(circle at 82% 28%, rgba(224, 90, 58, 0.2) 0%, rgba(0, 0, 0, 0) 48%),
+    linear-gradient(
+      106deg,
+      rgba(0, 0, 0, 0.82) 0%,
+      rgba(18, 21, 28, 0.58) 54%,
+      rgba(0, 0, 0, 0.56) 100%
+    );
   pointer-events: none;
 }
 
@@ -156,16 +158,16 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: var(--color-white);
+  background-color: var(--color-amber);
   flex-shrink: 0;
 }
 
 .inner-hero-title {
   font-family: var(--font-montserrat);
-  font-weight: 800;
-  font-size: clamp(32px, 4.3vw, 54px);
-  line-height: 1.12;
-  letter-spacing: -0.025em;
+  font-weight: 600;
+  font-size: clamp(32px, 4.2vw, 52px);
+  line-height: 1.22;
+  letter-spacing: -0.018em;
   color: var(--color-white);
   margin: 0 0 18px;
   max-width: 760px;
@@ -174,7 +176,7 @@
 .inner-hero-title-accent {
   color: var(--color-secondary);
   text-decoration: underline;
-  text-decoration-color: var(--color-primary);
+  text-decoration-color: var(--color-accent);
   text-underline-offset: 7px;
 }
 
@@ -345,8 +347,9 @@ a.inner-hero-tag:hover i {
 
 .inner-anchor-title {
   font-family: var(--font-montserrat);
-  font-weight: 700;
-  font-size: 19px;
+  font-weight: 600;
+  font-size: 18.5px;
+  line-height: 1.36;
   color: var(--color-black);
   margin: 0 0 10px;
 }

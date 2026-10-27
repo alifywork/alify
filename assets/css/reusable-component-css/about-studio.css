@@ -35,7 +35,7 @@
   font-size: 14px;
   font-weight: 800;
   line-height: 1;
-  color: currentColor;
+  color: var(--color-accent);
   transform-origin: 50% 56%;
   animation: alifyEyebrowTriSpin 8s linear infinite;
   flex-shrink: 0;
@@ -43,10 +43,10 @@
 
 .studio-sec-title {
   font-family: var(--font-montserrat);
-  font-size: clamp(28px, 3.4vw, 44px);
-  font-weight: 800;
-  line-height: 1.15;
-  letter-spacing: -0.025em;
+  font-size: clamp(28px, 3.3vw, 42px);
+  font-weight: 600;
+  line-height: 1.26;
+  letter-spacing: -0.015em;
   color: var(--color-black);
   margin-bottom: 14px;
 }
@@ -149,7 +149,8 @@
   display: block;
   font-family: var(--font-montserrat);
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 600;
+  line-height: 1.38;
   color: var(--color-black);
   margin-bottom: 3px;
 }
@@ -177,7 +178,8 @@
 .about-founder-name {
   font-family: var(--font-montserrat);
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 600;
+  line-height: 1.38;
   color: var(--color-black);
 }
 
@@ -204,14 +206,16 @@
 
 .about-visual-bg {
   position: absolute;
-  inset: 0;
+  inset: -6% 0;
   background-size: cover;
   background-position: center;
+  transform: scale(1.03);
   transition: transform 0.7s ease;
+  will-change: transform;
 }
 
 .about-visual-frame:hover .about-visual-bg {
-  transform: scale(1.04);
+  transform: scale(1.08);
 }
 
 .about-visual-frame::after {
@@ -220,9 +224,9 @@
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.24) 0%,
-    rgba(15, 52, 115, 0.36) 48%,
-    rgba(0, 0, 0, 0.88) 100%
+    rgba(0, 0, 0, 0.16) 0%,
+    rgba(0, 0, 0, 0.34) 48%,
+    rgba(0, 0, 0, 0.86) 100%
   );
   pointer-events: none;
 }
@@ -285,7 +289,8 @@
   display: block;
   font-family: var(--font-montserrat);
   font-size: 22px;
-  font-weight: 800;
+  font-weight: 600;
+  line-height: 1.2;
   color: var(--color-white);
 }
 
@@ -296,14 +301,43 @@
 }
 
 /* --------------------------------------------------------------------------
-   3. Animated Impact & Milestones Counter Strip (about.html)
+   3. Animated Impact & Milestones Counter Strip (about.html — Golden Sunset Image)
    -------------------------------------------------------------------------- */
 .about-metrics-section {
-  padding: 72px 0;
-  background-color: var(--color-primary);
+  padding: 84px 0;
+  background-color: var(--color-charcoal);
   color: var(--color-white);
   position: relative;
   overflow: hidden;
+  isolation: isolate;
+}
+
+.about-metrics-section::before {
+  content: "";
+  position: absolute;
+  inset: -14% 0;
+  z-index: -2;
+  background-image: url("../../images/sections/bg-about-metrics.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: translate3d(0, var(--sec-parallax-y, 0px), 0) scale(1.06);
+  will-change: transform;
+  pointer-events: none;
+}
+
+.about-metrics-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    112deg,
+    rgba(0, 0, 0, 0.78) 0%,
+    rgba(18, 21, 28, 0.62) 52%,
+    rgba(224, 90, 58, 0.32) 100%
+  );
+  pointer-events: none;
 }
 
 .about-metrics-row {
@@ -313,24 +347,27 @@
 .about-metric-box {
   padding: 28px 26px;
   border-radius: 22px;
-  background-color: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  background-color: rgba(0, 0, 0, 0.48);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   height: 100%;
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .about-metric-box:hover {
   transform: translateY(-4px);
-  background-color: rgba(255, 255, 255, 0.11);
+  background-color: rgba(0, 0, 0, 0.64);
+  border-color: rgba(224, 90, 58, 0.55);
 }
 
 .about-metric-num {
   display: block;
   font-family: var(--font-montserrat);
-  font-size: clamp(34px, 3.6vw, 48px);
-  font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -0.03em;
+  font-size: clamp(34px, 3.5vw, 46px);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
   color: var(--color-white);
   margin-bottom: 8px;
 }
@@ -339,8 +376,9 @@
   display: block;
   font-family: var(--font-montserrat);
   font-size: 16px;
-  font-weight: 700;
-  color: var(--color-white);
+  font-weight: 600;
+  line-height: 1.38;
+  color: #F4B860;
   margin-bottom: 6px;
 }
 
@@ -406,7 +444,7 @@
   font-size: 14px;
   font-weight: 800;
   line-height: 1;
-  color: currentColor;
+  color: var(--color-accent);
   transform-origin: 50% 56%;
   animation: alifyEyebrowTriSpin 8s linear infinite;
   flex-shrink: 0;
@@ -419,9 +457,10 @@
 
 .about-mv-title {
   font-family: var(--font-montserrat);
-  font-size: clamp(22px, 2.4vw, 30px);
-  font-weight: 800;
-  line-height: 1.24;
+  font-size: clamp(22px, 2.3vw, 29px);
+  font-weight: 600;
+  line-height: 1.32;
+  letter-spacing: -0.012em;
   color: var(--color-black);
   margin-bottom: 14px;
 }
@@ -495,8 +534,9 @@
 
 .about-principle-title {
   font-family: var(--font-montserrat);
-  font-size: 19px;
-  font-weight: 700;
+  font-size: 18.5px;
+  font-weight: 600;
+  line-height: 1.36;
   color: var(--color-black);
   margin-bottom: 10px;
 }
@@ -510,39 +550,46 @@
 }
 
 /* --------------------------------------------------------------------------
-   5. Reusable 4-Step Execution Process Section (Home & About)
+   5. Reusable 4-Step Execution Process Section
+      - Clean Charcoal on Home (Alternating Rest Zone)
+      - Warm Atelier Background Image on About (.has-section-bg)
    -------------------------------------------------------------------------- */
 .studio-process-section {
   padding: 96px 0;
-  background-color: var(--color-black);
-  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  background:
+    radial-gradient(circle at 86% 18%, rgba(224, 90, 58, 0.14) 0%, rgba(0, 0, 0, 0) 46%),
+    radial-gradient(circle at 12% 88%, rgba(15, 52, 115, 0.22) 0%, rgba(0, 0, 0, 0) 48%),
+    var(--color-charcoal);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   color: var(--color-white);
   position: relative;
   overflow: hidden;
   isolation: isolate;
 }
 
-.studio-process-section::before {
+.studio-process-section.has-section-bg::before {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: -14% 0;
   z-index: -2;
-  background-image: url("../../images/sections/bg-process-section.jpg");
+  background-image: url("../../images/sections/bg-process-warm.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  transform: translate3d(0, var(--sec-parallax-y, 0px), 0) scale(1.06);
+  will-change: transform;
   pointer-events: none;
 }
 
-.studio-process-section::after {
+.studio-process-section.has-section-bg::after {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
   background: linear-gradient(
     112deg,
-    rgba(0, 0, 0, 0.82) 0%,
-    rgba(15, 52, 115, 0.62) 52%,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(18, 21, 28, 0.64) 52%,
     rgba(0, 0, 0, 0.82) 100%
   );
   pointer-events: none;
@@ -556,7 +603,7 @@
 
 .studio-process-section .studio-sec-eyebrow-dot {
   background-color: transparent;
-  color: var(--color-white);
+  color: var(--color-amber);
 }
 
 .studio-process-section .studio-sec-title {
@@ -566,7 +613,7 @@
 .studio-process-section .studio-sec-title span {
   color: var(--color-secondary);
   text-decoration: underline;
-  text-decoration-color: var(--color-primary);
+  text-decoration-color: var(--color-accent);
   text-underline-offset: 6px;
 }
 
@@ -595,8 +642,8 @@
 
 .studio-process-card:hover {
   transform: translateY(-5px);
-  background-color: rgba(15, 52, 115, 0.45);
-  border-color: rgba(255, 255, 255, 0.32);
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(224, 90, 58, 0.55);
 }
 
 .studio-process-head {
@@ -609,10 +656,10 @@
   display: inline-flex;
   padding: 5px 12px;
   border-radius: 999px;
-  background-color: var(--color-primary);
+  background-color: var(--color-accent);
   font-family: var(--font-montserrat);
   font-size: 11.5px;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.06em;
   color: var(--color-white);
 }
@@ -624,8 +671,9 @@
 
 .studio-process-title {
   font-family: var(--font-montserrat);
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 19.5px;
+  font-weight: 600;
+  line-height: 1.35;
   color: var(--color-white);
   margin: 14px 0 10px;
 }
@@ -738,8 +786,9 @@
 
 .about-leader-name {
   font-family: var(--font-montserrat);
-  font-size: 20px;
-  font-weight: 800;
+  font-size: 19.5px;
+  font-weight: 600;
+  line-height: 1.35;
   color: var(--color-black);
   margin-bottom: 10px;
 }
@@ -777,7 +826,8 @@
 .legal-toc-title {
   font-family: var(--font-montserrat);
   font-size: 16px;
-  font-weight: 800;
+  font-weight: 600;
+  line-height: 1.38;
   color: var(--color-black);
   margin-bottom: 6px;
 }
@@ -847,8 +897,9 @@
 
 .legal-clause-title {
   font-family: var(--font-montserrat);
-  font-size: 22px;
-  font-weight: 800;
+  font-size: 21.5px;
+  font-weight: 600;
+  line-height: 1.34;
   color: var(--color-black);
   margin-bottom: 12px;
 }
@@ -880,12 +931,14 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.8) 0%,
-    rgba(15, 52, 115, 0.68) 52%,
-    rgba(0, 0, 0, 0.86) 100%
-  );
+  background:
+    radial-gradient(circle at 78% 24%, rgba(224, 90, 58, 0.22) 0%, rgba(0, 0, 0, 0) 48%),
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.78) 0%,
+      rgba(18, 21, 28, 0.62) 52%,
+      rgba(0, 0, 0, 0.84) 100%
+    );
   pointer-events: none;
 }
 
@@ -909,18 +962,19 @@
 .error-code-display {
   display: block;
   font-family: var(--font-montserrat);
-  font-size: clamp(72px, 12vw, 136px);
-  font-weight: 800;
-  line-height: 0.95;
-  letter-spacing: -0.04em;
+  font-size: clamp(72px, 12vw, 132px);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
   color: var(--color-white);
   margin-bottom: 18px;
 }
 
 .error-stage-title {
   font-family: var(--font-montserrat);
-  font-size: clamp(26px, 3.2vw, 40px);
-  font-weight: 800;
+  font-size: clamp(26px, 3.1vw, 38px);
+  font-weight: 600;
+  line-height: 1.26;
   color: var(--color-white);
   margin-bottom: 14px;
 }
@@ -1030,12 +1084,14 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(
-    106deg,
-    rgba(0, 0, 0, 0.86) 0%,
-    rgba(15, 52, 115, 0.68) 54%,
-    rgba(0, 0, 0, 0.58) 100%
-  );
+  background:
+    radial-gradient(circle at 80% 24%, rgba(224, 90, 58, 0.22) 0%, rgba(0, 0, 0, 0) 48%),
+    linear-gradient(
+      106deg,
+      rgba(0, 0, 0, 0.82) 0%,
+      rgba(18, 21, 28, 0.58) 54%,
+      rgba(0, 0, 0, 0.58) 100%
+    );
   pointer-events: none;
 }
 
@@ -1061,14 +1117,14 @@
   width: 54px;
   height: 54px;
   border-radius: 16px;
-  background-color: var(--color-primary);
+  background-color: var(--color-teal);
   border: 1px solid rgba(255, 255, 255, 0.24);
   color: var(--color-white);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-size: 22px;
-  box-shadow: 0 14px 32px rgba(15, 52, 115, 0.45);
+  box-shadow: 0 14px 32px rgba(15, 138, 115, 0.42);
 }
 
 .thankyou-status-pill {
@@ -1091,15 +1147,15 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background-color: var(--color-white);
+  background-color: var(--color-amber);
 }
 
 .thankyou-title {
   font-family: var(--font-montserrat);
-  font-size: clamp(32px, 4vw, 52px);
-  font-weight: 800;
-  line-height: 1.12;
-  letter-spacing: -0.03em;
+  font-size: clamp(32px, 3.9vw, 50px);
+  font-weight: 600;
+  line-height: 1.22;
+  letter-spacing: -0.018em;
   color: var(--color-white);
   margin-bottom: 18px;
 }
@@ -1107,7 +1163,7 @@
 .thankyou-title span {
   color: var(--color-secondary);
   text-decoration: underline;
-  text-decoration-color: var(--color-primary);
+  text-decoration-color: var(--color-accent);
   text-underline-offset: 7px;
 }
 
@@ -1172,7 +1228,8 @@
 .thankyou-summary-heading {
   font-family: var(--font-montserrat);
   font-size: 18px;
-  font-weight: 800;
+  font-weight: 600;
+  line-height: 1.35;
   color: var(--color-white);
   margin: 0;
 }
@@ -1180,11 +1237,11 @@
 .thankyou-ref-pill {
   padding: 5px 12px;
   border-radius: 999px;
-  background-color: var(--color-primary);
+  background-color: var(--color-accent);
   border: 1px solid rgba(255, 255, 255, 0.22);
   font-family: var(--font-montserrat);
   font-size: 11.5px;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.05em;
   color: var(--color-white);
 }
@@ -1328,8 +1385,9 @@
 
 .thankyou-step-title {
   font-family: var(--font-montserrat);
-  font-size: 21px;
-  font-weight: 800;
+  font-size: 20.5px;
+  font-weight: 600;
+  line-height: 1.35;
   color: var(--color-black);
   margin-bottom: 10px;
 }
