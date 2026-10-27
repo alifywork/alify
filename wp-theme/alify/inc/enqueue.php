@@ -1,6 +1,7 @@
 <?php
 /**
- * Enqueue Stylesheets, GSAP & Custom Scripts in Exact Load Order
+ * Smart Conditional Route-Wise Enqueue for Stylesheets, GSAP, Fonts & Custom Scripts
+ * Eliminates unused per-page CSS/JS payloads while preserving exact dependency order.
  *
  * @package ALIFY
  */
@@ -14,7 +15,135 @@ function alify_file_ver( $rel ) {
 	return file_exists( $path ) ? (string) filemtime( $path ) : ALIFY_THEME_VERSION;
 }
 
+/**
+ * Preload Critical Self-Hosted WOFF2 Fonts in `<head>` for Zero-CLS Typography.
+ */
+function alify_preload_critical_fonts() {
+	$fonts = array(
+		'assets/fonts/garet/Garet-Heavy.woff2',
+		'assets/fonts/montserrat/Montserrat-SemiBold.woff2',
+		'assets/fonts/poppins/Poppins-Regular.woff2',
+	);
+	foreach ( $fonts as $font_rel ) {
+		echo '<link rel="preload" href="' . esc_url( alify_asset_uri( $font_rel ) ) . '" as="font" type="font/woff2" crossorigin />' . "\n";
+	}
+}
+add_action( 'wp_head', 'alify_preload_critical_fonts', 2 );
+
+/**
+ * Exact Route-to-Component CSS & JS Map (Verified 1-to-1 Against All 22 ALIFY Templates).
+ */
+function alify_get_route_components( $route ) {
+	$map = array(
+		'index'             => array(
+			'css' => array( 'blog', 'faq', 'forms', 'testimonials', 'industries', 'services', 'projects', 'case-studies', 'about-studio' ),
+			'js'  => array( 'blog', 'faq', 'forms', 'testimonials', 'industries', 'services', 'projects', 'case-studies', 'about-studio' ),
+		),
+		'about'             => array(
+			'css' => array( 'inner-hero', 'faq', 'blog', 'forms', 'testimonials', 'about-studio' ),
+			'js'  => array( 'inner-hero', 'faq', 'blog', 'forms', 'testimonials', 'about-studio' ),
+		),
+		'services'          => array(
+			'css' => array( 'inner-hero', 'faq', 'blog', 'forms', 'testimonials', 'services' ),
+			'js'  => array( 'inner-hero', 'faq', 'blog', 'forms', 'testimonials', 'services' ),
+		),
+		'service-single'    => array(
+			'css' => array( 'inner-hero', 'forms', 'projects', 'single-pages', 'testimonials', 'faq', 'blog' ),
+			'js'  => array( 'inner-hero', 'forms', 'projects', 'single-pages', 'testimonials', 'faq', 'blog' ),
+		),
+		'industries'        => array(
+			'css' => array( 'inner-hero', 'faq', 'blog', 'forms', 'testimonials', 'industries' ),
+			'js'  => array( 'inner-hero', 'faq', 'blog', 'forms', 'testimonials', 'industries' ),
+		),
+		'industry-single'   => array(
+			'css' => array( 'inner-hero', 'forms', 'projects', 'single-pages', 'testimonials', 'faq', 'blog' ),
+			'js'  => array( 'inner-hero', 'forms', 'projects', 'single-pages', 'testimonials', 'faq', 'blog' ),
+		),
+		'work'              => array(
+			'css' => array( 'inner-hero', 'faq', 'blog', 'forms', 'testimonials', 'projects' ),
+			'js'  => array( 'inner-hero', 'faq', 'blog', 'forms', 'testimonials', 'projects' ),
+		),
+		'work-single'       => array(
+			'css' => array( 'inner-hero', 'forms', 'projects', 'single-pages', 'testimonials', 'faq', 'blog' ),
+			'js'  => array( 'inner-hero', 'forms', 'projects', 'single-pages', 'testimonials', 'faq', 'blog' ),
+		),
+		'case-studies'      => array(
+			'css' => array( 'inner-hero', 'faq', 'blog', 'forms', 'testimonials', 'case-studies' ),
+			'js'  => array( 'inner-hero', 'faq', 'blog', 'forms', 'testimonials', 'case-studies' ),
+		),
+		'case-study-single' => array(
+			'css' => array( 'inner-hero', 'forms', 'projects', 'single-pages', 'testimonials', 'faq', 'blog' ),
+			'js'  => array( 'inner-hero', 'forms', 'projects', 'single-pages', 'testimonials', 'faq', 'blog' ),
+		),
+		'pricing'           => array(
+			'css' => array( 'inner-hero', 'pricing', 'testimonials', 'faq', 'blog', 'forms' ),
+			'js'  => array( 'inner-hero', 'pricing', 'testimonials', 'faq', 'blog', 'forms' ),
+		),
+		'start-project'     => array(
+			'css' => array( 'inner-hero', 'faq', 'blog', 'forms', 'testimonials' ),
+			'js'  => array( 'inner-hero', 'faq', 'blog', 'forms', 'testimonials', 'pricing' ),
+		),
+		'book-call'         => array(
+			'css' => array( 'inner-hero', 'book-call', 'testimonials', 'faq', 'blog', 'forms' ),
+			'js'  => array( 'inner-hero', 'book-call', 'testimonials', 'faq', 'blog', 'forms' ),
+		),
+		'testimonials'      => array(
+			'css' => array( 'inner-hero', 'faq', 'blog', 'forms', 'testimonials' ),
+			'js'  => array( 'inner-hero', 'faq', 'blog', 'forms', 'testimonials' ),
+		),
+		'faq'               => array(
+			'css' => array( 'inner-hero', 'testimonials', 'faq', 'blog', 'forms' ),
+			'js'  => array( 'inner-hero', 'testimonials', 'faq', 'blog', 'forms' ),
+		),
+		'blog'              => array(
+			'css' => array( 'inner-hero', 'blog' ),
+			'js'  => array( 'inner-hero', 'blog' ),
+		),
+		'blog-single'       => array(
+			'css' => array( 'inner-hero', 'blog' ),
+			'js'  => array( 'inner-hero', 'blog' ),
+		),
+		'contact'           => array(
+			'css' => array( 'inner-hero', 'faq', 'blog', 'forms' ),
+			'js'  => array( 'inner-hero', 'faq', 'blog', 'forms' ),
+		),
+		'thank-you'         => array(
+			'css' => array( 'inner-hero', 'projects', 'single-pages', 'about-studio', 'testimonials', 'faq', 'blog' ),
+			'js'  => array( 'inner-hero', 'projects', 'about-studio', 'testimonials', 'faq', 'blog' ),
+		),
+		'privacy-policy'    => array(
+			'css' => array( 'inner-hero', 'forms', 'about-studio', 'testimonials', 'faq', 'blog' ),
+			'js'  => array( 'inner-hero', 'forms', 'about-studio', 'testimonials', 'faq', 'blog' ),
+		),
+		'terms-of-service'  => array(
+			'css' => array( 'inner-hero', 'forms', 'about-studio', 'testimonials', 'faq', 'blog' ),
+			'js'  => array( 'inner-hero', 'forms', 'about-studio', 'testimonials', 'faq', 'blog' ),
+		),
+		'404'               => array(
+			'css' => array( 'forms', 'about-studio', 'faq', 'blog' ),
+			'js'  => array( 'forms', 'faq', 'blog' ),
+		),
+		'search'            => array(
+			'css' => array( 'inner-hero', 'blog', 'forms' ),
+			'js'  => array( 'inner-hero', 'blog', 'forms' ),
+		),
+	);
+
+	if ( isset( $map[ $route ] ) ) {
+		return $map[ $route ];
+	}
+
+	// Default for custom Gutenberg/Classic pages (`page.php`)
+	return array(
+		'css' => array( 'inner-hero', 'faq', 'blog', 'forms' ),
+		'js'  => array( 'inner-hero', 'faq', 'blog', 'forms' ),
+	);
+}
+
 function alify_enqueue_assets() {
+	$route      = alify_current_route_slug();
+	$components = alify_get_route_components( $route );
+
 	// 1. Core Vendor & Global Component CSS
 	wp_enqueue_style( 'alify-bootstrap-grid', alify_asset_uri( 'assets/css/bootstrap-css/bootstrap.min.css' ), array(), alify_file_ver( 'assets/css/bootstrap-css/bootstrap.min.css' ) );
 	wp_enqueue_style( 'alify-fontawesome', alify_asset_uri( 'assets/icons/css/all.min.css' ), array(), alify_file_ver( 'assets/icons/css/all.min.css' ) );
@@ -22,8 +151,8 @@ function alify_enqueue_assets() {
 	wp_enqueue_style( 'alify-footer', alify_asset_uri( 'assets/css/global-component-css/footer.css' ), array( 'alify-bootstrap-grid' ), alify_file_ver( 'assets/css/global-component-css/footer.css' ) );
 	wp_enqueue_style( 'alify-ui-polish', alify_asset_uri( 'assets/css/global-component-css/ui-polish.css' ), array( 'alify-bootstrap-grid' ), alify_file_ver( 'assets/css/global-component-css/ui-polish.css' ) );
 
-	// 2. Reusable Component CSS (Shared + Template-Specific)
-	$reusable_css = array(
+	// 2. Conditional Reusable Component CSS (Only What Current Route Uses)
+	$all_reusable_css = array(
 		'inner-hero'   => 'assets/css/reusable-component-css/inner-hero.css',
 		'services'     => 'assets/css/reusable-component-css/services.css',
 		'industries'   => 'assets/css/reusable-component-css/industries.css',
@@ -39,11 +168,14 @@ function alify_enqueue_assets() {
 		'forms'        => 'assets/css/reusable-component-css/forms.css',
 	);
 
-	foreach ( $reusable_css as $handle => $rel ) {
-		wp_enqueue_style( 'alify-' . $handle, alify_asset_uri( $rel ), array( 'alify-bootstrap-grid' ), alify_file_ver( $rel ) );
+	foreach ( $components['css'] as $handle ) {
+		if ( isset( $all_reusable_css[ $handle ] ) ) {
+			$rel = $all_reusable_css[ $handle ];
+			wp_enqueue_style( 'alify-' . $handle, alify_asset_uri( $rel ), array( 'alify-bootstrap-grid' ), alify_file_ver( $rel ) );
+		}
 	}
 
-	// 3. Main Custom CSS (@font-face Garet, Montserrat, Poppins + `:root` Tokens) & Theme Root style.css
+	// 3. Main Custom CSS & Theme Root style.css
 	wp_enqueue_style( 'alify-main-style', alify_asset_uri( 'assets/css/style.css' ), array( 'alify-bootstrap-grid' ), alify_file_ver( 'assets/css/style.css' ) );
 	wp_enqueue_style( 'alify-wp-style', get_stylesheet_uri(), array( 'alify-main-style' ), alify_file_ver( 'style.css' ) );
 
@@ -56,58 +188,66 @@ function alify_enqueue_assets() {
 	wp_enqueue_script( 'alify-footer-js', alify_asset_uri( 'assets/js/global-component-js/footer.js' ), array(), alify_file_ver( 'assets/js/global-component-js/footer.js' ), true );
 	wp_enqueue_script( 'alify-ui-polish-js', alify_asset_uri( 'assets/js/global-component-js/ui-polish.js' ), array(), alify_file_ver( 'assets/js/global-component-js/ui-polish.js' ), true );
 
-	// Localize WordPress runtime config for AJAX forms, URLs & asset paths
 	wp_localize_script(
 		'alify-ui-polish-js',
 		'ALIFY_WP',
 		array(
-			'ajaxUrl'         => admin_url( 'admin-ajax.php' ),
-			'nonce'           => wp_create_nonce( 'alify_ajax_nonce' ),
-			'themeUri'        => untrailingslashit( ALIFY_THEME_URI ),
-			'homeUrl'         => home_url( '/' ),
-			'thankYouUrl'     => alify_page_url( 'thank-you' ),
-			'bookCallUrl'     => alify_page_url( 'book-call' ),
-			'startProjectUrl' => alify_page_url( 'start-project' ),
-			'blogUrl'         => alify_page_url( 'blog' ),
-			'workUrl'         => alify_page_url( 'work' ),
-			'workSingleUrl'   => alify_page_url( 'work-single' ),
-			'caseSingleUrl'   => alify_page_url( 'case-study-single' ),
-			'serviceSingleUrl'=> alify_page_url( 'service-single' ),
-			'blogSingleUrl'   => alify_page_url( 'blog-single' ),
-			'email'           => get_theme_mod( 'alify_email', 'info@alify.site' ),
-			'whatsapp'        => get_theme_mod( 'alify_whatsapp', '+90 301 9328094' ),
-			'whatsappUrl'     => get_theme_mod( 'alify_whatsapp_url', 'https://wa.me/903019328094' ),
+			'ajaxUrl'          => admin_url( 'admin-ajax.php' ),
+			'nonce'            => wp_create_nonce( 'alify_ajax_nonce' ),
+			'themeUri'         => untrailingslashit( ALIFY_THEME_URI ),
+			'homeUrl'          => home_url( '/' ),
+			'thankYouUrl'      => alify_page_url( 'thank-you' ),
+			'bookCallUrl'      => alify_page_url( 'book-call' ),
+			'startProjectUrl'  => alify_page_url( 'start-project' ),
+			'blogUrl'          => alify_page_url( 'blog' ),
+			'workUrl'          => alify_page_url( 'work' ),
+			'workSingleUrl'    => alify_page_url( 'work-single' ),
+			'caseSingleUrl'    => alify_page_url( 'case-study-single' ),
+			'serviceSingleUrl' => alify_page_url( 'service-single' ),
+			'blogSingleUrl'    => alify_page_url( 'blog-single' ),
+			'email'            => get_theme_mod( 'alify_email', 'info@alify.site' ),
+			'whatsapp'         => get_theme_mod( 'alify_whatsapp', '+90 301 9328094' ),
+			'whatsappUrl'      => get_theme_mod( 'alify_whatsapp_url', 'https://wa.me/903019328094' ),
 		)
 	);
 
-	// 5. Reusable Component Scripts (Before main.js)
-	$reusable_js = array(
-		'inner-hero-js'   => 'assets/js/reusable-component-js/inner-hero.js',
-		'services-js'     => 'assets/js/reusable-component-js/services.js',
-		'industries-js'   => 'assets/js/reusable-component-js/industries.js',
-		'projects-js'     => 'assets/js/reusable-component-js/projects.js',
-		'case-studies-js' => 'assets/js/reusable-component-js/case-studies.js',
-		'about-studio-js' => 'assets/js/reusable-component-js/about-studio.js',
-		'single-pages-js' => 'assets/js/reusable-component-js/single-pages.js',
-		'pricing-js'      => 'assets/js/reusable-component-js/pricing.js',
-		'book-call-js'    => 'assets/js/reusable-component-js/book-call.js',
-		'testimonials-js' => 'assets/js/reusable-component-js/testimonials.js',
-		'faq-js'          => 'assets/js/reusable-component-js/faq.js',
-		'blog-js'         => 'assets/js/reusable-component-js/blog.js',
-		'forms-js'        => 'assets/js/reusable-component-js/forms.js',
+	// 5. Conditional Reusable Component Scripts (Before main.js)
+	$all_reusable_js = array(
+		'inner-hero'   => 'assets/js/reusable-component-js/inner-hero.js',
+		'services'     => 'assets/js/reusable-component-js/services.js',
+		'industries'   => 'assets/js/reusable-component-js/industries.js',
+		'projects'     => 'assets/js/reusable-component-js/projects.js',
+		'case-studies' => 'assets/js/reusable-component-js/case-studies.js',
+		'about-studio' => 'assets/js/reusable-component-js/about-studio.js',
+		'single-pages' => 'assets/js/reusable-component-js/single-pages.js',
+		'pricing'      => 'assets/js/reusable-component-js/pricing.js',
+		'book-call'    => 'assets/js/reusable-component-js/book-call.js',
+		'testimonials' => 'assets/js/reusable-component-js/testimonials.js',
+		'faq'          => 'assets/js/reusable-component-js/faq.js',
+		'blog'         => 'assets/js/reusable-component-js/blog.js',
+		'forms'        => 'assets/js/reusable-component-js/forms.js',
 	);
 
 	$deps_for_main = array( 'alify-gsap', 'alify-scrolltrigger', 'alify-ui-polish-js' );
-	foreach ( $reusable_js as $handle => $rel ) {
-		wp_enqueue_script( 'alify-' . $handle, alify_asset_uri( $rel ), array( 'alify-ui-polish-js' ), alify_file_ver( $rel ), true );
-		$deps_for_main[] = 'alify-' . $handle;
+	foreach ( $components['js'] as $key ) {
+		if ( isset( $all_reusable_js[ $key ] ) ) {
+			$rel        = $all_reusable_js[ $key ];
+			$script_hdl = 'alify-' . $key . '-js';
+			wp_enqueue_script( $script_hdl, alify_asset_uri( $rel ), array( 'alify-ui-polish-js' ), alify_file_ver( $rel ), true );
+			$deps_for_main[] = $script_hdl;
+		}
 	}
 
 	// 6. Main Custom JS (Loaded LAST so dynamic cards/galleries are already in DOM)
 	wp_enqueue_script( 'alify-main-js', alify_asset_uri( 'assets/js/main.js' ), $deps_for_main, alify_file_ver( 'assets/js/main.js' ), true );
 
-	// 7. Localize Live CPT Single Post Data (`window.ALIFY_CPT_SINGLE`) for CPT Permalinks & Query-String Detail Routes
-	if ( function_exists( 'alify_build_single_cpt_override' ) ) {
+	// 7. Native Threaded Comment Reply Script on Single Posts
+	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+		wp_enqueue_script( 'comment-reply' );
+	}
+
+	// 8. Localize Live CPT Single Post Data (`window.ALIFY_CPT_SINGLE`) When `single-pages` Script Is Enqueued
+	if ( wp_script_is( 'alify-single-pages-js', 'enqueued' ) && function_exists( 'alify_build_single_cpt_override' ) ) {
 		$cpt_post = null;
 		if ( is_singular( array( 'alify_service', 'alify_project', 'alify_industry', 'alify_case_study' ) ) ) {
 			$cpt_post = get_queried_object();

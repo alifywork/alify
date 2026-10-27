@@ -93,6 +93,12 @@ while ( have_posts() ) :
 									<?php endforeach; ?>
 								</div>
 							<?php endif; ?>
+
+							<?php
+							if ( comments_open() || get_comments_number() ) {
+								comments_template();
+							}
+							?>
 						</article>
 					</div>
 

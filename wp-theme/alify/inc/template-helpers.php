@@ -44,6 +44,9 @@ function alify_current_route_slug() {
 	if ( is_404() ) {
 		return '404';
 	}
+	if ( is_search() ) {
+		return 'search';
+	}
 	if ( is_home() || ( is_archive() && ! is_post_type_archive() ) ) {
 		return 'blog';
 	}

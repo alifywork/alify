@@ -99,3 +99,16 @@ All **6 Custom Post Types** + native WordPress **Blog Posts** are powered dynami
   - **Custom CRM Columns** (`Ref & Type`, `Status`, `Client & Direct WhatsApp / Email`, `Capability & Budget`, `Booked Slot / Source`, `Received`).
   - **Admin Filter Dropdowns** by Lead Type (`Strategy Call`, `Project Brief`, `General Inquiry`, `Newsletter`) & Pipeline Status (`New`, `Contacted`, `Qualified`, `Closed / Won`).
   - **1-Click `Export Leads CSV`** button (UTF-8 BOM Excel-ready CSV download) + **Internal Studio Team Notes** meta box.
+
+---
+
+## 7. Sitewide Search, Comments, Conditional Performance & SEO Schema
+
+- **Sitewide Multi-Post-Type Search (`search.php` & `searchform.php`)**:
+  - Searches across Pages, Blog Articles, Services, Projects, Industries, and Case Studies (`/?s=...`) with post-type badges and empty-state quick links.
+- **Native Threaded Comments (`comments.php` + `single.php`)**:
+  - Bespoke ALIFY discussion list, avatar initials badges, threaded replies, and styled comment form.
+- **Route-Wise Conditional Asset Loading & Font Preloading (`inc/enqueue.php`)**:
+  - Enqueues only the reusable component CSS & JS required by the active route (e.g., 2 component pairs on Blog instead of all 13) + `<link rel="preload">` for self-hosted `Garet`, `Montserrat`, and `Poppins` `.woff2` fonts.
+- **Automatic SEO Meta & JSON-LD Schema (`inc/seo-schema.php`)**:
+  - Outputs Canonical URL, Meta Description, OpenGraph, Twitter Cards, and `@graph` JSON-LD (`ProfessionalService`, `WebSite` + `SearchAction`, `BlogPosting`, and dynamic `FAQPage`) — automatically stepping aside whenever Yoast SEO, Rank Math, AIOSEO, or SEOPress is active.

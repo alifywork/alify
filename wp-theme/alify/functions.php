@@ -25,3 +25,4 @@ require_once ALIFY_THEME_DIR . '/inc/starter-importer.php';
 require_once ALIFY_THEME_DIR . '/inc/enqueue.php';
 require_once ALIFY_THEME_DIR . '/inc/ajax-forms.php';
 require_once ALIFY_THEME_DIR . '/inc/leads-crm.php';
+require_once ALIFY_THEME_DIR . '/inc/seo-schema.php';
