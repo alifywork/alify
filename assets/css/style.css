@@ -1090,8 +1090,10 @@ ol {
   .blog-related-eyebrow-dot,
   .contact-sec-eyebrow-dot,
   .single-sec-eyebrow-dot,
+  .pricing-eyebrow-dot,
   .footer-cta-eyebrow-dot,
   .about-mv-badge-dot,
+  .alify-preloader-mark,
   .hero-bg-media {
     animation: none !important;
   }

@@ -146,6 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ".services-head-row",
     ".industries-head-row",
     ".projects-head-row",
+    ".pricing-head-row",
     ".studio-sec-head-row",
     ".cs-head-row",
     ".testimonials-head-row",
@@ -161,7 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // B. Centered Single-Column Section Headers (Eyebrow + H2 from Left, Desc from Right)
-  document.querySelectorAll(".studio-sec-head, .single-sec-head").forEach((head) => {
+  document.querySelectorAll(".studio-sec-head, .single-sec-head, .pricing-calc-head, .pricing-matrix-head").forEach((head) => {
     const kids = Array.from(head.children);
     kids.forEach((child, idx) => {
       const dir = child.matches("p") ? distSoft : -distSoft;
@@ -199,12 +200,19 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // 2) Start a Project Scope Builder + Sticky Roadmap
+  // 2) Start a Project Scope Builder + Sticky Roadmap & Pricing Investment Calculator
   document.querySelectorAll(".start-project-row").forEach((row) => {
     const leftBuilder = row.querySelector(".scope-builder-card");
     const rightRoadmap = row.querySelector(".project-roadmap-card");
     if (leftBuilder) revealX(leftBuilder, -distStrong, { trigger: row });
     if (rightRoadmap) revealX(rightRoadmap, distStrong, { trigger: row, delay: 0.1 });
+  });
+
+  document.querySelectorAll(".pricing-calc-row").forEach((row) => {
+    const leftCalc = row.querySelector(".pricing-calc-builder");
+    const rightSummary = row.querySelector(".pricing-calc-summary");
+    if (leftCalc) revealX(leftCalc, -distStrong, { trigger: row });
+    if (rightSummary) revealX(rightSummary, distStrong, { trigger: row, delay: 0.1 });
   });
 
   // 3) Blog Single Sticky 3-Column Layout
@@ -272,6 +280,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const bannerBarSelectors = [
     ".services-filter-bar",
     ".projects-filter-bar",
+    ".pricing-guarantees-strip",
+    ".pricing-matrix-wrap",
     ".cs-impact-banner",
     ".cs-filter-bar",
     ".cs-selector-bar",
@@ -293,6 +303,8 @@ document.addEventListener("DOMContentLoaded", () => {
     ".projects-grid-row",
     ".services-grid-row",
     ".industries-grid-row",
+    ".pricing-tiers-row",
+    ".pricing-guarantees-row",
     ".testimonials-grid-row",
     ".blog-grid-row",
     "#blogRelatedGrid",

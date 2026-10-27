@@ -1,0 +1,279 @@
+/* ==========================================================================
+   Global UI Micro-Polish Suite:
+   1. Fast △LIFY Studio Intro Preloader (with Session Memory & CSS Fail-Safe)
+   2. Top Viewport Scroll Progress Hairline
+   3. Custom Interactive Desktop Cursor (Fine-Pointer Devices Only)
+   Strict Palette: #FFFFFF, #000000, #0F3473, #F6F4F1 ONLY
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Top Scroll Reading Progress Hairline
+   -------------------------------------------------------------------------- */
+
+.alify-scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--color-primary);
+  transform-origin: left center;
+  transform: scaleX(0);
+  z-index: 1120;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* --------------------------------------------------------------------------
+   2. Fast △LIFY Intro Preloader
+   -------------------------------------------------------------------------- */
+
+.alify-preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(15, 52, 115, 0.36) 0%, rgba(0, 0, 0, 0) 58%),
+    var(--color-black);
+  color: var(--color-white);
+  transition:
+    transform 0.62s cubic-bezier(0.76, 0, 0.24, 1),
+    opacity 0.42s ease,
+    visibility 0.62s ease;
+  /* Fail-safe: never block interaction even if scripts are delayed */
+  animation: alifyPreloaderFailsafe 0.4s ease 1.9s forwards;
+}
+
+.alify-preloader.is-quick {
+  transition:
+    opacity 0.26s ease,
+    visibility 0.26s ease;
+}
+
+.alify-preloader.is-done {
+  transform: translateY(-100%);
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.alify-preloader.is-quick.is-done {
+  transform: none;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+@keyframes alifyPreloaderFailsafe {
+  to {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+.alify-preloader-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding: 24px;
+}
+
+.alify-preloader-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-garet);
+  font-weight: 800;
+  font-size: clamp(30px, 4vw, 42px);
+  letter-spacing: 0.06em;
+  line-height: 1;
+  color: var(--color-white);
+  user-select: none;
+}
+
+.alify-preloader-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  font-size: 1.04em;
+  transform-origin: 50% 56%;
+  animation: alifyEyebrowTriSpin 3.6s linear infinite;
+}
+
+.alify-preloader-bar-wrap {
+  width: 190px;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.alify-preloader-bar-fill {
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-primary);
+  transform-origin: left center;
+  transform: scaleX(0.15);
+  transition: transform 0.12s linear;
+}
+
+.alify-preloader-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 190px;
+  font-family: var(--font-montserrat);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(246, 244, 241, 0.72);
+}
+
+/* --------------------------------------------------------------------------
+   3. Custom Interactive Desktop Cursor (Fine Pointer Only)
+   -------------------------------------------------------------------------- */
+
+.alify-cursor-dot,
+.alify-cursor-ring {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .alify-cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 7px;
+    height: 7px;
+    margin-left: -3.5px;
+    margin-top: -3.5px;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    box-shadow: 0 0 0 1.5px rgba(255, 255, 255, 0.85);
+    pointer-events: none;
+    z-index: 1990;
+    display: block;
+    opacity: 0;
+    transition:
+      opacity 0.22s ease,
+      width 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+      height 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+      margin 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+      background-color 0.25s ease;
+    will-change: transform;
+  }
+
+  .alify-cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 38px;
+    height: 38px;
+    margin-left: -19px;
+    margin-top: -19px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(15, 52, 115, 0.48);
+    background-color: rgba(15, 52, 115, 0.03);
+    pointer-events: none;
+    z-index: 1989;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition:
+      opacity 0.25s ease,
+      width 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+      height 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+      margin 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+      background-color 0.28s ease,
+      border-color 0.28s ease;
+    will-change: transform;
+  }
+
+  .alify-cursor-label {
+    font-family: var(--font-montserrat);
+    font-size: 9.5px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-white);
+    opacity: 0;
+    transform: scale(0.7);
+    transition:
+      opacity 0.22s ease,
+      transform 0.26s cubic-bezier(0.22, 1, 0.36, 1);
+    white-space: nowrap;
+    user-select: none;
+  }
+
+  .alify-cursor-dot.is-visible,
+  .alify-cursor-ring.is-visible {
+    opacity: 1;
+  }
+
+  /* Interactive Link / Button Hover State */
+  .alify-cursor-ring.is-link {
+    width: 54px;
+    height: 54px;
+    margin-left: -27px;
+    margin-top: -27px;
+    background-color: rgba(15, 52, 115, 0.12);
+    border-color: var(--color-primary);
+  }
+
+  .alify-cursor-dot.is-link {
+    width: 5px;
+    height: 5px;
+    margin-left: -2.5px;
+    margin-top: -2.5px;
+  }
+
+  /* Portfolio / Service / Showcase Card Hover State */
+  .alify-cursor-ring.is-card {
+    width: 72px;
+    height: 72px;
+    margin-left: -36px;
+    margin-top: -36px;
+    background-color: var(--color-primary);
+    border-color: rgba(255, 255, 255, 0.32);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.24);
+  }
+
+  .alify-cursor-ring.is-card .alify-cursor-label {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .alify-cursor-dot.is-card {
+    opacity: 0;
+  }
+
+  /* Form Input Focus/Hover State: keep native text I-beam distraction-free */
+  .alify-cursor-ring.is-input,
+  .alify-cursor-dot.is-input {
+    opacity: 0;
+  }
+
+  /* Click Tactile Press */
+  .alify-cursor-ring.is-pressed {
+    width: 30px;
+    height: 30px;
+    margin-left: -15px;
+    margin-top: -15px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .alify-preloader,
+  .alify-cursor-dot,
+  .alify-cursor-ring {
+    display: none !important;
+  }
+}

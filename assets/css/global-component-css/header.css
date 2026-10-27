@@ -100,7 +100,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 24px;
+  gap: 20px;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -660,22 +660,23 @@
 
 @media (max-width: 1399.98px) {
   .header-nav-list {
-    gap: 18px;
+    gap: 13px;
   }
 
-  .header-nav-link {
-    font-size: 14px;
+  .header-nav-link,
+  .site-header.is-scrolled .header-nav-link {
+    font-size: 13.5px;
   }
 
   .btn-contact {
-    padding: 0 18px;
-    font-size: 14px;
+    padding: 0 16px;
+    font-size: 13.5px;
     height: 44px;
   }
 
   .btn-start-pill {
-    padding: 0 20px;
-    font-size: 14px;
+    padding: 0 18px;
+    font-size: 13.5px;
     height: 44px;
   }
 
