@@ -1,0 +1,137 @@
+<?php
+/**
+ * URL, Asset & Markup Rewriting Helpers for ALIFY WordPress Theme
+ *
+ * @package ALIFY
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+/**
+ * Get full URI to a theme asset under /assets/.
+ */
+function alify_asset_uri( $rel_path ) {
+	$rel_path = ltrim( $rel_path, '/' );
+	return esc_url( ALIFY_THEME_URI . '/' . $rel_path );
+}
+
+/**
+ * Resolve any ALIFY blueprint page slug to its WordPress permalink.
+ */
+function alify_page_url( $slug = '', $query_args = array() ) {
+	if ( empty( $slug ) || 'index' === $slug || 'home' === $slug ) {
+		$url = home_url( '/' );
+	} else {
+		$page = get_page_by_path( $slug );
+		$url  = $page ? get_permalink( $page->ID ) : home_url( '/' . trim( $slug, '/' ) . '/' );
+	}
+
+	if ( ! empty( $query_args ) ) {
+		$url = add_query_arg( $query_args, $url );
+	}
+	return $url;
+}
+
+/**
+ * Detect current ALIFY route slug for active header/drawer menu highlighting.
+ */
+function alify_current_route_slug() {
+	if ( is_front_page() ) {
+		return 'index';
+	}
+	if ( is_404() ) {
+		return '404';
+	}
+	if ( is_home() || ( is_archive() && ! is_post_type_archive() ) ) {
+		return 'blog';
+	}
+	if ( is_singular( 'post' ) ) {
+		return 'blog-single';
+	}
+	if ( is_singular( 'alify_service' ) ) {
+		return 'service-single';
+	}
+	if ( is_singular( 'alify_project' ) ) {
+		return 'work-single';
+	}
+	if ( is_singular( 'alify_industry' ) ) {
+		return 'industry-single';
+	}
+	if ( is_singular( 'alify_case_study' ) ) {
+		return 'case-study-single';
+	}
+	if ( is_page() ) {
+		$post = get_post();
+		if ( $post ) {
+			return $post->post_name;
+		}
+	}
+	return '';
+}
+
+/**
+ * Rewrite static template HTML paths (`assets/...` & `*.html`) + Customizer contact values dynamically.
+ */
+function alify_transform_markup( $html ) {
+	$theme_assets_uri = untrailingslashit( ALIFY_THEME_URI ) . '/assets/';
+
+	// 1. Rewrite src="assets/...", href="assets/...", url('assets/...'), url("assets/...")
+	$html = preg_replace(
+		'/(src|href)=(["\'])assets\//i',
+		'$1=$2' . esc_url( $theme_assets_uri ),
+		$html
+	);
+	$html = preg_replace(
+		'/url\((["\']?)assets\//i',
+		'url($1' . esc_url( $theme_assets_uri ),
+		$html
+	);
+
+	// 2. Rewrite internal .html links (including query strings & hash anchors) to WP permalinks
+	$html = preg_replace_callback(
+		'/href=(["\'])([a-z0-9-]+)\.html(\?[^"\'#]*)?(#[^"\']*)?\1/i',
+		function ( $m ) {
+			$quote = $m[1];
+			$slug  = strtolower( $m[2] );
+			$qs    = isset( $m[3] ) ? $m[3] : '';
+			$hash  = isset( $m[4] ) ? $m[4] : '';
+
+			$query_args = array();
+			if ( ! empty( $qs ) ) {
+				parse_str( ltrim( $qs, '?' ), $query_args );
+			}
+			$url = alify_page_url( $slug, $query_args ) . $hash;
+			return 'href=' . $quote . esc_url( $url ) . $quote;
+		},
+		$html
+	);
+
+	// 3. Apply live Customizer Email, WhatsApp & Headquarters
+	$email      = get_theme_mod( 'alify_email', 'info@alify.site' );
+	$whatsapp   = get_theme_mod( 'alify_whatsapp', '+90 301 9328094' );
+	$wa_url     = get_theme_mod( 'alify_whatsapp_url', 'https://wa.me/903019328094' );
+	$hq         = get_theme_mod( 'alify_hq', 'Karachi, PK — Global Delivery' );
+
+	$html = str_replace( 'mailto:info@alify.site', 'mailto:' . sanitize_email( $email ), $html );
+	$html = str_replace( 'info@alify.site', esc_html( $email ), $html );
+	$html = str_replace( 'https://wa.me/903019328094', esc_url( $wa_url ), $html );
+	$html = str_replace( '+90 301 9328094', esc_html( $whatsapp ), $html );
+	$html = str_replace( 'Karachi, PK — Global Delivery', esc_html( $hq ), $html );
+
+	return $html;
+}
+
+/**
+ * Echo transformed theme partial safely.
+ */
+function alify_render_partial( $rel_file ) {
+	$full = ALIFY_THEME_DIR . '/' . ltrim( $rel_file, '/' );
+	if ( file_exists( $full ) ) {
+		ob_start();
+		include $full;
+		$out = ob_get_clean();
+		echo alify_transform_markup( $out ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	}
+}

@@ -1,0 +1,905 @@
+/* ==========================================================================
+   Reusable Forms System:
+   1. Inner Hero Right-Side Lead Form (.hero-lead-form-card)
+   2. Reusable Contact Section (.reusable-contact-section)
+   3. Complete Contact Us Page Form (.contact-page-section)
+   4. Start a Project Discovery Scope Builder (.start-project-section)
+   Strictly Custom CSS + Brand Variables (--color-white/black/primary/secondary)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Shared Custom Form Controls (Zero Bootstrap Form Classes)
+   -------------------------------------------------------------------------- */
+
+.alify-form-row {
+  row-gap: 18px;
+}
+
+.alify-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.alify-label {
+  font-family: var(--font-poppins);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-black);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.alify-req {
+  color: var(--color-accent);
+}
+
+.alify-input,
+.alify-select,
+.alify-textarea {
+  width: 100%;
+  background-color: var(--color-secondary);
+  border: 1.5px solid rgba(15, 52, 115, 0.12);
+  border-radius: 14px;
+  padding: 13px 16px;
+  font-family: var(--font-poppins);
+  font-size: 14.5px;
+  color: var(--color-black);
+  outline: none;
+  transition: border-color 0.24s ease, background-color 0.24s ease, box-shadow 0.24s ease;
+}
+
+.alify-input {
+  height: 48px;
+}
+
+.alify-select {
+  height: 48px;
+  appearance: none;
+  cursor: pointer;
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--color-primary) 50%),
+    linear-gradient(135deg, var(--color-primary) 50%, transparent 50%);
+  background-position:
+    calc(100% - 20px) 50%,
+    calc(100% - 14px) 50%;
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+  padding-right: 38px;
+}
+
+.alify-textarea {
+  min-height: 124px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.alify-input::placeholder,
+.alify-textarea::placeholder {
+  color: rgba(0, 0, 0, 0.42);
+}
+
+.alify-input:focus,
+.alify-select:focus,
+.alify-textarea:focus {
+  background-color: var(--color-white);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(15, 52, 115, 0.09);
+}
+
+.alify-field.has-error .alify-input,
+.alify-field.has-error .alify-select,
+.alify-field.has-error .alify-textarea {
+  border-color: var(--color-black);
+  background-color: var(--color-white);
+}
+
+.alify-error-msg {
+  display: none;
+  font-family: var(--font-poppins);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-primary);
+}
+
+.alify-field.has-error .alify-error-msg {
+  display: block;
+}
+
+/* Interactive Choice Pills (Checkboxes & Radios for Scope / Budget / Timeline / Method) */
+.alify-choice-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.alify-choice-pill {
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+}
+
+.alify-choice-pill input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.alify-choice-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background-color: var(--color-secondary);
+  border: 1.5px solid rgba(15, 52, 115, 0.14);
+  font-family: var(--font-poppins);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--color-black);
+  transition: background-color 0.22s ease, color 0.22s ease, border-color 0.22s ease, transform 0.2s ease;
+}
+
+.alify-choice-label i {
+  font-size: 13px;
+  color: var(--color-primary);
+  transition: color 0.22s ease;
+}
+
+.alify-choice-pill:hover .alify-choice-label {
+  border-color: var(--color-primary);
+}
+
+.alify-choice-pill input:checked + .alify-choice-label {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.alify-choice-pill input:checked + .alify-choice-label i {
+  color: var(--color-white);
+}
+
+.alify-choice-pill input:focus-visible + .alify-choice-label {
+  box-shadow: 0 0 0 3px rgba(15, 52, 115, 0.22);
+}
+
+/* Custom Checkbox Row (NDA / Privacy Consent) */
+.alify-check-label {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 11px;
+  cursor: pointer;
+  font-family: var(--font-poppins);
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: rgba(0, 0, 0, 0.72);
+  user-select: none;
+}
+
+.alify-check-input {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: var(--color-primary);
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+/* Native <button> Reset for Split-Pill Submit CTA */
+button.btn-start-project {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+}
+
+.alify-submit-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.alify-nda-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-poppins);
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.62);
+}
+
+.alify-nda-note i {
+  color: var(--color-primary);
+}
+
+/* Submission Feedback Banner */
+.alify-form-feedback {
+  display: none;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 18px;
+  padding: 16px 18px;
+  border-radius: 14px;
+  background-color: var(--color-secondary);
+  border-left: 4px solid var(--color-primary);
+  font-family: var(--font-poppins);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--color-black);
+}
+
+.alify-form-feedback.is-visible {
+  display: flex;
+}
+
+.alify-form-feedback i {
+  color: var(--color-primary);
+  font-size: 18px;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   1. Inner Hero Right-Side Quick Lead Form (.hero-lead-form-card)
+   -------------------------------------------------------------------------- */
+
+.hero-lead-form-card {
+  background-color: var(--color-white);
+  border: 1px solid rgba(15, 52, 115, 0.12);
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: 0 22px 48px rgba(15, 52, 115, 0.08);
+}
+
+.hero-lead-form-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.hero-lead-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+  font-family: var(--font-poppins);
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+.hero-lead-response {
+  font-family: var(--font-poppins);
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.hero-lead-title {
+  font-family: var(--font-montserrat);
+  font-weight: 600;
+  font-size: 20.5px;
+  line-height: 1.34;
+  letter-spacing: -0.012em;
+  color: var(--color-black);
+  margin: 0 0 6px;
+}
+
+.hero-lead-subtitle {
+  font-family: var(--font-poppins);
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: rgba(0, 0, 0, 0.65);
+  margin: 0 0 18px;
+}
+
+.hero-lead-form-card .alify-form-row {
+  row-gap: 12px;
+}
+
+.hero-lead-form-card .alify-input,
+.hero-lead-form-card .alify-select {
+  height: 44px;
+  padding: 10px 14px;
+  font-size: 13.5px;
+  border-radius: 12px;
+}
+
+.hero-lead-form-card .alify-textarea {
+  min-height: 78px;
+  padding: 10px 14px;
+  font-size: 13.5px;
+  border-radius: 12px;
+}
+
+.hero-lead-form-card button.btn-start-project {
+  width: 100%;
+  margin-top: 6px;
+}
+
+.hero-lead-form-card .btn-start-pill {
+  flex: 1;
+  height: 46px;
+}
+
+.hero-lead-form-card .btn-start-circle {
+  width: 46px;
+  height: 46px;
+}
+
+/* --------------------------------------------------------------------------
+   2. Reusable Contact Section (.reusable-contact-section)
+   -------------------------------------------------------------------------- */
+
+.reusable-contact-section {
+  position: relative;
+  background-color: var(--color-black);
+  color: var(--color-white);
+  padding: 96px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.reusable-contact-section::before {
+  content: "";
+  position: absolute;
+  inset: -14% 0;
+  z-index: -2;
+  background-image: url("../../images/sections/bg-contact-agency.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: translate3d(0, var(--sec-parallax-y, 0px), 0) scale(1.06);
+  will-change: transform;
+  pointer-events: none;
+}
+
+.reusable-contact-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 86% 24%, rgba(224, 90, 58, 0.2) 0%, rgba(0, 0, 0, 0) 50%),
+    linear-gradient(
+      106deg,
+      rgba(7, 10, 16, 0.91) 0%,
+      rgba(13, 17, 26, 0.8) 54%,
+      rgba(8, 12, 20, 0.89) 100%
+    );
+  pointer-events: none;
+}
+
+.reusable-contact-row {
+  align-items: center;
+  row-gap: 44px;
+}
+
+.contact-sec-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-poppins);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 12px;
+}
+
+.reusable-contact-section .contact-sec-eyebrow {
+  color: var(--color-secondary);
+}
+
+.contact-sec-eyebrow-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  border-radius: 0;
+  background-color: transparent;
+  font-family: var(--font-garet);
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--color-accent);
+  transform-origin: 50% 56%;
+  animation: alifyEyebrowTriSpin 8s linear infinite;
+  flex-shrink: 0;
+}
+
+.reusable-contact-section .contact-sec-eyebrow-dot {
+  color: var(--color-amber);
+}
+
+.contact-sec-title {
+  font-family: var(--font-montserrat);
+  font-weight: 600;
+  font-size: clamp(28px, 3.4vw, 42px);
+  line-height: 1.26;
+  letter-spacing: -0.015em;
+  color: var(--color-black);
+  margin: 0 0 16px;
+}
+
+.contact-sec-title span {
+  color: var(--color-primary);
+}
+
+.reusable-contact-section .contact-sec-title {
+  color: var(--color-white);
+}
+
+.reusable-contact-section .contact-sec-title span {
+  color: var(--color-secondary);
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent);
+  text-underline-offset: 6px;
+}
+
+.contact-sec-desc {
+  font-family: var(--font-poppins);
+  font-size: 15.5px;
+  line-height: 1.72;
+  color: rgba(0, 0, 0, 0.68);
+  max-width: 460px;
+  margin: 0 0 30px;
+}
+
+.reusable-contact-section .contact-sec-desc {
+  color: rgba(246, 244, 241, 0.84);
+}
+
+.contact-info-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 450px;
+}
+
+.contact-info-tile {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: 16px;
+  background-color: rgba(0, 0, 0, 0.48);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.contact-info-tile-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background-color: var(--color-accent);
+  color: var(--color-white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.contact-info-tile-label {
+  display: block;
+  font-family: var(--font-poppins);
+  font-size: 12px;
+  color: rgba(246, 244, 241, 0.68);
+}
+
+.contact-info-tile-val {
+  font-family: var(--font-poppins);
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--color-white);
+  overflow-wrap: anywhere;
+  transition: color 0.22s ease;
+}
+
+a.contact-info-tile-val:hover {
+  color: var(--color-secondary);
+}
+
+.reusable-contact-card {
+  background-color: var(--color-white);
+  color: var(--color-black);
+  border: 1px solid rgba(15, 52, 115, 0.12);
+  border-radius: 26px;
+  padding: 38px;
+  box-shadow: 0 28px 64px rgba(0, 0, 0, 0.34);
+}
+
+.reusable-contact-card-title {
+  font-family: var(--font-montserrat);
+  font-weight: 600;
+  font-size: 21.5px;
+  line-height: 1.35;
+  color: var(--color-black);
+  margin: 0 0 6px;
+}
+
+.reusable-contact-card-sub {
+  font-family: var(--font-poppins);
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.62);
+  margin: 0 0 24px;
+}
+
+/* --------------------------------------------------------------------------
+   3. Complete Contact Us Page Hub & Form (.contact-page-section)
+   -------------------------------------------------------------------------- */
+
+.contact-page-section {
+  background-color: var(--color-white);
+  padding: 84px 0 96px;
+}
+
+.contact-page-row {
+  row-gap: 36px;
+  align-items: flex-start;
+}
+
+.contact-directory-card {
+  background-color: var(--color-charcoal);
+  color: var(--color-white);
+  border-radius: 26px;
+  padding: 36px 32px;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.contact-directory-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image: url("../../images/sections/bg-contact-agency.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+.contact-directory-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 88% 22%, rgba(224, 90, 58, 0.24) 0%, rgba(0, 0, 0, 0) 52%),
+    linear-gradient(
+      155deg,
+      rgba(7, 10, 16, 0.92) 0%,
+      rgba(14, 18, 28, 0.84) 55%,
+      rgba(9, 13, 22, 0.9) 100%
+    );
+  pointer-events: none;
+}
+
+.contact-directory-title {
+  font-family: var(--font-montserrat);
+  font-weight: 600;
+  font-size: 23.5px;
+  line-height: 1.32;
+  margin: 0 0 10px;
+}
+
+.contact-directory-sub {
+  font-family: var(--font-poppins);
+  font-size: 14px;
+  line-height: 1.65;
+  color: rgba(246, 244, 241, 0.82);
+  margin: 0 0 28px;
+}
+
+.contact-directory-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  list-style: none;
+  margin: 0 0 28px;
+  padding: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.contact-directory-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.contact-directory-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.14);
+  color: var(--color-white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+.contact-directory-label {
+  display: block;
+  font-family: var(--font-poppins);
+  font-size: 12px;
+  color: rgba(246, 244, 241, 0.65);
+  margin-bottom: 2px;
+}
+
+.contact-directory-val {
+  font-family: var(--font-poppins);
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--color-white);
+}
+
+a.contact-directory-val:hover {
+  color: var(--color-secondary);
+}
+
+.contact-directory-socials {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  position: relative;
+  z-index: 1;
+}
+
+.contact-dir-social {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.12);
+  color: var(--color-white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: background-color 0.22s ease, color 0.22s ease, transform 0.22s ease;
+}
+
+.contact-dir-social:hover {
+  background-color: var(--color-white);
+  color: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+.contact-complete-card {
+  background-color: var(--color-white);
+  border: 1px solid rgba(15, 52, 115, 0.12);
+  border-radius: 26px;
+  padding: 42px;
+  box-shadow: 0 22px 54px rgba(15, 52, 115, 0.06);
+}
+
+/* --------------------------------------------------------------------------
+   4. Start a Project Discovery Scope Builder (.start-project-section)
+   -------------------------------------------------------------------------- */
+
+.start-project-section {
+  background-color: var(--color-white);
+  padding: 84px 0 96px;
+}
+
+.start-project-row {
+  row-gap: 36px;
+}
+
+.scope-builder-card {
+  background-color: var(--color-white);
+  border: 1px solid rgba(15, 52, 115, 0.12);
+  border-radius: 26px;
+  padding: 42px;
+  box-shadow: 0 22px 54px rgba(15, 52, 115, 0.06);
+}
+
+.scope-step-block {
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid rgba(15, 52, 115, 0.1);
+}
+
+.scope-step-block:last-of-type {
+  border-bottom: none;
+  margin-bottom: 10px;
+  padding-bottom: 16px;
+}
+
+.scope-step-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.scope-step-num {
+  padding: 5px 11px;
+  border-radius: 8px;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  font-family: var(--font-garet);
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+}
+
+.scope-step-title {
+  font-family: var(--font-montserrat);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.36;
+  color: var(--color-black);
+  margin: 0;
+}
+
+/* Sticky Onboarding Roadmap Sidebar on Start a Project Page */
+.project-roadmap-sticky {
+  position: sticky;
+  top: 108px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.project-roadmap-card {
+  background-color: var(--color-secondary);
+  border: 1px solid rgba(15, 52, 115, 0.1);
+  border-radius: 24px;
+  padding: 30px 26px;
+}
+
+.project-roadmap-title {
+  font-family: var(--font-montserrat);
+  font-weight: 600;
+  font-size: 18.5px;
+  line-height: 1.36;
+  color: var(--color-black);
+  margin: 0 0 20px;
+}
+
+.project-roadmap-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.project-roadmap-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.project-roadmap-badge {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  font-family: var(--font-garet);
+  font-weight: 800;
+  font-size: 12.5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.project-roadmap-step-title {
+  font-family: var(--font-montserrat);
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.38;
+  color: var(--color-black);
+  margin: 0 0 4px;
+}
+
+.project-roadmap-step-desc {
+  font-family: var(--font-poppins);
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: rgba(0, 0, 0, 0.66);
+  margin: 0;
+}
+
+.project-nda-card {
+  background: linear-gradient(135deg, var(--color-charcoal) 0%, #0F3473 100%);
+  color: var(--color-white);
+  border-radius: 22px;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.project-nda-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-montserrat);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.38;
+  margin-bottom: 8px;
+}
+
+.project-nda-head i {
+  color: #2FD4B4;
+}
+
+.project-nda-text {
+  font-family: var(--font-poppins);
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: rgba(246, 244, 241, 0.85);
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Adjustments
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 991.98px) {
+  .reusable-contact-section,
+  .contact-page-section,
+  .start-project-section {
+    padding: 68px 0;
+  }
+
+  .contact-sec-desc,
+  .contact-info-cards {
+    max-width: 100%;
+  }
+
+  .project-roadmap-sticky {
+    position: static;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .reusable-contact-card,
+  .contact-complete-card,
+  .scope-builder-card,
+  .contact-directory-card {
+    padding: 26px 20px;
+    border-radius: 20px;
+  }
+
+  .hero-lead-form-card {
+    padding: 22px 18px;
+  }
+
+  .alify-submit-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .alify-submit-bar button.btn-start-project {
+    width: 100%;
+  }
+
+  .alify-submit-bar .btn-start-pill {
+    flex: 1;
+  }
+}

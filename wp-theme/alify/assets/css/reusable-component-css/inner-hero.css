@@ -1,0 +1,417 @@
+/* ==========================================================================
+   Reusable Inner Page Hero & Breadcrumbs Component Styles
+   ========================================================================== */
+
+.inner-hero {
+  position: relative;
+  background-color: var(--color-black);
+  color: var(--color-white);
+  padding: 148px 0 90px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* True-Color Editorial Scrim with Subtle Warm Coral Glow */
+.inner-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 82% 28%, rgba(224, 90, 58, 0.22) 0%, rgba(0, 0, 0, 0) 48%),
+    linear-gradient(
+      106deg,
+      rgba(7, 10, 16, 0.88) 0%,
+      rgba(14, 18, 28, 0.74) 54%,
+      rgba(9, 12, 20, 0.82) 100%
+    );
+  pointer-events: none;
+}
+
+/* Subtle Architectural Grid Lines Over Scrim */
+.inner-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 56px 56px;
+  pointer-events: none;
+}
+
+.inner-hero > .container {
+  position: relative;
+  z-index: 2;
+}
+
+.inner-hero-watermark {
+  position: absolute;
+  right: 4%;
+  bottom: -48px;
+  z-index: 0;
+  font-family: var(--font-garet);
+  font-weight: 800;
+  font-size: clamp(180px, 22vw, 300px);
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.05);
+  pointer-events: none;
+  user-select: none;
+}
+
+.inner-hero-row {
+  position: relative;
+  z-index: 2;
+  align-items: center;
+  row-gap: 36px;
+}
+
+/* --------------------------------------------------------------------------
+   Breadcrumbs Navigation
+   -------------------------------------------------------------------------- */
+
+.breadcrumb-nav {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 26px;
+}
+
+.breadcrumb-list {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background-color: rgba(0, 0, 0, 0.44);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  list-style: none;
+  margin: 0;
+}
+
+.breadcrumb-item-entry {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-poppins);
+  font-size: 13.5px;
+  line-height: 1;
+}
+
+.breadcrumb-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: rgba(246, 244, 241, 0.8);
+  font-weight: 500;
+  transition: color 0.22s ease;
+}
+
+.breadcrumb-link:hover {
+  color: var(--color-white);
+}
+
+.breadcrumb-home-icon {
+  font-size: 12px;
+  color: var(--color-white);
+}
+
+.breadcrumb-sep {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.44);
+}
+
+.breadcrumb-current {
+  color: var(--color-white);
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   Inner Hero Typography & Quick Pills
+   -------------------------------------------------------------------------- */
+
+.inner-hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 15px;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-family: var(--font-poppins);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--color-white);
+  margin-bottom: 16px;
+}
+
+.inner-hero-eyebrow-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-amber);
+  flex-shrink: 0;
+}
+
+.inner-hero-title {
+  font-family: var(--font-montserrat);
+  font-weight: 600;
+  font-size: clamp(32px, 4.2vw, 52px);
+  line-height: 1.22;
+  letter-spacing: -0.018em;
+  color: var(--color-white);
+  margin: 0 0 18px;
+  max-width: 760px;
+}
+
+.inner-hero-title-accent {
+  color: var(--color-secondary);
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent);
+  text-underline-offset: 7px;
+}
+
+.inner-hero-desc {
+  font-family: var(--font-poppins);
+  font-size: 16.5px;
+  line-height: 1.72;
+  color: rgba(246, 244, 241, 0.85);
+  max-width: 620px;
+  margin: 0;
+}
+
+.inner-hero-tags {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.inner-hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-family: var(--font-poppins);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--color-white);
+  transition: background-color 0.24s ease, color 0.24s ease, border-color 0.24s ease, transform 0.24s ease;
+}
+
+a.inner-hero-tag:hover {
+  background-color: var(--color-white);
+  border-color: var(--color-white);
+  color: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+.inner-hero-tag i {
+  color: var(--color-white);
+  font-size: 13px;
+  transition: color 0.24s ease;
+}
+
+a.inner-hero-tag:hover i {
+  color: var(--color-primary);
+}
+
+/* --------------------------------------------------------------------------
+   Inner Hero Right Highlight Card
+   -------------------------------------------------------------------------- */
+
+.inner-hero-card {
+  background-color: var(--color-white);
+  border: 1px solid rgba(15, 52, 115, 0.11);
+  border-radius: 22px;
+  padding: 28px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.05);
+}
+
+.inner-hero-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.inner-hero-card-badge {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.inner-hero-card-code {
+  font-family: var(--font-garet);
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: rgba(0, 0, 0, 0.42);
+}
+
+.inner-hero-card-metric {
+  font-family: var(--font-garet);
+  font-weight: 800;
+  font-size: 34px;
+  line-height: 1.1;
+  color: var(--color-primary);
+  margin: 0 0 6px;
+}
+
+.inner-hero-card-label {
+  font-family: var(--font-poppins);
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(0, 0, 0, 0.68);
+  margin: 0 0 20px;
+}
+
+.inner-hero-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-poppins);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-primary);
+  transition: gap 0.25s ease, color 0.25s ease;
+}
+
+.inner-hero-card-cta:hover {
+  gap: 12px;
+  color: var(--color-black);
+}
+
+/* --------------------------------------------------------------------------
+   Inner Page Anchor Preview Strip (Keeps Inner Pages Clean & Navigable)
+   -------------------------------------------------------------------------- */
+
+.inner-page-placeholder {
+  padding: 72px 0;
+  background-color: var(--color-white);
+}
+
+.inner-section-grid-row {
+  row-gap: 24px;
+}
+
+.inner-anchor-card {
+  height: 100%;
+  padding: 28px;
+  border-radius: 20px;
+  background-color: var(--color-secondary);
+  border: 1px solid rgba(15, 52, 115, 0.08);
+  scroll-margin-top: 110px;
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+}
+
+.inner-anchor-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(15, 52, 115, 0.22);
+  box-shadow: 0 16px 36px rgba(15, 52, 115, 0.07);
+}
+
+.inner-anchor-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  margin-bottom: 18px;
+}
+
+.inner-anchor-title {
+  font-family: var(--font-montserrat);
+  font-weight: 600;
+  font-size: 18.5px;
+  line-height: 1.36;
+  color: var(--color-black);
+  margin: 0 0 10px;
+}
+
+.inner-anchor-text {
+  font-family: var(--font-poppins);
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: rgba(0, 0, 0, 0.7);
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 991.98px) {
+  .inner-hero {
+    padding: 122px 0 66px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .inner-hero {
+    padding: 104px 0 50px;
+  }
+
+  .breadcrumb-nav {
+    margin-bottom: 18px;
+  }
+
+  .breadcrumb-list {
+    padding: 7px 13px;
+    border-radius: 16px;
+    gap: 7px;
+    max-width: 100%;
+  }
+
+  .breadcrumb-item-entry {
+    font-size: 12px;
+    gap: 7px;
+  }
+
+  .inner-hero-eyebrow {
+    font-size: 11px;
+    padding: 6px 12px;
+    max-width: 100%;
+  }
+
+  .inner-hero-title {
+    font-size: clamp(27px, 7.6vw, 34px);
+    line-height: 1.15;
+  }
+
+  .inner-hero-desc {
+    font-size: 14.8px;
+    line-height: 1.66;
+  }
+
+  .inner-hero-tag {
+    font-size: 12.5px;
+    padding: 7px 13px;
+  }
+
+  .inner-hero-card {
+    padding: 20px 18px;
+  }
+}

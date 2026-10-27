@@ -1,0 +1,59 @@
+# ALIFY Studio — Custom WordPress Theme (`wp-theme/alify`)
+
+Complete bespoke WordPress theme conversion of the **ALIFY Creative Digital Agency** website (`https://alify.site`), preserving 100% of the custom CSS architecture, Bootstrap Grid-only layout (`container`, `container-fluid`, `row`, `col-*`), self-hosted **Garet / Montserrat / Poppins** typography, Font Awesome icons, **GSAP + ScrollTrigger** directional reveals & multi-depth parallax, interactive **Work Single Lightbox**, **Pricing Scope Calculator**, **20-FAQ Knowledge Hub**, and **Book a Strategy Call Slot-Picker Studio**.
+
+---
+
+## 1. Quick Installation in WordPress
+
+### Option A — Upload via WordPress Admin (`.zip`)
+1. Download `wp-theme/alify.zip` (or zip the `wp-theme/alify/` folder so `alify/style.css` is at the archive root).
+2. In WordPress Admin, go to **Appearance → Themes → Add New Theme → Upload Theme**.
+3. Select `alify.zip`, click **Install Now**, and click **Activate**.
+
+### Option B — Direct Server / FTP Copy
+1. Copy the folder `wp-theme/alify` into `wp-content/themes/alify`.
+2. Activate **ALIFY Studio** under **Appearance → Themes**.
+
+---
+
+## 2. Automatic 21-Page Blueprint Seeding
+
+On theme activation (`after_switch_theme`), ALIFY automatically creates all **21 studio pages** (if they don't already exist), assigns each page its dedicated template, and configures **Settings → Reading → Static Front Page = Home**:
+
+- `/` — **Home** (`front-page.php`)
+- `/about/` — **About Us** (`page-templates/template-about.php`)
+- `/services/` — **Services** (`page-templates/template-services.php`)
+- `/service-single/` — **Service Detail** (`page-templates/template-service-single.php`)
+- `/industries/` — **Industries** (`page-templates/template-industries.php`)
+- `/industry-single/` — **Industry Detail** (`page-templates/template-industry-single.php`)
+- `/work/` — **Work** (`page-templates/template-work.php`)
+- `/work-single/` — **Project Detail + Lightbox** (`page-templates/template-work-single.php`)
+- `/case-studies/` — **Case Studies** (`page-templates/template-case-studies.php`)
+- `/case-study-single/` — **Case Study Detail** (`page-templates/template-case-study-single.php`)
+- `/pricing/` — **Pricing & Scope Calculator** (`page-templates/template-pricing.php`)
+- `/testimonials/` — **Client Testimonials** (`page-templates/template-testimonials.php`)
+- `/faq/` — **20-FAQ Knowledge Hub** (`page-templates/template-faq.php`)
+- `/blog/` — **Blog & Insights** (`home.php` / `page-templates/template-blog.php`)
+- `/blog-single/` — **3-Column Sticky Blog Article** (`single.php` / `page-templates/template-blog-single.php`)
+- `/contact/` — **Contact Us** (`page-templates/template-contact.php`)
+- `/start-project/` — **Start a Project** (`page-templates/template-start-project.php`)
+- `/book-call/` — **Book a Strategy Call** (`page-templates/template-book-call.php`)
+- `/thank-you/` — **Thank You Confirmation** (`page-templates/template-thank-you.php`)
+- `/privacy-policy/` — **Privacy Policy** (`page-templates/template-privacy-policy.php`)
+- `/terms-of-service/` — **Terms of Service** (`page-templates/template-terms-of-service.php`)
+- Plus `404.php`, `archive.php`, `single.php`, `page.php`, and Custom Post Type single templates (`single-alify_service.php`, `single-alify_project.php`, `single-alify_industry.php`, `single-alify_case_study.php`).
+
+> **Tip:** Set **Settings → Permalinks → Post name (`/%postname%/`)** and click **Save Changes** so clean URLs resolve immediately. You can also re-run page creation anytime from the one-click **Sync All 21 ALIFY Pages** button under **Appearance → Themes**.
+
+---
+
+## 3. WordPress Customizer & Leads CRM Inbox
+
+- **Appearance → Customize → ALIFY Studio Settings**:
+  - Studio Email (`info@alify.site`)
+  - WhatsApp Display Number (`+90 301 9328094`) & `wa.me` Link (`https://wa.me/903019328094`)
+  - Studio Headquarters (`Karachi, PK — Global Delivery`)
+  - Header CTA Label (`Start a Project`) & Social Profile Links
+- **WP Admin → ALIFY Leads & Calls**:
+  - Every submission from the Hero Lead Form, Reusable Contact Form, Contact Page, Start a Project Brief, Book a Call Page, and Global Strategy Call Modal is saved in WordPress Admin **AND** emailed via `wp_mail()` to your configured Studio Email (`info@alify.site`).

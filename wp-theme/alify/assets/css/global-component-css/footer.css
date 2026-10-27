@@ -1,0 +1,524 @@
+/* ==========================================================================
+   Global Footer Styles (Custom CSS + Brand Color Variables Only)
+   ========================================================================== */
+
+.site-footer {
+  position: relative;
+  background-color: var(--color-black);
+  color: var(--color-white);
+  padding-top: 84px;
+  overflow: hidden;
+}
+
+/* Subtle architectural grid glow at top of footer */
+.site-footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(960px, 92vw);
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.22) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+/* --------------------------------------------------------------------------
+   Pre-Footer Primary CTA Banner Card
+   -------------------------------------------------------------------------- */
+
+.footer-cta-banner {
+  position: relative;
+  background: linear-gradient(128deg, #0D182E 0%, #0F3473 50%, #B8442A 100%);
+  border-radius: 28px;
+  padding: 52px 54px;
+  margin-bottom: 72px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.footer-cta-watermark {
+  position: absolute;
+  right: -18px;
+  bottom: -58px;
+  font-family: var(--font-garet);
+  font-weight: 800;
+  font-size: 230px;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.05);
+  pointer-events: none;
+  user-select: none;
+}
+
+.footer-cta-row {
+  align-items: center;
+  row-gap: 28px;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-cta-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
+  color: var(--color-secondary);
+  font-family: var(--font-poppins);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.footer-cta-eyebrow-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  font-family: var(--font-garet);
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--color-amber);
+  transform-origin: 50% 56%;
+  animation: alifyEyebrowTriSpin 8s linear infinite;
+  flex-shrink: 0;
+}
+
+.footer-cta-title {
+  font-family: var(--font-montserrat);
+  font-weight: 600;
+  font-size: clamp(26px, 3.1vw, 38px);
+  line-height: 1.26;
+  letter-spacing: -0.015em;
+  color: var(--color-white);
+  margin: 0 0 12px;
+}
+
+.footer-cta-desc {
+  font-family: var(--font-poppins);
+  font-size: 15.5px;
+  line-height: 1.65;
+  color: rgba(246, 244, 241, 0.84);
+  max-width: 540px;
+  margin: 0;
+}
+
+.footer-cta-actions-col {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.footer-cta-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+/* Inverted Light Split-Pill CTA inside Navy Banner */
+.btn-start-project.btn-start-light .btn-start-pill,
+.btn-start-project.btn-start-light .btn-start-circle {
+  background-color: var(--color-white);
+  color: var(--color-primary);
+}
+
+.btn-start-project.btn-start-light:hover .btn-start-pill,
+.btn-start-project.btn-start-light:hover .btn-start-circle {
+  background-color: var(--color-secondary);
+  color: var(--color-black);
+}
+
+.btn-footer-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 46px;
+  padding: 0 22px;
+  border-radius: 999px;
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  background-color: transparent;
+  color: var(--color-white);
+  font-family: var(--font-poppins);
+  font-size: 14.5px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.btn-footer-outline:hover {
+  background-color: var(--color-white);
+  border-color: var(--color-white);
+  color: var(--color-primary);
+}
+
+/* --------------------------------------------------------------------------
+   Main Footer Grid Columns
+   -------------------------------------------------------------------------- */
+
+.footer-main-row {
+  row-gap: 44px;
+  padding-bottom: 64px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-brand-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-family: var(--font-garet);
+  font-weight: 800;
+  font-size: 28px;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  color: var(--color-white);
+  margin-bottom: 18px;
+  transition: opacity 0.25s ease;
+}
+
+.footer-brand-logo:hover {
+  opacity: 0.88;
+  color: var(--color-white);
+}
+
+.footer-brand-mark {
+  color: var(--color-secondary);
+  display: inline-block;
+  padding: 4px 7px;
+  border-radius: 8px;
+  background-color: var(--color-primary);
+  font-size: 22px;
+  margin-right: 6px;
+  line-height: 1;
+}
+
+.footer-brand-desc {
+  font-family: var(--font-poppins);
+  font-size: 14.5px;
+  line-height: 1.72;
+  color: rgba(246, 244, 241, 0.72);
+  max-width: 360px;
+  margin: 0 0 24px;
+}
+
+/* Newsletter Form */
+.footer-newsletter-label {
+  display: block;
+  font-family: var(--font-poppins);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-secondary);
+  margin-bottom: 10px;
+}
+
+.footer-newsletter-form {
+  display: flex;
+  align-items: center;
+  max-width: 370px;
+  background-color: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  padding: 5px 5px 5px 18px;
+  transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.footer-newsletter-form:focus-within {
+  border-color: var(--color-secondary);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.footer-newsletter-input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--color-white);
+  font-family: var(--font-poppins);
+  font-size: 14px;
+}
+
+.footer-newsletter-input::placeholder {
+  color: rgba(246, 244, 241, 0.48);
+}
+
+.footer-newsletter-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--color-accent);
+  color: var(--color-white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+.footer-newsletter-btn:hover {
+  background-color: var(--color-white);
+  color: var(--color-primary);
+  transform: translateX(2px);
+}
+
+.footer-newsletter-msg {
+  font-family: var(--font-poppins);
+  font-size: 12.5px;
+  margin-top: 8px;
+  min-height: 18px;
+  color: var(--color-secondary);
+}
+
+/* Social Links */
+.footer-socials {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.footer-social-link {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background-color: rgba(255, 255, 255, 0.04);
+  color: var(--color-white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  transition: background-color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+.footer-social-link:hover {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-white);
+  transform: translateY(-3px);
+}
+
+/* Footer Navigation Headings & Lists */
+.footer-col-title {
+  font-family: var(--font-montserrat);
+  font-weight: 600;
+  font-size: 14.5px;
+  line-height: 1.38;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-white);
+  margin: 0 0 22px;
+}
+
+.footer-link-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-poppins);
+  font-size: 14.5px;
+  font-weight: 400;
+  color: rgba(246, 244, 241, 0.72);
+  transition: color 0.22s ease, transform 0.22s ease;
+}
+
+.footer-link:hover {
+  color: var(--color-white);
+  transform: translateX(4px);
+}
+
+/* Footer Contact Items */
+.footer-contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.footer-contact-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background-color: rgba(15, 52, 115, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--color-white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.footer-contact-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.footer-contact-label {
+  font-family: var(--font-poppins);
+  font-size: 12px;
+  color: rgba(246, 244, 241, 0.5);
+}
+
+.footer-contact-value {
+  font-family: var(--font-poppins);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-secondary);
+  overflow-wrap: anywhere;
+  transition: color 0.22s ease;
+}
+
+a.footer-contact-value:hover {
+  color: var(--color-white);
+}
+
+/* --------------------------------------------------------------------------
+   Footer Bottom Copyright & Back-to-Top Bar
+   -------------------------------------------------------------------------- */
+
+.footer-bottom {
+  padding: 26px 0;
+}
+
+.footer-bottom-row {
+  align-items: center;
+  row-gap: 16px;
+}
+
+.footer-copyright {
+  font-family: var(--font-poppins);
+  font-size: 13.5px;
+  color: rgba(246, 244, 241, 0.6);
+  margin: 0;
+}
+
+.footer-bottom-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+
+.footer-legal-link {
+  font-family: var(--font-poppins);
+  font-size: 13.5px;
+  color: rgba(246, 244, 241, 0.6);
+  transition: color 0.22s ease;
+}
+
+.footer-legal-link:hover {
+  color: var(--color-white);
+}
+
+.back-to-top-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+.back-to-top-btn:hover {
+  background-color: var(--color-white);
+  color: var(--color-primary);
+  transform: translateY(-3px);
+}
+
+/* --------------------------------------------------------------------------
+   Footer Responsive Adjustments
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 991.98px) {
+  .site-footer {
+    padding-top: 64px;
+  }
+
+  .footer-cta-banner {
+    padding: 38px 32px;
+    margin-bottom: 56px;
+  }
+
+  .footer-cta-actions-col {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .footer-bottom-right {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .site-footer {
+    padding-top: 52px;
+  }
+
+  .footer-main-row {
+    row-gap: 34px;
+    padding-bottom: 44px;
+  }
+
+  .footer-cta-banner {
+    padding: 28px 20px;
+    border-radius: 22px;
+    margin-bottom: 44px;
+  }
+
+  .footer-cta-actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .footer-cta-actions .btn-start-project {
+    width: 100%;
+  }
+
+  .footer-cta-actions .btn-start-pill {
+    flex: 1;
+  }
+
+  .footer-cta-actions .btn-footer-outline {
+    width: 100%;
+  }
+}

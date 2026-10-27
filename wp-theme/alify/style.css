@@ -1,0 +1,152 @@
+/*
+Theme Name: ALIFY Studio
+Theme URI: https://alify.site
+Author: ALIFY Creative Digital Agency
+Author URI: https://alify.site
+Description: Bespoke agency WordPress theme for ALIFY Studio — featuring overlapping shrinking header, self-hosted Garet/Montserrat/Poppins typography, GSAP ScrollTrigger directional reveals & multi-depth parallax, interactive Work Lightbox gallery, Pricing Scope Calculator, 20-FAQ Knowledge Hub, and Strategy Call Slot-Picker Studio.
+Version: 1.0.0
+Requires at least: 6.0
+Tested up to: 6.7
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: alify
+Tags: custom-logo, custom-menu, featured-images, full-width-template, portfolio, blog
+*/
+
+/* WordPress Admin Bar Offset for Overlapping Fixed Header */
+body.admin-bar .site-header {
+  top: 32px;
+}
+
+body.admin-bar .alify-scroll-progress {
+  top: 32px;
+}
+
+@media screen and (max-width: 782px) {
+  body.admin-bar .site-header {
+    top: 46px;
+  }
+
+  body.admin-bar .alify-scroll-progress {
+    top: 46px;
+  }
+}
+
+/* WordPress Core Accessibility & Alignment Classes */
+.screen-reader-text {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  width: 1px;
+  word-wrap: normal !important;
+}
+
+.alignleft {
+  float: left;
+  margin-right: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.alignright {
+  float: right;
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.aligncenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.wp-caption,
+.wp-block-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 16px;
+}
+
+/* Native WordPress Custom Page & Post Entry Styling */
+.wp-custom-page-section {
+  padding: 96px 0;
+  background: #ffffff;
+}
+
+.wp-page-entry-content,
+.blog-wp-entry-content {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.04rem;
+  line-height: 1.82;
+  color: rgba(18, 21, 28, 0.84);
+}
+
+.wp-page-entry-content h2,
+.wp-page-entry-content h3,
+.blog-wp-entry-content h2,
+.blog-wp-entry-content h3 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  color: #12151c;
+  margin: 2rem 0 0.85rem;
+  line-height: 1.25;
+}
+
+.wp-page-entry-content p,
+.blog-wp-entry-content p {
+  margin-bottom: 1.35rem;
+}
+
+.blog-featured-figure {
+  margin: 0 0 2rem;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.blog-featured-figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.blog-wp-pagination {
+  margin-top: 48px;
+  display: flex;
+  justify-content: center;
+}
+
+.blog-wp-pagination .nav-links {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.blog-wp-pagination .page-numbers {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  height: 44px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 52, 115, 0.16);
+  background: #ffffff;
+  color: #12151c;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 0.92rem;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.blog-wp-pagination .page-numbers.current,
+.blog-wp-pagination .page-numbers:hover {
+  background: #0f3473;
+  border-color: #0f3473;
+  color: #ffffff;
+}
