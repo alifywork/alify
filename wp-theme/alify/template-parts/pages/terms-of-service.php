@@ -1246,7 +1246,7 @@
                   </span>
                   <div>
                     <span class="contact-info-tile-label">WhatsApp Direct</span>
-                    <a href="https://wa.me/903019328094" target="_blank" rel="noopener noreferrer" class="contact-info-tile-val">+90 301 9328094</a>
+                    <a href="https://wa.me/923019328094" target="_blank" rel="noopener noreferrer" class="contact-info-tile-val">+92 301 9328094</a>
                   </div>
                 </div>
                 <div class="contact-info-tile">

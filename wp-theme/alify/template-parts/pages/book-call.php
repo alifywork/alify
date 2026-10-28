@@ -29,7 +29,7 @@
               </p>
               <div class="inner-hero-tags">
                 <a href="#bookCallStudio" class="inner-hero-tag"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i><span>Pick Date &amp; Time</span></a>
-                <a href="https://wa.me/903019328094" target="_blank" rel="noopener noreferrer" class="inner-hero-tag"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i><span>+90 301 9328094</span></a>
+                <a href="https://wa.me/923019328094" target="_blank" rel="noopener noreferrer" class="inner-hero-tag"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i><span>+92 301 9328094</span></a>
                 <a href="mailto:info@alify.site" class="inner-hero-tag"><i class="fa-solid fa-envelope" aria-hidden="true"></i><span>info@alify.site</span></a>
               </div>
             </div>
@@ -170,9 +170,9 @@
                   <h3 class="book-direct-heading">Need Instant Direct Access?</h3>
                   <p class="book-direct-sub">Reach our partners right now via WhatsApp or direct studio email.</p>
                   <div class="book-direct-links">
-                    <a href="https://wa.me/903019328094" target="_blank" rel="noopener noreferrer" class="book-direct-item">
+                    <a href="https://wa.me/923019328094" target="_blank" rel="noopener noreferrer" class="book-direct-item">
                       <span class="book-direct-icon is-wa"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></span>
-                      <span><span class="book-direct-lbl">WhatsApp Direct</span><span class="book-direct-val">+90 301 9328094</span></span>
+                      <span><span class="book-direct-lbl">WhatsApp Direct</span><span class="book-direct-val">+92 301 9328094</span></span>
                     </a>
                     <a href="mailto:info@alify.site" class="book-direct-item">
                       <span class="book-direct-icon"><i class="fa-solid fa-envelope" aria-hidden="true"></i></span>
@@ -260,7 +260,7 @@
                       <div class="col-12 col-md-6">
                         <div class="alify-field">
                           <label class="alify-label" for="bookVisitorWhatsapp">WhatsApp / Phone</label>
-                          <input type="tel" id="bookVisitorWhatsapp" class="alify-input" placeholder="+90 300 000 0000" />
+                          <input type="tel" id="bookVisitorWhatsapp" class="alify-input" placeholder="+92 300 000 0000" />
                         </div>
                       </div>
                       <div class="col-12 col-md-6">
@@ -957,13 +957,13 @@
                   <button type="button" class="faq-question-btn" aria-expanded="false">
                     <span class="faq-question-left">
                       <span class="faq-num">04</span>
-                      <span class="faq-question-text">Can we reschedule or switch to WhatsApp (+90 301 9328094) if needed?</span>
+                      <span class="faq-question-text">Can we reschedule or switch to WhatsApp (+92 301 9328094) if needed?</span>
                     </span>
                     <span class="faq-toggle-icon" aria-hidden="true"><i class="fa-solid fa-plus"></i></span>
                   </button>
                   <div class="faq-answer-wrap">
                     <div class="faq-answer-inner">
-                      <div class="faq-answer-body"><p>Anytime. Simply reply to info@alify.site or ping us on WhatsApp at +90 301 9328094 and we will move your slot immediately.</p></div>
+                      <div class="faq-answer-body"><p>Anytime. Simply reply to info@alify.site or ping us on WhatsApp at +92 301 9328094 and we will move your slot immediately.</p></div>
                     </div>
                   </div>
                 </div></div>
@@ -1295,7 +1295,7 @@
                   </span>
                   <div>
                     <span class="contact-info-tile-label">WhatsApp Direct</span>
-                    <a href="https://wa.me/903019328094" target="_blank" rel="noopener noreferrer" class="contact-info-tile-val">+90 301 9328094</a>
+                    <a href="https://wa.me/923019328094" target="_blank" rel="noopener noreferrer" class="contact-info-tile-val">+92 301 9328094</a>
                   </div>
                 </div>
                 <div class="contact-info-tile">

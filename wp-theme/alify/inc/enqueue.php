@@ -209,8 +209,8 @@ function alify_enqueue_assets() {
 				'serviceSingleUrl' => alify_page_url( 'service-single' ),
 				'blogSingleUrl'    => alify_page_url( 'blog-single' ),
 				'email'            => get_theme_mod( 'alify_email', 'info@alify.site' ),
-				'whatsapp'         => get_theme_mod( 'alify_whatsapp', '+90 301 9328094' ),
-				'whatsappUrl'      => get_theme_mod( 'alify_whatsapp_url', 'https://wa.me/903019328094' ),
+				'whatsapp'         => get_theme_mod( 'alify_whatsapp', '+92 301 9328094' ),
+				'whatsappUrl'      => get_theme_mod( 'alify_whatsapp_url', 'https://wa.me/923019328094' ),
 			),
 			$forms_js_cfg
 		)

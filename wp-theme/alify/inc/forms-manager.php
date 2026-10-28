@@ -571,7 +571,7 @@ function alify_render_form_template_html( $template_id, $context = array() ) {
 						<div class="col-12 col-md-6">
 							<div class="alify-field">
 								<label class="alify-label" for="<?php echo esc_attr( $uid ); ?>_phone">Phone / WhatsApp <span class="alify-req">*</span></label>
-								<input type="tel" id="<?php echo esc_attr( $uid ); ?>_phone" class="alify-input" placeholder="+90 301 9328094" data-required="true" />
+								<input type="tel" id="<?php echo esc_attr( $uid ); ?>_phone" class="alify-input" placeholder="+92 301 9328094" data-required="true" />
 								<span class="alify-error-msg">Please enter your phone number.</span>
 							</div>
 						</div>
@@ -723,7 +723,7 @@ function alify_render_form_template_html( $template_id, $context = array() ) {
 						<div class="col-12 col-md-6">
 							<div class="alify-field">
 								<label class="alify-label" for="bookVisitorWhatsapp">WhatsApp / Phone</label>
-								<input type="tel" id="bookVisitorWhatsapp" class="alify-input" placeholder="+90 301 9328094" />
+								<input type="tel" id="bookVisitorWhatsapp" class="alify-input" placeholder="+92 301 9328094" />
 							</div>
 						</div>
 						<div class="col-12 col-md-6">
@@ -811,7 +811,7 @@ function alify_render_form_template_html( $template_id, $context = array() ) {
 					<div class="col-12 col-md-6">
 						<div class="alify-field">
 							<label class="alify-label" for="<?php echo esc_attr( $uid ); ?>_phone">Phone / WhatsApp <span class="alify-req">*</span></label>
-							<input type="tel" id="<?php echo esc_attr( $uid ); ?>_phone" class="alify-input" placeholder="+90 301 9328094" data-required="true" />
+							<input type="tel" id="<?php echo esc_attr( $uid ); ?>_phone" class="alify-input" placeholder="+92 301 9328094" data-required="true" />
 							<span class="alify-error-msg">Please enter your phone number.</span>
 						</div>
 					</div>

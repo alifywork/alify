@@ -181,7 +181,7 @@
                   <p class="faq-hub-direct-desc">Speak directly with an ALIFY Managing Partner on Google Meet, Zoom, or WhatsApp.</p>
                   <div class="faq-hub-direct-channels">
                     <a href="mailto:info@alify.site" class="faq-hub-channel-row"><i class="fa-solid fa-envelope" aria-hidden="true"></i><span>info@alify.site</span></a>
-                    <a href="https://wa.me/903019328094" target="_blank" rel="noopener noreferrer" class="faq-hub-channel-row"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i><span>+90 301 9328094</span></a>
+                    <a href="https://wa.me/923019328094" target="_blank" rel="noopener noreferrer" class="faq-hub-channel-row"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i><span>+92 301 9328094</span></a>
                   </div>
                   <button type="button" class="faq-hub-call-trigger" data-open-book-call>
                     <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
@@ -519,7 +519,7 @@
                     </button>
                     <div class="faq-answer-wrap">
                       <div class="faq-answer-inner">
-                        <div class="faq-answer-body"><p>You can book a 30-minute strategy call directly on our site, email our partners at info@alify.site, or message our studio directly on WhatsApp at +90 301 9328094 for same-day executive triage.</p></div>
+                        <div class="faq-answer-body"><p>You can book a 30-minute strategy call directly on our site, email our partners at info@alify.site, or message our studio directly on WhatsApp at +92 301 9328094 for same-day executive triage.</p></div>
                       </div>
                     </div>
                   </div></div>
@@ -549,7 +549,7 @@
                   <span class="btn-start-pill">Schedule Strategy Call</span>
                   <span class="btn-start-circle" aria-hidden="true"><i class="fa-solid fa-arrow-up btn-start-arrow"></i></span>
                 </a>
-                <a href="https://wa.me/903019328094" target="_blank" rel="noopener noreferrer" class="faq-hub-wa-btn">
+                <a href="https://wa.me/923019328094" target="_blank" rel="noopener noreferrer" class="faq-hub-wa-btn">
                   <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
                   <span>WhatsApp Us</span>
                 </a>
@@ -1528,7 +1528,7 @@
                   </span>
                   <div>
                     <span class="contact-info-tile-label">WhatsApp Direct</span>
-                    <a href="https://wa.me/903019328094" target="_blank" rel="noopener noreferrer" class="contact-info-tile-val">+90 301 9328094</a>
+                    <a href="https://wa.me/923019328094" target="_blank" rel="noopener noreferrer" class="contact-info-tile-val">+92 301 9328094</a>
                   </div>
                 </div>
                 <div class="contact-info-tile">

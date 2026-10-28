@@ -103,21 +103,24 @@ function alify_output_seo_and_schema() {
 	echo '<meta property="og:url" content="' . esc_url( $canonical ) . '" />' . "\n";
 	echo '<meta property="og:image" content="' . esc_url( $og_image ) . '" />' . "\n";
 	echo '<meta name="twitter:card" content="summary_large_image" />' . "\n";
+	echo '<meta name="twitter:site" content="@alifywork" />' . "\n";
 	echo '<meta name="twitter:title" content="' . esc_attr( $doc_title ) . '" />' . "\n";
 	echo '<meta name="twitter:description" content="' . esc_attr( $meta_desc ) . '" />' . "\n";
 	echo '<meta name="twitter:image" content="' . esc_url( $og_image ) . '" />' . "\n";
 
 	// Build JSON-LD @graph
 	$email    = get_theme_mod( 'alify_email', 'info@alify.site' );
-	$whatsapp = get_theme_mod( 'alify_whatsapp', '+90 301 9328094' );
+	$whatsapp = get_theme_mod( 'alify_whatsapp', '+92 301 9328094' );
 	$same_as  = array_values(
 		array_filter(
 			array(
-				get_theme_mod( 'alify_linkedin', 'https://linkedin.com' ),
-				get_theme_mod( 'alify_instagram', 'https://instagram.com' ),
-				get_theme_mod( 'alify_twitter', 'https://x.com' ),
-				get_theme_mod( 'alify_behance', 'https://behance.net' ),
-				get_theme_mod( 'alify_dribbble', 'https://dribbble.com' ),
+				get_theme_mod( 'alify_twitter', 'https://x.com/alifywork' ),
+				get_theme_mod( 'alify_instagram', 'https://www.instagram.com/alifywork/' ),
+				get_theme_mod( 'alify_facebook', 'https://www.facebook.com/alifywork/' ),
+				get_theme_mod( 'alify_tiktok', 'https://www.tiktok.com/@alifywork' ),
+				get_theme_mod( 'alify_linkedin', '' ),
+				get_theme_mod( 'alify_behance', '' ),
+				get_theme_mod( 'alify_dribbble', '' ),
 			)
 		)
 	);

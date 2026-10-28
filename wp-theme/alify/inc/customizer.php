@@ -51,18 +51,20 @@ function alify_customize_register( $wp_customize ) {
 
 	$brand_fields = array(
 		'alify_email'             => array( 'Studio Email Address', 'info@alify.site', 'sanitize_email', 'text' ),
-		'alify_whatsapp'          => array( 'WhatsApp Display Number', '+90 301 9328094', 'sanitize_text_field', 'text' ),
-		'alify_whatsapp_url'      => array( 'WhatsApp Direct Link (wa.me)', 'https://wa.me/903019328094', 'esc_url_raw', 'url' ),
+		'alify_whatsapp'          => array( 'WhatsApp Display Number', '+92 301 9328094', 'sanitize_text_field', 'text' ),
+		'alify_whatsapp_url'      => array( 'WhatsApp Direct Link (wa.me)', 'https://wa.me/923019328094', 'esc_url_raw', 'url' ),
 		'alify_hq'                => array( 'Studio Headquarters Label', 'Karachi, PK — Global Delivery', 'sanitize_text_field', 'text' ),
 		'alify_contact_btn_text'  => array( 'Header Secondary Button Label', 'Contact Us', 'sanitize_text_field', 'text' ),
 		'alify_cta_text'          => array( 'Header Primary CTA Label', 'Start a Project', 'sanitize_text_field', 'text' ),
 		'alify_footer_col1_title' => array( 'Footer Menu 1 Heading', 'Navigation', 'sanitize_text_field', 'text' ),
 		'alify_footer_col2_title' => array( 'Footer Menu 2 Heading', 'Services', 'sanitize_text_field', 'text' ),
-		'alify_linkedin'          => array( 'LinkedIn URL', 'https://linkedin.com', 'esc_url_raw', 'url' ),
-		'alify_instagram'         => array( 'Instagram URL', 'https://instagram.com', 'esc_url_raw', 'url' ),
-		'alify_twitter'           => array( 'X / Twitter URL', 'https://x.com', 'esc_url_raw', 'url' ),
-		'alify_behance'           => array( 'Behance URL', 'https://behance.net', 'esc_url_raw', 'url' ),
-		'alify_dribbble'          => array( 'Dribbble URL', 'https://dribbble.com', 'esc_url_raw', 'url' ),
+		'alify_twitter'           => array( 'X (Twitter) URL', 'https://x.com/alifywork', 'esc_url_raw', 'url' ),
+		'alify_instagram'         => array( 'Instagram URL', 'https://www.instagram.com/alifywork/', 'esc_url_raw', 'url' ),
+		'alify_facebook'          => array( 'Facebook URL', 'https://www.facebook.com/alifywork/', 'esc_url_raw', 'url' ),
+		'alify_tiktok'            => array( 'TikTok URL', 'https://www.tiktok.com/@alifywork', 'esc_url_raw', 'url' ),
+		'alify_linkedin'          => array( 'LinkedIn URL (Optional)', '', 'esc_url_raw', 'url' ),
+		'alify_behance'           => array( 'Behance URL (Optional)', '', 'esc_url_raw', 'url' ),
+		'alify_dribbble'          => array( 'Dribbble URL (Optional)', '', 'esc_url_raw', 'url' ),
 	);
 
 	foreach ( $brand_fields as $key => $cfg ) {
@@ -227,3 +229,64 @@ function alify_customizer_head_css() {
 	}
 }
 add_action( 'wp_head', 'alify_customizer_head_css', 30 );
+
+/**
+ * One-Time Auto-Upgrade of Legacy Placeholder Contact & Social `theme_mod`s + Starter FAQ Copy.
+ */
+function alify_migrate_contact_socials_v2() {
+	if ( 'done' === get_option( 'alify_contact_socials_v2_synced' ) ) {
+		return;
+	}
+
+	$upgrades = array(
+		'alify_whatsapp'     => array( array( '+90 301 9328094', '+903019328094' ), '+92 301 9328094' ),
+		'alify_whatsapp_url' => array( array( 'https://wa.me/903019328094' ), 'https://wa.me/923019328094' ),
+		'alify_twitter'      => array( array( 'https://x.com', 'https://x.com/', 'https://twitter.com' ), 'https://x.com/alifywork' ),
+		'alify_instagram'    => array( array( 'https://instagram.com', 'https://instagram.com/', 'https://www.instagram.com' ), 'https://www.instagram.com/alifywork/' ),
+		'alify_linkedin'     => array( array( 'https://linkedin.com', 'https://linkedin.com/' ), '' ),
+		'alify_behance'      => array( array( 'https://behance.net', 'https://behance.net/' ), '' ),
+		'alify_dribbble'     => array( array( 'https://dribbble.com', 'https://dribbble.com/' ), '' ),
+	);
+
+	foreach ( $upgrades as $mod_key => $pair ) {
+		list( $old_list, $new_val ) = $pair;
+		$cur                       = get_theme_mod( $mod_key, null );
+		if ( null === $cur || in_array( trim( (string) $cur ), $old_list, true ) ) {
+			set_theme_mod( $mod_key, $new_val );
+		}
+	}
+
+	if ( null === get_theme_mod( 'alify_facebook', null ) ) {
+		set_theme_mod( 'alify_facebook', 'https://www.facebook.com/alifywork/' );
+	}
+	if ( null === get_theme_mod( 'alify_tiktok', null ) ) {
+		set_theme_mod( 'alify_tiktok', 'https://www.tiktok.com/@alifywork' );
+	}
+
+	// Update any already-imported FAQ posts containing the old +90 number
+	$faqs = get_posts(
+		array(
+			'post_type'      => 'alify_faq',
+			'posts_per_page' => 50,
+			'post_status'    => 'any',
+		)
+	);
+	foreach ( $faqs as $fq ) {
+		if ( false !== strpos( $fq->post_content, '90 301 9328094' ) || false !== strpos( $fq->post_content, '903019328094' ) ) {
+			$updated_body = str_replace(
+				array( '+90 301 9328094', 'https://wa.me/903019328094' ),
+				array( '+92 301 9328094', 'https://wa.me/923019328094' ),
+				$fq->post_content
+			);
+			wp_update_post(
+				array(
+					'ID'           => $fq->ID,
+					'post_content' => $updated_body,
+				)
+			);
+		}
+	}
+
+	update_option( 'alify_contact_socials_v2_synced', 'done' );
+}
+add_action( 'init', 'alify_migrate_contact_socials_v2', 20 );

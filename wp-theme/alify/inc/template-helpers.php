@@ -123,14 +123,14 @@ function alify_transform_markup( $html ) {
 
 	// 3. Apply live Customizer Email, WhatsApp & Headquarters
 	$email      = get_theme_mod( 'alify_email', 'info@alify.site' );
-	$whatsapp   = get_theme_mod( 'alify_whatsapp', '+90 301 9328094' );
-	$wa_url     = get_theme_mod( 'alify_whatsapp_url', 'https://wa.me/903019328094' );
+	$whatsapp   = get_theme_mod( 'alify_whatsapp', '+92 301 9328094' );
+	$wa_url     = get_theme_mod( 'alify_whatsapp_url', 'https://wa.me/923019328094' );
 	$hq         = get_theme_mod( 'alify_hq', 'Karachi, PK — Global Delivery' );
 
 	$html = str_replace( 'mailto:info@alify.site', 'mailto:' . sanitize_email( $email ), $html );
 	$html = str_replace( 'info@alify.site', esc_html( $email ), $html );
-	$html = str_replace( 'https://wa.me/903019328094', esc_url( $wa_url ), $html );
-	$html = str_replace( '+90 301 9328094', esc_html( $whatsapp ), $html );
+	$html = str_replace( 'https://wa.me/923019328094', esc_url( $wa_url ), $html );
+	$html = str_replace( '+92 301 9328094', esc_html( $whatsapp ), $html );
 	$html = str_replace( 'Karachi, PK — Global Delivery', esc_html( $hq ), $html );
 
 	return $html;

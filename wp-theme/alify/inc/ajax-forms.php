@@ -191,7 +191,7 @@ function alify_ajax_submit_lead() {
 	}
 
 	$studio_email = get_theme_mod( 'alify_email', 'info@alify.site' );
-	$whatsapp_num = get_theme_mod( 'alify_whatsapp', '+90 301 9328094' );
+	$whatsapp_num = get_theme_mod( 'alify_whatsapp', '+92 301 9328094' );
 	$tokens       = array(
 		'{ref}'          => $ref,
 		'{type_label}'   => $title_prefix,

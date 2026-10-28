@@ -92,7 +92,7 @@ All **6 Custom Post Types** + native WordPress **Blog Posts** are powered dynami
 ## 6. Studio Contact, Executive Leads CRM, Form Templates & Forms Settings (`WP Admin → ALIFY Leads & Calls`)
 
 - **Appearance → Customize → ALIFY Studio Contact & Brand**:
-  - Studio Email (`info@alify.site`), WhatsApp (`+90 301 9328094` / `https://wa.me/903019328094`), Headquarters, Header Button Labels, and Social Links.
+  - Studio Email (`info@alify.site`), WhatsApp (`+92 301 9328094` / `https://wa.me/923019328094`), Headquarters, Header Button Labels, and Social Links.
 - **WP Admin → ALIFY Leads & Calls → All Leads & Calls (`inc/leads-crm.php`)**:
   - Captures Hero Lead Forms, Reusable Contact Forms, Contact Page, Start a Project Briefs (including Company, Budget & Timeline), Book a Strategy Call Slots, Global Strategy Call Modal, Footer Newsletter Subscribers (deduplicated by email), and any Custom Shortcode Form!
   - **Unread Counter Bubble** in WP Admin sidebar for `New` leads.

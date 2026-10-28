@@ -12,8 +12,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $alify_email         = get_theme_mod( 'alify_email', 'info@alify.site' );
-$alify_whatsapp      = get_theme_mod( 'alify_whatsapp', '+90 301 9328094' );
-$alify_whatsapp_url  = get_theme_mod( 'alify_whatsapp_url', 'https://wa.me/903019328094' );
+$alify_whatsapp      = get_theme_mod( 'alify_whatsapp', '+92 301 9328094' );
+$alify_whatsapp_url  = get_theme_mod( 'alify_whatsapp_url', 'https://wa.me/923019328094' );
 $alify_hq            = get_theme_mod( 'alify_hq', 'Karachi, PK — Global Delivery' );
 $alify_contact_label = get_theme_mod( 'alify_contact_btn_text', 'Contact Us' );
 $alify_cta_label     = get_theme_mod( 'alify_cta_text', 'Start a Project' );
@@ -22,27 +22,37 @@ $alify_col2_heading  = get_theme_mod( 'alify_footer_col2_title', 'Services' );
 
 $alify_socials = array(
 	array(
-		'url'   => get_theme_mod( 'alify_linkedin', 'https://linkedin.com' ),
-		'icon'  => 'fa-brands fa-linkedin-in',
-		'label' => 'LinkedIn',
-	),
-	array(
-		'url'   => get_theme_mod( 'alify_instagram', 'https://instagram.com' ),
-		'icon'  => 'fa-brands fa-instagram',
-		'label' => 'Instagram',
-	),
-	array(
-		'url'   => get_theme_mod( 'alify_twitter', 'https://x.com' ),
+		'url'   => get_theme_mod( 'alify_twitter', 'https://x.com/alifywork' ),
 		'icon'  => 'fa-brands fa-x-twitter',
 		'label' => 'X Twitter',
 	),
 	array(
-		'url'   => get_theme_mod( 'alify_behance', 'https://behance.net' ),
+		'url'   => get_theme_mod( 'alify_instagram', 'https://www.instagram.com/alifywork/' ),
+		'icon'  => 'fa-brands fa-instagram',
+		'label' => 'Instagram',
+	),
+	array(
+		'url'   => get_theme_mod( 'alify_facebook', 'https://www.facebook.com/alifywork/' ),
+		'icon'  => 'fa-brands fa-facebook-f',
+		'label' => 'Facebook',
+	),
+	array(
+		'url'   => get_theme_mod( 'alify_tiktok', 'https://www.tiktok.com/@alifywork' ),
+		'icon'  => 'fa-brands fa-tiktok',
+		'label' => 'TikTok',
+	),
+	array(
+		'url'   => get_theme_mod( 'alify_linkedin', '' ),
+		'icon'  => 'fa-brands fa-linkedin-in',
+		'label' => 'LinkedIn',
+	),
+	array(
+		'url'   => get_theme_mod( 'alify_behance', '' ),
 		'icon'  => 'fa-brands fa-behance',
 		'label' => 'Behance',
 	),
 	array(
-		'url'   => get_theme_mod( 'alify_dribbble', 'https://dribbble.com' ),
+		'url'   => get_theme_mod( 'alify_dribbble', '' ),
 		'icon'  => 'fa-brands fa-dribbble',
 		'label' => 'Dribbble',
 	),

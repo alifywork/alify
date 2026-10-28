@@ -99,9 +99,9 @@
                         <i class="fa-solid fa-envelope" aria-hidden="true"></i>
                         <span>info@alify.site</span>
                       </a>
-                      <a href="https://wa.me/903019328094" target="_blank" rel="noopener noreferrer" class="thankyou-direct-link">
+                      <a href="https://wa.me/923019328094" target="_blank" rel="noopener noreferrer" class="thankyou-direct-link">
                         <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
-                        <span>+90 301 9328094</span>
+                        <span>+92 301 9328094</span>
                       </a>
                     </div>
                   </div>

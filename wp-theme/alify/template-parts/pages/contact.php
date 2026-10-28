@@ -42,9 +42,9 @@
                   <i class="fa-solid fa-envelope" aria-hidden="true"></i>
                   <span>info@alify.site</span>
                 </a>
-                <a href="https://wa.me/903019328094" target="_blank" rel="noopener noreferrer" class="inner-hero-tag">
+                <a href="https://wa.me/923019328094" target="_blank" rel="noopener noreferrer" class="inner-hero-tag">
                   <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
-                  <span>+90 301 9328094</span>
+                  <span>+92 301 9328094</span>
                 </a>
                 <span class="inner-hero-tag">
                   <i class="fa-solid fa-clock" aria-hidden="true"></i>
@@ -112,7 +112,7 @@
                     </span>
                     <div>
                       <span class="contact-directory-label">Phone &amp; WhatsApp</span>
-                      <a href="https://wa.me/903019328094" target="_blank" rel="noopener noreferrer" class="contact-directory-val">+90 301 9328094</a>
+                      <a href="https://wa.me/923019328094" target="_blank" rel="noopener noreferrer" class="contact-directory-val">+92 301 9328094</a>
                     </div>
                   </li>
                   <li class="contact-directory-item">
@@ -136,18 +136,26 @@
                 </ul>
 
                 <div class="contact-directory-socials" aria-label="Studio Social Profiles">
-                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="contact-dir-social" aria-label="LinkedIn">
-                    <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
-                  </a>
-                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="contact-dir-social" aria-label="Instagram">
-                    <i class="fa-brands fa-instagram" aria-hidden="true"></i>
-                  </a>
-                  <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="contact-dir-social" aria-label="X Twitter">
-                    <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
-                  </a>
-                  <a href="https://behance.net" target="_blank" rel="noopener noreferrer" class="contact-dir-social" aria-label="Behance">
-                    <i class="fa-brands fa-behance" aria-hidden="true"></i>
-                  </a>
+                  <?php
+                  $alify_dir_socials = array(
+                    array( 'url' => get_theme_mod( 'alify_twitter', 'https://x.com/alifywork' ), 'icon' => 'fa-brands fa-x-twitter', 'label' => 'X Twitter' ),
+                    array( 'url' => get_theme_mod( 'alify_instagram', 'https://www.instagram.com/alifywork/' ), 'icon' => 'fa-brands fa-instagram', 'label' => 'Instagram' ),
+                    array( 'url' => get_theme_mod( 'alify_facebook', 'https://www.facebook.com/alifywork/' ), 'icon' => 'fa-brands fa-facebook-f', 'label' => 'Facebook' ),
+                    array( 'url' => get_theme_mod( 'alify_tiktok', 'https://www.tiktok.com/@alifywork' ), 'icon' => 'fa-brands fa-tiktok', 'label' => 'TikTok' ),
+                    array( 'url' => get_theme_mod( 'alify_linkedin', '' ), 'icon' => 'fa-brands fa-linkedin-in', 'label' => 'LinkedIn' ),
+                    array( 'url' => get_theme_mod( 'alify_behance', '' ), 'icon' => 'fa-brands fa-behance', 'label' => 'Behance' ),
+                    array( 'url' => get_theme_mod( 'alify_dribbble', '' ), 'icon' => 'fa-brands fa-dribbble', 'label' => 'Dribbble' ),
+                  );
+                  foreach ( $alify_dir_socials as $alify_dsoc ) :
+                    if ( ! empty( $alify_dsoc['url'] ) ) :
+                      ?>
+                      <a href="<?php echo esc_url( $alify_dsoc['url'] ); ?>" target="_blank" rel="noopener noreferrer" class="contact-dir-social" aria-label="<?php echo esc_attr( $alify_dsoc['label'] ); ?>">
+                        <i class="<?php echo esc_attr( $alify_dsoc['icon'] ); ?>" aria-hidden="true"></i>
+                      </a>
+                      <?php
+                    endif;
+                  endforeach;
+                  ?>
                 </div>
               </div>
             </div>

@@ -253,12 +253,12 @@
       dock.className = "alify-quick-dock";
       dock.innerHTML = `
         <a
-          href="https://wa.me/903019328094"
+          href="https://wa.me/923019328094"
           target="_blank"
           rel="noopener noreferrer"
           class="alify-dock-wa"
-          aria-label="Chat on WhatsApp +90 301 9328094"
-          title="WhatsApp: +90 301 9328094"
+          aria-label="Chat on WhatsApp +92 301 9328094"
+          title="WhatsApp: +92 301 9328094"
         >
           <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
         </a>
@@ -332,9 +332,9 @@
                   <i class="fa-solid fa-envelope" aria-hidden="true"></i>
                   <span>info@alify.site</span>
                 </a>
-                <a href="https://wa.me/903019328094" target="_blank" rel="noopener noreferrer" class="alify-book-direct-link">
+                <a href="https://wa.me/923019328094" target="_blank" rel="noopener noreferrer" class="alify-book-direct-link">
                   <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
-                  <span>+90 301 9328094</span>
+                  <span>+92 301 9328094</span>
                 </a>
                 <a href="book-call.html" class="alify-book-fullpage-link">
                   <span>Open Full Booking Page</span>

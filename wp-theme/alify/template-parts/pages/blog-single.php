@@ -134,7 +134,7 @@
                         <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
                       </a>
                       <a
-                        href="https://x.com"
+                        href="https://x.com/alifywork"
                         target="_blank"
                         rel="noopener noreferrer"
                         class="blog-share-btn"
