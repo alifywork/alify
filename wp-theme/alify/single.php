@@ -23,14 +23,25 @@ while ( have_posts() ) :
 	}
 	$featured_img = $hero_bg ? $hero_bg : alify_asset_uri( 'assets/images/blog/blog-design-systems.jpg' );
 	if ( empty( $hero_bg ) ) {
-		$hero_bg = alify_asset_uri( 'assets/images/heroes/hero-blog.jpg' );
+		$hero_bg = function_exists( 'alify_cf_opt_img' ) ? alify_cf_opt_img( 'alify_singles', 'sgl_blog_default_hero_bg', alify_asset_uri( 'assets/images/heroes/hero-blog.jpg' ) ) : alify_asset_uri( 'assets/images/heroes/hero-blog.jpg' );
 	}
 
-	$cats       = get_the_category( $pid );
-	$cat_name   = ! empty( $cats ) ? $cats[0]->name : 'Engineering & UX';
-	$word_count = str_word_count( wp_strip_all_tags( get_post_field( 'post_content', $pid ) ) );
-	$read_mins  = max( 3, (int) ceil( $word_count / 200 ) );
-	$share_url  = rawurlencode( get_permalink( $pid ) );
+	$cats             = get_the_category( $pid );
+	$custom_badge     = trim( (string) get_post_meta( $pid, '_alify_post_badge', true ) );
+	$cat_name         = ! empty( $custom_badge ) ? $custom_badge : ( ! empty( $cats ) ? $cats[0]->name : 'Engineering & UX' );
+	$word_count       = str_word_count( wp_strip_all_tags( get_post_field( 'post_content', $pid ) ) );
+	$read_mins        = max( 3, (int) ceil( $word_count / 200 ) );
+	$custom_read_time = trim( (string) get_post_meta( $pid, '_alify_post_read_time', true ) );
+	$read_time_label  = ! empty( $custom_read_time ) ? $custom_read_time : ( $read_mins . ' Min Read' );
+	$custom_author    = trim( (string) get_post_meta( $pid, '_alify_post_author_label', true ) );
+	$author_display   = ! empty( $custom_author ) ? $custom_author : ( get_the_author() ? get_the_author() : 'ALIFY Editorial Team' );
+	$toc_heading      = function_exists( 'alify_cf_opt' ) ? alify_cf_opt( 'alify_singles', 'sgl_blog_toc_heading', 'Table of Contents' ) : 'Table of Contents';
+	$sbar_cta_title   = function_exists( 'alify_cf_opt' ) ? alify_cf_opt( 'alify_singles', 'sgl_blog_sidebar_cta_title', 'Have a Project in Mind?' ) : 'Have a Project in Mind?';
+	$sbar_cta_desc    = function_exists( 'alify_cf_opt' ) ? alify_cf_opt( 'alify_singles', 'sgl_blog_sidebar_cta_desc', 'Let’s architect a fast, conversion-led digital platform tailored to your brand.' ) : 'Let’s architect a fast, conversion-led digital platform tailored to your brand.';
+	$sbar_cta_btn     = function_exists( 'alify_cf_opt' ) ? alify_cf_opt( 'alify_singles', 'sgl_blog_sidebar_cta_btn', get_theme_mod( 'alify_cta_text', 'Start a Project' ) ) : get_theme_mod( 'alify_cta_text', 'Start a Project' );
+	$rel_eyebrow      = function_exists( 'alify_cf_opt' ) ? alify_cf_opt( 'alify_singles', 'sgl_blog_related_eyebrow', 'Continue Reading' ) : 'Continue Reading';
+	$rel_title_opt    = function_exists( 'alify_cf_opt_saved' ) ? alify_cf_opt_saved( 'alify_singles', 'sgl_blog_related_title' ) : '';
+	$share_url        = rawurlencode( get_permalink( $pid ) );
 	$share_ttl  = rawurlencode( get_the_title( $pid ) );
 	$author_bio = get_the_author_meta( 'description' );
 	if ( empty( $author_bio ) ) {
@@ -77,7 +88,7 @@ while ( have_posts() ) :
 					<div class="blog-single-meta-bar">
 						<span class="blog-single-meta-entry">
 							<i class="fa-solid fa-user" aria-hidden="true"></i>
-							<span><?php echo esc_html( get_the_author() ? get_the_author() : 'ALIFY Editorial Team' ); ?></span>
+							<span><?php echo esc_html( $author_display ); ?></span>
 						</span>
 						<span class="blog-single-meta-entry">
 							<i class="fa-solid fa-calendar" aria-hidden="true"></i>
@@ -85,7 +96,7 @@ while ( have_posts() ) :
 						</span>
 						<span class="blog-single-meta-entry">
 							<i class="fa-solid fa-clock" aria-hidden="true"></i>
-							<span id="blogSingleReadTime"><?php echo esc_html( $read_mins . ' Min Read' ); ?></span>
+							<span id="blogSingleReadTime"><?php echo esc_html( $read_time_label ); ?></span>
 						</span>
 					</div>
 				</div>
@@ -103,7 +114,7 @@ while ( have_posts() ) :
 								<div class="blog-toc-header">
 									<h2 class="blog-toc-heading">
 										<i class="fa-solid fa-list-ul" aria-hidden="true"></i>
-										<span><?php esc_html_e( 'Table of Contents', 'alify' ); ?></span>
+										<span><?php echo esc_html( $toc_heading ); ?></span>
 									</h2>
 									<button
 										type="button"
@@ -296,12 +307,12 @@ while ( have_posts() ) :
 
 							<!-- Sidebar Studio CTA Card -->
 							<div class="blog-sidebar-cta">
-								<h2 class="blog-sidebar-cta-title"><?php esc_html_e( 'Have a Project in Mind?', 'alify' ); ?></h2>
+								<h2 class="blog-sidebar-cta-title"><?php echo esc_html( $sbar_cta_title ); ?></h2>
 								<p class="blog-sidebar-cta-desc">
-									<?php esc_html_e( 'Let’s architect a fast, conversion-led digital platform tailored to your brand.', 'alify' ); ?>
+									<?php echo esc_html( $sbar_cta_desc ); ?>
 								</p>
 								<a href="<?php echo esc_url( alify_page_url( 'start-project' ) ); ?>" class="btn-start-project btn-start-light">
-									<span class="btn-start-pill"><?php echo esc_html( get_theme_mod( 'alify_cta_text', 'Start a Project' ) ); ?></span>
+									<span class="btn-start-pill"><?php echo esc_html( $sbar_cta_btn ); ?></span>
 									<span class="btn-start-circle" aria-hidden="true">
 										<i class="fa-solid fa-arrow-up btn-start-arrow"></i>
 									</span>
@@ -332,10 +343,14 @@ while ( have_posts() ) :
 						<div class="col-12 col-lg-7">
 							<div class="blog-related-eyebrow">
 								<span class="blog-related-eyebrow-dot" aria-hidden="true">△</span>
-								<span><?php esc_html_e( 'Continue Reading', 'alify' ); ?></span>
+								<span><?php echo esc_html( $rel_eyebrow ); ?></span>
 							</div>
 							<h2 class="blog-related-title">
-								<?php esc_html_e( 'Related Blogs &', 'alify' ); ?> <span><?php esc_html_e( 'Engineering Insights.', 'alify' ); ?></span>
+								<?php if ( ! empty( $rel_title_opt ) ) : ?>
+									<?php echo wp_kses( $rel_title_opt, array( 'span' => array( 'class' => array() ), 'br' => array() ) ); ?>
+								<?php else : ?>
+									<?php esc_html_e( 'Related Blogs &', 'alify' ); ?> <span><?php esc_html_e( 'Engineering Insights.', 'alify' ); ?></span>
+								<?php endif; ?>
 							</h2>
 							<p class="blog-related-desc">
 								<?php esc_html_e( 'Explore more hands-on guides from ALIFY on design systems, 60fps GSAP motion, conversion UX, and high-speed frontend engineering.', 'alify' ); ?>

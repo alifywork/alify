@@ -10,8 +10,14 @@
 get_header();
 
 if ( have_posts() ) :
-	$hero_bg       = alify_asset_uri( 'assets/images/heroes/hero-blog.jpg' );
+	$hero_bg       = function_exists( 'alify_cf_opt_img' ) ? alify_cf_opt_img( 'alify_archives', 'arch_blog_hero_bg', alify_asset_uri( 'assets/images/heroes/hero-blog.jpg' ) ) : alify_asset_uri( 'assets/images/heroes/hero-blog.jpg' );
 	$archive_title = is_archive() ? get_the_archive_title() : '';
+	$blog_eyebrow  = function_exists( 'alify_cf_opt' ) ? alify_cf_opt( 'alify_archives', 'arch_blog_hero_eyebrow', 'Studio Journal' ) : 'Studio Journal';
+	$blog_h1_opt   = function_exists( 'alify_cf_opt_saved' ) ? alify_cf_opt_saved( 'alify_archives', 'arch_blog_hero_title' ) : '';
+	$blog_desc_opt = function_exists( 'alify_cf_opt' ) ? alify_cf_opt( 'alify_archives', 'arch_blog_hero_desc', 'Actionable guides, engineering deep dives, and brand strategy insights written by the product designers and developers at ALIFY.' ) : 'Actionable guides, engineering deep dives, and brand strategy insights written by the product designers and developers at ALIFY.';
+	$blog_c_metric = function_exists( 'alify_cf_opt' ) ? alify_cf_opt( 'alify_archives', 'arch_blog_card_metric', 'Weekly' ) : 'Weekly';
+	$blog_c_label  = function_exists( 'alify_cf_opt' ) ? alify_cf_opt( 'alify_archives', 'arch_blog_card_label', 'Fresh perspectives on modern web craft, GSAP motion systems, and scalable UX.' ) : 'Fresh perspectives on modern web craft, GSAP motion systems, and scalable UX.';
+	$blog_c_cta    = function_exists( 'alify_cf_opt' ) ? alify_cf_opt( 'alify_archives', 'arch_blog_card_cta', 'Work With Our Team' ) : 'Work With Our Team';
 	?>
 	<main>
 		<section class="inner-hero" aria-label="<?php esc_attr_e( 'Blog Hero', 'alify' ); ?>">
@@ -41,12 +47,14 @@ if ( have_posts() ) :
 					<div class="col-12 col-lg-8">
 						<div class="inner-hero-eyebrow">
 							<span class="inner-hero-eyebrow-dot" aria-hidden="true"></span>
-							<span><?php esc_html_e( 'Studio Journal', 'alify' ); ?></span>
+							<span><?php echo esc_html( $blog_eyebrow ); ?></span>
 						</div>
 
 						<h1 class="inner-hero-title">
 							<?php if ( ! empty( $archive_title ) ) : ?>
 								<?php echo wp_kses_post( $archive_title ); ?>
+							<?php elseif ( ! empty( $blog_h1_opt ) ) : ?>
+								<?php echo wp_kses( $blog_h1_opt, array( 'span' => array( 'class' => array() ), 'br' => array() ) ); ?>
 							<?php else : ?>
 								<?php esc_html_e( 'Perspectives on', 'alify' ); ?>
 								<span class="inner-hero-title-accent"><?php esc_html_e( 'Design, Code', 'alify' ); ?></span>
@@ -55,7 +63,7 @@ if ( have_posts() ) :
 						</h1>
 
 						<p class="inner-hero-desc">
-							<?php esc_html_e( 'Actionable guides, engineering deep dives, and brand strategy insights written by the product designers and developers at ALIFY.', 'alify' ); ?>
+							<?php echo esc_html( $blog_desc_opt ); ?>
 						</p>
 
 						<div class="inner-hero-tags">
@@ -82,10 +90,10 @@ if ( have_posts() ) :
 								</span>
 								<span class="inner-hero-card-code">△ JOURNAL 04</span>
 							</div>
-							<div class="inner-hero-card-metric"><?php esc_html_e( 'Weekly', 'alify' ); ?></div>
-							<p class="inner-hero-card-label"><?php esc_html_e( 'Fresh perspectives on modern web craft, GSAP motion systems, and scalable UX.', 'alify' ); ?></p>
+							<div class="inner-hero-card-metric"><?php echo esc_html( $blog_c_metric ); ?></div>
+							<p class="inner-hero-card-label"><?php echo esc_html( $blog_c_label ); ?></p>
 							<a href="<?php echo esc_url( alify_page_url( 'start-project' ) ); ?>" class="inner-hero-card-cta">
-								<span><?php esc_html_e( 'Work With Our Team', 'alify' ); ?></span>
+								<span><?php echo esc_html( $blog_c_cta ); ?></span>
 								<i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
 							</a>
 						</div>

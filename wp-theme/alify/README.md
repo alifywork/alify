@@ -62,17 +62,27 @@ All **5 navigation areas** are dynamically managed through **Appearance → Menu
 
 ---
 
-## 4. Dynamic Custom Post Types, Native Meta Boxes & 1-Click Starter Importer
+## 4. Dynamic Custom Post Types, **`Alify Custom Field`** Plugin Integration & 1-Click Starter Importer
 
-All **6 Custom Post Types** + native WordPress **Blog Posts** are powered dynamically from the WordPress database (with zero third-party ACF plugin required):
+ALIFY integrates first-class with ALIFY's own custom WordPress plugin **`Alify Custom Field`** (`https://github.com/alifywork/fieldsPlugin`, `v0.34.0+`) via `inc/alify-cf-integration.php` & `inc/alify-cf-render-bridge.php` (with graceful automatic fallback to native WordPress Meta Boxes & Customizer when the plugin is inactive):
 
-- **Services (`alify_service`)** — Notch code, discipline tag, Font Awesome icon, Media Library background image, bullet points, single-page stats & deliverables (`#servicesSliderTrack`, `#servicesGrid`, and `/services-item/<slug>/`).
-- **Projects (`alify_project`)** — Client, sector, year, sprint duration, headline metric, deliverable chips, brief/craft narrative, and **6-Screen Interactive Lightbox Gallery picker** (`#projectsAccordionStage`, `#projectsGrid`, and `/project/<slug>/`).
-- **Industries (`alify_industry`)** — Sector code, filter group, icon, benchmark stat, deliverables, and background image (`#industriesSliderTrack`, `#industriesGrid`, and `/industry/<slug>/`).
-- **Case Studies (`alify_case_study`)** — Before/After benchmarks, 01 Bottleneck, 02 ALIFY Architecture, 3 KPI tiles, architecture chips, and executive quote (`#caseStudiesStack` and `/case-study/<slug>/`).
-- **Testimonials (`alify_testimonial`)** — Client role, avatar initials, star rating, outcome pill, and capability filter (`.testimonials-dual-stage` 2-row carousel + `#testimonialsGrid`).
-- **FAQs (`alify_faq` + `faq_pillar` taxonomy)** — Knowledge Pillar grouping + global reusable FAQ toggle (`.faq-section` + `#faqHubGroupsWrap` 20-FAQ Hub).
-- **1-Click Starter Importer (`Appearance → ALIFY Starter Import`)** — Imports all **67 starter items** (8 Services, 6 Projects + 36 Lightbox Screens, 9 Industries, 6 Case Studies, 12 Testimonials, 20 FAQs, and 6 Blog Articles) idempotently in one click.
+### A. 5 Dedicated Studio Options Pages (`WP Admin → ALIFY Theme Settings` & `Custom Fields → Options Pages`)
+1. **Site Settings (`site`)** — Custom Brand Logo Image + Max Height, Agency Email (`info@alify.site`), WhatsApp (`+92 301 9328094`), HQ, Operating Hours, Header CTA Buttons & URLs, Pre-Footer CTA Banner, Footer Bio & Column Headings, Copyright, Social Media Links (`@alifywork`), and Global Reusable Sections (Testimonials Slider, Reusable FAQs, Blog Slider, Bottom Contact Section).
+2. **Home Page Content (`alify_home`)** — Home Hero Background Image, Status Pill, 3-Part Display `H1`, Lead Paragraph, CTA Labels, **Hero Stat Counters Repeater** (`150+`, `98%`, `12+`), *Why Partner With ALIFY* section + image, Home Slider Section Headings, and **4-Sprint Execution Process Repeater**.
+3. **Archive Hubs (`alify_archives`)** — Hero Eyebrows, `H1` Titles, Subtitles, Hero Background Images, and Grid Headings for `/services/`, `/work/`, `/industries/`, `/case-studies/`, and `/blog/` (including Blog Hero Weekly Card).
+4. **Inner Pages (`alify_pages`)** — **Pricing 3-Tier Plans Repeater** (`Launch Sprint`, `Scale Ecosystem`, `Enterprise Squad` with Sprint/Retainer prices, velocity & feature lists), **About Us Leadership Principals Repeater** (Photo, Name, Role, Bio), plus `/testimonials/`, `/faq/`, `/contact/`, `/start-project/`, `/book-call/` (Host Name & Role), `/thank-you/`, and `404` page headings.
+5. **Single Templates (`alify_singles`)** — Global section headings & labels for Service Single, Work Single, Industry Single, Case Study Single, and Blog Single (`Table of Contents`, Sticky Sidebar CTA Card, and Related Articles).
+
+### B. 8 Native `Alify Custom Field` Post, CPT & Page Field Groups (Auto-Prepopulated From Starter Content)
+- **Services (`alify_service`)** — Tabbed field group with Notch Code, Discipline Tag, Font Awesome Icon, Media Library Background Image, **Card Bullet Points Repeater**, Single-Page Stats, and **6 Deliverables Repeater**.
+- **Projects (`alify_project`)** — Tabbed field group with Client, Sector, Year, Sprint Duration, Headline Metric, **Deliverable Chips Repeater**, Brief/Craft Narrative, Native **Multi-Image Gallery Picker**, and **Interactive Lightbox Screens Repeater** (Image + Screen Title + Tag + Caption).
+- **Industries (`alify_industry`)** — Sector Code, Filter Group Select, Icon, Benchmark Stat, **4 Key Deliverables Repeater**, and Background Image.
+- **Case Studies (`alify_case_study`)** — Before/After Benchmarks, `01 The Bottleneck`, `02 The ALIFY Architecture`, 3 KPI Tiles, **Architecture Chips Repeater**, and Executive Quote.
+- **Testimonials (`alify_testimonial`)** — Client Role & Company, Avatar Initials, Star Rating (`1–5`), Capability Filter Select, and Verified Outcome Pill.
+- **FAQs (`alify_faq` + `faq_pillar` taxonomy)** — Knowledge Pillar grouping + Global Reusable FAQ toggle.
+- **Blog Articles (`post`)** — Fallback Hero Image, Category Pill Override, Reading Time Override, and Author Display Name Override.
+- **Studio Pages (`page`)** — Per-Page Hero Eyebrow, `H1` Title (`<span>` accent supported), Subtitle, Hero Background Image, and Per-Page Section Visibility Toggles (Hero Lead Form, Testimonials, FAQs, Blog Slider, Bottom Contact).
+- **1-Click Starter Importer (`Appearance → ALIFY Starter Import`)** — Imports all **67 starter items** and pre-populates both `_alify_*` and `_alify_cf_*` Repeater/Scalar fields automatically.
 
 ---
 

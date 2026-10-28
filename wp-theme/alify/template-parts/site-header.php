@@ -10,10 +10,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$alify_contact_label = get_theme_mod( 'alify_contact_btn_text', 'Contact Us' );
-$alify_cta_label     = get_theme_mod( 'alify_cta_text', 'Start a Project' );
-$alify_contact_url   = alify_page_url( 'contact' );
-$alify_start_url     = alify_page_url( 'start-project' );
+$alify_contact_label = function_exists( 'alify_cf_opt' ) ? alify_cf_opt( 'site', 'opt_header_contact_text', get_theme_mod( 'alify_contact_btn_text', 'Contact Us' ) ) : get_theme_mod( 'alify_contact_btn_text', 'Contact Us' );
+$alify_cta_label     = function_exists( 'alify_cf_opt' ) ? alify_cf_opt( 'site', 'opt_header_cta_text', get_theme_mod( 'alify_cta_text', 'Start a Project' ) ) : get_theme_mod( 'alify_cta_text', 'Start a Project' );
+$alify_contact_slug  = function_exists( 'alify_cf_opt' ) ? alify_cf_opt( 'site', 'opt_header_contact_url', 'contact' ) : 'contact';
+$alify_start_slug    = function_exists( 'alify_cf_opt' ) ? alify_cf_opt( 'site', 'opt_header_cta_url', 'start-project' ) : 'start-project';
+$alify_contact_url   = ( 0 === strpos( $alify_contact_slug, 'http' ) || 0 === strpos( $alify_contact_slug, '/' ) ) ? $alify_contact_slug : alify_page_url( $alify_contact_slug );
+$alify_start_url     = ( 0 === strpos( $alify_start_slug, 'http' ) || 0 === strpos( $alify_start_slug, '/' ) ) ? $alify_start_slug : alify_page_url( $alify_start_slug );
 ?>
 <header class="site-header">
 	<div class="container">

@@ -179,6 +179,13 @@ function alify_enqueue_assets() {
 	wp_enqueue_style( 'alify-main-style', alify_asset_uri( 'assets/css/style.css' ), array( 'alify-bootstrap-grid' ), alify_file_ver( 'assets/css/style.css' ) );
 	wp_enqueue_style( 'alify-wp-style', get_stylesheet_uri(), array( 'alify-main-style' ), alify_file_ver( 'style.css' ) );
 
+	$logo_h = function_exists( 'alify_cf_opt' ) ? (int) alify_cf_opt( 'site', 'opt_brand_logo_height', get_theme_mod( 'alify_logo_height', 40 ) ) : (int) get_theme_mod( 'alify_logo_height', 40 );
+	$logo_h = max( 20, min( 96, $logo_h ? $logo_h : 40 ) );
+	wp_add_inline_style(
+		'alify-wp-style',
+		'.alify-custom-logo-img { max-height: ' . $logo_h . 'px; width: auto; height: auto; display: block; object-fit: contain; }'
+	);
+
 	// 4. Vendor & Global Scripts (Loaded in Footer)
 	wp_enqueue_script( 'alify-bootstrap-bundle', alify_asset_uri( 'assets/js/bootstrap-js/bootstrap.bundle.min.js' ), array(), alify_file_ver( 'assets/js/bootstrap-js/bootstrap.bundle.min.js' ), true );
 	wp_enqueue_script( 'alify-gsap', alify_asset_uri( 'assets/gsap/gsap.min.js' ), array(), alify_file_ver( 'assets/gsap/gsap.min.js' ), true );

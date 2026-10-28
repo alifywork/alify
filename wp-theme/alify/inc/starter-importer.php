@@ -207,6 +207,20 @@ function alify_import_all_starter_content() {
 		}
 	}
 
+	if ( function_exists( 'alify_prepopulate_post_cf_from_starter' ) ) {
+		$all_starter_ids = get_posts(
+			array(
+				'post_type'      => array( 'alify_service', 'alify_project', 'alify_industry', 'alify_case_study', 'alify_testimonial', 'alify_faq', 'post', 'page' ),
+				'posts_per_page' => -1,
+				'post_status'    => 'any',
+				'fields'         => 'ids',
+			)
+		);
+		foreach ( $all_starter_ids as $sid ) {
+			alify_prepopulate_post_cf_from_starter( (int) $sid );
+		}
+	}
+
 	flush_rewrite_rules();
 	return $imported_counts;
 }
