@@ -75,12 +75,9 @@ function alify_current_route_slug() {
 }
 
 /**
- * Rewrite static template HTML paths (`assets/...` & `*.html`) + ACF & Customizer values dynamically.
+ * Rewrite static template HTML paths (`assets/...` & `*.html`) + Customizer contact values dynamically.
  */
-function alify_transform_markup( $html, $part_slug = '' ) {
-	if ( function_exists( 'alify_apply_acf_theme_overrides' ) ) {
-		$html = alify_apply_acf_theme_overrides( $html, $part_slug );
-	}
+function alify_transform_markup( $html ) {
 	if ( function_exists( 'alify_apply_page_and_customizer_overrides' ) ) {
 		$html = alify_apply_page_and_customizer_overrides( $html );
 	}
@@ -124,19 +121,17 @@ function alify_transform_markup( $html, $part_slug = '' ) {
 		$html
 	);
 
-	// 3. Apply live ACF Global Options + Customizer Email, WhatsApp, Hours & Headquarters
-	$email    = function_exists( 'alify_opt' ) ? alify_opt( 'global', 'opt_email', get_theme_mod( 'alify_email', 'info@alify.site' ) ) : get_theme_mod( 'alify_email', 'info@alify.site' );
-	$whatsapp = function_exists( 'alify_opt' ) ? alify_opt( 'global', 'opt_whatsapp', get_theme_mod( 'alify_whatsapp', '+90 301 9328094' ) ) : get_theme_mod( 'alify_whatsapp', '+90 301 9328094' );
-	$wa_url   = function_exists( 'alify_opt' ) ? alify_opt( 'global', 'opt_whatsapp_url', get_theme_mod( 'alify_whatsapp_url', 'https://wa.me/903019328094' ) ) : get_theme_mod( 'alify_whatsapp_url', 'https://wa.me/903019328094' );
-	$hq       = function_exists( 'alify_opt' ) ? alify_opt( 'global', 'opt_hq', get_theme_mod( 'alify_hq', 'Karachi, PK — Global Delivery' ) ) : get_theme_mod( 'alify_hq', 'Karachi, PK — Global Delivery' );
-	$hours    = function_exists( 'alify_opt' ) ? alify_opt( 'global', 'opt_hours', 'Mon – Fri, 9:00 AM – 7:00 PM PKT' ) : 'Mon – Fri, 9:00 AM – 7:00 PM PKT';
+	// 3. Apply live Customizer Email, WhatsApp & Headquarters
+	$email      = get_theme_mod( 'alify_email', 'info@alify.site' );
+	$whatsapp   = get_theme_mod( 'alify_whatsapp', '+90 301 9328094' );
+	$wa_url     = get_theme_mod( 'alify_whatsapp_url', 'https://wa.me/903019328094' );
+	$hq         = get_theme_mod( 'alify_hq', 'Karachi, PK — Global Delivery' );
 
 	$html = str_replace( 'mailto:info@alify.site', 'mailto:' . sanitize_email( $email ), $html );
 	$html = str_replace( 'info@alify.site', esc_html( $email ), $html );
 	$html = str_replace( 'https://wa.me/903019328094', esc_url( $wa_url ), $html );
 	$html = str_replace( '+90 301 9328094', esc_html( $whatsapp ), $html );
 	$html = str_replace( 'Karachi, PK — Global Delivery', esc_html( $hq ), $html );
-	$html = str_replace( 'Mon – Fri, 9:00 AM – 7:00 PM PKT', esc_html( $hours ), $html );
 
 	return $html;
 }
@@ -147,28 +142,18 @@ function alify_transform_markup( $html, $part_slug = '' ) {
 function alify_render_partial( $rel_file ) {
 	$full = ALIFY_THEME_DIR . '/' . ltrim( $rel_file, '/' );
 	if ( file_exists( $full ) ) {
-		$part_slug = basename( $rel_file, '.php' );
 		ob_start();
 		include $full;
 		$out = ob_get_clean();
-		echo alify_transform_markup( $out, $part_slug ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo alify_transform_markup( $out ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 }
 
 /**
- * Render Brand Logo (Uses ACF Brand Logo or WordPress Custom Logo if uploaded, else signature △LIFY logo).
+ * Render Brand Logo (Uses WordPress Custom Logo if uploaded, else signature △LIFY logo).
  */
 function alify_render_brand_logo( $link_class = 'brand-logo', $mark_class = 'brand-logo-mark' ) {
-	$home_url     = home_url( '/' );
-	$acf_logo_src = function_exists( 'alify_opt' ) ? alify_opt( 'global', 'opt_brand_logo', '' ) : '';
-
-	if ( ! empty( $acf_logo_src ) ) {
-		echo '<a href="' . esc_url( $home_url ) . '" class="' . esc_attr( $link_class . ' has-custom-logo-img' ) . '" aria-label="' . esc_attr( get_bloginfo( 'name' ) ) . '">';
-		echo '<img src="' . esc_url( $acf_logo_src ) . '" alt="' . esc_attr( get_bloginfo( 'name' ) ) . '" class="alify-custom-logo-img" />';
-		echo '</a>';
-		return;
-	}
-
+	$home_url = home_url( '/' );
 	if ( function_exists( 'has_custom_logo' ) && has_custom_logo() ) {
 		$logo_id  = (int) get_theme_mod( 'custom_logo' );
 		$logo_src = $logo_id ? wp_get_attachment_image_url( $logo_id, 'full' ) : '';
