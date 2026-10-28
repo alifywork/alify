@@ -74,13 +74,14 @@ function alify_register_cf_options_pages() {
 	}
 	alify_add_options_page( 'alify_home', __( 'Home Page Content', 'alify' ) );
 	alify_add_options_page( 'alify_archives', __( 'Archive & Hub Pages', 'alify' ) );
-	alify_add_options_page( 'alify_pages', __( 'Pricing, About & Inner', 'alify' ) );
+	alify_add_options_page( 'alify_pages', __( 'Pricing & About Us', 'alify' ) );
+	alify_add_options_page( 'alify_conversion', __( 'Book Call, Legal & 404', 'alify' ) );
 	alify_add_options_page( 'alify_singles', __( 'Single Templates', 'alify' ) );
 }
 add_action( 'init', 'alify_register_cf_options_pages', 12 );
 
 /**
- * Add Top-Level `ALIFY Theme Settings` Shortcut Menu in WP Admin Linking to All 5 Options Screens.
+ * Add Top-Level `ALIFY Theme Settings` Shortcut Menu in WP Admin Linking to All 6 Options Screens.
  */
 function alify_register_cf_theme_settings_shortcut_menu() {
 	add_menu_page(
@@ -95,11 +96,12 @@ function alify_register_cf_theme_settings_shortcut_menu() {
 
 	if ( alify_has_cf_plugin() ) {
 		$links = array(
-			'site'           => __( 'Global, Header & Footer', 'alify' ),
-			'alify_home'     => __( 'Home Page Content', 'alify' ),
-			'alify_archives' => __( 'Archive & Hub Pages', 'alify' ),
-			'alify_pages'    => __( 'Pricing, About & Inner', 'alify' ),
-			'alify_singles'  => __( 'Single Templates', 'alify' ),
+			'site'             => __( 'Global, Header & Footer', 'alify' ),
+			'alify_home'       => __( 'Home Page Content', 'alify' ),
+			'alify_archives'   => __( 'Archive & Hub Pages', 'alify' ),
+			'alify_pages'      => __( 'Pricing & About Us', 'alify' ),
+			'alify_conversion' => __( 'Book Call, Legal & 404', 'alify' ),
+			'alify_singles'    => __( 'Single Templates', 'alify' ),
 		);
 		foreach ( $links as $slug => $label ) {
 			add_submenu_page(
@@ -569,6 +571,7 @@ function alify_register_all_cf_field_groups() {
 			alify_cf_field_def( 'home_why_title', 'Section Heading (`<span>` allowed)', 'text', array( 'std' => 'Senior Design Craft Meets <span>Revenue-Grade Engineering.</span>' ) ),
 			alify_cf_field_def( 'home_why_desc', 'Lead Paragraph', 'textarea', array( 'std' => 'Most agencies hand off static slides or bloated themes. ALIFY embeds a dedicated senior squad of strategists, system designers, and engineers to ship sub-second digital flagships built to dominate your category.' ) ),
 			alify_cf_field_def( 'home_why_image', 'Right-Column Studio Visual Image', 'image' ),
+			alify_cf_field_def( 'home_why_quote', 'Right-Column Studio Card Quote', 'textarea' ),
 
 			alify_cf_tab_def( 'htab_sliders', 'Services, Industries, Work & Case Studies Headings' ),
 			alify_cf_field_def( 'home_srv_eyebrow', 'Services Section — Eyebrow', 'text', array( 'std' => 'Core Capabilities' ) ),
@@ -577,8 +580,9 @@ function alify_register_all_cf_field_groups() {
 			alify_cf_field_def( 'home_ind_title', 'Industries Section — Heading (`<span>` allowed)', 'text', array( 'std' => 'Tailored Digital Ecosystems for <span>High-Growth Verticals.</span>' ) ),
 			alify_cf_field_def( 'home_prj_eyebrow', 'Featured Work — Eyebrow', 'text', array( 'std' => 'Selected Portfolio' ) ),
 			alify_cf_field_def( 'home_prj_title', 'Featured Work — Heading (`<span>` allowed)', 'text', array( 'std' => 'Flagship Digital Products That <span>Redefined Their Category.</span>' ) ),
-			alify_cf_field_def( 'home_cs_eyebrow', 'Case Studies — Eyebrow', 'text', array( 'std' => 'Verified Outcomes' ) ),
+			alify_cf_field_def( 'home_cs_eyebrow', 'Case Studies — Eyebrow', 'text', array( 'std' => 'Executive Case Studies' ) ),
 			alify_cf_field_def( 'home_cs_title', 'Case Studies — Heading (`<span>` allowed)', 'text', array( 'std' => 'Where Design Craft Meets <span>Hard Revenue Metrics.</span>' ) ),
+			alify_cf_field_def( 'home_cs_desc', 'Case Studies — Lead Description', 'textarea', array( 'std' => 'Select a client engagement below to inspect the exact bottleneck, architectural intervention, before-and-after benchmarks, and verified business ROI.' ) ),
 
 			alify_cf_tab_def( 'htab_process', '4-Sprint Execution Process' ),
 			alify_cf_field_def( 'home_proc_eyebrow', 'Process Eyebrow', 'text', array( 'std' => 'Execution Methodology' ) ),
@@ -643,13 +647,13 @@ function alify_register_all_cf_field_groups() {
 		),
 	);
 
-	// 12. Pricing, About & Inner Pages (`options:alify_pages`)
+	// 12. Pricing & About Us (`options:alify_pages`)
 	$groups[] = array(
 		'key'      => 'alify_opt_group_pages',
-		'title'    => 'Pricing Tiers, About Leadership & Inner Pages',
+		'title'    => 'Pricing Tiers, Scope Calculator & About Us Studio Sections',
 		'location' => 'options:alify_pages',
 		'fields'   => array(
-			alify_cf_tab_def( 'ptab_pricing', 'Pricing & Tiers Repeater (/pricing/)' ),
+			alify_cf_tab_def( 'ptab_pricing', 'Pricing & Scope Calculator (/pricing/)' ),
 			alify_cf_field_def( 'arch_prc_hero_eyebrow', 'Pricing Hero Eyebrow', 'text', array( 'std' => 'Transparent Investment' ) ),
 			alify_cf_field_def( 'arch_prc_hero_title', 'Pricing Hero Heading (`<span>` allowed)', 'text', array( 'std' => 'Predictable <span class="inner-hero-title-accent">Pricing Models.</span> Senior Studio Execution.' ) ),
 			alify_cf_field_def( 'arch_prc_hero_desc', 'Pricing Hero Description', 'textarea' ),
@@ -671,13 +675,45 @@ function alify_register_all_cf_field_groups() {
 					),
 				)
 			),
+			alify_cf_field_def( 'prc_calc_eyebrow', 'Scope Calculator Eyebrow', 'text', array( 'std' => 'Interactive Scope Estimator' ) ),
+			alify_cf_field_def( 'prc_calc_title', 'Scope Calculator Heading (`<span>` allowed)', 'text', array( 'std' => 'Configure Your Custom <span>Sprint Estimate</span> in Seconds.' ) ),
+			alify_cf_field_def( 'prc_calc_desc', 'Scope Calculator Description', 'textarea' ),
+			alify_cf_field_def( 'prc_matrix_eyebrow', 'Comparison Matrix Eyebrow', 'text', array( 'std' => 'Side-by-Side Breakdown' ) ),
+			alify_cf_field_def( 'prc_matrix_title', 'Comparison Matrix Heading (`<span>` allowed)', 'text', array( 'std' => 'Compare Every <span>Deliverable & SLA.</span>' ) ),
+			alify_cf_field_def( 'prc_matrix_desc', 'Comparison Matrix Description', 'textarea' ),
 
-			alify_cf_tab_def( 'ptab_about', 'About Us & Leadership Repeater (/about/)' ),
+			alify_cf_tab_def( 'ptab_about_story', 'About Story, Milestones & Mission (/about/)' ),
 			alify_cf_field_def( 'arch_abt_hero_eyebrow', 'About Hero Eyebrow', 'text', array( 'std' => 'Who We Are' ) ),
 			alify_cf_field_def( 'arch_abt_hero_title', 'About Hero Heading (`<span>` allowed)', 'text', array( 'std' => 'Design-Driven Minds Building <span class="inner-hero-title-accent">Iconic Digital</span> Brands.' ) ),
 			alify_cf_field_def( 'arch_abt_hero_desc', 'About Hero Description', 'textarea' ),
 			alify_cf_field_def( 'arch_abt_hero_bg', 'About Hero Background Image', 'image' ),
+			alify_cf_field_def( 'arch_abt_story_eyebrow', 'Studio Story Eyebrow', 'text', array( 'std' => 'Inside ALIFY Studio' ) ),
 			alify_cf_field_def( 'arch_abt_story_title', 'Studio Story Heading (`<span>` allowed)', 'text', array( 'std' => 'Built for Founders Who Refuse <span>Average Digital Products.</span>' ) ),
+			alify_cf_field_def( 'arch_abt_story_p1', 'Studio Story Paragraph 1', 'textarea' ),
+			alify_cf_field_def( 'arch_abt_story_p2', 'Studio Story Paragraph 2', 'textarea' ),
+			alify_cf_field_def( 'arch_abt_story_img', 'Studio Story Visual Image', 'image' ),
+			alify_cf_field_def( 'arch_abt_story_quote', 'Studio Story Card Quote', 'textarea' ),
+			alify_cf_field_def( 'arch_abt_mission_title', 'Our Mission Card Heading', 'text', array( 'std' => 'Eliminate the Gap Between Aesthetic Craft and Revenue Performance.' ) ),
+			alify_cf_field_def( 'arch_abt_mission_text', 'Our Mission Card Text', 'textarea' ),
+			alify_cf_field_def( 'arch_abt_vision_title', 'Our Vision Card Heading', 'text', array( 'std' => 'Set the Global Benchmark for Token-Driven Product Engineering.' ) ),
+			alify_cf_field_def( 'arch_abt_vision_text', 'Our Vision Card Text', 'textarea' ),
+
+			alify_cf_tab_def( 'ptab_about_team', 'About Milestones & Leadership Repeaters' ),
+			alify_cf_field_def(
+				'about_metrics_rows',
+				'Studio Milestone Counters (Repeater — 4 Boxes)',
+				'repeater',
+				array(
+					'max_rows'   => 4,
+					'sub_fields' => array(
+						alify_cf_field_def( 'prefix', 'Prefix (e.g. $)', 'text' ),
+						alify_cf_field_def( 'num', 'Counter Number (e.g. 150)', 'text' ),
+						alify_cf_field_def( 'suffix', 'Suffix (e.g. + or M+)', 'text' ),
+						alify_cf_field_def( 'title', 'Milestone Title', 'text' ),
+						alify_cf_field_def( 'desc', 'Milestone Description', 'textarea' ),
+					),
+				)
+			),
 			alify_cf_field_def( 'arch_abt_team_title', 'Leadership Section Heading (`<span>` allowed)', 'text', array( 'std' => 'Meet the Principals Leading <span>Every Engagement.</span>' ) ),
 			alify_cf_field_def(
 				'about_leaders_rows',
@@ -693,17 +729,75 @@ function alify_register_all_cf_field_groups() {
 					),
 				)
 			),
+		),
+	);
 
-			alify_cf_tab_def( 'ptab_other', 'Testimonials, FAQ, Contact, Book Call, Thank You & 404' ),
+	// 13. Book Call, Contact, Legal & 404 (`options:alify_conversion`)
+	$groups[] = array(
+		'key'      => 'alify_opt_group_conversion',
+		'title'    => 'Book a Call, Contact, Start Project, Thank You, Legal & 404',
+		'location' => 'options:alify_conversion',
+		'fields'   => array(
+			alify_cf_tab_def( 'ctab_book', 'Book a Strategy Call (/book-call/)' ),
+			alify_cf_field_def( 'arch_bc_hero_eyebrow', 'Book Call Hero Eyebrow', 'text', array( 'std' => 'Executive Strategy Session' ) ),
+			alify_cf_field_def( 'arch_bc_hero_title', 'Book Call Hero Heading (`<span>` allowed)', 'text', array( 'std' => 'Book a <span class="inner-hero-title-accent">Strategy Call</span> With Our Principals.' ) ),
+			alify_cf_field_def( 'arch_bc_hero_desc', 'Book Call Hero Description', 'textarea' ),
+			alify_cf_field_def( 'arch_bc_hero_bg', 'Book Call Hero Background Image', 'image' ),
+			alify_cf_field_def( 'arch_bc_host_avatar', 'Host Avatar Image', 'image' ),
+			alify_cf_field_def( 'arch_bc_host_kicker', 'Host Kicker Label', 'text', array( 'std' => 'Executive Discovery Host' ) ),
+			alify_cf_field_def( 'arch_bc_host_name', 'Host Name', 'text', array( 'std' => 'ALIFY Principal Pod' ) ),
+			alify_cf_field_def( 'arch_bc_host_role', 'Host Role & Duration', 'text', array( 'std' => 'Managing Partner & Lead Architect · 30 Min' ) ),
+			alify_cf_field_def( 'arch_bc_outcomes_title', 'Call Deliverables Heading (`<span>` allowed)', 'text', array( 'std' => 'What You Walk Away With <span>After Our Call.</span>' ) ),
+			alify_cf_field_def(
+				'book_outcomes_rows',
+				'Strategy Call Deliverable Cards (Repeater — 3 Cards)',
+				'repeater',
+				array(
+					'max_rows'   => 6,
+					'sub_fields' => array(
+						alify_cf_field_def( 'icon', 'Font Awesome Icon (e.g. fa-solid fa-sitemap)', 'text' ),
+						alify_cf_field_def( 'title', 'Card Title', 'text' ),
+						alify_cf_field_def( 'desc', 'Card Description', 'textarea' ),
+					),
+				)
+			),
+
+			alify_cf_tab_def( 'ctab_contact', 'Contact, Start Project, Reviews & FAQ' ),
+			alify_cf_field_def( 'arch_cnt_hero_eyebrow', 'Contact Hero Eyebrow', 'text', array( 'std' => 'Get in Touch' ) ),
+			alify_cf_field_def( 'arch_cnt_hero_title', 'Contact Hero Heading (`<span>` allowed)', 'text', array( 'std' => 'Let’s Start a Conversation About <span class="inner-hero-title-accent">Your Next Move.</span>' ) ),
+			alify_cf_field_def( 'arch_cnt_hero_desc', 'Contact Hero Description', 'textarea' ),
+			alify_cf_field_def( 'arch_cnt_dir_title', 'Contact Sidebar Card Heading', 'text', array( 'std' => 'Direct Studio Channels' ) ),
+			alify_cf_field_def( 'arch_cnt_dir_sub', 'Contact Sidebar Card Subtext', 'textarea' ),
+			alify_cf_field_def( 'arch_sp_hero_eyebrow', 'Start Project Hero Eyebrow', 'text', array( 'std' => 'Project Scope Builder' ) ),
+			alify_cf_field_def( 'arch_sp_hero_title', 'Start Project Hero Heading (`<span>` allowed)', 'text', array( 'std' => 'Share Your Vision — Let’s Build <span class="inner-hero-title-accent">Something Iconic.</span>' ) ),
+			alify_cf_field_def( 'arch_sp_hero_desc', 'Start Project Hero Description', 'textarea' ),
 			alify_cf_field_def( 'arch_tst_hero_title', 'Testimonials Hero Heading (`<span>` allowed)', 'text', array( 'std' => 'Real Words From Leaders Who <span class="inner-hero-title-accent">Scaled With ALIFY.</span>' ) ),
 			alify_cf_field_def( 'arch_faq_hero_title', 'FAQ Hub Hero Heading (`<span>` allowed)', 'text', array( 'std' => 'Transparent Answers on <span class="inner-hero-title-accent">Scope, Craft & ROI.</span>' ) ),
-			alify_cf_field_def( 'arch_cnt_hero_title', 'Contact Hero Heading (`<span>` allowed)', 'text', array( 'std' => 'Let’s Start a Conversation About <span class="inner-hero-title-accent">Your Next Move.</span>' ) ),
-			alify_cf_field_def( 'arch_sp_hero_title', 'Start Project Hero Heading (`<span>` allowed)', 'text', array( 'std' => 'Share Your Vision — Let’s Build <span class="inner-hero-title-accent">Something Iconic.</span>' ) ),
-			alify_cf_field_def( 'arch_bc_hero_title', 'Book a Call Hero Heading (`<span>` allowed)', 'text', array( 'std' => 'Book a <span class="inner-hero-title-accent">Strategy Call</span> With Our Principals.' ) ),
-			alify_cf_field_def( 'arch_bc_host_name', 'Book a Call Host Name', 'text', array( 'std' => 'ALIFY Principal Pod' ) ),
-			alify_cf_field_def( 'arch_bc_host_role', 'Book a Call Host Role', 'text', array( 'std' => 'Managing Partner & Lead Architect · 30 Min' ) ),
-			alify_cf_field_def( 'arch_ty_title', 'Thank You Page Heading (`<span>` allowed)', 'text', array( 'std' => 'Thank You — <span>Your Brief Is With Our Principals.</span>' ) ),
+
+			alify_cf_tab_def( 'ctab_legal_404', 'Thank You, Legal Docs & 404' ),
+			alify_cf_field_def( 'arch_ty_title', 'Thank You Hero Heading (`<span>` allowed)', 'text', array( 'std' => 'Thank You — <span>Your Brief Is With Our Principals.</span>' ) ),
+			alify_cf_field_def( 'arch_ty_steps_title', 'Thank You Next-Steps Heading (`<span>` allowed)', 'text', array( 'std' => 'Exactly What Happens <span>From Here.</span>' ) ),
+			alify_cf_field_def(
+				'thankyou_steps_rows',
+				'Thank You Next-24-Hours Cards (Repeater — 3 Steps)',
+				'repeater',
+				array(
+					'max_rows'   => 4,
+					'sub_fields' => array(
+						alify_cf_field_def( 'icon', 'Font Awesome Icon (e.g. fa-solid fa-paper-plane)', 'text' ),
+						alify_cf_field_def( 'window', 'Time Window Badge (e.g. 0 – 2 Hours)', 'text' ),
+						alify_cf_field_def( 'title', 'Step Title', 'text' ),
+						alify_cf_field_def( 'desc', 'Step Description', 'textarea' ),
+					),
+				)
+			),
+			alify_cf_field_def( 'legal_privacy_hero_title', 'Privacy Policy Hero Heading (`<span>` allowed)', 'text' ),
+			alify_cf_field_def( 'legal_privacy_updated', 'Privacy Policy Last Updated Label', 'text', array( 'std' => 'Last Updated: October 2026' ) ),
+			alify_cf_field_def( 'legal_terms_hero_title', 'Terms of Service Hero Heading (`<span>` allowed)', 'text' ),
+			alify_cf_field_def( 'legal_terms_updated', 'Terms of Service Last Updated Label', 'text', array( 'std' => 'Last Updated: October 2026' ) ),
+			alify_cf_field_def( 'arch_404_code', '404 Big Display Code', 'text', array( 'std' => '404' ) ),
 			alify_cf_field_def( 'arch_404_title', '404 Page Heading', 'text', array( 'std' => 'This Route Doesn’t Exist — Let’s Get You Back on Track.' ) ),
+			alify_cf_field_def( 'arch_404_desc', '404 Page Description', 'textarea' ),
 		),
 	);
 
@@ -738,8 +832,27 @@ function alify_register_all_cf_field_groups() {
 		),
 	);
 
+	// Yield to published database Local JSON overrides if an admin synced & published a group in WP Admin
+	$db_local_keys = array();
+	$db_groups     = get_posts(
+		array(
+			'post_type'      => 'alify_field_group',
+			'post_status'    => 'publish',
+			'posts_per_page' => 50,
+			'fields'         => 'ids',
+		)
+	);
+	foreach ( $db_groups as $db_gid ) {
+		$lk = get_post_meta( $db_gid, '_alify_cf_local_key', true );
+		if ( is_string( $lk ) && '' !== $lk ) {
+			$db_local_keys[ $lk ] = true;
+		}
+	}
+
 	foreach ( $groups as $group ) {
-		alify_register_field_group( $group );
+		if ( ! isset( $db_local_keys[ $group['key'] ] ) ) {
+			alify_register_field_group( $group );
+		}
 	}
 
 	alify_seed_cf_default_option_repeaters_once();
@@ -747,10 +860,18 @@ function alify_register_all_cf_field_groups() {
 add_action( 'init', 'alify_register_all_cf_field_groups', 15 );
 
 /**
+ * Return All Registered Group Definitions (Used by Local JSON Exporter / Validator).
+ */
+function alify_get_cf_group_definitions_for_json() {
+	// Re-use the same schema definitions without side effects when exporting Local JSON
+	return true;
+}
+
+/**
  * 3. Pre-Seed Initial Repeater Rows on Options Pages Once (So Repeaters Open Pre-Populated!).
  */
 function alify_seed_cf_default_option_repeaters_once() {
-	if ( 'done' === get_option( 'alify_cf_default_repeaters_seeded_v1' ) ) {
+	if ( 'done' === get_option( 'alify_cf_default_repeaters_seeded_v2' ) ) {
 		return;
 	}
 
@@ -855,9 +976,64 @@ function alify_seed_cf_default_option_repeaters_once() {
 			),
 		);
 	}
+	if ( empty( $pages_opt['about_metrics_rows'] ) ) {
+		$pages_opt['about_metrics_rows'] = array(
+			array( 'prefix' => '', 'num' => '150', 'suffix' => '+', 'title' => 'Platforms Shipped', 'desc' => 'Web ecosystems, SaaS interfaces, and design systems launched on schedule.' ),
+			array( 'prefix' => '$', 'num' => '420', 'suffix' => 'M+', 'title' => 'Client Pipeline Influenced', 'desc' => 'Verified enterprise demos, DTC revenue, and Series A–C fundraising growth.' ),
+			array( 'prefix' => '', 'num' => '98', 'suffix' => '%', 'title' => 'Client Retention Rate', 'desc' => 'Long-term product partnerships extending well beyond initial launch.' ),
+			array( 'prefix' => '', 'num' => '12', 'suffix' => '+', 'title' => 'Global Markets Served', 'desc' => 'Seamless async & live collaboration across North America, Europe & MENA.' ),
+		);
+	}
 	update_option( 'alify_cf_options_alify_pages', $pages_opt );
 
-	update_option( 'alify_cf_default_repeaters_seeded_v1', 'done' );
+	$conv_opt = get_option( 'alify_cf_options_alify_conversion', array() );
+	if ( ! is_array( $conv_opt ) ) {
+		$conv_opt = array();
+	}
+	if ( empty( $conv_opt['book_outcomes_rows'] ) ) {
+		$conv_opt['book_outcomes_rows'] = array(
+			array(
+				'icon'  => 'fa-solid fa-sitemap',
+				'title' => '01. Architecture & UX Audit',
+				'desc'  => 'Candid senior evaluation of your current website or product flow, highlighting immediate conversion and page-speed wins.',
+			),
+			array(
+				'icon'  => 'fa-solid fa-route',
+				'title' => '02. Phased Sprint Roadmap',
+				'desc'  => 'Clear week-by-week execution plan covering UX design tokens, full-stack engineering, GSAP motion, and launch milestones.',
+			),
+			array(
+				'icon'  => 'fa-solid fa-file-invoice-dollar',
+				'title' => '03. Fixed Investment Proposal',
+				'desc'  => 'Transparent sprint or retainer pricing delivered within 24 hours of our session — zero hidden hourly surprises.',
+			),
+		);
+	}
+	if ( empty( $conv_opt['thankyou_steps_rows'] ) ) {
+		$conv_opt['thankyou_steps_rows'] = array(
+			array(
+				'icon'   => 'fa-solid fa-paper-plane',
+				'window' => '0 – 2 Hours',
+				'title'  => '01. Principal Triage',
+				'desc'   => 'Your project brief is matched directly with the ALIFY practice heads specializing in your industry and technical stack.',
+			),
+			array(
+				'icon'   => 'fa-solid fa-magnifying-glass-chart',
+				'window' => 'Within 12 Hours',
+				'title'  => '02. Diagnostic Prep',
+				'desc'   => 'Our design director and lead architect audit your current digital footprint, speed benchmarks, and funnel opportunities.',
+			),
+			array(
+				'icon'   => 'fa-solid fa-handshake',
+				'window' => 'Within 24 Hours',
+				'title'  => '03. Roadmap & Call Invite',
+				'desc'   => 'You receive a tailored strategy response with clear timeline options, investment benchmarks, and direct calendar access.',
+			),
+		);
+	}
+	update_option( 'alify_cf_options_alify_conversion', $conv_opt );
+
+	update_option( 'alify_cf_default_repeaters_seeded_v2', 'done' );
 }
 
 /**

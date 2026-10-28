@@ -1,0 +1,147 @@
+{
+    "format": "alify-local-json",
+    "version": 1,
+    "schema_version": 12,
+    "key": "alify_opt_group_singles",
+    "status": "draft",
+    "group": {
+        "title": "Single Templates Global Settings (CPT Singles & Blog Single)",
+        "location": "options:alify_singles",
+        "rules": [],
+        "fields": [
+            {
+                "name": "stab_srv",
+                "label": "Service & Work Single Global",
+                "type": "tab"
+            },
+            {
+                "name": "sgl_srv_overview_eyebrow",
+                "label": "Service Overview Eyebrow",
+                "type": "text",
+                "instructions": "",
+                "default": "What You Get"
+            },
+            {
+                "name": "sgl_srv_overview_title",
+                "label": "Service Overview Heading (`<span>` allowed)",
+                "type": "text",
+                "instructions": "",
+                "default": "End-to-End Scope & <span>Production Deliverables.</span>"
+            },
+            {
+                "name": "sgl_srv_process_title",
+                "label": "Service Process Heading (`<span>` allowed)",
+                "type": "text",
+                "instructions": "",
+                "default": "A Transparent 4-Sprint <span>Delivery Framework.</span>"
+            },
+            {
+                "name": "sgl_srv_related_title",
+                "label": "Service Related Projects Heading (`<span>` allowed)",
+                "type": "text",
+                "instructions": "",
+                "default": "Featured Projects Shipped by <span>This Capability Squad.</span>"
+            },
+            {
+                "name": "sgl_wrk_related_eyebrow",
+                "label": "Work Single Related Eyebrow",
+                "type": "text",
+                "instructions": "",
+                "default": "Continue Exploring"
+            },
+            {
+                "name": "sgl_wrk_related_title",
+                "label": "Work Single Related Heading (`<span>` allowed)",
+                "type": "text",
+                "instructions": "",
+                "default": "More Selected Work From <span>ALIFY Studio.</span>"
+            },
+            {
+                "name": "stab_ind_cs",
+                "label": "Industry & Case Study Single Global",
+                "type": "tab"
+            },
+            {
+                "name": "sgl_ind_overview_title",
+                "label": "Industry Overview Heading (`<span>` allowed)",
+                "type": "text",
+                "instructions": "",
+                "default": "Turning Vertical Complexity Into <span>Competitive Advantage.</span>"
+            },
+            {
+                "name": "sgl_ind_related_title",
+                "label": "Industry Related Projects Heading (`<span>` allowed)",
+                "type": "text",
+                "instructions": "",
+                "default": "Selected Client Launches in <span>Related Markets.</span>"
+            },
+            {
+                "name": "sgl_cs_snapshot_heading",
+                "label": "Case Study Sidebar Snapshot Heading",
+                "type": "text",
+                "instructions": "",
+                "default": "Engagement Snapshot"
+            },
+            {
+                "name": "sgl_cs_related_title",
+                "label": "Case Study Related Launches Heading (`<span>` allowed)",
+                "type": "text",
+                "instructions": "",
+                "default": "Explore Related Client <span>Product Launches.</span>"
+            },
+            {
+                "name": "stab_blog",
+                "label": "Blog Single Global (single.php)",
+                "type": "tab"
+            },
+            {
+                "name": "sgl_blog_default_hero_bg",
+                "label": "Default Single Blog Hero Background Image",
+                "type": "image",
+                "instructions": ""
+            },
+            {
+                "name": "sgl_blog_toc_heading",
+                "label": "Left Sticky TOC Heading",
+                "type": "text",
+                "instructions": "",
+                "default": "Table of Contents"
+            },
+            {
+                "name": "sgl_blog_sidebar_cta_title",
+                "label": "Right Sidebar CTA Card Heading",
+                "type": "text",
+                "instructions": "",
+                "default": "Have a Project in Mind?"
+            },
+            {
+                "name": "sgl_blog_sidebar_cta_desc",
+                "label": "Right Sidebar CTA Card Description",
+                "type": "textarea",
+                "instructions": "",
+                "default": "Let’s architect a fast, conversion-led digital platform tailored to your brand."
+            },
+            {
+                "name": "sgl_blog_sidebar_cta_btn",
+                "label": "Right Sidebar CTA Button Label",
+                "type": "text",
+                "instructions": "",
+                "default": "Start a Project"
+            },
+            {
+                "name": "sgl_blog_related_eyebrow",
+                "label": "Related Articles Eyebrow",
+                "type": "text",
+                "instructions": "",
+                "default": "Continue Reading"
+            },
+            {
+                "name": "sgl_blog_related_title",
+                "label": "Related Articles Heading (`<span>` allowed)",
+                "type": "text",
+                "instructions": "",
+                "default": "Related Blogs & <span>Engineering Insights.</span>"
+            }
+        ]
+    }
+}

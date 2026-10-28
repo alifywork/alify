@@ -1,0 +1,157 @@
+{
+    "format": "alify-local-json",
+    "version": 1,
+    "schema_version": 12,
+    "key": "alify_theme_cpt_case_study",
+    "status": "draft",
+    "group": {
+        "title": "ALIFY Case Study — Benchmarks, KPIs & Executive Quote",
+        "location": "alify_case_study",
+        "rules": [],
+        "fields": [
+            {
+                "name": "cs_tab_meta",
+                "label": "Card & Switcher Metadata",
+                "type": "tab"
+            },
+            {
+                "name": "cs_filter",
+                "label": "Archive Filter Category",
+                "type": "select",
+                "instructions": "",
+                "default": "fintech-saas",
+                "choices": "fintech-saas : FinTech & SaaS\ncommerce-brand : E-Commerce & Brand\nhealth-proptech : Health & PropTech"
+            },
+            {
+                "name": "cs_tab_index",
+                "label": "Home Switcher Tab Label (e.g. 01 · FINTECH SAAS)",
+                "type": "text",
+                "instructions": ""
+            },
+            {
+                "name": "cs_client_short",
+                "label": "Client Short Name",
+                "type": "text",
+                "instructions": ""
+            },
+            {
+                "name": "cs_client_kicker",
+                "label": "Client & HQ Kicker",
+                "type": "text",
+                "instructions": ""
+            },
+            {
+                "name": "cs_sector_badge",
+                "label": "Visual Badge 1 (Sector)",
+                "type": "text",
+                "instructions": ""
+            },
+            {
+                "name": "cs_duration_badge",
+                "label": "Visual Badge 2 (Duration)",
+                "type": "text",
+                "instructions": ""
+            },
+            {
+                "name": "cs_bg_img",
+                "label": "Upload Case Study Visual (Media Library)",
+                "type": "image",
+                "instructions": ""
+            },
+            {
+                "name": "cs_bg_url",
+                "label": "Current / Fallback Image URL",
+                "type": "text",
+                "instructions": ""
+            },
+            {
+                "name": "cs_tab_kpis",
+                "label": "Challenge, Benchmarks & KPIs",
+                "type": "tab"
+            },
+            {
+                "name": "cs_bottleneck",
+                "label": "01 · The Bottleneck",
+                "type": "textarea",
+                "instructions": ""
+            },
+            {
+                "name": "cs_architecture",
+                "label": "02 · ALIFY Architecture",
+                "type": "textarea",
+                "instructions": ""
+            },
+            {
+                "name": "cs_chips",
+                "label": "Architecture Blueprint Chips (comma-separated)",
+                "type": "text",
+                "instructions": ""
+            },
+            {
+                "name": "cs_bench_rows",
+                "label": "Before vs. After Benchmarks (Repeater)",
+                "type": "repeater",
+                "instructions": "",
+                "sub_fields": [
+                    {
+                        "name": "metric",
+                        "label": "Benchmark Label (e.g. LCP Speed)",
+                        "type": "text",
+                        "instructions": ""
+                    },
+                    {
+                        "name": "before",
+                        "label": "Before Value (e.g. 4.9s)",
+                        "type": "text",
+                        "instructions": ""
+                    },
+                    {
+                        "name": "after",
+                        "label": "After Value (e.g. 0.6s)",
+                        "type": "text",
+                        "instructions": ""
+                    }
+                ],
+                "max_rows": 8
+            },
+            {
+                "name": "cs_kpi_rows",
+                "label": "Verified KPI Tiles (Repeater)",
+                "type": "repeater",
+                "instructions": "",
+                "sub_fields": [
+                    {
+                        "name": "val",
+                        "label": "KPI Value (e.g. +184%)",
+                        "type": "text",
+                        "instructions": ""
+                    },
+                    {
+                        "name": "label",
+                        "label": "KPI Label (e.g. Demo Pipeline)",
+                        "type": "text",
+                        "instructions": ""
+                    }
+                ],
+                "max_rows": 6
+            },
+            {
+                "name": "cs_tab_quote",
+                "label": "Executive Client Quote",
+                "type": "tab"
+            },
+            {
+                "name": "cs_quote",
+                "label": "Executive Quote Text",
+                "type": "textarea",
+                "instructions": ""
+            },
+            {
+                "name": "cs_quote_author",
+                "label": "Executive Quote Author & Role",
+                "type": "text",
+                "instructions": ""
+            }
+        ]
+    }
+}

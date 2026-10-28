@@ -1,0 +1,53 @@
+{
+    "format": "alify-local-json",
+    "version": 1,
+    "schema_version": 12,
+    "key": "alify_theme_cpt_testimonial",
+    "status": "draft",
+    "group": {
+        "title": "ALIFY Testimonial — Client Role, Rating & Outcome",
+        "location": "alify_testimonial",
+        "rules": [],
+        "fields": [
+            {
+                "name": "testi_role",
+                "label": "Client Role & Company",
+                "type": "text",
+                "instructions": ""
+            },
+            {
+                "name": "testi_initials",
+                "label": "Avatar Initials (2 Letters)",
+                "type": "text",
+                "instructions": ""
+            },
+            {
+                "name": "testi_rating",
+                "label": "Star Rating Score",
+                "type": "text",
+                "instructions": "",
+                "default": "5.0"
+            },
+            {
+                "name": "testi_filter",
+                "label": "Archive Filter Tab",
+                "type": "select",
+                "instructions": "",
+                "default": "web",
+                "choices": "web : Web & Engineering\nbranding : UI/UX & Branding\nsystems : Design Systems\ngrowth : E-Commerce & SEO"
+            },
+            {
+                "name": "testi_outcome",
+                "label": "Verified Outcome Pill (e.g. +184% Demo Pipeline)",
+                "type": "text",
+                "instructions": ""
+            },
+            {
+                "name": "testi_tag",
+                "label": "Footer Capability Tag",
+                "type": "text",
+                "instructions": ""
+            }
+        ]
+    }
+}

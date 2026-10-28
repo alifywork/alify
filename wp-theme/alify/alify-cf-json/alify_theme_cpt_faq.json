@@ -1,0 +1,28 @@
+{
+    "format": "alify-local-json",
+    "version": 1,
+    "schema_version": 12,
+    "key": "alify_theme_cpt_faq",
+    "status": "draft",
+    "group": {
+        "title": "ALIFY FAQ — Knowledge Pillar & Global Visibility",
+        "location": "alify_faq",
+        "rules": [],
+        "fields": [
+            {
+                "name": "faq_pillar",
+                "label": "Knowledge Hub Pillar",
+                "type": "select",
+                "instructions": "",
+                "default": "scope-sprints",
+                "choices": "scope-sprints : 01 · Scope, Sprints & Onboarding\npricing-billing : 02 · Pricing, Proposals & Billing\nengineering-stack : 03 · Engineering, Speed & SEO\ndesign-ownership : 04 · Design Systems & IP Ownership\nsupport-retainers : 05 · Post-Launch & Growth Retainers"
+            },
+            {
+                "name": "faq_show_reusable",
+                "label": "Include in Global 6-Item Reusable FAQ Section?",
+                "type": "toggle",
+                "instructions": ""
+            }
+        ]
+    }
+}

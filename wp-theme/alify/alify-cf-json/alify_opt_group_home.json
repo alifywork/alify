@@ -1,0 +1,266 @@
+{
+    "format": "alify-local-json",
+    "version": 1,
+    "schema_version": 12,
+    "key": "alify_opt_group_home",
+    "status": "draft",
+    "group": {
+        "title": "Home Page — Hero, Stats Repeater, Sections & 4-Sprint Process",
+        "location": "options:alify_home",
+        "rules": [],
+        "fields": [
+            {
+                "name": "htab_hero",
+                "label": "Home Hero & Stat Counters",
+                "type": "tab"
+            },
+            {
+                "name": "home_hero_bg",
+                "label": "Home Hero Background Image",
+                "type": "image",
+                "instructions": ""
+            },
+            {
+                "name": "home_status_pill",
+                "label": "Availability Status Pill",
+                "type": "text",
+                "instructions": "",
+                "default": "Creative Digital Studio — Available for New Projects"
+            },
+            {
+                "name": "home_title_before",
+                "label": "Hero H1 — Part 1",
+                "type": "text",
+                "instructions": "",
+                "default": "We Craft Bold"
+            },
+            {
+                "name": "home_title_accent",
+                "label": "Hero H1 — Highlighted Accent",
+                "type": "text",
+                "instructions": "",
+                "default": "Digital Experiences"
+            },
+            {
+                "name": "home_title_after",
+                "label": "Hero H1 — Part 2",
+                "type": "text",
+                "instructions": "",
+                "default": "That Scale Brands."
+            },
+            {
+                "name": "home_lead",
+                "label": "Hero Lead Paragraph",
+                "type": "textarea",
+                "instructions": "",
+                "default": "ALIFY partners with visionary startups and category-defining brands to design, engineer, and launch high-converting websites, design systems, and digital products."
+            },
+            {
+                "name": "home_primary_btn",
+                "label": "Hero Primary CTA Button Label",
+                "type": "text",
+                "instructions": "",
+                "default": "Start a Project"
+            },
+            {
+                "name": "home_sec_btn",
+                "label": "Hero Secondary CTA Button Label",
+                "type": "text",
+                "instructions": "",
+                "default": "Explore Our Work"
+            },
+            {
+                "name": "home_stats_rows",
+                "label": "Home Hero Animated Stat Counters (Repeater)",
+                "type": "repeater",
+                "instructions": "",
+                "sub_fields": [
+                    {
+                        "name": "num",
+                        "label": "Counter Number (e.g. 150)",
+                        "type": "text",
+                        "instructions": ""
+                    },
+                    {
+                        "name": "suffix",
+                        "label": "Suffix (e.g. + or %)",
+                        "type": "text",
+                        "instructions": ""
+                    },
+                    {
+                        "name": "label",
+                        "label": "Counter Label",
+                        "type": "text",
+                        "instructions": ""
+                    }
+                ],
+                "max_rows": 4
+            },
+            {
+                "name": "htab_why",
+                "label": "Why Partner With ALIFY",
+                "type": "tab"
+            },
+            {
+                "name": "home_why_eyebrow",
+                "label": "Section Eyebrow",
+                "type": "text",
+                "instructions": "",
+                "default": "Why Partner With ALIFY"
+            },
+            {
+                "name": "home_why_title",
+                "label": "Section Heading (`<span>` allowed)",
+                "type": "text",
+                "instructions": "",
+                "default": "Senior Design Craft Meets <span>Revenue-Grade Engineering.</span>"
+            },
+            {
+                "name": "home_why_desc",
+                "label": "Lead Paragraph",
+                "type": "textarea",
+                "instructions": "",
+                "default": "Most agencies hand off static slides or bloated themes. ALIFY embeds a dedicated senior squad of strategists, system designers, and engineers to ship sub-second digital flagships built to dominate your category."
+            },
+            {
+                "name": "home_why_image",
+                "label": "Right-Column Studio Visual Image",
+                "type": "image",
+                "instructions": ""
+            },
+            {
+                "name": "home_why_quote",
+                "label": "Right-Column Studio Card Quote",
+                "type": "textarea",
+                "instructions": ""
+            },
+            {
+                "name": "htab_sliders",
+                "label": "Services, Industries, Work & Case Studies Headings",
+                "type": "tab"
+            },
+            {
+                "name": "home_srv_eyebrow",
+                "label": "Services Section — Eyebrow",
+                "type": "text",
+                "instructions": "",
+                "default": "Core Capabilities"
+            },
+            {
+                "name": "home_srv_title",
+                "label": "Services Section — Heading (`<span>` allowed)",
+                "type": "text",
+                "instructions": "",
+                "default": "End-to-End Digital Craft Built to <span>Move Markets.</span>"
+            },
+            {
+                "name": "home_ind_eyebrow",
+                "label": "Industries Section — Eyebrow",
+                "type": "text",
+                "instructions": "",
+                "default": "Industries We Transform"
+            },
+            {
+                "name": "home_ind_title",
+                "label": "Industries Section — Heading (`<span>` allowed)",
+                "type": "text",
+                "instructions": "",
+                "default": "Tailored Digital Ecosystems for <span>High-Growth Verticals.</span>"
+            },
+            {
+                "name": "home_prj_eyebrow",
+                "label": "Featured Work — Eyebrow",
+                "type": "text",
+                "instructions": "",
+                "default": "Selected Portfolio"
+            },
+            {
+                "name": "home_prj_title",
+                "label": "Featured Work — Heading (`<span>` allowed)",
+                "type": "text",
+                "instructions": "",
+                "default": "Flagship Digital Products That <span>Redefined Their Category.</span>"
+            },
+            {
+                "name": "home_cs_eyebrow",
+                "label": "Case Studies — Eyebrow",
+                "type": "text",
+                "instructions": "",
+                "default": "Executive Case Studies"
+            },
+            {
+                "name": "home_cs_title",
+                "label": "Case Studies — Heading (`<span>` allowed)",
+                "type": "text",
+                "instructions": "",
+                "default": "Where Design Craft Meets <span>Hard Revenue Metrics.</span>"
+            },
+            {
+                "name": "home_cs_desc",
+                "label": "Case Studies — Lead Description",
+                "type": "textarea",
+                "instructions": "",
+                "default": "Select a client engagement below to inspect the exact bottleneck, architectural intervention, before-and-after benchmarks, and verified business ROI."
+            },
+            {
+                "name": "htab_process",
+                "label": "4-Sprint Execution Process",
+                "type": "tab"
+            },
+            {
+                "name": "home_proc_eyebrow",
+                "label": "Process Eyebrow",
+                "type": "text",
+                "instructions": "",
+                "default": "Execution Methodology"
+            },
+            {
+                "name": "home_proc_title",
+                "label": "Process Heading (`<span>` allowed)",
+                "type": "text",
+                "instructions": "",
+                "default": "From Strategic Discovery to <span>Sub-Second Launch.</span>"
+            },
+            {
+                "name": "home_proc_desc",
+                "label": "Process Lead Description",
+                "type": "textarea",
+                "instructions": "",
+                "default": "Every ALIFY engagement runs on transparent weekly sprints with senior specialists — zero black-box handoffs, zero guesswork."
+            },
+            {
+                "name": "home_proc_rows",
+                "label": "Sprint Execution Process Cards (Repeater)",
+                "type": "repeater",
+                "instructions": "",
+                "sub_fields": [
+                    {
+                        "name": "badge",
+                        "label": "Sprint Badge (e.g. SPRINT 01)",
+                        "type": "text",
+                        "instructions": ""
+                    },
+                    {
+                        "name": "title",
+                        "label": "Sprint Title",
+                        "type": "text",
+                        "instructions": ""
+                    },
+                    {
+                        "name": "desc",
+                        "label": "Sprint Description",
+                        "type": "textarea",
+                        "instructions": ""
+                    },
+                    {
+                        "name": "deliverable",
+                        "label": "Footer Deliverable Label",
+                        "type": "text",
+                        "instructions": ""
+                    }
+                ],
+                "max_rows": 6
+            }
+        ]
+    }
+}

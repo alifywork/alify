@@ -672,8 +672,8 @@ function alify_inject_dynamic_cpts( $html ) {
 		}
 	}
 
-	// D. Case Studies Stack (`#caseStudiesStack`)
-	if ( false !== strpos( $html, 'id="caseStudiesStack"' ) ) {
+	// D. Case Studies Stack (`#caseStudiesStack`) & Home 4-Client Interactive Switcher (`cs-stage-shell`)
+	if ( false !== strpos( $html, 'id="caseStudiesStack"' ) || false !== strpos( $html, 'class="cs-stage-shell"' ) ) {
 		$cases = get_posts(
 			array(
 				'post_type'      => 'alify_case_study',
@@ -683,11 +683,109 @@ function alify_inject_dynamic_cpts( $html ) {
 			)
 		);
 		if ( ! empty( $cases ) ) {
-			$stack = '';
-			foreach ( $cases as $idx => $cs_post ) {
-				$stack .= alify_render_case_study_card_markup( $cs_post, $idx + 1 );
+			if ( false !== strpos( $html, 'id="caseStudiesStack"' ) ) {
+				$stack = '';
+				foreach ( $cases as $idx => $cs_post ) {
+					$stack .= alify_render_case_study_card_markup( $cs_post, $idx + 1 );
+				}
+				$html = alify_replace_container_inner( $html, 'id="caseStudiesStack"', 'div', $stack );
 			}
-			$html = alify_replace_container_inner( $html, 'id="caseStudiesStack"', 'div', $stack );
+			if ( false !== strpos( $html, 'class="cs-stage-shell"' ) && false !== strpos( $html, 'class="row cs-tabs-row"' ) ) {
+				$home_cases  = array_slice( $cases, 0, 4 );
+				$tabs_html   = '';
+				$panels_html = '';
+				foreach ( $home_cases as $idx => $cs_post ) {
+					$cid        = $cs_post->ID;
+					$cslug      = $cs_post->post_name;
+					$is_active  = ( 0 === $idx );
+					$num        = str_pad( (string) ( $idx + 1 ), 2, '0', STR_PAD_LEFT );
+					$tab_idx    = get_post_meta( $cid, '_alify_cs_tab_index', true );
+					$tab_idx    = $tab_idx ? $tab_idx : ( $num . ' · CASE STUDY' );
+					$client_s   = get_post_meta( $cid, '_alify_cs_client_short', true );
+					$client_s   = $client_s ? $client_s : get_the_title( $cid );
+					$kicker     = get_post_meta( $cid, '_alify_cs_client_kicker', true );
+					$kicker     = $kicker ? $kicker : strtoupper( $client_s );
+					$sec_badge  = get_post_meta( $cid, '_alify_cs_sector_badge', true );
+					$sec_badge  = $sec_badge ? $sec_badge : 'Digital Platform';
+					$dur_badge  = get_post_meta( $cid, '_alify_cs_duration_badge', true );
+					$dur_badge  = $dur_badge ? $dur_badge : '10-Week Transformation';
+					$bg_url     = alify_get_cpt_bg_url( $cid, '_alify_cs_bg_image', 'assets/images/projects/project-finpulse.jpg' );
+					$bottleneck = get_post_meta( $cid, '_alify_cs_bottleneck', true );
+					$arch       = get_post_meta( $cid, '_alify_cs_architecture', true );
+					$quote      = get_post_meta( $cid, '_alify_cs_quote', true );
+					$q_author   = get_post_meta( $cid, '_alify_cs_quote_author', true );
+					$plink      = get_permalink( $cid );
+
+					$kpi_lines = alify_parse_lines( get_post_meta( $cid, '_alify_cs_kpis', true ) );
+					$kpis      = array();
+					foreach ( $kpi_lines as $kl ) {
+						$kp = array_map( 'trim', explode( '|', $kl ) );
+						if ( count( $kp ) >= 2 ) {
+							$kpis[] = array( $kp[0], $kp[1] );
+						}
+					}
+					if ( empty( $kpis ) ) {
+						$kpis = array( array( '+184%', 'Pipeline Lift' ), array( '0.7s', 'Global LCP' ), array( '3.4x', 'ROI Velocity' ) );
+					}
+					$headline_metric = $kpis[0][0] . ' ' . wp_trim_words( $kpis[0][1], 2, '' );
+
+					$bench_lines = alify_parse_lines( get_post_meta( $cid, '_alify_cs_benchmarks', true ) );
+					$benches     = array();
+					foreach ( array_slice( $bench_lines, 0, 2 ) as $bl ) {
+						$bp = array_map( 'trim', explode( '|', $bl ) );
+						if ( count( $bp ) >= 3 ) {
+							$benches[] = $bp;
+						}
+					}
+
+					$tabs_html .= '<div class="col-12 col-md-6 col-lg-3">';
+					$tabs_html .= '<button type="button" id="csTab-' . esc_attr( $cslug ) . '" class="cs-tab-btn js-cs-tab' . ( $is_active ? ' is-active' : '' ) . '" role="tab" aria-selected="' . ( $is_active ? 'true' : 'false' ) . '" aria-controls="csPanel-' . esc_attr( $cslug ) . '" tabindex="' . ( $is_active ? '0' : '-1' ) . '">';
+					$tabs_html .= '<div class="cs-tab-top"><span class="cs-tab-index">' . esc_html( $tab_idx ) . '</span><span class="cs-tab-status-dot" aria-hidden="true"></span></div>';
+					$tabs_html .= '<div><span class="cs-tab-client">' . esc_html( $client_s ) . '</span><span class="cs-tab-metric"><i class="fa-solid fa-arrow-trend-up" aria-hidden="true"></i> ' . esc_html( $headline_metric ) . '</span></div>';
+					$tabs_html .= '<span class="cs-tab-progress" aria-hidden="true"><span class="cs-tab-progress-fill"></span></span>';
+					$tabs_html .= '</button></div>';
+
+					$panels_html .= '<article id="csPanel-' . esc_attr( $cslug ) . '" class="cs-stage-panel js-cs-panel' . ( $is_active ? ' is-active' : '' ) . '" role="tabpanel" aria-labelledby="csTab-' . esc_attr( $cslug ) . '" aria-hidden="' . ( $is_active ? 'false' : 'true' ) . '">';
+					$panels_html .= '<div class="row cs-stage-row"><div class="col-12 col-lg-6"><div class="cs-visual-frame">';
+					$panels_html .= '<div class="cs-visual-bg" style="background-image: url(\'' . esc_url( $bg_url ) . '\');" aria-hidden="true"></div>';
+					$panels_html .= '<div class="cs-visual-top"><span class="cs-glass-tag"><i class="fa-solid fa-layer-group" aria-hidden="true"></i> ' . esc_html( $sec_badge ) . '</span><span class="cs-glass-tag"><i class="fa-solid fa-clock" aria-hidden="true"></i> ' . esc_html( $dur_badge ) . '</span></div>';
+					if ( ! empty( $benches ) ) {
+						$panels_html .= '<div class="cs-benchmark-dock"><span class="cs-benchmark-label">Verified Before vs. After Benchmark</span><div class="cs-benchmark-items">';
+						foreach ( $benches as $bm ) {
+							$panels_html .= '<div class="cs-benchmark-pair"><span class="cs-bench-name">' . esc_html( $bm[0] ) . ':</span><span class="cs-bench-before">' . esc_html( $bm[1] ) . '</span><i class="fa-solid fa-arrow-right cs-bench-arrow" aria-hidden="true"></i><span class="cs-bench-after">' . esc_html( $bm[2] ) . '</span></div>';
+						}
+						$panels_html .= '</div></div>';
+					}
+					$panels_html .= '</div></div>';
+
+					$panels_html .= '<div class="col-12 col-lg-6"><div class="cs-narrative-col"><div>';
+					$panels_html .= '<span class="cs-client-kicker">' . esc_html( $kicker ) . '</span>';
+					$panels_html .= '<h3 class="cs-case-title">' . esc_html( get_the_title( $cid ) ) . '</h3>';
+					$panels_html .= '<div class="cs-diagnosis-list">';
+					if ( ! empty( $bottleneck ) ) {
+						$panels_html .= '<div class="cs-diagnosis-box is-challenge"><span class="cs-diagnosis-head">01 · The Bottleneck</span><p class="cs-diagnosis-text">' . esc_html( $bottleneck ) . '</p></div>';
+					}
+					if ( ! empty( $arch ) ) {
+						$panels_html .= '<div class="cs-diagnosis-box"><span class="cs-diagnosis-head">02 · ALIFY Architecture</span><p class="cs-diagnosis-text">' . esc_html( $arch ) . '</p></div>';
+					}
+					$panels_html .= '</div><div class="row cs-kpi-row">';
+					foreach ( array_slice( $kpis, 0, 3 ) as $ki => $kv ) {
+						$panels_html .= '<div class="col-12 col-md-4"><div class="cs-kpi-tile' . ( 0 === $ki ? ' is-highlight' : '' ) . '"><span class="cs-kpi-value">' . esc_html( $kv[0] ) . '</span><span class="cs-kpi-label">' . esc_html( $kv[1] ) . '</span></div></div>';
+					}
+					$panels_html .= '</div></div>';
+					$panels_html .= '<div class="cs-stage-footer"><div class="cs-mini-quote">';
+					if ( ! empty( $quote ) ) {
+						$panels_html .= '<p class="cs-mini-quote-text">&ldquo;' . esc_html( $quote ) . '&rdquo;</p>';
+					}
+					if ( ! empty( $q_author ) ) {
+						$panels_html .= '<span class="cs-mini-quote-author">' . esc_html( $q_author ) . '</span>';
+					}
+					$panels_html .= '</div><a href="' . esc_url( $plink ) . '" class="btn-start-project"><span class="btn-start-pill">Full Case Study</span><span class="btn-start-circle" aria-hidden="true"><i class="fa-solid fa-arrow-up btn-start-arrow"></i></span></a></div>';
+					$panels_html .= '</div></div></div></article>';
+				}
+				$html = alify_replace_container_inner( $html, 'class="row cs-tabs-row"', 'div', $tabs_html );
+				$html = alify_replace_container_inner( $html, 'class="cs-stage-shell"', 'div', $panels_html );
+			}
 		}
 	}
 
@@ -803,42 +901,174 @@ function alify_inject_dynamic_cpts( $html ) {
 		}
 	}
 
-	// G. Reusable Blog Slider (`#homeBlogSliderTrack`) Powered by Native WordPress `post` Entries
-	if ( false !== strpos( $html, 'id="homeBlogSliderTrack"' ) ) {
+	// G. Reusable Blog Slider (`#homeBlogSliderTrack`) & Blog Archive Page (`#blogArchiveGrid`)
+	if ( false !== strpos( $html, 'id="homeBlogSliderTrack"' ) || false !== strpos( $html, 'id="blogArchiveGrid"' ) ) {
 		$blog_posts = get_posts(
 			array(
 				'post_type'      => 'post',
-				'posts_per_page' => 6,
+				'posts_per_page' => -1,
 				'post_status'    => 'publish',
 				'orderby'        => 'date',
 				'order'          => 'DESC',
 			)
 		);
 		if ( ! empty( $blog_posts ) ) {
-			$slides = '';
-			foreach ( $blog_posts as $bp ) {
-				$thumb = get_the_post_thumbnail_url( $bp->ID, 'large' );
-				if ( empty( $thumb ) ) {
-					$thumb = alify_get_cpt_bg_url( $bp->ID, '_alify_post_bg_image', 'assets/images/blog/blog-design-systems.jpg' );
-				}
-				$cats     = get_the_category( $bp->ID );
-				$cat_name = ! empty( $cats ) ? $cats[0]->name : 'Engineering';
-				$excerpt  = has_excerpt( $bp->ID ) ? get_the_excerpt( $bp->ID ) : wp_trim_words( wp_strip_all_tags( $bp->post_content ), 20 );
-				$plink    = get_permalink( $bp->ID );
-				$date_str = get_the_date( 'M j, Y', $bp->ID );
+			if ( false !== strpos( $html, 'id="homeBlogSliderTrack"' ) ) {
+				$slides = '';
+				foreach ( array_slice( $blog_posts, 0, 6 ) as $bp ) {
+					$thumb = get_the_post_thumbnail_url( $bp->ID, 'large' );
+					if ( empty( $thumb ) ) {
+						$thumb = alify_get_cpt_bg_url( $bp->ID, '_alify_post_bg_image', 'assets/images/blog/blog-design-systems.jpg' );
+					}
+					$custom_b = trim( (string) get_post_meta( $bp->ID, '_alify_post_badge', true ) );
+					$cats     = get_the_category( $bp->ID );
+					$cat_name = ! empty( $custom_b ) ? $custom_b : ( ! empty( $cats ) ? $cats[0]->name : 'Engineering' );
+					$excerpt  = has_excerpt( $bp->ID ) ? get_the_excerpt( $bp->ID ) : wp_trim_words( wp_strip_all_tags( $bp->post_content ), 20 );
+					$plink    = get_permalink( $bp->ID );
+					$date_str = get_the_date( 'M j, Y', $bp->ID );
 
-				$slides .= '<div class="blog-slide"><article class="blog-card">';
-				$slides .= '<a href="' . esc_url( $plink ) . '" class="blog-card-media">';
-				$slides .= '<span class="blog-card-category">' . esc_html( $cat_name ) . '</span>';
-				$slides .= '<img src="' . esc_url( $thumb ) . '" alt="' . esc_attr( get_the_title( $bp->ID ) ) . '" class="blog-card-img" loading="lazy" />';
-				$slides .= '</a><div class="blog-card-body">';
-				$slides .= '<div class="blog-card-meta"><span class="blog-card-meta-item"><i class="fa-solid fa-calendar" aria-hidden="true"></i> <span>' . esc_html( $date_str ) . '</span></span></div>';
-				$slides .= '<h3 class="blog-card-title"><a href="' . esc_url( $plink ) . '">' . esc_html( get_the_title( $bp->ID ) ) . '</a></h3>';
-				$slides .= '<p class="blog-card-excerpt">' . esc_html( $excerpt ) . '</p>';
-				$slides .= '<div class="blog-card-footer"><a href="' . esc_url( $plink ) . '" class="blog-read-more"><span class="blog-read-more-pill">Read More</span><span class="blog-read-more-circle" aria-hidden="true"><i class="fa-solid fa-arrow-up blog-read-more-arrow"></i></span></a></div>';
-				$slides .= '</div></article></div>';
+					$slides .= '<div class="blog-slide"><article class="blog-card">';
+					$slides .= '<a href="' . esc_url( $plink ) . '" class="blog-card-media">';
+					$slides .= '<span class="blog-card-category">' . esc_html( $cat_name ) . '</span>';
+					$slides .= '<img src="' . esc_url( $thumb ) . '" alt="' . esc_attr( get_the_title( $bp->ID ) ) . '" class="blog-card-img" loading="lazy" />';
+					$slides .= '</a><div class="blog-card-body">';
+					$slides .= '<div class="blog-card-meta"><span class="blog-card-meta-item"><i class="fa-solid fa-calendar" aria-hidden="true"></i> <span>' . esc_html( $date_str ) . '</span></span></div>';
+					$slides .= '<h3 class="blog-card-title"><a href="' . esc_url( $plink ) . '">' . esc_html( get_the_title( $bp->ID ) ) . '</a></h3>';
+					$slides .= '<p class="blog-card-excerpt">' . esc_html( $excerpt ) . '</p>';
+					$slides .= '<div class="blog-card-footer"><a href="' . esc_url( $plink ) . '" class="blog-read-more"><span class="blog-read-more-pill">Read More</span><span class="blog-read-more-circle" aria-hidden="true"><i class="fa-solid fa-arrow-up blog-read-more-arrow"></i></span></a></div>';
+					$slides .= '</div></article></div>';
+				}
+				$html = alify_replace_container_inner( $html, 'id="homeBlogSliderTrack"', 'div', $slides );
 			}
-			$html = alify_replace_container_inner( $html, 'id="homeBlogSliderTrack"', 'div', $slides );
+
+			if ( false !== strpos( $html, 'id="blogArchiveGrid"' ) ) {
+				$grid_cols = '';
+				$cat_names = array();
+				foreach ( $blog_posts as $bp ) {
+					$thumb = get_the_post_thumbnail_url( $bp->ID, 'large' );
+					if ( empty( $thumb ) ) {
+						$thumb = alify_get_cpt_bg_url( $bp->ID, '_alify_post_bg_image', 'assets/images/blog/blog-design-systems.jpg' );
+					}
+					$custom_b = trim( (string) get_post_meta( $bp->ID, '_alify_post_badge', true ) );
+					$cats     = get_the_category( $bp->ID );
+					$cat_name = ! empty( $custom_b ) ? $custom_b : ( ! empty( $cats ) ? $cats[0]->name : 'Engineering' );
+					$cat_names[ $cat_name ] = $cat_name;
+
+					$words     = str_word_count( wp_strip_all_tags( $bp->post_content ) );
+					$read_m    = max( 3, (int) ceil( $words / 200 ) );
+					$custom_rt = trim( (string) get_post_meta( $bp->ID, '_alify_post_read_time', true ) );
+					$rt_label  = ! empty( $custom_rt ) ? $custom_rt : ( $read_m . ' Min Read' );
+					$excerpt   = has_excerpt( $bp->ID ) ? get_the_excerpt( $bp->ID ) : wp_trim_words( wp_strip_all_tags( $bp->post_content ), 22 );
+					$plink     = get_permalink( $bp->ID );
+					$date_str  = get_the_date( 'M j, Y', $bp->ID );
+
+					$grid_cols .= '<div class="col-12 col-md-6 col-lg-4 blog-grid-col" data-category="' . esc_attr( $cat_name ) . '"><article class="blog-card">';
+					$grid_cols .= '<a href="' . esc_url( $plink ) . '" class="blog-card-media"><span class="blog-card-category">' . esc_html( $cat_name ) . '</span>';
+					$grid_cols .= '<img src="' . esc_url( $thumb ) . '" alt="' . esc_attr( get_the_title( $bp->ID ) ) . '" class="blog-card-img" loading="lazy" /></a>';
+					$grid_cols .= '<div class="blog-card-body"><div class="blog-card-meta">';
+					$grid_cols .= '<span class="blog-card-meta-item"><i class="fa-solid fa-calendar" aria-hidden="true"></i> <span>' . esc_html( $date_str ) . '</span></span>';
+					$grid_cols .= '<span class="blog-card-meta-dot" aria-hidden="true"></span>';
+					$grid_cols .= '<span class="blog-card-meta-item"><i class="fa-solid fa-clock" aria-hidden="true"></i> <span>' . esc_html( $rt_label ) . '</span></span>';
+					$grid_cols .= '</div>';
+					$grid_cols .= '<h2 class="blog-card-title"><a href="' . esc_url( $plink ) . '">' . esc_html( get_the_title( $bp->ID ) ) . '</a></h2>';
+					$grid_cols .= '<p class="blog-card-excerpt">' . esc_html( $excerpt ) . '</p>';
+					$grid_cols .= '<div class="blog-card-footer"><a href="' . esc_url( $plink ) . '" class="blog-read-more"><span class="blog-read-more-pill">Read More</span><span class="blog-read-more-circle" aria-hidden="true"><i class="fa-solid fa-arrow-up blog-read-more-arrow"></i></span></a></div>';
+					$grid_cols .= '</div></article></div>';
+				}
+				$html = alify_replace_container_inner( $html, 'id="blogArchiveGrid"', 'div', $grid_cols );
+
+				if ( false !== strpos( $html, 'class="blog-filter-pills"' ) && ! empty( $cat_names ) ) {
+					$pills_html = '<button type="button" class="blog-filter-btn is-active" data-filter="all">All Articles</button>';
+					foreach ( $cat_names as $cn ) {
+						$pills_html .= '<button type="button" class="blog-filter-btn" data-filter="' . esc_attr( $cn ) . '">' . esc_html( $cn ) . '</button>';
+					}
+					$html = alify_replace_container_inner( $html, 'class="blog-filter-pills"', 'div', $pills_html );
+				}
+				$total_b = count( $blog_posts );
+				$html    = preg_replace(
+					'/(id="blogArchiveCount"[^>]*>)[\s\S]*?(<\/span>)/',
+					'${1}' . esc_html( 'Showing ' . $total_b . ' of ' . $total_b . ' articles' ) . '${2}',
+					$html,
+					1
+				);
+			}
+		}
+	}
+
+	// H. Related Client Projects (`single-related-projects-section`) Across All 5 Single / Thank-You Pages
+	if ( false !== strpos( $html, 'single-related-projects-section' ) ) {
+		$exclude_proj = is_singular( 'alify_project' ) ? array( (int) get_queried_object_id() ) : array();
+		$rel_projects = get_posts(
+			array(
+				'post_type'      => 'alify_project',
+				'posts_per_page' => 2,
+				'post_status'    => 'publish',
+				'post__not_in'   => $exclude_proj,
+				'orderby'        => array( 'menu_order' => 'ASC', 'date' => 'DESC' ),
+			)
+		);
+		if ( ! empty( $rel_projects ) ) {
+			$rel_cols = '';
+			foreach ( $rel_projects as $idx => $rp ) {
+				$rel_cols .= '<div class="col-12 col-md-6">' . alify_render_project_markup( $rp, $idx + 1, 'grid' ) . '</div>';
+			}
+			foreach ( array( 'srvRelatedProjects', 'workMoreProjects', 'indRelatedProjects', 'csRelatedProjects' ) as $rel_id ) {
+				if ( false !== strpos( $html, 'id="' . $rel_id . '"' ) ) {
+					$html = str_replace( 'id="' . $rel_id . '"', 'id="' . $rel_id . '" data-wp-rendered="true"', $html );
+					$html = alify_replace_container_inner( $html, 'id="' . $rel_id . '"', 'div', $rel_cols );
+				}
+			}
+			// Also handle thank-you.php's `single-related-projects-section` grid without an ID
+			if ( false === strpos( $html, 'data-wp-rendered="true"' ) && false !== strpos( $html, 'class="row projects-grid-row"' ) ) {
+				$html = alify_replace_container_inner( $html, 'class="row projects-grid-row"', 'div', $rel_cols );
+			}
+		}
+	}
+
+	// I. Server-Side Single CPT Hero Pre-Rendering (`single-alify_*.php`) for Instant Zero-FOUC & SEO
+	if ( is_singular( array( 'alify_service', 'alify_project', 'alify_industry', 'alify_case_study' ) ) ) {
+		$qpost = get_queried_object();
+		$ovr   = $qpost ? alify_build_single_cpt_override( $qpost ) : null;
+		if ( $ovr && ! empty( $ovr['data'] ) ) {
+			$d    = $ovr['data'];
+			$t_id = array(
+				'service'  => 'srvHeroTitle',
+				'project'  => 'workHeroTitle',
+				'industry' => 'indHeroTitle',
+				'case'     => 'csHeroTitle',
+			)[ $ovr['type'] ] ?? '';
+			$d_id = array(
+				'service'  => 'srvHeroDesc',
+				'project'  => 'workHeroDesc',
+				'industry' => 'indHeroDesc',
+				'case'     => 'csHeroDesc',
+			)[ $ovr['type'] ] ?? '';
+			$e_id = array(
+				'service'  => 'srvHeroEyebrow',
+				'project'  => 'workHeroEyebrow',
+				'industry' => 'indHeroEyebrow',
+				'case'     => 'csHeroEyebrow',
+			)[ $ovr['type'] ] ?? '';
+
+			$crumb = isset( $d['shortTitle'] ) ? $d['shortTitle'] : ( isset( $d['client'] ) && 'case' === $ovr['type'] ? $d['client'] . ' Case Study' : ( $d['title'] ?? '' ) );
+			$eyebr = isset( $d['code'] ) ? $d['code'] : ( isset( $d['kicker'] ) ? $d['kicker'] : ( ( $d['sector'] ?? '' ) . ' · ' . ( $d['sprint'] ?? '' ) ) );
+			$lead  = isset( $d['desc'] ) ? $d['desc'] : ( $d['summary'] ?? '' );
+
+			if ( ! empty( $d['bg'] ) ) {
+				$html = preg_replace( '/(id="innerHeroBg"[^>]*style="background-image:\s*url\(\')[^\']*(\'\);")/', '${1}' . esc_url( $d['bg'] ) . '${2}', $html, 1 );
+			}
+			if ( '' !== $crumb ) {
+				$html = preg_replace( '/(id="singleBreadcrumbCurrent"[^>]*>)[\s\S]*?(<\/span>)/', '${1}' . esc_html( $crumb ) . '${2}', $html, 1 );
+			}
+			if ( $e_id && '' !== trim( $eyebr, ' ·' ) ) {
+				$html = preg_replace( '/(id="' . preg_quote( $e_id, '/' ) . '"[^>]*>)[\s\S]*?(<\/span>)/', '${1}' . esc_html( $eyebr ) . '${2}', $html, 1 );
+			}
+			if ( $t_id && ! empty( $d['title'] ) ) {
+				$html = preg_replace( '/(id="' . preg_quote( $t_id, '/' ) . '"[^>]*>)[\s\S]*?(<\/h1>)/', '${1}' . esc_html( $d['title'] ) . '${2}', $html, 1 );
+			}
+			if ( $d_id && '' !== $lead ) {
+				$html = preg_replace( '/(id="' . preg_quote( $d_id, '/' ) . '"[^>]*>)[\s\S]*?(<\/p>)/', '${1}' . esc_html( $lead ) . '${2}', $html, 1 );
+			}
 		}
 	}
 
@@ -977,6 +1207,9 @@ function alify_build_single_cpt_override( $post ) {
 		if ( ! empty( $stats ) ) {
 			$data['stats'] = $stats;
 		}
+		if ( ! empty( $points ) ) {
+			$data['solutions'] = $points;
+		}
 		return array( 'type' => 'industry', 'slug' => $slug, 'data' => $data );
 	}
 
@@ -998,6 +1231,10 @@ function alify_build_single_cpt_override( $post ) {
 			}
 		}
 
+		$bottleneck   = get_post_meta( $pid, '_alify_cs_bottleneck', true );
+		$architecture = get_post_meta( $pid, '_alify_cs_architecture', true );
+		$body_paras   = alify_parse_lines( wp_strip_all_tags( (string) $post->post_content ) );
+
 		$data = array(
 			'client'       => get_post_meta( $pid, '_alify_cs_client_short', true ) ? get_post_meta( $pid, '_alify_cs_client_short', true ) : get_the_title( $pid ),
 			'hq'           => get_post_meta( $pid, '_alify_cs_client_kicker', true ),
@@ -1007,11 +1244,23 @@ function alify_build_single_cpt_override( $post ) {
 			'summary'      => $desc,
 			'bg'           => alify_get_cpt_bg_url( $pid, '_alify_cs_bg_image', 'assets/images/projects/project-finpulse.jpg' ),
 			'deliverables' => get_post_meta( $pid, '_alify_cs_chips', true ),
-			'challenge'    => get_post_meta( $pid, '_alify_cs_bottleneck', true ),
-			'architecture' => get_post_meta( $pid, '_alify_cs_architecture', true ),
+			'challenge'    => $bottleneck,
+			'architecture' => $architecture,
 			'quote'        => get_post_meta( $pid, '_alify_cs_quote', true ),
 			'quoteAuthor'  => get_post_meta( $pid, '_alify_cs_quote_author', true ),
 		);
+		if ( ! empty( $bottleneck ) ) {
+			$data['ch1'] = $bottleneck;
+		}
+		if ( ! empty( $architecture ) ) {
+			$data['ch2'] = $architecture;
+		}
+		if ( ! empty( $body_paras[0] ) ) {
+			$data['ch3'] = $body_paras[0];
+		}
+		if ( ! empty( $body_paras[1] ) ) {
+			$data['ch4'] = $body_paras[1];
+		}
 		if ( ! empty( $kpis ) ) {
 			$data['kpis'] = $kpis;
 		}

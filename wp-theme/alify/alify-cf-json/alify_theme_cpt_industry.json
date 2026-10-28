@@ -1,0 +1,98 @@
+{
+    "format": "alify-local-json",
+    "version": 1,
+    "schema_version": 12,
+    "key": "alify_theme_cpt_industry",
+    "status": "draft",
+    "group": {
+        "title": "ALIFY Industry — Sector Card & Single Stats",
+        "location": "alify_industry",
+        "rules": [],
+        "fields": [
+            {
+                "name": "ind_tab_card",
+                "label": "Industry Card & Archive",
+                "type": "tab"
+            },
+            {
+                "name": "ind_code",
+                "label": "Industry Code Badge (e.g. 01 · FINTECH)",
+                "type": "text",
+                "instructions": ""
+            },
+            {
+                "name": "ind_sector_group",
+                "label": "Archive Filter Group",
+                "type": "select",
+                "instructions": "",
+                "default": "finance-cloud",
+                "choices": "finance-cloud : FinTech, SaaS & AI\ncommerce-property : Commerce, PropTech & Travel\nhealth-edu-mobility : Health, EdTech & Mobility"
+            },
+            {
+                "name": "ind_icon",
+                "label": "Font Awesome Icon Class",
+                "type": "text",
+                "instructions": ""
+            },
+            {
+                "name": "ind_stat",
+                "label": "Card Footer Benchmark Stat",
+                "type": "text",
+                "instructions": ""
+            },
+            {
+                "name": "ind_bg_img",
+                "label": "Upload Industry Image (Media Library)",
+                "type": "image",
+                "instructions": ""
+            },
+            {
+                "name": "ind_bg_url",
+                "label": "Current / Fallback Image URL",
+                "type": "text",
+                "instructions": ""
+            },
+            {
+                "name": "ind_points_rows",
+                "label": "Sector Deliverables (Repeater)",
+                "type": "repeater",
+                "instructions": "",
+                "sub_fields": [
+                    {
+                        "name": "point",
+                        "label": "Sector Deliverable Bullet",
+                        "type": "text",
+                        "instructions": ""
+                    }
+                ],
+                "max_rows": 12
+            },
+            {
+                "name": "ind_tab_single",
+                "label": "Single Page Stats",
+                "type": "tab"
+            },
+            {
+                "name": "ind_stats_rows",
+                "label": "Single Page Verified Stats (Repeater)",
+                "type": "repeater",
+                "instructions": "",
+                "sub_fields": [
+                    {
+                        "name": "val",
+                        "label": "Stat Value",
+                        "type": "text",
+                        "instructions": ""
+                    },
+                    {
+                        "name": "label",
+                        "label": "Stat Label",
+                        "type": "text",
+                        "instructions": ""
+                    }
+                ],
+                "max_rows": 6
+            }
+        ]
+    }
+}

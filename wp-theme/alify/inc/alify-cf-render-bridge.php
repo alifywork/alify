@@ -1,8 +1,10 @@
 <?php
 /**
  * Frontend Render Bridge for `Alify Custom Field` Options Pages & Post Fields.
- * Connects `site`, `alify_home`, `alify_archives`, `alify_pages`, and `alify_singles`
- * directly to Home, Archive/Hub Pages, Single Templates, Header, Footer & Brand Logo.
+ * Connects `site`, `alify_home`, `alify_archives`, `alify_pages`, `alify_conversion`,
+ * and `alify_singles` directly to Home, Archive/Hub Pages, Pricing, About, Book Call,
+ * Contact, Start Project, Thank You, Legal Docs (`the_content()`), 404, Single Templates,
+ * Header, Footer & Brand Logo.
  *
  * @package ALIFY
  */
@@ -146,6 +148,41 @@ function alify_cf_apply_inner_hero_defaults( $html, $page_id, $eyebrow, $title, 
 }
 
 /**
+ * Shared 4-Sprint Process Cards Renderer (`home_proc_rows`) Used on Home & About Pages.
+ */
+function alify_cf_apply_process_rows( $sec_body, $proc_rows ) {
+	if ( empty( $proc_rows ) ) {
+		return $sec_body;
+	}
+	$pi = 0;
+	return preg_replace_callback(
+		'/<article\s+class="studio-process-card">[\s\S]*?<\/article>/',
+		function ( $cm ) use ( $proc_rows, &$pi ) {
+			if ( ! isset( $proc_rows[ $pi ] ) ) {
+				$pi++;
+				return $cm[0];
+			}
+			$r = $proc_rows[ $pi ];
+			$pi++;
+			$c = $cm[0];
+			$c = alify_cf_set_tag_by_class( $c, 'span', 'studio-process-badge', trim( (string) ( $r['badge'] ?? '' ) ), false );
+			$c = alify_cf_set_tag_by_class( $c, 'h3', 'studio-process-title', trim( (string) ( $r['title'] ?? '' ) ), false );
+			$c = alify_cf_set_tag_by_class( $c, 'p', 'studio-process-desc', trim( (string) ( $r['desc'] ?? '' ) ), false );
+			if ( ! empty( $r['deliverable'] ) ) {
+				$c = preg_replace(
+					'/(<span\s+class="studio-process-deliverable">[\s\S]*?<i[^>]*><\/i>\s*<span>)[\s\S]*?(<\/span>)/',
+					'${1}' . esc_html( trim( (string) $r['deliverable'] ) ) . '${2}',
+					$c,
+					1
+				);
+			}
+			return $c;
+		},
+		$sec_body
+	);
+}
+
+/**
  * Master Render Pipeline Applying All `Alify Custom Field` Options Pages to Template Markup.
  */
 function alify_apply_cf_options_overrides( $html, $part_slug = '' ) {
@@ -282,28 +319,32 @@ function alify_apply_cf_options_overrides( $html, $part_slug = '' ) {
 			);
 		}
 
-		// Why Partner With ALIFY
+		// Why Partner With ALIFY (`.about-visual-bg` + `.about-visual-quote`)
 		$html = alify_cf_in_section(
 			$html,
 			'home-why-section',
 			function ( $b ) {
-				$b   = alify_cf_set_eyebrow( $b, alify_cf_opt_saved( 'alify_home', 'home_why_eyebrow' ) );
-				$b   = alify_cf_set_tag_by_class( $b, 'h2', 'studio-sec-title', alify_cf_opt_saved( 'alify_home', 'home_why_title' ) );
-				$b   = alify_cf_set_tag_by_class( $b, 'p', 'about-story-p', alify_cf_opt_saved( 'alify_home', 'home_why_desc' ), false );
-				$img = alify_cf_opt_img( 'alify_home', 'home_why_image', '' );
+				$b     = alify_cf_set_eyebrow( $b, alify_cf_opt_saved( 'alify_home', 'home_why_eyebrow' ) );
+				$b     = alify_cf_set_tag_by_class( $b, 'h2', 'studio-sec-title', alify_cf_opt_saved( 'alify_home', 'home_why_title' ) );
+				$b     = alify_cf_set_tag_by_class( $b, 'p', 'about-story-p', alify_cf_opt_saved( 'alify_home', 'home_why_desc' ), false );
+				$img   = alify_cf_opt_img( 'alify_home', 'home_why_image', '' );
+				$quote = alify_cf_opt_saved( 'alify_home', 'home_why_quote' );
 				if ( '' !== $img ) {
-					$b = preg_replace( '/(<img\b[^>]*src=")[^"]*(")/', '${1}' . esc_url( $img ) . '${2}', $b, 1 );
+					$b = preg_replace( '/(class="about-visual-bg"[\s\S]*?style="background-image:\s*url\(\')[^\']*(\'\);")/', '${1}' . esc_url( $img ) . '${2}', $b, 1 );
+				}
+				if ( '' !== $quote ) {
+					$b = alify_cf_set_tag_by_class( $b, 'p', 'about-visual-quote', '“' . $quote . '”', false );
 				}
 				return $b;
 			}
 		);
 
-		// Home Sliders & Showcase Headings
+		// Home Sliders & Showcase Headings (`cs-sec-title` on Case Studies!)
 		$sec_pairs = array(
 			'home-services-section'     => array( 'home_srv_eyebrow', 'home_srv_title', 'services-sec-title' ),
 			'home-industries-section'   => array( 'home_ind_eyebrow', 'home_ind_title', 'industries-sec-title' ),
 			'home-projects-section'     => array( 'home_prj_eyebrow', 'home_prj_title', 'projects-sec-title' ),
-			'home-case-studies-section' => array( 'home_cs_eyebrow', 'home_cs_title', 'case-studies-sec-title' ),
+			'home-case-studies-section' => array( 'home_cs_eyebrow', 'home_cs_title', 'cs-sec-title' ),
 		);
 		foreach ( $sec_pairs as $s_cls => $keys ) {
 			$eb = alify_cf_opt_saved( 'alify_home', $keys[0] );
@@ -320,6 +361,16 @@ function alify_apply_cf_options_overrides( $html, $part_slug = '' ) {
 				);
 			}
 		}
+		$cs_desc = alify_cf_opt_saved( 'alify_home', 'home_cs_desc' );
+		if ( '' !== $cs_desc ) {
+			$html = alify_cf_in_section(
+				$html,
+				'home-case-studies-section',
+				function ( $b ) use ( $cs_desc ) {
+					return alify_cf_set_tag_by_class( $b, 'p', 'cs-sec-desc', $cs_desc, false );
+				}
+			);
+		}
 
 		// 4-Sprint Process Section + Repeater (`home_proc_rows`)
 		$proc_rows = alify_cf_opt_rows( 'alify_home', 'home_proc_rows' );
@@ -330,55 +381,29 @@ function alify_apply_cf_options_overrides( $html, $part_slug = '' ) {
 				$b = alify_cf_set_eyebrow( $b, alify_cf_opt_saved( 'alify_home', 'home_proc_eyebrow' ) );
 				$b = alify_cf_set_tag_by_class( $b, 'h2', 'studio-sec-title', alify_cf_opt_saved( 'alify_home', 'home_proc_title' ) );
 				$b = alify_cf_set_tag_by_class( $b, 'p', 'studio-sec-desc', alify_cf_opt_saved( 'alify_home', 'home_proc_desc' ), false );
-				if ( ! empty( $proc_rows ) ) {
-					$pi = 0;
-					$b  = preg_replace_callback(
-						'/<article\s+class="studio-process-card">[\s\S]*?<\/article>/',
-						function ( $cm ) use ( $proc_rows, &$pi ) {
-							if ( ! isset( $proc_rows[ $pi ] ) ) {
-								$pi++;
-								return $cm[0];
-							}
-							$r = $proc_rows[ $pi ];
-							$pi++;
-							$c = $cm[0];
-							$c = alify_cf_set_tag_by_class( $c, 'span', 'studio-process-badge', trim( (string) ( $r['badge'] ?? '' ) ), false );
-							$c = alify_cf_set_tag_by_class( $c, 'h3', 'studio-process-title', trim( (string) ( $r['title'] ?? '' ) ), false );
-							$c = alify_cf_set_tag_by_class( $c, 'p', 'studio-process-desc', trim( (string) ( $r['desc'] ?? '' ) ), false );
-							if ( ! empty( $r['deliverable'] ) ) {
-								$c = preg_replace(
-									'/(<span\s+class="studio-process-deliverable">[\s\S]*?<i[^>]*><\/i>\s*<span>)[\s\S]*?(<\/span>)/',
-									'${1}' . esc_html( trim( (string) $r['deliverable'] ) ) . '${2}',
-									$c,
-									1
-								);
-							}
-							return $c;
-						},
-						$b
-					);
-				}
-				return $b;
+				return alify_cf_apply_process_rows( $b, $proc_rows );
 			}
 		);
 	}
 
 	// =========================================================================
-	// 3. ARCHIVE HUBS (`alify_archives`) & INNER PAGES (`alify_pages`)
+	// 3. ARCHIVE HUBS (`alify_archives`), PRICING/ABOUT (`alify_pages`) & CONVERSION (`alify_conversion`)
 	// =========================================================================
 	$hero_map = array(
-		'services'      => array( 'alify_archives', 'arch_srv_hero_eyebrow', 'arch_srv_hero_title', 'arch_srv_hero_desc', 'arch_srv_hero_bg' ),
-		'work'          => array( 'alify_archives', 'arch_wrk_hero_eyebrow', 'arch_wrk_hero_title', 'arch_wrk_hero_desc', 'arch_wrk_hero_bg' ),
-		'industries'    => array( 'alify_archives', 'arch_ind_hero_eyebrow', 'arch_ind_hero_title', 'arch_ind_hero_desc', 'arch_ind_hero_bg' ),
-		'case-studies'  => array( 'alify_archives', 'arch_cs_hero_eyebrow', 'arch_cs_hero_title', 'arch_cs_hero_desc', 'arch_cs_hero_bg' ),
-		'blog'          => array( 'alify_archives', 'arch_blog_hero_eyebrow', 'arch_blog_hero_title', 'arch_blog_hero_desc', 'arch_blog_hero_bg' ),
-		'pricing'       => array( 'alify_pages', 'arch_prc_hero_eyebrow', 'arch_prc_hero_title', 'arch_prc_hero_desc', 'arch_prc_hero_bg' ),
-		'about'         => array( 'alify_pages', 'arch_abt_hero_eyebrow', 'arch_abt_hero_title', 'arch_abt_hero_desc', 'arch_abt_hero_bg' ),
-		'testimonials'  => array( 'alify_pages', '', 'arch_tst_hero_title', '', '' ),
-		'faq'           => array( 'alify_pages', '', 'arch_faq_hero_title', '', '' ),
-		'contact'       => array( 'alify_pages', '', 'arch_cnt_hero_title', '', '' ),
-		'start-project' => array( 'alify_pages', '', 'arch_sp_hero_title', '', '' ),
-		'book-call'     => array( 'alify_pages', '', 'arch_bc_hero_title', '', '' ),
+		'services'         => array( 'alify_archives', 'arch_srv_hero_eyebrow', 'arch_srv_hero_title', 'arch_srv_hero_desc', 'arch_srv_hero_bg' ),
+		'work'             => array( 'alify_archives', 'arch_wrk_hero_eyebrow', 'arch_wrk_hero_title', 'arch_wrk_hero_desc', 'arch_wrk_hero_bg' ),
+		'industries'       => array( 'alify_archives', 'arch_ind_hero_eyebrow', 'arch_ind_hero_title', 'arch_ind_hero_desc', 'arch_ind_hero_bg' ),
+		'case-studies'     => array( 'alify_archives', 'arch_cs_hero_eyebrow', 'arch_cs_hero_title', 'arch_cs_hero_desc', 'arch_cs_hero_bg' ),
+		'blog'             => array( 'alify_archives', 'arch_blog_hero_eyebrow', 'arch_blog_hero_title', 'arch_blog_hero_desc', 'arch_blog_hero_bg' ),
+		'pricing'          => array( 'alify_pages', 'arch_prc_hero_eyebrow', 'arch_prc_hero_title', 'arch_prc_hero_desc', 'arch_prc_hero_bg' ),
+		'about'            => array( 'alify_pages', 'arch_abt_hero_eyebrow', 'arch_abt_hero_title', 'arch_abt_hero_desc', 'arch_abt_hero_bg' ),
+		'book-call'        => array( 'alify_conversion', 'arch_bc_hero_eyebrow', 'arch_bc_hero_title', 'arch_bc_hero_desc', 'arch_bc_hero_bg' ),
+		'contact'          => array( 'alify_conversion', 'arch_cnt_hero_eyebrow', 'arch_cnt_hero_title', 'arch_cnt_hero_desc', '' ),
+		'start-project'    => array( 'alify_conversion', 'arch_sp_hero_eyebrow', 'arch_sp_hero_title', 'arch_sp_hero_desc', '' ),
+		'testimonials'     => array( 'alify_conversion', '', 'arch_tst_hero_title', '', '' ),
+		'faq'              => array( 'alify_conversion', '', 'arch_faq_hero_title', '', '' ),
+		'privacy-policy'   => array( 'alify_conversion', '', 'legal_privacy_hero_title', '', '' ),
+		'terms-of-service' => array( 'alify_conversion', '', 'legal_terms_hero_title', '', '' ),
 	);
 
 	if ( isset( $hero_map[ $part_slug ] ) ) {
@@ -476,14 +501,145 @@ function alify_apply_cf_options_overrides( $html, $part_slug = '' ) {
 				1
 			);
 		}
+
+		// Pricing Scope Calculator & Comparison Matrix Sections
+		$html = alify_cf_in_section(
+			$html,
+			'pricing-calc-section',
+			function ( $b ) {
+				$b = alify_cf_set_eyebrow( $b, alify_cf_opt_saved( 'alify_pages', 'prc_calc_eyebrow' ) );
+				$b = alify_cf_set_tag_by_class( $b, 'h2', 'pricing-sec-title', alify_cf_opt_saved( 'alify_pages', 'prc_calc_title' ) );
+				return alify_cf_set_tag_by_class( $b, 'p', 'pricing-sec-desc', alify_cf_opt_saved( 'alify_pages', 'prc_calc_desc' ), false );
+			}
+		);
+		$html = alify_cf_in_section(
+			$html,
+			'pricing-matrix-section',
+			function ( $b ) {
+				$b = alify_cf_set_eyebrow( $b, alify_cf_opt_saved( 'alify_pages', 'prc_matrix_eyebrow' ) );
+				$b = alify_cf_set_tag_by_class( $b, 'h2', 'pricing-sec-title', alify_cf_opt_saved( 'alify_pages', 'prc_matrix_title' ) );
+				return alify_cf_set_tag_by_class( $b, 'p', 'pricing-sec-desc', alify_cf_opt_saved( 'alify_pages', 'prc_matrix_desc' ), false );
+			}
+		);
 	} elseif ( 'about' === $part_slug ) {
-		$html        = alify_cf_in_section(
+		// 1. About Story Section (Eyebrow, Heading, 2 Paragraphs, Visual BG & Quote)
+		$html = alify_cf_in_section(
 			$html,
 			'about-story-section',
 			function ( $b ) {
-				return alify_cf_set_tag_by_class( $b, 'h2', 'studio-sec-title', alify_cf_opt_saved( 'alify_pages', 'arch_abt_story_title' ) );
+				$b   = alify_cf_set_eyebrow( $b, alify_cf_opt_saved( 'alify_pages', 'arch_abt_story_eyebrow' ) );
+				$b   = alify_cf_set_tag_by_class( $b, 'h2', 'studio-sec-title', alify_cf_opt_saved( 'alify_pages', 'arch_abt_story_title' ) );
+				$p1  = alify_cf_opt_saved( 'alify_pages', 'arch_abt_story_p1' );
+				$p2  = alify_cf_opt_saved( 'alify_pages', 'arch_abt_story_p2' );
+				$pi  = 0;
+				if ( '' !== $p1 || '' !== $p2 ) {
+					$b = preg_replace_callback(
+						'/<p\s+class="about-story-p">[\s\S]*?<\/p>/',
+						function ( $pm ) use ( $p1, $p2, &$pi ) {
+							$pi++;
+							if ( 1 === $pi && '' !== $p1 ) {
+								return '<p class="about-story-p">' . esc_html( $p1 ) . '</p>';
+							}
+							if ( 2 === $pi && '' !== $p2 ) {
+								return '<p class="about-story-p">' . esc_html( $p2 ) . '</p>';
+							}
+							return $pm[0];
+						},
+						$b
+					);
+				}
+				$s_img = alify_cf_opt_img( 'alify_pages', 'arch_abt_story_img', '' );
+				if ( '' !== $s_img ) {
+					$b = preg_replace( '/(class="about-visual-bg"[\s\S]*?style="background-image:\s*url\(\')[^\']*(\'\);")/', '${1}' . esc_url( $s_img ) . '${2}', $b, 1 );
+				}
+				$s_qt = alify_cf_opt_saved( 'alify_pages', 'arch_abt_story_quote' );
+				if ( '' !== $s_qt ) {
+					$b = alify_cf_set_tag_by_class( $b, 'p', 'about-visual-quote', '“' . $s_qt . '”', false );
+				}
+				return $b;
 			}
 		);
+
+		// 2. About Milestones Counters Repeater (`about_metrics_rows`)
+		$metric_rows = alify_cf_opt_rows( 'alify_pages', 'about_metrics_rows' );
+		if ( ! empty( $metric_rows ) ) {
+			$html = alify_cf_in_section(
+				$html,
+				'about-metrics-section',
+				function ( $b ) use ( $metric_rows ) {
+					$mi = 0;
+					return preg_replace_callback(
+						'/<div\s+class="about-metric-box">[\s\S]*?<\/div>/',
+						function ( $mm ) use ( $metric_rows, &$mi ) {
+							if ( ! isset( $metric_rows[ $mi ] ) ) {
+								$mi++;
+								return $mm[0];
+							}
+							$r = $metric_rows[ $mi ];
+							$mi++;
+							$pre = trim( (string) ( $r['prefix'] ?? '' ) );
+							$num = trim( (string) ( $r['num'] ?? '150' ) );
+							$suf = trim( (string) ( $r['suffix'] ?? '+' ) );
+							$ttl = trim( (string) ( $r['title'] ?? '' ) );
+							$dsc = trim( (string) ( $r['desc'] ?? '' ) );
+							$pre_attr = '' !== $pre ? ' data-prefix="' . esc_attr( $pre ) . '"' : '';
+							return '<div class="about-metric-box">'
+								. '<span class="about-metric-num js-studio-counter"' . $pre_attr . ' data-target="' . esc_attr( $num ) . '" data-suffix="' . esc_attr( $suf ) . '">' . esc_html( $pre . $num . $suf ) . '</span>'
+								. '<span class="about-metric-title">' . esc_html( $ttl ) . '</span>'
+								. '<p class="about-metric-desc">' . esc_html( $dsc ) . '</p>'
+								. '</div>';
+						},
+						$b
+					);
+				}
+			);
+		}
+
+		// 3. About Mission & Vision Bento Cards (`about-values-section`)
+		$html = alify_cf_in_section(
+			$html,
+			'about-values-section',
+			function ( $b ) {
+				$mt = alify_cf_opt_saved( 'alify_pages', 'arch_abt_mission_title' );
+				$mx = alify_cf_opt_saved( 'alify_pages', 'arch_abt_mission_text' );
+				$vt = alify_cf_opt_saved( 'alify_pages', 'arch_abt_vision_title' );
+				$vx = alify_cf_opt_saved( 'alify_pages', 'arch_abt_vision_text' );
+				$vi = 0;
+				if ( '' !== $mt || '' !== $mx || '' !== $vt || '' !== $vx ) {
+					$b = preg_replace_callback(
+						'/<article\s+class="about-mv-card[^"]*">[\s\S]*?<\/article>/',
+						function ( $vm ) use ( $mt, $mx, $vt, $vx, &$vi ) {
+							$vi++;
+							$card = $vm[0];
+							if ( 1 === $vi ) {
+								$card = alify_cf_set_tag_by_class( $card, 'h3', 'about-mv-title', $mt, false );
+								$card = alify_cf_set_tag_by_class( $card, 'p', 'about-mv-text', $mx, false );
+							} elseif ( 2 === $vi ) {
+								$card = alify_cf_set_tag_by_class( $card, 'h3', 'about-mv-title', $vt, false );
+								$card = alify_cf_set_tag_by_class( $card, 'p', 'about-mv-text', $vx, false );
+							}
+							return $card;
+						},
+						$b
+					);
+				}
+				return $b;
+			}
+		);
+
+		// 4. Sync 4-Sprint Process on About Page Too (`home_proc_rows`)
+		$proc_rows = alify_cf_opt_rows( 'alify_home', 'home_proc_rows' );
+		if ( ! empty( $proc_rows ) ) {
+			$html = alify_cf_in_section(
+				$html,
+				'studio-process-section',
+				function ( $b ) use ( $proc_rows ) {
+					return alify_cf_apply_process_rows( $b, $proc_rows );
+				}
+			);
+		}
+
+		// 5. About Leadership Principals Repeater (`about_leaders_rows`)
 		$leader_rows = alify_cf_opt_rows( 'alify_pages', 'about_leaders_rows' );
 		$html        = alify_cf_in_section(
 			$html,
@@ -518,16 +674,104 @@ function alify_apply_cf_options_overrides( $html, $part_slug = '' ) {
 			}
 		);
 	} elseif ( 'book-call' === $part_slug ) {
-		$html = alify_cf_set_tag_by_class( $html, 'h2', 'book-host-name', alify_cf_opt_saved( 'alify_pages', 'arch_bc_host_name' ), false );
-		$html = alify_cf_set_tag_by_class( $html, 'span', 'book-host-role', alify_cf_opt_saved( 'alify_pages', 'arch_bc_host_role' ), false );
+		$h_av = alify_cf_opt_img( 'alify_conversion', 'arch_bc_host_avatar', '' );
+		if ( '' !== $h_av ) {
+			$html = preg_replace( '/(<img\b[^>]*src=")[^"]*("[^>]*class="book-host-avatar")/', '${1}' . esc_url( $h_av ) . '${2}', $html, 1 );
+		}
+		$html = alify_cf_set_tag_by_class( $html, 'span', 'book-host-kicker', alify_cf_opt_saved( 'alify_conversion', 'arch_bc_host_kicker' ), false );
+		$html = alify_cf_set_tag_by_class( $html, 'h2', 'book-host-name', alify_cf_opt_saved( 'alify_conversion', 'arch_bc_host_name' ), false );
+		$html = alify_cf_set_tag_by_class( $html, 'span', 'book-host-role', alify_cf_opt_saved( 'alify_conversion', 'arch_bc_host_role' ), false );
+
+		$out_rows = alify_cf_opt_rows( 'alify_conversion', 'book_outcomes_rows' );
+		$html     = alify_cf_in_section(
+			$html,
+			'book-outcomes-section',
+			function ( $b ) use ( $out_rows ) {
+				$b = alify_cf_set_tag_by_class( $b, 'h2', 'book-outcomes-title', alify_cf_opt_saved( 'alify_conversion', 'arch_bc_outcomes_title' ) );
+				if ( ! empty( $out_rows ) ) {
+					$oi = 0;
+					$b  = preg_replace_callback(
+						'/<article\s+class="book-outcome-card">[\s\S]*?<\/article>/',
+						function ( $om ) use ( $out_rows, &$oi ) {
+							if ( ! isset( $out_rows[ $oi ] ) ) {
+								$oi++;
+								return $om[0];
+							}
+							$r = $out_rows[ $oi ];
+							$oi++;
+							$ico = trim( (string) ( $r['icon'] ?? 'fa-solid fa-sitemap' ) );
+							$ttl = trim( (string) ( $r['title'] ?? '' ) );
+							$dsc = trim( (string) ( $r['desc'] ?? '' ) );
+							return '<article class="book-outcome-card">'
+								. '<span class="book-outcome-icon" aria-hidden="true"><i class="' . esc_attr( $ico ) . '"></i></span>'
+								. '<h3 class="book-outcome-card-title">' . esc_html( $ttl ) . '</h3>'
+								. '<p class="book-outcome-card-desc">' . esc_html( $dsc ) . '</p>'
+								. '</article>';
+						},
+						$b
+					);
+				}
+				return $b;
+			}
+		);
+	} elseif ( 'contact' === $part_slug ) {
+		$html = alify_cf_set_tag_by_class( $html, 'h2', 'contact-directory-title', alify_cf_opt_saved( 'alify_conversion', 'arch_cnt_dir_title' ), false );
+		$html = alify_cf_set_tag_by_class( $html, 'p', 'contact-directory-sub', alify_cf_opt_saved( 'alify_conversion', 'arch_cnt_dir_sub' ), false );
 	} elseif ( 'thank-you' === $part_slug ) {
-		$html = alify_cf_set_tag_by_class( $html, 'h1', 'thankyou-title', alify_cf_opt_saved( 'alify_pages', 'arch_ty_title' ) );
+		$html    = alify_cf_set_tag_by_class( $html, 'h1', 'thankyou-title', alify_cf_opt_saved( 'alify_conversion', 'arch_ty_title' ) );
+		$ty_rows = alify_cf_opt_rows( 'alify_conversion', 'thankyou_steps_rows' );
+		$html    = alify_cf_in_section(
+			$html,
+			'thankyou-steps-section',
+			function ( $b ) use ( $ty_rows ) {
+				$b = alify_cf_set_tag_by_class( $b, 'h2', 'studio-sec-title', alify_cf_opt_saved( 'alify_conversion', 'arch_ty_steps_title' ) );
+				if ( ! empty( $ty_rows ) ) {
+					$ti = 0;
+					$b  = preg_replace_callback(
+						'/<article\s+class="thankyou-step-card">[\s\S]*?<\/article>/',
+						function ( $tm ) use ( $ty_rows, &$ti ) {
+							if ( ! isset( $ty_rows[ $ti ] ) ) {
+								$ti++;
+								return $tm[0];
+							}
+							$r = $ty_rows[ $ti ];
+							$ti++;
+							$c   = $tm[0];
+							$ico = trim( (string) ( $r['icon'] ?? '' ) );
+							if ( '' !== $ico ) {
+								$c = preg_replace( '/(<span\s+class="thankyou-step-icon"[^>]*>\s*<i\s+class=")[^"]*(")/', '${1}' . esc_attr( $ico ) . '${2}', $c, 1 );
+							}
+							$c = alify_cf_set_tag_by_class( $c, 'span', 'thankyou-step-window', trim( (string) ( $r['window'] ?? '' ) ), false );
+							$c = alify_cf_set_tag_by_class( $c, 'h3', 'thankyou-step-title', trim( (string) ( $r['title'] ?? '' ) ), false );
+							$c = alify_cf_set_tag_by_class( $c, 'p', 'thankyou-step-desc', trim( (string) ( $r['desc'] ?? '' ) ), false );
+							return $c;
+						},
+						$b
+					);
+				}
+				return $b;
+			}
+		);
+	} elseif ( 'privacy-policy' === $part_slug || 'terms-of-service' === $part_slug ) {
+		$upd_key = ( 'privacy-policy' === $part_slug ) ? 'legal_privacy_updated' : 'legal_terms_updated';
+		$html    = alify_cf_set_tag_by_class( $html, 'span', 'legal-toc-updated', alify_cf_opt_saved( 'alify_conversion', $upd_key ), false );
+
+		// Native WordPress Block/Classic Editor `the_content()` Support for Legal Pages!
+		if ( $page_id > 0 ) {
+			$raw_legal = trim( (string) get_post_field( 'post_content', $page_id ) );
+			if ( '' !== $raw_legal && function_exists( 'alify_replace_container_inner' ) ) {
+				$rendered_legal = '<article class="legal-prose-card">' . apply_filters( 'the_content', $raw_legal ) . '</article>';
+				$html           = alify_replace_container_inner( $html, 'class="legal-prose-stack"', 'div', $rendered_legal );
+			}
+		}
 	} elseif ( '404' === $part_slug ) {
-		$html = alify_cf_set_tag_by_class( $html, 'h1', 'error-stage-title', alify_cf_opt_saved( 'alify_pages', 'arch_404_title' ), false );
+		$html = alify_cf_set_tag_by_class( $html, 'span', 'error-code-display', alify_cf_opt_saved( 'alify_conversion', 'arch_404_code' ), false );
+		$html = alify_cf_set_tag_by_class( $html, 'h1', 'error-stage-title', alify_cf_opt_saved( 'alify_conversion', 'arch_404_title' ), false );
+		$html = alify_cf_set_tag_by_class( $html, 'p', 'error-stage-desc', alify_cf_opt_saved( 'alify_conversion', 'arch_404_desc' ), false );
 	}
 
 	// =========================================================================
-	// 4. SINGLE TEMPLATES GLOBAL (`alify_singles`)
+	// 4. SINGLE TEMPLATES GLOBAL (`alify_singles` — Exact `single-sec-title` & Section Selectors!)
 	// =========================================================================
 	if ( 'service-single' === $part_slug ) {
 		$html = alify_cf_in_section(
@@ -535,30 +779,30 @@ function alify_apply_cf_options_overrides( $html, $part_slug = '' ) {
 			'single-overview-section',
 			function ( $b ) {
 				$b = alify_cf_set_eyebrow( $b, alify_cf_opt_saved( 'alify_singles', 'sgl_srv_overview_eyebrow' ) );
-				return alify_cf_set_tag_by_class( $b, 'h2', 'studio-sec-title', alify_cf_opt_saved( 'alify_singles', 'sgl_srv_overview_title' ) );
+				return alify_cf_set_tag_by_class( $b, 'h2', 'single-sec-title', alify_cf_opt_saved( 'alify_singles', 'sgl_srv_overview_title' ) );
 			}
 		);
 		$html = alify_cf_in_section(
 			$html,
-			'studio-process-section',
+			'single-process-section',
 			function ( $b ) {
-				return alify_cf_set_tag_by_class( $b, 'h2', 'studio-sec-title', alify_cf_opt_saved( 'alify_singles', 'sgl_srv_process_title' ) );
+				return alify_cf_set_tag_by_class( $b, 'h2', 'single-sec-title', alify_cf_opt_saved( 'alify_singles', 'sgl_srv_process_title' ) );
 			}
 		);
 		$html = alify_cf_in_section(
 			$html,
-			'single-related-section',
+			'single-related-projects-section',
 			function ( $b ) {
-				return alify_cf_set_tag_by_class( $b, 'h2', 'studio-sec-title', alify_cf_opt_saved( 'alify_singles', 'sgl_srv_related_title' ) );
+				return alify_cf_set_tag_by_class( $b, 'h2', 'single-sec-title', alify_cf_opt_saved( 'alify_singles', 'sgl_srv_related_title' ) );
 			}
 		);
 	} elseif ( 'work-single' === $part_slug ) {
 		$html = alify_cf_in_section(
 			$html,
-			'single-related-section',
+			'single-related-projects-section',
 			function ( $b ) {
 				$b = alify_cf_set_eyebrow( $b, alify_cf_opt_saved( 'alify_singles', 'sgl_wrk_related_eyebrow' ) );
-				return alify_cf_set_tag_by_class( $b, 'h2', 'studio-sec-title', alify_cf_opt_saved( 'alify_singles', 'sgl_wrk_related_title' ) );
+				return alify_cf_set_tag_by_class( $b, 'h2', 'single-sec-title', alify_cf_opt_saved( 'alify_singles', 'sgl_wrk_related_title' ) );
 			}
 		);
 	} elseif ( 'industry-single' === $part_slug ) {
@@ -566,23 +810,23 @@ function alify_apply_cf_options_overrides( $html, $part_slug = '' ) {
 			$html,
 			'single-overview-section',
 			function ( $b ) {
-				return alify_cf_set_tag_by_class( $b, 'h2', 'studio-sec-title', alify_cf_opt_saved( 'alify_singles', 'sgl_ind_overview_title' ) );
+				return alify_cf_set_tag_by_class( $b, 'h2', 'single-sec-title', alify_cf_opt_saved( 'alify_singles', 'sgl_ind_overview_title' ) );
 			}
 		);
 		$html = alify_cf_in_section(
 			$html,
-			'single-related-section',
+			'single-related-projects-section',
 			function ( $b ) {
-				return alify_cf_set_tag_by_class( $b, 'h2', 'studio-sec-title', alify_cf_opt_saved( 'alify_singles', 'sgl_ind_related_title' ) );
+				return alify_cf_set_tag_by_class( $b, 'h2', 'single-sec-title', alify_cf_opt_saved( 'alify_singles', 'sgl_ind_related_title' ) );
 			}
 		);
 	} elseif ( 'case-study-single' === $part_slug ) {
 		$html = alify_cf_set_tag_by_class( $html, 'span', 'single-snapshot-heading', alify_cf_opt_saved( 'alify_singles', 'sgl_cs_snapshot_heading' ), false );
 		$html = alify_cf_in_section(
 			$html,
-			'single-related-section',
+			'single-related-projects-section',
 			function ( $b ) {
-				return alify_cf_set_tag_by_class( $b, 'h2', 'studio-sec-title', alify_cf_opt_saved( 'alify_singles', 'sgl_cs_related_title' ) );
+				return alify_cf_set_tag_by_class( $b, 'h2', 'single-sec-title', alify_cf_opt_saved( 'alify_singles', 'sgl_cs_related_title' ) );
 			}
 		);
 	}

@@ -659,7 +659,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const bgEl = document.getElementById("srvBannerBg");
     if (bgEl) bgEl.style.backgroundImage = `url('${srv.bg}')`;
     const heroBg = document.getElementById("innerHeroBg");
-    if (heroBg && params.get("service")) heroBg.style.backgroundImage = `url('${srv.bg}')`;
+    if (heroBg && (params.get("service") || wpSrvOvr)) heroBg.style.backgroundImage = `url('${srv.bg}')`;
     setTxt("srvBannerPill", srv.title);
 
     const statsEl = document.getElementById("srvBannerStats");
@@ -687,7 +687,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <div>
                 <div class="single-bento-top">
                   <span class="single-bento-icon" aria-hidden="true">
-                    <i class="fa-solid ${icon}"></i>
+                    <i class="${String(icon).includes(" ") ? icon : `fa-solid ${icon}`}"></i>
                   </span>
                   <span class="single-bento-num">0${idx + 1}</span>
                 </div>
@@ -708,7 +708,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const relEl = document.getElementById("srvRelatedProjects");
-    if (relEl) {
+    if (relEl && !relEl.hasAttribute("data-wp-rendered")) {
       relEl.innerHTML = srv.related.map(renderRelatedProjectCard).join("");
     }
   }
@@ -984,7 +984,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const bgEl = document.getElementById("indBannerBg");
     if (bgEl) bgEl.style.backgroundImage = `url('${ind.bg}')`;
     const heroBg = document.getElementById("innerHeroBg");
-    if (heroBg && params.get("industry")) heroBg.style.backgroundImage = `url('${ind.bg}')`;
+    if (heroBg && (params.get("industry") || wpIndOvr)) heroBg.style.backgroundImage = `url('${ind.bg}')`;
     setTxt("indBannerPill", ind.title);
 
     const statsEl = document.getElementById("indBannerStats");
@@ -1046,7 +1046,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const relEl = document.getElementById("indRelatedProjects");
-    if (relEl) {
+    if (relEl && !relEl.hasAttribute("data-wp-rendered")) {
       relEl.innerHTML = ind.related.map(renderRelatedProjectCard).join("");
     }
   }
@@ -1090,7 +1090,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const heroFrame = document.getElementById("workHeroFrame");
     if (heroFrame) heroFrame.style.backgroundImage = `url('${proj.bg}')`;
     const heroBg = document.getElementById("innerHeroBg");
-    if (heroBg && params.get("project")) heroBg.style.backgroundImage = `url('${proj.bg}')`;
+    if (heroBg && (params.get("project") || wpProjOvr)) heroBg.style.backgroundImage = `url('${proj.bg}')`;
 
     setTxt("workStoryBrief", proj.brief);
     setTxt("workStoryCraft", proj.craft);
@@ -1363,7 +1363,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .filter((k) => k !== proj.slug)
       .slice(0, 2);
     const relEl = document.getElementById("workMoreProjects");
-    if (relEl) {
+    if (relEl && !relEl.hasAttribute("data-wp-rendered")) {
       relEl.innerHTML = otherSlugs.map(renderRelatedProjectCard).join("");
     }
   }
@@ -1595,7 +1595,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const visEl = document.getElementById("csChapterVisual");
     if (visEl) visEl.style.backgroundImage = `url('${cs.bg}')`;
     const heroBg = document.getElementById("innerHeroBg");
-    if (heroBg && params.get("case")) heroBg.style.backgroundImage = `url('${cs.bg}')`;
+    if (heroBg && (params.get("case") || wpCsOvr)) heroBg.style.backgroundImage = `url('${cs.bg}')`;
 
     setTxt("csCh1", cs.ch1);
     setTxt("csCh2", cs.ch2);
@@ -1605,7 +1605,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setTxt("csExecAuthor", cs.author);
 
     const relEl = document.getElementById("csRelatedProjects");
-    if (relEl) {
+    if (relEl && !relEl.hasAttribute("data-wp-rendered")) {
       relEl.innerHTML = cs.related.map(renderRelatedProjectCard).join("");
     }
   }

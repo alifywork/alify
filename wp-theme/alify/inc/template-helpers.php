@@ -47,6 +47,24 @@ function alify_current_route_slug() {
 	if ( is_search() ) {
 		return 'search';
 	}
+	if ( is_tax( 'faq_pillar' ) || is_post_type_archive( 'alify_faq' ) ) {
+		return 'faq';
+	}
+	if ( is_post_type_archive( 'alify_service' ) ) {
+		return 'services';
+	}
+	if ( is_post_type_archive( 'alify_project' ) ) {
+		return 'work';
+	}
+	if ( is_post_type_archive( 'alify_industry' ) ) {
+		return 'industries';
+	}
+	if ( is_post_type_archive( 'alify_case_study' ) ) {
+		return 'case-studies';
+	}
+	if ( is_post_type_archive( 'alify_testimonial' ) ) {
+		return 'testimonials';
+	}
 	if ( is_home() || ( is_archive() && ! is_post_type_archive() ) ) {
 		return 'blog';
 	}

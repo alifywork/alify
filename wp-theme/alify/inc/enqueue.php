@@ -215,9 +215,9 @@ function alify_enqueue_assets() {
 				'caseSingleUrl'    => alify_page_url( 'case-study-single' ),
 				'serviceSingleUrl' => alify_page_url( 'service-single' ),
 				'blogSingleUrl'    => alify_page_url( 'blog-single' ),
-				'email'            => get_theme_mod( 'alify_email', 'info@alify.site' ),
-				'whatsapp'         => get_theme_mod( 'alify_whatsapp', '+92 301 9328094' ),
-				'whatsappUrl'      => get_theme_mod( 'alify_whatsapp_url', 'https://wa.me/923019328094' ),
+				'email'            => function_exists( 'alify_cf_opt' ) ? alify_cf_opt( 'site', 'opt_email', get_theme_mod( 'alify_email', 'info@alify.site' ) ) : get_theme_mod( 'alify_email', 'info@alify.site' ),
+				'whatsapp'         => function_exists( 'alify_cf_opt' ) ? alify_cf_opt( 'site', 'opt_whatsapp', get_theme_mod( 'alify_whatsapp', '+92 301 9328094' ) ) : get_theme_mod( 'alify_whatsapp', '+92 301 9328094' ),
+				'whatsappUrl'      => function_exists( 'alify_cf_opt' ) ? alify_cf_opt( 'site', 'opt_whatsapp_url', get_theme_mod( 'alify_whatsapp_url', 'https://wa.me/923019328094' ) ) : get_theme_mod( 'alify_whatsapp_url', 'https://wa.me/923019328094' ),
 			),
 			$forms_js_cfg
 		)
