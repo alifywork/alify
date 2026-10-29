@@ -70,50 +70,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let pos1 = 0;
     let pos2 = -Math.round(stepSize * 0.55);
-    let manualVelocity = 0;
     let isDragging = false;
     let dragLastX = 0;
-    let animationFrame = 0;
-    let lastTime = 0;
+    let manualTween = null;
 
     const render = () => {
       row1Track.style.transform = `translate3d(${wrapOffset(pos1, period1).toFixed(2)}px, 0, 0)`;
       row2Track.style.transform = `translate3d(${wrapOffset(pos2, period2).toFixed(2)}px, 0, 0)`;
     };
 
-    const animateManualStep = (now) => {
-      if (!animationFrame) return;
-      const dt = Math.min((now - lastTime) / 1000, 0.064);
-      lastTime = now;
-
-      if (!isDragging && Math.abs(manualVelocity) > 0.4) {
-        const stepDelta = manualVelocity * dt * 7.5;
-        pos1 += stepDelta;
-        pos2 += stepDelta;
-        manualVelocity -= stepDelta;
-      } else {
-        manualVelocity = 0;
-        animationFrame = 0;
-        render();
-        return;
-      }
-
-      render();
-      animationFrame = requestAnimationFrame(animateManualStep);
-    };
-
     const moveBy = (distance) => {
-      if (prefersReducedMotion) {
+      if (prefersReducedMotion || typeof gsap === "undefined") {
         pos1 = wrapOffset(pos1 + distance, period1);
         pos2 = wrapOffset(pos2 + distance, period2);
         render();
         return;
       }
-      manualVelocity += distance;
-      if (!animationFrame) {
-        lastTime = performance.now();
-        animationFrame = requestAnimationFrame(animateManualStep);
-      }
+
+      manualTween?.kill();
+      const start1 = pos1;
+      const start2 = pos2;
+      const progress = { value: 0 };
+      manualTween = gsap.to(progress, {
+        value: 1,
+        duration: 0.42,
+        ease: "power2.out",
+        onUpdate() {
+          pos1 = start1 + distance * progress.value;
+          pos2 = start2 + distance * progress.value;
+          render();
+        },
+        onComplete() {
+          pos1 = wrapOffset(pos1, period1);
+          pos2 = wrapOffset(pos2, period2);
+          manualTween = null;
+          render();
+        },
+      });
     };
 
     render();
@@ -124,11 +117,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (event.button !== 0 && event.pointerType === "mouse") return;
       isDragging = true;
       dragLastX = event.clientX;
-      manualVelocity = 0;
-      if (animationFrame) {
-        cancelAnimationFrame(animationFrame);
-        animationFrame = 0;
-      }
+      manualTween?.kill();
+      manualTween = null;
       stage.classList.add("is-dragging");
       stage.setPointerCapture?.(event.pointerId);
     });

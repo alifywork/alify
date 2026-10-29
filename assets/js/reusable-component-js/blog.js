@@ -371,6 +371,7 @@ function initAllBlogSliders() {
   const nextBtn = document.getElementById("blogSliderNext");
   const dotsWrap = document.getElementById("blogSliderDots");
   const progressBar = document.getElementById("blogSliderProgressBar");
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   if (!viewport || !track) return;
 
@@ -401,13 +402,25 @@ function initAllBlogSliders() {
     }
   };
 
-  const updateUI = () => {
+  const setTrackX = (x, animate = false) => {
+    if (typeof gsap !== "undefined" && !prefersReducedMotion) {
+      if (animate) {
+        gsap.to(track, { x, duration: 0.42, ease: "power2.out", overwrite: "auto" });
+      } else {
+        gsap.set(track, { x });
+      }
+    } else {
+      track.style.transform = `translate3d(${x}px, 0, 0)`;
+    }
+  };
+
+  const updateUI = (animateTrack = false) => {
     const firstSlide = slides[0];
     const gap = parseFloat(getComputedStyle(track).gap) || 24;
     const stepWidth = firstSlide.getBoundingClientRect().width + gap;
     const offset = currentIndex * stepWidth;
 
-    track.style.transform = `translate3d(${-offset}px, 0, 0)`;
+    setTrackX(-offset, animateTrack);
 
     if (prevBtn) prevBtn.disabled = currentIndex <= 0;
     if (nextBtn) nextBtn.disabled = currentIndex >= maxIndex;
@@ -426,7 +439,7 @@ function initAllBlogSliders() {
 
   const goToSlide = (index) => {
     currentIndex = Math.max(0, Math.min(index, maxIndex));
-    updateUI();
+    updateUI(true);
   };
 
   const recalc = () => {
@@ -442,13 +455,23 @@ function initAllBlogSliders() {
 
   // Touch & Pointer Swipe Support
   let startX = 0;
+  let dragStartOffset = 0;
   let isPointerDown = false;
 
   viewport.addEventListener("pointerdown", (e) => {
     if (e.target.closest("a, button")) return;
     isPointerDown = true;
+    if (typeof gsap !== "undefined") gsap.killTweensOf(track);
     startX = e.clientX;
+    const gap = parseFloat(getComputedStyle(track).gap) || 24;
+    dragStartOffset = -currentIndex * (slides[0].getBoundingClientRect().width + gap);
+    viewport.setPointerCapture?.(e.pointerId);
     track.classList.add("is-dragging");
+  });
+
+  viewport.addEventListener("pointermove", (e) => {
+    if (!isPointerDown) return;
+    setTrackX(dragStartOffset + e.clientX - startX, false);
   });
 
   window.addEventListener("pointerup", (e) => {

@@ -3,6 +3,49 @@
 // ==========================================================================
 
 document.addEventListener("DOMContentLoaded", () => {
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  const setAccordionItem = (item, open) => {
+    const button = item.querySelector(".faq-question-btn");
+    const answer = item.querySelector(".faq-answer-inner");
+    const canAnimate = typeof gsap !== "undefined" && !prefersReducedMotion && answer;
+
+    if (!canAnimate) {
+      item.classList.toggle("is-open", open);
+      button?.setAttribute("aria-expanded", String(open));
+      return;
+    }
+
+    gsap.killTweensOf(answer);
+    if (open) {
+      item.classList.add("is-open");
+      button?.setAttribute("aria-expanded", "true");
+      gsap.fromTo(answer, { height: 0, autoAlpha: 0, y: -5 }, {
+        height: "auto",
+        autoAlpha: 1,
+        y: 0,
+        duration: 0.28,
+        ease: "power2.out",
+        onComplete: () => gsap.set(answer, { clearProps: "height,opacity,visibility,transform" }),
+      });
+    } else if (item.classList.contains("is-open")) {
+      button?.setAttribute("aria-expanded", "false");
+      gsap.to(answer, {
+        height: 0,
+        autoAlpha: 0,
+        y: -5,
+        duration: 0.2,
+        ease: "power1.in",
+        onComplete: () => {
+          item.classList.remove("is-open");
+          gsap.set(answer, { clearProps: "height,opacity,visibility,transform" });
+        },
+      });
+    }
+  };
+
   // 1. Standard Accordion Toggle (All Pages + Hub Groups)
   document.querySelectorAll(".faq-accordion-list").forEach((accordion) => {
     const items = Array.from(accordion.querySelectorAll(".faq-item"));
@@ -11,23 +54,12 @@ document.addEventListener("DOMContentLoaded", () => {
       const btn = item.querySelector(".faq-question-btn");
       btn?.addEventListener("click", () => {
         const isAlreadyOpen = item.classList.contains("is-open");
-
         if (!accordion.hasAttribute("data-allow-multiple")) {
           items.forEach((other) => {
-            other.classList.remove("is-open");
-            other
-              .querySelector(".faq-question-btn")
-              ?.setAttribute("aria-expanded", "false");
+            if (other !== item) setAccordionItem(other, false);
           });
         }
-
-        if (isAlreadyOpen) {
-          item.classList.remove("is-open");
-          btn.setAttribute("aria-expanded", "false");
-        } else {
-          item.classList.add("is-open");
-          btn.setAttribute("aria-expanded", "true");
-        }
+        setAccordionItem(item, !isAlreadyOpen);
       });
     });
   });

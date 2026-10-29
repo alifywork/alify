@@ -624,13 +624,14 @@ flex-shrink: 0;
   row-gap: 24px;
 }
 
-.studio-process-row::before {
-  content: "";
+.studio-process-track {
   position: absolute;
   top: 11px;
   right: 12.5%;
   left: 12.5%;
-  border-top: 1px solid rgba(217, 138, 43, 0.62);
+  height: 1px;
+  background: rgba(217, 138, 43, 0.62);
+  transform-origin: left center;
 }
 
 .studio-process-row > div {
@@ -1063,7 +1064,7 @@ flex-shrink: 0;
     padding-top: 0;
   }
 
-  .studio-process-row::before,
+  .studio-process-track,
   .studio-process-row > div::after,
   .studio-process-card::before {
     display: none;

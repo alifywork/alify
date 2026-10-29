@@ -49,14 +49,26 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     };
 
-    const updateUI = () => {
+    const setTrackX = (x, animate = false) => {
+      if (typeof gsap !== "undefined" && !prefersReducedMotion) {
+        if (animate) {
+          gsap.to(track, { x, duration: 0.42, ease: "power2.out", overwrite: "auto" });
+        } else {
+          gsap.set(track, { x });
+        }
+      } else {
+        track.style.transform = `translate3d(${x.toFixed(2)}px, 0, 0)`;
+      }
+    };
+
+    const updateUI = (animateTrack = false) => {
       if (!slides.length) return;
       const firstSlide = slides[0];
       const gap = parseFloat(getComputedStyle(track).gap) || 24;
       const stepWidth = firstSlide.getBoundingClientRect().width + gap;
       const offset = currentIndex * stepWidth;
 
-      track.style.transform = `translate3d(${-offset.toFixed(2)}px, 0, 0)`;
+      setTrackX(-offset, animateTrack);
 
       if (prevBtn) prevBtn.disabled = currentIndex <= 0;
       if (nextBtn) nextBtn.disabled = currentIndex >= maxIndex;
@@ -76,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const goToSlide = (index) => {
       currentIndex = Math.max(0, Math.min(index, maxIndex));
-      updateUI();
+      updateUI(true);
     };
 
     const recalc = () => {
@@ -99,6 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (e.target.closest("a, button")) return;
       if (e.pointerType === "mouse" && e.button !== 0) return;
       isPointerDown = true;
+      if (typeof gsap !== "undefined") gsap.killTweensOf(track);
       startX = e.clientX;
       const gap = parseFloat(getComputedStyle(track).gap) || 24;
       const stepWidth = slides[0].getBoundingClientRect().width + gap;
@@ -112,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!isPointerDown) return;
       const dx = e.clientX - startX;
       const rawOffset = startOffsetPx - dx;
-      track.style.transform = `translate3d(${-rawOffset.toFixed(2)}px, 0, 0)`;
+      setTrackX(-rawOffset, false);
     });
 
     const endPointer = (e) => {
@@ -126,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
       } else if (dx > 48 && currentIndex > 0) {
         goToSlide(currentIndex - 1);
       } else {
-        updateUI();
+        updateUI(true);
       }
     };
 

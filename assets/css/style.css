@@ -870,7 +870,7 @@ h6 {
   scroll-behavior: auto !important;
 }
 
-/* Curated motion exceptions; the global motion reset remains in force elsewhere. */
+/* Curated CSS micro-interactions; larger choreography is handled by GSAP. */
 @media (prefers-reduced-motion: no-preference) {
   .header-nav-link,
   .dropdown-item-link,
@@ -891,7 +891,6 @@ h6 {
   .service-card,
   .about-leader-card,
   .about-leader-img,
-  .project-panel,
   .project-grid-card,
   .project-grid-card-bg,
   .blog-card,
@@ -911,118 +910,5 @@ h6 {
     transition: color 180ms ease, background-color 180ms ease,
       border-color 180ms ease, box-shadow 220ms ease, transform 220ms ease,
       opacity 220ms ease, width 220ms ease !important;
-  }
-
-  .motion-reveal-pending {
-    opacity: 0;
-    transform: translateY(14px);
-    transition: opacity 420ms ease, transform 420ms ease !important;
-  }
-
-  .motion-reveal-pending.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .motion-reveal-pending,
-  .motion-reveal-pending.is-visible {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .motion-enabled .hero-motion-item {
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 380ms ease, transform 380ms ease !important;
-    transition-delay: var(--hero-motion-delay, 0ms);
-  }
-
-  .motion-enabled .hero-motion-item.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .blog-slider-track,
-  .industries-slider-track,
-  .testimonials-track {
-    transition: transform 380ms cubic-bezier(0.22, 0.68, 0, 1) !important;
-  }
-
-  .blog-slider-track.is-dragging,
-  .industries-slider-track.is-dragging,
-  .testimonials-dual-stage.is-dragging .testimonials-track {
-    transition: none !important;
-  }
-
-  .projects-accordion-stage .project-panel {
-    transition: flex 420ms cubic-bezier(0.22, 0.68, 0, 1), border-color 220ms ease,
-      box-shadow 260ms ease !important;
-  }
-
-  .project-panel-bg {
-    transition: transform 500ms ease, filter 500ms ease !important;
-  }
-
-  .project-panel-expanded {
-    transition: opacity 260ms ease, transform 320ms ease !important;
-  }
-
-  .motion-reveal-pending .studio-process-row::before,
-  .motion-reveal-pending .single-process-row::before {
-    transform: scaleX(0);
-    transform-origin: left center;
-    transition: transform 720ms ease 100ms !important;
-  }
-
-  .motion-reveal-pending.is-visible .studio-process-row::before,
-  .motion-reveal-pending.is-visible .single-process-row::before {
-    transform: scaleX(1);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) and (max-width: 991.98px) {
-  .projects-accordion-stage .project-panel {
-    transition: height 380ms ease, border-color 220ms ease,
-      box-shadow 260ms ease !important;
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) and (max-width: 767.98px) {
-  .projects-accordion-stage .project-panel,
-  .projects-accordion-stage .project-panel.is-active {
-    height: auto !important;
-    min-height: 0 !important;
-    max-height: 82px;
-    overflow: hidden;
-    transition: max-height 420ms ease, border-color 220ms ease,
-      box-shadow 260ms ease !important;
-  }
-
-  .projects-accordion-stage .project-panel.is-active {
-    max-height: 900px;
-  }
-
-  .projects-accordion-stage .project-panel-expanded {
-    height: auto;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-motion-item,
-  .hero-motion-item.is-visible {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
-
-  .motion-reveal-pending .studio-process-row::before,
-  .motion-reveal-pending .single-process-row::before {
-    transform: none !important;
-    transition: none !important;
   }
 }

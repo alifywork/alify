@@ -20,6 +20,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const activatePanel = (targetPanel) => {
       if (!targetPanel) return;
+      const previousPanel = panels.find((panel) => panel.classList.contains("is-active"));
+      if (previousPanel === targetPanel) return;
+      const isDesktop = window.innerWidth >= 992;
+      const collapsedHeight = window.innerWidth < 768 ? 82 : 92;
+      const previousHeight = previousPanel?.getBoundingClientRect().height || collapsedHeight;
+
+      if (typeof gsap !== "undefined" && !prefersReducedMotion && isDesktop) {
+        panels.forEach((panel) => {
+          gsap.set(panel, { flexGrow: panel === previousPanel ? 4.2 : 1 });
+        });
+      }
+
       panels.forEach((panel, idx) => {
         const active = panel === targetPanel;
         panel.classList.toggle("is-active", active);
@@ -28,6 +40,76 @@ document.addEventListener("DOMContentLoaded", () => {
           activeCounterEl.textContent = String(idx + 1).padStart(2, "0");
         }
       });
+
+      if (typeof gsap === "undefined" || prefersReducedMotion) return;
+
+      if (isDesktop) {
+        const collapsedPanels = panels.filter((panel) => panel !== targetPanel);
+        gsap.to(collapsedPanels, {
+          flexGrow: 1,
+          duration: 0.42,
+          ease: "power2.inOut",
+          overwrite: "auto",
+          onComplete: () => gsap.set(collapsedPanels, { clearProps: "flexGrow" }),
+        });
+        gsap.to(targetPanel, {
+          flexGrow: 4.2,
+          duration: 0.42,
+          ease: "power2.inOut",
+          overwrite: "auto",
+          onComplete() { gsap.set(targetPanel, { clearProps: "flexGrow" }); },
+        });
+      } else {
+        if (previousPanel) {
+          gsap.fromTo(previousPanel, { height: previousHeight }, {
+            height: collapsedHeight,
+            duration: 0.38,
+            ease: "power2.inOut",
+            overwrite: "auto",
+            onComplete: () => gsap.set(previousPanel, { clearProps: "height" }),
+          });
+        }
+        const targetHeight = Math.max(targetPanel.scrollHeight, targetPanel.offsetHeight);
+        gsap.fromTo(targetPanel, { height: collapsedHeight, minHeight: 0 }, {
+          height: targetHeight,
+          minHeight: targetHeight,
+          duration: 0.42,
+          ease: "power2.inOut",
+          overwrite: "auto",
+          onComplete: () => gsap.set(targetPanel, { clearProps: "height,minHeight" }),
+        });
+      }
+
+      panels.forEach((panel) => {
+        const background = panel.querySelector(".project-panel-bg");
+        if (!background) return;
+        const wasActive = panel === previousPanel;
+        const isActive = panel === targetPanel;
+        gsap.fromTo(background, {
+          scale: wasActive ? 1.01 : 1.08,
+          filter: wasActive ? "brightness(1)" : "brightness(0.76)",
+        }, {
+          scale: isActive ? 1.01 : 1.08,
+          filter: isActive ? "brightness(1)" : "brightness(0.76)",
+          duration: 0.46,
+          ease: "power2.out",
+          overwrite: "auto",
+          clearProps: "transform,filter",
+        });
+      });
+
+      const expandedContent = targetPanel.querySelector(".project-panel-expanded");
+      if (expandedContent) {
+        gsap.fromTo(expandedContent, { autoAlpha: 0, y: 14 }, {
+          autoAlpha: 1,
+          y: 0,
+          delay: 0.08,
+          duration: 0.34,
+          ease: "power2.out",
+          overwrite: "auto",
+          clearProps: "opacity,visibility,transform",
+        });
+      }
     };
 
     panels.forEach((panel, idx) => {

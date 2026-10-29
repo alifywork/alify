@@ -396,13 +396,14 @@ flex-shrink: 0;
   margin-bottom: 38px;
 }
 
-.single-process-row::before {
-  content: "";
+.single-process-track {
   position: absolute;
   top: 11px;
   right: 12.5%;
   left: 12.5%;
-  border-top: 1px solid rgba(217, 138, 43, 0.62);
+  height: 1px;
+  background: rgba(217, 138, 43, 0.62);
+  transform-origin: left center;
 }
 
 .single-process-row > div {
@@ -1596,7 +1597,7 @@ body.is-lightbox-open {
     padding-top: 0;
   }
 
-  .single-process-row::before,
+  .single-process-track,
   .single-process-row > div::after,
   .single-process-card::before {
     display: none;

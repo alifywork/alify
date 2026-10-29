@@ -1,9 +1,14 @@
-// Site-wide, one-time reveals and small hero entrances. No page loader, parallax, or logo motion.
+// Site-wide GSAP entrances and one-time scroll reveals (no loader or parallax).
 (() => {
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (reduceMotion) return;
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+  const { gsap, ScrollTrigger } = window;
+  if (prefersReducedMotion || !gsap || !ScrollTrigger) return;
 
-  const heroItems = document.querySelectorAll(
+  gsap.registerPlugin(ScrollTrigger);
+
+  const heroItems = gsap.utils.toArray(
     [
       ".home-hero .hero-status-pill",
       ".home-hero .hero-display-title",
@@ -18,36 +23,56 @@
     ].join(",")
   );
 
-  heroItems.forEach((item, index) => {
-    item.classList.add("hero-motion-item");
-    item.style.setProperty("--hero-motion-delay", `${Math.min(index, 5) * 70}ms`);
-  });
-
   if (heroItems.length) {
-    document.documentElement.classList.add("motion-enabled");
-    requestAnimationFrame(() => {
-      heroItems.forEach((item) => item.classList.add("is-visible"));
+    gsap.from(heroItems, {
+      autoAlpha: 0,
+      y: 14,
+      duration: 0.48,
+      delay: 0.04,
+      stagger: 0.075,
+      ease: "power2.out",
+      clearProps: "opacity,visibility,transform",
     });
   }
 
-  const sections = document.querySelectorAll(
+  const sections = gsap.utils.toArray(
     "main > section:not(.home-hero):not(.inner-hero):not(.reusable-contact-section)"
   );
-  if (!("IntersectionObserver" in window) || !sections.length) return;
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add("is-visible");
-        observer.unobserve(entry.target);
-      });
-    },
-    { threshold: 0.08, rootMargin: "0px 0px -32px 0px" }
-  );
-
   sections.forEach((section) => {
-    section.classList.add("motion-reveal-pending");
-    observer.observe(section);
+    gsap.from(section, {
+      autoAlpha: 0,
+      y: 14,
+      duration: 0.48,
+      ease: "power2.out",
+      clearProps: "opacity,visibility,transform",
+      scrollTrigger: {
+        trigger: section,
+        start: "top 88%",
+        once: true,
+      },
+    });
   });
+
+  const timelineTracks = gsap.utils.toArray(
+    ".studio-process-track, .single-process-track"
+  );
+  timelineTracks.forEach((track) => {
+    gsap.fromTo(
+      track,
+      { scaleX: 0 },
+      {
+        scaleX: 1,
+        duration: 0.72,
+        ease: "power1.out",
+        transformOrigin: "left center",
+        scrollTrigger: {
+          trigger: track.parentElement,
+          start: "top 84%",
+          once: true,
+        },
+      }
+    );
+  });
+
+  window.addEventListener("load", () => ScrollTrigger.refresh(), { once: true });
 })();
