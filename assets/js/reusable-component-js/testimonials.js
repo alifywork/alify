@@ -73,13 +73,80 @@ document.addEventListener("DOMContentLoaded", () => {
     let isDragging = false;
     let dragLastX = 0;
     let manualTween = null;
+    let marqueeTweens = [];
+    let marqueeRunning = false;
+    let autoplayEnabled = !prefersReducedMotion;
+    let isInView = false;
+    let isHovering = false;
+    let hasFocus = false;
+    let autoplayButton = null;
 
     const render = () => {
-      row1Track.style.transform = `translate3d(${wrapOffset(pos1, period1).toFixed(2)}px, 0, 0)`;
-      row2Track.style.transform = `translate3d(${wrapOffset(pos2, period2).toFixed(2)}px, 0, 0)`;
+      const x1 = wrapOffset(pos1, period1);
+      const x2 = wrapOffset(pos2, period2);
+      if (typeof gsap !== "undefined") {
+        gsap.set(row1Track, { x: x1 });
+        gsap.set(row2Track, { x: x2 });
+      } else {
+        row1Track.style.transform = `translate3d(${x1.toFixed(2)}px, 0, 0)`;
+        row2Track.style.transform = `translate3d(${x2.toFixed(2)}px, 0, 0)`;
+      }
+    };
+
+    const readTrackX = (track, fallback) => {
+      const value = parseFloat(gsap.getProperty(track, "x"));
+      return Number.isFinite(value) ? value : fallback;
+    };
+
+    const stopAutoplay = () => {
+      if (marqueeRunning && typeof gsap !== "undefined") {
+        pos1 = readTrackX(row1Track, pos1);
+        pos2 = readTrackX(row2Track, pos2);
+      }
+      marqueeTweens.forEach((tween) => tween.kill());
+      marqueeTweens = [];
+      marqueeRunning = false;
+    };
+
+    const startAutoplay = () => {
+      stopAutoplay();
+      if (
+        !autoplayEnabled ||
+        !isInView ||
+        document.hidden ||
+        isDragging ||
+        isHovering ||
+        hasFocus ||
+        prefersReducedMotion ||
+        typeof gsap === "undefined"
+      ) return;
+
+      pos1 = readTrackX(row1Track, pos1);
+      pos2 = readTrackX(row2Track, pos2);
+      const duration1 = Math.max(34, period1 / 42);
+      const duration2 = Math.max(34, period2 / 42);
+      marqueeTweens = [
+        gsap.to(row1Track, {
+          x: pos1 - period1,
+          duration: duration1,
+          ease: "none",
+          repeat: -1,
+          overwrite: "auto",
+        }),
+        gsap.to(row2Track, {
+          x: pos2 + period2,
+          duration: duration2,
+          ease: "none",
+          repeat: -1,
+          overwrite: "auto",
+        }),
+      ];
+      marqueeRunning = true;
     };
 
     const moveBy = (distance) => {
+      stopAutoplay();
+      manualTween?.kill();
       if (prefersReducedMotion || typeof gsap === "undefined") {
         pos1 = wrapOffset(pos1 + distance, period1);
         pos2 = wrapOffset(pos2 + distance, period2);
@@ -87,7 +154,6 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      manualTween?.kill();
       const start1 = pos1;
       const start2 = pos2;
       const progress = { value: 0 };
@@ -105,35 +171,9 @@ document.addEventListener("DOMContentLoaded", () => {
           pos2 = wrapOffset(pos2, period2);
           manualTween = null;
           render();
+          startAutoplay();
         },
       });
-    };
-
-    let autoplayEnabled = !prefersReducedMotion;
-    let autoplayTimer = null;
-    let isInView = false;
-    let isHovering = false;
-    let hasFocus = false;
-    let autoplayButton = null;
-
-    const stopAutoplay = () => {
-      window.clearInterval(autoplayTimer);
-      autoplayTimer = null;
-    };
-
-    const startAutoplay = () => {
-      stopAutoplay();
-      if (
-        !autoplayEnabled ||
-        !isInView ||
-        document.hidden ||
-        isDragging ||
-        isHovering ||
-        hasFocus
-      ) return;
-      autoplayTimer = window.setInterval(() => {
-        if (!isDragging) moveBy(-stepSize);
-      }, 5000);
     };
 
     if (!prefersReducedMotion && (prevBtn || nextBtn)) {

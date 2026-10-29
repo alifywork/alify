@@ -30,6 +30,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const switchCase = (nextIdx, animate = true) => {
       if (nextIdx < 0 || nextIdx >= tabs.length) return;
+      const previousIdx = activeIdx;
+      const outgoing = panels[previousIdx];
+      const incoming = panels[nextIdx];
       activeIdx = nextIdx;
 
       tabs.forEach((tab, idx) => {
@@ -39,30 +42,50 @@ document.addEventListener("DOMContentLoaded", () => {
         tab.setAttribute("tabindex", isActive ? "0" : "-1");
       });
 
-      panels.forEach((panel, idx) => {
-        const isActive = idx === activeIdx;
-        panel.classList.toggle("is-active", isActive);
-        panel.setAttribute("aria-hidden", isActive ? "false" : "true");
+      const canAnimate =
+        animate &&
+        nextIdx !== previousIdx &&
+        outgoing &&
+        incoming &&
+        typeof gsap !== "undefined" &&
+        !prefersReducedMotion;
 
-        if (
-          isActive &&
-          animate &&
-          typeof gsap !== "undefined" &&
-          !prefersReducedMotion
-        ) {
-          gsap.fromTo(
-            panel,
-            { y: 14, opacity: 0 },
-            {
-              y: 0,
-              opacity: 1,
-              duration: 0.42,
-              ease: "power2.out",
-              clearProps: "transform,opacity",
-            }
-          );
-        }
-      });
+      if (canAnimate) {
+        gsap.killTweensOf(panels);
+        panels.forEach((panel, idx) => {
+          const isOutgoing = idx === previousIdx;
+          panel.classList.toggle("is-active", isOutgoing);
+          panel.setAttribute("aria-hidden", isOutgoing ? "false" : "true");
+          gsap.set(panel, { clearProps: "opacity,visibility,transform,zIndex" });
+        });
+
+        incoming.classList.add("is-active");
+        incoming.setAttribute("aria-hidden", "false");
+        gsap.set(incoming, { autoAlpha: 0, zIndex: 2 });
+        gsap.to(outgoing, {
+          autoAlpha: 0,
+          duration: 0.18,
+          ease: "power1.out",
+          overwrite: true,
+          onComplete: () => {
+            outgoing.classList.remove("is-active");
+            gsap.set(outgoing, { clearProps: "opacity,visibility,transform,zIndex" });
+          },
+        });
+        gsap.to(incoming, {
+          autoAlpha: 1,
+          duration: 0.28,
+          ease: "power1.out",
+          overwrite: true,
+          onComplete: () => gsap.set(incoming, { clearProps: "opacity,visibility,transform,zIndex" }),
+        });
+      } else {
+        panels.forEach((panel, idx) => {
+          const isActive = idx === activeIdx;
+          panel.classList.toggle("is-active", isActive);
+          panel.setAttribute("aria-hidden", isActive ? "false" : "true");
+        });
+      }
 
       resetFills();
     };

@@ -231,10 +231,13 @@ flex-shrink: 0;
 /* Split-Bento Case Study Stage Card */
 .cs-stage-shell {
   position: relative;
+  display: grid;
 }
 
 .cs-stage-panel {
   display: none;
+  grid-area: 1 / 1;
+  width: 100%;
   padding: 28px;
   border-radius: 28px;
   background-color: var(--color-white);
