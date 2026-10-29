@@ -24,14 +24,15 @@
   );
 
   if (heroItems.length) {
+    // Keep hero copy visible while it moves; opacity fades here caused a
+    // flash of hidden content before the bottom-of-page script initialized.
     gsap.from(heroItems, {
-      autoAlpha: 0,
-      y: 14,
-      duration: 0.48,
-      delay: 0.04,
-      stagger: 0.075,
-      ease: "power2.out",
-      clearProps: "opacity,visibility,transform",
+      y: 20,
+      duration: 0.58,
+      delay: 0,
+      stagger: 0.08,
+      ease: "power3.out",
+      clearProps: "transform",
     });
   }
 
