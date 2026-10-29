@@ -25,12 +25,15 @@ document.addEventListener("DOMContentLoaded", () => {
     "case-study-single.html": "case-studies.html",
   };
   const currentFile = parentPageMap[rawFile] || rawFile;
-  document.querySelectorAll(".header-nav-link, .drawer-nav-link").forEach((link) => {
+  document.querySelectorAll(".header-nav-link, .dropdown-item-link, .drawer-nav-link").forEach((link) => {
     const href = link.getAttribute("href");
     if (!href) return;
     const linkFile = href.split("#")[0];
     if (linkFile === currentFile) {
       link.classList.add("is-active");
+      link.closest(".header-nav-item.has-dropdown")
+        ?.querySelector(":scope > .header-nav-link")
+        ?.classList.add("is-active");
     } else {
       link.classList.remove("is-active");
     }
