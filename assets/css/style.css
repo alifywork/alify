@@ -869,3 +869,66 @@ h6 {
   transition: none !important;
   scroll-behavior: auto !important;
 }
+
+/* Carefully scoped micro-interactions; other site motion remains disabled. */
+@media (prefers-reduced-motion: no-preference) {
+  .header-nav-link,
+  .dropdown-item-link,
+  .btn-contact,
+  .btn-start-project,
+  .btn-start-pill,
+  .btn-start-circle,
+  .btn-start-arrow,
+  .btn-hero-secondary,
+  .btn-hero-secondary i,
+  .hero-glass-cta-primary,
+  .hero-glass-cta-secondary,
+  .industry-card,
+  .industry-card-icon,
+  .industry-card-cta-pill,
+  .industry-card-cta-circle,
+  .industry-card-cta-arrow,
+  .service-card,
+  .about-leader-card,
+  .about-leader-img,
+  .project-panel,
+  .project-grid-card,
+  .project-grid-card-bg,
+  .blog-card,
+  .blog-card-img,
+  .blog-read-more-pill,
+  .blog-read-more-circle,
+  .blog-read-more-arrow,
+  .testimonial-card,
+  .testimonial-service-tag,
+  .cs-tab-btn,
+  .single-process-card,
+  .tool-stack-card,
+  .header-nav-link::after,
+  .industry-card::before,
+  .industry-card-bg {
+    transition: color 180ms ease, background-color 180ms ease,
+      border-color 180ms ease, box-shadow 220ms ease, transform 220ms ease,
+      opacity 220ms ease !important;
+  }
+
+  .motion-reveal-pending {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 420ms ease, transform 420ms ease !important;
+  }
+
+  .motion-reveal-pending.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-reveal-pending,
+  .motion-reveal-pending.is-visible {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
