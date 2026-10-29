@@ -531,24 +531,6 @@ h6 {
   margin-bottom: 26px;
 }
 
-.hero-status-dot {
-  position: relative;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background-color: var(--color-amber);
-  flex-shrink: 0;
-}
-
-.hero-status-dot::after {
-  content: "";
-  position: absolute;
-  inset: -4px;
-  border-radius: 50%;
-  border: 1.5px solid var(--color-amber);
-}
-
-
 
 /* Monumental Centered Display Headline */
 .hero-display-title {
