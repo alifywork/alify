@@ -21,8 +21,11 @@
       const lastRect = columns[columns.length - 1].getBoundingClientRect();
       const firstCenter = firstRect.left + firstRect.width / 2;
       const lastCenter = lastRect.left + lastRect.width / 2;
-      track.style.left = `${firstCenter - rowRect.left}px`;
-      track.style.right = `${rowRect.right - lastCenter}px`;
+      const left = firstCenter - rowRect.left;
+      const width = Math.max(0, lastCenter - firstCenter);
+      track.style.left = `${left}px`;
+      track.style.right = "auto";
+      track.style.width = `${width}px`;
     });
   };
 
