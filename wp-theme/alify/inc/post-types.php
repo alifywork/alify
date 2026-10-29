@@ -42,7 +42,7 @@ function alify_register_post_types() {
 		);
 	}
 
-	// Private Admin CRM Inbox for Inquiries & Booked Strategy Calls
+	// Private Admin CRM Inbox for Inquiries & Booked Strategy Calls.
 	register_post_type(
 		'alify_lead',
 		array(
@@ -91,6 +91,82 @@ function alify_register_post_types() {
 	);
 }
 add_action( 'init', 'alify_register_post_types' );
+
+function alify_category_taxonomy_for_meta_key( $meta_key ) {
+	$map = array(
+		'_alify_svc_filter'  => 'service_category',
+		'_alify_proj_filter' => 'project_category',
+	);
+	return isset( $map[ $meta_key ] ) ? $map[ $meta_key ] : '';
+}
+
+function alify_category_term_label( $taxonomy, $slug ) {
+	$labels = array(
+		'service_category' => array(
+			'design' => 'Design & Brand', 'engineering' => 'Web & Engineering', 'growth' => 'Growth, CRO & SEO',
+		),
+		'project_category' => array(
+			'web-saas' => 'Web & SaaS', 'commerce-brand' => 'E-Commerce & Brand', 'ai-cloud' => 'AI, Health & PropTech',
+		),
+	);
+	return isset( $labels[ $taxonomy ][ $slug ] ) ? $labels[ $taxonomy ][ $slug ] : ucwords( str_replace( '-', ' ', $slug ) );
+}
+
+function alify_sync_legacy_filter_to_category_term( $meta_id, $post_id, $meta_key, $meta_value ) {
+	$taxonomy = alify_category_taxonomy_for_meta_key( $meta_key );
+	if ( ! $taxonomy || ! taxonomy_exists( $taxonomy ) || ! is_scalar( $meta_value ) ) {
+		return;
+	}
+	if ( '' === trim( (string) $meta_value ) ) {
+		wp_set_object_terms( (int) $post_id, array(), $taxonomy, false );
+		return;
+	}
+	$slug = sanitize_title( (string) $meta_value );
+	$term = get_term_by( 'slug', $slug, $taxonomy );
+	if ( ! $term ) {
+		$created = wp_insert_term( alify_category_term_label( $taxonomy, $slug ), $taxonomy, array( 'slug' => $slug ) );
+		if ( is_wp_error( $created ) ) {
+			return;
+		}
+		$term_id = (int) $created['term_id'];
+	} else {
+		$term_id = (int) $term->term_id;
+	}
+	wp_set_object_terms( (int) $post_id, array( $term_id ), $taxonomy, false );
+}
+add_action( 'added_post_meta', 'alify_sync_legacy_filter_to_category_term', 10, 4 );
+add_action( 'updated_post_meta', 'alify_sync_legacy_filter_to_category_term', 10, 4 );
+
+function alify_backfill_filter_category_terms_once() {
+	if ( '1' === (string) get_option( 'alify_filter_category_migration', '' ) ) {
+		return;
+	}
+	$groups = array(
+		'alify_service' => '_alify_svc_filter',
+		'alify_project' => '_alify_proj_filter',
+	);
+	foreach ( $groups as $post_type => $meta_key ) {
+		$items = get_posts( array( 'post_type' => $post_type, 'post_status' => array( 'publish', 'draft', 'pending', 'private' ), 'posts_per_page' => -1, 'fields' => 'ids' ) );
+		foreach ( $items as $post_id ) {
+			$value = get_post_meta( $post_id, $meta_key, true );
+			if ( '' === (string) $value ) { continue; }
+			$taxonomy = alify_category_taxonomy_for_meta_key( $meta_key );
+			$slug = sanitize_title( (string) $value );
+			$term = get_term_by( 'slug', $slug, $taxonomy );
+			$existing = $term ? $term->term_id : term_exists( $slug, $taxonomy );
+			if ( ! $existing ) {
+				$created = wp_insert_term( alify_category_term_label( $taxonomy, $slug ), $taxonomy, array( 'slug' => $slug ) );
+				if ( is_wp_error( $created ) ) { continue; }
+				$term_id = (int) $created['term_id'];
+			} else {
+				$term_id = (int) ( is_array( $existing ) ? $existing['term_id'] : $existing );
+			}
+			wp_set_object_terms( (int) $post_id, array( $term_id ), $taxonomy, false );
+		}
+	}
+	update_option( 'alify_filter_category_migration', '1' );
+}
+add_action( 'init', 'alify_backfill_filter_category_terms_once', 30 );
 
 /**
  * Use clean, base-less category URLs while keeping real WordPress pages first priority.
