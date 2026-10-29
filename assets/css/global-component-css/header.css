@@ -11,10 +11,6 @@
   background-color: transparent;
   border-bottom: 1px solid transparent;
   box-shadow: none;
-  transition:
-    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    background-color 0.35s ease,
-    border-color 0.35s ease;
 }
 
 .site-header.is-scrolled {
@@ -28,7 +24,6 @@
 .header-row {
   align-items: center;
   min-height: 88px;
-  transition: min-height 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .site-header.is-scrolled .header-row {
@@ -56,10 +51,6 @@
   color: var(--color-black);
   text-decoration: none;
   user-select: none;
-  transition:
-    color 0.3s ease,
-    opacity 0.25s ease,
-    font-size 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* Over Hero (Unscrolled): White Brand Logo; On Scroll: Black + Primary △ */
@@ -92,9 +83,6 @@
   line-height: 1;
   display: inline-block;
   transform: translateY(-1px);
-  transition:
-    color 0.3s ease,
-    font-size 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .site-header .brand-logo-mark {
@@ -148,10 +136,6 @@
   background: none;
   border: none;
   cursor: pointer;
-  transition:
-    color 0.25s ease,
-    padding 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    font-size 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .site-header.is-scrolled .header-nav-link {
@@ -171,9 +155,6 @@
   border-radius: 2px;
   transform: scaleX(0);
   transform-origin: right center;
-  transition:
-    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-    background-color 0.25s ease;
 }
 
 .site-header.is-scrolled .header-nav-link::after {
@@ -204,7 +185,6 @@
 
 .nav-chevron {
   font-size: 11px;
-  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .header-nav-item.has-dropdown:hover .nav-chevron,
@@ -230,8 +210,7 @@
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.25s ease, transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.25s ease;
-  z-index: 1020;
+z-index: 1020;
 }
 
 /* Invisible hover bridge between trigger and panel */
@@ -271,7 +250,6 @@
   font-size: 14px;
   font-weight: 500;
   color: var(--color-black);
-  transition: background-color 0.22s ease, color 0.22s ease;
 }
 
 .dropdown-item-icon {
@@ -285,7 +263,6 @@
   justify-content: center;
   font-size: 14px;
   flex-shrink: 0;
-  transition: background-color 0.22s ease, color 0.22s ease;
 }
 
 .dropdown-item-link:hover {
@@ -330,14 +307,6 @@
   color: var(--color-primary);
   white-space: nowrap;
   cursor: pointer;
-  transition:
-    background-color 0.28s ease,
-    color 0.28s ease,
-    border-color 0.28s ease,
-    transform 0.25s ease,
-    height 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    padding 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    font-size 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* Over Hero (Unscrolled) Desktop Header Buttons */
@@ -394,12 +363,6 @@
   font-weight: 500;
   letter-spacing: -0.01em;
   white-space: nowrap;
-  transition:
-    background-color 0.3s ease,
-    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-    height 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    padding 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    font-size 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .site-header.is-scrolled .header-desktop-ctas .btn-start-pill {
@@ -420,12 +383,6 @@
   color: var(--color-white);
   font-size: 15px;
   flex-shrink: 0;
-  transition:
-    background-color 0.3s ease,
-    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-    width 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    height 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    font-size 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .site-header.is-scrolled .header-desktop-ctas .btn-start-circle {
@@ -437,7 +394,6 @@
 .btn-start-arrow {
   display: inline-block;
   transform: rotate(45deg);
-  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .btn-start-project:hover .btn-start-pill {
@@ -467,13 +423,6 @@
   color: var(--color-primary);
   font-size: 18px;
   cursor: pointer;
-  transition:
-    background-color 0.25s ease,
-    color 0.25s ease,
-    border-color 0.25s ease,
-    width 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    height 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    font-size 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .site-header:not(.is-scrolled) .mobile-menu-toggle {
@@ -512,7 +461,6 @@
   z-index: 1040;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.35s ease, visibility 0.35s ease;
 }
 
 .drawer-overlay.is-open {
@@ -536,7 +484,6 @@
   transform: translate3d(100%, 0, 0);
   visibility: hidden;
   pointer-events: none;
-  transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.38s ease;
 }
 
 .mobile-drawer.is-open {
@@ -566,7 +513,6 @@
   color: var(--color-black);
   font-size: 17px;
   cursor: pointer;
-  transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
 }
 
 .drawer-close:hover {
@@ -613,7 +559,6 @@
   border: none;
   text-align: left;
   cursor: pointer;
-  transition: color 0.22s ease;
 }
 
 .drawer-nav-link:hover,
@@ -625,7 +570,6 @@
 
 .drawer-chevron {
   font-size: 13px;
-  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .drawer-nav-item.is-open .drawer-chevron {
@@ -636,7 +580,6 @@
 .drawer-submenu-wrap {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows 0.32s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .drawer-nav-item.is-open .drawer-submenu-wrap {
@@ -664,7 +607,6 @@
   font-size: 14.5px;
   font-weight: 400;
   color: var(--color-black);
-  transition: background-color 0.22s ease, color 0.22s ease;
 }
 
 .drawer-submenu-icon {
@@ -678,7 +620,6 @@
   justify-content: center;
   font-size: 13px;
   flex-shrink: 0;
-  transition: background-color 0.22s ease, color 0.22s ease;
 }
 
 .drawer-submenu-link:hover {

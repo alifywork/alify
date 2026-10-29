@@ -90,8 +90,7 @@
   line-height: 1;
   color: var(--color-amber);
   transform-origin: 50% 56%;
-  animation: alifyEyebrowTriSpin 8s linear infinite;
-  flex-shrink: 0;
+flex-shrink: 0;
 }
 
 .footer-cta-title {
@@ -152,7 +151,6 @@
   font-size: 14.5px;
   font-weight: 500;
   white-space: nowrap;
-  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
 }
 
 .btn-footer-outline:hover {
@@ -182,7 +180,6 @@
   letter-spacing: 0.04em;
   color: var(--color-white);
   margin-bottom: 18px;
-  transition: opacity 0.25s ease;
 }
 
 .footer-brand-logo:hover {
@@ -228,7 +225,6 @@
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 999px;
   padding: 5px 5px 5px 18px;
-  transition: border-color 0.25s ease, background-color 0.25s ease;
 }
 
 .footer-newsletter-form:focus-within {
@@ -264,7 +260,6 @@
   font-size: 14px;
   cursor: pointer;
   flex-shrink: 0;
-  transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
 }
 
 .footer-newsletter-btn:hover {
@@ -300,7 +295,6 @@
   align-items: center;
   justify-content: center;
   font-size: 15px;
-  transition: background-color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
 }
 
 .footer-social-link:hover {
@@ -339,7 +333,6 @@
   font-size: 14.5px;
   font-weight: 400;
   color: rgba(246, 244, 241, 0.72);
-  transition: color 0.22s ease, transform 0.22s ease;
 }
 
 .footer-link:hover {
@@ -396,7 +389,6 @@
   font-weight: 500;
   color: var(--color-secondary);
   overflow-wrap: anywhere;
-  transition: color 0.22s ease;
 }
 
 a.footer-contact-value:hover {
@@ -435,7 +427,6 @@ a.footer-contact-value:hover {
   font-family: var(--font-poppins);
   font-size: 13.5px;
   color: rgba(246, 244, 241, 0.6);
-  transition: color 0.22s ease;
 }
 
 .footer-legal-link:hover {
@@ -454,7 +445,6 @@ a.footer-contact-value:hover {
   justify-content: center;
   font-size: 14px;
   cursor: pointer;
-  transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
 }
 
 .back-to-top-btn:hover {

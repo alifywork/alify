@@ -47,7 +47,6 @@
   font-size: 14.5px;
   color: var(--color-black);
   outline: none;
-  transition: border-color 0.24s ease, background-color 0.24s ease, box-shadow 0.24s ease;
 }
 
 .alify-input {
@@ -138,13 +137,11 @@
   font-size: 13.5px;
   font-weight: 500;
   color: var(--color-black);
-  transition: background-color 0.22s ease, color 0.22s ease, border-color 0.22s ease, transform 0.2s ease;
 }
 
 .alify-choice-label i {
   font-size: 13px;
   color: var(--color-primary);
-  transition: color 0.22s ease;
 }
 
 .alify-choice-pill:hover .alify-choice-label {
@@ -359,7 +356,7 @@ button.btn-start-project {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  transform: translate3d(0, var(--sec-parallax-y, 0px), 0) scale(1.06);
+  transform: scale(1.06);
   will-change: transform;
   pointer-events: none;
 }
@@ -416,8 +413,7 @@ button.btn-start-project {
   line-height: 1;
   color: var(--color-accent);
   transform-origin: 50% 56%;
-  animation: alifyEyebrowTriSpin 8s linear infinite;
-  flex-shrink: 0;
+flex-shrink: 0;
 }
 
 .reusable-contact-section .contact-sec-eyebrow-dot {
@@ -507,7 +503,6 @@ button.btn-start-project {
   font-weight: 600;
   color: var(--color-white);
   overflow-wrap: anywhere;
-  transition: color 0.22s ease;
 }
 
 a.contact-info-tile-val:hover {
@@ -676,7 +671,6 @@ a.contact-directory-val:hover {
   align-items: center;
   justify-content: center;
   font-size: 14px;
-  transition: background-color 0.22s ease, color 0.22s ease, transform 0.22s ease;
 }
 
 .contact-dir-social:hover {

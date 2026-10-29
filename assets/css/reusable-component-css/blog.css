@@ -17,9 +17,6 @@
   border-radius: 22px;
   overflow: hidden;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.04);
-  transition: transform 0.34s cubic-bezier(0.22, 1, 0.36, 1),
-              box-shadow 0.34s cubic-bezier(0.22, 1, 0.36, 1),
-              border-color 0.3s ease;
 }
 
 .blog-card:hover {
@@ -42,7 +39,6 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .blog-card:hover .blog-card-img {
@@ -112,7 +108,6 @@
 
 .blog-card-title a {
   color: inherit;
-  transition: color 0.24s ease;
 }
 
 .blog-card:hover .blog-card-title a,
@@ -163,7 +158,6 @@
   font-size: 13.5px;
   font-weight: 600;
   white-space: nowrap;
-  transition: background-color 0.28s ease, color 0.28s ease;
 }
 
 .blog-read-more-circle {
@@ -177,13 +171,11 @@
   background-color: var(--color-secondary);
   color: var(--color-primary);
   font-size: 13px;
-  transition: background-color 0.28s ease, color 0.28s ease, transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .blog-read-more-arrow {
   display: inline-block;
   transform: rotate(45deg);
-  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .blog-read-more:hover .blog-read-more-pill,
@@ -248,8 +240,7 @@
   line-height: 1;
   color: var(--color-accent);
   transform-origin: 50% 56%;
-  animation: alifyEyebrowTriSpin 8s linear infinite;
-  flex-shrink: 0;
+flex-shrink: 0;
 }
 
 .blog-section-title {
@@ -296,7 +287,6 @@
   justify-content: center;
   font-size: 15px;
   cursor: pointer;
-  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, opacity 0.25s ease, transform 0.25s ease;
 }
 
 .blog-slider-arrow:hover:not(:disabled) {
@@ -324,7 +314,6 @@
   font-size: 14px;
   font-weight: 600;
   color: var(--color-primary);
-  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
 }
 
 .blog-view-all-link:hover {
@@ -348,13 +337,11 @@
   display: flex;
   align-items: stretch;
   gap: var(--slider-gap);
-  transition: transform 0.52s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: transform;
+will-change: transform;
 }
 
 .blog-slider-track.is-dragging {
-  transition: none;
-  cursor: grabbing;
+cursor: grabbing;
 }
 
 .blog-slide {
@@ -404,7 +391,6 @@
   padding: 0;
   background-color: rgba(15, 52, 115, 0.2);
   cursor: pointer;
-  transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.3s ease;
 }
 
 .blog-slider-dot.is-active {
@@ -426,7 +412,6 @@
   width: 25%;
   border-radius: 999px;
   background-color: var(--color-primary);
-  transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* --------------------------------------------------------------------------
@@ -466,7 +451,6 @@
   font-weight: 500;
   color: var(--color-black);
   cursor: pointer;
-  transition: background-color 0.24s ease, color 0.24s ease, border-color 0.24s ease;
 }
 
 .blog-filter-btn:hover,
@@ -680,7 +664,6 @@
   height: 100%;
   background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-accent) 100%);
   border-radius: 999px;
-  transition: width 0.15s linear;
 }
 
 .blog-toc-list {
@@ -703,7 +686,6 @@
   line-height: 1.45;
   font-weight: 500;
   color: rgba(0, 0, 0, 0.68);
-  transition: background-color 0.22s ease, color 0.22s ease, border-color 0.22s ease;
 }
 
 .blog-toc-link:hover {
@@ -754,7 +736,6 @@
   justify-content: center;
   font-size: 13.5px;
   cursor: pointer;
-  transition: background-color 0.22s ease, color 0.22s ease, border-color 0.22s ease;
 }
 
 .blog-share-btn:hover {
@@ -906,7 +887,6 @@
   font-size: 12.5px;
   font-weight: 500;
   color: var(--color-primary);
-  transition: background-color 0.22s ease, color 0.22s ease;
 }
 
 .blog-post-tag-pill:hover {
@@ -1026,7 +1006,6 @@
   font-size: 13px;
   cursor: pointer;
   flex-shrink: 0;
-  transition: background-color 0.22s ease;
 }
 
 .blog-sidebar-search button:hover {
@@ -1087,7 +1066,6 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  transition: color 0.22s ease;
 }
 
 .blog-recent-link:hover {
@@ -1115,7 +1093,6 @@
   font-size: 13.5px;
   font-weight: 500;
   color: var(--color-black);
-  transition: background-color 0.22s ease, color 0.22s ease;
 }
 
 .blog-category-link:hover {
@@ -1304,7 +1281,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  transform: translate3d(0, var(--sec-parallax-y, 0px), 0) scale(1.06);
+  transform: scale(1.06);
   will-change: transform;
   pointer-events: none;
 }
@@ -1362,8 +1339,7 @@
   line-height: 1;
   color: var(--color-accent);
   transform-origin: 50% 56%;
-  animation: alifyEyebrowTriSpin 8s linear infinite;
-  flex-shrink: 0;
+flex-shrink: 0;
 }
 
 .blog-related-title {

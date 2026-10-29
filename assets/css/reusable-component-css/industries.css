@@ -25,10 +25,6 @@
   isolation: isolate;
   scroll-margin-top: 112px;
   box-shadow: 0 14px 32px rgba(0, 0, 0, 0.14);
-  transition:
-    transform 0.36s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 0.3s ease,
-    box-shadow 0.36s ease;
 }
 
 /* Full-Bleed Industry Background Photograph + True-Color Editorial Scrim */
@@ -40,8 +36,7 @@
   background-repeat: no-repeat;
   z-index: -2;
   transform: scale(1.03);
-  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: transform;
+will-change: transform;
 }
 
 .industry-card:hover .industry-card-bg {
@@ -59,7 +54,6 @@
     rgba(0, 0, 0, 0.56) 48%,
     rgba(0, 0, 0, 0.92) 100%
   );
-  transition: opacity 0.35s ease;
 }
 
 .industry-card::before {
@@ -73,7 +67,6 @@
   background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-amber) 100%);
   transform: scaleX(0);
   transform-origin: left center;
-  transition: transform 0.36s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .industry-card:hover {
@@ -114,10 +107,6 @@
   justify-content: center;
   font-size: 21px;
   flex-shrink: 0;
-  transition:
-    background-color 0.28s ease,
-    border-color 0.28s ease,
-    transform 0.28s ease;
 }
 
 .industry-card:hover .industry-card-icon {
@@ -234,7 +223,6 @@
   font-size: 12.5px;
   font-weight: 600;
   white-space: nowrap;
-  transition: background-color 0.24s ease, color 0.24s ease;
 }
 
 .industry-card-cta-circle {
@@ -248,15 +236,10 @@
   justify-content: center;
   font-size: 12px;
   margin-left: -1px;
-  transition:
-    background-color 0.24s ease,
-    color 0.24s ease,
-    transform 0.24s ease;
 }
 
 .industry-card-cta-arrow {
   transform: rotate(45deg);
-  transition: transform 0.24s ease;
 }
 
 .industry-card:hover .industry-card-cta-pill,
@@ -322,8 +305,7 @@
   line-height: 1;
   color: var(--color-accent);
   transform-origin: 50% 56%;
-  animation: alifyEyebrowTriSpin 8s linear infinite;
-  flex-shrink: 0;
+flex-shrink: 0;
 }
 
 .industries-sec-title {
@@ -375,12 +357,6 @@
   justify-content: center;
   font-size: 14px;
   cursor: pointer;
-  transition:
-    background-color 0.22s ease,
-    border-color 0.22s ease,
-    color 0.22s ease,
-    transform 0.2s ease,
-    opacity 0.2s ease;
 }
 
 .industries-nav-btn:hover:not(:disabled) {
@@ -424,12 +400,10 @@
   display: flex;
   align-items: stretch;
   gap: var(--ind-gap);
-  transition: transform 0.52s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: transform;
+will-change: transform;
 }
 
 .industries-slider-track.is-dragging {
-  transition: none;
 }
 
 .industry-slide {
@@ -475,7 +449,6 @@
   border: none;
   background-color: rgba(15, 52, 115, 0.22);
   cursor: pointer;
-  transition: width 0.28s ease, background-color 0.28s ease;
 }
 
 .industries-slider-dot.is-active {
@@ -497,7 +470,6 @@
   height: 100%;
   border-radius: 999px;
   background-color: var(--color-primary);
-  transition: width 0.38s ease;
 }
 
 /* --------------------------------------------------------------------------
@@ -536,10 +508,6 @@
   font-size: 13.5px;
   font-weight: 500;
   cursor: pointer;
-  transition:
-    background-color 0.22s ease,
-    border-color 0.22s ease,
-    color 0.22s ease;
 }
 
 .industries-filter-btn:hover {

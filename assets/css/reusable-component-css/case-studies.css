@@ -27,7 +27,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  transform: translate3d(0, var(--sec-parallax-y, 0px), 0) scale(1.06);
+  transform: scale(1.06);
   will-change: transform;
   pointer-events: none;
 }
@@ -81,8 +81,7 @@
   line-height: 1;
   color: var(--color-accent);
   transform-origin: 50% 56%;
-  animation: alifyEyebrowTriSpin 8s linear infinite;
-  flex-shrink: 0;
+flex-shrink: 0;
 }
 
 .cs-sec-title {
@@ -139,11 +138,6 @@
   text-align: left;
   cursor: pointer;
   overflow: hidden;
-  transition:
-    background-color 0.25s ease,
-    border-color 0.25s ease,
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
 }
 
 .cs-tab-btn:hover {
@@ -190,7 +184,6 @@
   height: 8px;
   border-radius: 50%;
   background-color: rgba(15, 52, 115, 0.2);
-  transition: background-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .cs-tab-btn.is-active .cs-tab-status-dot {
@@ -282,8 +275,7 @@
   background-repeat: no-repeat;
   z-index: -2;
   transform: scale(1.03);
-  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: transform;
+will-change: transform;
 }
 
 .cs-visual-frame:hover .cs-visual-bg {
@@ -477,7 +469,6 @@
   border-radius: 16px;
   background-color: var(--color-white);
   border: 1.5px solid rgba(15, 52, 115, 0.13);
-  transition: border-color 0.25s ease, transform 0.25s ease;
 }
 
 .cs-kpi-tile:hover {
@@ -580,7 +571,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  transform: translate3d(0, var(--sec-parallax-y, 0px), 0) scale(1.06);
+  transform: scale(1.06);
   will-change: transform;
   pointer-events: none;
 }
@@ -658,10 +649,6 @@
   font-size: 13.5px;
   font-weight: 500;
   cursor: pointer;
-  transition:
-    background-color 0.22s ease,
-    border-color 0.22s ease,
-    color 0.22s ease;
 }
 
 .cs-filter-btn:hover {
@@ -695,9 +682,6 @@
   background-color: var(--color-secondary);
   border: 1px solid rgba(15, 52, 115, 0.11);
   scroll-margin-top: 112px;
-  transition:
-    border-color 0.3s ease,
-    box-shadow 0.35s ease;
 }
 
 .cs-editorial-card:hover {
@@ -741,7 +725,6 @@
   font-weight: 600;
   color: var(--color-primary);
   cursor: pointer;
-  transition: background-color 0.22s ease, color 0.22s ease;
 }
 
 .cs-blueprint-toggle:hover,
@@ -752,7 +735,6 @@
 
 .cs-blueprint-chevron {
   font-size: 11px;
-  transition: transform 0.25s ease;
 }
 
 .cs-blueprint-toggle[aria-expanded="true"] .cs-blueprint-chevron {

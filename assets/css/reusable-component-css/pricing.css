@@ -37,8 +37,7 @@
   line-height: 1;
   color: var(--color-accent);
   transform-origin: 50% 56%;
-  animation: alifyEyebrowTriSpin 8s linear infinite;
-  flex-shrink: 0;
+flex-shrink: 0;
 }
 
 .pricing-sec-title {
@@ -109,10 +108,6 @@
   font-weight: 600;
   color: rgba(0, 0, 0, 0.72);
   cursor: pointer;
-  transition:
-    background-color 0.28s cubic-bezier(0.22, 1, 0.36, 1),
-    color 0.28s ease,
-    box-shadow 0.28s ease;
 }
 
 .pricing-mode-btn.is-active {
@@ -133,7 +128,6 @@
   font-weight: 800;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  transition: background-color 0.28s ease, color 0.28s ease;
 }
 
 .pricing-mode-btn.is-active .pricing-save-pill {
@@ -159,10 +153,6 @@
   box-shadow: 0 18px 44px rgba(0, 0, 0, 0.05);
   position: relative;
   overflow: hidden;
-  transition:
-    transform 0.34s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.34s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 0.3s ease;
 }
 
 .pricing-tier-card:hover {
@@ -288,7 +278,6 @@
   line-height: 1.1;
   letter-spacing: -0.02em;
   color: var(--color-black);
-  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .pricing-tier-card.is-featured .pricing-price-amount {
@@ -494,7 +483,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  transform: translate3d(0, var(--sec-parallax-y, 0px), 0) scale(1.06);
+  transform: scale(1.06);
   will-change: transform;
   pointer-events: none;
 }
@@ -596,11 +585,6 @@
   border-radius: 16px;
   background-color: var(--color-white);
   border: 1.5px solid rgba(15, 52, 115, 0.12);
-  transition:
-    border-color 0.24s ease,
-    background-color 0.24s ease,
-    box-shadow 0.24s ease,
-    transform 0.22s ease;
 }
 
 .pricing-module-option:hover .pricing-module-box {
@@ -630,7 +614,6 @@
   justify-content: center;
   font-size: 14px;
   flex-shrink: 0;
-  transition: background-color 0.24s ease, color 0.24s ease;
 }
 
 .pricing-module-option input:checked + .pricing-module-box .pricing-module-icon {
@@ -686,7 +669,6 @@
   border-radius: 15px;
   background-color: var(--color-white);
   border: 1.5px solid rgba(15, 52, 115, 0.12);
-  transition: border-color 0.24s ease, background-color 0.24s ease;
 }
 
 .pricing-scale-option input:checked + .pricing-scale-box {

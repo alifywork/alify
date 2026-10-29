@@ -71,20 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
     menuToggle?.setAttribute("aria-expanded", "true");
     document.body.classList.add("drawer-open");
 
-    if (typeof gsap !== "undefined") {
-      gsap.fromTo(
-        ".drawer-nav-item, .drawer-footer > *",
-        { x: 24, opacity: 0 },
-        {
-          x: 0,
-          opacity: 1,
-          duration: 0.35,
-          stagger: 0.04,
-          ease: "power2.out",
-          clearProps: "transform,opacity",
-        }
-      );
-    }
+
   };
 
   const closeDrawer = () => {

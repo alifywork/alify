@@ -40,18 +40,10 @@
     radial-gradient(circle at 50% 42%, rgba(15, 52, 115, 0.36) 0%, rgba(0, 0, 0, 0) 58%),
     var(--color-black);
   color: var(--color-white);
-  transition:
-    transform 0.62s cubic-bezier(0.76, 0, 0.24, 1),
-    opacity 0.42s ease,
-    visibility 0.62s ease;
-  /* Fail-safe: never block interaction even if scripts are delayed */
-  animation: alifyPreloaderFailsafe 0.4s ease 1.9s forwards;
+/* Fail-safe: never block interaction even if scripts are delayed */
 }
 
 .alify-preloader.is-quick {
-  transition:
-    opacity 0.26s ease,
-    visibility 0.26s ease;
 }
 
 .alify-preloader.is-done {
@@ -67,13 +59,7 @@
   visibility: hidden;
 }
 
-@keyframes alifyPreloaderFailsafe {
-  to {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-  }
-}
+
 
 .alify-preloader-inner {
   display: flex;
@@ -103,7 +89,6 @@
   color: var(--color-primary);
   font-size: 1.04em;
   transform-origin: 50% 56%;
-  animation: alifyEyebrowTriSpin 3.6s linear infinite;
 }
 
 .alify-preloader-bar-wrap {
@@ -120,7 +105,6 @@
   background-color: var(--color-primary);
   transform-origin: left center;
   transform: scaleX(0.15);
-  transition: transform 0.12s linear;
 }
 
 .alify-preloader-meta {
@@ -161,13 +145,7 @@
     z-index: 1990;
     display: block;
     opacity: 0;
-    transition:
-      opacity 0.22s ease,
-      width 0.25s cubic-bezier(0.22, 1, 0.36, 1),
-      height 0.25s cubic-bezier(0.22, 1, 0.36, 1),
-      margin 0.25s cubic-bezier(0.22, 1, 0.36, 1),
-      background-color 0.25s ease;
-    will-change: transform;
+will-change: transform;
   }
 
   .alify-cursor-ring {
@@ -187,14 +165,7 @@
     align-items: center;
     justify-content: center;
     opacity: 0;
-    transition:
-      opacity 0.25s ease,
-      width 0.32s cubic-bezier(0.22, 1, 0.36, 1),
-      height 0.32s cubic-bezier(0.22, 1, 0.36, 1),
-      margin 0.32s cubic-bezier(0.22, 1, 0.36, 1),
-      background-color 0.28s ease,
-      border-color 0.28s ease;
-    will-change: transform;
+will-change: transform;
   }
 
   .alify-cursor-label {
@@ -206,10 +177,7 @@
     color: var(--color-white);
     opacity: 0;
     transform: scale(0.7);
-    transition:
-      opacity 0.22s ease,
-      transform 0.26s cubic-bezier(0.22, 1, 0.36, 1);
-    white-space: nowrap;
+white-space: nowrap;
     user-select: none;
   }
 
@@ -305,7 +273,6 @@
   border: 1px solid rgba(255, 255, 255, 0.24);
   box-shadow: 0 14px 32px rgba(15, 138, 115, 0.34);
   text-decoration: none;
-  transition: transform 0.26s ease, box-shadow 0.26s ease, background-color 0.26s ease;
 }
 
 .alify-dock-wa:hover {
@@ -330,13 +297,11 @@
   letter-spacing: 0.02em;
   box-shadow: 0 16px 36px rgba(12, 16, 24, 0.34);
   cursor: pointer;
-  transition: background-color 0.26s ease, border-color 0.26s ease, transform 0.26s ease, box-shadow 0.26s ease;
 }
 
 .alify-dock-call-btn i {
   color: var(--color-accent);
   font-size: 14px;
-  transition: color 0.26s ease;
 }
 
 .alify-dock-call-btn:hover {
@@ -369,7 +334,6 @@ body.is-bookcall-open {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.28s ease, visibility 0.28s ease;
 }
 
 .alify-book-modal.is-open {
@@ -398,7 +362,6 @@ body.is-bookcall-open {
   border: 1px solid rgba(15, 52, 115, 0.14);
   box-shadow: 0 34px 88px rgba(0, 0, 0, 0.46);
   transform: translateY(16px) scale(0.98);
-  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .alify-book-modal.is-open .alify-book-dialog {
@@ -421,7 +384,6 @@ body.is-bookcall-open {
   justify-content: center;
   font-size: 15px;
   cursor: pointer;
-  transition: background-color 0.24s ease, color 0.24s ease, border-color 0.24s ease;
 }
 
 .alify-book-close:hover {
@@ -559,7 +521,6 @@ body.is-bookcall-open {
   font-size: 13px;
   color: rgba(255, 255, 255, 0.84);
   text-decoration: none;
-  transition: color 0.22s ease;
 }
 
 .alify-book-direct-link i {
@@ -631,7 +592,6 @@ body.is-bookcall-open {
   background-color: var(--color-secondary);
   text-align: center;
   cursor: pointer;
-  transition: all 0.22s ease;
 }
 
 .alify-book-date-day {
@@ -684,7 +644,6 @@ body.is-bookcall-open {
   font-size: 12.5px;
   color: var(--color-black);
   cursor: pointer;
-  transition: all 0.22s ease;
 }
 
 .alify-book-slot-btn:hover {
@@ -718,7 +677,6 @@ body.is-bookcall-open {
   font-size: 12px;
   color: var(--color-black);
   cursor: pointer;
-  transition: all 0.22s ease;
 }
 
 .alify-book-channel-btn.is-active {
@@ -745,7 +703,6 @@ body.is-bookcall-open {
   font-size: 13.5px;
   color: var(--color-black);
   outline: none;
-  transition: border-color 0.22s ease, background-color 0.22s ease;
 }
 
 .alify-book-input:focus {
@@ -793,7 +750,6 @@ body.is-bookcall-open {
   justify-content: center;
   gap: 10px;
   cursor: pointer;
-  transition: background-color 0.26s ease, transform 0.26s ease, box-shadow 0.26s ease;
 }
 
 .alify-book-submit:hover {

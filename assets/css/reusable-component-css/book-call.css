@@ -194,7 +194,6 @@
   border: 1px solid rgba(15, 52, 115, 0.1);
   text-decoration: none;
   color: var(--color-black);
-  transition: border-color 0.24s ease, transform 0.24s ease;
 }
 
 .book-direct-item:hover {
@@ -297,7 +296,6 @@
   background-color: var(--color-secondary);
   text-align: left;
   cursor: pointer;
-  transition: all 0.24s ease;
 }
 
 .book-track-btn i {
@@ -368,7 +366,6 @@
   background-color: var(--color-secondary);
   text-align: center;
   cursor: pointer;
-  transition: all 0.22s ease;
 }
 
 .book-date-wk {
@@ -420,7 +417,6 @@
   font-size: 13px;
   color: var(--color-black);
   cursor: pointer;
-  transition: all 0.22s ease;
 }
 
 .book-slot-pill:hover {
@@ -454,7 +450,6 @@
   font-size: 13px;
   color: var(--color-black);
   cursor: pointer;
-  transition: all 0.22s ease;
 }
 
 .book-channel-pill.is-active {
@@ -480,7 +475,6 @@
   justify-content: center;
   gap: 10px;
   cursor: pointer;
-  transition: background-color 0.26s ease, transform 0.26s ease, box-shadow 0.26s ease;
 }
 
 .book-submit-btn:hover {
@@ -508,7 +502,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  transform: translate3d(0, var(--sec-parallax-y, 0px), 0) scale(1.06);
+  transform: scale(1.06);
   will-change: transform;
   pointer-events: none;
 }
@@ -551,7 +545,6 @@
   font-family: var(--font-garet);
   font-weight: 800;
   color: var(--color-accent);
-  animation: alifyEyebrowTriSpin 8s linear infinite;
 }
 
 .book-outcomes-title {

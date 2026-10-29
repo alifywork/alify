@@ -25,7 +25,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  transform: translate3d(0, var(--sec-parallax-y, 0px), 0) scale(1.06);
+  transform: scale(1.06);
   will-change: transform;
   pointer-events: none;
 }
@@ -89,8 +89,7 @@
   line-height: 1;
   color: var(--color-accent);
   transform-origin: 50% 56%;
-  animation: alifyEyebrowTriSpin 8s linear infinite;
-  flex-shrink: 0;
+flex-shrink: 0;
 }
 
 .faq-title {
@@ -173,7 +172,6 @@
   background-color: var(--color-white);
   border: 1px solid rgba(15, 52, 115, 0.1);
   border-radius: 20px;
-  transition: border-color 0.28s ease, box-shadow 0.28s ease;
 }
 
 .faq-item:hover {
@@ -218,7 +216,6 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  transition: background-color 0.28s ease, color 0.28s ease;
 }
 
 .faq-item.is-open .faq-num {
@@ -232,7 +229,6 @@
   font-size: 16.5px;
   line-height: 1.42;
   color: var(--color-black);
-  transition: color 0.25s ease;
 }
 
 .faq-item.is-open .faq-question-text,
@@ -251,7 +247,6 @@
   justify-content: center;
   font-size: 13px;
   flex-shrink: 0;
-  transition: background-color 0.28s ease, color 0.28s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .faq-item.is-open .faq-toggle-icon {
@@ -263,7 +258,6 @@
 .faq-answer-wrap {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows 0.34s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .faq-item.is-open .faq-answer-wrap {
@@ -380,7 +374,6 @@
   font-size: 14.5px;
   color: var(--color-black);
   outline: none;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .faq-hub-search-input:focus {
@@ -403,7 +396,6 @@
   font-size: 12.5px;
   letter-spacing: 0.03em;
   cursor: pointer;
-  transition: all 0.24s ease;
 }
 
 .faq-hub-expand-btn i {
@@ -436,7 +428,6 @@
   font-weight: 600;
   font-size: 12.5px;
   cursor: pointer;
-  transition: all 0.24s ease;
 }
 
 .faq-hub-pill:hover {
@@ -515,7 +506,6 @@
   font-size: 14px;
   color: rgba(0, 0, 0, 0.78);
   text-decoration: none;
-  transition: background-color 0.22s ease, color 0.22s ease;
 }
 
 .faq-hub-cat-link i {
@@ -602,7 +592,6 @@
   justify-content: center;
   gap: 9px;
   cursor: pointer;
-  transition: transform 0.24s ease, box-shadow 0.24s ease;
 }
 
 .faq-hub-call-trigger:hover {
@@ -730,7 +719,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  transform: translate3d(0, var(--sec-parallax-y, 0px), 0) scale(1.06);
+  transform: scale(1.06);
   will-change: transform;
   pointer-events: none;
 }
@@ -773,7 +762,6 @@
   font-family: var(--font-garet);
   font-weight: 800;
   color: var(--color-accent);
-  animation: alifyEyebrowTriSpin 8s linear infinite;
 }
 
 .faq-hub-cta-title {
@@ -819,7 +807,6 @@
   font-weight: 600;
   font-size: 13.5px;
   text-decoration: none;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .faq-hub-wa-btn:hover {
