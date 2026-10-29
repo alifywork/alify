@@ -75,13 +75,14 @@ function alify_register_cf_options_pages() {
 	alify_add_options_page( 'alify_home', __( 'Home Page Content', 'alify' ) );
 	alify_add_options_page( 'alify_archives', __( 'Archive & Hub Pages', 'alify' ) );
 	alify_add_options_page( 'alify_pages', __( 'Pricing & About Us', 'alify' ) );
+	alify_add_options_page( 'alify_pricing_adv', __( 'Pricing Calc & Matrix', 'alify' ) );
 	alify_add_options_page( 'alify_conversion', __( 'Book Call, Legal & 404', 'alify' ) );
 	alify_add_options_page( 'alify_singles', __( 'Single Templates', 'alify' ) );
 }
 add_action( 'init', 'alify_register_cf_options_pages', 12 );
 
 /**
- * Add Top-Level `ALIFY Theme Settings` Shortcut Menu in WP Admin Linking to All 6 Options Screens.
+ * Add Top-Level `ALIFY Theme Settings` Shortcut Menu in WP Admin Linking to All 7 Options Screens.
  */
 function alify_register_cf_theme_settings_shortcut_menu() {
 	add_menu_page(
@@ -96,12 +97,13 @@ function alify_register_cf_theme_settings_shortcut_menu() {
 
 	if ( alify_has_cf_plugin() ) {
 		$links = array(
-			'site'             => __( 'Global, Header & Footer', 'alify' ),
-			'alify_home'       => __( 'Home Page Content', 'alify' ),
-			'alify_archives'   => __( 'Archive & Hub Pages', 'alify' ),
-			'alify_pages'      => __( 'Pricing & About Us', 'alify' ),
-			'alify_conversion' => __( 'Book Call, Legal & 404', 'alify' ),
-			'alify_singles'    => __( 'Single Templates', 'alify' ),
+			'site'              => __( 'Global, Header & Footer', 'alify' ),
+			'alify_home'        => __( 'Home Page Content', 'alify' ),
+			'alify_archives'    => __( 'Archive & Hub Pages', 'alify' ),
+			'alify_pages'       => __( 'Pricing & About Us', 'alify' ),
+			'alify_pricing_adv' => __( 'Pricing Calc & Matrix', 'alify' ),
+			'alify_conversion'  => __( 'Book Call, Legal & 404', 'alify' ),
+			'alify_singles'     => __( 'Single Templates', 'alify' ),
 		);
 		foreach ( $links as $slug => $label ) {
 			add_submenu_page(
@@ -219,6 +221,7 @@ function alify_register_all_cf_field_groups() {
 					),
 				)
 			),
+			alify_cf_field_def( 'svc_stack_pills', 'Single Page Tech Stack Pills (comma-separated)', 'text', array( 'desc' => 'Example: HTML5 & CSS3, GSAP ScrollTrigger, WordPress Custom CMS, Technical Schema' ) ),
 		),
 	);
 
@@ -254,9 +257,21 @@ function alify_register_all_cf_field_groups() {
 			alify_cf_field_def( 'proj_bg_img', 'Upload Primary Project Image (Media Library)', 'image' ),
 			alify_cf_field_def( 'proj_bg_url', 'Current / Fallback Project Image URL', 'text' ),
 
-			alify_cf_tab_def( 'proj_tab_story', 'Single Page Story (Brief & Craft)' ),
+			alify_cf_tab_def( 'proj_tab_story', 'Single Page Story (Brief, Craft & Outcomes)' ),
 			alify_cf_field_def( 'proj_brief', 'The Brief / Challenge', 'textarea' ),
 			alify_cf_field_def( 'proj_craft', 'Engineering & Design Craft', 'textarea' ),
+			alify_cf_field_def(
+				'proj_outcomes_rows',
+				'Single Page Verified Outcome Tiles (Repeater — 3 Metrics)',
+				'repeater',
+				array(
+					'max_rows'   => 4,
+					'sub_fields' => array(
+						alify_cf_field_def( 'val', 'Outcome Value (e.g. +184%)', 'text' ),
+						alify_cf_field_def( 'label', 'Outcome Label (e.g. Demo Pipeline)', 'text' ),
+					),
+				)
+			),
 
 			alify_cf_tab_def( 'proj_tab_gallery', 'Interactive Lightbox Gallery' ),
 			alify_cf_field_def( 'proj_gallery_media', 'Quick Multi-Image Lightbox Gallery Picker', 'gallery', array( 'max_items' => 24, 'desc' => 'Optional: drag-and-drop multiple Media Library images at once, or manage detailed screen tags/captions in the Repeater below.' ) ),
@@ -315,7 +330,7 @@ function alify_register_all_cf_field_groups() {
 				)
 			),
 
-			alify_cf_tab_def( 'ind_tab_single', 'Single Page Stats' ),
+			alify_cf_tab_def( 'ind_tab_single', 'Single Page Stats & Sector Challenges' ),
 			alify_cf_field_def(
 				'ind_stats_rows',
 				'Single Page Verified Stats (Repeater)',
@@ -325,6 +340,19 @@ function alify_register_all_cf_field_groups() {
 					'sub_fields' => array(
 						alify_cf_field_def( 'val', 'Stat Value', 'text' ),
 						alify_cf_field_def( 'label', 'Stat Label', 'text' ),
+					),
+				)
+			),
+			alify_cf_field_def(
+				'ind_challenges_rows',
+				'Sector Friction & ALIFY Fix Cards (Repeater — 3 Cards)',
+				'repeater',
+				array(
+					'max_rows'   => 4,
+					'sub_fields' => array(
+						alify_cf_field_def( 'badge', 'Friction Badge (e.g. KYC Friction)', 'text' ),
+						alify_cf_field_def( 'title', 'Challenge Heading', 'text' ),
+						alify_cf_field_def( 'fix', 'ALIFY Architectural Fix', 'textarea' ),
 					),
 				)
 			),
@@ -572,6 +600,19 @@ function alify_register_all_cf_field_groups() {
 			alify_cf_field_def( 'home_why_desc', 'Lead Paragraph', 'textarea', array( 'std' => 'Most agencies hand off static slides or bloated themes. ALIFY embeds a dedicated senior squad of strategists, system designers, and engineers to ship sub-second digital flagships built to dominate your category.' ) ),
 			alify_cf_field_def( 'home_why_image', 'Right-Column Studio Visual Image', 'image' ),
 			alify_cf_field_def( 'home_why_quote', 'Right-Column Studio Card Quote', 'textarea' ),
+			alify_cf_field_def(
+				'home_why_pillars_rows',
+				'Why Partner With ALIFY — 4 Pillar Badges (Repeater)',
+				'repeater',
+				array(
+					'max_rows'   => 4,
+					'sub_fields' => array(
+						alify_cf_field_def( 'icon', 'Font Awesome Icon (e.g. fa-solid fa-users)', 'text' ),
+						alify_cf_field_def( 'title', 'Pillar Title', 'text' ),
+						alify_cf_field_def( 'sub', 'Pillar Subtitle', 'text' ),
+					),
+				)
+			),
 
 			alify_cf_tab_def( 'htab_sliders', 'Services, Industries, Work & Case Studies Headings' ),
 			alify_cf_field_def( 'home_srv_eyebrow', 'Services Section — Eyebrow', 'text', array( 'std' => 'Core Capabilities' ) ),
@@ -693,10 +734,39 @@ function alify_register_all_cf_field_groups() {
 			alify_cf_field_def( 'arch_abt_story_p2', 'Studio Story Paragraph 2', 'textarea' ),
 			alify_cf_field_def( 'arch_abt_story_img', 'Studio Story Visual Image', 'image' ),
 			alify_cf_field_def( 'arch_abt_story_quote', 'Studio Story Card Quote', 'textarea' ),
+			alify_cf_field_def( 'arch_abt_founder_name', 'Founder Signature Name', 'text', array( 'std' => 'Zayd Alvi & Senior Partners' ) ),
+			alify_cf_field_def( 'arch_abt_founder_role', 'Founder Signature Role', 'text', array( 'std' => 'ALIFY Product & Design Leadership' ) ),
+			alify_cf_field_def(
+				'about_story_pillars_rows',
+				'About Story — 4 Pillar Badges (Repeater)',
+				'repeater',
+				array(
+					'max_rows'   => 4,
+					'sub_fields' => array(
+						alify_cf_field_def( 'icon', 'Font Awesome Icon (e.g. fa-solid fa-bolt)', 'text' ),
+						alify_cf_field_def( 'title', 'Pillar Title', 'text' ),
+						alify_cf_field_def( 'sub', 'Pillar Subtitle', 'text' ),
+					),
+				)
+			),
 			alify_cf_field_def( 'arch_abt_mission_title', 'Our Mission Card Heading', 'text', array( 'std' => 'Eliminate the Gap Between Aesthetic Craft and Revenue Performance.' ) ),
 			alify_cf_field_def( 'arch_abt_mission_text', 'Our Mission Card Text', 'textarea' ),
 			alify_cf_field_def( 'arch_abt_vision_title', 'Our Vision Card Heading', 'text', array( 'std' => 'Set the Global Benchmark for Token-Driven Product Engineering.' ) ),
 			alify_cf_field_def( 'arch_abt_vision_text', 'Our Vision Card Text', 'textarea' ),
+			alify_cf_field_def(
+				'about_principles_rows',
+				'About Operating Principles — 4 Bento Cards (Repeater)',
+				'repeater',
+				array(
+					'max_rows'   => 4,
+					'sub_fields' => array(
+						alify_cf_field_def( 'icon', 'Font Awesome Icon (e.g. fa-solid fa-gem)', 'text' ),
+						alify_cf_field_def( 'num', 'Card Number (e.g. 01)', 'text' ),
+						alify_cf_field_def( 'title', 'Principle Title', 'text' ),
+						alify_cf_field_def( 'desc', 'Principle Description', 'textarea' ),
+					),
+				)
+			),
 
 			alify_cf_tab_def( 'ptab_about_team', 'About Milestones & Leadership Repeaters' ),
 			alify_cf_field_def(
@@ -726,6 +796,48 @@ function alify_register_all_cf_field_groups() {
 						alify_cf_field_def( 'name', 'Leader Name', 'text' ),
 						alify_cf_field_def( 'role', 'Leader Role / Title', 'text' ),
 						alify_cf_field_def( 'bio', 'Leader Bio', 'textarea' ),
+					),
+				)
+			),
+		),
+	);
+
+	// 12B. Pricing Scope Calculator Modules & Comparison Matrix (`options:alify_pricing_adv`)
+	$groups[] = array(
+		'key'      => 'alify_opt_group_pricing_adv',
+		'title'    => 'Pricing Interactive Scope Calculator Modules & Comparison Matrix',
+		'location' => 'options:alify_pricing_adv',
+		'fields'   => array(
+			alify_cf_tab_def( 'patab_calc', 'Scope Calculator Capability Modules' ),
+			alify_cf_field_def(
+				'pricing_calc_modules_rows',
+				'Calculator Capability Modules (Repeater — Live USD & Sprint Weeks)',
+				'repeater',
+				array(
+					'max_rows'   => 12,
+					'sub_fields' => array(
+						alify_cf_field_def( 'icon', 'Font Awesome Icon (e.g. fa-solid fa-code)', 'text' ),
+						alify_cf_field_def( 'title', 'Module Name (e.g. Custom Web Platform)', 'text' ),
+						alify_cf_field_def( 'cost', 'Base Investment USD (Numeric, e.g. 3200)', 'number' ),
+						alify_cf_field_def( 'weeks', 'Base Sprint Weeks (Numeric, e.g. 2)', 'number' ),
+						alify_cf_field_def( 'price_label', 'Badge Label (e.g. +$3.2k)', 'text' ),
+						alify_cf_field_def( 'checked', 'Checked by Default?', 'toggle' ),
+					),
+				)
+			),
+
+			alify_cf_tab_def( 'patab_matrix', 'Deliverable Comparison Matrix Rows' ),
+			alify_cf_field_def(
+				'pricing_matrix_rows',
+				'Comparison Matrix Table Rows (Set Tier 1 = GROUP for Section Subheader)',
+				'repeater',
+				array(
+					'max_rows'   => 20,
+					'sub_fields' => array(
+						alify_cf_field_def( 'feature', 'Deliverable / Section Group Title', 'text' ),
+						alify_cf_field_def( 'tier1', 'Launch Sprint (`Included`, `—`, `GROUP`, or custom text)', 'text' ),
+						alify_cf_field_def( 'tier2', 'Scale Ecosystem (`Included`, `—`, or custom text)', 'text' ),
+						alify_cf_field_def( 'tier3', 'Enterprise Squad (`Included`, `—`, or custom text)', 'text' ),
 					),
 				)
 			),
@@ -871,7 +983,7 @@ function alify_get_cf_group_definitions_for_json() {
  * 3. Pre-Seed Initial Repeater Rows on Options Pages Once (So Repeaters Open Pre-Populated!).
  */
 function alify_seed_cf_default_option_repeaters_once() {
-	if ( 'done' === get_option( 'alify_cf_default_repeaters_seeded_v2' ) ) {
+	if ( 'done' === get_option( 'alify_cf_default_repeaters_seeded_v3' ) ) {
 		return;
 	}
 
@@ -884,6 +996,14 @@ function alify_seed_cf_default_option_repeaters_once() {
 			array( 'num' => '150', 'suffix' => '+', 'label' => 'Projects Delivered' ),
 			array( 'num' => '98', 'suffix' => '%', 'label' => 'Client Retention' ),
 			array( 'num' => '12', 'suffix' => '+', 'label' => 'Global Markets' ),
+		);
+	}
+	if ( empty( $home_opt['home_why_pillars_rows'] ) ) {
+		$home_opt['home_why_pillars_rows'] = array(
+			array( 'icon' => 'fa-solid fa-users', 'title' => '100% Principal-Led', 'sub' => 'Direct access to senior product architects' ),
+			array( 'icon' => 'fa-solid fa-gauge-high', 'title' => '99+ Speed Score', 'sub' => 'Zero bloated frameworks or laggy layouts' ),
+			array( 'icon' => 'fa-solid fa-calendar-check', 'title' => 'Weekly Live Demos', 'sub' => 'Predictable sprints with staging links' ),
+			array( 'icon' => 'fa-solid fa-chart-line', 'title' => 'Conversion-First', 'sub' => 'Every screen tied to pipeline & ROI' ),
 		);
 	}
 	if ( empty( $home_opt['home_proc_rows'] ) ) {
@@ -984,7 +1104,79 @@ function alify_seed_cf_default_option_repeaters_once() {
 			array( 'prefix' => '', 'num' => '12', 'suffix' => '+', 'title' => 'Global Markets Served', 'desc' => 'Seamless async & live collaboration across North America, Europe & MENA.' ),
 		);
 	}
+	if ( empty( $pages_opt['about_story_pillars_rows'] ) ) {
+		$pages_opt['about_story_pillars_rows'] = array(
+			array( 'icon' => 'fa-solid fa-user-check', 'title' => 'Zero Junior Handoffs', 'sub' => 'The principals you meet lead the build' ),
+			array( 'icon' => 'fa-solid fa-cubes', 'title' => 'Tokenized Systems', 'sub' => '1:1 parity from Figma to production code' ),
+			array( 'icon' => 'fa-solid fa-bolt', 'title' => '99+ Core Web Vitals', 'sub' => 'Engineered without bloated page builders' ),
+			array( 'icon' => 'fa-solid fa-earth-americas', 'title' => '12+ Global Markets', 'sub' => 'Serving North America, Europe, UK & MENA' ),
+		);
+	}
+	if ( empty( $pages_opt['about_principles_rows'] ) ) {
+		$pages_opt['about_principles_rows'] = array(
+			array(
+				'icon'  => 'fa-solid fa-compass-drafting',
+				'num'   => '01',
+				'title' => 'Clarity Before Pixels',
+				'desc'  => 'We diagnose buyer psychology, funnel bottlenecks, and competitive positioning before opening Figma — ensuring every layout solves a real commercial problem.',
+			),
+			array(
+				'icon'  => 'fa-solid fa-layer-group',
+				'num'   => '02',
+				'title' => 'Systems Over One-Offs',
+				'desc'  => 'Every project ships with documented typography, color tokens, and reusable component states so your internal team can launch new campaigns in hours.',
+			),
+			array(
+				'icon'  => 'fa-solid fa-gauge-high',
+				'num'   => '03',
+				'title' => 'Speed Is a Brand Feature',
+				'desc'  => 'Sub-second load times, clean semantic HTML, and GPU-accelerated 60fps GSAP motion build immediate buyer trust and compound organic rankings.',
+			),
+			array(
+				'icon'  => 'fa-solid fa-handshake-simple',
+				'num'   => '04',
+				'title' => 'Radical Sprint Transparency',
+				'desc'  => 'Live weekly staging links, async Loom walkthroughs, and direct Slack access to senior leads — never black-box agency silence.',
+			),
+		);
+	}
 	update_option( 'alify_cf_options_alify_pages', $pages_opt );
+
+	$padv_opt = get_option( 'alify_cf_options_alify_pricing_adv', array() );
+	if ( ! is_array( $padv_opt ) ) {
+		$padv_opt = array();
+	}
+	if ( empty( $padv_opt['pricing_calc_modules_rows'] ) ) {
+		$padv_opt['pricing_calc_modules_rows'] = array(
+			array( 'icon' => 'fa-solid fa-code', 'title' => 'Custom Web Platform', 'cost' => 3200, 'weeks' => 2, 'price_label' => '+$3.2k', 'checked' => '1' ),
+			array( 'icon' => 'fa-solid fa-pen-nib', 'title' => 'UI/UX & Brand System', 'cost' => 2200, 'weeks' => 2, 'price_label' => '+$2.2k', 'checked' => '1' ),
+			array( 'icon' => 'fa-solid fa-cubes', 'title' => 'Tokenized Figma Kit', 'cost' => 1800, 'weeks' => 1, 'price_label' => '+$1.8k', 'checked' => '0' ),
+			array( 'icon' => 'fa-solid fa-wand-magic-sparkles', 'title' => 'GSAP Motion & 3D Depth', 'cost' => 1500, 'weeks' => 1, 'price_label' => '+$1.5k', 'checked' => '0' ),
+			array( 'icon' => 'fa-solid fa-cart-shopping', 'title' => 'E-Commerce / Checkout', 'cost' => 3600, 'weeks' => 2, 'price_label' => '+$3.6k', 'checked' => '0' ),
+			array( 'icon' => 'fa-solid fa-magnifying-glass-chart', 'title' => 'Technical SEO & Schema', 'cost' => 1400, 'weeks' => 1, 'price_label' => '+$1.4k', 'checked' => '0' ),
+			array( 'icon' => 'fa-solid fa-feather-pointed', 'title' => 'Conversion Copywriting', 'cost' => 1200, 'weeks' => 1, 'price_label' => '+$1.2k', 'checked' => '0' ),
+			array( 'icon' => 'fa-solid fa-plug-circle-bolt', 'title' => 'CRM & API Integrations', 'cost' => 1900, 'weeks' => 1, 'price_label' => '+$1.9k', 'checked' => '0' ),
+		);
+	}
+	if ( empty( $padv_opt['pricing_matrix_rows'] ) ) {
+		$padv_opt['pricing_matrix_rows'] = array(
+			array( 'feature' => '01 · Strategy, Brand & UX Systems', 'tier1' => 'GROUP', 'tier2' => '', 'tier3' => '' ),
+			array( 'feature' => 'Stakeholder Positioning & Funnel Blueprint', 'tier1' => 'Included', 'tier2' => 'Included', 'tier3' => 'Included' ),
+			array( 'feature' => 'Custom UI Screens & Templates', 'tier1' => 'Up to 8 Pages', 'tier2' => 'Up to 18 Pages', 'tier3' => 'Unlimited / Multi-App' ),
+			array( 'feature' => 'Tokenized Figma Design System & UI Kit', 'tier1' => 'Core Style Guide', 'tier2' => 'Full Token Library', 'tier3' => 'Multi-Brand Governance' ),
+			array( 'feature' => 'Conversion Copywriting & Messaging', 'tier1' => 'Hero & CTA Polish', 'tier2' => 'Full Funnel Copy', 'tier3' => 'Dedicated Senior Strategist' ),
+			array( 'feature' => '02 · Full-Stack Engineering & Motion', 'tier1' => 'GROUP', 'tier2' => '', 'tier3' => '' ),
+			array( 'feature' => 'Clean Semantic Frontend & Headless / WP CMS', 'tier1' => 'Included', 'tier2' => 'Included', 'tier3' => 'Custom Stack + APIs' ),
+			array( 'feature' => 'GSAP ScrollTrigger & Parallax Storytelling', 'tier1' => 'Signature Reveals', 'tier2' => 'Bespoke Choreography', 'tier3' => 'Interactive Product Demos' ),
+			array( 'feature' => 'Core Web Vitals Benchmark Guarantee', 'tier1' => '95+ Score', 'tier2' => '99+ Score', 'tier3' => '99+ + Edge CDN' ),
+			array( 'feature' => 'CRM, Analytics & Lead Routing Integration', 'tier1' => 'GA4 + 1 CRM', 'tier2' => 'Multi-Step Attribution', 'tier3' => 'Custom Webhooks & SSO' ),
+			array( 'feature' => '03 · Governance, SEO & Post-Launch', 'tier1' => 'GROUP', 'tier2' => '', 'tier3' => '' ),
+			array( 'feature' => 'Technical SEO, Schema.org & OpenGraph', 'tier1' => 'Included', 'tier2' => 'Included', 'tier3' => 'Programmatic SEO' ),
+			array( 'feature' => 'Post-Launch Hypercare & CRO Testing', 'tier1' => '14-Day Hypercare', 'tier2' => '30-Day CRO Sprint', 'tier3' => 'Continuous Dedicated Pod' ),
+			array( 'feature' => 'Direct Slack Channel & Weekly Live Demos', 'tier1' => 'Included', 'tier2' => 'Included', 'tier3' => 'Priority SLA (< 2hr)' ),
+		);
+	}
+	update_option( 'alify_cf_options_alify_pricing_adv', $padv_opt );
 
 	$conv_opt = get_option( 'alify_cf_options_alify_conversion', array() );
 	if ( ! is_array( $conv_opt ) ) {
@@ -1033,7 +1225,7 @@ function alify_seed_cf_default_option_repeaters_once() {
 	}
 	update_option( 'alify_cf_options_alify_conversion', $conv_opt );
 
-	update_option( 'alify_cf_default_repeaters_seeded_v2', 'done' );
+	update_option( 'alify_cf_default_repeaters_seeded_v3', 'done' );
 }
 
 /**
@@ -1097,11 +1289,22 @@ function alify_prepopulate_post_cf_from_starter( $post_id ) {
 			);
 		}
 		$set( 'svc_deliv_rows', $delivs );
+		$set( 'svc_stack_pills', get_post_meta( $post_id, '_alify_svc_stack', true ) );
 	} elseif ( 'alify_project' === $pt ) {
 		foreach ( array( 'num', 'short_title', 'client', 'sector', 'filter', 'year', 'sprint', 'metric', 'chips', 'case_slug', 'brief', 'craft' ) as $k ) {
 			$set( 'proj_' . $k, get_post_meta( $post_id, '_alify_proj_' . $k, true ) );
 		}
 		$set( 'proj_bg_url', get_post_meta( $post_id, '_alify_proj_bg_image', true ) );
+
+		$o_rows = array();
+		foreach ( alify_split_lines_clean( get_post_meta( $post_id, '_alify_proj_outcomes', true ) ) as $ln ) {
+			$p        = array_map( 'trim', explode( '|', $ln, 2 ) );
+			$o_rows[] = array(
+				'val'   => isset( $p[0] ) ? $p[0] : '',
+				'label' => isset( $p[1] ) ? $p[1] : '',
+			);
+		}
+		$set( 'proj_outcomes_rows', $o_rows );
 
 		$g_rows = array();
 		foreach ( alify_split_lines_clean( get_post_meta( $post_id, '_alify_proj_gallery', true ) ) as $ln ) {
@@ -1136,6 +1339,17 @@ function alify_prepopulate_post_cf_from_starter( $post_id ) {
 			);
 		}
 		$set( 'ind_stats_rows', $stats );
+
+		$chals = array();
+		foreach ( alify_split_lines_clean( get_post_meta( $post_id, '_alify_ind_challenges', true ) ) as $ln ) {
+			$p       = array_map( 'trim', explode( '|', $ln, 3 ) );
+			$chals[] = array(
+				'badge' => isset( $p[0] ) ? $p[0] : '',
+				'title' => isset( $p[1] ) ? $p[1] : '',
+				'fix'   => isset( $p[2] ) ? $p[2] : '',
+			);
+		}
+		$set( 'ind_challenges_rows', $chals );
 	} elseif ( 'alify_case_study' === $pt ) {
 		foreach ( array( 'filter', 'tab_index', 'client_short', 'client_kicker', 'sector_badge', 'duration_badge', 'bottleneck', 'architecture', 'chips', 'quote', 'quote_author' ) as $k ) {
 			$set( 'cs_' . $k, get_post_meta( $post_id, '_alify_cs_' . $k, true ) );
@@ -1259,12 +1473,25 @@ function alify_sync_cf_post_save_to_theme_meta( $post_id, $post ) {
 			}
 		}
 		update_post_meta( $post_id, '_alify_svc_deliverables', implode( "\n", $dlv ) );
+		$stk = alify_get_field( 'svc_stack_pills', $post_id );
+		if ( null !== $stk ) {
+			update_post_meta( $post_id, '_alify_svc_stack', $stk );
+		}
 	} elseif ( 'alify_project' === $pt ) {
 		foreach ( array( 'num', 'short_title', 'client', 'sector', 'filter', 'year', 'sprint', 'metric', 'chips', 'case_slug', 'brief', 'craft' ) as $k ) {
 			$v = alify_get_field( 'proj_' . $k, $post_id );
 			if ( null !== $v ) {
 				update_post_meta( $post_id, '_alify_proj_' . $k, $v );
 			}
+		}
+		$outc = array();
+		foreach ( alify_get_rows( 'proj_outcomes_rows', $post_id ) as $r ) {
+			if ( ! empty( $r['val'] ) || ! empty( $r['label'] ) ) {
+				$outc[] = trim( (string) ( $r['val'] ?? '' ) ) . ' | ' . trim( (string) ( $r['label'] ?? '' ) );
+			}
+		}
+		if ( ! empty( $outc ) ) {
+			update_post_meta( $post_id, '_alify_proj_outcomes', implode( "\n", $outc ) );
 		}
 		$bg = alify_cf_resolve_img( alify_get_field( 'proj_bg_img', $post_id ), alify_get_field( 'proj_bg_url', $post_id ) );
 		if ( '' !== $bg ) {
@@ -1333,6 +1560,16 @@ function alify_sync_cf_post_save_to_theme_meta( $post_id, $post ) {
 			}
 		}
 		update_post_meta( $post_id, '_alify_ind_stats', implode( "\n", $sts ) );
+
+		$chals = array();
+		foreach ( alify_get_rows( 'ind_challenges_rows', $post_id ) as $r ) {
+			if ( ! empty( $r['title'] ) ) {
+				$chals[] = trim( (string) ( $r['badge'] ?? 'Sector Challenge' ) ) . ' | ' . trim( (string) $r['title'] ) . ' | ' . trim( (string) ( $r['fix'] ?? '' ) );
+			}
+		}
+		if ( ! empty( $chals ) ) {
+			update_post_meta( $post_id, '_alify_ind_challenges', implode( "\n", $chals ) );
+		}
 	} elseif ( 'alify_case_study' === $pt ) {
 		foreach ( array( 'filter', 'tab_index', 'client_short', 'client_kicker', 'sector_badge', 'duration_badge', 'bottleneck', 'architecture', 'chips', 'quote', 'quote_author' ) as $k ) {
 			$v = alify_get_field( 'cs_' . $k, $post_id );

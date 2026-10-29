@@ -1,0 +1,1376 @@
+# Copyright (C) 2026 ALIFY Studio
+# This file is distributed under the GNU General Public License v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: ALIFY 1.0.0\n"
+"Report-Msgid-Bugs-To: info@alify.site\n"
+"POT-Creation-Date: 2026-10-29 00:00+0500\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2026-MO-DA HO:MI+ZONE\n"
+"Last-Translator: ALIFY Studio <info@alify.site>\n"
+"Language-Team: ALIFY Studio <info@alify.site>\n"
+"X-Domain: alify\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: comments.php:37
+msgid "%1$s at %2$s"
+msgstr ""
+
+#: comments.php:53
+msgid "Reply"
+msgstr ""
+
+#: comments.php:62
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: comments.php:102
+msgid "Comments are closed for this article."
+msgstr ""
+
+#: comments.php:110
+msgid "Join the Discussion"
+msgstr ""
+
+#: comments.php:114
+msgid "Post Comment"
+msgstr ""
+
+#: home.php:23
+msgid "Blog Hero"
+msgstr ""
+
+#: home.php:27
+#: page.php:49
+#: search.php:31
+#: single.php:57
+msgid "Breadcrumb"
+msgstr ""
+
+#: home.php:32
+#: page.php:54
+#: search.php:36
+#: single.php:62
+msgid "Home"
+msgstr ""
+
+#: home.php:40
+#: single.php:70
+msgid "Blog"
+msgstr ""
+
+#: home.php:59
+msgid "Perspectives on"
+msgstr ""
+
+#: home.php:60
+msgid "Design, Code"
+msgstr ""
+
+#: home.php:61
+msgid "& Digital Growth."
+msgstr ""
+
+#: home.php:72
+msgid "UI/UX Systems"
+msgstr ""
+
+#: home.php:76
+msgid "Frontend Architecture"
+msgstr ""
+
+#: home.php:80
+msgid "Conversion & SEO"
+msgstr ""
+
+#: home.php:105
+msgid "All Blog Articles"
+msgstr ""
+
+#: home.php:148
+#: single.php:412
+msgid "Read More"
+msgstr ""
+
+#: inc/ajax-forms.php:39
+msgid "Too many submissions in a short period. Please try again in a few minutes."
+msgstr ""
+
+#: inc/ajax-forms.php:60
+msgid "Please provide a valid email address."
+msgstr ""
+
+#: inc/alify-cf-integration.php:75
+#: inc/alify-cf-integration.php:101
+msgid "Home Page Content"
+msgstr ""
+
+#: inc/alify-cf-integration.php:76
+#: inc/alify-cf-integration.php:102
+msgid "Archive & Hub Pages"
+msgstr ""
+
+#: inc/alify-cf-integration.php:77
+#: inc/alify-cf-integration.php:103
+msgid "Pricing & About Us"
+msgstr ""
+
+#: inc/alify-cf-integration.php:78
+#: inc/alify-cf-integration.php:104
+msgid "Pricing Calc & Matrix"
+msgstr ""
+
+#: inc/alify-cf-integration.php:79
+#: inc/alify-cf-integration.php:105
+msgid "Book Call, Legal & 404"
+msgstr ""
+
+#: inc/alify-cf-integration.php:80
+#: inc/alify-cf-integration.php:106
+msgid "Single Templates"
+msgstr ""
+
+#: inc/alify-cf-integration.php:89
+#: inc/alify-cf-integration.php:90
+#: inc/alify-cf-integration.php:143
+msgid "ALIFY Theme Settings"
+msgstr ""
+
+#: inc/alify-cf-integration.php:100
+msgid "Global, Header & Footer"
+msgstr ""
+
+#: inc/alify-cf-integration.php:144
+msgid "Activate the \"Alify Custom Field\" plugin"
+msgstr ""
+
+#: inc/alify-cf-integration.php:144
+msgid "to unlock all 5 visual Options Pages (Global, Home, Archive Hubs, Pricing & About, Single Templates) and Repeater/Gallery editors on every post type."
+msgstr ""
+
+#: inc/cpt-meta-boxes.php:19
+msgid "ALIFY Service Card & Single Page Blueprint"
+msgstr ""
+
+#: inc/cpt-meta-boxes.php:32
+msgid "ALIFY Project Showcase & 6-Screen Lightbox Gallery"
+msgstr ""
+
+#: inc/cpt-meta-boxes.php:51
+msgid "ALIFY Industry Vertical Blueprint"
+msgstr ""
+
+#: inc/cpt-meta-boxes.php:63
+msgid "ALIFY Case Study Benchmarks, KPIs & Executive Quote"
+msgstr ""
+
+#: inc/cpt-meta-boxes.php:82
+msgid "ALIFY Client Testimonial Details (Post Title = Client Name, Editor = Quote)"
+msgstr ""
+
+#: inc/cpt-meta-boxes.php:93
+msgid "ALIFY FAQ Settings (Post Title = Question, Editor = Answer)"
+msgstr ""
+
+#: inc/cpt-meta-boxes.php:144
+#: inc/page-meta-boxes.php:72
+msgid "Choose Image"
+msgstr ""
+
+#: inc/cpt-meta-boxes.php:148
+msgid "+ Append Images from Media Library"
+msgstr ""
+
+#: inc/cpt-renderers.php:159
+msgid "View Service"
+msgstr ""
+
+#: inc/cpt-renderers.php:227
+msgid "Explore Sector"
+msgstr ""
+
+#: inc/cpt-renderers.php:306
+#: inc/cpt-renderers.php:339
+msgid "View Project"
+msgstr ""
+
+#: inc/cpt-renderers.php:391
+msgid "Verified Before vs. After Benchmark"
+msgstr ""
+
+#: inc/cpt-renderers.php:419
+msgid "01 · The Bottleneck"
+msgstr ""
+
+#: inc/cpt-renderers.php:425
+msgid "02 · ALIFY Architecture"
+msgstr ""
+
+#: inc/cpt-renderers.php:448
+msgid "Inspect Deliverables & Architecture"
+msgstr ""
+
+#: inc/cpt-renderers.php:472
+msgid "Read Case Study"
+msgstr ""
+
+#: inc/customizer.php:30
+msgid "Custom Logo Max Height (px)"
+msgstr ""
+
+#: inc/customizer.php:31
+msgid "Applies when an image logo is uploaded above (24–72px). Leave empty logo to keep signature △LIFY typography."
+msgstr ""
+
+#: inc/customizer.php:46
+msgid "ALIFY Studio Contact & Brand"
+msgstr ""
+
+#: inc/customizer.php:47
+msgid "Configure global agency email, WhatsApp, headquarters, header buttons, and social links."
+msgstr ""
+
+#: inc/customizer.php:94
+msgid "ALIFY Home Page Hero"
+msgstr ""
+
+#: inc/customizer.php:95
+msgid "Customize the Front Page centered hero headline, lead copy, background image, and animated KPI counters."
+msgstr ""
+
+#: inc/customizer.php:114
+msgid "Home Hero Background Image (Optional Override)"
+msgstr ""
+
+#: inc/customizer.php:164
+msgid "ALIFY Pricing Tiers & Billing"
+msgstr ""
+
+#: inc/customizer.php:165
+msgid "Edit the 3 studio pricing tiers on /pricing/. Both Fixed-Scope Sprint and Monthly Retainer switcher values sync automatically."
+msgstr ""
+
+#: inc/forms-manager.php:72
+msgid "Global Reusable Contact Form"
+msgstr ""
+
+#: inc/forms-manager.php:73
+msgid "Above Footer across Home & 16 Inner/Single Pages"
+msgstr ""
+
+#: inc/forms-manager.php:94
+msgid "Contact Us Page — Complete Inquiry Form"
+msgstr ""
+
+#: inc/forms-manager.php:95
+msgid "Contact Us Page (/contact/)"
+msgstr ""
+
+#: inc/forms-manager.php:116
+msgid "Start a Project — 4-Step Scope Builder"
+msgstr ""
+
+#: inc/forms-manager.php:117
+msgid "Start a Project Page (/start-project/)"
+msgstr ""
+
+#: inc/forms-manager.php:139
+msgid "Inner Hero — Quick Lead Form Card"
+msgstr ""
+
+#: inc/forms-manager.php:140
+msgid "Right Column of Inner Page Hero Banners"
+msgstr ""
+
+#: inc/forms-manager.php:162
+msgid "Book a Strategy Call — Scheduler & Global Modal"
+msgstr ""
+
+#: inc/forms-manager.php:163
+msgid "Book a Call Page (/book-call/) + Global Popup Modal"
+msgstr ""
+
+#: inc/forms-manager.php:183
+msgid "Footer — Studio Insights Newsletter"
+msgstr ""
+
+#: inc/forms-manager.php:184
+msgid "Global Site Footer (All Pages)"
+msgstr ""
+
+#: inc/forms-manager.php:228
+msgid "Custom Shortcode Form"
+msgstr ""
+
+#: inc/forms-manager.php:1114
+msgid "ALIFY Form Templates"
+msgstr ""
+
+#: inc/forms-manager.php:1115
+#: inc/leads-crm.php:238
+msgid "Form Templates"
+msgstr ""
+
+#: inc/forms-manager.php:1123
+msgid "ALIFY Forms Settings"
+msgstr ""
+
+#: inc/forms-manager.php:1124
+#: inc/leads-crm.php:239
+msgid "Forms Settings"
+msgstr ""
+
+#: inc/forms-manager.php:1329
+msgid "Shortcode Embed Form"
+msgstr ""
+
+#: inc/forms-manager.php:1372
+msgid "ALIFY Form Templates & Shortcode Studio"
+msgstr ""
+
+#: inc/forms-manager.php:1374
+msgid "Customize all 6 built-in website forms, copy `[alify_form id=\"...\"]` shortcodes for any page/post, or create custom forms."
+msgstr ""
+
+#: inc/forms-manager.php:1378
+#: inc/forms-manager.php:1733
+msgid "← Leads Inbox"
+msgstr ""
+
+#: inc/forms-manager.php:1379
+msgid "Global Forms Settings ⚙"
+msgstr ""
+
+#: inc/forms-manager.php:1384
+msgid "Form template updated! Live website forms now reflect your changes immediately."
+msgstr ""
+
+#: inc/forms-manager.php:1387
+msgid "Custom form template created! Copy its shortcode below to embed it on any WordPress page or post."
+msgstr ""
+
+#: inc/forms-manager.php:1390
+msgid "Form template restored to ALIFY factory defaults."
+msgstr ""
+
+#: inc/forms-manager.php:1393
+msgid "Custom form template deleted."
+msgstr ""
+
+#: inc/forms-manager.php:1401
+msgid "Active Form Templates"
+msgstr ""
+
+#: inc/forms-manager.php:1420
+msgid "leads"
+msgstr ""
+
+#: inc/forms-manager.php:1429
+msgid "+ Create New Form Template"
+msgstr ""
+
+#: inc/forms-manager.php:1431
+msgid "Create a reusable form template and embed it on any page or blog post via shortcode."
+msgstr ""
+
+#: inc/forms-manager.php:1436
+msgid "Template Name"
+msgstr ""
+
+#: inc/forms-manager.php:1440
+msgid "Card Design Style"
+msgstr ""
+
+#: inc/forms-manager.php:1442
+#: inc/forms-manager.php:1485
+msgid "Standard Studio Contact Card"
+msgstr ""
+
+#: inc/forms-manager.php:1443
+#: inc/forms-manager.php:1486
+msgid "Complete Multi-Field Inquiry Card"
+msgstr ""
+
+#: inc/forms-manager.php:1444
+#: inc/forms-manager.php:1487
+msgid "Compact Quick-Lead Card"
+msgstr ""
+
+#: inc/forms-manager.php:1447
+msgid "Create Form Template"
+msgstr ""
+
+#: inc/forms-manager.php:1457
+msgid "BUILT-IN THEME FORM"
+msgstr ""
+
+#: inc/forms-manager.php:1457
+msgid "CUSTOM SHORTCODE FORM"
+msgstr ""
+
+#: inc/forms-manager.php:1463
+msgid "Embed Shortcode (Any Page / Post):"
+msgstr ""
+
+#: inc/forms-manager.php:1476
+msgid "Template Admin Name"
+msgstr ""
+
+#: inc/forms-manager.php:1482
+msgid "Visual Card Layout"
+msgstr ""
+
+#: inc/forms-manager.php:1492
+msgid "CRM Lead Tag"
+msgstr ""
+
+#: inc/forms-manager.php:1495
+#: inc/leads-crm.php:24
+msgid "General Inquiry"
+msgstr ""
+
+#: inc/forms-manager.php:1496
+#: inc/leads-crm.php:23
+msgid "Project Brief"
+msgstr ""
+
+#: inc/forms-manager.php:1497
+#: inc/leads-crm.php:22
+msgid "Strategy Call"
+msgstr ""
+
+#: inc/forms-manager.php:1504
+msgid "Form Rendering Mode"
+msgstr ""
+
+#: inc/forms-manager.php:1507
+msgid "ALIFY Native Form (Saves to Leads CRM + Sends Email)"
+msgstr ""
+
+#: inc/forms-manager.php:1508
+msgid "External Plugin Shortcode / Custom HTML (CF7, WPForms, Fluent Forms)"
+msgstr ""
+
+#: inc/forms-manager.php:1509
+msgid "Disabled / Hidden"
+msgstr ""
+
+#: inc/forms-manager.php:1515
+msgid "External Shortcode / HTML (If Shortcode Mode)"
+msgstr ""
+
+#: inc/forms-manager.php:1518
+msgid "Used only when Form Rendering Mode above is set to \"External Plugin Shortcode / Custom HTML\"."
+msgstr ""
+
+#: inc/forms-manager.php:1524
+msgid "Contextual Page Headings"
+msgstr ""
+
+#: inc/forms-manager.php:1528
+msgid "Keep each inner page’s contextual card title/subtitle (uncheck to force the custom Title & Subtitle below on all pages)."
+msgstr ""
+
+#: inc/forms-manager.php:1536
+msgid "Badge / Eyebrow Text"
+msgstr ""
+
+#: inc/forms-manager.php:1544
+msgid "Form Heading / Title"
+msgstr ""
+
+#: inc/forms-manager.php:1552
+msgid "Email Input Placeholder"
+msgstr ""
+
+#: inc/forms-manager.php:1559
+msgid "Form Subtitle / Description"
+msgstr ""
+
+#: inc/forms-manager.php:1570
+msgid "Phone / WhatsApp Number"
+msgstr ""
+
+#: inc/forms-manager.php:1571
+msgid "Company / Organization"
+msgstr ""
+
+#: inc/forms-manager.php:1572
+msgid "Service / Capability Dropdown"
+msgstr ""
+
+#: inc/forms-manager.php:1573
+msgid "Estimated Budget Dropdown"
+msgstr ""
+
+#: inc/forms-manager.php:1574
+msgid "Subject Line"
+msgstr ""
+
+#: inc/forms-manager.php:1575
+msgid "Preferred Contact Channel Radios"
+msgstr ""
+
+#: inc/forms-manager.php:1576
+msgid "Project / Inquiry Details Textarea"
+msgstr ""
+
+#: inc/forms-manager.php:1577
+msgid "Mutual NDA Consent Checkbox"
+msgstr ""
+
+#: inc/forms-manager.php:1581
+msgid "Fields to Display"
+msgstr ""
+
+#: inc/forms-manager.php:1583
+msgid "Full Name & Work Email are always required. Choose additional fields below:"
+msgstr ""
+
+#: inc/forms-manager.php:1597
+msgid "Submit Button Label"
+msgstr ""
+
+#: inc/forms-manager.php:1605
+msgid "Confidentiality / Footer Note"
+msgstr ""
+
+#: inc/forms-manager.php:1614
+msgid "NDA Checkbox Text"
+msgstr ""
+
+#: inc/forms-manager.php:1623
+msgid "Services / Capabilities Options (1 per line)"
+msgstr ""
+
+#: inc/forms-manager.php:1632
+msgid "Budget Ranges (1 per line)"
+msgstr ""
+
+#: inc/forms-manager.php:1641
+msgid "Timeline Options (1 per line)"
+msgstr ""
+
+#: inc/forms-manager.php:1650
+msgid "Discussion Tracks (`Title | Description` per line)"
+msgstr ""
+
+#: inc/forms-manager.php:1656
+msgid "Available Time Slots (1 per line)"
+msgstr ""
+
+#: inc/forms-manager.php:1659
+msgid "Updates both the `/book-call/` page and the global Book a Strategy Call modal."
+msgstr ""
+
+#: inc/forms-manager.php:1663
+msgid "Meeting Channels (1 per line)"
+msgstr ""
+
+#: inc/forms-manager.php:1671
+msgid "Success Confirmation Message"
+msgstr ""
+
+#: inc/forms-manager.php:1679
+msgid "Custom Redirect URL Override (Optional)"
+msgstr ""
+
+#: inc/forms-manager.php:1682
+msgid "Leave blank to use the Global Thank-You Page URL from Forms Settings."
+msgstr ""
+
+#: inc/forms-manager.php:1688
+msgid "Notification Email Override (Optional)"
+msgstr ""
+
+#: inc/forms-manager.php:1691
+msgid "Leave blank to use Global Recipient Email(s) from Forms Settings. Supports comma-separated emails."
+msgstr ""
+
+#: inc/forms-manager.php:1698
+msgid "Save Form Template"
+msgstr ""
+
+#: inc/forms-manager.php:1700
+msgid "Reset to Default"
+msgstr ""
+
+#: inc/forms-manager.php:1702
+msgid "Delete Custom Template"
+msgstr ""
+
+#: inc/forms-manager.php:1727
+msgid "ALIFY Global Forms Settings"
+msgstr ""
+
+#: inc/forms-manager.php:1729
+msgid "Configure email notifications, visitor auto-responders, thank-you redirects, anti-spam rules, and CRM webhooks."
+msgstr ""
+
+#: inc/forms-manager.php:1734
+msgid "Edit Form Templates & Shortcodes →"
+msgstr ""
+
+#: inc/forms-manager.php:1739
+msgid "Forms Settings saved successfully."
+msgstr ""
+
+#: inc/forms-manager.php:1742
+msgid "Test email handed off to WordPress `wp_mail()` successfully! Check your recipient inbox (or SMTP plugin logs)."
+msgstr ""
+
+#: inc/forms-manager.php:1744
+msgid "`wp_mail()` returned false on this server. Configure an SMTP plugin (e.g. WP Mail SMTP / FluentSMTP) if running on localhost or restricted mail hosting."
+msgstr ""
+
+#: inc/forms-manager.php:1753
+msgid "1. Studio Admin Email Notifications"
+msgstr ""
+
+#: inc/forms-manager.php:1754
+msgid "Every form submission is always saved in ALIFY Leads & Calls. Configure instant email alerts below."
+msgstr ""
+
+#: inc/forms-manager.php:1759
+msgid "Admin Email Alerts"
+msgstr ""
+
+#: inc/forms-manager.php:1763
+msgid "Send email notification to studio team on every new inquiry, project brief, or strategy call"
+msgstr ""
+
+#: inc/forms-manager.php:1768
+msgid "Primary Recipient Email(s)"
+msgstr ""
+
+#: inc/forms-manager.php:1771
+msgid "Default: info@alify.site — separate multiple email addresses with commas."
+msgstr ""
+
+#: inc/forms-manager.php:1775
+msgid "CC / BCC Emails (Optional)"
+msgstr ""
+
+#: inc/forms-manager.php:1784
+msgid "Sender Name & From Email"
+msgstr ""
+
+#: inc/forms-manager.php:1793
+msgid "Admin Subject Line Template"
+msgstr ""
+
+#: inc/forms-manager.php:1796
+msgid "Available tags: `{ref}`, `{type_label}`, `{name}`, `{email}`, `{capability}`, `{budget}`, `{slot}`"
+msgstr ""
+
+#: inc/forms-manager.php:1800
+msgid "Email Delivery Test"
+msgstr ""
+
+#: inc/forms-manager.php:1802
+msgid "Save & Send Test Email Now"
+msgstr ""
+
+#: inc/forms-manager.php:1811
+msgid "2. Client Auto-Responder (Visitor Confirmation Email)"
+msgstr ""
+
+#: inc/forms-manager.php:1812
+msgid "Automatically email a branded confirmation receipt with Reference ID to the client."
+msgstr ""
+
+#: inc/forms-manager.php:1817
+msgid "Enable Auto-Responder"
+msgstr ""
+
+#: inc/forms-manager.php:1821
+msgid "Send automatic confirmation email to visitors when they submit an inquiry, brief, or strategy call"
+msgstr ""
+
+#: inc/forms-manager.php:1826
+msgid "Auto-Responder Subject"
+msgstr ""
+
+#: inc/forms-manager.php:1832
+msgid "Auto-Responder Message Body"
+msgstr ""
+
+#: inc/forms-manager.php:1835
+msgid "Available tags: `{name}`, `{email}`, `{ref}`, `{capability}`, `{budget}`, `{slot}`, `{studio_email}`, `{whatsapp}`"
+msgstr ""
+
+#: inc/forms-manager.php:1844
+msgid "3. Confirmation Behavior & Thank-You Redirect"
+msgstr ""
+
+#: inc/forms-manager.php:1849
+msgid "After Form Submission"
+msgstr ""
+
+#: inc/forms-manager.php:1852
+msgid "Redirect Visitor to Personalized Thank-You Page (Recommended)"
+msgstr ""
+
+#: inc/forms-manager.php:1853
+msgid "Stay on Same Page & Show Inline Confirmation Banner"
+msgstr ""
+
+#: inc/forms-manager.php:1858
+msgid "Global Thank-You Page URL"
+msgstr ""
+
+#: inc/forms-manager.php:1861
+msgid "Leave blank to automatically use your WordPress `/thank-you/` page permalink."
+msgstr ""
+
+#: inc/forms-manager.php:1865
+msgid "Reference Code Prefixes"
+msgstr ""
+
+#: inc/forms-manager.php:1869
+msgid "Inquiry / Project Prefix"
+msgstr ""
+
+#: inc/forms-manager.php:1873
+msgid "Strategy Call Prefix"
+msgstr ""
+
+#: inc/forms-manager.php:1885
+msgid "4. Anti-Spam Security & External CRM Webhook"
+msgstr ""
+
+#: inc/forms-manager.php:1890
+msgid "Honeypot Bot Trap"
+msgstr ""
+
+#: inc/forms-manager.php:1894
+msgid "Enable invisible honeypot spam protection on all ALIFY forms"
+msgstr ""
+
+#: inc/forms-manager.php:1899
+msgid "IP Rate Limit (Per 10 Mins)"
+msgstr ""
+
+#: inc/forms-manager.php:1902
+msgid "Max submissions per IP in 10 minutes (`0` = unlimited)."
+msgstr ""
+
+#: inc/forms-manager.php:1906
+msgid "Blocked Domains / Spam Words"
+msgstr ""
+
+#: inc/forms-manager.php:1909
+msgid "Comma-separated or one per line. Matching submissions are silently dropped."
+msgstr ""
+
+#: inc/forms-manager.php:1913
+msgid "CRM / Zapier / Slack Webhook"
+msgstr ""
+
+#: inc/forms-manager.php:1917
+msgid "Send real-time JSON POST payload to external Webhook URL on every new lead"
+msgstr ""
+
+#: inc/forms-manager.php:1927
+msgid "Save All Forms Settings"
+msgstr ""
+
+#: inc/leads-crm.php:25
+msgid "Newsletter"
+msgstr ""
+
+#: inc/leads-crm.php:31
+msgid "New"
+msgstr ""
+
+#: inc/leads-crm.php:32
+msgid "Contacted"
+msgstr ""
+
+#: inc/leads-crm.php:33
+msgid "Qualified"
+msgstr ""
+
+#: inc/leads-crm.php:34
+msgid "Closed / Won"
+msgstr ""
+
+#: inc/leads-crm.php:81
+msgid "Ref & Type"
+msgstr ""
+
+#: inc/leads-crm.php:82
+msgid "Status"
+msgstr ""
+
+#: inc/leads-crm.php:83
+msgid "Client & Direct Contact"
+msgstr ""
+
+#: inc/leads-crm.php:84
+msgid "Capability & Budget"
+msgstr ""
+
+#: inc/leads-crm.php:85
+msgid "Booked Slot / Source"
+msgstr ""
+
+#: inc/leads-crm.php:86
+msgid "Received"
+msgstr ""
+
+#: inc/leads-crm.php:106
+msgid "Inquiry"
+msgstr ""
+
+#: inc/leads-crm.php:179
+msgid "All Lead Types"
+msgstr ""
+
+#: inc/leads-crm.php:186
+msgid "All Statuses"
+msgstr ""
+
+#: inc/leads-crm.php:237
+msgid "Export Leads CSV"
+msgstr ""
+
+#: inc/leads-crm.php:331
+msgid "ALIFY Lead CRM Details, Quick Actions & Pipeline Status"
+msgstr ""
+
+#: inc/leads-crm.php:372
+msgid "Pipeline Status:"
+msgstr ""
+
+#: inc/leads-crm.php:381
+msgid "Reply via Email"
+msgstr ""
+
+#: inc/leads-crm.php:384
+msgid "Chat on WhatsApp"
+msgstr ""
+
+#: inc/leads-crm.php:403
+msgid "Internal Studio Team Notes (Private)"
+msgstr ""
+
+#: inc/leads-crm.php:404
+msgid "Add call summary, proposal link, or follow-up date..."
+msgstr ""
+
+#: inc/nav-walkers.php:304
+msgid "ALIFY Font Awesome Icon Class (Submenu)"
+msgstr ""
+
+#: inc/page-meta-boxes.php:23
+msgid "ALIFY Page Hero & Section Controls"
+msgstr ""
+
+#: inc/page-meta-boxes.php:41
+msgid "Hide Right-Side Hero Lead Form Card on this page"
+msgstr ""
+
+#: inc/page-meta-boxes.php:42
+msgid "Hide Reusable Testimonials Slider Section on this page"
+msgstr ""
+
+#: inc/page-meta-boxes.php:43
+msgid "Hide Reusable FAQs Section on this page"
+msgstr ""
+
+#: inc/page-meta-boxes.php:44
+msgid "Hide Reusable Blog Slider Section on this page"
+msgstr ""
+
+#: inc/page-meta-boxes.php:45
+msgid "Hide Bottom Reusable Contact Section on this page"
+msgstr ""
+
+#: inc/page-meta-boxes.php:50
+msgid "Leave any text/image field blank to keep the default ALIFY studio copy & artwork for this page. Setting a WordPress Featured Image in the right sidebar also overrides the page hero background."
+msgstr ""
+
+#: inc/page-meta-boxes.php:54
+msgid "Hero Eyebrow Badge Text"
+msgstr ""
+
+#: inc/page-meta-boxes.php:55
+msgid "e.g. Who We Are"
+msgstr ""
+
+#: inc/page-meta-boxes.php:59
+msgid "Hero Main H1 Heading (HTML <span> allowed for accent)"
+msgstr ""
+
+#: inc/page-meta-boxes.php:60
+msgid "e.g. Design-Driven Minds Building <span class=\"inner-hero-title-accent\">Iconic Digital</span> Brands."
+msgstr ""
+
+#: inc/page-meta-boxes.php:64
+msgid "Hero Subtitle / Description"
+msgstr ""
+
+#: inc/page-meta-boxes.php:65
+msgid "Optional custom hero lead paragraph..."
+msgstr ""
+
+#: inc/page-meta-boxes.php:69
+msgid "Hero Background Image URL Override"
+msgstr ""
+
+#: inc/page-meta-boxes.php:77
+msgid "Section Visibility Controls"
+msgstr ""
+
+#: inc/post-types.php:50
+msgid "ALIFY Leads & Calls"
+msgstr ""
+
+#: inc/post-types.php:51
+msgid "Lead"
+msgstr ""
+
+#: inc/post-types.php:65
+msgid "FAQ Pillars"
+msgstr ""
+
+#: inc/setup.php:43
+msgid "Primary Header Navigation"
+msgstr ""
+
+#: inc/setup.php:44
+msgid "Mobile Slide Drawer Navigation"
+msgstr ""
+
+#: inc/setup.php:45
+msgid "Footer Quick Links"
+msgstr ""
+
+#: inc/setup.php:46
+msgid "Footer Services Links"
+msgstr ""
+
+#: inc/setup.php:47
+msgid "Footer Bottom Legal Links"
+msgstr ""
+
+#: inc/smtp-mailer.php:126
+msgid "ALIFY SMTP Mailer & Email Diagnostics"
+msgstr ""
+
+#: inc/smtp-mailer.php:127
+msgid "SMTP Mailer"
+msgstr ""
+
+#: inc/smtp-mailer.php:212
+msgid "ALIFY Built-In SMTP Mailer & Live Delivery Diagnostics"
+msgstr ""
+
+#: inc/smtp-mailer.php:213
+msgid "Route all ALIFY Lead Alerts, Strategy Call Bookings, and Client Auto-Responders through authenticated SMTP — zero extra plugins required."
+msgstr ""
+
+#: inc/smtp-mailer.php:216
+msgid "SMTP configuration saved."
+msgstr ""
+
+#: inc/smtp-mailer.php:221
+msgid "Test Email Sent Successfully!"
+msgstr ""
+
+#: inc/smtp-mailer.php:221
+msgid "Delivered to %s."
+msgstr ""
+
+#: inc/smtp-mailer.php:225
+msgid "Test Email Failed."
+msgstr ""
+
+#: inc/smtp-mailer.php:225
+msgid "Check your SMTP host, port, and app password below."
+msgstr ""
+
+#: inc/smtp-mailer.php:231
+msgid "1. Authenticated SMTP Server Configuration"
+msgstr ""
+
+#: inc/smtp-mailer.php:234
+msgid "1-Click Provider Presets:"
+msgstr ""
+
+#: inc/smtp-mailer.php:246
+msgid "Enable Built-In SMTP"
+msgstr ""
+
+#: inc/smtp-mailer.php:248
+msgid "Route wp_mail() through authenticated SMTP"
+msgstr ""
+
+#: inc/smtp-mailer.php:252
+msgid "From Email"
+msgstr ""
+
+#: inc/smtp-mailer.php:255
+msgid "Force this From address across all WordPress emails"
+msgstr ""
+
+#: inc/smtp-mailer.php:259
+msgid "From Name"
+msgstr ""
+
+#: inc/smtp-mailer.php:263
+msgid "SMTP Host"
+msgstr ""
+
+#: inc/smtp-mailer.php:267
+msgid "SMTP Port & Encryption"
+msgstr ""
+
+#: inc/smtp-mailer.php:278
+msgid "SMTP Authentication"
+msgstr ""
+
+#: inc/smtp-mailer.php:279
+msgid "Use SMTP Username & Password"
+msgstr ""
+
+#: inc/smtp-mailer.php:282
+msgid "SMTP Username"
+msgstr ""
+
+#: inc/smtp-mailer.php:286
+msgid "SMTP Password / App Key"
+msgstr ""
+
+#: inc/smtp-mailer.php:289
+msgid "Encrypted at rest with AES-256 + WordPress auth salt. Leave masked to keep existing password."
+msgstr ""
+
+#: inc/smtp-mailer.php:293
+msgid "Save SMTP Configuration"
+msgstr ""
+
+#: inc/smtp-mailer.php:298
+msgid "2. Live Email Test & Error Log"
+msgstr ""
+
+#: inc/smtp-mailer.php:299
+msgid "Send a live HTML diagnostic email right now to verify your inbox receives ALIFY form submissions without landing in spam."
+msgstr ""
+
+#: inc/smtp-mailer.php:305
+msgid "Send Test Email To:"
+msgstr ""
+
+#: inc/smtp-mailer.php:308
+msgid "Send Live Test Email Now"
+msgstr ""
+
+#: inc/smtp-mailer.php:312
+msgid "Latest Mailer Diagnostic Trace"
+msgstr ""
+
+#: inc/smtp-mailer.php:319
+msgid "✓ Zero wp_mail() errors recorded."
+msgstr ""
+
+#: inc/starter-importer.php:395
+msgid "ALIFY Starter Content Importer"
+msgstr ""
+
+#: inc/starter-importer.php:396
+msgid "ALIFY Starter Import"
+msgstr ""
+
+#: inc/starter-importer.php:444
+msgid "ALIFY Studio — 1-Click Starter Content & Dynamic CMS Importer"
+msgstr ""
+
+#: inc/starter-importer.php:448
+msgid "Import Complete!"
+msgstr ""
+
+#: inc/starter-importer.php:448
+msgid "All 21 Pages, 5 Native CPT Menus, 8 Services, 6 Projects (+ Lightbox Galleries), 9 Industries, 6 Case Studies, 12 Testimonials, 20 FAQs, 6 Blog Posts, and WP Media Library Featured Images are now live and editable in WordPress Admin."
+msgstr ""
+
+#: inc/starter-importer.php:454
+msgid "Media Library Sync Complete!"
+msgstr ""
+
+#: inc/starter-importer.php:454
+msgid "%d starter items verified with native WordPress Media Library Featured Images and Alify Custom Field attachment IDs."
+msgstr ""
+
+#: inc/starter-importer.php:459
+msgid "Live WordPress Database Inventory"
+msgstr ""
+
+#: inc/starter-importer.php:460
+msgid "Import all ALIFY starter content into native WordPress Custom Post Types so you can add, edit, reorder, or delete any Service, Project, Lightbox Gallery, Industry, Case Study, Review, FAQ, or Blog Post directly from WP Admin."
+msgstr ""
+
+#: inc/starter-importer.php:465
+msgid "Content Type"
+msgstr ""
+
+#: inc/starter-importer.php:466
+msgid "Published in Database"
+msgstr ""
+
+#: inc/starter-importer.php:482
+msgid "Import / Sync All ALIFY Starter Content + Media Library (67 Items + 21 Pages + 5 Menus)"
+msgstr ""
+
+#: inc/starter-importer.php:485
+msgid "Re-Sync Featured Images & Media Library Only"
+msgstr ""
+
+#: inc/starter-importer.php:489
+msgid "Safe & idempotent: running this again only adds missing items by slug and never duplicates existing posts."
+msgstr ""
+
+#: search.php:17
+msgid "Studio Page"
+msgstr ""
+
+#: search.php:18
+msgid "Journal Article"
+msgstr ""
+
+#: search.php:19
+msgid "Service"
+msgstr ""
+
+#: search.php:20
+msgid "Client Project"
+msgstr ""
+
+#: search.php:21
+msgid "Industry Sector"
+msgstr ""
+
+#: search.php:22
+msgid "Case Study"
+msgstr ""
+
+#: search.php:23
+msgid "FAQ Answer"
+msgstr ""
+
+#: search.php:27
+#: search.php:43
+msgid "Search Results"
+msgstr ""
+
+#: search.php:56
+msgid "%d Matching Results Across ALIFY Studio"
+msgstr ""
+
+#: search.php:65
+msgid "Results for"
+msgstr ""
+
+#: search.php:68
+msgid "Explore"
+msgstr ""
+
+#: search.php:69
+msgid "ALIFY Studio"
+msgstr ""
+
+#: search.php:81
+msgid "Matching Content"
+msgstr ""
+
+#: search.php:125
+msgid "Explore Page"
+msgstr ""
+
+#: search.php:149
+msgid "No exact matches found for that search."
+msgstr ""
+
+#: search.php:151
+msgid "Try searching for a capability like \"Web Design\", \"Design Systems\", \"E-Commerce\", \"SEO\", or explore our core studio hubs below."
+msgstr ""
+
+#: search.php:155
+msgid "Explore Services"
+msgstr ""
+
+#: search.php:158
+msgid "Client Work"
+msgstr ""
+
+#: search.php:159
+msgid "20-FAQ Hub"
+msgstr ""
+
+#: search.php:160
+msgid "Book a Strategy Call"
+msgstr ""
+
+#: searchform.php:16
+msgid "Search ALIFY Studio:"
+msgstr ""
+
+#: searchform.php:26
+msgid "Search services, projects, case studies, FAQs or articles..."
+msgstr ""
+
+#: searchform.php:31
+#: single.php:238
+msgid "Search"
+msgstr ""
+
+#: single.php:48
+msgid "Insights written by the senior designers and full-stack engineers at ALIFY Studio — helping ambitious brands ship faster, sharper digital products."
+msgstr ""
+
+#: single.php:53
+msgid "Article Header"
+msgstr ""
+
+#: single.php:107
+msgid "Article Body"
+msgstr ""
+
+#: single.php:112
+msgid "Table of Contents"
+msgstr ""
+
+#: single.php:125
+msgid "Toggle"
+msgstr ""
+
+#: single.php:134
+msgid "Article Sections"
+msgstr ""
+
+#: single.php:137
+msgid "Article Overview"
+msgstr ""
+
+#: single.php:143
+msgid "Share Article"
+msgstr ""
+
+#: single.php:149
+msgid "Copy article link"
+msgstr ""
+
+#: single.php:158
+msgid "Share on LinkedIn"
+msgstr ""
+
+#: single.php:167
+msgid "Share on X"
+msgstr ""
+
+#: single.php:212
+msgid "Design Systems & Frontend Engineering"
+msgstr ""
+
+#: single.php:227
+msgid "Blog Sidebar"
+msgstr ""
+
+#: single.php:230
+msgid "Search Journal"
+msgstr ""
+
+#: single.php:235
+msgid "Search articles..."
+msgstr ""
+
+#: single.php:236
+msgid "Search blog articles"
+msgstr ""
+
+#: single.php:257
+msgid "Recent Articles"
+msgstr ""
+
+#: single.php:294
+msgid "Categories"
+msgstr ""
+
+#: single.php:340
+msgid "Related Blog Articles"
+msgstr ""
+
+#: single.php:352
+msgid "Related Blogs &"
+msgstr ""
+
+#: single.php:352
+msgid "Engineering Insights."
+msgstr ""
+
+#: single.php:356
+msgid "Explore more hands-on guides from ALIFY on design systems, 60fps GSAP motion, conversion UX, and high-speed frontend engineering."
+msgstr ""
+
+#: single.php:362
+msgid "Explore All Articles"
+msgstr ""
+
+#: template-parts/site-footer.php:118
+msgid "Subscribe to Studio Insights"
+msgstr ""
+
+#: template-parts/site-footer.php:125
+msgid "Enter your work email"
+msgstr ""
+
+#: template-parts/site-footer.php:126
+msgid "Work email address"
+msgstr ""
+
+#: template-parts/site-footer.php:132
+msgid "Subscribe"
+msgstr ""
+
+#: template-parts/site-footer.php:142
+msgid "Social Media Links"
+msgstr ""
+
+#: template-parts/site-footer.php:196
+msgid "Email Us"
+msgstr ""
+
+#: template-parts/site-footer.php:205
+msgid "WhatsApp"
+msgstr ""
+
+#: template-parts/site-footer.php:214
+msgid "Headquarters"
+msgstr ""
+
+#: template-parts/site-footer.php:248
+msgid "Scroll back to top"
+msgstr ""
+
+#: template-parts/site-header.php:30
+msgid "Primary Navigation"
+msgstr ""
+
+#: template-parts/site-header.php:61
+msgid "Open Menu"
+msgstr ""
+
+#: template-parts/site-header.php:79
+msgid "Mobile Navigation Drawer"
+msgstr ""
+
+#: template-parts/site-header.php:84
+msgid "Close Menu"
+msgstr ""
+
+#: template-parts/site-header.php:90
+msgid "Mobile Navigation"
+msgstr ""

@@ -12,6 +12,159 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
+ * Idempotently Import a Local Theme Image (`assets/images/...`) Into WordPress Media Library (`wp_posts` attachment).
+ * Never duplicates: tracks `_alify_source_asset` meta key on each imported attachment.
+ */
+function alify_import_theme_asset_to_media_library( $rel_or_url, $title = '', $parent_post_id = 0 ) {
+	$clean = trim( (string) $rel_or_url );
+	if ( '' === $clean ) {
+		return 0;
+	}
+	if ( defined( 'ALIFY_THEME_URI' ) && 0 === strpos( $clean, ALIFY_THEME_URI ) ) {
+		$clean = ltrim( substr( $clean, strlen( ALIFY_THEME_URI ) ), '/' );
+	}
+	$clean = ltrim( $clean, '/' );
+	if ( 0 !== strpos( $clean, 'assets/images/' ) || false !== strpos( $clean, '..' ) ) {
+		return 0;
+	}
+
+	$existing = get_posts(
+		array(
+			'post_type'      => 'attachment',
+			'post_status'    => 'inherit',
+			'posts_per_page' => 1,
+			'fields'         => 'ids',
+			'meta_key'       => '_alify_source_asset',
+			'meta_value'     => $clean,
+		)
+	);
+	if ( ! empty( $existing[0] ) ) {
+		return (int) $existing[0];
+	}
+
+	$src_file = ALIFY_THEME_DIR . '/' . $clean;
+	if ( ! file_exists( $src_file ) || ! is_readable( $src_file ) ) {
+		return 0;
+	}
+
+	require_once ABSPATH . 'wp-admin/includes/image.php';
+	require_once ABSPATH . 'wp-admin/includes/file.php';
+	require_once ABSPATH . 'wp-admin/includes/media.php';
+
+	$uploads = wp_upload_dir();
+	if ( ! empty( $uploads['error'] ) || empty( $uploads['path'] ) ) {
+		return 0;
+	}
+
+	$filename  = wp_unique_filename( $uploads['path'], basename( $src_file ) );
+	$dest_file = trailingslashit( $uploads['path'] ) . $filename;
+	if ( ! @copy( $src_file, $dest_file ) ) { // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
+		return 0;
+	}
+
+	$filetype = wp_check_filetype( $filename, null );
+	$att_data = array(
+		'guid'           => trailingslashit( $uploads['url'] ) . $filename,
+		'post_mime_type' => ! empty( $filetype['type'] ) ? $filetype['type'] : 'image/jpeg',
+		'post_title'     => '' !== $title ? sanitize_text_field( $title ) : preg_replace( '/\.[^.]+$/', '', basename( $src_file ) ),
+		'post_content'   => '',
+		'post_status'    => 'inherit',
+	);
+
+	$att_id = wp_insert_attachment( $att_data, $dest_file, (int) $parent_post_id );
+	if ( is_wp_error( $att_id ) || ! $att_id ) {
+		return 0;
+	}
+
+	$meta = wp_generate_attachment_metadata( $att_id, $dest_file );
+	wp_update_attachment_metadata( $att_id, $meta );
+	update_post_meta( $att_id, '_alify_source_asset', $clean );
+	if ( '' !== $title ) {
+		update_post_meta( $att_id, '_wp_attachment_image_alt', sanitize_text_field( $title ) );
+	}
+
+	return (int) $att_id;
+}
+
+/**
+ * Sync All Starter Featured Images (`_thumbnail_id`) & `Alify Custom Field` Attachment IDs Across CPTs & Blog Posts.
+ */
+function alify_sync_all_starter_media_library() {
+	if ( function_exists( 'wp_raise_memory_limit' ) ) {
+		wp_raise_memory_limit( 'admin' );
+	}
+
+	$map = array(
+		'alify_service'    => array( '_alify_svc_bg_image', '_alify_cf_svc_bg_img' ),
+		'alify_project'    => array( '_alify_proj_bg_image', '_alify_cf_proj_bg_img' ),
+		'alify_industry'   => array( '_alify_ind_bg_image', '_alify_cf_ind_bg_img' ),
+		'alify_case_study' => array( '_alify_cs_bg_image', '_alify_cf_cs_bg_img' ),
+		'post'             => array( '_alify_post_bg_image', '_alify_cf_post_bg_img' ),
+	);
+
+	$synced = 0;
+	foreach ( $map as $pt => $keys ) {
+		list( $src_meta, $cf_img_meta ) = $keys;
+		$posts                          = get_posts(
+			array(
+				'post_type'      => $pt,
+				'post_status'    => 'any',
+				'posts_per_page' => -1,
+			)
+		);
+		foreach ( $posts as $p ) {
+			$bg_path = get_post_meta( $p->ID, $src_meta, true );
+			$att_id  = alify_import_theme_asset_to_media_library( $bg_path, $p->post_title, $p->ID );
+			if ( $att_id > 0 ) {
+				if ( ! has_post_thumbnail( $p->ID ) ) {
+					set_post_thumbnail( $p->ID, $att_id );
+				}
+				if ( ! get_post_meta( $p->ID, $cf_img_meta, true ) ) {
+					update_post_meta( $p->ID, $cf_img_meta, $att_id );
+				}
+				$synced++;
+			}
+
+			// Project Lightbox Gallery Attachment IDs (`proj_gallery_media` + `proj_gallery_rows`)
+			if ( 'alify_project' === $pt ) {
+				$gal_raw = get_post_meta( $p->ID, '_alify_proj_gallery', true );
+				if ( ! empty( $gal_raw ) ) {
+					$lines   = array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', (string) $gal_raw ) ) );
+					$gal_ids = array();
+					$cf_rows = array();
+					foreach ( $lines as $ln ) {
+						$parts = array_map( 'trim', explode( '|', $ln, 4 ) );
+						$gpath = isset( $parts[0] ) ? $parts[0] : '';
+						$gtag  = isset( $parts[1] ) ? $parts[1] : 'Product Showcase';
+						$gttl  = isset( $parts[2] ) ? $parts[2] : $p->post_title;
+						$gcap  = isset( $parts[3] ) ? $parts[3] : '';
+						$gid   = alify_import_theme_asset_to_media_library( $gpath, $gttl, $p->ID );
+						if ( $gid > 0 ) {
+							$gal_ids[] = $gid;
+						}
+						$cf_rows[] = array(
+							'img_id'  => $gid > 0 ? $gid : '',
+							'url'     => $gpath,
+							'tag'     => $gtag,
+							'title'   => $gttl,
+							'caption' => $gcap,
+						);
+					}
+					if ( ! empty( $gal_ids ) && ! get_post_meta( $p->ID, '_alify_cf_proj_gallery_media', true ) ) {
+						update_post_meta( $p->ID, '_alify_cf_proj_gallery_media', $gal_ids );
+					}
+					if ( ! empty( $cf_rows ) ) {
+						update_post_meta( $p->ID, '_alify_cf_proj_gallery_rows', $cf_rows );
+					}
+				}
+			}
+		}
+	}
+
+	return $synced;
+}
+
+/**
  * Helper: Find existing post by slug & post_type or create a new one idempotently.
  */
 function alify_upsert_starter_post( $post_type, $slug, $title, $content, $excerpt, $order = 0 ) {
@@ -221,6 +374,15 @@ function alify_import_all_starter_content() {
 		}
 	}
 
+	// Auto-import starter visuals into WP Media Library & set Featured Images + CF Attachment IDs!
+	alify_sync_all_starter_media_library();
+
+	// Upgrade any legacy `?service=` custom menu links to native `alify_service` CPT permalinks!
+	delete_option( 'alify_menus_cpt_upgraded_v1' );
+	if ( function_exists( 'alify_upgrade_legacy_menu_query_links' ) ) {
+		alify_upgrade_legacy_menu_query_links();
+	}
+
 	flush_rewrite_rules();
 	return $imported_counts;
 }
@@ -251,6 +413,11 @@ function alify_handle_starter_import_submit() {
 		wp_safe_redirect( admin_url( 'themes.php?page=alify-starter-import&imported=1' ) );
 		exit;
 	}
+	if ( isset( $_POST['alify_run_media_sync'] ) && check_admin_referer( 'alify_starter_import_nonce' ) ) {
+		$media_cnt = alify_sync_all_starter_media_library();
+		wp_safe_redirect( admin_url( 'themes.php?page=alify-starter-import&media_synced=' . (int) $media_cnt ) );
+		exit;
+	}
 }
 add_action( 'admin_init', 'alify_handle_starter_import_submit' );
 
@@ -278,7 +445,13 @@ function alify_render_starter_import_page() {
 
 		<?php if ( isset( $_GET['imported'] ) ) : // phpcs:ignore WordPress.Security.NonceVerification.Recommended ?>
 			<div class="notice notice-success is-dismissible">
-				<p><strong><?php esc_html_e( 'Import Complete!', 'alify' ); ?></strong> <?php esc_html_e( 'All 21 Pages, 5 Menus, 8 Services, 6 Projects (+ Lightbox Galleries), 9 Industries, 6 Case Studies, 12 Testimonials, 20 FAQs, and 6 Blog Posts are now live and editable in WordPress Admin.', 'alify' ); ?></p>
+				<p><strong><?php esc_html_e( 'Import Complete!', 'alify' ); ?></strong> <?php esc_html_e( 'All 21 Pages, 5 Native CPT Menus, 8 Services, 6 Projects (+ Lightbox Galleries), 9 Industries, 6 Case Studies, 12 Testimonials, 20 FAQs, 6 Blog Posts, and WP Media Library Featured Images are now live and editable in WordPress Admin.', 'alify' ); ?></p>
+			</div>
+		<?php endif; ?>
+
+		<?php if ( isset( $_GET['media_synced'] ) ) : // phpcs:ignore WordPress.Security.NonceVerification.Recommended ?>
+			<div class="notice notice-success is-dismissible">
+				<p><strong><?php esc_html_e( 'Media Library Sync Complete!', 'alify' ); ?></strong> <?php echo esc_html( sprintf( __( '%d starter items verified with native WordPress Media Library Featured Images and Alify Custom Field attachment IDs.', 'alify' ), absint( $_GET['media_synced'] ) ) ); ?></p>
 			</div>
 		<?php endif; ?>
 
@@ -303,11 +476,13 @@ function alify_render_starter_import_page() {
 				</tbody>
 			</table>
 
-			<form method="post" action="">
+			<form method="post" action="" style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;">
 				<?php wp_nonce_field( 'alify_starter_import_nonce' ); ?>
-				<input type="hidden" name="alify_run_starter_import" value="1" />
-				<button type="submit" class="button button-primary button-hero">
-					<?php esc_html_e( 'Import / Sync All ALIFY Starter Content (67 Items + 21 Pages + 5 Menus)', 'alify' ); ?>
+				<button type="submit" name="alify_run_starter_import" value="1" class="button button-primary button-hero">
+					<?php esc_html_e( 'Import / Sync All ALIFY Starter Content + Media Library (67 Items + 21 Pages + 5 Menus)', 'alify' ); ?>
+				</button>
+				<button type="submit" name="alify_run_media_sync" value="1" class="button button-secondary button-hero">
+					<?php esc_html_e( 'Re-Sync Featured Images & Media Library Only', 'alify' ); ?>
 				</button>
 			</form>
 			<p class="description" style="margin-top:10px;">

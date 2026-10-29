@@ -335,6 +335,26 @@ function alify_apply_cf_options_overrides( $html, $part_slug = '' ) {
 				if ( '' !== $quote ) {
 					$b = alify_cf_set_tag_by_class( $b, 'p', 'about-visual-quote', '“' . $quote . '”', false );
 				}
+				$h_pillars = alify_cf_opt_rows( 'alify_home', 'home_why_pillars_rows' );
+				if ( ! empty( $h_pillars ) && function_exists( 'alify_replace_container_inner' ) ) {
+					$p_html = '';
+					foreach ( $h_pillars as $pr ) {
+						$ic  = ! empty( $pr['icon'] ) ? trim( (string) $pr['icon'] ) : 'fa-solid fa-circle-check';
+						$ttl = trim( (string) ( $pr['title'] ?? '' ) );
+						$sub = trim( (string) ( $pr['sub'] ?? '' ) );
+						if ( '' === $ttl ) {
+							continue;
+						}
+						$p_html .= '<div class="about-pillar-item">'
+							. '<span class="about-pillar-icon" aria-hidden="true"><i class="' . esc_attr( $ic ) . '"></i></span>'
+							. '<div><span class="about-pillar-title">' . esc_html( $ttl ) . '</span>'
+							. '<span class="about-pillar-sub">' . esc_html( $sub ) . '</span></div>'
+							. '</div>';
+					}
+					if ( '' !== $p_html ) {
+						$b = alify_replace_container_inner( $b, 'class="about-pillars-grid"', 'div', $p_html );
+					}
+				}
 				return $b;
 			}
 		);
@@ -502,23 +522,90 @@ function alify_apply_cf_options_overrides( $html, $part_slug = '' ) {
 			);
 		}
 
-		// Pricing Scope Calculator & Comparison Matrix Sections
+		// Pricing Scope Calculator & Comparison Matrix Sections (+ Dynamic Repeater Modules & Matrix Rows!)
 		$html = alify_cf_in_section(
 			$html,
 			'pricing-calc-section',
 			function ( $b ) {
-				$b = alify_cf_set_eyebrow( $b, alify_cf_opt_saved( 'alify_pages', 'prc_calc_eyebrow' ) );
-				$b = alify_cf_set_tag_by_class( $b, 'h2', 'pricing-sec-title', alify_cf_opt_saved( 'alify_pages', 'prc_calc_title' ) );
-				return alify_cf_set_tag_by_class( $b, 'p', 'pricing-sec-desc', alify_cf_opt_saved( 'alify_pages', 'prc_calc_desc' ), false );
+				$b        = alify_cf_set_eyebrow( $b, alify_cf_opt_saved( 'alify_pages', 'prc_calc_eyebrow' ) );
+				$b        = alify_cf_set_tag_by_class( $b, 'h2', 'pricing-sec-title', alify_cf_opt_saved( 'alify_pages', 'prc_calc_title' ) );
+				$b        = alify_cf_set_tag_by_class( $b, 'p', 'pricing-sec-desc', alify_cf_opt_saved( 'alify_pages', 'prc_calc_desc' ), false );
+				$mod_rows = alify_cf_opt_rows( 'alify_pricing_adv', 'pricing_calc_modules_rows' );
+				if ( ! empty( $mod_rows ) && function_exists( 'alify_replace_container_inner' ) ) {
+					$m_html = '';
+					foreach ( $mod_rows as $mr ) {
+						$ttl = trim( (string) ( $mr['title'] ?? '' ) );
+						if ( '' === $ttl ) {
+							continue;
+						}
+						$ic    = ! empty( $mr['icon'] ) ? trim( (string) $mr['icon'] ) : 'fa-solid fa-layer-group';
+						$cost  = max( 0, (int) ( $mr['cost'] ?? 0 ) );
+						$weeks = max( 1, (int) ( $mr['weeks'] ?? 1 ) );
+						$plbl  = ! empty( $mr['price_label'] ) ? trim( (string) $mr['price_label'] ) : '+$' . number_format_i18n( $cost );
+						$chk   = ( ! empty( $mr['checked'] ) && ( '1' === (string) $mr['checked'] || true === $mr['checked'] ) ) ? ' checked' : '';
+						$m_html .= '<label class="pricing-module-chip">'
+							. '<input type="checkbox" name="calc_module" value="' . esc_attr( $ttl ) . '" data-cost="' . esc_attr( (string) $cost ) . '" data-weeks="' . esc_attr( (string) $weeks ) . '"' . $chk . '>'
+							. '<span class="pricing-module-box">'
+							. '<span class="pricing-module-icon" aria-hidden="true"><i class="' . esc_attr( $ic ) . '"></i></span>'
+							. '<span class="pricing-module-info">'
+							. '<span class="pricing-module-name">' . esc_html( $ttl ) . '</span>'
+							. '<span class="pricing-module-price">' . esc_html( $plbl ) . '</span>'
+							. '</span>'
+							. '<span class="pricing-module-check" aria-hidden="true"><i class="fa-solid fa-check"></i></span>'
+							. '</span>'
+							. '</label>';
+					}
+					if ( '' !== $m_html ) {
+						$b = alify_replace_container_inner( $b, 'class="pricing-module-grid"', 'div', $m_html );
+					}
+				}
+				return $b;
 			}
 		);
 		$html = alify_cf_in_section(
 			$html,
 			'pricing-matrix-section',
 			function ( $b ) {
-				$b = alify_cf_set_eyebrow( $b, alify_cf_opt_saved( 'alify_pages', 'prc_matrix_eyebrow' ) );
-				$b = alify_cf_set_tag_by_class( $b, 'h2', 'pricing-sec-title', alify_cf_opt_saved( 'alify_pages', 'prc_matrix_title' ) );
-				return alify_cf_set_tag_by_class( $b, 'p', 'pricing-sec-desc', alify_cf_opt_saved( 'alify_pages', 'prc_matrix_desc' ), false );
+				$b        = alify_cf_set_eyebrow( $b, alify_cf_opt_saved( 'alify_pages', 'prc_matrix_eyebrow' ) );
+				$b        = alify_cf_set_tag_by_class( $b, 'h2', 'pricing-sec-title', alify_cf_opt_saved( 'alify_pages', 'prc_matrix_title' ) );
+				$b        = alify_cf_set_tag_by_class( $b, 'p', 'pricing-sec-desc', alify_cf_opt_saved( 'alify_pages', 'prc_matrix_desc' ), false );
+				$mat_rows = alify_cf_opt_rows( 'alify_pricing_adv', 'pricing_matrix_rows' );
+				if ( ! empty( $mat_rows ) ) {
+					$render_cell = function ( $v, $featured = false ) {
+						$val = trim( (string) $v );
+						$cls = $featured ? ' class="is-featured-col"' : '';
+						if ( 'included' === strtolower( $val ) || 'yes' === strtolower( $val ) ) {
+							return '<td' . $cls . '><span class="matrix-yes"><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Included</span></td>';
+						}
+						if ( '' === $val || '—' === $val || '-' === $val || 'no' === strtolower( $val ) ) {
+							return '<td' . $cls . '><span class="matrix-dash" aria-label="Not included">—</span></td>';
+						}
+						return '<td' . $cls . '>' . esc_html( $val ) . '</td>';
+					};
+					$tb_html = '';
+					foreach ( $mat_rows as $rx ) {
+						$feat = trim( (string) ( $rx['feature'] ?? '' ) );
+						if ( '' === $feat ) {
+							continue;
+						}
+						$t1 = trim( (string) ( $rx['tier1'] ?? '' ) );
+						$t2 = trim( (string) ( $rx['tier2'] ?? '' ) );
+						$t3 = trim( (string) ( $rx['tier3'] ?? '' ) );
+						if ( 'GROUP' === strtoupper( $t1 ) ) {
+							$tb_html .= '<tr class="matrix-group-row"><td colspan="4">' . esc_html( $feat ) . '</td></tr>';
+						} else {
+							$tb_html .= '<tr><th scope="row">' . esc_html( $feat ) . '</th>'
+								. $render_cell( $t1, false )
+								. $render_cell( $t2, true )
+								. $render_cell( $t3, false )
+								. '</tr>';
+						}
+					}
+					if ( '' !== $tb_html ) {
+						$b = preg_replace( '/(<table\s+class="pricing-matrix-table"[\s\S]*?<tbody>)[\s\S]*?(<\/tbody>)/', '${1}' . $tb_html . '${2}', $b, 1 );
+					}
+				}
+				return $b;
 			}
 		);
 	} elseif ( 'about' === $part_slug ) {
@@ -555,6 +642,29 @@ function alify_apply_cf_options_overrides( $html, $part_slug = '' ) {
 				$s_qt = alify_cf_opt_saved( 'alify_pages', 'arch_abt_story_quote' );
 				if ( '' !== $s_qt ) {
 					$b = alify_cf_set_tag_by_class( $b, 'p', 'about-visual-quote', '“' . $s_qt . '”', false );
+				}
+				$b = alify_cf_set_tag_by_class( $b, 'span', 'about-founder-name', alify_cf_opt_saved( 'alify_pages', 'arch_abt_founder_name' ), false );
+				$b = alify_cf_set_tag_by_class( $b, 'span', 'about-founder-role', alify_cf_opt_saved( 'alify_pages', 'arch_abt_founder_role' ), false );
+
+				$a_pillars = alify_cf_opt_rows( 'alify_pages', 'about_story_pillars_rows' );
+				if ( ! empty( $a_pillars ) && function_exists( 'alify_replace_container_inner' ) ) {
+					$ap_html = '';
+					foreach ( $a_pillars as $pr ) {
+						$ic  = ! empty( $pr['icon'] ) ? trim( (string) $pr['icon'] ) : 'fa-solid fa-circle-check';
+						$ttl = trim( (string) ( $pr['title'] ?? '' ) );
+						$sub = trim( (string) ( $pr['sub'] ?? '' ) );
+						if ( '' === $ttl ) {
+							continue;
+						}
+						$ap_html .= '<div class="about-pillar-item">'
+							. '<span class="about-pillar-icon" aria-hidden="true"><i class="' . esc_attr( $ic ) . '"></i></span>'
+							. '<div><span class="about-pillar-title">' . esc_html( $ttl ) . '</span>'
+							. '<span class="about-pillar-sub">' . esc_html( $sub ) . '</span></div>'
+							. '</div>';
+					}
+					if ( '' !== $ap_html ) {
+						$b = alify_replace_container_inner( $b, 'class="about-pillars-grid"', 'div', $ap_html );
+					}
 				}
 				return $b;
 			}
@@ -622,6 +732,32 @@ function alify_apply_cf_options_overrides( $html, $part_slug = '' ) {
 						},
 						$b
 					);
+				}
+				$prin_rows = alify_cf_opt_rows( 'alify_pages', 'about_principles_rows' );
+				if ( ! empty( $prin_rows ) && function_exists( 'alify_replace_container_inner' ) ) {
+					$pr_html = '';
+					foreach ( $prin_rows as $idx_p => $pr ) {
+						$ttl = trim( (string) ( $pr['title'] ?? '' ) );
+						if ( '' === $ttl ) {
+							continue;
+						}
+						$ic  = ! empty( $pr['icon'] ) ? trim( (string) $pr['icon'] ) : 'fa-solid fa-gem';
+						$num = ! empty( $pr['num'] ) ? trim( (string) $pr['num'] ) : sprintf( '%02d', $idx_p + 1 );
+						$dsc = trim( (string) ( $pr['desc'] ?? '' ) );
+						$pr_html .= '<div class="col-12 col-md-6 col-lg-3">'
+							. '<article class="about-principle-card">'
+							. '<div class="about-principle-top">'
+							. '<span class="about-principle-icon" aria-hidden="true"><i class="' . esc_attr( $ic ) . '"></i></span>'
+							. '<span class="about-principle-num">' . esc_html( $num ) . '</span>'
+							. '</div>'
+							. '<h3 class="about-principle-title">' . esc_html( $ttl ) . '</h3>'
+							. '<p class="about-principle-desc">' . esc_html( $dsc ) . '</p>'
+							. '</article>'
+							. '</div>';
+					}
+					if ( '' !== $pr_html ) {
+						$b = alify_replace_container_inner( $b, 'class="row about-principles-row"', 'div', $pr_html );
+					}
 				}
 				return $b;
 			}

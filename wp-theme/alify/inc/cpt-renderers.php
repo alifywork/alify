@@ -1126,6 +1126,13 @@ function alify_build_single_cpt_override( $post ) {
 		if ( ! empty( $deliverables ) ) {
 			$data['deliverables'] = $deliverables;
 		}
+		$stack_raw = get_post_meta( $pid, '_alify_svc_stack', true );
+		if ( ! empty( $stack_raw ) ) {
+			$stack_items = array_values( array_filter( array_map( 'trim', explode( ',', (string) $stack_raw ) ) ) );
+			if ( ! empty( $stack_items ) ) {
+				$data['stack'] = $stack_items;
+			}
+		}
 		return array( 'type' => 'service', 'slug' => $slug, 'data' => $data );
 	}
 
@@ -1180,6 +1187,17 @@ function alify_build_single_cpt_override( $post ) {
 		if ( ! empty( $gallery ) ) {
 			$data['gallery'] = $gallery;
 		}
+		$outcome_lines = alify_parse_lines( get_post_meta( $pid, '_alify_proj_outcomes', true ) );
+		$outcomes      = array();
+		foreach ( $outcome_lines as $ol ) {
+			$op = array_map( 'trim', explode( '|', $ol ) );
+			if ( count( $op ) >= 2 ) {
+				$outcomes[] = array( $op[0], $op[1] );
+			}
+		}
+		if ( ! empty( $outcomes ) ) {
+			$data['outcomes'] = $outcomes;
+		}
 		$case_slug = get_post_meta( $pid, '_alify_proj_case_slug', true );
 		if ( ! empty( $case_slug ) ) {
 			$data['caseId'] = $case_slug;
@@ -1209,6 +1227,17 @@ function alify_build_single_cpt_override( $post ) {
 		}
 		if ( ! empty( $points ) ) {
 			$data['solutions'] = $points;
+		}
+		$chal_lines = alify_parse_lines( get_post_meta( $pid, '_alify_ind_challenges', true ) );
+		$challenges = array();
+		foreach ( $chal_lines as $cl ) {
+			$cp = array_map( 'trim', explode( '|', $cl ) );
+			if ( count( $cp ) >= 3 ) {
+				$challenges[] = array( $cp[0], $cp[1], $cp[2] );
+			}
+		}
+		if ( ! empty( $challenges ) ) {
+			$data['challenges'] = $challenges;
 		}
 		return array( 'type' => 'industry', 'slug' => $slug, 'data' => $data );
 	}

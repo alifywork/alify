@@ -202,6 +202,47 @@
                 "instructions": ""
             },
             {
+                "name": "arch_abt_founder_name",
+                "label": "Founder Signature Name",
+                "type": "text",
+                "instructions": "",
+                "default": "Zayd Alvi & Senior Partners"
+            },
+            {
+                "name": "arch_abt_founder_role",
+                "label": "Founder Signature Role",
+                "type": "text",
+                "instructions": "",
+                "default": "ALIFY Product & Design Leadership"
+            },
+            {
+                "name": "about_story_pillars_rows",
+                "label": "About Story — 4 Pillar Badges (Repeater)",
+                "type": "repeater",
+                "instructions": "",
+                "sub_fields": [
+                    {
+                        "name": "icon",
+                        "label": "Font Awesome Icon (e.g. fa-solid fa-bolt)",
+                        "type": "text",
+                        "instructions": ""
+                    },
+                    {
+                        "name": "title",
+                        "label": "Pillar Title",
+                        "type": "text",
+                        "instructions": ""
+                    },
+                    {
+                        "name": "sub",
+                        "label": "Pillar Subtitle",
+                        "type": "text",
+                        "instructions": ""
+                    }
+                ],
+                "max_rows": 4
+            },
+            {
                 "name": "arch_abt_mission_title",
                 "label": "Our Mission Card Heading",
                 "type": "text",
@@ -226,6 +267,39 @@
                 "label": "Our Vision Card Text",
                 "type": "textarea",
                 "instructions": ""
+            },
+            {
+                "name": "about_principles_rows",
+                "label": "About Operating Principles — 4 Bento Cards (Repeater)",
+                "type": "repeater",
+                "instructions": "",
+                "sub_fields": [
+                    {
+                        "name": "icon",
+                        "label": "Font Awesome Icon (e.g. fa-solid fa-gem)",
+                        "type": "text",
+                        "instructions": ""
+                    },
+                    {
+                        "name": "num",
+                        "label": "Card Number (e.g. 01)",
+                        "type": "text",
+                        "instructions": ""
+                    },
+                    {
+                        "name": "title",
+                        "label": "Principle Title",
+                        "type": "text",
+                        "instructions": ""
+                    },
+                    {
+                        "name": "desc",
+                        "label": "Principle Description",
+                        "type": "textarea",
+                        "instructions": ""
+                    }
+                ],
+                "max_rows": 4
             },
             {
                 "name": "ptab_about_team",

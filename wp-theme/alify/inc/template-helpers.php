@@ -35,6 +35,35 @@ function alify_page_url( $slug = '', $query_args = array() ) {
 }
 
 /**
+ * Resolve Single CPT / Blog Permalink When Item Exists in DB, With Graceful Fallback to Blueprint Page URL.
+ */
+function alify_cpt_or_page_url( $page_slug, $query_args = array() ) {
+	$cpt_param_map = array(
+		'service-single'    => array( 'service', 'alify_service' ),
+		'work-single'       => array( 'project', 'alify_project' ),
+		'industry-single'   => array( 'industry', 'alify_industry' ),
+		'case-study-single' => array( 'case', 'alify_case_study' ),
+		'blog-single'       => array( 'post', 'post' ),
+	);
+
+	if ( isset( $cpt_param_map[ $page_slug ] ) ) {
+		list( $param_key, $pt ) = $cpt_param_map[ $page_slug ];
+		if ( ! empty( $query_args[ $param_key ] ) && post_type_exists( $pt ) ) {
+			$item_slug = sanitize_title( (string) $query_args[ $param_key ] );
+			$target    = get_page_by_path( $item_slug, OBJECT, $pt );
+			if ( $target && 'publish' === $target->post_status ) {
+				$extra = $query_args;
+				unset( $extra[ $param_key ] );
+				$plink = get_permalink( $target->ID );
+				return ! empty( $extra ) ? add_query_arg( $extra, $plink ) : $plink;
+			}
+		}
+	}
+
+	return alify_page_url( $page_slug, $query_args );
+}
+
+/**
  * Detect current ALIFY route slug for active header/drawer menu highlighting.
  */
 function alify_current_route_slug() {
@@ -136,7 +165,7 @@ function alify_transform_markup( $html, $part_slug = '' ) {
 			if ( ! empty( $qs ) ) {
 				parse_str( ltrim( $qs, '?' ), $query_args );
 			}
-			$url = alify_page_url( $slug, $query_args ) . $hash;
+			$url = alify_cpt_or_page_url( $slug, $query_args ) . $hash;
 			return 'href=' . $quote . esc_url( $url ) . $quote;
 		},
 		$html

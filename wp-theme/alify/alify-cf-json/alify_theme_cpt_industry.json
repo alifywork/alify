@@ -69,7 +69,7 @@
             },
             {
                 "name": "ind_tab_single",
-                "label": "Single Page Stats",
+                "label": "Single Page Stats & Sector Challenges",
                 "type": "tab"
             },
             {
@@ -92,6 +92,33 @@
                     }
                 ],
                 "max_rows": 6
+            },
+            {
+                "name": "ind_challenges_rows",
+                "label": "Sector Friction & ALIFY Fix Cards (Repeater — 3 Cards)",
+                "type": "repeater",
+                "instructions": "",
+                "sub_fields": [
+                    {
+                        "name": "badge",
+                        "label": "Friction Badge (e.g. KYC Friction)",
+                        "type": "text",
+                        "instructions": ""
+                    },
+                    {
+                        "name": "title",
+                        "label": "Challenge Heading",
+                        "type": "text",
+                        "instructions": ""
+                    },
+                    {
+                        "name": "fix",
+                        "label": "ALIFY Architectural Fix",
+                        "type": "textarea",
+                        "instructions": ""
+                    }
+                ],
+                "max_rows": 4
             }
         ]
     }

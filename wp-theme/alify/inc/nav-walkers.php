@@ -391,25 +391,25 @@ function alify_fallback_primary_menu() {
 			<div class="dropdown-panel" role="menu">
 				<ul class="dropdown-list">
 					<li>
-						<a href="<?php echo esc_url( alify_page_url( 'service-single', array( 'service' => 'web-development' ) ) ); ?>" class="dropdown-item-link" role="menuitem">
+						<a href="<?php echo esc_url( alify_cpt_or_page_url( 'service-single', array( 'service' => 'web-development' ) ) ); ?>" class="dropdown-item-link" role="menuitem">
 							<span class="dropdown-item-icon"><i class="fa-solid fa-code" aria-hidden="true"></i></span>
 							<span>Web Design &amp; Development</span>
 						</a>
 					</li>
 					<li>
-						<a href="<?php echo esc_url( alify_page_url( 'service-single', array( 'service' => 'ui-ux-branding' ) ) ); ?>" class="dropdown-item-link" role="menuitem">
+						<a href="<?php echo esc_url( alify_cpt_or_page_url( 'service-single', array( 'service' => 'ui-ux-branding' ) ) ); ?>" class="dropdown-item-link" role="menuitem">
 							<span class="dropdown-item-icon"><i class="fa-solid fa-pen-nib" aria-hidden="true"></i></span>
 							<span>UI/UX &amp; Brand Identity</span>
 						</a>
 					</li>
 					<li>
-						<a href="<?php echo esc_url( alify_page_url( 'service-single', array( 'service' => 'digital-marketing' ) ) ); ?>" class="dropdown-item-link" role="menuitem">
+						<a href="<?php echo esc_url( alify_cpt_or_page_url( 'service-single', array( 'service' => 'digital-marketing' ) ) ); ?>" class="dropdown-item-link" role="menuitem">
 							<span class="dropdown-item-icon"><i class="fa-solid fa-chart-line" aria-hidden="true"></i></span>
 							<span>Digital Marketing &amp; SEO</span>
 						</a>
 					</li>
 					<li>
-						<a href="<?php echo esc_url( alify_page_url( 'service-single', array( 'service' => 'ecommerce' ) ) ); ?>" class="dropdown-item-link" role="menuitem">
+						<a href="<?php echo esc_url( alify_cpt_or_page_url( 'service-single', array( 'service' => 'ecommerce' ) ) ); ?>" class="dropdown-item-link" role="menuitem">
 							<span class="dropdown-item-icon"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i></span>
 							<span>E-Commerce Solutions</span>
 						</a>
@@ -459,25 +459,25 @@ function alify_fallback_drawer_menu() {
 						</a>
 					</li>
 					<li>
-						<a href="<?php echo esc_url( alify_page_url( 'service-single', array( 'service' => 'web-development' ) ) ); ?>" class="drawer-submenu-link">
+						<a href="<?php echo esc_url( alify_cpt_or_page_url( 'service-single', array( 'service' => 'web-development' ) ) ); ?>" class="drawer-submenu-link">
 							<span class="drawer-submenu-icon"><i class="fa-solid fa-code" aria-hidden="true"></i></span>
 							<span>Web Design &amp; Development</span>
 						</a>
 					</li>
 					<li>
-						<a href="<?php echo esc_url( alify_page_url( 'service-single', array( 'service' => 'ui-ux-branding' ) ) ); ?>" class="drawer-submenu-link">
+						<a href="<?php echo esc_url( alify_cpt_or_page_url( 'service-single', array( 'service' => 'ui-ux-branding' ) ) ); ?>" class="drawer-submenu-link">
 							<span class="drawer-submenu-icon"><i class="fa-solid fa-pen-nib" aria-hidden="true"></i></span>
 							<span>UI/UX &amp; Brand Identity</span>
 						</a>
 					</li>
 					<li>
-						<a href="<?php echo esc_url( alify_page_url( 'service-single', array( 'service' => 'digital-marketing' ) ) ); ?>" class="drawer-submenu-link">
+						<a href="<?php echo esc_url( alify_cpt_or_page_url( 'service-single', array( 'service' => 'digital-marketing' ) ) ); ?>" class="drawer-submenu-link">
 							<span class="drawer-submenu-icon"><i class="fa-solid fa-chart-line" aria-hidden="true"></i></span>
 							<span>Digital Marketing &amp; SEO</span>
 						</a>
 					</li>
 					<li>
-						<a href="<?php echo esc_url( alify_page_url( 'service-single', array( 'service' => 'ecommerce' ) ) ); ?>" class="drawer-submenu-link">
+						<a href="<?php echo esc_url( alify_cpt_or_page_url( 'service-single', array( 'service' => 'ecommerce' ) ) ); ?>" class="drawer-submenu-link">
 							<span class="drawer-submenu-icon"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i></span>
 							<span>E-Commerce Solutions</span>
 						</a>
@@ -528,7 +528,7 @@ function alify_fallback_footer_services() {
 	);
 	echo '<ul class="footer-link-list">';
 	foreach ( $services as $svc_slug => $label ) {
-		echo '<li><a href="' . esc_url( alify_page_url( 'service-single', array( 'service' => $svc_slug ) ) ) . '" class="footer-link">' . esc_html( $label ) . '</a></li>';
+		echo '<li><a href="' . esc_url( alify_cpt_or_page_url( 'service-single', array( 'service' => $svc_slug ) ) ) . '" class="footer-link">' . esc_html( $label ) . '</a></li>';
 	}
 	echo '</ul>';
 }
@@ -539,9 +539,31 @@ function alify_fallback_footer_legal() {
 }
 
 /**
- * Helper to add a menu item (page or custom URL) + optional icon meta.
+ * Helper to add a menu item (page, native CPT item, or custom URL) + optional icon meta.
  */
 function alify_add_seeded_menu_item( $menu_id, $title, $slug_or_url, $parent_id = 0, $icon = '', $query_args = array() ) {
+	if ( 'service-single' === $slug_or_url && ! empty( $query_args['service'] ) && post_type_exists( 'alify_service' ) ) {
+		$svc_obj = get_page_by_path( sanitize_title( $query_args['service'] ), OBJECT, 'alify_service' );
+		if ( $svc_obj ) {
+			$item_id = wp_update_nav_menu_item(
+				$menu_id,
+				0,
+				array(
+					'menu-item-title'     => $title,
+					'menu-item-object-id' => $svc_obj->ID,
+					'menu-item-object'    => 'alify_service',
+					'menu-item-type'      => 'post_type',
+					'menu-item-status'    => 'publish',
+					'menu-item-parent-id' => $parent_id,
+				)
+			);
+			if ( $item_id && ! is_wp_error( $item_id ) && ! empty( $icon ) ) {
+				update_post_meta( $item_id, '_alify_menu_icon', sanitize_text_field( $icon ) );
+			}
+			return is_wp_error( $item_id ) ? 0 : (int) $item_id;
+		}
+	}
+
 	$page_obj = ( 0 !== strpos( $slug_or_url, 'http' ) ) ? get_page_by_path( ( 'home' === $slug_or_url ) ? 'home' : $slug_or_url ) : null;
 
 	if ( $page_obj && empty( $query_args ) ) {
@@ -715,3 +737,54 @@ function alify_seed_default_menus() {
 
 	set_theme_mod( 'nav_menu_locations', $locations );
 }
+
+/**
+ * Automatically Upgrade Seeded `?service=` Custom Menu Links Into Native `alify_service` CPT Menu Items
+ * Once Starter Services Exist in WordPress Database.
+ */
+function alify_upgrade_legacy_menu_query_links() {
+	if ( 'done' === get_option( 'alify_menus_cpt_upgraded_v1' ) || ! post_type_exists( 'alify_service' ) ) {
+		return;
+	}
+	$svc_count = wp_count_posts( 'alify_service' );
+	if ( empty( $svc_count->publish ) ) {
+		return;
+	}
+
+	$menus = wp_get_nav_menus();
+	foreach ( $menus as $menu_obj ) {
+		$items = wp_get_nav_menu_items( $menu_obj->term_id );
+		if ( empty( $items ) ) {
+			continue;
+		}
+		foreach ( $items as $item ) {
+			if ( 'custom' === $item->type && ! empty( $item->url ) && false !== strpos( $item->url, 'service=' ) ) {
+				$parts = wp_parse_url( $item->url );
+				if ( ! empty( $parts['query'] ) ) {
+					parse_str( $parts['query'], $qvars );
+					if ( ! empty( $qvars['service'] ) ) {
+						$svc_post = get_page_by_path( sanitize_title( $qvars['service'] ), OBJECT, 'alify_service' );
+						if ( $svc_post ) {
+							wp_update_nav_menu_item(
+								$menu_obj->term_id,
+								$item->ID,
+								array(
+									'menu-item-title'     => $item->title,
+									'menu-item-object-id' => $svc_post->ID,
+									'menu-item-object'    => 'alify_service',
+									'menu-item-type'      => 'post_type',
+									'menu-item-status'    => 'publish',
+									'menu-item-parent-id' => (int) $item->menu_item_parent,
+									'menu-item-position'  => (int) $item->menu_order,
+								)
+							);
+						}
+					}
+				}
+			}
+		}
+	}
+	update_option( 'alify_menus_cpt_upgraded_v1', 'done' );
+}
+add_action( 'admin_init', 'alify_upgrade_legacy_menu_query_links', 25 );
+

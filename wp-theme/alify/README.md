@@ -66,25 +66,26 @@ All **5 navigation areas** are dynamically managed through **Appearance → Menu
 
 ALIFY integrates first-class with ALIFY's own custom WordPress plugin **`Alify Custom Field`** (`https://github.com/alifywork/fieldsPlugin`, `v0.34.0+`) via `inc/alify-cf-integration.php` & `inc/alify-cf-render-bridge.php` (with graceful automatic fallback to native WordPress Meta Boxes & Customizer when the plugin is inactive):
 
-### A. 6 Dedicated Studio Options Pages (`WP Admin → ALIFY Theme Settings` & `Custom Fields → Options Pages`)
+### A. 7 Dedicated Studio Options Pages (`WP Admin → ALIFY Theme Settings` & `Custom Fields → Options Pages`)
 1. **Site Settings (`site`)** — Custom Brand Logo Image + Max Height, Agency Email (`info@alify.site`), WhatsApp (`+92 301 9328094`), HQ, Operating Hours, Header CTA Buttons & URLs, Pre-Footer CTA Banner, Footer Bio & Column Headings, Copyright, Social Media Links (`@alifywork`), and Global Reusable Sections (Testimonials Slider, Reusable FAQs, Blog Slider, Bottom Contact Section).
-2. **Home Page Content (`alify_home`)** — Home Hero Background Image, Status Pill, 3-Part Display `H1`, Lead Paragraph, CTA Labels, **Hero Stat Counters Repeater** (`150+`, `98%`, `12+`), *Why Partner With ALIFY* section + Studio Image & Quote, Home Slider Section Headings, Live 4-Client Case Studies Switcher heading/intro, and **4-Sprint Execution Process Repeater**.
+2. **Home Page Content (`alify_home`)** — Home Hero Background Image, Status Pill, 3-Part Display `H1`, Lead Paragraph, CTA Labels, **Hero Stat Counters Repeater** (`150+`, `98%`, `12+`), *Why Partner With ALIFY* section + **4 Pillars Repeater** + Studio Image & Quote, Home Slider Section Headings, Live 4-Client Case Studies Switcher heading/intro, and **4-Sprint Execution Process Repeater**.
 3. **Archive & Hub Pages (`alify_archives`)** — Hero Eyebrows, `H1` Titles, Subtitles, Hero Background Images, and Grid Headings for `/services/`, `/work/`, `/industries/`, `/case-studies/`, and `/blog/` (including Blog Hero Weekly Card).
-4. **Pricing & About Us (`alify_pages`)** — **Pricing 3-Tier Plans Repeater** (`Launch Sprint`, `Scale Ecosystem`, `Enterprise Squad` with Sprint/Retainer prices, velocity & feature lists), Interactive Scope Calculator & Deliverable Comparison Matrix headings, About Story (2 paragraphs, studio visual & quote), Mission & Vision Bento Cards, **Studio Milestones Counters Repeater**, and **Leadership Principals Repeater** (Photo, Name, Role, Bio).
-5. **Book Call, Legal & 404 (`alify_conversion`)** — Book a Strategy Call Hero, Host Avatar, Kicker, Name, Role & **3 Strategy Call Deliverables Repeater**, Contact & Start Project Heroes + Direct Studio Channels card, Testimonials & FAQ Hub Heroes, Thank You Hero + **3 Next-24-Hours Steps Repeater**, Privacy Policy & Terms of Service Last-Updated labels (plus live WordPress Block/Classic Editor `the_content()` support), and `404` Display Code/Heading/Description.
-6. **Single Templates (`alify_singles`)** — Global section headings & labels for Service Single, Work Single, Industry Single, Case Study Single, and Blog Single (`Table of Contents`, Sticky Sidebar CTA Card, Default Hero Image, and Related Articles).
+4. **Pricing & About Us (`alify_pages`)** — **Pricing 3-Tier Plans Repeater** (`Launch Sprint`, `Scale Ecosystem`, `Enterprise Squad` with Sprint/Retainer prices, velocity & feature lists), Interactive Scope Calculator & Deliverable Comparison Matrix headings, About Story (2 paragraphs, **4 Story Pillars Repeater**, Founder Signature Note, studio visual & quote), Mission & Vision Bento Cards, **4 Operating Principles Bento Repeater**, **Studio Milestones Counters Repeater**, and **Leadership Principals Repeater** (Photo, Name, Role, Bio).
+5. **Pricing Calc & Matrix (`alify_pricing_adv`)** — **Scope Calculator Capability Modules Repeater** (8 live modules with Font Awesome icon, USD investment `data-cost`, Sprint weeks `data-weeks`, price badge & default checked state) and **Deliverable Comparison Matrix Repeater** (14 group/feature rows across Launch Sprint, Scale Ecosystem & Enterprise Squad).
+6. **Book Call, Legal & 404 (`alify_conversion`)** — Book a Strategy Call Hero, Host Avatar, Kicker, Name, Role & **3 Strategy Call Deliverables Repeater**, Contact & Start Project Heroes + Direct Studio Channels card, Testimonials & FAQ Hub Heroes, Thank You Hero + **3 Next-24-Hours Steps Repeater**, Privacy Policy & Terms of Service Last-Updated labels (plus live WordPress Block/Classic Editor `the_content()` support), and `404` Display Code/Heading/Description.
+7. **Single Templates (`alify_singles`)** — Global section headings & labels for Service Single, Work Single, Industry Single, Case Study Single, and Blog Single (`Table of Contents`, Sticky Sidebar CTA Card, Default Hero Image, and Related Articles).
 
-### B. 8 Post/CPT/Page Field Groups + `alify-cf-json/` Local JSON Sync (14 Total Schemas)
-- Ships all **14 `alify-local-json` v1 (`schema_version: 12`) files** in `wp-theme/alify/alify-cf-json/` (`ALIFY_CF_JSON_DIR`) with automatic database-override detection (`_alify_cf_local_key`) so admins can optionally sync & customize any group visually under **Custom Fields → Local JSON** without duplicate field collisions.
-- **Services (`alify_service`)** — Tabbed field group with Notch Code, Discipline Tag, Font Awesome Icon, Media Library Background Image, **Card Bullet Points Repeater**, Single-Page Stats, and **6 Deliverables Repeater**.
-- **Projects (`alify_project`)** — Tabbed field group with Client, Sector, Year, Sprint Duration, Headline Metric, **Deliverable Chips Repeater**, Brief/Craft Narrative, Native **Multi-Image Gallery Picker**, and **Interactive Lightbox Screens Repeater** (Image + Screen Title + Tag + Caption).
-- **Industries (`alify_industry`)** — Sector Code, Filter Group Select, Icon, Benchmark Stat, **4 Key Deliverables Repeater**, and Background Image.
+### B. 8 Post/CPT/Page Field Groups + `alify-cf-json/` Local JSON Sync (15 Total Schemas)
+- Ships all **15 `alify-local-json` v1 (`schema_version: 12`) files** in `wp-theme/alify/alify-cf-json/` (`ALIFY_CF_JSON_DIR`) with automatic database-override detection (`_alify_cf_local_key`) so admins can optionally sync & customize any group visually under **Custom Fields → Local JSON** without duplicate field collisions.
+- **Services (`alify_service`)** — Tabbed field group with Notch Code, Discipline Tag, Font Awesome Icon, Media Library Background Image, **Card Bullet Points Repeater**, Single-Page Stats, **6 Deliverables Repeater**, and **Single Tech Stack Pills**.
+- **Projects (`alify_project`)** — Tabbed field group with Client, Sector, Year, Sprint Duration, Headline Metric, Deliverable Chips, Brief/Craft Narrative, **3 Verified Outcome Tiles Repeater**, Native **Multi-Image Gallery Picker**, and **Interactive Lightbox Screens Repeater** (Image + Screen Title + Tag + Caption).
+- **Industries (`alify_industry`)** — Sector Code, Filter Group Select, Icon, Benchmark Stat, **Sector Deliverables Repeater**, **Single Verified Stats Repeater**, **3 Sector Friction & ALIFY Fix Cards Repeater**, and Background Image.
 - **Case Studies (`alify_case_study`)** — Before/After Benchmarks, `01 The Bottleneck`, `02 The ALIFY Architecture`, 3 KPI Tiles, **Architecture Chips Repeater**, and Executive Quote.
 - **Testimonials (`alify_testimonial`)** — Client Role & Company, Avatar Initials, Star Rating (`1–5`), Capability Filter Select, and Verified Outcome Pill.
 - **FAQs (`alify_faq` + `faq_pillar` taxonomy)** — Knowledge Pillar grouping + Global Reusable FAQ toggle.
 - **Blog Articles (`post`)** — Fallback Hero Image, Category Pill Override, Reading Time Override, and Author Display Name Override.
 - **Studio Pages (`page`)** — Per-Page Hero Eyebrow, `H1` Title (`<span>` accent supported), Subtitle, Hero Background Image, and Per-Page Section Visibility Toggles (Hero Lead Form, Testimonials, FAQs, Blog Slider, Bottom Contact).
-- **1-Click Starter Importer (`Appearance → ALIFY Starter Import`)** — Imports all **67 starter items** and pre-populates both `_alify_*` and `_alify_cf_*` Repeater/Scalar fields automatically.
+- **1-Click Starter + Media Library Importer (`Appearance → ALIFY Starter Import`)** — Imports all **67 starter items**, copies local starter images into WordPress Media Library (`_thumbnail_id` Featured Images + `Alify Custom Field` Attachment IDs), upgrades seeded `?service=` menu links to clean native `alify_service` CPT permalinks, and serves automatic `301` SEO redirects from legacy query-string single URLs.
 
 ---
 
@@ -115,6 +116,17 @@ ALIFY integrates first-class with ALIFY's own custom WordPress plugin **`Alify C
   - **WordPress Shortcode `[alify_form id="..."]`** — embed any built-in form or create unlimited **Custom Form Templates (`+ Create New Form Template`)** for any WordPress page or blog post.
 - **WP Admin → ALIFY Leads & Calls → Forms Settings (`inc/forms-manager.php` & `inc/ajax-forms.php`)**:
   - Manage Admin Email Notifications (multiple To, CC, BCC, Sender Name/Email, Subject tags, and **1-Click Test Email**), **Client Auto-Responder Confirmation Emails**, **Redirect vs. Inline Confirmation Mode**, **Honeypot + IP Rate Limiting + Blocked Spam Domains**, and **Outbound CRM Webhooks (Zapier / Make / Slack)**.
+- **WP Admin → ALIFY Leads & Calls → SMTP Mailer (`inc/smtp-mailer.php`)**:
+  - Built-in authenticated SMTP delivery (`PHPMailer` TLS/SSL, AES-256 encrypted password storage, 1-click Hostinger / Google Workspace / Zoho / Brevo presets, live HTML Test Email sender, and `wp_mail_failed` diagnostic log).
+
+---
+
+## 7. Reusable Section Shortcodes, Gutenberg Blocks, Translation Catalog & Child Theme
+
+- **11 Section Shortcodes (`inc/shortcodes-blocks.php`)** — Compose custom landing pages anywhere with `[alify_services layout="slider|grid"]`, `[alify_projects layout="panels|grid"]`, `[alify_industries layout="slider|grid"]`, `[alify_case_studies]`, `[alify_process]`, `[alify_pricing]`, `[alify_scope_calculator]`, `[alify_testimonials]`, `[alify_faqs]`, `[alify_blog_slider]`, and `[alify_contact_section]` (all support `eyebrow="..."` and `title="..."` attributes + automatic CSS/JS asset enqueuing).
+- **8 Dynamic Gutenberg Blocks (`alify_register_block_type`)** — Available natively inside the WordPress Block Editor when **`Alify Custom Field`** is active (`alify/services-showcase`, `alify/projects-showcase`, `alify/industries-showcase`, `alify/case-studies-stage`, `alify/sprint-process`, `alify/pricing-tiers`, `alify/testimonials-slider`, `alify/faq-accordion`).
+- **Translation Ready (`languages/alify.pot`)** — Ships complete Gettext `.pot` catalog (333 strings) for Loco Translate, Poedit, or WPML/Polylang.
+- **Update-Safe Child Theme (`wp-theme/alify-child` / `wp-theme/alify-child.zip`)** — Ready-to-activate child theme (`Template: alify`) with automatic parent-before-child stylesheet cascade.
 
 ---
 

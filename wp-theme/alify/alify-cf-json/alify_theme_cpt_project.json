@@ -90,7 +90,7 @@
             },
             {
                 "name": "proj_tab_story",
-                "label": "Single Page Story (Brief & Craft)",
+                "label": "Single Page Story (Brief, Craft & Outcomes)",
                 "type": "tab"
             },
             {
@@ -104,6 +104,27 @@
                 "label": "Engineering & Design Craft",
                 "type": "textarea",
                 "instructions": ""
+            },
+            {
+                "name": "proj_outcomes_rows",
+                "label": "Single Page Verified Outcome Tiles (Repeater — 3 Metrics)",
+                "type": "repeater",
+                "instructions": "",
+                "sub_fields": [
+                    {
+                        "name": "val",
+                        "label": "Outcome Value (e.g. +184%)",
+                        "type": "text",
+                        "instructions": ""
+                    },
+                    {
+                        "name": "label",
+                        "label": "Outcome Label (e.g. Demo Pipeline)",
+                        "type": "text",
+                        "instructions": ""
+                    }
+                ],
+                "max_rows": 4
             },
             {
                 "name": "proj_tab_gallery",

@@ -135,6 +135,33 @@
                 "instructions": ""
             },
             {
+                "name": "home_why_pillars_rows",
+                "label": "Why Partner With ALIFY — 4 Pillar Badges (Repeater)",
+                "type": "repeater",
+                "instructions": "",
+                "sub_fields": [
+                    {
+                        "name": "icon",
+                        "label": "Font Awesome Icon (e.g. fa-solid fa-users)",
+                        "type": "text",
+                        "instructions": ""
+                    },
+                    {
+                        "name": "title",
+                        "label": "Pillar Title",
+                        "type": "text",
+                        "instructions": ""
+                    },
+                    {
+                        "name": "sub",
+                        "label": "Pillar Subtitle",
+                        "type": "text",
+                        "instructions": ""
+                    }
+                ],
+                "max_rows": 4
+            },
+            {
                 "name": "htab_sliders",
                 "label": "Services, Industries, Work & Case Studies Headings",
                 "type": "tab"

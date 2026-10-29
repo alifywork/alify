@@ -1,0 +1,102 @@
+{
+    "format": "alify-local-json",
+    "version": 1,
+    "schema_version": 12,
+    "key": "alify_opt_group_pricing_adv",
+    "status": "draft",
+    "group": {
+        "title": "Pricing Interactive Scope Calculator Modules & Comparison Matrix",
+        "location": "options:alify_pricing_adv",
+        "rules": [],
+        "fields": [
+            {
+                "name": "patab_calc",
+                "label": "Scope Calculator Capability Modules",
+                "type": "tab"
+            },
+            {
+                "name": "pricing_calc_modules_rows",
+                "label": "Calculator Capability Modules (Repeater — Live USD & Sprint Weeks)",
+                "type": "repeater",
+                "instructions": "",
+                "sub_fields": [
+                    {
+                        "name": "icon",
+                        "label": "Font Awesome Icon (e.g. fa-solid fa-code)",
+                        "type": "text",
+                        "instructions": ""
+                    },
+                    {
+                        "name": "title",
+                        "label": "Module Name (e.g. Custom Web Platform)",
+                        "type": "text",
+                        "instructions": ""
+                    },
+                    {
+                        "name": "cost",
+                        "label": "Base Investment USD (Numeric, e.g. 3200)",
+                        "type": "number",
+                        "instructions": ""
+                    },
+                    {
+                        "name": "weeks",
+                        "label": "Base Sprint Weeks (Numeric, e.g. 2)",
+                        "type": "number",
+                        "instructions": ""
+                    },
+                    {
+                        "name": "price_label",
+                        "label": "Badge Label (e.g. +$3.2k)",
+                        "type": "text",
+                        "instructions": ""
+                    },
+                    {
+                        "name": "checked",
+                        "label": "Checked by Default?",
+                        "type": "toggle",
+                        "instructions": ""
+                    }
+                ],
+                "max_rows": 12
+            },
+            {
+                "name": "patab_matrix",
+                "label": "Deliverable Comparison Matrix Rows",
+                "type": "tab"
+            },
+            {
+                "name": "pricing_matrix_rows",
+                "label": "Comparison Matrix Table Rows (Set Tier 1 = GROUP for Section Subheader)",
+                "type": "repeater",
+                "instructions": "",
+                "sub_fields": [
+                    {
+                        "name": "feature",
+                        "label": "Deliverable / Section Group Title",
+                        "type": "text",
+                        "instructions": ""
+                    },
+                    {
+                        "name": "tier1",
+                        "label": "Launch Sprint (`Included`, `—`, `GROUP`, or custom text)",
+                        "type": "text",
+                        "instructions": ""
+                    },
+                    {
+                        "name": "tier2",
+                        "label": "Scale Ecosystem (`Included`, `—`, or custom text)",
+                        "type": "text",
+                        "instructions": ""
+                    },
+                    {
+                        "name": "tier3",
+                        "label": "Enterprise Squad (`Included`, `—`, or custom text)",
+                        "type": "text",
+                        "instructions": ""
+                    }
+                ],
+                "max_rows": 20
+            }
+        ]
+    }
+}

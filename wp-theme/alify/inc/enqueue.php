@@ -130,14 +130,15 @@ function alify_get_route_components( $route ) {
 	);
 
 	if ( isset( $map[ $route ] ) ) {
-		return $map[ $route ];
+		return apply_filters( 'alify_route_components', $map[ $route ], $route );
 	}
 
 	// Default for custom Gutenberg/Classic pages (`page.php`)
-	return array(
+	$default_components = array(
 		'css' => array( 'inner-hero', 'faq', 'blog', 'forms' ),
 		'js'  => array( 'inner-hero', 'faq', 'blog', 'forms' ),
 	);
+	return apply_filters( 'alify_route_components', $default_components, $route );
 }
 
 function alify_enqueue_assets() {
@@ -175,9 +176,14 @@ function alify_enqueue_assets() {
 		}
 	}
 
-	// 3. Main Custom CSS & Theme Root style.css
+	// 3. Main Custom CSS, Parent Theme style.css & Child Theme style.css (When Active)
 	wp_enqueue_style( 'alify-main-style', alify_asset_uri( 'assets/css/style.css' ), array( 'alify-bootstrap-grid' ), alify_file_ver( 'assets/css/style.css' ) );
-	wp_enqueue_style( 'alify-wp-style', get_stylesheet_uri(), array( 'alify-main-style' ), alify_file_ver( 'style.css' ) );
+	wp_enqueue_style( 'alify-wp-style', ALIFY_THEME_URI . '/style.css', array( 'alify-main-style' ), alify_file_ver( 'style.css' ) );
+	if ( is_child_theme() ) {
+		$child_css_file = get_stylesheet_directory() . '/style.css';
+		$child_ver      = file_exists( $child_css_file ) ? (string) filemtime( $child_css_file ) : ALIFY_THEME_VERSION;
+		wp_enqueue_style( 'alify-child-style', get_stylesheet_uri(), array( 'alify-wp-style' ), $child_ver );
+	}
 
 	$logo_h = function_exists( 'alify_cf_opt' ) ? (int) alify_cf_opt( 'site', 'opt_brand_logo_height', get_theme_mod( 'alify_logo_height', 40 ) ) : (int) get_theme_mod( 'alify_logo_height', 40 );
 	$logo_h = max( 20, min( 96, $logo_h ? $logo_h : 40 ) );

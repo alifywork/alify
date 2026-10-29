@@ -120,6 +120,12 @@
                     }
                 ],
                 "max_rows": 12
+            },
+            {
+                "name": "svc_stack_pills",
+                "label": "Single Page Tech Stack Pills (comma-separated)",
+                "type": "text",
+                "instructions": "Example: HTML5 & CSS3, GSAP ScrollTrigger, WordPress Custom CMS, Technical Schema"
             }
         ]
     }

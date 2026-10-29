@@ -31,6 +31,47 @@ function alify_expand_site_search_post_types( $query ) {
 add_action( 'pre_get_posts', 'alify_expand_site_search_post_types' );
 
 /**
+ * Automatic 301 SEO Redirects From Legacy `?service=` / `?project=` / `?industry=` / `?case=` / `?post=` Query URLs
+ * Directly to Clean Native WordPress CPT & Post Permalinks (`/services-item/...`, `/project/...`, etc.).
+ */
+function alify_redirect_legacy_query_urls_to_clean_permalinks() {
+	if ( is_admin() || wp_doing_ajax() || ! is_page() ) {
+		return;
+	}
+
+	$page_obj = get_queried_object();
+	if ( ! $page_obj || empty( $page_obj->post_name ) ) {
+		return;
+	}
+
+	$redirect_map = array(
+		'service-single'    => array( 'service', 'alify_service' ),
+		'work-single'       => array( 'project', 'alify_project' ),
+		'industry-single'   => array( 'industry', 'alify_industry' ),
+		'case-study-single' => array( 'case', 'alify_case_study' ),
+		'blog-single'       => array( 'post', 'post' ),
+	);
+
+	$pslug = $page_obj->post_name;
+	if ( ! isset( $redirect_map[ $pslug ] ) ) {
+		return;
+	}
+
+	list( $param, $pt ) = $redirect_map[ $pslug ];
+	if ( empty( $_GET[ $param ] ) || ! post_type_exists( $pt ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		return;
+	}
+
+	$item_slug = sanitize_title( wp_unslash( $_GET[ $param ] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	$target    = get_page_by_path( $item_slug, OBJECT, $pt );
+	if ( $target && 'publish' === $target->post_status ) {
+		wp_safe_redirect( get_permalink( $target->ID ), 301 );
+		exit;
+	}
+}
+add_action( 'template_redirect', 'alify_redirect_legacy_query_urls_to_clean_permalinks', 5 );
+
+/**
  * Check if a dedicated third-party SEO plugin is handling meta/schema tags.
  */
 function alify_has_external_seo_plugin() {
