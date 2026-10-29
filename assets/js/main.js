@@ -27,11 +27,11 @@
     // Keep hero copy visible while it moves; opacity fades here caused a
     // flash of hidden content before the bottom-of-page script initialized.
     gsap.from(heroItems, {
-      y: 20,
-      duration: 0.58,
+      y: 14,
+      duration: 0.5,
       delay: 0,
-      stagger: 0.08,
-      ease: "power3.out",
+      stagger: 0.06,
+      ease: "power2.out",
       clearProps: "transform",
     });
   }
@@ -47,11 +47,11 @@
 
     gsap.from(revealTargets, {
       autoAlpha: 0,
-      y: sectionColumns.length ? 28 : 36,
-      scale: 0.985,
-      duration: 0.72,
-      stagger: sectionColumns.length > 1 ? 0.09 : 0,
-      ease: "power3.out",
+      y: sectionColumns.length ? 20 : 24,
+      scale: 0.99,
+      duration: 0.6,
+      stagger: sectionColumns.length > 1 ? 0.07 : 0,
+      ease: "power2.out",
       clearProps: "opacity,visibility,transform",
       scrollTrigger: {
         trigger: section,
