@@ -897,3 +897,23 @@ a.contact-directory-val:hover {
     flex: 1;
   }
 }
+
+/* Compact alternative to repeating a full inquiry form at the bottom of a page. */
+.reusable-contact-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.reusable-contact-cta-actions .btn-start-project {
+  margin: 0;
+}
+
+.reusable-contact-secondary-link {
+  color: var(--color-primary, #0f3473);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
