@@ -131,6 +131,9 @@ function alify_transform_markup( $html, $part_slug = '' ) {
 	if ( function_exists( 'alify_apply_per_page_cf_overrides' ) ) {
 		$html = alify_apply_per_page_cf_overrides( $html, $part_slug );
 	}
+	if ( function_exists( 'alify_apply_generated_page_copy_fields' ) ) {
+		$html = alify_apply_generated_page_copy_fields( $html, get_queried_object_id(), $part_slug );
+	}
 	if ( function_exists( 'alify_apply_page_and_customizer_overrides' ) ) {
 		$html = alify_apply_page_and_customizer_overrides( $html );
 	}
@@ -187,6 +190,9 @@ function alify_transform_markup( $html, $part_slug = '' ) {
 	$html = str_replace( '+92 301 9328094', esc_html( $whatsapp ), $html );
 	$html = str_replace( 'Karachi, PK — Global Delivery', esc_html( $hq ), $html );
 	$html = str_replace( 'Mon – Fri, 9:00 AM – 7:00 PM PKT', esc_html( $hours ), $html );
+
+	// Internal editor markers are never part of the public HTML, even if the CF plugin is disabled.
+	$html = preg_replace( '/\\sdata-alify-copy="[^"]*"/', '', $html );
 
 	return $html;
 }

@@ -34,11 +34,11 @@
                 <span>Transparent Investment</span>
               </div>
 
-              <h1 class="inner-hero-title">
+              <h1 class="inner-hero-title" data-alify-copy="copy_pricing_001">
                 Predictable <span class="inner-hero-title-accent">Pricing Models.</span> Senior Studio Execution.
               </h1>
 
-              <p class="inner-hero-desc">
+              <p class="inner-hero-desc" data-alify-copy="copy_pricing_002">
                 Zero surprise change-orders, zero junior handoffs. Choose a fixed-scope launch sprint or embed a dedicated monthly senior pod engineered around measurable revenue outcomes.
               </p>
 
@@ -71,8 +71,8 @@
                   </span>
                   <span class="hero-lead-response">Replies in 24h</span>
                 </div>
-                <h2 class="hero-lead-title">Request Tailored Quote</h2>
-                <p class="hero-lead-subtitle">
+                <h2 class="hero-lead-title" data-alify-copy="copy_pricing_003">Request Tailored Quote</h2>
+                <p class="hero-lead-subtitle" data-alify-copy="copy_pricing_004">
                   Share your roadmap and receive an itemized sprint proposal from an ALIFY partner.
                 </p>
 
@@ -175,10 +175,10 @@
                 <span class="pricing-eyebrow-dot" aria-hidden="true">△</span>
                 <span>Studio Engagement Tiers</span>
               </div>
-              <h2 class="pricing-sec-title">
+              <h2 class="pricing-sec-title" data-alify-copy="copy_pricing_005">
                 Structured Around <span>Outcomes,</span> Not Hourly Guesswork.
               </h2>
-              <p class="pricing-sec-desc">
+              <p class="pricing-sec-desc" data-alify-copy="copy_pricing_006">
                 Switch between fixed-scope project sprints and ongoing monthly product pods. Every engagement includes direct Slack access to senior designers and engineers.
               </p>
             </div>
@@ -230,8 +230,8 @@
                     </span>
                   </div>
 
-                  <h3 class="pricing-tier-name">Launch Sprint</h3>
-                  <p class="pricing-tier-summary">
+                  <h3 class="pricing-tier-name" data-alify-copy="copy_pricing_007">Launch Sprint</h3>
+                  <p class="pricing-tier-summary" data-alify-copy="copy_pricing_008">
                     Ideal for seed-stage startups and growing brands launching a high-converting flagship marketing site and visual identity foundation.
                   </p>
 
@@ -281,7 +281,7 @@
                       <i class="fa-solid fa-arrow-up btn-start-arrow"></i>
                     </span>
                   </a>
-                  <p class="pricing-tier-note">Kickoff available within 5 business days</p>
+                  <p class="pricing-tier-note" data-alify-copy="copy_pricing_009">Kickoff available within 5 business days</p>
                 </div>
               </article>
             </div>
@@ -309,8 +309,8 @@
                     </span>
                   </div>
 
-                  <h3 class="pricing-tier-name">Scale Ecosystem</h3>
-                  <p class="pricing-tier-summary">
+                  <h3 class="pricing-tier-name" data-alify-copy="copy_pricing_010">Scale Ecosystem</h3>
+                  <p class="pricing-tier-summary" data-alify-copy="copy_pricing_011">
                     Engineered for Series A–C companies and luxury commerce brands needing a scalable token design system, full-stack web or headless storefront, and CRO architecture.
                   </p>
 
@@ -360,7 +360,7 @@
                       <i class="fa-solid fa-arrow-up btn-start-arrow"></i>
                     </span>
                   </a>
-                  <p class="pricing-tier-note">Includes Design Director + Lead Full-Stack Engineer</p>
+                  <p class="pricing-tier-note" data-alify-copy="copy_pricing_012">Includes Design Director + Lead Full-Stack Engineer</p>
                 </div>
               </article>
             </div>
@@ -388,8 +388,8 @@
                     </span>
                   </div>
 
-                  <h3 class="pricing-tier-name">Enterprise Squad</h3>
-                  <p class="pricing-tier-summary">
+                  <h3 class="pricing-tier-name" data-alify-copy="copy_pricing_013">Enterprise Squad</h3>
+                  <p class="pricing-tier-summary" data-alify-copy="copy_pricing_014">
                     Built for category leaders requiring complex SaaS web products, AI workflow interfaces, multi-region commerce, and continuous CRO experimentation.
                   </p>
 
@@ -439,7 +439,7 @@
                       <i class="fa-solid fa-arrow-up btn-start-arrow"></i>
                     </span>
                   </a>
-                  <p class="pricing-tier-note">Custom NDA, procurement &amp; MSA supported</p>
+                  <p class="pricing-tier-note" data-alify-copy="copy_pricing_015">Custom NDA, procurement &amp; MSA supported</p>
                 </div>
               </article>
             </div>
@@ -454,8 +454,8 @@
                     <i class="fa-solid fa-file-shield"></i>
                   </span>
                   <div>
-                    <h3 class="pricing-guarantee-title">100% IP Ownership</h3>
-                    <p class="pricing-guarantee-desc">Full Figma source files, tokens, and clean Git repositories transfer to your team.</p>
+                    <h3 class="pricing-guarantee-title" data-alify-copy="copy_pricing_016">100% IP Ownership</h3>
+                    <p class="pricing-guarantee-desc" data-alify-copy="copy_pricing_017">Full Figma source files, tokens, and clean Git repositories transfer to your team.</p>
                   </div>
                 </div>
               </div>
@@ -465,8 +465,8 @@
                     <i class="fa-solid fa-scale-balanced"></i>
                   </span>
                   <div>
-                    <h3 class="pricing-guarantee-title">50 / 25 / 25 Milestones</h3>
-                    <p class="pricing-guarantee-desc">Payments tie strictly to verified deliverables — never open-ended hourly billing.</p>
+                    <h3 class="pricing-guarantee-title" data-alify-copy="copy_pricing_018">50 / 25 / 25 Milestones</h3>
+                    <p class="pricing-guarantee-desc" data-alify-copy="copy_pricing_019">Payments tie strictly to verified deliverables — never open-ended hourly billing.</p>
                   </div>
                 </div>
               </div>
@@ -476,8 +476,8 @@
                     <i class="fa-solid fa-user-check"></i>
                   </span>
                   <div>
-                    <h3 class="pricing-guarantee-title">Senior-Only Execution</h3>
-                    <p class="pricing-guarantee-desc">The principals on your kickoff call are the exact specialists building your product.</p>
+                    <h3 class="pricing-guarantee-title" data-alify-copy="copy_pricing_020">Senior-Only Execution</h3>
+                    <p class="pricing-guarantee-desc" data-alify-copy="copy_pricing_021">The principals on your kickoff call are the exact specialists building your product.</p>
                   </div>
                 </div>
               </div>
@@ -487,8 +487,8 @@
                     <i class="fa-solid fa-headset"></i>
                   </span>
                   <div>
-                    <h3 class="pricing-guarantee-title">30-Day Hypercare</h3>
-                    <p class="pricing-guarantee-desc">Complimentary post-launch monitoring, speed tuning, and regression coverage.</p>
+                    <h3 class="pricing-guarantee-title" data-alify-copy="copy_pricing_022">30-Day Hypercare</h3>
+                    <p class="pricing-guarantee-desc" data-alify-copy="copy_pricing_023">Complimentary post-launch monitoring, speed tuning, and regression coverage.</p>
                   </div>
                 </div>
               </div>
@@ -505,10 +505,10 @@
               <span class="pricing-eyebrow-dot" aria-hidden="true">△</span>
               <span>Interactive Scope Estimator</span>
             </div>
-            <h2 class="pricing-sec-title">
+            <h2 class="pricing-sec-title" data-alify-copy="copy_pricing_024">
               Configure Your Custom <span>Sprint Estimate</span> in Seconds.
             </h2>
-            <p class="pricing-sec-desc">
+            <p class="pricing-sec-desc" data-alify-copy="copy_pricing_025">
               Toggle the exact capabilities, view count, and delivery velocity your roadmap requires to preview real-time investment benchmarks before booking a call.
             </p>
           </div>
@@ -518,7 +518,7 @@
               <div class="pricing-calc-builder">
                 <!-- Step 1: Capabilities -->
                 <div class="pricing-calc-group">
-                  <h3 class="pricing-calc-step-label">
+                  <h3 class="pricing-calc-step-label" data-alify-copy="copy_pricing_026">
                     <span class="pricing-calc-step-num">01</span>
                     <span>Select Core Capabilities (Choose One or More)</span>
                   </h3>
@@ -615,7 +615,7 @@
 
                 <!-- Step 2: Platform Scale -->
                 <div class="pricing-calc-group">
-                  <h3 class="pricing-calc-step-label">
+                  <h3 class="pricing-calc-step-label" data-alify-copy="copy_pricing_027">
                     <span class="pricing-calc-step-num">02</span>
                     <span>Platform Surface Scale</span>
                   </h3>
@@ -646,7 +646,7 @@
 
                 <!-- Step 3: Delivery Velocity -->
                 <div class="pricing-calc-group">
-                  <h3 class="pricing-calc-step-label">
+                  <h3 class="pricing-calc-step-label" data-alify-copy="copy_pricing_028">
                     <span class="pricing-calc-step-num">03</span>
                     <span>Delivery Cadence</span>
                   </h3>
@@ -676,7 +676,7 @@
                 <div class="pricing-calc-summary" aria-live="polite">
                   <span class="pricing-summary-kicker">Estimated Project Investment</span>
                   <div class="pricing-summary-range" id="calcRangeOutput">$5,600 – $6,800</div>
-                  <p class="pricing-summary-note">
+                  <p class="pricing-summary-note" data-alify-copy="copy_pricing_029">
                     Non-binding studio benchmark based on selected scope. Final fixed quote confirmed after a 25-minute discovery call.
                   </p>
 
@@ -724,10 +724,10 @@
               <span class="pricing-eyebrow-dot" aria-hidden="true">△</span>
               <span>Side-by-Side Breakdown</span>
             </div>
-            <h2 class="pricing-sec-title">
+            <h2 class="pricing-sec-title" data-alify-copy="copy_pricing_030">
               Compare Every <span>Deliverable &amp; SLA.</span>
             </h2>
-            <p class="pricing-sec-desc">
+            <p class="pricing-sec-desc" data-alify-copy="copy_pricing_031">
               Complete clarity across strategy, design systems, custom engineering, motion choreography, and post-launch hypercare.
             </p>
           </div>
@@ -828,7 +828,7 @@
                 <span class="testimonials-eyebrow-dot" aria-hidden="true">△</span>
                 <span>Client Stories &amp; Proof</span>
               </div>
-              <h2 class="testimonials-sec-title">
+              <h2 class="testimonials-sec-title" data-alify-copy="copy_pricing_032">
                 Trusted by Ambitious <span>Founders &amp; Product Leaders.</span>
               </h2>
               <div class="testimonials-trust-pill">
@@ -880,7 +880,7 @@
                       </div>
                       <div class="testimonial-body">
                         <i class="fa-solid fa-quote-left testimonial-quote-mark" aria-hidden="true"></i>
-                        <p class="testimonial-quote">
+                        <p class="testimonial-quote" data-alify-copy="copy_pricing_033">
                           &ldquo;ALIFY rebuilt our enterprise marketing architecture from the ground up. Page speed jumped to 99 on mobile and inbound enterprise demo bookings nearly tripled within sixty days.&rdquo;
                         </p>
                       </div>
@@ -894,8 +894,8 @@
                           </span>
                         </span>
                         <div class="testimonial-author-meta">
-                          <h3 class="testimonial-author-name">Sarah Jenkins</h3>
-                          <p class="testimonial-author-role">VP of Marketing, FinPulse AI</p>
+                          <h3 class="testimonial-author-name" data-alify-copy="copy_pricing_034">Sarah Jenkins</h3>
+                          <p class="testimonial-author-role" data-alify-copy="copy_pricing_035">VP of Marketing, FinPulse AI</p>
                         </div>
                       </div>
                       <span class="testimonial-service-tag">Web & Engineering</span>
@@ -921,7 +921,7 @@
                       </div>
                       <div class="testimonial-body">
                         <i class="fa-solid fa-quote-left testimonial-quote-mark" aria-hidden="true"></i>
-                        <p class="testimonial-quote">
+                        <p class="testimonial-quote" data-alify-copy="copy_pricing_036">
                           &ldquo;Rarely do you find a studio that understands both luxury editorial typography and conversion psychology. Our rebrand transformed how institutional partners perceive us.&rdquo;
                         </p>
                       </div>
@@ -935,8 +935,8 @@
                           </span>
                         </span>
                         <div class="testimonial-author-meta">
-                          <h3 class="testimonial-author-name">Marcus Vance</h3>
-                          <p class="testimonial-author-role">Founder & CEO, Aura Atelier</p>
+                          <h3 class="testimonial-author-name" data-alify-copy="copy_pricing_037">Marcus Vance</h3>
+                          <p class="testimonial-author-role" data-alify-copy="copy_pricing_038">Founder & CEO, Aura Atelier</p>
                         </div>
                       </div>
                       <span class="testimonial-service-tag">UI/UX & Branding</span>
@@ -962,7 +962,7 @@
                       </div>
                       <div class="testimonial-body">
                         <i class="fa-solid fa-quote-left testimonial-quote-mark" aria-hidden="true"></i>
-                        <p class="testimonial-quote">
+                        <p class="testimonial-quote" data-alify-copy="copy_pricing_039">
                           &ldquo;Our patient booking portal went from clunky legacy workflows to an effortless WCAG AA web experience. Their product designers obsessed over every micro-interaction.&rdquo;
                         </p>
                       </div>
@@ -976,8 +976,8 @@
                           </span>
                         </span>
                         <div class="testimonial-author-meta">
-                          <h3 class="testimonial-author-name">Zainab Ahmed</h3>
-                          <p class="testimonial-author-role">Chief Product Officer, MedCore Health</p>
+                          <h3 class="testimonial-author-name" data-alify-copy="copy_pricing_040">Zainab Ahmed</h3>
+                          <p class="testimonial-author-role" data-alify-copy="copy_pricing_041">Chief Product Officer, MedCore Health</p>
                         </div>
                       </div>
                       <span class="testimonial-service-tag">Design Systems</span>
@@ -1003,7 +1003,7 @@
                       </div>
                       <div class="testimonial-body">
                         <i class="fa-solid fa-quote-left testimonial-quote-mark" aria-hidden="true"></i>
-                        <p class="testimonial-quote">
+                        <p class="testimonial-quote" data-alify-copy="copy_pricing_042">
                           &ldquo;Migrating to a custom headless storefront with ALIFY cut load times under a second and lifted our checkout completion rate by 62% ahead of peak holiday traffic.&rdquo;
                         </p>
                       </div>
@@ -1017,8 +1017,8 @@
                           </span>
                         </span>
                         <div class="testimonial-author-meta">
-                          <h3 class="testimonial-author-name">David Lindqvist</h3>
-                          <p class="testimonial-author-role">Head of E-Commerce, Nordik Home</p>
+                          <h3 class="testimonial-author-name" data-alify-copy="copy_pricing_043">David Lindqvist</h3>
+                          <p class="testimonial-author-role" data-alify-copy="copy_pricing_044">Head of E-Commerce, Nordik Home</p>
                         </div>
                       </div>
                       <span class="testimonial-service-tag">E-Commerce & SEO</span>
@@ -1044,7 +1044,7 @@
                       </div>
                       <div class="testimonial-body">
                         <i class="fa-solid fa-quote-left testimonial-quote-mark" aria-hidden="true"></i>
-                        <p class="testimonial-quote">
+                        <p class="testimonial-quote" data-alify-copy="copy_pricing_045">
                           &ldquo;Investors specifically complimented our product narrative and interactive web experience during our $6.5M seed round. ALIFY operates like an in-house founding design team.&rdquo;
                         </p>
                       </div>
@@ -1058,8 +1058,8 @@
                           </span>
                         </span>
                         <div class="testimonial-author-meta">
-                          <h3 class="testimonial-author-name">Hamza Siddiqui</h3>
-                          <p class="testimonial-author-role">Co-Founder, LedgerFlow Cloud</p>
+                          <h3 class="testimonial-author-name" data-alify-copy="copy_pricing_046">Hamza Siddiqui</h3>
+                          <p class="testimonial-author-role" data-alify-copy="copy_pricing_047">Co-Founder, LedgerFlow Cloud</p>
                         </div>
                       </div>
                       <span class="testimonial-service-tag">Web & Engineering</span>
@@ -1085,7 +1085,7 @@
                       </div>
                       <div class="testimonial-body">
                         <i class="fa-solid fa-quote-left testimonial-quote-mark" aria-hidden="true"></i>
-                        <p class="testimonial-quote">
+                        <p class="testimonial-quote" data-alify-copy="copy_pricing_048">
                           &ldquo;The multi-brand Figma and code design system ALIFY delivered cut our feature shipping cycle in half. Clean tokens, zero bloat, and rock-solid documentation.&rdquo;
                         </p>
                       </div>
@@ -1099,8 +1099,8 @@
                           </span>
                         </span>
                         <div class="testimonial-author-meta">
-                          <h3 class="testimonial-author-name">Elena Rostova</h3>
-                          <p class="testimonial-author-role">Design Operations Lead, VerveOS</p>
+                          <h3 class="testimonial-author-name" data-alify-copy="copy_pricing_049">Elena Rostova</h3>
+                          <p class="testimonial-author-role" data-alify-copy="copy_pricing_050">Design Operations Lead, VerveOS</p>
                         </div>
                       </div>
                       <span class="testimonial-service-tag">UI/UX & Branding</span>
@@ -1132,7 +1132,7 @@
                       </div>
                       <div class="testimonial-body">
                         <i class="fa-solid fa-quote-left testimonial-quote-mark" aria-hidden="true"></i>
-                        <p class="testimonial-quote">
+                        <p class="testimonial-quote" data-alify-copy="copy_pricing_051">
                           &ldquo;From interactive 3D property tours to instant mortgage calculators, ALIFY engineered our flagship 3D web platform on schedule with zero post-launch regressions.&rdquo;
                         </p>
                       </div>
@@ -1146,8 +1146,8 @@
                           </span>
                         </span>
                         <div class="testimonial-author-meta">
-                          <h3 class="testimonial-author-name">Omar Al-Mansoor</h3>
-                          <p class="testimonial-author-role">Managing Director, Crestline PropTech</p>
+                          <h3 class="testimonial-author-name" data-alify-copy="copy_pricing_052">Omar Al-Mansoor</h3>
+                          <p class="testimonial-author-role" data-alify-copy="copy_pricing_053">Managing Director, Crestline PropTech</p>
                         </div>
                       </div>
                       <span class="testimonial-service-tag">Design Systems</span>
@@ -1173,7 +1173,7 @@
                       </div>
                       <div class="testimonial-body">
                         <i class="fa-solid fa-quote-left testimonial-quote-mark" aria-hidden="true"></i>
-                        <p class="testimonial-quote">
+                        <p class="testimonial-quote" data-alify-copy="copy_pricing_054">
                           &ldquo;Their technical SEO overhaul paired with high-converting landing systems grew our non-paid organic revenue 2.8x in four months without increasing ad spend.&rdquo;
                         </p>
                       </div>
@@ -1187,8 +1187,8 @@
                           </span>
                         </span>
                         <div class="testimonial-author-meta">
-                          <h3 class="testimonial-author-name">Claire Moreau</h3>
-                          <p class="testimonial-author-role">CMO, Solenne Skincare</p>
+                          <h3 class="testimonial-author-name" data-alify-copy="copy_pricing_055">Claire Moreau</h3>
+                          <p class="testimonial-author-role" data-alify-copy="copy_pricing_056">CMO, Solenne Skincare</p>
                         </div>
                       </div>
                       <span class="testimonial-service-tag">E-Commerce & SEO</span>
@@ -1214,7 +1214,7 @@
                       </div>
                       <div class="testimonial-body">
                         <i class="fa-solid fa-quote-left testimonial-quote-mark" aria-hidden="true"></i>
-                        <p class="testimonial-quote">
+                        <p class="testimonial-quote" data-alify-copy="copy_pricing_057">
                           &ldquo;Writing custom GSAP motion that still scores green across Core Web Vitals is hard. ALIFY nailed smooth 60fps storytelling without sacrificing clean engineering.&rdquo;
                         </p>
                       </div>
@@ -1228,8 +1228,8 @@
                           </span>
                         </span>
                         <div class="testimonial-author-meta">
-                          <h3 class="testimonial-author-name">Ryan Takahashi</h3>
-                          <p class="testimonial-author-role">CTO, Kinetix Robotics</p>
+                          <h3 class="testimonial-author-name" data-alify-copy="copy_pricing_058">Ryan Takahashi</h3>
+                          <p class="testimonial-author-role" data-alify-copy="copy_pricing_059">CTO, Kinetix Robotics</p>
                         </div>
                       </div>
                       <span class="testimonial-service-tag">Web & Engineering</span>
@@ -1255,7 +1255,7 @@
                       </div>
                       <div class="testimonial-body">
                         <i class="fa-solid fa-quote-left testimonial-quote-mark" aria-hidden="true"></i>
-                        <p class="testimonial-quote">
+                        <p class="testimonial-quote" data-alify-copy="copy_pricing_060">
                           &ldquo;Every bespoke bundle builder and editorial lookbook they crafted directly increased our average order value. Communication was transparent every single week.&rdquo;
                         </p>
                       </div>
@@ -1269,8 +1269,8 @@
                           </span>
                         </span>
                         <div class="testimonial-author-meta">
-                          <h3 class="testimonial-author-name">Ayesha Noor</h3>
-                          <p class="testimonial-author-role">Founder, Loom & Legacy</p>
+                          <h3 class="testimonial-author-name" data-alify-copy="copy_pricing_061">Ayesha Noor</h3>
+                          <p class="testimonial-author-role" data-alify-copy="copy_pricing_062">Founder, Loom & Legacy</p>
                         </div>
                       </div>
                       <span class="testimonial-service-tag">E-Commerce & SEO</span>
@@ -1296,7 +1296,7 @@
                       </div>
                       <div class="testimonial-body">
                         <i class="fa-solid fa-quote-left testimonial-quote-mark" aria-hidden="true"></i>
-                        <p class="testimonial-quote">
+                        <p class="testimonial-quote" data-alify-copy="copy_pricing_063">
                           &ldquo;ALIFY redesigned our analytics onboarding flow and reduced first-session drop-off by 44%. Every UX recommendation was backed by user testing, not guesswork.&rdquo;
                         </p>
                       </div>
@@ -1310,8 +1310,8 @@
                           </span>
                         </span>
                         <div class="testimonial-author-meta">
-                          <h3 class="testimonial-author-name">Julian Brooks</h3>
-                          <p class="testimonial-author-role">VP Product, PulseMetrics SaaS</p>
+                          <h3 class="testimonial-author-name" data-alify-copy="copy_pricing_064">Julian Brooks</h3>
+                          <p class="testimonial-author-role" data-alify-copy="copy_pricing_065">VP Product, PulseMetrics SaaS</p>
                         </div>
                       </div>
                       <span class="testimonial-service-tag">UI/UX & Branding</span>
@@ -1337,7 +1337,7 @@
                       </div>
                       <div class="testimonial-body">
                         <i class="fa-solid fa-quote-left testimonial-quote-mark" aria-hidden="true"></i>
-                        <p class="testimonial-quote">
+                        <p class="testimonial-quote" data-alify-copy="copy_pricing_066">
                           &ldquo;Riders can unlock and reserve EVs in under 38 seconds thanks to ALIFY’s streamlined cloud booking UX. Hands-down the sharpest digital product partner we have hired.&rdquo;
                         </p>
                       </div>
@@ -1351,8 +1351,8 @@
                           </span>
                         </span>
                         <div class="testimonial-author-meta">
-                          <h3 class="testimonial-author-name">Sophia Kowalski</h3>
-                          <p class="testimonial-author-role">Director of Digital, VoltMobility</p>
+                          <h3 class="testimonial-author-name" data-alify-copy="copy_pricing_067">Sophia Kowalski</h3>
+                          <p class="testimonial-author-role" data-alify-copy="copy_pricing_068">Director of Digital, VoltMobility</p>
                         </div>
                       </div>
                       <span class="testimonial-service-tag">Design Systems</span>
@@ -1387,10 +1387,10 @@
                   <span class="faq-eyebrow-dot" aria-hidden="true">△</span>
                   <span>Investment &amp; Billing FAQs</span>
                 </div>
-                <h2 class="faq-title">
+                <h2 class="faq-title" data-alify-copy="copy_pricing_069">
                   Clear Answers on <span>Pricing &amp; Sprints.</span>
                 </h2>
-                <p class="faq-desc">
+                <p class="faq-desc" data-alify-copy="copy_pricing_070">
                   Everything you need to know about milestone schedules, monthly retainers, scope adjustments, and intellectual property ownership.
                 </p>
 
@@ -1399,9 +1399,9 @@
                     <span class="faq-support-icon">
                       <i class="fa-solid fa-comments" aria-hidden="true"></i>
                     </span>
-                    <h3 class="faq-support-title">Need a custom enterprise quote?</h3>
+                    <h3 class="faq-support-title" data-alify-copy="copy_pricing_071">Need a custom enterprise quote?</h3>
                   </div>
-                  <p class="faq-support-text">
+                  <p class="faq-support-text" data-alify-copy="copy_pricing_072">
                     Share your RFP or product roadmap with an ALIFY Managing Partner for a tailored milestone breakdown within 24 hours.
                   </p>
                   <a href="contact.html" class="btn-start-project">
@@ -1429,7 +1429,7 @@
                   <div class="faq-answer-wrap">
                     <div class="faq-answer-inner">
                       <div class="faq-answer-body">
-                        <p>Fixed-scope sprints follow a transparent 50 / 25 / 25 schedule: 50% to reserve your senior squad at kickoff, 25% upon interactive Figma design &amp; prototype approval, and the final 25% once staging QA passes and your platform is ready to launch.</p>
+                        <p data-alify-copy="copy_pricing_073">Fixed-scope sprints follow a transparent 50 / 25 / 25 schedule: 50% to reserve your senior squad at kickoff, 25% upon interactive Figma design &amp; prototype approval, and the final 25% once staging QA passes and your platform is ready to launch.</p>
                       </div>
                     </div>
                   </div>
@@ -1448,7 +1448,7 @@
                   <div class="faq-answer-wrap">
                     <div class="faq-answer-inner">
                       <div class="faq-answer-body">
-                        <p>Yes. Monthly Retainer Pods operate with zero multi-quarter lock-in. If your roadmap slows down between product releases, you can pause unused days for future sprints or cancel prior to your next billing cycle with 7 days’ notice.</p>
+                        <p data-alify-copy="copy_pricing_074">Yes. Monthly Retainer Pods operate with zero multi-quarter lock-in. If your roadmap slows down between product releases, you can pause unused days for future sprints or cancel prior to your next billing cycle with 7 days’ notice.</p>
                       </div>
                     </div>
                   </div>
@@ -1467,7 +1467,7 @@
                   <div class="faq-answer-wrap">
                     <div class="faq-answer-inner">
                       <div class="faq-answer-body">
-                        <p>Never. All studio design, engineering, QA, and project management costs are itemized upfront. Any third-party SaaS subscriptions you choose to own (such as Shopify, Sanity CMS, or cloud hosting) are billed directly in your company’s name at cost.</p>
+                        <p data-alify-copy="copy_pricing_075">Never. All studio design, engineering, QA, and project management costs are itemized upfront. Any third-party SaaS subscriptions you choose to own (such as Shopify, Sanity CMS, or cloud hosting) are billed directly in your company’s name at cost.</p>
                       </div>
                     </div>
                   </div>
@@ -1486,7 +1486,7 @@
                   <div class="faq-answer-wrap">
                     <div class="faq-answer-inner">
                       <div class="faq-answer-body">
-                        <p>Absolutely. Use the Interactive Scope Estimator above to select standalone UI/UX &amp; Token Design Systems (collaborating directly with your internal engineers) or standalone Full-Stack Frontend/Commerce Engineering from your existing Figma files.</p>
+                        <p data-alify-copy="copy_pricing_076">Absolutely. Use the Interactive Scope Estimator above to select standalone UI/UX &amp; Token Design Systems (collaborating directly with your internal engineers) or standalone Full-Stack Frontend/Commerce Engineering from your existing Figma files.</p>
                       </div>
                     </div>
                   </div>
@@ -1505,7 +1505,7 @@
                   <div class="faq-answer-wrap">
                     <div class="faq-answer-inner">
                       <div class="faq-answer-body">
-                        <p>Your company retains 100% full ownership of all bespoke visual assets, Figma component libraries, design tokens, and production source code upon milestone completion — with zero proprietary agency lock-in.</p>
+                        <p data-alify-copy="copy_pricing_077">Your company retains 100% full ownership of all bespoke visual assets, Figma component libraries, design tokens, and production source code upon milestone completion — with zero proprietary agency lock-in.</p>
                       </div>
                     </div>
                   </div>
@@ -1524,7 +1524,7 @@
                 <span class="blog-section-eyebrow-dot" aria-hidden="true">△</span>
                 <span>Studio Journal &amp; Insights</span>
               </div>
-              <h2 class="blog-section-title">
+              <h2 class="blog-section-title" data-alify-copy="copy_pricing_078">
                 Latest Thinking on <span>Design, Motion &amp; Growth.</span>
               </h2>
             </div>
@@ -1563,10 +1563,10 @@
                       <span>6 Min Read</span>
                     </span>
                   </div>
-                  <h3 class="blog-card-title">
+                  <h3 class="blog-card-title" data-alify-copy="copy_pricing_079">
                     <a href="blog-single.html?post=scalable-design-systems">Scalable Design Systems: How Modern Teams Ship UI 3x Faster</a>
                   </h3>
-                  <p class="blog-card-excerpt">
+                  <p class="blog-card-excerpt" data-alify-copy="copy_pricing_080">
                     Discover how token-first CSS architecture and layout-agnostic components eliminate UI drift and accelerate multi-page product delivery.
                   </p>
                   <div class="blog-card-footer">
@@ -1602,10 +1602,10 @@
                       <span>7 Min Read</span>
                     </span>
                   </div>
-                  <h3 class="blog-card-title">
+                  <h3 class="blog-card-title" data-alify-copy="copy_pricing_081">
                     <a href="blog-single.html?post=mastering-gsap-motion">Mastering Web Motion: Crafting High-Performance Micro-Interactions with GSAP</a>
                   </h3>
-                  <p class="blog-card-excerpt">
+                  <p class="blog-card-excerpt" data-alify-copy="copy_pricing_082">
                     A practical engineering guide to choreographing 60fps timelines, tactile CTA feedback, and scroll-triggered storytelling without layout thrashing.
                   </p>
                   <div class="blog-card-footer">
@@ -1641,10 +1641,10 @@
                       <span>5 Min Read</span>
                     </span>
                   </div>
-                  <h3 class="blog-card-title">
+                  <h3 class="blog-card-title" data-alify-copy="copy_pricing_083">
                     <a href="blog-single.html?post=conversion-ux-architecture">Conversion-Led UX Architecture: Turning B2B Traffic Into Qualified Pipeline</a>
                   </h3>
-                  <p class="blog-card-excerpt">
+                  <p class="blog-card-excerpt" data-alify-copy="copy_pricing_084">
                     How clear above-the-fold hierarchy, dual-intent CTAs, and friction-free mobile navigation transform agency and SaaS conversion velocity.
                   </p>
                   <div class="blog-card-footer">
@@ -1680,10 +1680,10 @@
                       <span>6 Min Read</span>
                     </span>
                   </div>
-                  <h3 class="blog-card-title">
+                  <h3 class="blog-card-title" data-alify-copy="copy_pricing_085">
                     <a href="blog-single.html?post=iconic-brand-identity">Beyond the Logo: Building Iconic Digital Brand Identities That Endure</a>
                   </h3>
-                  <p class="blog-card-excerpt">
+                  <p class="blog-card-excerpt" data-alify-copy="copy_pricing_086">
                     Why palette restraint, geometric display typography, and repeatable signature UI motifs separate category leaders from generic templates.
                   </p>
                   <div class="blog-card-footer">
@@ -1719,10 +1719,10 @@
                       <span>8 Min Read</span>
                     </span>
                   </div>
-                  <h3 class="blog-card-title">
+                  <h3 class="blog-card-title" data-alify-copy="copy_pricing_087">
                     <a href="blog-single.html?post=headless-ecommerce-2026">Headless E-Commerce in 2026: Speed, Storytelling, and Checkout Velocity</a>
                   </h3>
-                  <p class="blog-card-excerpt">
+                  <p class="blog-card-excerpt" data-alify-copy="copy_pricing_088">
                     Learn how high-growth DTC brands combine sub-second storefront rendering with rich editorial merchandising to lift average order value.
                   </p>
                   <div class="blog-card-footer">
@@ -1758,10 +1758,10 @@
                       <span>6 Min Read</span>
                     </span>
                   </div>
-                  <h3 class="blog-card-title">
+                  <h3 class="blog-card-title" data-alify-copy="copy_pricing_089">
                     <a href="blog-single.html?post=technical-seo-guide">Core Web Vitals &amp; Technical SEO: The Engineering Guide to Organic Growth</a>
                   </h3>
-                  <p class="blog-card-excerpt">
+                  <p class="blog-card-excerpt" data-alify-copy="copy_pricing_090">
                     From semantic HTML landmarks and self-hosted WOFF2 fonts to zero-CLS media containers — build websites search engines and humans love.
                   </p>
                   <div class="blog-card-footer">
@@ -1817,10 +1817,10 @@
                 <span class="contact-sec-eyebrow-dot" aria-hidden="true">△</span>
                 <span>Let’s Collaborate</span>
               </div>
-              <h2 class="contact-sec-title">
+              <h2 class="contact-sec-title" data-alify-copy="copy_pricing_091">
                 Ready to Elevate Your <span>Digital Presence?</span>
               </h2>
-              <p class="contact-sec-desc">
+              <p class="contact-sec-desc" data-alify-copy="copy_pricing_092">
                 Tell us what you are building — our design directors and lead engineers will respond within one business day with clear next steps.
               </p>
 
@@ -1857,8 +1857,8 @@
 
             <div class="col-12 col-lg-7">
               <div class="reusable-contact-card">
-                <h3 class="reusable-contact-card-title">Send Us a Message</h3>
-                <p class="reusable-contact-card-sub">
+                <h3 class="reusable-contact-card-title" data-alify-copy="copy_pricing_093">Send Us a Message</h3>
+                <p class="reusable-contact-card-sub" data-alify-copy="copy_pricing_094">
                   Fill out the details below and we will get back to you promptly.
                 </p>
 

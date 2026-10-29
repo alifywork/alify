@@ -33,7 +33,7 @@
 
             <span class="blog-single-badge" id="blogSingleCategory">Design Systems</span>
 
-            <h1 class="blog-single-title" id="blogSingleTitle">
+            <h1 class="blog-single-title" id="blogSingleTitle" data-alify-copy="copy_blog_single_001">
               Scalable Design Systems: How Modern Teams Ship UI 3x Faster
             </h1>
 
@@ -64,7 +64,7 @@
               <aside class="blog-toc-sticky" aria-label="Table of Contents">
                 <div class="blog-toc-card" id="blogTocCard">
                   <div class="blog-toc-header">
-                    <h2 class="blog-toc-heading">
+                    <h2 class="blog-toc-heading" data-alify-copy="copy_blog_single_002">
                       <i class="fa-solid fa-list-ul" aria-hidden="true"></i>
                       <span>Table of Contents</span>
                     </h2>
@@ -162,23 +162,23 @@
                 </figure>
 
                 <div class="blog-prose" id="blogSingleProse">
-                  <p class="blog-lead-paragraph">
+                  <p class="blog-lead-paragraph" data-alify-copy="copy_blog_single_003">
                     When product teams scale across multiple web and product surfaces without a shared token architecture, design debt compounds every sprint. Here is how ALIFY structures multi-brand design systems built for velocity.
                   </p>
 
-                  <h2 id="why-design-systems-stall">1. Why Most Design Systems Stall After Launch</h2>
-                  <p>
+                  <h2 id="why-design-systems-stall" data-alify-copy="copy_blog_single_004">1. Why Most Design Systems Stall After Launch</h2>
+                  <p data-alify-copy="copy_blog_single_005">
                     Many teams treat a design system as a static UI kit rather than a living product infrastructure. Without synchronized design tokens and strict component ownership, Figma libraries and production CSS drift apart within weeks.
                   </p>
-                  <p>
+                  <p data-alify-copy="copy_blog_single_006">
                     Successful systems start by codifying foundational primitives — color variables, typographic scales, spacing rhythms, and responsive grid rules — before building complex organisms.
                   </p>
-                  <p>
+                  <p data-alify-copy="copy_blog_single_007">
                     When product managers, designers, and engineers share the exact same vocabulary for spacing, elevation, and interactive states, handoff friction disappears and visual consistency becomes automatic.
                   </p>
 
-                  <h2 id="token-first-architecture">2. Structuring a Token-First CSS Architecture</h2>
-                  <p>
+                  <h2 id="token-first-architecture" data-alify-copy="copy_blog_single_008">2. Structuring a Token-First CSS Architecture</h2>
+                  <p data-alify-copy="copy_blog_single_009">
                     By anchoring every component to semantic custom properties, engineering teams gain effortless maintainability. Updating a primary brand hue or typographic hierarchy cascades cleanly across headers, cards, drawers, and interactive states.
                   </p>
                   <ul class="blog-key-list">
@@ -196,7 +196,7 @@
                     </li>
                   </ul>
 
-                  <blockquote class="blog-callout-quote">
+                  <blockquote class="blog-callout-quote" data-alify-copy="copy_blog_single_010">
                     <i class="fa-solid fa-quote-left blog-callout-quote-icon" aria-hidden="true"></i>
                     <p>
                       A great design system doesn’t restrict creativity — it eliminates repetitive decisions so designers and engineers can focus on high-leverage product craft.
@@ -204,24 +204,24 @@
                     <cite>— ALIFY Product &amp; Design Studio</cite>
                   </blockquote>
 
-                  <h2 id="component-api-discipline">3. Designing Composable Component Patterns</h2>
-                  <p>
+                  <h2 id="component-api-discipline" data-alify-copy="copy_blog_single_011">3. Designing Composable Component Patterns</h2>
+                  <p data-alify-copy="copy_blog_single_012">
                     Whether rendering a blog card inside a horizontal home carousel or a three-column archive grid, the component itself should remain layout-agnostic. Parent containers control column widths while the card manages its own internal hierarchy.
                   </p>
-                  <p>
+                  <p data-alify-copy="copy_blog_single_013">
                     This separation of layout responsibility means a single card stylesheet powers carousels, filtered archives, and related-post modules without fragile overrides.
                   </p>
 
-                  <h2 id="governance-and-adoption">4. Driving Cross-Functional Adoption</h2>
-                  <p>
+                  <h2 id="governance-and-adoption" data-alify-copy="copy_blog_single_014">4. Driving Cross-Functional Adoption</h2>
+                  <p data-alify-copy="copy_blog_single_015">
                     Documentation must live alongside real interactive examples. Pairing clear naming conventions with accessible markup ensures every developer on the team adopts shared patterns faster than writing one-off overrides.
                   </p>
 
-                  <h2 id="measuring-velocity-gains">5. Measuring Real Engineering Velocity</h2>
-                  <p>
+                  <h2 id="measuring-velocity-gains" data-alify-copy="copy_blog_single_016">5. Measuring Real Engineering Velocity</h2>
+                  <p data-alify-copy="copy_blog_single_017">
                     Across ALIFY client engagements, transitioning to a token-backed component library reduces UI QA regressions by over 60% and cuts new page assembly from days to hours.
                   </p>
-                  <p>
+                  <p data-alify-copy="copy_blog_single_018">
                     Teams spend less time debating pixel discrepancies and far more time testing conversion hypotheses, refining motion, and shipping customer value.
                   </p>
                 </div>
@@ -250,9 +250,9 @@
                 <div class="blog-author-card">
                   <span class="blog-author-avatar" aria-hidden="true">△</span>
                   <div>
-                    <h3 class="blog-author-name">ALIFY Product &amp; Design Team</h3>
+                    <h3 class="blog-author-name" data-alify-copy="copy_blog_single_019">ALIFY Product &amp; Design Team</h3>
                     <div class="blog-author-role">Design Systems &amp; Frontend Engineering</div>
-                    <p class="blog-author-bio">
+                    <p class="blog-author-bio" data-alify-copy="copy_blog_single_020">
                       Insights written by the senior designers and full-stack engineers at ALIFY Studio — helping ambitious brands ship faster, sharper digital products.
                     </p>
                   </div>
@@ -265,7 +265,7 @@
               <aside class="blog-sidebar-sticky" aria-label="Blog Sidebar">
                 <!-- Search Widget -->
                 <div class="blog-sidebar-widget">
-                  <h2 class="blog-widget-title">Search Journal</h2>
+                  <h2 class="blog-widget-title" data-alify-copy="copy_blog_single_021">Search Journal</h2>
                   <form action="blog.html" method="get" class="blog-sidebar-search">
                     <input
                       type="search"
@@ -281,7 +281,7 @@
 
                 <!-- Recent Articles Widget -->
                 <div class="blog-sidebar-widget">
-                  <h2 class="blog-widget-title">Recent Articles</h2>
+                  <h2 class="blog-widget-title" data-alify-copy="copy_blog_single_022">Recent Articles</h2>
                   <ul class="blog-recent-list">
                     <li class="blog-recent-item">
                       <a href="blog-single.html?post=scalable-design-systems" class="blog-recent-thumb">
@@ -324,7 +324,7 @@
 
                 <!-- Categories Widget -->
                 <div class="blog-sidebar-widget">
-                  <h2 class="blog-widget-title">Categories</h2>
+                  <h2 class="blog-widget-title" data-alify-copy="copy_blog_single_023">Categories</h2>
                   <ul class="blog-category-list">
                     <li>
                       <a href="blog.html?category=Design%20Systems" class="blog-category-link">
@@ -367,8 +367,8 @@
 
                 <!-- Sidebar Studio CTA Card -->
                 <div class="blog-sidebar-cta">
-                  <h2 class="blog-sidebar-cta-title">Have a Project in Mind?</h2>
-                  <p class="blog-sidebar-cta-desc">
+                  <h2 class="blog-sidebar-cta-title" data-alify-copy="copy_blog_single_024">Have a Project in Mind?</h2>
+                  <p class="blog-sidebar-cta-desc" data-alify-copy="copy_blog_single_025">
                     Let’s architect a fast, conversion-led digital platform tailored to your brand.
                   </p>
                   <a href="start-project.html" class="btn-start-project btn-start-light">
@@ -393,10 +393,10 @@
                 <span class="blog-related-eyebrow-dot" aria-hidden="true">△</span>
                 <span>Continue Reading</span>
               </div>
-              <h2 class="blog-related-title">
+              <h2 class="blog-related-title" data-alify-copy="copy_blog_single_026">
                 Related Blogs &amp; <span>Engineering Insights.</span>
               </h2>
-              <p class="blog-related-desc">
+              <p class="blog-related-desc" data-alify-copy="copy_blog_single_027">
                 Explore more hands-on guides from ALIFY on design systems, 60fps GSAP motion, conversion UX, and high-speed frontend engineering.
               </p>
             </div>
@@ -435,10 +435,10 @@
                       <span>7 Min Read</span>
                     </span>
                   </div>
-                  <h3 class="blog-card-title">
+                  <h3 class="blog-card-title" data-alify-copy="copy_blog_single_028">
                     <a href="blog-single.html?post=mastering-gsap-motion">Mastering Web Motion: Crafting High-Performance Micro-Interactions with GSAP</a>
                   </h3>
-                  <p class="blog-card-excerpt">
+                  <p class="blog-card-excerpt" data-alify-copy="copy_blog_single_029">
                     Purposeful motion guides user attention, communicates spatial hierarchy, and elevates perceived brand quality — provided every frame runs...
                   </p>
                   <div class="blog-card-footer">
@@ -475,10 +475,10 @@
                       <span>5 Min Read</span>
                     </span>
                   </div>
-                  <h3 class="blog-card-title">
+                  <h3 class="blog-card-title" data-alify-copy="copy_blog_single_030">
                     <a href="blog-single.html?post=conversion-ux-architecture">Conversion-Led UX Architecture: Turning B2B Traffic Into Qualified Pipeline</a>
                   </h3>
-                  <p class="blog-card-excerpt">
+                  <p class="blog-card-excerpt" data-alify-copy="copy_blog_single_031">
                     Beautiful visuals capture attention in the first three seconds, but information architecture and friction-free conversion pathways are wha...
                   </p>
                   <div class="blog-card-footer">
@@ -515,10 +515,10 @@
                       <span>8 Min Read</span>
                     </span>
                   </div>
-                  <h3 class="blog-card-title">
+                  <h3 class="blog-card-title" data-alify-copy="copy_blog_single_032">
                     <a href="blog-single.html?post=technical-seo-guide">Core Web Vitals &amp; Technical SEO: The Engineering Guide to Organic Growth</a>
                   </h3>
-                  <p class="blog-card-excerpt">
+                  <p class="blog-card-excerpt" data-alify-copy="copy_blog_single_033">
                     Learn how sub-second Largest Contentful Paint, clean semantic landmarks, and zero-CLS asset strategies compound organic search authority.
                   </p>
                   <div class="blog-card-footer">

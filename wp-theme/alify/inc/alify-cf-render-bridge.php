@@ -977,7 +977,7 @@ function alify_apply_cf_options_overrides( $html, $part_slug = '' ) {
  */
 if ( ! function_exists( 'alify_apply_per_page_cf_overrides' ) ) {
 	function alify_apply_per_page_cf_overrides( $html, $part_slug = '' ) {
-		if ( ! is_string( $html ) || ! is_page() || ! function_exists( 'alify_get_field' ) ) {
+		if ( ! is_string( $html ) || ( ! is_page() && ! is_singular() ) || ! function_exists( 'alify_get_field' ) ) {
 			return $html;
 		}
 		$post_id = get_queried_object_id();
@@ -1126,4 +1126,45 @@ if ( ! function_exists( 'alify_apply_per_page_cf_overrides' ) ) {
 		}
 		return $html;
 	}
+}
+
+/**
+ * Apply the generated, pre-filled per-page title/body fields to their marked template elements.
+ */
+function alify_apply_generated_page_copy_fields( $html, $post_id, $part_slug = '' ) {
+	if ( ! is_string( $html ) ) { return $html; }
+	$page_slug = isset( $part_slug ) && '' !== $part_slug ? $part_slug : ( $post_id ? get_post_field( 'post_name', $post_id ) : '' );
+	$catalog = require ALIFY_THEME_DIR . '/inc/page-content-catalog.php';
+	if ( empty( $catalog[ $page_slug ]['fields'] ) ) { return preg_replace( '/\\sdata-alify-copy="[^"]*"/', '', $html ); }
+	$option_page = '';
+	if ( is_404() && '404' === $page_slug ) {
+		$option_page = 'alify_conversion';
+	} elseif ( 'blog' === $page_slug && ( is_home() || is_archive() ) ) {
+		$option_page = 'alify_archives';
+	} elseif ( is_post_type_archive() || is_tax() ) {
+		$option_pages = array(
+			'services' => 'alify_archive_services',
+			'work' => 'alify_archive_work',
+			'industries' => 'alify_archive_industries',
+			'case-studies' => 'alify_archive_case_studies',
+			'testimonials' => 'alify_archive_testimonials',
+			'faq' => 'alify_archive_faq',
+		);
+		$option_page = $option_pages[ $page_slug ] ?? '';
+	}
+	foreach ( $catalog[ $page_slug ]['fields'] as $field ) {
+		if ( $option_page ) {
+			$value = function_exists( 'alify_get_option' ) ? alify_get_option( $field['name'], $option_page ) : null;
+		} else {
+			$value = ( $post_id && function_exists( 'alify_get_field' ) ) ? alify_get_field( $field['name'], $post_id ) : null;
+		}
+		if ( ! is_string( $value ) || $value === $field['default'] ) { continue; }
+		$name = preg_quote( $field['name'], '~' );
+		$tag = preg_quote( $field['tag'], '~' );
+		$pattern = '~(<(' . $tag . ')\\b[^>]*\\bdata-alify-copy="' . $name . '"[^>]*>)(.*?)(</\\2>)~si';
+		$html = preg_replace_callback( $pattern, function ( $match ) use ( $value ) {
+			return $match[1] . nl2br( esc_html( $value ) ) . $match[4];
+		}, $html, 1 );
+	}
+	return preg_replace( '/\\sdata-alify-copy="[^"]*"/', '', $html );
 }

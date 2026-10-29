@@ -78,11 +78,17 @@ function alify_register_cf_options_pages() {
 	alify_add_options_page( 'alify_pricing_adv', __( 'Pricing Calc & Matrix', 'alify' ) );
 	alify_add_options_page( 'alify_conversion', __( 'Book Call, Legal & 404', 'alify' ) );
 	alify_add_options_page( 'alify_singles', __( 'Single Templates', 'alify' ) );
+	alify_add_options_page( 'alify_archive_services', __( 'Services Archive Copy', 'alify' ) );
+	alify_add_options_page( 'alify_archive_work', __( 'Work Archive Copy', 'alify' ) );
+	alify_add_options_page( 'alify_archive_industries', __( 'Industries Archive Copy', 'alify' ) );
+	alify_add_options_page( 'alify_archive_case_studies', __( 'Case Studies Archive Copy', 'alify' ) );
+	alify_add_options_page( 'alify_archive_testimonials', __( 'Testimonials Archive Copy', 'alify' ) );
+	alify_add_options_page( 'alify_archive_faq', __( 'FAQ Hub Copy', 'alify' ) );
 }
 add_action( 'init', 'alify_register_cf_options_pages', 12 );
 
 /**
- * Add Top-Level `ALIFY Theme Settings` Shortcut Menu in WP Admin Linking to All 7 Options Screens.
+ * Add Top-Level `ALIFY Theme Settings` Shortcut Menu in WP Admin Linking to All 13 Options Screens.
  */
 function alify_register_cf_theme_settings_shortcut_menu() {
 	add_menu_page(
@@ -104,6 +110,12 @@ function alify_register_cf_theme_settings_shortcut_menu() {
 			'alify_pricing_adv' => __( 'Pricing Calc & Matrix', 'alify' ),
 			'alify_conversion'  => __( 'Book Call, Legal & 404', 'alify' ),
 			'alify_singles'     => __( 'Single Templates', 'alify' ),
+			'alify_archive_services' => __( 'Services Archive Copy', 'alify' ),
+			'alify_archive_work' => __( 'Work Archive Copy', 'alify' ),
+			'alify_archive_industries' => __( 'Industries Archive Copy', 'alify' ),
+			'alify_archive_case_studies' => __( 'Case Studies Archive Copy', 'alify' ),
+			'alify_archive_testimonials' => __( 'Testimonials Archive Copy', 'alify' ),
+			'alify_archive_faq' => __( 'FAQ Hub Copy', 'alify' ),
 		);
 		foreach ( $links as $slug => $label ) {
 			add_submenu_page(
@@ -141,7 +153,7 @@ add_action( 'admin_init', 'alify_redirect_cf_theme_settings_shortcuts', 5 );
 
 function alify_render_cf_theme_settings_hub() {
 	echo '<div class="wrap"><h1>' . esc_html__( 'ALIFY Theme Settings', 'alify' ) . '</h1>';
-	echo '<div class="notice notice-info" style="padding:14px 18px;margin-top:16px;"><p><strong>' . esc_html__( 'Activate the "Alify Custom Field" plugin', 'alify' ) . '</strong> ' . esc_html__( 'to unlock all 5 visual Options Pages (Global, Home, Archive Hubs, Pricing & About, Single Templates) and Repeater/Gallery editors on every post type.', 'alify' ) . '</p></div></div>';
+	echo '<div class="notice notice-info" style="padding:14px 18px;margin-top:16px;"><p><strong>' . esc_html__( 'Activate the "Alify Custom Field" plugin', 'alify' ) . '</strong> ' . esc_html__( 'to unlock all 7 core visual Options Pages, 6 dedicated archive-copy screens, and Repeater/Gallery editors on every post type.', 'alify' ) . '</p></div></div>';
 }
 
 /**
@@ -559,7 +571,7 @@ function alify_register_all_cf_field_groups() {
 
 			alify_cf_tab_def( 'allpg_tab_sections', 'All Page Sections & Repeater Content' ),
 			alify_cf_field_def( 'pg_content_sections', 'Page Sections — add, edit, reorder and remove sections', 'repeater', array(
-				'max_rows' => 100,
+				'max_rows' => 50,
 				'sub_fields' => array(
 					alify_cf_field_def( 'section_key', 'Section Key / Template Slug (e.g. home_why, pricing_tiers)', 'text' ),
 					alify_cf_field_def( 'section_eyebrow', 'Section Eyebrow', 'text' ),
@@ -569,7 +581,7 @@ function alify_register_all_cf_field_groups() {
 					alify_cf_field_def( 'section_image', 'Section Image', 'image' ),
 					alify_cf_field_def( 'section_image_url', 'Section Image URL Fallback', 'url' ),
 					alify_cf_field_def( 'section_items', 'Cards, Steps, Metrics, Guarantees, Questions or List Rows', 'repeater', array(
-						'max_rows' => 100,
+						'max_rows' => 50,
 						'sub_fields' => array(
 							alify_cf_field_def( 'item_kicker', 'Item Badge / Category / Kicker', 'text' ),
 							alify_cf_field_def( 'item_target_class', 'Existing Title CSS Class To Replace (Optional)', 'text', array( 'desc' => 'Example: about-pillar-title, pricing-tier-name, faq-hub-group-title. Leave blank to only add a new card.' ) ),
@@ -1022,6 +1034,97 @@ function alify_register_all_cf_field_groups() {
 			alify_cf_field_def( 'sgl_blog_related_title', 'Related Articles Heading (`<span>` allowed)', 'text', array( 'std' => 'Related Blogs & <span>Engineering Insights.</span>' ) ),
 		),
 	);
+
+	// Auto-generate pre-filled fields for every H1–H6, paragraph and quotation in each seeded page.
+	$page_copy_catalog = require ALIFY_THEME_DIR . '/inc/page-content-catalog.php';
+	$copy_cpt_groups = array(
+		'service-single'     => 'alify_theme_cpt_service',
+		'work-single'        => 'alify_theme_cpt_project',
+		'industry-single'    => 'alify_theme_cpt_industry',
+		'case-study-single'  => 'alify_theme_cpt_case_study',
+	);
+	foreach ( $page_copy_catalog as $page_slug => $page_data ) {
+		$page_fields = array( alify_cf_tab_def( 'copy_tab_' . str_replace( '-', '_', $page_slug ), 'Existing Page Copy — Pre-filled From Design' ) );
+		foreach ( $page_data['fields'] as $copy_field ) {
+			$page_fields[] = alify_cf_field_def(
+				$copy_field['name'],
+				$copy_field['label'],
+				'textarea',
+				array(
+					'std'  => $copy_field['default'],
+					'desc' => 'Pre-filled from this page template. Edit the text here; the current design/layout stays in place.',
+				)
+			);
+		}
+		if ( isset( $copy_cpt_groups[ $page_slug ] ) ) {
+			foreach ( $groups as &$existing_group ) {
+				if ( $existing_group['key'] === $copy_cpt_groups[ $page_slug ] ) {
+					$existing_group['fields'] = array_merge( $existing_group['fields'], $page_fields );
+					break;
+				}
+			}
+			unset( $existing_group );
+		}
+		if ( '404' !== $page_slug ) {
+			$groups[] = array(
+				'key'      => 'alify_page_copy_' . str_replace( '-', '_', $page_slug ),
+				'title'    => 'ALIFY — ' . $page_data['title'] . ' Page Copy (Pre-filled Text Fields)',
+				'location' => 'page',
+				'rules'    => array(
+					array(
+						array( 'param' => 'template', 'operator' => '==', 'value' => $page_data['template'] ),
+					),
+				),
+				'fields'   => $page_fields,
+			);
+		}
+	}
+
+	// Non-Page archives/404 have their own options screens; the same marked copy fields render there.
+	$option_copy_targets = array(
+		'404'  => 'alify_conversion',
+		'blog' => 'alify_archives',
+	);
+	foreach ( $option_copy_targets as $page_slug => $option_location ) {
+		if ( empty( $page_copy_catalog[ $page_slug ]['fields'] ) ) { continue; }
+		$option_fields = array( alify_cf_tab_def( 'opt_copy_tab_' . str_replace( '-', '_', $page_slug ), 'Existing Copy — Pre-filled From Design' ) );
+		foreach ( $page_copy_catalog[ $page_slug ]['fields'] as $copy_field ) {
+			$option_fields[] = alify_cf_field_def(
+				$copy_field['name'],
+				$copy_field['label'],
+				'textarea',
+				array( 'std' => $copy_field['default'], 'desc' => 'Pre-filled from the existing archive/page markup. Edit the copy without changing the design.' )
+			);
+		}
+		$groups[] = array(
+			'key'      => 'alify_archive_copy_' . str_replace( '-', '_', $page_slug ),
+			'title'    => 'ALIFY — ' . $page_copy_catalog[ $page_slug ]['title'] . ' Copy (Pre-filled Text Fields)',
+			'location' => 'options:' . $option_location,
+			'fields'   => $option_fields,
+		);
+	}
+
+	$archive_copy_slugs = array(
+		'services' => 'alify_archive_services',
+		'work' => 'alify_archive_work',
+		'industries' => 'alify_archive_industries',
+		'case-studies' => 'alify_archive_case_studies',
+		'testimonials' => 'alify_archive_testimonials',
+		'faq' => 'alify_archive_faq',
+	);
+	foreach ( $archive_copy_slugs as $page_slug => $option_location ) {
+		if ( empty( $page_copy_catalog[ $page_slug ]['fields'] ) ) { continue; }
+		$option_fields = array( alify_cf_tab_def( 'archive_copy_tab_' . str_replace( '-', '_', $page_slug ), 'Existing Archive Copy — Pre-filled From Design' ) );
+		foreach ( $page_copy_catalog[ $page_slug ]['fields'] as $copy_field ) {
+			$option_fields[] = alify_cf_field_def( $copy_field['name'], $copy_field['label'], 'textarea', array( 'std' => $copy_field['default'], 'desc' => 'Pre-filled from the existing archive markup. Edit the copy without changing the design.' ) );
+		}
+		$groups[] = array(
+			'key' => 'alify_archive_copy_' . str_replace( '-', '_', $page_slug ),
+			'title' => 'ALIFY — ' . $page_copy_catalog[ $page_slug ]['title'] . ' Archive Copy',
+			'location' => 'options:' . $option_location,
+			'fields' => $option_fields,
+		);
+	}
 
 	// Yield to published database Local JSON overrides if an admin synced & published a group in WP Admin
 	$db_local_keys = array();

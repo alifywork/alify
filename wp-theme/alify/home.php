@@ -18,6 +18,7 @@ if ( have_posts() ) :
 	$blog_c_metric = function_exists( 'alify_cf_opt' ) ? alify_cf_opt( 'alify_archives', 'arch_blog_card_metric', 'Weekly' ) : 'Weekly';
 	$blog_c_label  = function_exists( 'alify_cf_opt' ) ? alify_cf_opt( 'alify_archives', 'arch_blog_card_label', 'Fresh perspectives on modern web craft, GSAP motion systems, and scalable UX.' ) : 'Fresh perspectives on modern web craft, GSAP motion systems, and scalable UX.';
 	$blog_c_cta    = function_exists( 'alify_cf_opt' ) ? alify_cf_opt( 'alify_archives', 'arch_blog_card_cta', 'Work With Our Team' ) : 'Work With Our Team';
+	ob_start();
 	?>
 	<main>
 		<section class="inner-hero" aria-label="<?php esc_attr_e( 'Blog Hero', 'alify' ); ?>">
@@ -50,7 +51,7 @@ if ( have_posts() ) :
 							<span><?php echo esc_html( $blog_eyebrow ); ?></span>
 						</div>
 
-						<h1 class="inner-hero-title">
+						<h1 class="inner-hero-title" data-alify-copy="copy_blog_001">
 							<?php if ( ! empty( $archive_title ) ) : ?>
 								<?php echo wp_kses_post( $archive_title ); ?>
 							<?php elseif ( ! empty( $blog_h1_opt ) ) : ?>
@@ -62,7 +63,7 @@ if ( have_posts() ) :
 							<?php endif; ?>
 						</h1>
 
-						<p class="inner-hero-desc">
+						<p class="inner-hero-desc" data-alify-copy="copy_blog_002">
 							<?php echo esc_html( $blog_desc_opt ); ?>
 						</p>
 
@@ -172,6 +173,13 @@ if ( have_posts() ) :
 		</section>
 	</main>
 	<?php
+	$blog_copy_page_id = (int) get_option( 'page_for_posts' );
+	$blog_main_markup = ob_get_clean();
+	echo function_exists( 'alify_apply_generated_page_copy_fields' )
+		? alify_apply_generated_page_copy_fields( $blog_main_markup, $blog_copy_page_id, 'blog' ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		: $blog_main_markup; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	?>
+<?php
 else :
 	alify_render_partial( 'template-parts/pages/blog.php' );
 endif;

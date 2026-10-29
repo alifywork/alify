@@ -21,10 +21,10 @@
                 <span class="inner-hero-eyebrow-dot" aria-hidden="true"></span>
                 <span>Client Knowledge Hub</span>
               </div>
-              <h1 class="inner-hero-title">
+              <h1 class="inner-hero-title" data-alify-copy="copy_faq_001">
                 Transparent Answers on <span class="inner-hero-title-accent">Scope, Craft &amp; ROI.</span>
               </h1>
-              <p class="inner-hero-desc">
+              <p class="inner-hero-desc" data-alify-copy="copy_faq_002">
                 Explore how ALIFY scopes fixed-price sprints, engineers sub-second web ecosystems, transfers 100% IP ownership, and partners with ambitious product teams worldwide.
               </p>
               <div class="inner-hero-tags">
@@ -43,8 +43,8 @@
                   </span>
                   <span class="hero-lead-response">Replies in 24h</span>
                 </div>
-                <h2 class="hero-lead-title">Have a Project Question?</h2>
-                <p class="hero-lead-subtitle">
+                <h2 class="hero-lead-title" data-alify-copy="copy_faq_003">Have a Project Question?</h2>
+                <p class="hero-lead-subtitle" data-alify-copy="copy_faq_004">
                   Send your technical or commercial question and a senior partner will respond within 24 hours.
                 </p>
 
@@ -166,7 +166,7 @@
             <div class="col-12 col-lg-4">
               <aside class="faq-hub-sidebar" aria-label="FAQ Category Navigation">
                 <div class="faq-hub-cat-card">
-                  <h3 class="faq-hub-cat-heading">Knowledge Pillars</h3>
+                  <h3 class="faq-hub-cat-heading" data-alify-copy="copy_faq_005">Knowledge Pillars</h3>
                   <nav class="faq-hub-cat-list">
                     <a href="#cat-scope-sprints" class="faq-hub-cat-link is-active" data-cat-link="scope-sprints"><span>01. Scope &amp; Delivery Sprints</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
                     <a href="#cat-pricing-billing" class="faq-hub-cat-link" data-cat-link="pricing-billing"><span>02. Pricing &amp; Milestones</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
@@ -177,8 +177,8 @@
                 </div>
 
                 <div class="faq-hub-direct-card">
-                  <h3 class="faq-hub-direct-title">Prefer a Live 1-on-1 Walkthrough?</h3>
-                  <p class="faq-hub-direct-desc">Speak directly with an ALIFY Managing Partner on Google Meet, Zoom, or WhatsApp.</p>
+                  <h3 class="faq-hub-direct-title" data-alify-copy="copy_faq_006">Prefer a Live 1-on-1 Walkthrough?</h3>
+                  <p class="faq-hub-direct-desc" data-alify-copy="copy_faq_007">Speak directly with an ALIFY Managing Partner on Google Meet, Zoom, or WhatsApp.</p>
                   <div class="faq-hub-direct-channels">
                     <a href="mailto:info@alify.site" class="faq-hub-channel-row"><i class="fa-solid fa-envelope" aria-hidden="true"></i><span>info@alify.site</span></a>
                     <a href="https://wa.me/923019328094" target="_blank" rel="noopener noreferrer" class="faq-hub-channel-row"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i><span>+92 301 9328094</span></a>
@@ -196,7 +196,7 @@
                 <div id="faqHubGroupsWrap">
                 <div class="faq-hub-group" id="cat-scope-sprints" data-faq-cat="scope-sprints">
                   <div class="faq-hub-group-head">
-                    <h2 class="faq-hub-group-title">
+                    <h2 class="faq-hub-group-title" data-alify-copy="copy_faq_008">
                       <span class="faq-hub-group-icon" aria-hidden="true"><i class="fa-solid fa-compass-drafting"></i></span>
                       <span>Scope, Sprints & Delivery Process</span>
                     </h2>
@@ -213,7 +213,7 @@
                     </button>
                     <div class="faq-answer-wrap">
                       <div class="faq-answer-inner">
-                        <div class="faq-answer-body"><p>Most engagements kick off within 5 to 7 business days after scope alignment and deposit confirmation. During pre-kickoff, we provision your shared Slack channel, Figma workspace, staging repository, and milestone calendar so Day 1 starts with senior execution.</p></div>
+                        <div class="faq-answer-body"><p data-alify-copy="copy_faq_009">Most engagements kick off within 5 to 7 business days after scope alignment and deposit confirmation. During pre-kickoff, we provision your shared Slack channel, Figma workspace, staging repository, and milestone calendar so Day 1 starts with senior execution.</p></div>
                       </div>
                     </div>
                   </div>
@@ -227,7 +227,7 @@
                     </button>
                     <div class="faq-answer-wrap">
                       <div class="faq-answer-inner">
-                        <div class="faq-answer-body"><p>Every ALIFY pod is 100% senior-led. The Managing Partner, Lead Product Designer, and Principal Full-Stack Engineer you meet on your strategy call are the exact builders shipping your design system, frontend architecture, and launch QA.</p></div>
+                        <div class="faq-answer-body"><p data-alify-copy="copy_faq_010">Every ALIFY pod is 100% senior-led. The Managing Partner, Lead Product Designer, and Principal Full-Stack Engineer you meet on your strategy call are the exact builders shipping your design system, frontend architecture, and launch QA.</p></div>
                       </div>
                     </div>
                   </div>
@@ -241,7 +241,7 @@
                     </button>
                     <div class="faq-answer-wrap">
                       <div class="faq-answer-inner">
-                        <div class="faq-answer-body"><p>We work asynchronously-first via Loom walkthroughs, live Figma prototypes, and edge-deployed staging URLs, paired with a structured weekly 30-minute sprint review across US, UK, EU, Gulf, and APAC business hours.</p></div>
+                        <div class="faq-answer-body"><p data-alify-copy="copy_faq_011">We work asynchronously-first via Loom walkthroughs, live Figma prototypes, and edge-deployed staging URLs, paired with a structured weekly 30-minute sprint review across US, UK, EU, Gulf, and APAC business hours.</p></div>
                       </div>
                     </div>
                   </div>
@@ -255,14 +255,14 @@
                     </button>
                     <div class="faq-answer-wrap">
                       <div class="faq-answer-inner">
-                        <div class="faq-answer-body"><p>Refinements within the agreed deliverable boundary are built directly into our iterative Figma and staging cycles. If you decide to add net-new modules, we scope a transparent mini-addendum before writing code — never surprise invoices.</p></div>
+                        <div class="faq-answer-body"><p data-alify-copy="copy_faq_012">Refinements within the agreed deliverable boundary are built directly into our iterative Figma and staging cycles. If you decide to add net-new modules, we scope a transparent mini-addendum before writing code — never surprise invoices.</p></div>
                       </div>
                     </div>
                   </div></div>
                 </div>
                 <div class="faq-hub-group" id="cat-pricing-billing" data-faq-cat="pricing-billing">
                   <div class="faq-hub-group-head">
-                    <h2 class="faq-hub-group-title">
+                    <h2 class="faq-hub-group-title" data-alify-copy="copy_faq_013">
                       <span class="faq-hub-group-icon" aria-hidden="true"><i class="fa-solid fa-coins"></i></span>
                       <span>Pricing, Milestones & Commercial Terms</span>
                     </h2>
@@ -279,7 +279,7 @@
                     </button>
                     <div class="faq-answer-wrap">
                       <div class="faq-answer-inner">
-                        <div class="faq-answer-body"><p>Both. Clear-scope launches (flagship websites, SaaS web apps, headless storefronts, and rebrands) run on fixed-price milestone sprints, while ongoing product roadmaps, CRO experimentation, and technical SEO run on flexible monthly pods.</p></div>
+                        <div class="faq-answer-body"><p data-alify-copy="copy_faq_014">Both. Clear-scope launches (flagship websites, SaaS web apps, headless storefronts, and rebrands) run on fixed-price milestone sprints, while ongoing product roadmaps, CRO experimentation, and technical SEO run on flexible monthly pods.</p></div>
                       </div>
                     </div>
                   </div>
@@ -293,7 +293,7 @@
                     </button>
                     <div class="faq-answer-wrap">
                       <div class="faq-answer-inner">
-                        <div class="faq-answer-body"><p>Our standard schedule is 50% at kickoff to reserve your dedicated pod, 25% upon interactive Figma design system and prototype sign-off, and the final 25% once staging QA passes and your platform is ready for production launch.</p></div>
+                        <div class="faq-answer-body"><p data-alify-copy="copy_faq_015">Our standard schedule is 50% at kickoff to reserve your dedicated pod, 25% upon interactive Figma design system and prototype sign-off, and the final 25% once staging QA passes and your platform is ready for production launch.</p></div>
                       </div>
                     </div>
                   </div>
@@ -307,7 +307,7 @@
                     </button>
                     <div class="faq-answer-wrap">
                       <div class="faq-answer-inner">
-                        <div class="faq-answer-body"><p>We issue compliant commercial invoices payable via international bank wire (SWIFT / ACH / SEPA / IBAN) in USD, EUR, GBP, AED, or PKR, with itemized milestone receipts for your finance team.</p></div>
+                        <div class="faq-answer-body"><p data-alify-copy="copy_faq_016">We issue compliant commercial invoices payable via international bank wire (SWIFT / ACH / SEPA / IBAN) in USD, EUR, GBP, AED, or PKR, with itemized milestone receipts for your finance team.</p></div>
                       </div>
                     </div>
                   </div>
@@ -321,14 +321,14 @@
                     </button>
                     <div class="faq-answer-wrap">
                       <div class="faq-answer-inner">
-                        <div class="faq-answer-body"><p>Yes. For complex multi-stakeholder platforms, we offer a focused 2-week Architecture & UX Blueprint sprint delivering clickable wireframes, technical stack specs, and a fixed build quote — 100% credited if you proceed to build.</p></div>
+                        <div class="faq-answer-body"><p data-alify-copy="copy_faq_017">Yes. For complex multi-stakeholder platforms, we offer a focused 2-week Architecture & UX Blueprint sprint delivering clickable wireframes, technical stack specs, and a fixed build quote — 100% credited if you proceed to build.</p></div>
                       </div>
                     </div>
                   </div></div>
                 </div>
                 <div class="faq-hub-group" id="cat-engineering-stack" data-faq-cat="engineering-stack">
                   <div class="faq-hub-group-head">
-                    <h2 class="faq-hub-group-title">
+                    <h2 class="faq-hub-group-title" data-alify-copy="copy_faq_018">
                       <span class="faq-hub-group-icon" aria-hidden="true"><i class="fa-solid fa-code"></i></span>
                       <span>Web Engineering, Performance & Tech Stack</span>
                     </h2>
@@ -345,7 +345,7 @@
                     </button>
                     <div class="faq-answer-wrap">
                       <div class="faq-answer-inner">
-                        <div class="faq-answer-body"><p>Every ALIFY web build is engineered for 95+ Lighthouse performance scores, sub-second Largest Contentful Paint (LCP), zero Cumulative Layout Shift (CLS), and 60fps hardware-accelerated motion across desktop and mobile devices.</p></div>
+                        <div class="faq-answer-body"><p data-alify-copy="copy_faq_019">Every ALIFY web build is engineered for 95+ Lighthouse performance scores, sub-second Largest Contentful Paint (LCP), zero Cumulative Layout Shift (CLS), and 60fps hardware-accelerated motion across desktop and mobile devices.</p></div>
                       </div>
                     </div>
                   </div>
@@ -359,7 +359,7 @@
                     </button>
                     <div class="faq-answer-wrap">
                       <div class="faq-answer-inner">
-                        <div class="faq-answer-body"><p>We build bespoke semantic HTML5/CSS3/JS ecosystems, React & Next.js web platforms, headless CMS architectures (Sanity, Strapi, Contentful, custom WordPress), and high-converting Shopify Plus & headless commerce storefronts.</p></div>
+                        <div class="faq-answer-body"><p data-alify-copy="copy_faq_020">We build bespoke semantic HTML5/CSS3/JS ecosystems, React & Next.js web platforms, headless CMS architectures (Sanity, Strapi, Contentful, custom WordPress), and high-converting Shopify Plus & headless commerce storefronts.</p></div>
                       </div>
                     </div>
                   </div>
@@ -373,7 +373,7 @@
                     </button>
                     <div class="faq-answer-wrap">
                       <div class="faq-answer-inner">
-                        <div class="faq-answer-body"><p>Absolutely. We routinely wire HubSpot, Salesforce, Pipedrive, GA4, Segment, Stripe, booking calendars, and proprietary REST/GraphQL endpoints with clean server-side attribution and error handling.</p></div>
+                        <div class="faq-answer-body"><p data-alify-copy="copy_faq_021">Absolutely. We routinely wire HubSpot, Salesforce, Pipedrive, GA4, Segment, Stripe, booking calendars, and proprietary REST/GraphQL endpoints with clean server-side attribution and error handling.</p></div>
                       </div>
                     </div>
                   </div>
@@ -387,14 +387,14 @@
                     </button>
                     <div class="faq-answer-wrap">
                       <div class="faq-answer-inner">
-                        <div class="faq-answer-body"><p>We execute a full URL redirect matrix, semantic heading hierarchy, canonical tags, OpenGraph metadata, XML sitemaps, and structured schema markup prior to cutover so organic rankings compound rather than dip.</p></div>
+                        <div class="faq-answer-body"><p data-alify-copy="copy_faq_022">We execute a full URL redirect matrix, semantic heading hierarchy, canonical tags, OpenGraph metadata, XML sitemaps, and structured schema markup prior to cutover so organic rankings compound rather than dip.</p></div>
                       </div>
                     </div>
                   </div></div>
                 </div>
                 <div class="faq-hub-group" id="cat-design-ownership" data-faq-cat="design-ownership">
                   <div class="faq-hub-group-head">
-                    <h2 class="faq-hub-group-title">
+                    <h2 class="faq-hub-group-title" data-alify-copy="copy_faq_023">
                       <span class="faq-hub-group-icon" aria-hidden="true"><i class="fa-solid fa-layer-group"></i></span>
                       <span>Design Systems, Brand Craft & IP Ownership</span>
                     </h2>
@@ -411,7 +411,7 @@
                     </button>
                     <div class="faq-answer-wrap">
                       <div class="faq-answer-inner">
-                        <div class="faq-answer-body"><p>Yes — unconditionally. Upon final milestone completion, 100% of custom source code, Git repositories, Figma component libraries, design tokens, and brand assets transfer cleanly to your organization with zero licensing lock-in.</p></div>
+                        <div class="faq-answer-body"><p data-alify-copy="copy_faq_024">Yes — unconditionally. Upon final milestone completion, 100% of custom source code, Git repositories, Figma component libraries, design tokens, and brand assets transfer cleanly to your organization with zero licensing lock-in.</p></div>
                       </div>
                     </div>
                   </div>
@@ -425,7 +425,7 @@
                     </button>
                     <div class="faq-answer-wrap">
                       <div class="faq-answer-inner">
-                        <div class="faq-answer-body"><p>Yes. Every project includes a modular component library and clean documentation so your marketing and product teams can launch new landing pages, case studies, and campaigns in minutes without breaking layout integrity.</p></div>
+                        <div class="faq-answer-body"><p data-alify-copy="copy_faq_025">Yes. Every project includes a modular component library and clean documentation so your marketing and product teams can launch new landing pages, case studies, and campaigns in minutes without breaking layout integrity.</p></div>
                       </div>
                     </div>
                   </div>
@@ -439,7 +439,7 @@
                     </button>
                     <div class="faq-answer-wrap">
                       <div class="faq-answer-inner">
-                        <div class="faq-answer-body"><p>Accessibility is baked into our design token scale from Day 1 — including high-contrast color pairings, full keyboard focus choreography, semantic ARIA landmarks, and reduced-motion preferences.</p></div>
+                        <div class="faq-answer-body"><p data-alify-copy="copy_faq_026">Accessibility is baked into our design token scale from Day 1 — including high-contrast color pairings, full keyboard focus choreography, semantic ARIA landmarks, and reduced-motion preferences.</p></div>
                       </div>
                     </div>
                   </div>
@@ -453,14 +453,14 @@
                     </button>
                     <div class="faq-answer-wrap">
                       <div class="faq-answer-inner">
-                        <div class="faq-answer-body"><p>Both. We can either elevate and codify your existing visual identity into a digital-first token system, or lead a complete visual rebrand including typography, color architecture, art direction, and verbal positioning.</p></div>
+                        <div class="faq-answer-body"><p data-alify-copy="copy_faq_027">Both. We can either elevate and codify your existing visual identity into a digital-first token system, or lead a complete visual rebrand including typography, color architecture, art direction, and verbal positioning.</p></div>
                       </div>
                     </div>
                   </div></div>
                 </div>
                 <div class="faq-hub-group" id="cat-support-retainers" data-faq-cat="support-retainers">
                   <div class="faq-hub-group-head">
-                    <h2 class="faq-hub-group-title">
+                    <h2 class="faq-hub-group-title" data-alify-copy="copy_faq_028">
                       <span class="faq-hub-group-icon" aria-hidden="true"><i class="fa-solid fa-shield-halved"></i></span>
                       <span>Post-Launch Warranty, Hosting & Growth Pods</span>
                     </h2>
@@ -477,7 +477,7 @@
                     </button>
                     <div class="faq-answer-wrap">
                       <div class="faq-answer-inner">
-                        <div class="faq-answer-body"><p>Every fixed-scope launch includes a complimentary 30-day hypercare warranty covering production monitoring, cross-browser edge fixes, analytics verification, and recorded training walkthroughs for your team.</p></div>
+                        <div class="faq-answer-body"><p data-alify-copy="copy_faq_029">Every fixed-scope launch includes a complimentary 30-day hypercare warranty covering production monitoring, cross-browser edge fixes, analytics verification, and recorded training walkthroughs for your team.</p></div>
                       </div>
                     </div>
                   </div>
@@ -491,7 +491,7 @@
                     </button>
                     <div class="faq-answer-wrap">
                       <div class="faq-answer-inner">
-                        <div class="faq-answer-body"><p>Yes. We configure CI/CD deployment pipelines, SSL certificates, CDN caching rules, and staging previews directly inside your own Vercel, Netlify, AWS, Cloudflare, or dedicated server accounts.</p></div>
+                        <div class="faq-answer-body"><p data-alify-copy="copy_faq_030">Yes. We configure CI/CD deployment pipelines, SSL certificates, CDN caching rules, and staging previews directly inside your own Vercel, Netlify, AWS, Cloudflare, or dedicated server accounts.</p></div>
                       </div>
                     </div>
                   </div>
@@ -505,7 +505,7 @@
                     </button>
                     <div class="faq-answer-wrap">
                       <div class="faq-answer-inner">
-                        <div class="faq-answer-body"><p>Retainer partners get a dedicated senior design + engineering velocity allocation each month for A/B conversion testing, new product modules, SEO content hubs, and priority SLA support — with zero long-term lock-in.</p></div>
+                        <div class="faq-answer-body"><p data-alify-copy="copy_faq_031">Retainer partners get a dedicated senior design + engineering velocity allocation each month for A/B conversion testing, new product modules, SEO content hubs, and priority SLA support — with zero long-term lock-in.</p></div>
                       </div>
                     </div>
                   </div>
@@ -519,15 +519,15 @@
                     </button>
                     <div class="faq-answer-wrap">
                       <div class="faq-answer-inner">
-                        <div class="faq-answer-body"><p>You can book a 30-minute strategy call directly on our site, email our partners at info@alify.site, or message our studio directly on WhatsApp at +92 301 9328094 for same-day executive triage.</p></div>
+                        <div class="faq-answer-body"><p data-alify-copy="copy_faq_032">You can book a 30-minute strategy call directly on our site, email our partners at info@alify.site, or message our studio directly on WhatsApp at +92 301 9328094 for same-day executive triage.</p></div>
                       </div>
                     </div>
                   </div></div>
                 </div>
               </div>
                 <div class="faq-hub-empty" id="faqHubEmpty">
-                <h3 class="faq-hub-empty-title">No matching questions found</h3>
-                <p class="faq-hub-empty-desc">Try another keyword or book a complimentary 30-minute strategy call with our principals.</p>
+                <h3 class="faq-hub-empty-title" data-alify-copy="copy_faq_033">No matching questions found</h3>
+                <p class="faq-hub-empty-desc" data-alify-copy="copy_faq_034">Try another keyword or book a complimentary 30-minute strategy call with our principals.</p>
                 <button type="button" class="faq-hub-reset-btn" id="faqHubResetBtn">Reset Search &amp; Filters</button>
               </div>
             </div>
@@ -540,8 +540,8 @@
           <div class="row faq-hub-cta-row">
             <div class="col-12 col-lg-7">
               <div class="faq-hub-cta-eyebrow"><span aria-hidden="true">△</span><span>Direct Principal Access</span></div>
-              <h2 class="faq-hub-cta-title">Have a Custom Architecture or <span>RFP Question?</span></h2>
-              <p class="faq-hub-cta-desc">Skip back-and-forth email chains. Reserve a 30-minute technical &amp; commercial strategy session or message us directly on WhatsApp.</p>
+              <h2 class="faq-hub-cta-title" data-alify-copy="copy_faq_035">Have a Custom Architecture or <span>RFP Question?</span></h2>
+              <p class="faq-hub-cta-desc" data-alify-copy="copy_faq_036">Skip back-and-forth email chains. Reserve a 30-minute technical &amp; commercial strategy session or message us directly on WhatsApp.</p>
             </div>
             <div class="col-12 col-lg-5">
               <div class="faq-hub-cta-actions">
@@ -567,7 +567,7 @@
                 <span class="testimonials-eyebrow-dot" aria-hidden="true">△</span>
                 <span>Client Stories &amp; Proof</span>
               </div>
-              <h2 class="testimonials-sec-title">
+              <h2 class="testimonials-sec-title" data-alify-copy="copy_faq_037">
                 Trusted by Ambitious <span>Founders &amp; Product Leaders.</span>
               </h2>
               <div class="testimonials-trust-pill">
@@ -619,7 +619,7 @@
                       </div>
                       <div class="testimonial-body">
                         <i class="fa-solid fa-quote-left testimonial-quote-mark" aria-hidden="true"></i>
-                        <p class="testimonial-quote">
+                        <p class="testimonial-quote" data-alify-copy="copy_faq_038">
                           &ldquo;ALIFY rebuilt our enterprise marketing architecture from the ground up. Page speed jumped to 99 on mobile and inbound enterprise demo bookings nearly tripled within sixty days.&rdquo;
                         </p>
                       </div>
@@ -633,8 +633,8 @@
                           </span>
                         </span>
                         <div class="testimonial-author-meta">
-                          <h3 class="testimonial-author-name">Sarah Jenkins</h3>
-                          <p class="testimonial-author-role">VP of Marketing, FinPulse AI</p>
+                          <h3 class="testimonial-author-name" data-alify-copy="copy_faq_039">Sarah Jenkins</h3>
+                          <p class="testimonial-author-role" data-alify-copy="copy_faq_040">VP of Marketing, FinPulse AI</p>
                         </div>
                       </div>
                       <span class="testimonial-service-tag">Web & Engineering</span>
@@ -660,7 +660,7 @@
                       </div>
                       <div class="testimonial-body">
                         <i class="fa-solid fa-quote-left testimonial-quote-mark" aria-hidden="true"></i>
-                        <p class="testimonial-quote">
+                        <p class="testimonial-quote" data-alify-copy="copy_faq_041">
                           &ldquo;Rarely do you find a studio that understands both luxury editorial typography and conversion psychology. Our rebrand transformed how institutional partners perceive us.&rdquo;
                         </p>
                       </div>
@@ -674,8 +674,8 @@
                           </span>
                         </span>
                         <div class="testimonial-author-meta">
-                          <h3 class="testimonial-author-name">Marcus Vance</h3>
-                          <p class="testimonial-author-role">Founder & CEO, Aura Atelier</p>
+                          <h3 class="testimonial-author-name" data-alify-copy="copy_faq_042">Marcus Vance</h3>
+                          <p class="testimonial-author-role" data-alify-copy="copy_faq_043">Founder & CEO, Aura Atelier</p>
                         </div>
                       </div>
                       <span class="testimonial-service-tag">UI/UX & Branding</span>
@@ -701,7 +701,7 @@
                       </div>
                       <div class="testimonial-body">
                         <i class="fa-solid fa-quote-left testimonial-quote-mark" aria-hidden="true"></i>
-                        <p class="testimonial-quote">
+                        <p class="testimonial-quote" data-alify-copy="copy_faq_044">
                           &ldquo;Our patient booking portal went from clunky legacy workflows to an effortless WCAG AA web experience. Their product designers obsessed over every micro-interaction.&rdquo;
                         </p>
                       </div>
@@ -715,8 +715,8 @@
                           </span>
                         </span>
                         <div class="testimonial-author-meta">
-                          <h3 class="testimonial-author-name">Zainab Ahmed</h3>
-                          <p class="testimonial-author-role">Chief Product Officer, MedCore Health</p>
+                          <h3 class="testimonial-author-name" data-alify-copy="copy_faq_045">Zainab Ahmed</h3>
+                          <p class="testimonial-author-role" data-alify-copy="copy_faq_046">Chief Product Officer, MedCore Health</p>
                         </div>
                       </div>
                       <span class="testimonial-service-tag">Design Systems</span>
@@ -742,7 +742,7 @@
                       </div>
                       <div class="testimonial-body">
                         <i class="fa-solid fa-quote-left testimonial-quote-mark" aria-hidden="true"></i>
-                        <p class="testimonial-quote">
+                        <p class="testimonial-quote" data-alify-copy="copy_faq_047">
                           &ldquo;Migrating to a custom headless storefront with ALIFY cut load times under a second and lifted our checkout completion rate by 62% ahead of peak holiday traffic.&rdquo;
                         </p>
                       </div>
@@ -756,8 +756,8 @@
                           </span>
                         </span>
                         <div class="testimonial-author-meta">
-                          <h3 class="testimonial-author-name">David Lindqvist</h3>
-                          <p class="testimonial-author-role">Head of E-Commerce, Nordik Home</p>
+                          <h3 class="testimonial-author-name" data-alify-copy="copy_faq_048">David Lindqvist</h3>
+                          <p class="testimonial-author-role" data-alify-copy="copy_faq_049">Head of E-Commerce, Nordik Home</p>
                         </div>
                       </div>
                       <span class="testimonial-service-tag">E-Commerce & SEO</span>
@@ -783,7 +783,7 @@
                       </div>
                       <div class="testimonial-body">
                         <i class="fa-solid fa-quote-left testimonial-quote-mark" aria-hidden="true"></i>
-                        <p class="testimonial-quote">
+                        <p class="testimonial-quote" data-alify-copy="copy_faq_050">
                           &ldquo;Investors specifically complimented our product narrative and interactive web experience during our $6.5M seed round. ALIFY operates like an in-house founding design team.&rdquo;
                         </p>
                       </div>
@@ -797,8 +797,8 @@
                           </span>
                         </span>
                         <div class="testimonial-author-meta">
-                          <h3 class="testimonial-author-name">Hamza Siddiqui</h3>
-                          <p class="testimonial-author-role">Co-Founder, LedgerFlow Cloud</p>
+                          <h3 class="testimonial-author-name" data-alify-copy="copy_faq_051">Hamza Siddiqui</h3>
+                          <p class="testimonial-author-role" data-alify-copy="copy_faq_052">Co-Founder, LedgerFlow Cloud</p>
                         </div>
                       </div>
                       <span class="testimonial-service-tag">Web & Engineering</span>
@@ -824,7 +824,7 @@
                       </div>
                       <div class="testimonial-body">
                         <i class="fa-solid fa-quote-left testimonial-quote-mark" aria-hidden="true"></i>
-                        <p class="testimonial-quote">
+                        <p class="testimonial-quote" data-alify-copy="copy_faq_053">
                           &ldquo;The multi-brand Figma and code design system ALIFY delivered cut our feature shipping cycle in half. Clean tokens, zero bloat, and rock-solid documentation.&rdquo;
                         </p>
                       </div>
@@ -838,8 +838,8 @@
                           </span>
                         </span>
                         <div class="testimonial-author-meta">
-                          <h3 class="testimonial-author-name">Elena Rostova</h3>
-                          <p class="testimonial-author-role">Design Operations Lead, VerveOS</p>
+                          <h3 class="testimonial-author-name" data-alify-copy="copy_faq_054">Elena Rostova</h3>
+                          <p class="testimonial-author-role" data-alify-copy="copy_faq_055">Design Operations Lead, VerveOS</p>
                         </div>
                       </div>
                       <span class="testimonial-service-tag">UI/UX & Branding</span>
@@ -871,7 +871,7 @@
                       </div>
                       <div class="testimonial-body">
                         <i class="fa-solid fa-quote-left testimonial-quote-mark" aria-hidden="true"></i>
-                        <p class="testimonial-quote">
+                        <p class="testimonial-quote" data-alify-copy="copy_faq_056">
                           &ldquo;From interactive 3D property tours to instant mortgage calculators, ALIFY engineered our flagship 3D web platform on schedule with zero post-launch regressions.&rdquo;
                         </p>
                       </div>
@@ -885,8 +885,8 @@
                           </span>
                         </span>
                         <div class="testimonial-author-meta">
-                          <h3 class="testimonial-author-name">Omar Al-Mansoor</h3>
-                          <p class="testimonial-author-role">Managing Director, Crestline PropTech</p>
+                          <h3 class="testimonial-author-name" data-alify-copy="copy_faq_057">Omar Al-Mansoor</h3>
+                          <p class="testimonial-author-role" data-alify-copy="copy_faq_058">Managing Director, Crestline PropTech</p>
                         </div>
                       </div>
                       <span class="testimonial-service-tag">Design Systems</span>
@@ -912,7 +912,7 @@
                       </div>
                       <div class="testimonial-body">
                         <i class="fa-solid fa-quote-left testimonial-quote-mark" aria-hidden="true"></i>
-                        <p class="testimonial-quote">
+                        <p class="testimonial-quote" data-alify-copy="copy_faq_059">
                           &ldquo;Their technical SEO overhaul paired with high-converting landing systems grew our non-paid organic revenue 2.8x in four months without increasing ad spend.&rdquo;
                         </p>
                       </div>
@@ -926,8 +926,8 @@
                           </span>
                         </span>
                         <div class="testimonial-author-meta">
-                          <h3 class="testimonial-author-name">Claire Moreau</h3>
-                          <p class="testimonial-author-role">CMO, Solenne Skincare</p>
+                          <h3 class="testimonial-author-name" data-alify-copy="copy_faq_060">Claire Moreau</h3>
+                          <p class="testimonial-author-role" data-alify-copy="copy_faq_061">CMO, Solenne Skincare</p>
                         </div>
                       </div>
                       <span class="testimonial-service-tag">E-Commerce & SEO</span>
@@ -953,7 +953,7 @@
                       </div>
                       <div class="testimonial-body">
                         <i class="fa-solid fa-quote-left testimonial-quote-mark" aria-hidden="true"></i>
-                        <p class="testimonial-quote">
+                        <p class="testimonial-quote" data-alify-copy="copy_faq_062">
                           &ldquo;Writing custom GSAP motion that still scores green across Core Web Vitals is hard. ALIFY nailed smooth 60fps storytelling without sacrificing clean engineering.&rdquo;
                         </p>
                       </div>
@@ -967,8 +967,8 @@
                           </span>
                         </span>
                         <div class="testimonial-author-meta">
-                          <h3 class="testimonial-author-name">Ryan Takahashi</h3>
-                          <p class="testimonial-author-role">CTO, Kinetix Robotics</p>
+                          <h3 class="testimonial-author-name" data-alify-copy="copy_faq_063">Ryan Takahashi</h3>
+                          <p class="testimonial-author-role" data-alify-copy="copy_faq_064">CTO, Kinetix Robotics</p>
                         </div>
                       </div>
                       <span class="testimonial-service-tag">Web & Engineering</span>
@@ -994,7 +994,7 @@
                       </div>
                       <div class="testimonial-body">
                         <i class="fa-solid fa-quote-left testimonial-quote-mark" aria-hidden="true"></i>
-                        <p class="testimonial-quote">
+                        <p class="testimonial-quote" data-alify-copy="copy_faq_065">
                           &ldquo;Every bespoke bundle builder and editorial lookbook they crafted directly increased our average order value. Communication was transparent every single week.&rdquo;
                         </p>
                       </div>
@@ -1008,8 +1008,8 @@
                           </span>
                         </span>
                         <div class="testimonial-author-meta">
-                          <h3 class="testimonial-author-name">Ayesha Noor</h3>
-                          <p class="testimonial-author-role">Founder, Loom & Legacy</p>
+                          <h3 class="testimonial-author-name" data-alify-copy="copy_faq_066">Ayesha Noor</h3>
+                          <p class="testimonial-author-role" data-alify-copy="copy_faq_067">Founder, Loom & Legacy</p>
                         </div>
                       </div>
                       <span class="testimonial-service-tag">E-Commerce & SEO</span>
@@ -1035,7 +1035,7 @@
                       </div>
                       <div class="testimonial-body">
                         <i class="fa-solid fa-quote-left testimonial-quote-mark" aria-hidden="true"></i>
-                        <p class="testimonial-quote">
+                        <p class="testimonial-quote" data-alify-copy="copy_faq_068">
                           &ldquo;ALIFY redesigned our analytics onboarding flow and reduced first-session drop-off by 44%. Every UX recommendation was backed by user testing, not guesswork.&rdquo;
                         </p>
                       </div>
@@ -1049,8 +1049,8 @@
                           </span>
                         </span>
                         <div class="testimonial-author-meta">
-                          <h3 class="testimonial-author-name">Julian Brooks</h3>
-                          <p class="testimonial-author-role">VP Product, PulseMetrics SaaS</p>
+                          <h3 class="testimonial-author-name" data-alify-copy="copy_faq_069">Julian Brooks</h3>
+                          <p class="testimonial-author-role" data-alify-copy="copy_faq_070">VP Product, PulseMetrics SaaS</p>
                         </div>
                       </div>
                       <span class="testimonial-service-tag">UI/UX & Branding</span>
@@ -1076,7 +1076,7 @@
                       </div>
                       <div class="testimonial-body">
                         <i class="fa-solid fa-quote-left testimonial-quote-mark" aria-hidden="true"></i>
-                        <p class="testimonial-quote">
+                        <p class="testimonial-quote" data-alify-copy="copy_faq_071">
                           &ldquo;Riders can unlock and reserve EVs in under 38 seconds thanks to ALIFY’s streamlined cloud booking UX. Hands-down the sharpest digital product partner we have hired.&rdquo;
                         </p>
                       </div>
@@ -1090,8 +1090,8 @@
                           </span>
                         </span>
                         <div class="testimonial-author-meta">
-                          <h3 class="testimonial-author-name">Sophia Kowalski</h3>
-                          <p class="testimonial-author-role">Director of Digital, VoltMobility</p>
+                          <h3 class="testimonial-author-name" data-alify-copy="copy_faq_072">Sophia Kowalski</h3>
+                          <p class="testimonial-author-role" data-alify-copy="copy_faq_073">Director of Digital, VoltMobility</p>
                         </div>
                       </div>
                       <span class="testimonial-service-tag">Design Systems</span>
@@ -1127,14 +1127,14 @@
                   <span class="faq-eyebrow-dot" aria-hidden="true">△</span>
                   <span>Legal, NDA & Governance</span>
                 </div>
-                <h2 class="faq-title">Enterprise Procurement <span>Ready.</span></h2>
-                <p class="faq-desc">Fast-track vendor onboarding with mutual NDAs, clear MSA clauses, and strict security governance from day zero.</p>
+                <h2 class="faq-title" data-alify-copy="copy_faq_074">Enterprise Procurement <span>Ready.</span></h2>
+                <p class="faq-desc" data-alify-copy="copy_faq_075">Fast-track vendor onboarding with mutual NDAs, clear MSA clauses, and strict security governance from day zero.</p>
                 <div class="faq-support-card">
                   <div class="faq-support-head">
                     <span class="faq-support-icon"><i class="fa-solid fa-file-shield" aria-hidden="true"></i></span>
-                    <h3 class="faq-support-title">Need a signed Mutual NDA first?</h3>
+                    <h3 class="faq-support-title" data-alify-copy="copy_faq_076">Need a signed Mutual NDA first?</h3>
                   </div>
-                  <p class="faq-support-text">Email info@alify.site and we will countersign your mutual NDA prior to your discovery call.</p>
+                  <p class="faq-support-text" data-alify-copy="copy_faq_077">Email info@alify.site and we will countersign your mutual NDA prior to your discovery call.</p>
                   <a href="book-call.html" class="btn-start-project">
                     <span class="btn-start-pill">Book NDA Discovery</span>
                     <span class="btn-start-circle" aria-hidden="true"><i class="fa-solid fa-arrow-up btn-start-arrow"></i></span>
@@ -1154,7 +1154,7 @@
                   </button>
                   <div class="faq-answer-wrap">
                     <div class="faq-answer-inner">
-                      <div class="faq-answer-body"><p>Yes. We countersign either your legal team’s standard Mutual NDA or our studio NDA within 4 business hours before reviewing proprietary product roadmaps, analytics, or repositories.</p></div>
+                      <div class="faq-answer-body"><p data-alify-copy="copy_faq_078">Yes. We countersign either your legal team’s standard Mutual NDA or our studio NDA within 4 business hours before reviewing proprietary product roadmaps, analytics, or repositories.</p></div>
                     </div>
                   </div>
                 </div>
@@ -1168,7 +1168,7 @@
                   </button>
                   <div class="faq-answer-wrap">
                     <div class="faq-answer-inner">
-                      <div class="faq-answer-body"><p>We enforce MFA-protected repository access, least-privilege environment secrets, zero-PII staging datasets, and GDPR-compliant cookie and telemetry architectures across all client builds.</p></div>
+                      <div class="faq-answer-body"><p data-alify-copy="copy_faq_079">We enforce MFA-protected repository access, least-privilege environment secrets, zero-PII staging datasets, and GDPR-compliant cookie and telemetry architectures across all client builds.</p></div>
                     </div>
                   </div>
                 </div>
@@ -1182,7 +1182,7 @@
                   </button>
                   <div class="faq-answer-wrap">
                     <div class="faq-answer-inner">
-                      <div class="faq-answer-body"><p>Frequently. While your core engineers stay focused on backend product velocity, ALIFY embeds alongside your CTO or VP Product to own the design system, marketing web ecosystem, and conversion architecture.</p></div>
+                      <div class="faq-answer-body"><p data-alify-copy="copy_faq_080">Frequently. While your core engineers stay focused on backend product velocity, ALIFY embeds alongside your CTO or VP Product to own the design system, marketing web ecosystem, and conversion architecture.</p></div>
                     </div>
                   </div>
                 </div>
@@ -1196,7 +1196,7 @@
                   </button>
                   <div class="faq-answer-wrap">
                     <div class="faq-answer-inner">
-                      <div class="faq-answer-body"><p>Yes. For enterprise engagements, our Managing Partner completes vendor registration, W-8BEN-E / tax documentation, and security questionnaires within 48 hours so procurement never slows your launch date.</p></div>
+                      <div class="faq-answer-body"><p data-alify-copy="copy_faq_081">Yes. For enterprise engagements, our Managing Partner completes vendor registration, W-8BEN-E / tax documentation, and security questionnaires within 48 hours so procurement never slows your launch date.</p></div>
                     </div>
                   </div>
                 </div></div>
@@ -1212,7 +1212,7 @@
                 <span class="blog-section-eyebrow-dot" aria-hidden="true">△</span>
                 <span>Studio Journal &amp; Insights</span>
               </div>
-              <h2 class="blog-section-title">
+              <h2 class="blog-section-title" data-alify-copy="copy_faq_082">
                 Latest Thinking on <span>Design, Motion &amp; Growth.</span>
               </h2>
             </div>
@@ -1251,10 +1251,10 @@
                       <span>6 Min Read</span>
                     </span>
                   </div>
-                  <h3 class="blog-card-title">
+                  <h3 class="blog-card-title" data-alify-copy="copy_faq_083">
                     <a href="blog-single.html?post=scalable-design-systems">Scalable Design Systems: How Modern Teams Ship UI 3x Faster</a>
                   </h3>
-                  <p class="blog-card-excerpt">
+                  <p class="blog-card-excerpt" data-alify-copy="copy_faq_084">
                     Discover how token-first CSS architecture and layout-agnostic components eliminate UI drift and accelerate multi-page product delivery.
                   </p>
                   <div class="blog-card-footer">
@@ -1290,10 +1290,10 @@
                       <span>7 Min Read</span>
                     </span>
                   </div>
-                  <h3 class="blog-card-title">
+                  <h3 class="blog-card-title" data-alify-copy="copy_faq_085">
                     <a href="blog-single.html?post=mastering-gsap-motion">Mastering Web Motion: Crafting High-Performance Micro-Interactions with GSAP</a>
                   </h3>
-                  <p class="blog-card-excerpt">
+                  <p class="blog-card-excerpt" data-alify-copy="copy_faq_086">
                     A practical engineering guide to choreographing 60fps timelines, tactile CTA feedback, and scroll-triggered storytelling without layout thrashing.
                   </p>
                   <div class="blog-card-footer">
@@ -1329,10 +1329,10 @@
                       <span>5 Min Read</span>
                     </span>
                   </div>
-                  <h3 class="blog-card-title">
+                  <h3 class="blog-card-title" data-alify-copy="copy_faq_087">
                     <a href="blog-single.html?post=conversion-ux-architecture">Conversion-Led UX Architecture: Turning B2B Traffic Into Qualified Pipeline</a>
                   </h3>
-                  <p class="blog-card-excerpt">
+                  <p class="blog-card-excerpt" data-alify-copy="copy_faq_088">
                     How clear above-the-fold hierarchy, dual-intent CTAs, and friction-free mobile navigation transform agency and SaaS conversion velocity.
                   </p>
                   <div class="blog-card-footer">
@@ -1368,10 +1368,10 @@
                       <span>6 Min Read</span>
                     </span>
                   </div>
-                  <h3 class="blog-card-title">
+                  <h3 class="blog-card-title" data-alify-copy="copy_faq_089">
                     <a href="blog-single.html?post=iconic-brand-identity">Beyond the Logo: Building Iconic Digital Brand Identities That Endure</a>
                   </h3>
-                  <p class="blog-card-excerpt">
+                  <p class="blog-card-excerpt" data-alify-copy="copy_faq_090">
                     Why palette restraint, geometric display typography, and repeatable signature UI motifs separate category leaders from generic templates.
                   </p>
                   <div class="blog-card-footer">
@@ -1407,10 +1407,10 @@
                       <span>8 Min Read</span>
                     </span>
                   </div>
-                  <h3 class="blog-card-title">
+                  <h3 class="blog-card-title" data-alify-copy="copy_faq_091">
                     <a href="blog-single.html?post=headless-ecommerce-2026">Headless E-Commerce in 2026: Speed, Storytelling, and Checkout Velocity</a>
                   </h3>
-                  <p class="blog-card-excerpt">
+                  <p class="blog-card-excerpt" data-alify-copy="copy_faq_092">
                     Learn how high-growth DTC brands combine sub-second storefront rendering with rich editorial merchandising to lift average order value.
                   </p>
                   <div class="blog-card-footer">
@@ -1446,10 +1446,10 @@
                       <span>6 Min Read</span>
                     </span>
                   </div>
-                  <h3 class="blog-card-title">
+                  <h3 class="blog-card-title" data-alify-copy="copy_faq_093">
                     <a href="blog-single.html?post=technical-seo-guide">Core Web Vitals &amp; Technical SEO: The Engineering Guide to Organic Growth</a>
                   </h3>
-                  <p class="blog-card-excerpt">
+                  <p class="blog-card-excerpt" data-alify-copy="copy_faq_094">
                     From semantic HTML landmarks and self-hosted WOFF2 fonts to zero-CLS media containers — build websites search engines and humans love.
                   </p>
                   <div class="blog-card-footer">
@@ -1505,10 +1505,10 @@
                 <span class="contact-sec-eyebrow-dot" aria-hidden="true">△</span>
                 <span>Let’s Collaborate</span>
               </div>
-              <h2 class="contact-sec-title">
+              <h2 class="contact-sec-title" data-alify-copy="copy_faq_095">
                 Ready to Elevate Your <span>Digital Presence?</span>
               </h2>
-              <p class="contact-sec-desc">
+              <p class="contact-sec-desc" data-alify-copy="copy_faq_096">
                 Tell us what you are building — our design directors and lead engineers will respond within one business day with clear next steps.
               </p>
 
@@ -1545,8 +1545,8 @@
 
             <div class="col-12 col-lg-7">
               <div class="reusable-contact-card">
-                <h3 class="reusable-contact-card-title">Send Us a Message</h3>
-                <p class="reusable-contact-card-sub">
+                <h3 class="reusable-contact-card-title" data-alify-copy="copy_faq_097">Send Us a Message</h3>
+                <p class="reusable-contact-card-sub" data-alify-copy="copy_faq_098">
                   Fill out the details below and we will get back to you promptly.
                 </p>
 

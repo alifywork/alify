@@ -132,18 +132,25 @@ add_action( 'after_switch_theme', 'alify_seed_default_pages' );
  * So Its Dedicated Per-Page Custom Fields Appear in `WP Admin -> Pages -> Edit Home`.
  */
 function alify_ensure_home_page_template_assigned() {
-	$front_id = (int) get_option( 'page_on_front' );
-	if ( $front_id <= 0 ) {
-		$hp = get_page_by_path( 'home' );
-		if ( $hp ) {
-			$front_id = (int) $hp->ID;
+	// Older installs may have seeded the pages before dedicated page templates existed.
+	// Assign only missing/default templates; preserve any template an admin chose explicitly.
+	foreach ( alify_get_blueprint_pages() as $slug => $definition ) {
+		$template = isset( $definition[1] ) ? (string) $definition[1] : '';
+		if ( '' === $template ) { continue; }
+		$page = get_page_by_path( $slug );
+		if ( ! $page || 'page' !== $page->post_type ) { continue; }
+		$current = get_page_template_slug( $page->ID );
+		if ( '' === $current || 'default' === $current ) {
+			update_post_meta( $page->ID, '_wp_page_template', $template );
 		}
 	}
-	if ( $front_id > 0 ) {
-		$cur = get_page_template_slug( $front_id );
-		if ( empty( $cur ) || 'default' === $cur ) {
-			update_post_meta( $front_id, '_wp_page_template', 'page-templates/template-home.php' );
-		}
+	$front_id = (int) get_option( 'page_on_front' );
+	if ( $front_id <= 0 ) {
+		$home = get_page_by_path( 'home' );
+		if ( $home ) { $front_id = (int) $home->ID; }
+	}
+	if ( $front_id > 0 && ( '' === get_page_template_slug( $front_id ) || 'default' === get_page_template_slug( $front_id ) ) ) {
+		update_post_meta( $front_id, '_wp_page_template', 'page-templates/template-home.php' );
 	}
 }
 add_action( 'admin_init', 'alify_ensure_home_page_template_assigned', 4 );

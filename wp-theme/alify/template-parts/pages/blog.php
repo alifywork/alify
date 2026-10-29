@@ -29,11 +29,11 @@
                 <span>Studio Journal</span>
               </div>
 
-              <h1 class="inner-hero-title">
+              <h1 class="inner-hero-title" data-alify-copy="copy_blog_001">
                 Perspectives on <span class="inner-hero-title-accent">Design, Code</span> &amp; Digital Growth.
               </h1>
 
-              <p class="inner-hero-desc">
+              <p class="inner-hero-desc" data-alify-copy="copy_blog_002">
                 Actionable guides, engineering deep dives, and brand strategy insights written by the product designers and developers at ALIFY.
               </p>
 
@@ -62,7 +62,7 @@
                   <span class="inner-hero-card-code">△ JOURNAL 04</span>
                 </div>
                 <div class="inner-hero-card-metric">Weekly</div>
-                <p class="inner-hero-card-label">Fresh perspectives on modern web craft, GSAP motion systems, and scalable UX.</p>
+                <p class="inner-hero-card-label" data-alify-copy="copy_blog_003">Fresh perspectives on modern web craft, GSAP motion systems, and scalable UX.</p>
                 <a href="start-project.html" class="inner-hero-card-cta">
                   <span>Work With Our Team</span>
                   <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
@@ -113,10 +113,10 @@
                       <span>6 Min Read</span>
                     </span>
                   </div>
-                  <h3 class="blog-card-title">
+                  <h3 class="blog-card-title" data-alify-copy="copy_blog_004">
                     <a href="blog-single.html?post=scalable-design-systems">Scalable Design Systems: How Modern Teams Ship UI 3x Faster</a>
                   </h3>
-                  <p class="blog-card-excerpt">
+                  <p class="blog-card-excerpt" data-alify-copy="copy_blog_005">
                     Discover how token-first CSS architecture and layout-agnostic components eliminate UI drift and accelerate multi-page product delivery.
                   </p>
                   <div class="blog-card-footer">
@@ -152,10 +152,10 @@
                       <span>7 Min Read</span>
                     </span>
                   </div>
-                  <h3 class="blog-card-title">
+                  <h3 class="blog-card-title" data-alify-copy="copy_blog_006">
                     <a href="blog-single.html?post=mastering-gsap-motion">Mastering Web Motion: Crafting High-Performance Micro-Interactions with GSAP</a>
                   </h3>
-                  <p class="blog-card-excerpt">
+                  <p class="blog-card-excerpt" data-alify-copy="copy_blog_007">
                     A practical engineering guide to choreographing 60fps timelines, tactile CTA feedback, and scroll-triggered storytelling without layout thrashing.
                   </p>
                   <div class="blog-card-footer">
@@ -191,10 +191,10 @@
                       <span>5 Min Read</span>
                     </span>
                   </div>
-                  <h3 class="blog-card-title">
+                  <h3 class="blog-card-title" data-alify-copy="copy_blog_008">
                     <a href="blog-single.html?post=conversion-ux-architecture">Conversion-Led UX Architecture: Turning B2B Traffic Into Qualified Pipeline</a>
                   </h3>
-                  <p class="blog-card-excerpt">
+                  <p class="blog-card-excerpt" data-alify-copy="copy_blog_009">
                     How clear above-the-fold hierarchy, dual-intent CTAs, and friction-free mobile navigation transform agency and SaaS conversion velocity.
                   </p>
                   <div class="blog-card-footer">
@@ -230,10 +230,10 @@
                       <span>6 Min Read</span>
                     </span>
                   </div>
-                  <h3 class="blog-card-title">
+                  <h3 class="blog-card-title" data-alify-copy="copy_blog_010">
                     <a href="blog-single.html?post=iconic-brand-identity">Beyond the Logo: Building Iconic Digital Brand Identities That Endure</a>
                   </h3>
-                  <p class="blog-card-excerpt">
+                  <p class="blog-card-excerpt" data-alify-copy="copy_blog_011">
                     Why palette restraint, geometric display typography, and repeatable signature UI motifs separate category leaders from generic templates.
                   </p>
                   <div class="blog-card-footer">
@@ -269,10 +269,10 @@
                       <span>8 Min Read</span>
                     </span>
                   </div>
-                  <h3 class="blog-card-title">
+                  <h3 class="blog-card-title" data-alify-copy="copy_blog_012">
                     <a href="blog-single.html?post=headless-ecommerce-2026">Headless E-Commerce in 2026: Speed, Storytelling, and Checkout Velocity</a>
                   </h3>
-                  <p class="blog-card-excerpt">
+                  <p class="blog-card-excerpt" data-alify-copy="copy_blog_013">
                     Learn how high-growth DTC brands combine sub-second storefront rendering with rich editorial merchandising to lift average order value.
                   </p>
                   <div class="blog-card-footer">
@@ -308,10 +308,10 @@
                       <span>6 Min Read</span>
                     </span>
                   </div>
-                  <h3 class="blog-card-title">
+                  <h3 class="blog-card-title" data-alify-copy="copy_blog_014">
                     <a href="blog-single.html?post=technical-seo-guide">Core Web Vitals &amp; Technical SEO: The Engineering Guide to Organic Growth</a>
                   </h3>
-                  <p class="blog-card-excerpt">
+                  <p class="blog-card-excerpt" data-alify-copy="copy_blog_015">
                     From semantic HTML landmarks and self-hosted WOFF2 fonts to zero-CLS media containers — build websites search engines and humans love.
                   </p>
                   <div class="blog-card-footer">
@@ -328,8 +328,8 @@
           </div>
 
           <div class="blog-empty-state" id="blogEmptyState">
-            <h3 class="blog-empty-title">No matching articles found</h3>
-            <p class="blog-empty-desc">Try clearing your filter to browse all studio insights.</p>
+            <h3 class="blog-empty-title" data-alify-copy="copy_blog_016">No matching articles found</h3>
+            <p class="blog-empty-desc" data-alify-copy="copy_blog_017">Try clearing your filter to browse all studio insights.</p>
             <button type="button" class="blog-filter-btn is-active" id="blogResetFilterBtn">Show All Articles</button>
           </div>
         </div>
