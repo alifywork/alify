@@ -55,7 +55,7 @@ add_action( 'after_setup_theme', 'alify_theme_setup' );
  */
 function alify_get_blueprint_pages() {
 	return array(
-		'home'               => array( 'Home', '' ),
+		'home'               => array( 'Home', 'page-templates/template-home.php' ),
 		'about'              => array( 'About Us', 'page-templates/template-about.php' ),
 		'services'           => array( 'Services', 'page-templates/template-services.php' ),
 		'service-single'     => array( 'Service Detail', 'page-templates/template-service-single.php' ),
@@ -126,6 +126,27 @@ function alify_seed_default_pages() {
 	flush_rewrite_rules();
 }
 add_action( 'after_switch_theme', 'alify_seed_default_pages' );
+
+/**
+ * Ensure Existing `Home` Front Page Has `page-templates/template-home.php` Assigned
+ * So Its Dedicated Per-Page Custom Fields Appear in `WP Admin -> Pages -> Edit Home`.
+ */
+function alify_ensure_home_page_template_assigned() {
+	$front_id = (int) get_option( 'page_on_front' );
+	if ( $front_id <= 0 ) {
+		$hp = get_page_by_path( 'home' );
+		if ( $hp ) {
+			$front_id = (int) $hp->ID;
+		}
+	}
+	if ( $front_id > 0 ) {
+		$cur = get_page_template_slug( $front_id );
+		if ( empty( $cur ) || 'default' === $cur ) {
+			update_post_meta( $front_id, '_wp_page_template', 'page-templates/template-home.php' );
+		}
+	}
+}
+add_action( 'admin_init', 'alify_ensure_home_page_template_assigned', 4 );
 
 /**
  * Allow manual one-click page & menu sync from WP Admin (?alify_seed_pages=1).

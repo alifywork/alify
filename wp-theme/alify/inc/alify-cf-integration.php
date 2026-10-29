@@ -490,26 +490,105 @@ function alify_register_all_cf_field_groups() {
 		),
 	);
 
-	// 8. Pages (`page`)
+	// 8. Inner Pages Universal Hero, Right-Side Hero Card & Reusable Section Controls (`page`)
 	$groups[] = array(
 		'key'      => 'alify_theme_page_controls',
-		'title'    => 'ALIFY Page Hero Override & Section Visibility Switches',
+		'title'    => 'ALIFY Inner Page — Hero Banner, Right Hero Card & Bottom Sections',
 		'location' => 'page',
+		'rules'    => array(
+			array(
+				array( 'param' => 'template', 'operator' => '!=', 'value' => 'page-templates/template-home.php' ),
+				array( 'param' => 'template', 'operator' => '!=', 'value' => 'page-templates/template-thank-you.php' ),
+			),
+		),
 		'fields'   => array(
-			alify_cf_tab_def( 'pg_tab_hero', 'Page Hero Override' ),
-			alify_cf_field_def( 'page_hero_eyebrow', 'Hero Eyebrow Badge Text', 'text', array( 'desc' => 'Leave empty to use default / Archive Options text.' ) ),
+			alify_cf_tab_def( 'pg_tab_hero', 'Inner Hero Banner' ),
+			alify_cf_field_def( 'page_hero_eyebrow', 'Hero Eyebrow Badge Text', 'text' ),
 			alify_cf_field_def( 'page_hero_title', 'Hero Main H1 Heading (`<span>` allowed for accent)', 'text' ),
 			alify_cf_field_def( 'page_hero_desc', 'Hero Lead Description', 'textarea' ),
-			alify_cf_field_def( 'page_hero_bg_img', 'Upload Hero Background Image Override', 'image' ),
-			alify_cf_field_def( 'page_hero_bg_url', 'Hero Background Image URL', 'text' ),
+			alify_cf_field_def( 'page_hero_tags', 'Hero Feature Pills / Tags (comma-separated)', 'text', array( 'desc' => 'Example: 35+ Senior Specialists, Global Client Partnerships, Design-First Culture' ) ),
+			alify_cf_field_def( 'page_hero_bg_img', 'Upload Hero Background Image (Media Library)', 'image' ),
+			alify_cf_field_def( 'page_hero_bg_url', 'Current / Fallback Hero Background URL', 'text' ),
 
-			alify_cf_tab_def( 'pg_tab_vis', 'Section Visibility Switches' ),
-			alify_cf_field_def( 'page_hide_hero_form', 'Hide Right-Side Hero Lead Form Card', 'toggle' ),
+			alify_cf_tab_def( 'pg_tab_herocard', 'Right-Side Hero Form / Info Card' ),
+			alify_cf_field_def( 'page_hero_form_badge', 'Hero Form Top Badge (e.g. Free Strategy Consultation)', 'text' ),
+			alify_cf_field_def( 'page_hero_form_sla', 'Hero Form SLA Pill (e.g. Replies in 24h)', 'text' ),
+			alify_cf_field_def( 'page_hero_form_title', 'Hero Form Heading (e.g. Request a Quick Estimate)', 'text' ),
+			alify_cf_field_def( 'page_hero_form_sub', 'Hero Form Subtitle', 'textarea' ),
+			alify_cf_field_def( 'page_hero_form_btn', 'Hero Form Submit Button Text', 'text' ),
+			alify_cf_field_def( 'page_hero_card_code', 'Hero Info Card Code (Blog / Start Project, e.g. △ JOURNAL 04)', 'text' ),
+			alify_cf_field_def( 'page_hero_card_metric', 'Hero Info Card Metric (e.g. Weekly / 48 Hrs)', 'text' ),
+			alify_cf_field_def( 'page_hero_card_label', 'Hero Info Card Description', 'textarea' ),
+			alify_cf_field_def( 'page_hero_card_cta', 'Hero Info Card CTA Link Label', 'text' ),
+
+			alify_cf_tab_def( 'pg_tab_vis', 'Bottom Sections & Visibility' ),
+			alify_cf_field_def( 'page_hide_hero_form', 'Hide Right-Side Hero Lead Form / Card', 'toggle' ),
 			alify_cf_field_def( 'page_hide_testimonials', 'Hide Reusable Testimonials Slider', 'toggle' ),
 			alify_cf_field_def( 'page_hide_faq', 'Hide Reusable FAQs Section', 'toggle' ),
 			alify_cf_field_def( 'page_hide_blog_slider', 'Hide Reusable Blog Slider', 'toggle' ),
 			alify_cf_field_def( 'page_hide_contact', 'Hide Bottom Reusable Contact Section', 'toggle' ),
+			alify_cf_field_def( 'page_sec_testi_title', 'Custom Testimonials Section Heading (This Page)', 'text' ),
+			alify_cf_field_def( 'page_sec_faq_title', 'Custom FAQs Section Heading (This Page)', 'text' ),
+			alify_cf_field_def( 'page_sec_blog_title', 'Custom Blog Slider Heading (This Page)', 'text' ),
+			alify_cf_field_def( 'page_sec_contact_title', 'Custom Bottom Contact Heading (This Page)', 'text' ),
 		),
+	);
+
+
+	// 9. Complete Per-Page CMS Content Fields — every static template has its own dashboard editor.
+	$groups[] = array(
+		'key'      => 'alify_theme_all_page_content',
+		'title'    => 'ALIFY Page Content — All Sections, Copy & Repeaters',
+		'location' => 'page',
+		'fields'   => array(
+			alify_cf_tab_def( 'allpg_tab_hero', 'Page Hero & Page-Specific Content' ),
+			alify_cf_field_def( 'pg_content_hero_eyebrow', 'Hero Eyebrow', 'text' ),
+			alify_cf_field_def( 'pg_content_hero_title', 'Hero Heading (HTML accent span is supported)', 'textarea' ),
+			alify_cf_field_def( 'pg_content_hero_desc', 'Hero Description', 'textarea' ),
+			alify_cf_field_def( 'pg_content_hero_tags', 'Hero Tag Pills — one per line', 'textarea' ),
+			alify_cf_field_def( 'pg_content_hero_image', 'Hero Background Image', 'image' ),
+			alify_cf_field_def( 'pg_content_hero_image_url', 'Hero Background Image URL Fallback', 'url' ),
+			alify_cf_field_def( 'pg_content_hero_cta', 'Hero CTA / Card Label', 'text' ),
+			alify_cf_field_def( 'pg_content_hero_card_metric', 'Hero Card Metric / Code', 'text' ),
+			alify_cf_field_def( 'pg_content_hero_card_copy', 'Hero Card Description', 'textarea' ),
+			alify_cf_field_def( 'pg_content_hero_lead_title', 'Hero Lead Form Heading', 'text' ),
+			alify_cf_field_def( 'pg_content_hero_lead_desc', 'Hero Lead Form Description', 'textarea' ),
+			alify_cf_field_def( 'pg_content_hero_lead_button', 'Hero Lead Form Button Label', 'text' ),
+			alify_cf_field_def( 'pg_content_hero_lead_badge', 'Hero Lead Form Badge', 'text' ),
+			alify_cf_field_def( 'pg_content_hero_lead_sla', 'Hero Lead Form Response SLA', 'text' ),
+
+			alify_cf_tab_def( 'allpg_tab_sections', 'All Page Sections & Repeater Content' ),
+			alify_cf_field_def( 'pg_content_sections', 'Page Sections — add, edit, reorder and remove sections', 'repeater', array(
+				'max_rows' => 100,
+				'sub_fields' => array(
+					alify_cf_field_def( 'section_key', 'Section Key / Template Slug (e.g. home_why, pricing_tiers)', 'text' ),
+					alify_cf_field_def( 'section_eyebrow', 'Section Eyebrow', 'text' ),
+					alify_cf_field_def( 'section_title', 'Section Heading (HTML accent span supported)', 'textarea' ),
+					alify_cf_field_def( 'section_description', 'Section Description', 'textarea' ),
+					alify_cf_field_def( 'section_body', 'Section Rich Content / Policy Text', 'wysiwyg' ),
+					alify_cf_field_def( 'section_image', 'Section Image', 'image' ),
+					alify_cf_field_def( 'section_image_url', 'Section Image URL Fallback', 'url' ),
+					alify_cf_field_def( 'section_items', 'Cards, Steps, Metrics, Guarantees, Questions or List Rows', 'repeater', array(
+						'max_rows' => 100,
+						'sub_fields' => array(
+							alify_cf_field_def( 'item_kicker', 'Item Badge / Category / Kicker', 'text' ),
+							alify_cf_field_def( 'item_target_class', 'Existing Title CSS Class To Replace (Optional)', 'text', array( 'desc' => 'Example: about-pillar-title, pricing-tier-name, faq-hub-group-title. Leave blank to only add a new card.' ) ),
+							alify_cf_field_def( 'item_title', 'Item Title / Question / Name', 'text' ),
+							alify_cf_field_def( 'item_description_target_class', 'Existing Description CSS Class To Replace (Optional)', 'text' ),
+							alify_cf_field_def( 'item_description', 'Item Description / Answer / Biography', 'textarea' ),
+							alify_cf_field_def( 'item_body', 'Item Rich Content / Long Answer', 'wysiwyg' ),
+							alify_cf_field_def( 'item_value', 'Item Metric / Price / Time / Value', 'text' ),
+							alify_cf_field_def( 'item_label', 'Item Metric Label / Role / CTA', 'text' ),
+							alify_cf_field_def( 'item_image', 'Item Image / Portrait / Artwork', 'image' ),
+							alify_cf_field_def( 'item_link', 'Item Link URL', 'url' ),
+							alify_cf_field_def( 'item_icon', 'Item Icon Class / Symbol', 'text' ),
+							alify_cf_field_def( 'item_enabled', 'Show This Item', 'toggle' ),
+						),
+				)),
+				alify_cf_field_def( 'section_enabled', 'Display This Section', 'toggle' ),
+			)),
+		),
+	),
 	);
 
 	// =========================================================================
@@ -961,8 +1040,10 @@ function alify_register_all_cf_field_groups() {
 		}
 	}
 
+	$syncing_key = ( is_admin() && isset( $_POST['action'], $_POST['key'] ) && 'alify_local_sync' === $_POST['action'] ) ? sanitize_text_field( wp_unslash( $_POST['key'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+
 	foreach ( $groups as $group ) {
-		if ( ! isset( $db_local_keys[ $group['key'] ] ) ) {
+		if ( ! isset( $db_local_keys[ $group['key'] ] ) && $syncing_key !== $group['key'] ) {
 			alify_register_field_group( $group );
 		}
 	}

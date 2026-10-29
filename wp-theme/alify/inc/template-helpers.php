@@ -67,7 +67,7 @@ function alify_cpt_or_page_url( $page_slug, $query_args = array() ) {
  * Detect current ALIFY route slug for active header/drawer menu highlighting.
  */
 function alify_current_route_slug() {
-	if ( is_front_page() ) {
+	if ( is_front_page() || is_page_template( 'page-templates/template-home.php' ) ) {
 		return 'index';
 	}
 	if ( is_404() ) {
@@ -127,6 +127,9 @@ function alify_current_route_slug() {
 function alify_transform_markup( $html, $part_slug = '' ) {
 	if ( function_exists( 'alify_apply_cf_options_overrides' ) ) {
 		$html = alify_apply_cf_options_overrides( $html, $part_slug );
+	}
+	if ( function_exists( 'alify_apply_per_page_cf_overrides' ) ) {
+		$html = alify_apply_per_page_cf_overrides( $html, $part_slug );
 	}
 	if ( function_exists( 'alify_apply_page_and_customizer_overrides' ) ) {
 		$html = alify_apply_page_and_customizer_overrides( $html );

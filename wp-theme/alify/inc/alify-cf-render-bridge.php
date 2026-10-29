@@ -96,7 +96,7 @@ function alify_cf_set_eyebrow( $sec_body, $text ) {
 	);
 }
 
-function alify_cf_set_tag_by_class( $sec_body, $tag, $class_fragment, $content, $allow_span = true ) {
+function alify_cf_set_tag_by_class( $sec_body, $tag, $class_fragment, $content, $allow_span = true, $occurrence = 0 ) {
 	if ( '' === $content ) {
 		return $sec_body;
 	}
@@ -104,12 +104,12 @@ function alify_cf_set_tag_by_class( $sec_body, $tag, $class_fragment, $content, 
 		? wp_kses( $content, array( 'span' => array( 'class' => array() ), 'br' => array() ) )
 		: esc_html( $content );
 
-	return preg_replace(
-		'/(<' . preg_quote( $tag, '/' ) . '\b[^>]*class="[^"]*' . preg_quote( $class_fragment, '/' ) . '[^"]*"[^>]*>)[\s\S]*?(<\/' . preg_quote( $tag, '/' ) . '>)/',
-		'${1}' . $safe . '${2}',
-		$sec_body,
-		1
-	);
+	$pattern = '/(<' . preg_quote( $tag, '/' ) . '\\b[^>]*class="[^"]*' . preg_quote( $class_fragment, '/' ) . '[^"]*"[^>]*>)[\\s\\S]*?(<\\/' . preg_quote( $tag, '/' ) . '>)/';
+	$seen = 0;
+	return preg_replace_callback( $pattern, function ( $match ) use ( $safe, $occurrence, &$seen ) {
+		if ( $seen++ !== (int) $occurrence ) { return $match[0]; }
+		return $match[1] . $safe . $match[2];
+	}, $sec_body );
 }
 
 function alify_cf_apply_inner_hero_defaults( $html, $page_id, $eyebrow, $title, $desc, $bg ) {
@@ -968,4 +968,162 @@ function alify_apply_cf_options_overrides( $html, $part_slug = '' ) {
 	}
 
 	return $html;
+}
+
+
+/**
+ * Apply per-page dashboard content overrides. Page repeater rows use semantic section keys;
+ * heading and copy match only inside the named static section to preserve its curated markup/design.
+ */
+if ( ! function_exists( 'alify_apply_per_page_cf_overrides' ) ) {
+	function alify_apply_per_page_cf_overrides( $html, $part_slug = '' ) {
+		if ( ! is_string( $html ) || ! is_page() || ! function_exists( 'alify_get_field' ) ) {
+			return $html;
+		}
+		$post_id = get_queried_object_id();
+		if ( ! $post_id ) { return $html; }
+		$eyebrow = (string) alify_get_field( 'pg_content_hero_eyebrow', $post_id );
+		if ( '' !== trim( $eyebrow ) ) {
+			$html = preg_replace_callback( '~(<div[^>]*class="[^"]*\\binner-hero-eyebrow\b[^"]*"[^>]*>)(.*?)(</div>)~si', function( $m ) use ( $eyebrow ) {
+				$inside = preg_replace_callback( '~(<span[^>]*class="[^"]*inner-hero-eyebrow-dot[^"]*"[^>]*>)(.*?)(</span>)~si', function( $dot ) { return $dot[1] . '△' . $dot[3]; }, $m[2], 1 );
+				$inside = preg_replace_callback( '~(<span[^>]*>)(.*?)(</span>)~si', function( $label ) use ( $eyebrow ) { return $label[1] . esc_html( $eyebrow ) . $label[3]; }, $inside, 1 );
+				return $m[1] . $inside . $m[3];
+			}, $html, 1 );
+		}
+		$hero_map = array(
+			'pg_content_hero_title' => array( 'inner-hero-title', 'hero-display-title' ),
+			'pg_content_hero_desc' => array( 'inner-hero-desc', 'hero-lead' ),
+		);
+		foreach ( $hero_map as $field => $classes ) {
+			$value = alify_get_field( $field, $post_id );
+			if ( ! is_string( $value ) || '' === trim( $value ) ) { continue; }
+			foreach ( $classes as $class ) {
+				$pattern = '~(<(?:h1|p|div)[^>]*class="[^"]*\b' . preg_quote( $class, '~' ) . '\b[^"]*"[^>]*>)(.*?)(</(?:h1|p|div)>)~si';
+				$html = preg_replace_callback( $pattern, function( $m ) use ( $value, $class ) {
+					$safe = ( 'inner-hero-title' === $class || 'hero-display-title' === $class ) ? wp_kses( $value, array( 'span' => array( 'class' => true ) ) ) : esc_html( $value );
+					return $m[1] . $safe . $m[3];
+				}, $html, 1 );
+				if ( false !== strpos( $html, $class ) ) { break; }
+			}
+		}
+		$direct_map = array(
+			'pg_content_hero_lead_title' => array( 'hero-lead-title' ),
+			'pg_content_hero_lead_desc' => array( 'hero-lead-subtitle' ),
+			'pg_content_hero_lead_button' => array( 'btn-start-pill' ),
+			'pg_content_hero_lead_badge' => array( 'hero-lead-badge' ),
+			'pg_content_hero_lead_sla' => array( 'hero-lead-response' ),
+			'pg_content_hero_card_metric' => array( 'inner-hero-card-metric' ),
+			'pg_content_hero_card_copy' => array( 'inner-hero-card-label' ),
+			'pg_content_hero_cta' => array( 'inner-hero-card-cta' ),
+		);
+		foreach ( $direct_map as $field => $classes ) {
+			$value = alify_get_field( $field, $post_id );
+			if ( ! is_string( $value ) || '' === trim( $value ) ) { continue; }
+			foreach ( $classes as $class ) {
+				$html = alify_cf_set_tag_by_class( $html, 'span', $class, $value, false );
+				$html = alify_cf_set_tag_by_class( $html, 'h2', $class, $value );
+				$html = alify_cf_set_tag_by_class( $html, 'p', $class, $value );
+				$html = alify_cf_set_tag_by_class( $html, 'a', $class, $value );
+				$html = alify_cf_set_tag_by_class( $html, 'button', $class, $value );
+			}
+		}
+		$hero_tags = (string) alify_get_field( 'pg_content_hero_tags', $post_id );
+		if ( '' !== trim( $hero_tags ) ) {
+			$tags_html = '';
+			foreach ( preg_split( '/\\r?\\n/', $hero_tags ) as $tag_label ) {
+				$tag_label = trim( $tag_label );
+				if ( '' !== $tag_label ) { $tags_html .= '<span class="inner-hero-tag">' . esc_html( $tag_label ) . '</span>'; }
+			}
+			$html = preg_replace_callback( '~(<div[^>]*class="[^"]*\\binner-hero-tags\\b[^"]*"[^>]*>)(.*?)(</div>)~si', function( $m ) use ( $tags_html ) { return $m[1] . $tags_html . $m[3]; }, $html, 1 );
+		}
+		$hero_image_id = (int) alify_get_field( 'pg_content_hero_image', $post_id );
+		$hero_image_url = $hero_image_id ? wp_get_attachment_image_url( $hero_image_id, 'full' ) : '';
+		if ( ! $hero_image_url ) { $hero_image_url = (string) alify_get_field( 'pg_content_hero_image_url', $post_id ); }
+		if ( $hero_image_url ) {
+			$html = preg_replace_callback( '~(<[^>]+id="(?:innerHeroBg|homeHeroBg)"[^>]*style=")(.*?)("[^>]*>)~si', function( $m ) use ( $hero_image_url ) {
+				return $m[1] . 'background-image: url(' . esc_url( $hero_image_url ) . ');' . $m[3];
+			}, $html, 1 );
+		}
+		$hide_map = array(
+			'page_hide_hero_form' => array( 'hero-lead-form-card', 'inner-hero-lead-card' ),
+			'page_hide_testimonials' => array( 'testimonials-slider-section' ),
+			'page_hide_faq' => array( 'faq-section' ),
+			'page_hide_blog_slider' => array( 'home-blog-section' ),
+			'page_hide_contact' => array( 'reusable-contact-section' ),
+		);
+		foreach ( $hide_map as $field => $classes ) {
+			if ( ! alify_get_field( $field, $post_id ) ) { continue; }
+			foreach ( $classes as $class ) {
+				$html = preg_replace( '~<section\b(?=[^>]*class="[^"]*\b' . preg_quote( $class, '~' ) . '\b[^"]*")[^>]*>.*?</section>~si', '', $html, 1 );
+			}
+		}
+		$rows = alify_get_field( 'pg_content_sections', $post_id );
+		if ( ! is_array( $rows ) ) { return $html; }
+		foreach ( $rows as $row ) {
+			if ( ! is_array( $row ) || empty( $row['section_key'] ) ) { continue; }
+			$key = sanitize_html_class( $row['section_key'] );
+			$pattern = '~(<section\b[^>]*class="[^"]*\b' . preg_quote( $key, '~' ) . '\b[^"]*"[^>]*>)(.*?)(</section>)~si';
+			$html = preg_replace_callback( $pattern, function( $m ) use ( $row ) {
+				$inner = $m[2];
+				if ( isset( $row['section_eyebrow'] ) && '' !== trim( (string) $row['section_eyebrow'] ) ) {
+					$inner = preg_replace( '~(<(?:span|p)[^>]*class="[^"]*(?:eyebrow|kicker)[^"]*"[^>]*>)(.*?)(</(?:span|p)>)~si', '$1' . esc_html( $row['section_eyebrow'] ) . '$3', $inner, 1 );
+				}
+				if ( isset( $row['section_title'] ) && '' !== trim( (string) $row['section_title'] ) ) {
+					$inner = preg_replace_callback( '~(<h[1-6][^>]*>)(.*?)(</h[1-6]>)~si', function ( $h ) use ( $row ) { return $h[1] . wp_kses( $row['section_title'], array( 'span' => array( 'class' => true ), 'br' => array() ) ) . $h[3]; }, $inner, 1 );
+				}
+				if ( isset( $row['section_description'] ) && '' !== trim( (string) $row['section_description'] ) ) {
+					$inner = preg_replace_callback( '~(<p[^>]*>)(.*?)(</p>)~si', function ( $p ) use ( $row ) { return $p[1] . esc_html( $row['section_description'] ) . $p[3]; }, $inner, 1 );
+				}
+				if ( ! empty( $row['section_body'] ) ) {
+					$body = wp_kses_post( $row['section_body'] );
+					$inner = preg_replace_callback( '~(<div[^>]*class="[^"]*(?:legal-prose-stack|legal-doc-content)[^"]*"[^>]*>)(.*?)(</div>)~si', function( $content ) use ( $body ) { return $content[1] . $body . $content[3]; }, $inner, 1 );
+					if ( false === strpos( $inner, 'legal-prose-stack' ) && false === strpos( $inner, 'legal-doc-content' ) ) { $inner .= '<div class="alify-editor-section-body">' . $body . '</div>'; }
+				}
+				$section_image_id = isset( $row['section_image'] ) ? (int) $row['section_image'] : 0;
+				$section_image_url = $section_image_id ? wp_get_attachment_image_url( $section_image_id, 'full' ) : '';
+				if ( ! $section_image_url && ! empty( $row['section_image_url'] ) ) { $section_image_url = esc_url( $row['section_image_url'] ); }
+				if ( $section_image_url ) { $inner .= '<figure class="alify-editor-section-image">' . ( $section_image_id ? wp_get_attachment_image( $section_image_id, 'large', false, array( 'loading' => 'lazy' ) ) : '<img src="' . esc_url( $section_image_url ) . '" alt="" loading="lazy">' ) . '</figure>'; }
+				$items = isset( $row['section_items'] ) && is_array( $row['section_items'] ) ? $row['section_items'] : array();
+				foreach ( $items as $item_index => $item ) {
+					if ( ! is_array( $item ) ) { continue; }
+					$title_class = ! empty( $item['item_target_class'] ) ? sanitize_html_class( $item['item_target_class'] ) : '';
+					$desc_class = ! empty( $item['item_description_target_class'] ) ? sanitize_html_class( $item['item_description_target_class'] ) : '';
+					if ( $title_class && ! empty( $item['item_title'] ) ) {
+						foreach ( array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'span', 'p' ) as $target_tag ) { $inner = alify_cf_set_tag_by_class( $inner, $target_tag, $title_class, (string) $item['item_title'], true, (int) $item_index ); }
+					}
+					if ( $desc_class && ! empty( $item['item_description'] ) ) {
+						foreach ( array( 'p', 'span', 'div' ) as $target_tag ) { $inner = alify_cf_set_tag_by_class( $inner, $target_tag, $desc_class, (string) $item['item_description'], false, (int) $item_index ); }
+					}
+				}
+				if ( $items ) {
+					$cards = '<div class="alify-editor-content-grid">';
+					foreach ( $items as $item ) {
+						if ( ! is_array( $item ) || ( array_key_exists( 'item_enabled', $item ) && ! $item['item_enabled'] ) ) { continue; }
+						$title = isset( $item['item_title'] ) ? trim( (string) $item['item_title'] ) : '';
+						$description = isset( $item['item_description'] ) ? trim( (string) $item['item_description'] ) : '';
+						$body = isset( $item['item_body'] ) ? wp_kses_post( $item['item_body'] ) : '';
+						$image_id = isset( $item['item_image'] ) ? (int) $item['item_image'] : 0;
+						$link = isset( $item['item_link'] ) ? esc_url( $item['item_link'] ) : '';
+						$cards .= '<article class="alify-editor-content-card">';
+						$icon_class = ! empty( $item['item_icon'] ) ? trim( preg_replace( '/[^a-zA-Z0-9_ -]/', '', (string) $item['item_icon'] ) ) : '';
+						if ( $icon_class ) { $cards .= '<i class="' . esc_attr( $icon_class ) . ' alify-editor-content-icon" aria-hidden="true"></i>'; }
+						if ( $image_id ) { $cards .= wp_get_attachment_image( $image_id, 'large', false, array( 'class' => 'alify-editor-content-image', 'loading' => 'lazy' ) ); }
+						if ( ! empty( $item['item_kicker'] ) ) { $cards .= '<span class="alify-editor-content-kicker">' . esc_html( $item['item_kicker'] ) . '</span>'; }
+						if ( ! empty( $item['item_value'] ) ) { $cards .= '<strong class="alify-editor-content-value">' . esc_html( $item['item_value'] ) . '</strong>'; }
+						if ( $title ) { $cards .= '<h3>' . esc_html( $title ) . '</h3>'; }
+						if ( ! empty( $item['item_label'] ) ) { $cards .= '<span class="alify-editor-content-label">' . esc_html( $item['item_label'] ) . '</span>'; }
+						if ( $description ) { $cards .= '<p>' . esc_html( $description ) . '</p>'; }
+						if ( $body ) { $cards .= '<div class="alify-editor-content-body">' . $body . '</div>'; }
+						if ( $link ) { $cards .= '<a href="' . $link . '" class="alify-editor-content-link">Learn More <span aria-hidden="true">↗</span></a>'; }
+						$cards .= '</article>';
+					}
+					$cards .= '</div>';
+					$inner .= $cards;
+				}
+				if ( array_key_exists( 'section_enabled', $row ) && ! $row['section_enabled'] ) { return ''; }
+				return $m[1] . $inner . $m[3];
+			}, $html, 1 );
+		}
+		return $html;
+	}
 }

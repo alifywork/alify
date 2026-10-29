@@ -852,3 +852,16 @@ body.is-bookcall-open {
     grid-template-columns: 1fr;
   }
 }
+
+/* Dashboard-managed page content cards (Alify Custom Field section repeaters). */
+.alify-editor-content-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:clamp(16px,2vw,28px);margin-top:32px}
+.alify-editor-content-card{min-width:0;padding:clamp(22px,3vw,34px);border:1px solid rgba(18,21,28,.12);border-radius:22px;background:rgba(255,255,255,.78);box-shadow:0 16px 45px rgba(18,21,28,.06)}
+.alify-editor-content-image{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;border-radius:14px;margin-bottom:18px}
+.alify-editor-content-kicker,.alify-editor-content-label{display:block;color:#0f8a73;font-size:.82rem;font-weight:600;letter-spacing:.04em}
+.alify-editor-content-value{display:block;margin-bottom:8px;color:#e05a3a;font-size:clamp(1.4rem,3vw,2.2rem)}
+.alify-editor-content-card h3{margin:8px 0 12px;color:#12151c;font-size:clamp(1.1rem,2vw,1.4rem);font-weight:600}
+.alify-editor-content-card p,.alify-editor-content-body{color:#555b65;line-height:1.75}
+.alify-editor-content-link{display:inline-flex;gap:8px;margin-top:14px;color:#0f3473;font-weight:600}
+.alify-editor-section-body{margin-top:24px;color:#555b65;line-height:1.8}
+.alify-editor-section-image{margin:28px 0;overflow:hidden;border-radius:22px}
+.alify-editor-section-image img{display:block;width:100%;height:auto;object-fit:cover}
