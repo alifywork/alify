@@ -1231,3 +1231,40 @@ a.contact-directory-val:hover {
     width: 100%;
   }
 }
+
+/* Frosted-glass treatment for the remaining estimate forms in inner-page heroes. */
+.inner-hero .hero-lead-form-card {
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.08));
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  -webkit-backdrop-filter: blur(20px) saturate(145%);
+  backdrop-filter: blur(20px) saturate(145%);
+}
+
+.inner-hero .hero-lead-badge {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.inner-hero .hero-lead-response,
+.inner-hero .hero-lead-title,
+.inner-hero .hero-lead-subtitle,
+.inner-hero .hero-lead-form-card .alify-label {
+  color: #fff;
+}
+
+.inner-hero .hero-lead-response,
+.inner-hero .hero-lead-subtitle {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.inner-hero .hero-lead-form-card .alify-input,
+.inner-hero .hero-lead-form-card .alify-select,
+.inner-hero .hero-lead-form-card .alify-textarea {
+  border-color: rgba(255, 255, 255, 0.48);
+  background-color: rgba(255, 255, 255, 0.94);
+}
+
+.inner-hero .hero-lead-form-card .alify-field.has-error .alify-error-msg {
+  color: #ffd0c0;
+}
