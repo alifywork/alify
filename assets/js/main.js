@@ -39,11 +39,18 @@
     "main > section:not(.home-hero):not(.inner-hero):not(.reusable-contact-section)"
   );
   sections.forEach((section) => {
-    gsap.from(section, {
+    const sectionColumns = Array.from(
+      section.querySelectorAll(".row > [class*='col-']")
+    ).filter((column) => column.closest("section") === section);
+    const revealTargets = sectionColumns.length ? sectionColumns : [section];
+
+    gsap.from(revealTargets, {
       autoAlpha: 0,
-      y: 14,
-      duration: 0.48,
-      ease: "power2.out",
+      y: sectionColumns.length ? 28 : 36,
+      scale: 0.985,
+      duration: 0.72,
+      stagger: sectionColumns.length > 1 ? 0.09 : 0,
+      ease: "power3.out",
       clearProps: "opacity,visibility,transform",
       scrollTrigger: {
         trigger: section,
