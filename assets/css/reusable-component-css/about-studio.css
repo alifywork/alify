@@ -619,10 +619,40 @@ flex-shrink: 0;
 }
 
 .studio-process-row {
+  position: relative;
+  padding-top: 32px;
   row-gap: 24px;
 }
 
+.studio-process-row::before {
+  content: "";
+  position: absolute;
+  top: 11px;
+  right: 12.5%;
+  left: 12.5%;
+  border-top: 1px solid rgba(217, 138, 43, 0.62);
+}
+
+.studio-process-row > div {
+  position: relative;
+}
+
+.studio-process-row > div::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: 5px;
+  left: 50%;
+  width: 13px;
+  height: 13px;
+  border: 3px solid var(--color-charcoal);
+  border-radius: 50%;
+  background: var(--color-amber);
+  transform: translateX(-50%);
+}
+
 .studio-process-card {
+  position: relative;
   height: 100%;
   padding: 32px 28px;
   border-radius: 22px;
@@ -634,6 +664,15 @@ flex-shrink: 0;
   flex-direction: column;
   justify-content: space-between;
   gap: 18px;
+}
+
+.studio-process-card::before {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  height: 20px;
+  border-left: 1px solid rgba(217, 138, 43, 0.62);
 }
 
 .studio-process-card:hover {
@@ -1018,6 +1057,16 @@ flex-shrink: 0;
   .about-team-section,
   .legal-doc-section {
     padding: 72px 0;
+  }
+
+  .studio-process-row {
+    padding-top: 0;
+  }
+
+  .studio-process-row::before,
+  .studio-process-row > div::after,
+  .studio-process-card::before {
+    display: none;
   }
 
   .studio-sec-head-actions {
