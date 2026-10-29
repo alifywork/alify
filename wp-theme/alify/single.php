@@ -10,10 +10,13 @@
  */
 
 get_header();
+$alify_single_visibility_post_id = 0;
+ob_start();
 
 while ( have_posts() ) :
 	the_post();
 	$pid     = get_the_ID();
+	$alify_single_visibility_post_id = $pid;
 	$hero_bg = get_the_post_thumbnail_url( $pid, 'full' );
 	if ( empty( $hero_bg ) ) {
 		$meta_img = get_post_meta( $pid, '_alify_post_bg_image', true );
@@ -429,5 +432,11 @@ while ( have_posts() ) :
 	</main>
 	<?php
 endwhile;
+
+$alify_single_markup = ob_get_clean();
+if ( function_exists( 'alify_apply_section_visibility' ) ) {
+	$alify_single_markup = alify_apply_section_visibility( $alify_single_markup, $alify_single_visibility_post_id, 'blog-single' );
+}
+echo $alify_single_markup; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 get_footer();

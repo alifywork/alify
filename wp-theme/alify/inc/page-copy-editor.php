@@ -149,6 +149,14 @@ function alify_copy_editor_resolve_target( $target ) {
 function alify_register_page_copy_editor_menu() {
 	add_submenu_page(
 		'alify-theme-settings-hub',
+		__( 'Archives', 'alify' ),
+		__( 'Archives', 'alify' ),
+		'manage_options',
+		'alify-archives',
+		'alify_render_archive_copy_editor'
+	);
+	add_submenu_page(
+		'alify-theme-settings-hub',
 		__( 'All Page Content', 'alify' ),
 		__( 'All Page Content', 'alify' ),
 		'manage_options',
@@ -157,6 +165,10 @@ function alify_register_page_copy_editor_menu() {
 	);
 }
 add_action( 'admin_menu', 'alify_register_page_copy_editor_menu', 20 );
+
+function alify_render_archive_copy_editor() {
+	alify_render_page_copy_editor( 'archives' );
+}
 
 function alify_save_page_copy_editor() {
 	if ( ! current_user_can( 'manage_options' ) ) {
@@ -196,12 +208,29 @@ function alify_save_page_copy_editor() {
 			$data[ $name ] = $clean_value;
 		}
 	}
+	$archive_visibility = null;
+	if ( $option_name && isset( $_POST['section_visibility'] ) && is_array( $_POST['section_visibility'] ) && function_exists( 'alify_get_section_visibility_definitions' ) ) {
+		$sections = alify_get_section_visibility_definitions( $resolved['slug'] );
+		$posted_sections = wp_unslash( $_POST['section_visibility'] );
+		$visibility = array();
+		foreach ( $sections as $section_key => $section_label ) {
+			foreach ( array( 'desktop', 'tablet', 'mobile' ) as $device ) {
+				$choice = isset( $posted_sections[ $section_key ][ $device ] ) ? (string) $posted_sections[ $section_key ][ $device ] : '1';
+				$visibility[ $section_key ][ $device ] = '0' === $choice ? '0' : '1';
+			}
+		}
+		$archive_visibility = $visibility;
+	}
 	if ( $option_name ) {
 		update_option( $option_name, $data );
 	}
+	if ( is_array( $archive_visibility ) ) {
+		update_option( 'alify_section_visibility_archive_' . $resolved['slug'], $archive_visibility );
+	}
 	$paged = isset( $_POST['paged'] ) ? max( 1, absint( $_POST['paged'] ) ) : 1;
+	$scope = isset( $_POST['editor_scope'] ) && 'archives' === sanitize_key( wp_unslash( $_POST['editor_scope'] ) ) ? 'archives' : 'all';
 	$url = add_query_arg(
-		array( 'page' => 'alify-page-copy-editor', 'target' => rawurlencode( $target ), 'paged' => $paged, 'saved' => '1' ),
+		array( 'page' => 'archives' === $scope ? 'alify-archives' : 'alify-page-copy-editor', 'target' => rawurlencode( $target ), 'paged' => $paged, 'saved' => '1' ),
 		admin_url( 'admin.php' )
 	);
 	wp_safe_redirect( $url );
@@ -209,19 +238,43 @@ function alify_save_page_copy_editor() {
 }
 add_action( 'admin_post_alify_page_copy_save', 'alify_save_page_copy_editor' );
 
-function alify_render_page_copy_editor() {
+function alify_render_page_copy_editor( $scope = 'all' ) {
 	if ( ! current_user_can( 'manage_options' ) ) {
 		wp_die( esc_html__( 'You are not allowed to edit page copy.', 'alify' ) );
 	}
 	$catalog = alify_copy_editor_catalog();
 	$targets = alify_copy_editor_targets();
+	$archive_slugs = array( 'blog', 'services', 'work', 'industries', 'case-studies', 'testimonials', 'faq' );
+	$single_template_slugs = array( 'service-single', 'work-single', 'industry-single', 'case-study-single', 'blog-single' );
+	$targets = array_filter(
+		$targets,
+		function ( $label, $key ) use ( $scope, $archive_slugs, $single_template_slugs ) {
+			if ( 0 === strpos( $key, 'o:' ) ) {
+				$parts = explode( ':', $key );
+				$is_archive = isset( $parts[2] ) && in_array( $parts[2], $archive_slugs, true );
+				return 'archives' === $scope ? $is_archive : ( isset( $parts[2] ) && '404' === $parts[2] );
+			}
+			if ( 0 === strpos( $key, 'p:' ) ) {
+				$resolved = alify_copy_editor_resolve_target( $key );
+				$slug = $resolved && isset( $resolved['slug'] ) ? $resolved['slug'] : '';
+				$is_archive = in_array( $slug, $archive_slugs, true );
+				$is_single_page = in_array( $slug, $single_template_slugs, true );
+				$post_id = absint( substr( $key, 2 ) );
+				$template_page = $post_id && 'page' === get_post_type( $post_id );
+				return 'archives' === $scope ? ( $template_page && $is_archive ) : ( ! $template_page || ( ! $is_archive && ! $is_single_page ) );
+			}
+			return false;
+		},
+		ARRAY_FILTER_USE_BOTH
+	);
+	$screen_title = 'archives' === $scope ? __( 'Archive Content', 'alify' ) : __( 'All Page Content', 'alify' );
 	$target = isset( $_GET['target'] ) ? sanitize_text_field( wp_unslash( $_GET['target'] ) ) : '';
 	if ( ! isset( $targets[ $target ] ) ) {
 		$target = (string) key( $targets );
 	}
 	$resolved = $target ? alify_copy_editor_resolve_target( $target ) : false;
 	if ( ! $resolved ) {
-		echo '<div class="wrap"><h1>' . esc_html__( 'All Page Content', 'alify' ) . '</h1><p>' . esc_html__( 'No matching page templates or archive targets were found.', 'alify' ) . '</p></div>';
+		echo '<div class="wrap"><h1>' . esc_html( $screen_title ) . '</h1><p>' . esc_html__( 'No matching page templates or archive targets were found.', 'alify' ) . '</p></div>';
 		return;
 	}
 	$fields = $catalog[ $resolved['slug'] ]['fields'];
@@ -240,19 +293,42 @@ function alify_render_page_copy_editor() {
 	}
 	$saved = isset( $_GET['saved'] ) && '1' === $_GET['saved']; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
-	echo '<div class="wrap alify-page-copy-editor"><h1>' . esc_html__( 'All Page Content', 'alify' ) . '</h1>';
+	echo '<div class="wrap alify-page-copy-editor"><h1>' . esc_html( $screen_title ) . '</h1>';
 	echo '<p>' . esc_html__( 'Edit the prefilled headings, paragraphs, badges, buttons, labels, stats, placeholders and accessibility text. The layout and styling remain unchanged.', 'alify' ) . '</p>';
-	if ( $saved ) {
-		echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Page copy saved.', 'alify' ) . '</p></div>';
+	if ( 'archives' === $scope && function_exists( 'alify_has_cf_plugin' ) && alify_has_cf_plugin() ) {
+		echo '<p><a class="button" href="' . esc_url( admin_url( 'edit.php?post_type=alify_field_group&page=alify-options-alify_archives' ) ) . '">' . esc_html__( 'Open archive hero & layout settings', 'alify' ) . '</a></p>';
 	}
-	echo '<form method="get" action="' . esc_url( admin_url( 'admin.php' ) ) . '"><input type="hidden" name="page" value="alify-page-copy-editor"><label for="alify-copy-target"><strong>' . esc_html__( 'Choose page or template:', 'alify' ) . '</strong> </label><select id="alify-copy-target" name="target">';
+	if ( $saved ) {
+		echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Copy and visibility settings saved.', 'alify' ) . '</p></div>';
+	}
+	$admin_page = 'archives' === $scope ? 'alify-archives' : 'alify-page-copy-editor';
+	$target_label = 'archives' === $scope ? __( 'Choose archive:', 'alify' ) : __( 'Choose page or template:', 'alify' );
+	echo '<form method="get" action="' . esc_url( admin_url( 'admin.php' ) ) . '"><input type="hidden" name="page" value="' . esc_attr( $admin_page ) . '"><label for="alify-copy-target"><strong>' . esc_html( $target_label ) . '</strong> </label><select id="alify-copy-target" name="target">';
 	foreach ( $targets as $value => $label ) {
 		echo '<option value="' . esc_attr( $value ) . '" ' . selected( $target, $value, false ) . '>' . esc_html( $label ) . '</option>';
 	}
 	echo '</select> <button class="button">' . esc_html__( 'Load content', 'alify' ) . '</button></form>';
 	echo '<h2>' . esc_html( $targets[ $target ] ) . '</h2><p>' . esc_html( sprintf( __( '%1$d editable copy fields · page %2$d of %3$d', 'alify' ), count( $fields ), $paged, $total_pages ) ) . '</p>';
-	echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '"><input type="hidden" name="action" value="alify_page_copy_save"><input type="hidden" name="target" value="' . esc_attr( $target ) . '"><input type="hidden" name="paged" value="' . esc_attr( $paged ) . '">';
+	echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '"><input type="hidden" name="action" value="alify_page_copy_save"><input type="hidden" name="editor_scope" value="' . esc_attr( $scope ) . '"><input type="hidden" name="target" value="' . esc_attr( $target ) . '"><input type="hidden" name="paged" value="' . esc_attr( $paged ) . '">';
 	wp_nonce_field( 'alify_page_copy_' . $target );
+	if ( 'option' === $resolved['kind'] && function_exists( 'alify_get_section_visibility_definitions' ) ) {
+		$section_definitions = alify_get_section_visibility_definitions( $resolved['slug'] );
+		if ( $section_definitions ) {
+			echo '<h3>' . esc_html__( 'Section visibility by device', 'alify' ) . '</h3><table class="widefat striped" style="max-width:1050px;margin-bottom:18px"><thead><tr><th>' . esc_html__( 'Section', 'alify' ) . '</th><th>' . esc_html__( 'Desktop', 'alify' ) . '</th><th>' . esc_html__( 'Tablet', 'alify' ) . '</th><th>' . esc_html__( 'Mobile', 'alify' ) . '</th></tr></thead><tbody>';
+			$stored_visibility = get_option( 'alify_section_visibility_archive_' . $resolved['slug'], array() );
+			if ( ! is_array( $stored_visibility ) ) { $stored_visibility = array(); }
+			foreach ( $section_definitions as $section_key => $section_label ) {
+				echo '<tr><th scope="row">' . esc_html( $section_label ) . '</th>';
+				foreach ( array( 'desktop', 'tablet', 'mobile' ) as $device ) {
+					$setting = isset( $stored_visibility[ $section_key ][ $device ] ) ? (string) $stored_visibility[ $section_key ][ $device ] : '1';
+					$name = 'section_visibility[' . $section_key . '][' . $device . ']';
+					echo '<td><select name="' . esc_attr( $name ) . '"><option value="1" ' . selected( $setting, '1', false ) . '>' . esc_html__( 'Show', 'alify' ) . '</option><option value="0" ' . selected( $setting, '0', false ) . '>' . esc_html__( 'Hide', 'alify' ) . '</option></select></td>';
+				}
+				echo '</tr>';
+			}
+			echo '</tbody></table>';
+		}
+	}
 	echo '<div class="alify-copy-fields" style="max-width:1050px">';
 	foreach ( $visible_fields as $field ) {
 		$name = $field['name'];
@@ -267,7 +343,7 @@ function alify_render_page_copy_editor() {
 	if ( $total_pages > 1 ) {
 		$links = paginate_links(
 			array(
-				'base'      => add_query_arg( array( 'page' => 'alify-page-copy-editor', 'target' => rawurlencode( $target ), 'paged' => '%#%' ), admin_url( 'admin.php' ) ),
+				'base'      => add_query_arg( array( 'page' => $admin_page, 'target' => rawurlencode( $target ), 'paged' => '%#%' ), admin_url( 'admin.php' ) ),
 				'format'    => '',
 				'current'   => $paged,
 				'total'     => $total_pages,

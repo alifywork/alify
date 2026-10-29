@@ -578,14 +578,16 @@ function alify_inject_dynamic_cpts( $html ) {
 
 	// A. Services Slider (`#servicesSliderTrack`) & Services Archive Grid (`#servicesGrid`)
 	if ( false !== strpos( $html, 'servicesSliderTrack' ) || false !== strpos( $html, 'servicesGrid' ) ) {
-		$services = get_posts(
-			array(
-				'post_type'      => 'alify_service',
-				'posts_per_page' => -1,
-				'post_status'    => 'publish',
-				'orderby'        => array( 'menu_order' => 'ASC', 'date' => 'ASC' ),
-			)
+		$service_query = array(
+			'post_type'      => 'alify_service',
+			'posts_per_page' => -1,
+			'post_status'    => 'publish',
+			'orderby'        => array( 'menu_order' => 'ASC', 'date' => 'ASC' ),
 		);
+		if ( is_tax( 'service_category' ) ) {
+			$service_query['tax_query'] = array( array( 'taxonomy' => 'service_category', 'field' => 'term_id', 'terms' => get_queried_object_id() ) );
+		}
+		$services = get_posts( $service_query );
 		if ( ! empty( $services ) ) {
 			if ( false !== strpos( $html, 'id="servicesSliderTrack"' ) ) {
 				$slides = '';
@@ -642,14 +644,16 @@ function alify_inject_dynamic_cpts( $html ) {
 
 	// C. Projects Accordion (`#projectsAccordionStage`) & Work 2-Col Grid (`#projectsGrid`)
 	if ( false !== strpos( $html, 'projectsAccordionStage' ) || false !== strpos( $html, 'projectsGrid' ) ) {
-		$projects = get_posts(
-			array(
-				'post_type'      => 'alify_project',
-				'posts_per_page' => -1,
-				'post_status'    => 'publish',
-				'orderby'        => array( 'menu_order' => 'ASC', 'date' => 'ASC' ),
-			)
+		$project_query = array(
+			'post_type'      => 'alify_project',
+			'posts_per_page' => -1,
+			'post_status'    => 'publish',
+			'orderby'        => array( 'menu_order' => 'ASC', 'date' => 'ASC' ),
 		);
+		if ( is_tax( 'project_category' ) ) {
+			$project_query['tax_query'] = array( array( 'taxonomy' => 'project_category', 'field' => 'term_id', 'terms' => get_queried_object_id() ) );
+		}
+		$projects = get_posts( $project_query );
 		if ( ! empty( $projects ) ) {
 			if ( false !== strpos( $html, 'id="projectsAccordionStage"' ) ) {
 				$panels = '';

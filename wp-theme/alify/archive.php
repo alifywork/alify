@@ -29,11 +29,18 @@ foreach ( $alify_cpt_archive_map as $alify_pt => $alify_partial_slug ) {
 	}
 }
 
-if ( is_tax( 'faq_pillar' ) ) {
-	get_header();
-	alify_render_partial( 'template-parts/pages/faq.php' );
-	get_footer();
-	return;
+$alify_taxonomy_archive_map = array(
+	'service_category' => 'services',
+	'project_category' => 'work',
+	'faq_pillar'       => 'faq',
+);
+foreach ( $alify_taxonomy_archive_map as $alify_taxonomy => $alify_archive_partial ) {
+	if ( is_tax( $alify_taxonomy ) ) {
+		get_header();
+		alify_render_partial( 'template-parts/pages/' . $alify_archive_partial . '.php' );
+		get_footer();
+		return;
+	}
 }
 
 require ALIFY_THEME_DIR . '/home.php';

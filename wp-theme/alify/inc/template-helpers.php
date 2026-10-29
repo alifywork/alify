@@ -79,6 +79,12 @@ function alify_current_route_slug() {
 	if ( is_tax( 'faq_pillar' ) || is_post_type_archive( 'alify_faq' ) ) {
 		return 'faq';
 	}
+	if ( is_tax( 'service_category' ) ) {
+		return 'services';
+	}
+	if ( is_tax( 'project_category' ) ) {
+		return 'work';
+	}
 	if ( is_post_type_archive( 'alify_service' ) ) {
 		return 'services';
 	}
@@ -193,6 +199,10 @@ function alify_transform_markup( $html, $part_slug = '' ) {
 
 	// Internal editor markers are never part of the public HTML, even if the CF plugin is disabled.
 	$html = preg_replace( '/\\sdata-alify-copy="[^"]*"/', '', $html );
+
+	if ( function_exists( 'alify_apply_section_visibility' ) ) {
+		$html = alify_apply_section_visibility( $html, get_queried_object_id(), $part_slug );
+	}
 
 	return $html;
 }

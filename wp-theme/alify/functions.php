@@ -28,6 +28,7 @@ require_once ALIFY_THEME_DIR . '/inc/cpt-renderers.php';
 require_once ALIFY_THEME_DIR . '/inc/starter-importer.php';
 require_once ALIFY_THEME_DIR . '/inc/forms-manager.php';
 require_once ALIFY_THEME_DIR . '/inc/alify-cf-integration.php';
+require_once ALIFY_THEME_DIR . '/inc/section-visibility.php';
 require_once ALIFY_THEME_DIR . '/inc/alify-cf-render-bridge.php';
 require_once ALIFY_THEME_DIR . '/inc/shortcodes-blocks.php';
 require_once ALIFY_THEME_DIR . '/inc/enqueue.php';

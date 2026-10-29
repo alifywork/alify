@@ -84,7 +84,7 @@ function alify_register_cf_options_pages() {
 add_action( 'init', 'alify_register_cf_options_pages', 12 );
 
 /**
- * Add Top-Level `ALIFY Theme Settings` Shortcut Menu in WP Admin Linking to Theme Settings and the Page Copy Editor.
+ * Add Top-Level `ALIFY Theme Settings` Menu With Theme Options, Archive Hub and Page Copy Editors.
  */
 function alify_register_cf_theme_settings_shortcut_menu() {
 	add_menu_page(
@@ -99,9 +99,8 @@ function alify_register_cf_theme_settings_shortcut_menu() {
 
 	if ( alify_has_cf_plugin() ) {
 		$links = array(
-			'site'              => __( 'Global, Header & Footer', 'alify' ),
+			'site'              => __( 'Theme Settings — Header, Footer & Global', 'alify' ),
 			'alify_home'        => __( 'Home Page Content', 'alify' ),
-			'alify_archives'    => __( 'Archive & Hub Pages', 'alify' ),
 			'alify_pages'       => __( 'Pricing & About Us', 'alify' ),
 			'alify_pricing_adv' => __( 'Pricing Calc & Matrix', 'alify' ),
 			'alify_conversion'  => __( 'Book Call, Legal & 404', 'alify' ),
@@ -143,7 +142,7 @@ add_action( 'admin_init', 'alify_redirect_cf_theme_settings_shortcuts', 5 );
 
 function alify_render_cf_theme_settings_hub() {
 	echo '<div class="wrap"><h1>' . esc_html__( 'ALIFY Theme Settings', 'alify' ) . '</h1>';
-	echo '<div class="notice notice-info" style="padding:14px 18px;margin-top:16px;"><p><strong>' . esc_html__( 'Activate the "Alify Custom Field" plugin', 'alify' ) . '</strong> ' . esc_html__( 'to unlock all 7 core visual Options Pages and Repeater/Gallery editors on every post type. Page text and interface copy are available in the Page Copy Editor.', 'alify' ) . '</p></div></div>';
+	echo '<div class="notice notice-info" style="padding:14px 18px;margin-top:16px;"><p><strong>' . esc_html__( 'Activate the "Alify Custom Field" plugin', 'alify' ) . '</strong> ' . esc_html__( 'to unlock all 7 core visual Options Pages and Repeater/Gallery editors on every post type. Archive copy is grouped under Archives; page text and per-section responsive visibility are available in the dashboard editors.', 'alify' ) . '</p></div></div>';
 }
 
 /**
@@ -588,6 +587,9 @@ function alify_register_all_cf_field_groups() {
 						),
 				)),
 				alify_cf_field_def( 'section_enabled', 'Display This Section', 'toggle' ),
+				alify_cf_field_def( 'section_show_desktop', 'Show on Desktop (1025px+)', 'toggle' ),
+				alify_cf_field_def( 'section_show_tablet', 'Show on Tablet (768–1024px)', 'toggle' ),
+				alify_cf_field_def( 'section_show_mobile', 'Show on Mobile (up to 767px)', 'toggle' ),
 			)),
 		),
 	),

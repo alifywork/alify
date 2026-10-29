@@ -175,9 +175,13 @@ if ( have_posts() ) :
 	<?php
 	$blog_copy_page_id = (int) get_option( 'page_for_posts' );
 	$blog_main_markup = ob_get_clean();
-	echo function_exists( 'alify_apply_generated_page_copy_fields' )
-		? alify_apply_generated_page_copy_fields( $blog_main_markup, $blog_copy_page_id, 'blog' ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		: $blog_main_markup; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	if ( function_exists( 'alify_apply_generated_page_copy_fields' ) ) {
+		$blog_main_markup = alify_apply_generated_page_copy_fields( $blog_main_markup, $blog_copy_page_id, 'blog' );
+	}
+	if ( function_exists( 'alify_apply_section_visibility' ) ) {
+		$blog_main_markup = alify_apply_section_visibility( $blog_main_markup, 0, 'blog' );
+	}
+	echo $blog_main_markup; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	?>
 <?php
 else :

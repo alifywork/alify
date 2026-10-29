@@ -1121,7 +1121,15 @@ if ( ! function_exists( 'alify_apply_per_page_cf_overrides' ) ) {
 					$inner .= $cards;
 				}
 				if ( array_key_exists( 'section_enabled', $row ) && ! $row['section_enabled'] ) { return ''; }
-				return $m[1] . $inner . $m[3];
+				$opening = $m[1];
+				foreach ( array( 'desktop', 'tablet', 'mobile' ) as $device ) {
+					$field = 'section_show_' . $device;
+					if ( array_key_exists( $field, $row ) ) {
+						$visible = ! empty( $row[ $field ] ) ? '1' : '0';
+						$opening = rtrim( substr( $opening, 0, -1 ) ) . ' data-alify-show-' . $device . '="' . $visible . '">';
+					}
+				}
+				return $opening . $inner . $m[3];
 			}, $html, 1 );
 		}
 		return $html;
