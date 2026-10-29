@@ -1,6 +1,6 @@
 // ==========================================================================
 // Reusable Case Studies Component Script
-// 1. Home Page Interactive Executive Case Study Switcher + Auto-Cycle Progress
+// 1. Home Page Interactive Executive Case Study Switcher (manual)
 // 2. Case Studies Page Filter & Technical Blueprint Drawer Toggles
 // ==========================================================================
 
@@ -20,21 +20,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const fills = tabs.map((t) => t.querySelector(".cs-tab-progress-fill"));
 
     let activeIdx = 0;
-    let elapsedMs = 0;
-    const cycleDurationMs = 7500;
-    let isHovered = false;
 
     const resetFills = () => {
       fills.forEach((f, idx) => {
         if (!f) return;
-        f.style.width = idx === activeIdx && prefersReducedMotion ? "100%" : "0%";
+        f.style.width = idx === activeIdx ? "100%" : "0%";
       });
     };
 
     const switchCase = (nextIdx, animate = true) => {
       if (nextIdx < 0 || nextIdx >= tabs.length) return;
       activeIdx = nextIdx;
-      elapsedMs = 0;
 
       tabs.forEach((tab, idx) => {
         const isActive = idx === activeIdx;
@@ -91,45 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-    homeSection.addEventListener("mouseenter", () => {
-      isHovered = true;
-    });
-    homeSection.addEventListener("mouseleave", () => {
-      isHovered = false;
-    });
-    homeSection.addEventListener("focusin", () => {
-      isHovered = true;
-    });
-    homeSection.addEventListener("focusout", () => {
-      isHovered = false;
-    });
-
-    if (!prefersReducedMotion && tabs.length > 1) {
-      let lastNow = performance.now();
-      const tick = (now) => {
-        const dt = Math.min(now - lastNow, 80);
-        lastNow = now;
-
-        if (!isHovered) {
-          elapsedMs += dt;
-          const pct = Math.min(100, (elapsedMs / cycleDurationMs) * 100);
-          const activeFill = fills[activeIdx];
-          if (activeFill) {
-            activeFill.style.width = `${pct.toFixed(1)}%`;
-          }
-
-          if (elapsedMs >= cycleDurationMs) {
-            switchCase((activeIdx + 1) % tabs.length, true);
-          }
-        }
-
-        requestAnimationFrame(tick);
-      };
-
-      requestAnimationFrame(tick);
-    } else {
-      resetFills();
-    }
+    switchCase(activeIdx, false);
   }
 
   // ------------------------------------------------------------------------

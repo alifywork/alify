@@ -1,6 +1,6 @@
 // ==========================================================================
 // Reusable Testimonials Component Script
-// 1. Seamless 2-Row Opposite-Direction Slider (Auto-glide + Prev/Next + Drag)
+// 1. User-Controlled 2-Row Slider (Prev/Next + Drag)
 // 2. Dedicated Testimonials Page Category Filter
 // ==========================================================================
 
@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ).matches;
 
   // ------------------------------------------------------------------------
-  // 1. Initialize 2-Row Testimonials Sliders (.js-testimonials-slider)
+  // 1. User-controlled 2-Row Testimonials Slider (.js-testimonials-slider)
   // ------------------------------------------------------------------------
   document.querySelectorAll(".js-testimonials-slider").forEach((section) => {
     const stage = section.querySelector(".testimonials-dual-stage");
@@ -22,10 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
     );
     const prevBtn = section.querySelector(".js-testi-prev");
     const nextBtn = section.querySelector(".js-testi-next");
-
     if (!stage || !row1Track || !row2Track) return;
 
-    // Clone original cards in each row for seamless infinite wraparound
     const cloneTrackItems = (track) => {
       const originals = Array.from(track.children);
       originals.forEach((item) => {
@@ -44,128 +42,104 @@ document.addEventListener("DOMContentLoaded", () => {
     const row2FirstOrig = cloneTrackItems(row2Track);
     const row1FirstClone = row1Track.querySelector('[data-clone="true"]');
     const row2FirstClone = row2Track.querySelector('[data-clone="true"]');
-
     let period1 = 2400;
     let period2 = 2400;
     let stepSize = 428;
 
     const measure = () => {
       if (row1FirstOrig && row1FirstClone) {
-        const p1 = row1FirstClone.offsetLeft - row1FirstOrig.offsetLeft;
-        if (p1 > 0) period1 = p1;
+        const period = row1FirstClone.offsetLeft - row1FirstOrig.offsetLeft;
+        if (period > 0) period1 = period;
         stepSize = row1FirstOrig.offsetWidth + 22;
       }
       if (row2FirstOrig && row2FirstClone) {
-        const p2 = row2FirstClone.offsetLeft - row2FirstOrig.offsetLeft;
-        if (p2 > 0) period2 = p2;
+        const period = row2FirstClone.offsetLeft - row2FirstOrig.offsetLeft;
+        if (period > 0) period2 = period;
       }
     };
 
     measure();
     window.addEventListener("resize", measure, { passive: true });
-    if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(measure);
-    }
+    if (document.fonts?.ready) document.fonts.ready.then(measure);
 
-    // Wrap any signed coordinate smoothly into (-period, 0]
-    const wrapOffset = (val, period) => {
+    const wrapOffset = (value, period) => {
       if (period <= 0) return 0;
-      const mod = ((val % period) + period) % period;
+      const mod = ((value % period) + period) % period;
       return mod === 0 ? 0 : mod - period;
     };
 
-    // Row 1 starts at 0 and glides left (-); Row 2 starts staggered and glides right (+)
     let pos1 = 0;
     let pos2 = -Math.round(stepSize * 0.55);
-
-    // Smooth manual step impulse when clicking Prev / Next buttons
     let manualVelocity = 0;
-    let isUserPaused = prefersReducedMotion;
-    let isHovered = false;
     let isDragging = false;
     let dragLastX = 0;
-
-    const baseSpeedPxPerSec = 36; // Gentle, readable luxury glide speed
-    let currentSpeedFactor = isUserPaused ? 0 : 1;
+    let animationFrame = 0;
+    let lastTime = 0;
 
     const render = () => {
-      const x1 = wrapOffset(pos1, period1);
-      const x2 = wrapOffset(pos2, period2);
-      row1Track.style.transform = `translate3d(${x1.toFixed(2)}px, 0, 0)`;
-      row2Track.style.transform = `translate3d(${x2.toFixed(2)}px, 0, 0)`;
+      row1Track.style.transform = `translate3d(${wrapOffset(pos1, period1).toFixed(2)}px, 0, 0)`;
+      row2Track.style.transform = `translate3d(${wrapOffset(pos2, period2).toFixed(2)}px, 0, 0)`;
     };
 
-    let lastTime = performance.now();
-    const tick = (now) => {
+    const animateManualStep = (now) => {
+      if (!animationFrame) return;
       const dt = Math.min((now - lastTime) / 1000, 0.064);
       lastTime = now;
 
-      const targetFactor =
-        isUserPaused || isHovered || isDragging ? 0 : 1;
-      currentSpeedFactor += (targetFactor - currentSpeedFactor) * Math.min(1, dt * 6);
-
-      if (!isDragging) {
-        const autoDelta = baseSpeedPxPerSec * currentSpeedFactor * dt;
-        // Row 1 moves left, Row 2 moves right for dynamic counter-motion
-        pos1 -= autoDelta;
-        pos2 += autoDelta * 0.92;
-
-        if (Math.abs(manualVelocity) > 0.4) {
-          const stepDelta = manualVelocity * dt * 7.5;
-          pos1 += stepDelta;
-          pos2 += stepDelta;
-          manualVelocity -= stepDelta;
-        } else {
-          manualVelocity = 0;
-        }
+      if (!isDragging && Math.abs(manualVelocity) > 0.4) {
+        const stepDelta = manualVelocity * dt * 7.5;
+        pos1 += stepDelta;
+        pos2 += stepDelta;
+        manualVelocity -= stepDelta;
+      } else {
+        manualVelocity = 0;
+        animationFrame = 0;
+        render();
+        return;
       }
 
       render();
-      requestAnimationFrame(tick);
+      animationFrame = requestAnimationFrame(animateManualStep);
+    };
+
+    const moveBy = (distance) => {
+      if (prefersReducedMotion) {
+        pos1 = wrapOffset(pos1 + distance, period1);
+        pos2 = wrapOffset(pos2 + distance, period2);
+        render();
+        return;
+      }
+      manualVelocity += distance;
+      if (!animationFrame) {
+        lastTime = performance.now();
+        animationFrame = requestAnimationFrame(animateManualStep);
+      }
     };
 
     render();
-    requestAnimationFrame(tick);
+    prevBtn?.addEventListener("click", () => moveBy(stepSize));
+    nextBtn?.addEventListener("click", () => moveBy(-stepSize));
 
-    // Prev / Next Controls
-    prevBtn?.addEventListener("click", () => {
-      manualVelocity += stepSize;
-    });
-
-    nextBtn?.addEventListener("click", () => {
-      manualVelocity -= stepSize;
-    });
-
-    // Hover & Focus Pause
-    stage.addEventListener("mouseenter", () => {
-      isHovered = true;
-    });
-    stage.addEventListener("mouseleave", () => {
-      isHovered = false;
-    });
-    stage.addEventListener("focusin", () => {
-      isHovered = true;
-    });
-    stage.addEventListener("focusout", () => {
-      isHovered = false;
-    });
-
-    // Pointer / Touch Drag Scrubbing
-    stage.addEventListener("pointerdown", (e) => {
-      if (e.button !== 0 && e.pointerType === "mouse") return;
+    stage.addEventListener("pointerdown", (event) => {
+      if (event.button !== 0 && event.pointerType === "mouse") return;
       isDragging = true;
-      dragLastX = e.clientX;
+      dragLastX = event.clientX;
       manualVelocity = 0;
+      if (animationFrame) {
+        cancelAnimationFrame(animationFrame);
+        animationFrame = 0;
+      }
       stage.classList.add("is-dragging");
-      stage.setPointerCapture?.(e.pointerId);
+      stage.setPointerCapture?.(event.pointerId);
     });
 
-    stage.addEventListener("pointermove", (e) => {
+    stage.addEventListener("pointermove", (event) => {
       if (!isDragging) return;
-      const dx = e.clientX - dragLastX;
-      dragLastX = e.clientX;
-      pos1 += dx;
-      pos2 += dx;
+      const delta = event.clientX - dragLastX;
+      dragLastX = event.clientX;
+      pos1 += delta;
+      pos2 += delta;
+      render();
     });
 
     const stopDrag = () => {
@@ -173,7 +147,6 @@ document.addEventListener("DOMContentLoaded", () => {
       isDragging = false;
       stage.classList.remove("is-dragging");
     };
-
     stage.addEventListener("pointerup", stopDrag);
     stage.addEventListener("pointercancel", stopDrag);
   });
