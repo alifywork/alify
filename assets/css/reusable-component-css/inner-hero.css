@@ -153,12 +153,20 @@
   margin-bottom: 16px;
 }
 
-.inner-hero-eyebrow-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: var(--color-amber);
-  flex-shrink: 0;
+.inner-hero .industries-eyebrow-dot {
+  display: inline-flex;
+  width: 15px;
+  height: 15px;
+  flex: 0 0 15px;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-amber);
+  background: transparent;
+  font-family: var(--font-garet);
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1;
+  transform-origin: 50% 56%;
 }
 
 .inner-hero-title {

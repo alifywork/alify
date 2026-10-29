@@ -824,11 +824,36 @@ h6 {
   }
 }
 
-/* ==========================================================================
-   Global Non-Hero Eyebrow Rotating Triangle (△) & Motion Accessibility
-   ========================================================================== */
+/* Decorative eyebrow triangles rotate; brand/logo marks are intentionally excluded. */
+@keyframes alify-triangle-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
 
-
+.studio-sec-eyebrow-dot,
+.services-eyebrow-dot,
+.industries-eyebrow-dot,
+.projects-eyebrow-dot,
+.cs-eyebrow-dot,
+.testimonials-eyebrow-dot,
+.faq-eyebrow-dot,
+.blog-section-eyebrow-dot,
+.blog-related-eyebrow-dot,
+.contact-sec-eyebrow-dot,
+.single-sec-eyebrow-dot,
+.pricing-eyebrow-dot,
+.footer-cta-eyebrow-dot,
+.about-mv-badge-dot,
+.tool-stack-eyebrow-dot,
+.inner-hero .industries-eyebrow-dot,
+.hero-glass-cta-kicker > span,
+.reusable-contact-cta-kicker > span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: 50% 56%;
+  animation: alify-triangle-rotate 8s linear infinite !important;
+}
 
 @media (prefers-reduced-motion: reduce) {
   .studio-sec-eyebrow-dot,
@@ -845,12 +870,13 @@ h6 {
   .pricing-eyebrow-dot,
   .footer-cta-eyebrow-dot,
   .about-mv-badge-dot,
-  .alify-preloader-mark,
-  .hero-bg-media {
+  .tool-stack-eyebrow-dot,
+  .inner-hero .industries-eyebrow-dot,
+  .hero-glass-cta-kicker > span,
+  .reusable-contact-cta-kicker > span {
+    animation: none !important;
+  }
 }
-}
-
-
 
 
 /* Keep the static site motion-free, including motion supplied by framework styles. */
