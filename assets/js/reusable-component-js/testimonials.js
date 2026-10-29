@@ -109,12 +109,101 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     };
 
+    let autoplayEnabled = !prefersReducedMotion;
+    let autoplayTimer = null;
+    let isInView = false;
+    let isHovering = false;
+    let hasFocus = false;
+    let autoplayButton = null;
+
+    const stopAutoplay = () => {
+      window.clearInterval(autoplayTimer);
+      autoplayTimer = null;
+    };
+
+    const startAutoplay = () => {
+      stopAutoplay();
+      if (
+        !autoplayEnabled ||
+        !isInView ||
+        document.hidden ||
+        isDragging ||
+        isHovering ||
+        hasFocus
+      ) return;
+      autoplayTimer = window.setInterval(() => {
+        if (!isDragging) moveBy(-stepSize);
+      }, 5000);
+    };
+
+    if (!prefersReducedMotion && (prevBtn || nextBtn)) {
+      autoplayButton = document.createElement("button");
+      autoplayButton.type = "button";
+      autoplayButton.className = "testi-nav-btn js-testi-autoplay";
+      autoplayButton.setAttribute("aria-pressed", "true");
+      autoplayButton.setAttribute("aria-label", "Pause automatic testimonials");
+      autoplayButton.innerHTML = '<i class="fa-solid fa-pause" aria-hidden="true"></i>';
+      (prevBtn || nextBtn).parentElement?.insertBefore(autoplayButton, prevBtn || nextBtn);
+      autoplayButton.addEventListener("click", () => {
+        autoplayEnabled = !autoplayEnabled;
+        autoplayButton.setAttribute("aria-pressed", String(autoplayEnabled));
+        autoplayButton.setAttribute(
+          "aria-label",
+          autoplayEnabled ? "Pause automatic testimonials" : "Play automatic testimonials"
+        );
+        autoplayButton.innerHTML = autoplayEnabled
+          ? '<i class="fa-solid fa-pause" aria-hidden="true"></i>'
+          : '<i class="fa-solid fa-play" aria-hidden="true"></i>';
+        if (autoplayEnabled) startAutoplay();
+        else stopAutoplay();
+      });
+    }
+
     render();
     prevBtn?.addEventListener("click", () => moveBy(stepSize));
     nextBtn?.addEventListener("click", () => moveBy(-stepSize));
 
+    const interactionTargets = [
+      stage,
+      section.querySelector(".testimonials-slider-controls"),
+    ].filter(Boolean);
+    interactionTargets.forEach((target) => {
+      target.addEventListener("mouseenter", () => {
+        isHovering = true;
+        stopAutoplay();
+      });
+      target.addEventListener("mouseleave", () => {
+        isHovering = false;
+        startAutoplay();
+      });
+      target.addEventListener("focusin", () => {
+        hasFocus = true;
+        stopAutoplay();
+      });
+      target.addEventListener("focusout", (event) => {
+        if (!target.contains(event.relatedTarget)) {
+          hasFocus = false;
+          startAutoplay();
+        }
+      });
+    });
+    document.addEventListener("visibilitychange", startAutoplay);
+
+    if ("IntersectionObserver" in window) {
+      const autoplayObserver = new IntersectionObserver(([entry]) => {
+        isInView = entry.isIntersecting && entry.intersectionRatio >= 0.25;
+        if (isInView) startAutoplay();
+        else stopAutoplay();
+      }, { threshold: [0, 0.25] });
+      autoplayObserver.observe(section);
+    } else {
+      isInView = true;
+      startAutoplay();
+    }
+
     stage.addEventListener("pointerdown", (event) => {
       if (event.button !== 0 && event.pointerType === "mouse") return;
+      stopAutoplay();
       isDragging = true;
       dragLastX = event.clientX;
       manualTween?.kill();
@@ -136,6 +225,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!isDragging) return;
       isDragging = false;
       stage.classList.remove("is-dragging");
+      startAutoplay();
     };
     stage.addEventListener("pointerup", stopDrag);
     stage.addEventListener("pointercancel", stopDrag);
