@@ -51,7 +51,7 @@ if ( have_posts() ) :
 							<span><?php echo esc_html( $blog_eyebrow ); ?></span>
 						</div>
 
-						<h1 class="inner-hero-title" data-alify-copy="copy_blog_001">
+						<h1 class="inner-hero-title" data-alify-copy="copy_blog_0006">
 							<?php if ( ! empty( $archive_title ) ) : ?>
 								<?php echo wp_kses_post( $archive_title ); ?>
 							<?php elseif ( ! empty( $blog_h1_opt ) ) : ?>
@@ -63,7 +63,7 @@ if ( have_posts() ) :
 							<?php endif; ?>
 						</h1>
 
-						<p class="inner-hero-desc" data-alify-copy="copy_blog_002">
+						<p class="inner-hero-desc" data-alify-copy="copy_blog_0007">
 							<?php echo esc_html( $blog_desc_opt ); ?>
 						</p>
 

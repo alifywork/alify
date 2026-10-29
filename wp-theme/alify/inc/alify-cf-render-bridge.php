@@ -1133,38 +1133,58 @@ if ( ! function_exists( 'alify_apply_per_page_cf_overrides' ) ) {
  */
 function alify_apply_generated_page_copy_fields( $html, $post_id, $part_slug = '' ) {
 	if ( ! is_string( $html ) ) { return $html; }
-	$page_slug = isset( $part_slug ) && '' !== $part_slug ? $part_slug : ( $post_id ? get_post_field( 'post_name', $post_id ) : '' );
-	$catalog = require ALIFY_THEME_DIR . '/inc/page-content-catalog.php';
-	if ( empty( $catalog[ $page_slug ]['fields'] ) ) { return preg_replace( '/\\sdata-alify-copy="[^"]*"/', '', $html ); }
+	$page_slug = '' !== $part_slug ? $part_slug : ( $post_id ? get_post_field( 'post_name', $post_id ) : '' );
+	static $catalog = null;
+	if ( null === $catalog ) { $catalog = require ALIFY_THEME_DIR . '/inc/page-content-catalog.php'; }
+	if ( empty( $catalog[ $page_slug ]['fields'] ) ) { return preg_replace( '/\\sdata-alify-copy(?:-[a-z-]+)?="[^"]*"/', '', $html ); }
 	$option_page = '';
-	if ( is_404() && '404' === $page_slug ) {
-		$option_page = 'alify_conversion';
-	} elseif ( 'blog' === $page_slug && ( is_home() || is_archive() ) ) {
-		$option_page = 'alify_archives';
-	} elseif ( is_post_type_archive() || is_tax() ) {
-		$option_pages = array(
-			'services' => 'alify_archive_services',
-			'work' => 'alify_archive_work',
-			'industries' => 'alify_archive_industries',
-			'case-studies' => 'alify_archive_case_studies',
-			'testimonials' => 'alify_archive_testimonials',
-			'faq' => 'alify_archive_faq',
+	if ( is_404() && '404' === $page_slug ) { $option_page = 'alify_conversion'; }
+	elseif ( 'blog' === $page_slug && ( is_home() || is_archive() ) ) { $option_page = 'alify_archives'; }
+	elseif ( is_post_type_archive() || is_tax() ) {
+		$archive_option_pages = array(
+			'services' => 'alify_archive_services', 'work' => 'alify_archive_work',
+			'industries' => 'alify_archive_industries', 'case-studies' => 'alify_archive_case_studies',
+			'testimonials' => 'alify_archive_testimonials', 'faq' => 'alify_archive_faq',
 		);
-		$option_page = $option_pages[ $page_slug ] ?? '';
+		$option_page = $archive_option_pages[ $page_slug ] ?? 'alify_archives';
 	}
+	$options = $option_page ? get_option( 'alify_cf_options_' . $option_page, array() ) : array();
+	if ( ! is_array( $options ) ) { $options = array(); }
 	foreach ( $catalog[ $page_slug ]['fields'] as $field ) {
 		if ( $option_page ) {
-			$value = function_exists( 'alify_get_option' ) ? alify_get_option( $field['name'], $option_page ) : null;
-		} else {
-			$value = ( $post_id && function_exists( 'alify_get_field' ) ) ? alify_get_field( $field['name'], $post_id ) : null;
+			$option_key = array_key_exists( $field['name'], $options ) ? $field['name'] : ( ! empty( $field['legacy_name'] ) && array_key_exists( $field['legacy_name'], $options ) ? $field['legacy_name'] : '' );
+			$value = $option_key && is_scalar( $options[ $option_key ] ) ? (string) $options[ $option_key ] : null;
+		}
+		else {
+			$meta_key = '_alify_cf_' . $field['name'];
+			$has_value = $post_id && metadata_exists( 'post', $post_id, $meta_key );
+			$value = $post_id ? get_post_meta( $post_id, $meta_key, true ) : null;
+			if ( ! $has_value && $post_id && ! empty( $field['legacy_name'] ) ) {
+				$legacy_key = '_alify_cf_' . $field['legacy_name'];
+				$has_value = metadata_exists( 'post', $post_id, $legacy_key );
+				if ( $has_value ) { $value = get_post_meta( $post_id, $legacy_key, true ); }
+			}
+			if ( ! $has_value && ( ! is_string( $value ) || '' === $value ) ) {
+				$value = ( $post_id && function_exists( 'alify_get_field' ) ) ? alify_get_field( $field['name'], $post_id ) : $value;
+			}
 		}
 		if ( ! is_string( $value ) || $value === $field['default'] ) { continue; }
 		$name = preg_quote( $field['name'], '~' );
-		$tag = preg_quote( $field['tag'], '~' );
-		$pattern = '~(<(' . $tag . ')\\b[^>]*\\bdata-alify-copy="' . $name . '"[^>]*>)(.*?)(</\\2>)~si';
-		$html = preg_replace_callback( $pattern, function ( $match ) use ( $value ) {
-			return $match[1] . nl2br( esc_html( $value ) ) . $match[4];
-		}, $html, 1 );
+		if ( ! empty( $field['attribute'] ) ) {
+			$attribute = preg_quote( $field['attribute'], '~' );
+			$pattern = '~<[^>]*\\bdata-alify-copy-' . $attribute . '="' . $name . '"[^>]*>~i';
+			$html = preg_replace_callback( $pattern, function ( $match ) use ( $value, $attribute ) {
+				$clean = in_array( $attribute, array( 'href', 'src' ), true ) ? esc_url( $value ) : esc_attr( $value );
+				$attribute_pattern = '~(\\b' . preg_quote( $attribute, '~' ) . '=")[^"]*(")~i';
+				return preg_replace_callback( $attribute_pattern, function ( $attribute_match ) use ( $clean ) {
+					return $attribute_match[1] . $clean . $attribute_match[2];
+				}, $match[0], 1 );
+			}, $html, 1 );
+		} else {
+			$tag = preg_quote( $field['tag'], '~' );
+			$pattern = '~(<(' . $tag . ')\\b[^>]*\\bdata-alify-copy="' . $name . '"[^>]*>)(.*?)(</\\2>)~si';
+			$html = preg_replace_callback( $pattern, function ( $match ) use ( $value ) { return $match[1] . nl2br( esc_html( $value ) ) . $match[4]; }, $html, 1 );
+		}
 	}
-	return preg_replace( '/\\sdata-alify-copy="[^"]*"/', '', $html );
+	return preg_replace( '/\\sdata-alify-copy(?:-[a-z-]+)?="[^"]*"/', '', $html );
 }
