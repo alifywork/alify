@@ -93,8 +93,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const progress = { value: 0 };
       manualTween = gsap.to(progress, {
         value: 1,
-        duration: 0.42,
-        ease: "power2.out",
+        duration: 0.62,
+        ease: "power3.out",
         onUpdate() {
           pos1 = start1 + distance * progress.value;
           pos2 = start2 + distance * progress.value;

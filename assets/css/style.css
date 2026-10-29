@@ -862,12 +862,21 @@ h6 {
 
 
 /* Baseline: suppress framework/global motion; allow only the scoped exceptions below. */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 *,
 *::before,
 *::after {
   animation: none !important;
   transition: none !important;
-  scroll-behavior: auto !important;
 }
 
 /* Curated CSS micro-interactions; larger choreography is handled by GSAP. */

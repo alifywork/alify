@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const setTrackX = (x, animate = false) => {
       if (typeof gsap !== "undefined" && !prefersReducedMotion) {
         if (animate) {
-          gsap.to(track, { x, duration: 0.42, ease: "power2.out", overwrite: "auto" });
+          gsap.to(track, { x, duration: 0.62, ease: "power3.out", overwrite: "auto" });
         } else {
           gsap.set(track, { x });
         }
