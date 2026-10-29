@@ -1,8 +1,9 @@
 /* ==========================================================================
    Global UI Micro-Polish Suite:
-   1. Fast △LIFY Studio Intro Preloader (with Session Memory & CSS Fail-Safe)
-   2. Top Viewport Scroll Progress Hairline
-   3. Custom Interactive Desktop Cursor (Fine-Pointer Devices Only)
+   1. Top Viewport Scroll Progress Hairline
+   2. Custom Interactive Desktop Cursor (Fine-Pointer Devices Only)
+   3. Floating Quick Action Dock
+   4. Strategy Call Scheduler
    Strict Palette: #FFFFFF, #000000, #0F3473, #F6F4F1 ONLY
    ========================================================================== */
 
@@ -25,103 +26,7 @@
 }
 
 /* --------------------------------------------------------------------------
-   2. Fast △LIFY Intro Preloader
-   -------------------------------------------------------------------------- */
-
-.alify-preloader {
-  position: fixed;
-  inset: 0;
-  z-index: 2000;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background:
-    radial-gradient(circle at 50% 42%, rgba(15, 52, 115, 0.36) 0%, rgba(0, 0, 0, 0) 58%),
-    var(--color-black);
-  color: var(--color-white);
-/* Fail-safe: never block interaction even if scripts are delayed */
-}
-
-.alify-preloader.is-quick {
-}
-
-.alify-preloader.is-done {
-  transform: translateY(-100%);
-  pointer-events: none;
-  visibility: hidden;
-}
-
-.alify-preloader.is-quick.is-done {
-  transform: none;
-  opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
-}
-
-
-
-.alify-preloader-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 18px;
-  padding: 24px;
-}
-
-.alify-preloader-brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  font-family: var(--font-garet);
-  font-weight: 800;
-  font-size: clamp(30px, 4vw, 42px);
-  letter-spacing: 0.06em;
-  line-height: 1;
-  color: var(--color-white);
-  user-select: none;
-}
-
-.alify-preloader-mark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-primary);
-  font-size: 1.04em;
-  transform-origin: 50% 56%;
-}
-
-.alify-preloader-bar-wrap {
-  width: 190px;
-  height: 2px;
-  background-color: rgba(255, 255, 255, 0.14);
-  border-radius: 999px;
-  overflow: hidden;
-}
-
-.alify-preloader-bar-fill {
-  width: 100%;
-  height: 100%;
-  background-color: var(--color-primary);
-  transform-origin: left center;
-  transform: scaleX(0.15);
-}
-
-.alify-preloader-meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 190px;
-  font-family: var(--font-montserrat);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(246, 244, 241, 0.72);
-}
-
-/* --------------------------------------------------------------------------
-   3. Custom Interactive Desktop Cursor (Fine Pointer Only)
+   2. Custom Interactive Desktop Cursor (Fine Pointer Only)
    -------------------------------------------------------------------------- */
 
 .alify-cursor-dot,
@@ -239,7 +144,6 @@ white-space: nowrap;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .alify-preloader,
   .alify-cursor-dot,
   .alify-cursor-ring {
     display: none !important;
@@ -247,7 +151,7 @@ white-space: nowrap;
 }
 
 /* --------------------------------------------------------------------------
-   4. Floating Quick Action Dock (WhatsApp + Book Strategy Call Trigger)
+   3. Floating Quick Action Dock (WhatsApp + Book Strategy Call Trigger)
    -------------------------------------------------------------------------- */
 
 .alify-quick-dock {
@@ -316,7 +220,7 @@ white-space: nowrap;
 }
 
 /* --------------------------------------------------------------------------
-   5. Global "Book a Strategy Call" Interactive Slot-Picker Modal
+   4. Global "Book a Strategy Call" Interactive Slot-Picker Modal
    -------------------------------------------------------------------------- */
 
 body.is-bookcall-open {
