@@ -7,16 +7,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const hasScrollTrigger = typeof ScrollTrigger !== "undefined";
+  const isInitiallyVisible = (element) => {
+    const rect = element.getBoundingClientRect();
+    return rect.top < window.innerHeight && rect.bottom > 0;
+  };
   if (hasScrollTrigger) {
     gsap.registerPlugin(ScrollTrigger);
   }
 
   // --------------------------------------------------------------------------
-  // 1. Centered Home Hero Entrance & KPI Counters
+  // 1. Home Hero Entrance (only when outside the first viewport)
   // --------------------------------------------------------------------------
   const homeHero = document.querySelector(".home-hero");
   if (homeHero) {
-    if (!reducedMotion) {
+    // Keep above-the-fold hero content stable on first paint; entrance motion is
+    // reserved for a hero loaded outside the initial viewport (for hash links).
+    if (!reducedMotion && !isInitiallyVisible(homeHero)) {
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
       tl.from(".hero-status-pill", {
@@ -69,27 +75,8 @@ document.addEventListener("DOMContentLoaded", () => {
         );
     }
 
-    // Respect reduced-motion preferences while keeping the final KPI values visible.
-    document.querySelectorAll(".hero-stat-number[data-count]").forEach((el) => {
-      const target = Number(el.getAttribute("data-count") || 0);
-      const suffix = el.getAttribute("data-suffix") || "";
-      if (!target) return;
-
-      if (reducedMotion) {
-        el.textContent = `${target}${suffix}`;
-        return;
-      }
-
-      const counter = { val: 0 };
-      gsap.to(counter, {
-        val: target,
-        duration: 1.5,
-        ease: "power2.out",
-        onUpdate: () => {
-          el.textContent = `${Math.round(counter.val)}${suffix}`;
-        },
-      });
-    });
+    // KPI values stay at their authored final values to avoid a visible reset
+    // between first paint and the start of JavaScript.
   }
 
   // --------------------------------------------------------------------------
@@ -110,6 +97,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const revealX = (target, fromX, opts = {}) => {
     if (!target || animated.has(target)) return;
+    if (isInitiallyVisible(target)) {
+      animated.add(target);
+      return;
+    }
     animated.add(target);
 
     gsap.from(target, {
