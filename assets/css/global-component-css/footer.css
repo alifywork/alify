@@ -400,7 +400,8 @@ a.footer-contact-value:hover {
    -------------------------------------------------------------------------- */
 
 .footer-bottom {
-  padding: 26px 0;
+  /* Keep the fixed quick-action dock clear of footer controls at every size. */
+  padding: 26px 0 96px;
 }
 
 .footer-bottom-row {
