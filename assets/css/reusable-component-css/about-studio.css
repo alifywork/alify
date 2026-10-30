@@ -633,11 +633,14 @@ flex-shrink: 0;
 .studio-process-track {
   position: absolute;
   top: 11px;
-  right: 12.5%;
-  left: 12.5%;
+  left: 50%;
+  width: 75%;
+  max-width: calc(100% - var(--bs-gutter-x, 1.5rem));
   height: 1px;
   background: rgba(217, 138, 43, 0.62);
+  transform: translateX(-50%);
   transform-origin: left center;
+  box-sizing: border-box;
 }
 
 .studio-process-row > div {
