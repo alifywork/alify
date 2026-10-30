@@ -69,11 +69,16 @@ document.addEventListener("DOMContentLoaded", () => {
         );
     }
 
-    // Smooth Number Counter Animation for Hero KPIs
+    // Respect reduced-motion preferences while keeping the final KPI values visible.
     document.querySelectorAll(".hero-stat-number[data-count]").forEach((el) => {
       const target = Number(el.getAttribute("data-count") || 0);
       const suffix = el.getAttribute("data-suffix") || "";
       if (!target) return;
+
+      if (reducedMotion) {
+        el.textContent = `${target}${suffix}`;
+        return;
+      }
 
       const counter = { val: 0 };
       gsap.to(counter, {
@@ -88,22 +93,27 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // --------------------------------------------------------------------------
-  // 2. Modern Left & Right Directional Section Scroll Animations (All 19 Pages)
+  // 2. Modern Left & Right Directional Section Scroll Animations (All Static Pages)
   // --------------------------------------------------------------------------
   if (reducedMotion || !hasScrollTrigger) return;
 
   const animated = new WeakSet();
-  const isMobile = window.innerWidth < 768;
-  const distStrong = isMobile ? 24 : 64;
-  const distMed = isMobile ? 20 : 52;
-  const distSoft = isMobile ? 16 : 42;
+  const getViewportScale = () => {
+    const width = window.innerWidth;
+    if (width < 768) return 0.38;
+    if (width < 992) return 0.68;
+    return 1;
+  };
+  const distStrong = 64;
+  const distMed = 52;
+  const distSoft = 42;
 
   const revealX = (target, fromX, opts = {}) => {
     if (!target || animated.has(target)) return;
     animated.add(target);
 
     gsap.from(target, {
-      x: fromX,
+      x: () => fromX * getViewportScale(),
       opacity: 0,
       duration: opts.duration || 0.88,
       delay: opts.delay || 0,
@@ -113,6 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
         trigger: opts.trigger || target,
         start: opts.start || "top 86%",
         once: true,
+        invalidateOnRefresh: true,
       },
     });
   };
@@ -327,11 +338,33 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // Fallback reveal for top-level content sections without a specialized reveal.
+  // Keep detailed row/card choreography above intact and avoid stacking reveals.
+  document.querySelectorAll("main section").forEach((section, idx) => {
+    if (section.matches(".home-hero")) return; // has a dedicated entrance timeline
+    const animatedSectionParent = section.parentElement.closest("section");
+    if (animatedSectionParent && animated.has(animatedSectionParent)) return;
+    if (animated.has(section)) return;
+    const hasAnimatedContent = Array.from(section.querySelectorAll("*"))
+      .some((element) => animated.has(element));
+    if (hasAnimatedContent) return;
+
+    revealX(section, idx % 2 === 0 ? -distSoft : distSoft, {
+      trigger: section,
+      start: "top 90%",
+      duration: 0.78,
+    });
+  });
+
   // --------------------------------------------------------------------------
-  // 3. Parallax & Multi-Depth Scroll Choreography (Home + All 19 Inner Pages)
+  // 3. Parallax & Multi-Depth Scroll Choreography (Home + All Static Pages)
   // --------------------------------------------------------------------------
-  const secParallaxShift = isMobile ? 28 : 54;
-  const isDesktop = window.innerWidth >= 992;
+  const getParallaxShift = () => {
+    const width = window.innerWidth;
+    if (width < 768) return 28;
+    if (width < 992) return 40;
+    return 54;
+  };
 
   // A. Multi-Plane Hero Parallax (Background Media + Watermark + Foreground Depth)
   document
@@ -343,7 +376,7 @@ document.addEventListener("DOMContentLoaded", () => {
           bg,
           { yPercent: -5, scale: 1.04 },
           {
-            yPercent: isMobile ? 10 : 17,
+            yPercent: () => window.innerWidth < 768 ? 10 : window.innerWidth < 992 ? 13 : 17,
             scale: 1.12,
             ease: "none",
             scrollTrigger: {
@@ -351,6 +384,7 @@ document.addEventListener("DOMContentLoaded", () => {
               start: "top top",
               end: "bottom top",
               scrub: 0.45,
+              invalidateOnRefresh: true,
             },
           }
         );
@@ -371,36 +405,36 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       }
 
-      if (isDesktop) {
-        const heroCopy = hero.querySelector(
-          ".hero-content-col, .inner-hero-copy-col, .blog-single-hero-inner"
-        );
-        if (heroCopy) {
-          gsap.to(heroCopy, {
-            y: -26,
-            ease: "none",
-            scrollTrigger: {
-              trigger: hero,
-              start: "top top",
-              end: "bottom top",
-              scrub: 0.55,
-            },
-          });
-        }
+      const heroCopy = hero.querySelector(
+        ".hero-content-col, .inner-hero-copy-col, .blog-single-hero-inner"
+      );
+      if (heroCopy) {
+        gsap.to(heroCopy, {
+          y: () => window.innerWidth < 768 ? 0 : window.innerWidth < 992 ? -14 : -26,
+          ease: "none",
+          scrollTrigger: {
+            trigger: hero,
+            start: "top top",
+            end: "bottom top",
+            scrub: 0.55,
+            invalidateOnRefresh: true,
+          },
+        });
+      }
 
-        const heroLeadCard = hero.querySelector(".hero-lead-form-card");
-        if (heroLeadCard) {
-          gsap.to(heroLeadCard, {
-            y: 20,
-            ease: "none",
-            scrollTrigger: {
-              trigger: hero,
-              start: "top top",
-              end: "bottom top",
-              scrub: 0.6,
-            },
-          });
-        }
+      const heroLeadCard = hero.querySelector(".hero-lead-form-card");
+      if (heroLeadCard) {
+        gsap.to(heroLeadCard, {
+          y: () => window.innerWidth < 768 ? 0 : window.innerWidth < 992 ? 10 : 20,
+          ease: "none",
+          scrollTrigger: {
+            trigger: hero,
+            start: "top top",
+            end: "bottom top",
+            scrub: 0.6,
+            invalidateOnRefresh: true,
+          },
+        });
       }
     });
 
@@ -428,15 +462,16 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(parallaxSectionSelectors).forEach((sec) => {
     gsap.fromTo(
       sec,
-      { "--sec-parallax-y": `${-secParallaxShift}px` },
+      { "--sec-parallax-y": () => `${-getParallaxShift()}px` },
       {
-        "--sec-parallax-y": `${secParallaxShift}px`,
+        "--sec-parallax-y": () => `${getParallaxShift()}px`,
         ease: "none",
         scrollTrigger: {
           trigger: sec,
           start: "top bottom",
           end: "bottom top",
           scrub: 0.5,
+          invalidateOnRefresh: true,
         },
       }
     );
@@ -445,22 +480,23 @@ document.addEventListener("DOMContentLoaded", () => {
   // C. Window-Portal Inner Image Parallax (Frames, Showcases & Portfolio Cards)
   document
     .querySelectorAll(
-      ".about-visual-bg, .cs-visual-bg, .single-showcase-bg, .project-grid-card-bg, .service-card-bg, .industry-card-bg, .work-gallery-media"
+      ".about-visual-bg, .cs-visual-bg, .single-showcase-bg, .project-grid-card-bg, .project-panel-bg, .service-card-bg, .industry-card-bg, .work-gallery-media"
     )
     .forEach((bgEl) => {
       const parentFrame = bgEl.parentElement;
       if (!parentFrame) return;
       gsap.fromTo(
         bgEl,
-        { yPercent: -5.5 },
+        { yPercent: () => window.innerWidth < 768 ? -3.5 : window.innerWidth < 992 ? -4.5 : -5.5 },
         {
-          yPercent: 5.5,
+          yPercent: () => window.innerWidth < 768 ? 3.5 : window.innerWidth < 992 ? 4.5 : 5.5,
           ease: "none",
           scrollTrigger: {
             trigger: parentFrame,
             start: "top bottom",
             end: "bottom top",
             scrub: 0.55,
+            invalidateOnRefresh: true,
           },
         }
       );
@@ -481,63 +517,64 @@ document.addEventListener("DOMContentLoaded", () => {
             start: "top bottom",
             end: "bottom top",
             scrub: 0.55,
+            invalidateOnRefresh: true,
           },
         }
       );
     });
 
   // D. Differential Column Speed Drift & Watermark Parallax (Parallax-Like Depth)
-  if (isDesktop) {
-    document
-      .querySelectorAll(
-        ".about-visual-frame, .reusable-contact-card, .contact-directory-card, .thankyou-summary-card"
-      )
-      .forEach((card) => {
-        const triggerRow = card.closest(".row") || card;
+  document
+    .querySelectorAll(
+      ".about-visual-frame, .reusable-contact-card, .contact-directory-card, .thankyou-summary-card"
+    )
+    .forEach((card) => {
+      const triggerRow = card.closest(".row") || card;
+      gsap.fromTo(
+        card,
+        { y: () => window.innerWidth < 768 ? 0 : window.innerWidth < 992 ? 12 : 24 },
+        {
+          y: () => window.innerWidth < 768 ? 0 : window.innerWidth < 992 ? -12 : -24,
+          ease: "none",
+          scrollTrigger: {
+            trigger: triggerRow,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 0.75,
+            invalidateOnRefresh: true,
+          },
+        }
+      );
+    });
+
+  // Staggered odd/even column velocity scales by viewport, including tablet.
+  document
+    .querySelectorAll(
+      ".about-principles-row, .studio-process-row, .single-process-row, .thankyou-steps-row"
+    )
+    .forEach((row) => {
+      const cards = row.querySelectorAll(
+        ".about-principle-card, .studio-process-card, .single-process-card, .thankyou-step-card"
+      );
+      cards.forEach((card, idx) => {
+        const sign = idx % 2 === 0 ? -1 : 1;
         gsap.fromTo(
           card,
-          { y: 24 },
+          { y: () => sign * (window.innerWidth < 768 ? 0 : window.innerWidth < 992 ? 10 : 18) },
           {
-            y: -24,
+            y: () => sign * (window.innerWidth < 768 ? 0 : window.innerWidth < 992 ? -10 : -18),
             ease: "none",
             scrollTrigger: {
-              trigger: triggerRow,
+              trigger: row,
               start: "top bottom",
               end: "bottom top",
               scrub: 0.75,
+              invalidateOnRefresh: true,
             },
           }
         );
       });
-
-    // Staggered odd/even column vertical velocity on process & principle grids
-    document
-      .querySelectorAll(
-        ".about-principles-row, .studio-process-row, .single-process-row, .thankyou-steps-row"
-      )
-      .forEach((row) => {
-        const cards = row.querySelectorAll(
-          ".about-principle-card, .studio-process-card, .single-process-card, .thankyou-step-card"
-        );
-        cards.forEach((card, idx) => {
-          const offset = idx % 2 === 0 ? -14 : 18;
-          gsap.fromTo(
-            card,
-            { y: offset },
-            {
-              y: -offset,
-              ease: "none",
-              scrollTrigger: {
-                trigger: row,
-                start: "top bottom",
-                end: "bottom top",
-                scrub: 0.75,
-              },
-            }
-          );
-        });
-      });
-  }
+    });
 
   document.querySelectorAll(".footer-cta-watermark").forEach((wm) => {
     const banner = wm.closest(".footer-cta-banner") || wm;
@@ -606,5 +643,15 @@ document.addEventListener("DOMContentLoaded", () => {
       ScrollTrigger.refresh();
     },
     { once: true }
+  );
+
+  let resizeRefreshTimer;
+  window.addEventListener(
+    "resize",
+    () => {
+      window.clearTimeout(resizeRefreshTimer);
+      resizeRefreshTimer = window.setTimeout(() => ScrollTrigger.refresh(), 140);
+    },
+    { passive: true }
   );
 });
