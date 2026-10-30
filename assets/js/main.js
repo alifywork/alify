@@ -1,4 +1,4 @@
-// Site-wide GSAP entrances and one-time scroll reveals (no loader or parallax).
+// Site-wide restrained GSAP reveals, image parallax, and timeline choreography.
 (() => {
   const prefersReducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)"
@@ -38,6 +38,47 @@
   if (prefersReducedMotion || !gsap || !ScrollTrigger) return;
 
   gsap.registerPlugin(ScrollTrigger);
+
+  const parallaxImages = gsap.utils.toArray(
+    [
+      ".hero-bg-media",
+      ".about-visual-bg",
+      ".service-card-bg",
+      ".industry-card-bg",
+      ".project-panel-bg",
+      ".project-grid-card-bg",
+      ".cs-visual-bg",
+      ".blog-card-img",
+      ".about-leader-img",
+      ".work-gallery-img",
+    ].join(",")
+  );
+
+  parallaxImages.forEach((image) => {
+    const isInlineImage = image.tagName === "IMG";
+    const trigger = image.closest(
+      ".home-hero, .inner-hero, .about-visual-frame, .service-card, .industry-card, .project-panel, .project-grid-card, .cs-visual-frame, .blog-card, .about-leader-card, .work-gallery-card"
+    ) || image.parentElement;
+
+    gsap.fromTo(
+      image,
+      isInlineImage
+        ? { objectPosition: "50% 44%" }
+        : { backgroundPosition: "50% 44%" },
+      {
+        ...(isInlineImage
+          ? { objectPosition: "50% 56%" }
+          : { backgroundPosition: "50% 56%" }),
+        ease: "none",
+        scrollTrigger: {
+          trigger,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 0.55,
+        },
+      }
+    );
+  });
 
   const heroItems = gsap.utils.toArray(
     [
