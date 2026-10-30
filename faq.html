@@ -2,6 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <script>
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        document.documentElement.classList.add("motion-prep");
+        window.setTimeout(() => document.documentElement.classList.remove("motion-prep"), 3000);
+      }
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FAQs &amp; Knowledge Hub — ALIFY Creative Digital Agency</title>
     <meta name="description" content="Answers to every question about ALIFY sprint timelines, fixed milestone pricing, web engineering standards, IP ownership, and ongoing retainers." />

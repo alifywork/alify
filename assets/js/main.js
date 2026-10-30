@@ -2,27 +2,36 @@
 // Global GSAP Choreography: Hero Entrance + Modern Left/Right Section Reveals
 // ==========================================================================
 
-document.addEventListener("DOMContentLoaded", () => {
-  if (typeof gsap === "undefined") return;
+(() => {
+  const motionRoot = document.documentElement;
+  const motionPrepared = motionRoot.classList.contains("motion-prep");
+
+  if (typeof gsap === "undefined") {
+    motionRoot.classList.remove("motion-prep");
+    return;
+  }
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const hasScrollTrigger = typeof ScrollTrigger !== "undefined";
+  if (reducedMotion || !hasScrollTrigger) {
+    motionRoot.classList.remove("motion-prep");
+    return;
+  }
+
   const isInitiallyVisible = (element) => {
     const rect = element.getBoundingClientRect();
     return rect.top < window.innerHeight && rect.bottom > 0;
   };
-  if (hasScrollTrigger) {
-    gsap.registerPlugin(ScrollTrigger);
-  }
+  gsap.registerPlugin(ScrollTrigger);
 
   // --------------------------------------------------------------------------
-  // 1. Home Hero Entrance (only when outside the first viewport)
+  // 1. Home Hero Entrance (prepared before the first visible frame)
   // --------------------------------------------------------------------------
   const homeHero = document.querySelector(".home-hero");
   if (homeHero) {
-    // Keep above-the-fold hero content stable on first paint; entrance motion is
-    // reserved for a hero loaded outside the initial viewport (for hash links).
-    if (!reducedMotion && !isInitiallyVisible(homeHero)) {
+    // When the pre-paint guard is active, install hero start states before reveal.
+    // If it timed out, never replay a hero already visible on a late load.
+    if (motionPrepared || !isInitiallyVisible(homeHero)) {
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
       tl.from(".hero-status-pill", {
@@ -82,8 +91,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // --------------------------------------------------------------------------
   // 2. Modern Left & Right Directional Section Scroll Animations (All Static Pages)
   // --------------------------------------------------------------------------
-  if (reducedMotion || !hasScrollTrigger) return;
-
   const animated = new WeakSet();
   const getViewportScale = () => {
     const width = window.innerWidth;
@@ -97,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const revealX = (target, fromX, opts = {}) => {
     if (!target || animated.has(target)) return;
-    if (isInitiallyVisible(target)) {
+    if (!motionPrepared && isInitiallyVisible(target)) {
       animated.add(target);
       return;
     }
@@ -626,4 +633,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 
-});
+  // All GSAP start states are now applied. Reveal the page in the same frame
+  // the entrance animations begin, instead of painting final content first.
+  window.requestAnimationFrame(() => motionRoot.classList.remove("motion-prep"));
+})();
