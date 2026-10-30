@@ -861,9 +861,15 @@ h6 {
 }
 
 
-/* Static motion-free baseline: preserve layout transforms, disable animation. */
+/* Baseline: suppress framework/global motion; allow only the scoped exceptions below. */
 html {
-  scroll-behavior: auto !important;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 *,
@@ -871,5 +877,99 @@ html {
 *::after {
   animation: none !important;
   transition: none !important;
-  scroll-behavior: auto !important;
+}
+
+/* Curated CSS micro-interactions; larger choreography is handled by GSAP. */
+@media (prefers-reduced-motion: no-preference) {
+  .header-nav-link,
+  .dropdown-item-link,
+  .btn-contact,
+  .btn-start-project,
+  .btn-start-pill,
+  .btn-start-circle,
+  .btn-start-arrow,
+  .btn-hero-secondary,
+  .btn-hero-secondary i,
+  .hero-glass-cta-primary,
+  .hero-glass-cta-secondary,
+  .industry-card,
+  .industry-card-icon,
+  .industry-card-cta-pill,
+  .about-mv-card,
+  .about-principle-card,
+  .about-visual-frame,
+  .about-visual-bg,
+  .about-metric-box,
+  .about-pillar-item,
+  .book-date-tile,
+  .contact-directory-card,
+  .contact-info-tile,
+  .cs-editorial-card,
+  .cs-kpi-tile,
+  .cs-visual-frame,
+  .cs-visual-bg,
+  .faq-item,
+  .faq-hub-cat-card,
+  .faq-hub-direct-card,
+  .faq-support-card,
+  .inner-anchor-card,
+  .pricing-tier-card,
+  .service-card-wrap,
+  .service-card-icon,
+  .service-notch-badge,
+  .service-card-cta-pill,
+  .service-card-cta-circle,
+  .service-card-cta-arrow,
+  .single-bento-card,
+  .single-showcase-banner,
+  .studio-process-card,
+  .thankyou-step-card,
+  .work-gallery-card,
+  .work-gallery-img,
+  .work-hero-frame,
+  .industry-card-cta-circle,
+  .industry-card-cta-arrow,
+  .service-card,
+  .about-leader-card,
+  .about-leader-img,
+  .project-grid-card,
+  .project-grid-card-bg,
+  .blog-card,
+  .blog-card-img,
+  .blog-read-more-pill,
+  .blog-read-more-circle,
+  .blog-read-more-arrow,
+  .testimonial-card,
+  .testimonial-service-tag,
+  .cs-tab-btn,
+  .cs-tab-progress-fill,
+  .single-process-card,
+  .tool-stack-card,
+  .header-nav-link::after,
+  .industry-card::before,
+  .industry-card-bg {
+    transition: color 180ms ease, background-color 180ms ease,
+      border-color 180ms ease, box-shadow 220ms ease, transform 220ms ease,
+      opacity 220ms ease, width 220ms ease !important;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .service-card-wrap {
+    transition: transform 220ms cubic-bezier(0.22, 0.68, 0, 1),
+      filter 280ms ease !important;
+  }
+
+  .service-card-bg {
+    transition: transform 500ms cubic-bezier(0.22, 0.68, 0, 1) !important;
+  }
+
+  .service-notch-badge,
+  .service-card-icon,
+  .service-card-cta-pill,
+  .service-card-cta-circle,
+  .service-card-cta-arrow {
+    transition: color 180ms ease, background-color 180ms ease,
+      border-color 180ms ease, transform 220ms cubic-bezier(0.22, 0.68, 0, 1) !important;
+  }
 }
