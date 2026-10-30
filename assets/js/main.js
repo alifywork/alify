@@ -58,37 +58,85 @@
     // Keep hero copy visible while it moves; opacity fades here caused a
     // flash of hidden content before the bottom-of-page script initialized.
     gsap.from(heroItems, {
-      y: 14,
-      duration: 0.5,
-      delay: 0,
-      stagger: 0.06,
+      opacity: 0.9,
+      y: 12,
+      duration: 0.48,
+      stagger: 0.055,
       ease: "power2.out",
-      clearProps: "transform",
+      clearProps: "opacity,transform",
     });
   }
 
   const sections = gsap.utils.toArray(
     "main > section:not(.home-hero):not(.inner-hero):not(.reusable-contact-section)"
   );
-  sections.forEach((section) => {
-    const sectionColumns = Array.from(
-      section.querySelectorAll(".row > [class*='col-']")
-    ).filter((column) => column.closest("section") === section);
-    const revealTargets = sectionColumns.length ? sectionColumns : [section];
+  sections.forEach((section, sectionIndex) => {
+    const rows = Array.from(section.querySelectorAll(".row")).filter((row) => {
+      if (row.closest("section") !== section) return false;
+      let parent = row.parentElement;
+      while (parent && parent !== section) {
+        if (parent.classList.contains("row")) return false;
+        parent = parent.parentElement;
+      }
+      return true;
+    });
 
-    gsap.from(revealTargets, {
-      autoAlpha: 0,
-      y: sectionColumns.length ? 20 : 24,
-      scale: 0.99,
-      duration: 0.6,
-      stagger: sectionColumns.length > 1 ? 0.07 : 0,
-      ease: "power2.out",
-      clearProps: "opacity,visibility,transform",
-      scrollTrigger: {
-        trigger: section,
+    const rowGroups = rows
+      .map((row) => ({
+        row,
+        columns: Array.from(row.children).filter((child) =>
+          Array.from(child.classList).some((className) => className.startsWith("col-"))
+        ),
+      }))
+      .filter(({ columns }) => columns.length);
+
+    if (!rowGroups.length) {
+      const fromAbove = sectionIndex % 3 === 1;
+      gsap.from(section, {
+        autoAlpha: 0,
+        y: fromAbove ? -20 : 20,
+        duration: 0.56,
+        ease: "power2.out",
+        clearProps: "opacity,visibility,transform",
+        scrollTrigger: {
+          trigger: section,
+          start: "top 88%",
+          once: true,
+        },
+      });
+      return;
+    }
+
+    rowGroups.forEach(({ row, columns }, groupIndex) => {
+      const scrollTrigger = {
+        trigger: row,
         start: "top 88%",
         once: true,
-      },
+      };
+      const clearProps = "opacity,visibility,transform";
+
+      if (columns.length === 2) {
+        gsap.from(columns, {
+          autoAlpha: 0,
+          x: (index) => (index === 0 ? -22 : 22),
+          duration: 0.56,
+          stagger: 0.04,
+          ease: "power2.out",
+          clearProps,
+          scrollTrigger,
+        });
+      } else {
+        const fromAbove = columns.length === 1 && (sectionIndex + groupIndex) % 3 === 1;
+        gsap.from(columns, {
+          autoAlpha: 0,
+          y: fromAbove ? -18 : 18,
+          duration: 0.54,
+          stagger: columns.length > 1 ? 0.065 : 0,
+          ease: "power2.out",
+          clearProps,
+          scrollTrigger,
+        });
+      }
     });
   });
 
