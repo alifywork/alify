@@ -4,7 +4,7 @@ if (!defined('ABSPATH') || !defined('WP_CLI') || !WP_CLI) { return; }
 class Alify_Static_Import_Command extends WP_CLI_Command {
     private $source;
     private $content_map=array();
-    private $archive_map=array('home'=>'home','services'=>'services','industries'=>'industries','case-studies'=>'case-studies','work'=>'work','blog'=>'blog','testimonials'=>'testimonials','faq'=>'faq','pricing'=>'pricing');
+    private $archive_map=array('home'=>'home','404'=>'not-found','services'=>'services','industries'=>'industries','case-studies'=>'case-studies','work'=>'work','blog'=>'blog','testimonials'=>'testimonials','faq'=>'faq','pricing'=>'pricing');
 
     /** Import the repository's existing standalone HTML content into ACF rows.
      *
@@ -197,7 +197,7 @@ class Alify_Static_Import_Command extends WP_CLI_Command {
         return $html;
     }
     private function migrate_sections() {
-        $all=array('index'=>'home','about'=>'about','services'=>'services','industries'=>'industries','case-studies'=>'case-studies','work'=>'work','blog'=>'blog','testimonials'=>'testimonials','faq'=>'faq','pricing'=>'pricing','contact'=>'contact','book-call'=>'book-call','start-project'=>'start-project','privacy-policy'=>'privacy-policy','terms-of-service'=>'terms-of-service','thank-you'=>'thank-you','service-single'=>'service-single','industry-single'=>'industry-single','case-study-single'=>'case-study-single','work-single'=>'work-single','blog-single'=>'blog-single');
+        $all=array('404'=>'404','index'=>'home','about'=>'about','services'=>'services','industries'=>'industries','case-studies'=>'case-studies','work'=>'work','blog'=>'blog','testimonials'=>'testimonials','faq'=>'faq','pricing'=>'pricing','contact'=>'contact','book-call'=>'book-call','start-project'=>'start-project','privacy-policy'=>'privacy-policy','terms-of-service'=>'terms-of-service','thank-you'=>'thank-you','service-single'=>'service-single','industry-single'=>'industry-single','case-study-single'=>'case-study-single','work-single'=>'work-single','blog-single'=>'blog-single');
         foreach ($all as $file=>$slug) {
             $path=$this->source . '/' . $file . '.html'; if (!file_exists($path)) { continue; }
             $dom=$this->read_document($path); if (!$dom) { continue; }
@@ -216,6 +216,7 @@ class Alify_Static_Import_Command extends WP_CLI_Command {
                 $option_key=str_replace('-','_',$this->archive_map[$slug]);
                 update_field($option_key . '_sections',$rows,'option');
                 update_field($option_key . '_archive_title',$this->page_title($path),'option');
+                if ($file==='404') { $this->migrate_seo($path,0,'not-found'); }
                 $page=get_page_by_path($slug,OBJECT,'page'); if ($page) { $this->content_map[$file . '.html']=get_permalink($page); }
             } else {
                 $target=$this->target_for_file($file);

@@ -25,7 +25,7 @@ function alify_acf_fields() {
     if (function_exists('acf_add_options_page')) {
         acf_add_options_page(array('page_title' => __('ALIFY Theme Options', 'alify'), 'menu_title' => __('ALIFY Options', 'alify'), 'menu_slug' => 'alify-options', 'capability' => 'manage_options', 'redirect' => true, 'icon_url' => 'dashicons-admin-customizer', 'position' => 3));
         $options = array(
-            'theme' => 'Global Theme Settings', 'forms' => 'Forms & Email Settings', 'seo' => 'Global SEO Settings',
+            'theme' => 'Global Theme Settings', 'forms' => 'Forms & Email Settings', 'seo' => 'Global SEO Settings', 'not-found' => '404 Page',
             'home' => 'Home Page', 'about' => 'About Page', 'services' => 'Services Archive', 'industries' => 'Industries Archive',
             'case-studies' => 'Case Studies Archive', 'work' => 'Work Archive', 'blog' => 'Blog Archive',
             'testimonials' => 'Testimonials Archive', 'faq' => 'FAQ Archive', 'pricing' => 'Pricing Page',
@@ -228,7 +228,7 @@ function alify_acf_fields() {
     );
     acf_add_local_field_group(array('key'=>'group_alify_global_seo','title'=>__('Global SEO & Organization Schema','alify'),'fields'=>$global_seo,'location'=>array(array(array('param'=>'options_page','operator'=>'==','value'=>'alify-seo'))),'active'=>true));
 
-    foreach (array('home'=>'Home Page Sections','about'=>'About Page Sections','services'=>'Services Archive Sections','industries'=>'Industries Archive Sections','case-studies'=>'Case Studies Archive Sections','work'=>'Work Archive Sections','blog'=>'Blog Archive Sections','testimonials'=>'Testimonials Archive Sections','faq'=>'FAQ Archive Sections','pricing'=>'Pricing Page Sections','service-category'=>'Service Category Archive Sections','industry-category'=>'Industry Category Archive Sections') as $slug => $title) {
+    foreach (array('home'=>'Home Page Sections','about'=>'About Page Sections','services'=>'Services Archive Sections','industries'=>'Industries Archive Sections','case-studies'=>'Case Studies Archive Sections','work'=>'Work Archive Sections','blog'=>'Blog Archive Sections','testimonials'=>'Testimonials Archive Sections','faq'=>'FAQ Archive Sections','pricing'=>'Pricing Page Sections','service-category'=>'Service Category Archive Sections','industry-category'=>'Industry Category Archive Sections','not-found'=>'404 Page Sections') as $slug => $title) {
         acf_add_local_field_group(array(
             'key'=>'group_alify_archive_' . str_replace('-', '_', $slug),'title'=>__($title, 'alify'),
             'fields'=>array(

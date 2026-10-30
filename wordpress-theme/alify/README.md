@@ -21,7 +21,13 @@ Gutenberg is disabled on this site by design. Page body content is edited throug
 
 ## Import the existing static site once
 
-Run from a WordPress installation with this theme active and ACF Pro enabled. Point `--source` at the existing ALIFY static-site directory (the directory containing `index.html` and `assets/`):
+Run the dependency-free static coverage audit first; it reports how many individual text, link, image, and accessibility fields will be generated from each source page:
+
+```sh
+python wordpress-theme/alify/tools/audit-content-fields.py
+```
+
+Then run the importer from a WordPress installation with this theme active and ACF Pro enabled. Point `--source` at the existing ALIFY static-site directory (the directory containing `index.html` and `assets/`):
 
 ```sh
 wp alify import-static --source=/absolute/path/to/alify
