@@ -67,9 +67,11 @@
     });
   }
 
-  const sections = gsap.utils.toArray(
-    "main > section:not(.home-hero):not(.inner-hero):not(.reusable-contact-section)"
-  );
+  const sections = gsap
+    .utils.toArray(
+      "main section:not(.home-hero):not(.inner-hero):not(.reusable-contact-section)"
+    )
+    .filter((section) => !section.parentElement.closest("section"));
   sections.forEach((section, sectionIndex) => {
     const rows = Array.from(section.querySelectorAll(".row")).filter((row) => {
       if (row.closest("section") !== section) return false;
