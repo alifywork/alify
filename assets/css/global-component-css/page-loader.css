@@ -1,0 +1,111 @@
+/* ALIFY full-page loading and same-site navigation transition */
+html.js-enabled .alify-page-loader {
+  display: grid;
+}
+
+.alify-page-loader {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 20000;
+  place-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(15, 52, 115, 0.34), transparent 38%),
+    radial-gradient(circle at 50% 100%, rgba(15, 138, 115, 0.1), transparent 44%),
+    #080b10;
+  color: #f6f4f1;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 360ms ease, visibility 0s linear 360ms;
+}
+
+.alify-page-loader.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition-delay: 0s;
+}
+
+.alify-loader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.alify-loader-spinner {
+  width: 46px;
+  height: 46px;
+  border: 2px solid rgba(246, 244, 241, 0.16);
+  border-top-color: #e05a3a;
+  border-right-color: #0f8a73;
+  border-radius: 50%;
+  animation: alifyLoaderSpin 850ms linear infinite;
+}
+
+.alify-loader-wordmark {
+  margin-top: 22px;
+  color: #f6f4f1;
+  font-family: var(--font-montserrat, Montserrat, sans-serif);
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+}
+
+.alify-loader-wordmark > span {
+  color: #e05a3a;
+}
+
+.alify-loader-caption {
+  margin: 9px 0 0;
+  color: rgba(246, 244, 241, 0.64);
+  font-family: var(--font-poppins, Poppins, sans-serif);
+  font-size: 12px;
+  letter-spacing: 0.035em;
+}
+
+.alify-loader-progress {
+  position: relative;
+  width: min(168px, 52vw);
+  height: 2px;
+  margin-top: 24px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(246, 244, 241, 0.14);
+}
+
+.alify-loader-progress > span {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 42%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #0f8a73, #e05a3a);
+  animation: alifyLoaderProgress 1.25s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes alifyLoaderSpin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes alifyLoaderProgress {
+  0% { transform: translateX(-110%); }
+  55% { transform: translateX(125%); }
+  100% { transform: translateX(360%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .alify-page-loader {
+    transition: none;
+  }
+
+  .alify-loader-spinner,
+  .alify-loader-progress > span {
+    animation: none;
+  }
+
+  .alify-loader-progress > span {
+    transform: translateX(70%);
+  }
+}

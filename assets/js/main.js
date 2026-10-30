@@ -3,20 +3,13 @@
 // ==========================================================================
 
 (() => {
-  const motionRoot = document.documentElement;
-  const motionPrepared = motionRoot.classList.contains("motion-prep");
+  const pageLoaderPresent = Boolean(document.getElementById("alifyPageLoader"));
 
-  if (typeof gsap === "undefined") {
-    motionRoot.classList.remove("motion-prep");
-    return;
-  }
+  if (typeof gsap === "undefined") return;
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const hasScrollTrigger = typeof ScrollTrigger !== "undefined";
-  if (reducedMotion || !hasScrollTrigger) {
-    motionRoot.classList.remove("motion-prep");
-    return;
-  }
+  if (reducedMotion || !hasScrollTrigger) return;
 
   const isInitiallyVisible = (element) => {
     const rect = element.getBoundingClientRect();
@@ -29,9 +22,8 @@
   // --------------------------------------------------------------------------
   const homeHero = document.querySelector(".home-hero");
   if (homeHero) {
-    // When the pre-paint guard is active, install hero start states before reveal.
-    // If it timed out, never replay a hero already visible on a late load.
-    if (motionPrepared || !isInitiallyVisible(homeHero)) {
+    // Start hero choreography while the page loader still covers the page.
+    if (pageLoaderPresent || !isInitiallyVisible(homeHero)) {
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
       tl.from(".hero-status-pill", {
@@ -104,7 +96,7 @@
 
   const revealX = (target, fromX, opts = {}) => {
     if (!target || animated.has(target)) return;
-    if (!motionPrepared && isInitiallyVisible(target)) {
+    if (!pageLoaderPresent && isInitiallyVisible(target)) {
       animated.add(target);
       return;
     }
@@ -633,7 +625,4 @@
       });
   }
 
-  // All GSAP start states are now applied. Reveal the page in the same frame
-  // the entrance animations begin, instead of painting final content first.
-  window.requestAnimationFrame(() => motionRoot.classList.remove("motion-prep"));
 })();

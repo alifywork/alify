@@ -2,12 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <script>
-      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        document.documentElement.classList.add("motion-prep");
-        window.setTimeout(() => document.documentElement.classList.remove("motion-prep"), 3000);
-      }
-    </script>
+    <script>document.documentElement.classList.add("js-enabled");</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Case Studies — ALIFY</title>
     <meta name="description" content="Read audited before-and-after executive case studies detailing how ALIFY lifts demo pipelines, mobile speeds, and checkout conversion rates." />
@@ -42,9 +37,18 @@
     <link rel="stylesheet" href="assets/css/reusable-component-css/case-studies.css" />
 
     <!-- Main Custom CSS (Includes Garet, Montserrat & Poppins @font-face) -->
+    <link rel="stylesheet" href="assets/css/global-component-css/page-loader.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body>
+    <div id="alifyPageLoader" class="alify-page-loader is-active" role="status" aria-live="polite" aria-label="Loading page" aria-hidden="false">
+      <div class="alify-loader-content">
+        <span class="alify-loader-spinner" aria-hidden="true"></span>
+        <span class="alify-loader-wordmark" aria-hidden="true">ALIFY<span>.</span></span>
+        <p class="alify-loader-caption">Loading your experience</p>
+        <span class="alify-loader-progress" aria-hidden="true"><span></span></span>
+      </div>
+    </div>
     <!-- Global Site Header -->
     <header class="site-header">
       <div class="container">
@@ -1570,5 +1574,6 @@
 
     <!-- Main Custom JS -->
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/global-component-js/page-loader.js"></script>
   </body>
 </html>

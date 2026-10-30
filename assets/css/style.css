@@ -976,8 +976,3 @@ html { scroll-behavior: smooth; }
       border-color 180ms ease, transform 220ms cubic-bezier(0.22, 0.68, 0, 1) !important;
   }
 }
-
-/* Hold section content until GSAP has installed its first-frame states. */
-html.motion-prep main section {
-  visibility: hidden !important;
-}
