@@ -1,205 +1,610 @@
-// Site-wide restrained GSAP reveals, image parallax, and timeline choreography.
-(() => {
-  const prefersReducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
-  const { gsap, ScrollTrigger } = window;
-  const timelineTracks = Array.from(
-    document.querySelectorAll(".studio-process-track, .single-process-track")
-  );
+// ==========================================================================
+// Global GSAP Choreography: Hero Entrance + Modern Left/Right Section Reveals
+// ==========================================================================
 
-  const alignTimelineTracks = () => {
-    timelineTracks.forEach((track) => {
-      const row = track.parentElement;
-      const columns = Array.from(row.children).filter((child) =>
-        Array.from(child.classList).some((className) => className.startsWith("col-"))
-      );
-      if (columns.length < 2) return;
+document.addEventListener("DOMContentLoaded", () => {
+  if (typeof gsap === "undefined") return;
 
-      const rowRect = row.getBoundingClientRect();
-      const firstRect = columns[0].getBoundingClientRect();
-      const lastRect = columns[columns.length - 1].getBoundingClientRect();
-      const firstCenter = firstRect.left + firstRect.width / 2;
-      const lastCenter = lastRect.left + lastRect.width / 2;
-      const left = firstCenter - rowRect.left;
-      const width = Math.max(0, lastCenter - firstCenter);
-      track.style.left = `${left}px`;
-      track.style.right = "auto";
-      track.style.width = `${width}px`;
-    });
-  };
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const hasScrollTrigger = typeof ScrollTrigger !== "undefined";
+  if (hasScrollTrigger) {
+    gsap.registerPlugin(ScrollTrigger);
+  }
 
-  alignTimelineTracks();
-  window.addEventListener("resize", () => requestAnimationFrame(alignTimelineTracks), {
-    passive: true,
-  });
-  window.addEventListener("load", alignTimelineTracks, { once: true });
+  // --------------------------------------------------------------------------
+  // 1. Centered Home Hero Entrance & KPI Counters
+  // --------------------------------------------------------------------------
+  const homeHero = document.querySelector(".home-hero");
+  if (homeHero) {
+    if (!reducedMotion) {
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-  if (prefersReducedMotion || !gsap || !ScrollTrigger) return;
+      tl.from(".hero-status-pill", {
+        y: -18,
+        opacity: 0,
+        duration: 0.48,
+        clearProps: "transform,opacity",
+      })
+        .from(
+          ".hero-display-title",
+          {
+            x: -42,
+            opacity: 0,
+            duration: 0.72,
+            clearProps: "transform,opacity",
+          },
+          "-=0.24"
+        )
+        .from(
+          ".hero-lead",
+          {
+            x: 42,
+            opacity: 0,
+            duration: 0.68,
+            clearProps: "transform,opacity",
+          },
+          "-=0.52"
+        )
+        .from(
+          ".hero-cta-group > *",
+          {
+            y: 18,
+            opacity: 0,
+            duration: 0.5,
+            stagger: 0.09,
+            clearProps: "transform,opacity",
+          },
+          "-=0.36"
+        )
+        .from(
+          ".hero-stat-item",
+          {
+            y: 18,
+            opacity: 0,
+            duration: 0.48,
+            stagger: 0.08,
+            clearProps: "transform,opacity",
+          },
+          "-=0.3"
+        );
+    }
 
-  gsap.registerPlugin(ScrollTrigger);
+    // Smooth Number Counter Animation for Hero KPIs
+    document.querySelectorAll(".hero-stat-number[data-count]").forEach((el) => {
+      const target = Number(el.getAttribute("data-count") || 0);
+      const suffix = el.getAttribute("data-suffix") || "";
+      if (!target) return;
 
-  const parallaxImages = gsap.utils.toArray(
-    [
-      ".hero-bg-media",
-      ".about-visual-bg",
-      ".service-card-bg",
-      ".industry-card-bg",
-      ".project-panel-bg",
-      ".project-grid-card-bg",
-      ".cs-visual-bg",
-      ".blog-card-img",
-      ".about-leader-img",
-      ".work-gallery-img",
-    ].join(",")
-  );
-
-  parallaxImages.forEach((image) => {
-    const isInlineImage = image.tagName === "IMG";
-    const trigger = image.closest(
-      ".home-hero, .inner-hero, .about-visual-frame, .service-card, .industry-card, .project-panel, .project-grid-card, .cs-visual-frame, .blog-card, .about-leader-card, .work-gallery-card"
-    ) || image.parentElement;
-
-    gsap.fromTo(
-      image,
-      isInlineImage
-        ? { objectPosition: "50% 44%" }
-        : { backgroundPosition: "50% 44%" },
-      {
-        ...(isInlineImage
-          ? { objectPosition: "50% 56%" }
-          : { backgroundPosition: "50% 56%" }),
-        ease: "none",
-        scrollTrigger: {
-          trigger,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 0.55,
+      const counter = { val: 0 };
+      gsap.to(counter, {
+        val: target,
+        duration: 1.5,
+        ease: "power2.out",
+        onUpdate: () => {
+          el.textContent = `${Math.round(counter.val)}${suffix}`;
         },
-      }
-    );
-  });
-
-  const heroItems = gsap.utils.toArray(
-    [
-      ".home-hero .hero-status-pill",
-      ".home-hero .hero-display-title",
-      ".home-hero .hero-lead",
-      ".home-hero .hero-cta-group",
-      ".home-hero .hero-stats-bar",
-      ".inner-hero .inner-hero-eyebrow",
-      ".inner-hero .inner-hero-title",
-      ".inner-hero .inner-hero-desc",
-      ".inner-hero .inner-hero-tags",
-      ".inner-hero .inner-hero-card",
-    ].join(",")
-  );
-
-  if (heroItems.length) {
-    // Keep hero copy visible while it moves; opacity fades here caused a
-    // flash of hidden content before the bottom-of-page script initialized.
-    gsap.from(heroItems, {
-      opacity: 0.9,
-      y: 12,
-      duration: 0.48,
-      stagger: 0.055,
-      ease: "power2.out",
-      clearProps: "opacity,transform",
+      });
     });
   }
 
-  const sections = gsap
-    .utils.toArray(
-      "main section:not(.home-hero):not(.inner-hero):not(.reusable-contact-section)"
-    )
-    .filter((section) => !section.parentElement.closest("section"));
-  sections.forEach((section, sectionIndex) => {
-    const rows = Array.from(section.querySelectorAll(".row")).filter((row) => {
-      if (row.closest("section") !== section) return false;
-      let parent = row.parentElement;
-      while (parent && parent !== section) {
-        if (parent.classList.contains("row")) return false;
-        parent = parent.parentElement;
-      }
-      return true;
-    });
+  // --------------------------------------------------------------------------
+  // 2. Modern Left & Right Directional Section Scroll Animations (All 19 Pages)
+  // --------------------------------------------------------------------------
+  if (reducedMotion || !hasScrollTrigger) return;
 
-    const rowGroups = rows
-      .map((row) => ({
-        row,
-        columns: Array.from(row.children).filter((child) =>
-          Array.from(child.classList).some((className) => className.startsWith("col-"))
-        ),
-      }))
-      .filter(({ columns }) => columns.length);
+  const animated = new WeakSet();
+  const isMobile = window.innerWidth < 768;
+  const distStrong = isMobile ? 24 : 64;
+  const distMed = isMobile ? 20 : 52;
+  const distSoft = isMobile ? 16 : 42;
 
-    if (!rowGroups.length) {
-      const fromAbove = sectionIndex % 3 === 1;
-      gsap.from(section, {
-        autoAlpha: 0,
-        y: fromAbove ? -20 : 20,
-        duration: 0.56,
-        ease: "power2.out",
-        clearProps: "opacity,visibility,transform",
-        scrollTrigger: {
-          trigger: section,
-          start: "top 88%",
-          once: true,
-        },
-      });
-      return;
-    }
+  const revealX = (target, fromX, opts = {}) => {
+    if (!target || animated.has(target)) return;
+    animated.add(target);
 
-    rowGroups.forEach(({ row, columns }, groupIndex) => {
-      const scrollTrigger = {
-        trigger: row,
-        start: "top 88%",
+    gsap.from(target, {
+      x: fromX,
+      opacity: 0,
+      duration: opts.duration || 0.88,
+      delay: opts.delay || 0,
+      ease: opts.ease || "power3.out",
+      clearProps: "transform,opacity",
+      scrollTrigger: {
+        trigger: opts.trigger || target,
+        start: opts.start || "top 86%",
         once: true,
-      };
-      const clearProps = "opacity,visibility,transform";
+      },
+    });
+  };
 
-      if (columns.length === 2) {
-        gsap.from(columns, {
-          autoAlpha: 0,
-          x: (index) => (index === 0 ? -22 : 22),
-          duration: 0.56,
-          stagger: 0.04,
-          ease: "power2.out",
-          clearProps,
-          scrollTrigger,
-        });
-      } else {
-        const fromAbove = columns.length === 1 && (sectionIndex + groupIndex) % 3 === 1;
-        gsap.from(columns, {
-          autoAlpha: 0,
-          y: fromAbove ? -18 : 18,
-          duration: 0.54,
-          stagger: columns.length > 1 ? 0.065 : 0,
-          ease: "power2.out",
-          clearProps,
-          scrollTrigger,
-        });
-      }
+  // A. Two-Column Section Header Rows (Left Heading <- | -> Right Desc/Controls)
+  const headRowSelectors = [
+    ".services-head-row",
+    ".industries-head-row",
+    ".projects-head-row",
+    ".pricing-head-row",
+    ".studio-sec-head-row",
+    ".cs-head-row",
+    ".testimonials-head-row",
+    ".blog-section-head-row",
+    ".blog-related-head-row",
+    ".single-related-head-row",
+  ].join(", ");
+
+  document.querySelectorAll(headRowSelectors).forEach((row) => {
+    const cols = Array.from(row.children).filter((el) => el.matches('[class*="col-"]'));
+    if (cols[0]) revealX(cols[0], -distMed, { trigger: row });
+    if (cols[1]) revealX(cols[1], distMed, { trigger: row, delay: 0.08 });
+  });
+
+  // B. Centered Single-Column Section Headers (Eyebrow + H2 from Left, Desc from Right)
+  document.querySelectorAll(".studio-sec-head, .single-sec-head, .pricing-calc-head, .pricing-matrix-head").forEach((head) => {
+    const kids = Array.from(head.children);
+    kids.forEach((child, idx) => {
+      const dir = child.matches("p") ? distSoft : -distSoft;
+      revealX(child, dir, { trigger: head, delay: idx * 0.06 });
     });
   });
 
-  timelineTracks.forEach((track) => {
+  // C. Two-Column Split Content Sections (Left Col from Left, Right Col from Right)
+  const splitRowSelectors = [
+    ".about-story-row",
+    ".about-mv-row",
+    ".reusable-contact-row",
+    ".contact-page-row",
+    ".work-story-row",
+    ".thankyou-row",
+    ".footer-cta-row",
+  ].join(", ");
+
+  document.querySelectorAll(splitRowSelectors).forEach((row) => {
+    const cols = Array.from(row.children).filter((el) => el.matches('[class*="col-"]'));
+    if (cols[0]) revealX(cols[0], -distStrong, { trigger: row, duration: 0.94 });
+    if (cols[1]) revealX(cols[1], distStrong, { trigger: row, duration: 0.94, delay: 0.1 });
+  });
+
+  // D. Sticky-Safe Split Sections (Animate inner cards so position: sticky stays 100% intact)
+  // 1) FAQ Section: Left intro children from Left, Right accordion items from Right
+  document.querySelectorAll(".faq-section").forEach((sec) => {
+    const introKids = sec.querySelectorAll(".faq-intro-sticky > *");
+    introKids.forEach((el, idx) => {
+      revealX(el, -distMed, { trigger: sec, delay: idx * 0.07 });
+    });
+    const faqItems = sec.querySelectorAll(".faq-item");
+    faqItems.forEach((item, idx) => {
+      revealX(item, distMed, { trigger: item, start: "top 90%", delay: Math.min(idx * 0.05, 0.25) });
+    });
+  });
+
+  // 2) Start a Project Scope Builder + Sticky Roadmap & Pricing Investment Calculator
+  document.querySelectorAll(".start-project-row").forEach((row) => {
+    const leftBuilder = row.querySelector(".scope-builder-card");
+    const rightRoadmap = row.querySelector(".project-roadmap-card");
+    if (leftBuilder) revealX(leftBuilder, -distStrong, { trigger: row });
+    if (rightRoadmap) revealX(rightRoadmap, distStrong, { trigger: row, delay: 0.1 });
+  });
+
+  document.querySelectorAll(".pricing-calc-row").forEach((row) => {
+    const leftCalc = row.querySelector(".pricing-calc-builder");
+    const rightSummary = row.querySelector(".pricing-calc-summary");
+    if (leftCalc) revealX(leftCalc, -distStrong, { trigger: row });
+    if (rightSummary) revealX(rightSummary, distStrong, { trigger: row, delay: 0.1 });
+  });
+
+  // 3) Blog Single Sticky 3-Column Layout
+  document.querySelectorAll(".blog-single-row").forEach((row) => {
+    const tocCard = row.querySelector(".blog-toc-card");
+    if (tocCard) revealX(tocCard, -distSoft, { trigger: row });
+    row.querySelectorAll(".blog-sidebar-widget, .blog-sidebar-cta").forEach((w, idx) => {
+      revealX(w, distSoft, { trigger: w, start: "top 90%", delay: idx * 0.06 });
+    });
+  });
+
+  // 4) Legal Document Sticky Layout (Privacy Policy & Terms)
+  document.querySelectorAll(".legal-doc-row").forEach((row) => {
+    const toc = row.querySelector(".legal-toc-card, .legal-toc-sticky > *");
+    if (toc) revealX(toc, -distSoft, { trigger: row });
+    row.querySelectorAll(".legal-clause-card").forEach((card, idx) => {
+      revealX(card, idx % 2 === 0 ? distMed : -distSoft, { trigger: card, start: "top 88%" });
+    });
+  });
+
+  // 5) Case Study Single Sticky Profile + Narrative Chapters
+  document.querySelectorAll(".cs-single-main-row").forEach((row) => {
+    const profile = row.querySelector(".cs-profile-card");
+    if (profile) revealX(profile, -distMed, { trigger: row });
+    row.querySelectorAll(".cs-chapter-card").forEach((ch, idx) => {
+      revealX(ch, idx % 2 === 0 ? distMed : -distSoft, { trigger: ch, start: "top 88%" });
+    });
+  });
+
+  // E. Executive Case Studies Alternating Left/Right Stage Cards
+  document.querySelectorAll(".cs-editorial-card, .cs-stage-panel.is-active").forEach((card) => {
+    const isReversed = card.classList.contains("is-reversed");
+    const visual = card.querySelector(".cs-visual-frame");
+    const narrative = card.querySelector(".cs-narrative-col");
+    if (visual) revealX(visual, isReversed ? distStrong : -distStrong, { trigger: card, duration: 0.95 });
+    if (narrative) revealX(narrative, isReversed ? -distStrong : distStrong, { trigger: card, duration: 0.95, delay: 0.1 });
+  });
+
+  // F. Opposing Left / Right Sliders, Marquee Rows & Filter/Score Bars
+  // 1) 2-Row Testimonials Slider: Row 1 glides from Left, Row 2 glides from Right
+  document.querySelectorAll(".testimonials-slider-section").forEach((sec) => {
+    const rows = sec.querySelectorAll(".testimonials-row-viewport");
+    if (rows[0]) revealX(rows[0], -distStrong, { trigger: rows[0], duration: 0.95 });
+    if (rows[1]) revealX(rows[1], distStrong, { trigger: rows[1], duration: 0.95, delay: 0.1 });
+  });
+
+  // 2) Services, Industries & Blog Slider Viewports + Controls
+  document.querySelectorAll(".services-slider-viewport").forEach((vp) => revealX(vp, distStrong, { duration: 0.95 }));
+  document.querySelectorAll(".industries-slider-viewport").forEach((vp) => revealX(vp, -distStrong, { duration: 0.95 }));
+  document.querySelectorAll(".blog-slider-viewport").forEach((vp) => revealX(vp, distStrong, { duration: 0.95 }));
+
+  // 3) Home Hover-Expanding Projects Accordion Stage (Left half from Left, Right half from Right)
+  const accordionStage = document.getElementById("projectsAccordionStage");
+  if (accordionStage) {
+    const panels = Array.from(accordionStage.querySelectorAll(".project-panel"));
+    const mid = panels.length / 2;
+    panels.forEach((panel, idx) => {
+      const fromX = idx < mid ? -distMed : distMed;
+      const staggerDelay = Math.abs(idx - (mid - 0.5)) * 0.06;
+      revealX(panel, fromX, { trigger: accordionStage, delay: staggerDelay, duration: 0.85 });
+    });
+  }
+
+  // 4) Filter Bars, Showcase Banners & Scoreboards
+  const bannerBarSelectors = [
+    ".services-filter-bar",
+    ".projects-filter-bar",
+    ".pricing-guarantees-strip",
+    ".pricing-matrix-wrap",
+    ".cs-impact-banner",
+    ".cs-filter-bar",
+    ".cs-selector-bar",
+    ".testimonials-metrics-bar",
+    ".testimonials-filter-bar",
+    ".blog-filter-bar",
+    ".single-showcase-banner",
+    ".work-meta-bar",
+    ".work-hero-frame",
+    ".cs-single-scoreboard",
+  ].join(", ");
+
+  document.querySelectorAll(bannerBarSelectors).forEach((bar, idx) => {
+    revealX(bar, idx % 2 === 0 ? -distMed : distMed, { duration: 0.85 });
+  });
+
+  // G. Multi-Column Card Grids (Position-Aware Left & Right Entrance)
+  const gridRowSelectors = [
+    ".projects-grid-row",
+    ".services-grid-row",
+    ".industries-grid-row",
+    ".pricing-tiers-row",
+    ".pricing-guarantees-row",
+    ".testimonials-grid-row",
+    ".blog-grid-row",
+    "#blogRelatedGrid",
+    ".single-bento-row",
+    ".industry-challenge-row",
+    ".about-principles-row",
+    ".about-team-row",
+    ".about-metrics-row",
+    ".studio-process-row",
+    ".single-process-row",
+    ".thankyou-steps-row",
+    ".cs-tabs-row",
+    "#relatedProjectsGrid",
+    ".work-gallery-row",
+    ".book-outcomes-row",
+  ].join(", ");
+
+  document.querySelectorAll(gridRowSelectors).forEach((gridRow) => {
+    const cols = Array.from(gridRow.children).filter((el) => el.matches('[class*="col-"]'));
+    if (!cols.length) return;
+    const rowRect = gridRow.getBoundingClientRect();
+    const rowCenter = rowRect.left + rowRect.width / 2;
+
+    cols.forEach((col, idx) => {
+      const rect = col.getBoundingClientRect();
+      const colCenter = rect.left + rect.width / 2;
+      const delta = colCenter - rowCenter;
+
+      let fromX;
+      if (Math.abs(delta) > 28) {
+        // Left-side columns enter from Left; Right-side columns enter from Right
+        fromX = delta < 0 ? -distMed : distMed;
+      } else {
+        // Center column (in 3-col grids) or stacked 1-col mobile alternates Left / Right
+        fromX = idx % 2 === 0 ? -distSoft : distSoft;
+      }
+
+      revealX(col, fromX, {
+        trigger: col,
+        start: "top 89%",
+        delay: (idx % 3) * 0.06,
+        duration: 0.86,
+      });
+    });
+  });
+
+  // --------------------------------------------------------------------------
+  // 3. Parallax & Multi-Depth Scroll Choreography (Home + All 19 Inner Pages)
+  // --------------------------------------------------------------------------
+  const secParallaxShift = isMobile ? 28 : 54;
+  const isDesktop = window.innerWidth >= 992;
+
+  // A. Multi-Plane Hero Parallax (Background Media + Watermark + Foreground Depth)
+  document
+    .querySelectorAll(".home-hero, .inner-hero, .blog-single-hero, .thankyou-hero, .error-stage-section")
+    .forEach((hero) => {
+      const bg = hero.querySelector(".hero-bg-media");
+      if (bg) {
+        gsap.fromTo(
+          bg,
+          { yPercent: -5, scale: 1.04 },
+          {
+            yPercent: isMobile ? 10 : 17,
+            scale: 1.12,
+            ease: "none",
+            scrollTrigger: {
+              trigger: hero,
+              start: "top top",
+              end: "bottom top",
+              scrub: 0.45,
+            },
+          }
+        );
+      }
+
+      const watermark = hero.querySelector(".inner-hero-watermark");
+      if (watermark) {
+        gsap.to(watermark, {
+          yPercent: 28,
+          xPercent: -6,
+          ease: "none",
+          scrollTrigger: {
+            trigger: hero,
+            start: "top top",
+            end: "bottom top",
+            scrub: 0.65,
+          },
+        });
+      }
+
+      if (isDesktop) {
+        const heroCopy = hero.querySelector(
+          ".hero-content-col, .inner-hero-copy-col, .blog-single-hero-inner"
+        );
+        if (heroCopy) {
+          gsap.to(heroCopy, {
+            y: -26,
+            ease: "none",
+            scrollTrigger: {
+              trigger: hero,
+              start: "top top",
+              end: "bottom top",
+              scrub: 0.55,
+            },
+          });
+        }
+
+        const heroLeadCard = hero.querySelector(".hero-lead-form-card");
+        if (heroLeadCard) {
+          gsap.to(heroLeadCard, {
+            y: 20,
+            ease: "none",
+            scrollTrigger: {
+              trigger: hero,
+              start: "top top",
+              end: "bottom top",
+              scrub: 0.6,
+            },
+          });
+        }
+      }
+    });
+
+  // B. Scrubbed Section & Executive Banner Background Image Parallax (--sec-parallax-y)
+  const parallaxSectionSelectors = [
+    ".home-services-section",
+    ".home-projects-section",
+    ".home-case-studies-section",
+    ".faq-section",
+    ".reusable-contact-section",
+    ".about-metrics-section",
+    ".studio-process-section.has-section-bg",
+    ".single-process-section",
+    ".single-related-projects-section",
+    ".blog-related-section",
+    ".pricing-calc-section",
+    ".cs-impact-banner",
+    ".testimonials-metrics-bar",
+    ".work-outcomes-banner",
+    ".cs-single-scoreboard",
+    ".faq-hub-cta-section",
+    ".book-outcomes-section",
+  ].join(", ");
+
+  document.querySelectorAll(parallaxSectionSelectors).forEach((sec) => {
     gsap.fromTo(
-      track,
-      { scaleX: 0 },
+      sec,
+      { "--sec-parallax-y": `${-secParallaxShift}px` },
       {
-        scaleX: 1,
-        duration: 0.72,
-        ease: "power1.out",
-        transformOrigin: "left center",
+        "--sec-parallax-y": `${secParallaxShift}px`,
+        ease: "none",
         scrollTrigger: {
-          trigger: track.parentElement,
-          start: "top 84%",
-          once: true,
+          trigger: sec,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 0.5,
         },
       }
     );
   });
 
-  window.addEventListener("load", () => ScrollTrigger.refresh(), { once: true });
-})();
+  // C. Window-Portal Inner Image Parallax (Frames, Showcases & Portfolio Cards)
+  document
+    .querySelectorAll(
+      ".about-visual-bg, .cs-visual-bg, .single-showcase-bg, .project-grid-card-bg, .service-card-bg, .industry-card-bg, .work-gallery-media"
+    )
+    .forEach((bgEl) => {
+      const parentFrame = bgEl.parentElement;
+      if (!parentFrame) return;
+      gsap.fromTo(
+        bgEl,
+        { yPercent: -5.5 },
+        {
+          yPercent: 5.5,
+          ease: "none",
+          scrollTrigger: {
+            trigger: parentFrame,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 0.55,
+          },
+        }
+      );
+    });
+
+  // Direct background-image frames on Work Single & Case Study Single
+  document
+    .querySelectorAll(".work-hero-frame, .cs-chapter-visual")
+    .forEach((frame) => {
+      gsap.fromTo(
+        frame,
+        { backgroundPositionY: "36%" },
+        {
+          backgroundPositionY: "64%",
+          ease: "none",
+          scrollTrigger: {
+            trigger: frame,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 0.55,
+          },
+        }
+      );
+    });
+
+  // D. Differential Column Speed Drift & Watermark Parallax (Parallax-Like Depth)
+  if (isDesktop) {
+    document
+      .querySelectorAll(
+        ".about-visual-frame, .reusable-contact-card, .contact-directory-card, .thankyou-summary-card"
+      )
+      .forEach((card) => {
+        const triggerRow = card.closest(".row") || card;
+        gsap.fromTo(
+          card,
+          { y: 24 },
+          {
+            y: -24,
+            ease: "none",
+            scrollTrigger: {
+              trigger: triggerRow,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 0.75,
+            },
+          }
+        );
+      });
+
+    // Staggered odd/even column vertical velocity on process & principle grids
+    document
+      .querySelectorAll(
+        ".about-principles-row, .studio-process-row, .single-process-row, .thankyou-steps-row"
+      )
+      .forEach((row) => {
+        const cards = row.querySelectorAll(
+          ".about-principle-card, .studio-process-card, .single-process-card, .thankyou-step-card"
+        );
+        cards.forEach((card, idx) => {
+          const offset = idx % 2 === 0 ? -14 : 18;
+          gsap.fromTo(
+            card,
+            { y: offset },
+            {
+              y: -offset,
+              ease: "none",
+              scrollTrigger: {
+                trigger: row,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 0.75,
+              },
+            }
+          );
+        });
+      });
+  }
+
+  document.querySelectorAll(".footer-cta-watermark").forEach((wm) => {
+    const banner = wm.closest(".footer-cta-banner") || wm;
+    gsap.fromTo(
+      wm,
+      { yPercent: 18, xPercent: 4 },
+      {
+        yPercent: -20,
+        xPercent: -6,
+        ease: "none",
+        scrollTrigger: {
+          trigger: banner,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 0.7,
+        },
+      }
+    );
+  });
+
+  // E. Interactive Spatial 3D Pointer Parallax on Visual Showcase Windows (Fine Pointer)
+  if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    document
+      .querySelectorAll(".about-visual-frame, .cs-visual-frame, .single-showcase-banner")
+      .forEach((stage) => {
+        const fg = stage.querySelector(
+          ".about-visual-card, .cs-benchmark-dock, .single-banner-stats-bar"
+        );
+        const topBar = stage.querySelector(
+          ".about-visual-top, .cs-visual-top, .single-banner-top"
+        );
+        if (!fg) return;
+
+        const fgX = gsap.quickTo(fg, "x", { duration: 0.45, ease: "power3.out" });
+        const fgY = gsap.quickTo(fg, "y", { duration: 0.45, ease: "power3.out" });
+        const topX = topBar ? gsap.quickTo(topBar, "x", { duration: 0.45, ease: "power3.out" }) : null;
+        const topY = topBar ? gsap.quickTo(topBar, "y", { duration: 0.45, ease: "power3.out" }) : null;
+
+        stage.addEventListener("mousemove", (e) => {
+          const rect = stage.getBoundingClientRect();
+          const nx = (e.clientX - rect.left) / rect.width - 0.5;
+          const ny = (e.clientY - rect.top) / rect.height - 0.5;
+          fgX(nx * 14);
+          fgY(ny * 10);
+          if (topX && topY) {
+            topX(nx * -10);
+            topY(ny * -8);
+          }
+        });
+
+        stage.addEventListener("mouseleave", () => {
+          fgX(0);
+          fgY(0);
+          if (topX && topY) {
+            topX(0);
+            topY(0);
+          }
+        });
+      });
+  }
+
+  // Refresh ScrollTrigger positions once fonts & images finish settling
+  window.addEventListener(
+    "load",
+    () => {
+      ScrollTrigger.refresh();
+    },
+    { once: true }
+  );
+});

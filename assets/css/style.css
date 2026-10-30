@@ -532,6 +532,11 @@ h6 {
 }
 
 
+@keyframes heroPulse {
+  0% { transform: scale(0.7); opacity: 0.9; }
+  100% { transform: scale(1.75); opacity: 0; }
+}
+
 /* Monumental Centered Display Headline */
 .hero-display-title {
   font-family: var(--font-montserrat);
@@ -698,9 +703,11 @@ h6 {
   align-items: center;
   width: max-content;
   gap: 38px;
+  animation: marqueeScroll 28s linear infinite;
 }
 
 .hero-marquee:hover .hero-marquee-track {
+  animation-play-state: paused;
 }
 
 .hero-marquee-item {
@@ -723,6 +730,11 @@ h6 {
 }
 
 
+
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
 
 /* --------------------------------------------------------------------------
    Home Hero Responsive Adjustments
@@ -837,6 +849,11 @@ h6 {
   animation: alify-triangle-rotate 8s linear infinite !important;
 }
 
+@keyframes alifyEyebrowTriSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .studio-sec-eyebrow-dot,
   .services-eyebrow-dot,
@@ -861,23 +878,9 @@ h6 {
 }
 
 
-/* Baseline: suppress framework/global motion; allow only the scoped exceptions below. */
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-}
-
-*,
-*::before,
-*::after {
-  animation: none !important;
-  transition: none !important;
-}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 /* Curated CSS micro-interactions; larger choreography is handled by GSAP. */
 @media (prefers-reduced-motion: no-preference) {

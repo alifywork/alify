@@ -352,6 +352,9 @@ flex-shrink: 0;
   transform: scale(1.06);
   will-change: transform;
   pointer-events: none;
+
+  transform: translate3d(0, var(--sec-parallax-y, 0px), 0) scale(1.06);
+  will-change: transform;
 }
 
 .single-process-section::after {
@@ -1202,6 +1205,9 @@ body.is-lightbox-open {
   transform: scale(1.06);
   will-change: transform;
   pointer-events: none;
+
+  transform: translate3d(0, var(--sec-parallax-y, 0px), 0) scale(1.06);
+  will-change: transform;
 }
 
 .work-outcomes-banner::after {
@@ -1289,6 +1295,9 @@ body.is-lightbox-open {
   transform: scale(1.06);
   will-change: transform;
   pointer-events: none;
+
+  transform: translate3d(0, var(--sec-parallax-y, 0px), 0) scale(1.06);
+  will-change: transform;
 }
 
 .cs-single-scoreboard::after {
@@ -1552,6 +1561,9 @@ body.is-lightbox-open {
   transform: scale(1.06);
   will-change: transform;
   pointer-events: none;
+
+  transform: translate3d(0, var(--sec-parallax-y, 0px), 0) scale(1.06);
+  will-change: transform;
 }
 
 .single-related-projects-section::after {

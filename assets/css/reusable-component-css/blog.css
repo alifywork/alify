@@ -1284,6 +1284,9 @@ cursor: grabbing;
   transform: scale(1.06);
   will-change: transform;
   pointer-events: none;
+
+  transform: translate3d(0, var(--sec-parallax-y, 0px), 0) scale(1.06);
+  will-change: transform;
 }
 
 .blog-related-section::after {
