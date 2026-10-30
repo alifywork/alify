@@ -359,6 +359,7 @@ flex-shrink: 0;
 /* Dual-Row Horizontal Slider Stage */
 .testimonials-dual-stage {
   position: relative;
+  touch-action: pan-y;
   display: flex;
   flex-direction: column;
   gap: 22px;

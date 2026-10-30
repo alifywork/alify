@@ -516,6 +516,7 @@ flex-shrink: 0;
 .services-slider-viewport {
   width: 100%;
   overflow: hidden;
+  touch-action: pan-y;
   padding: 12px 4px 22px;
   cursor: grab;
   user-select: none;
