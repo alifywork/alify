@@ -114,7 +114,6 @@ document.addEventListener("DOMContentLoaded", () => {
         trigger: opts.trigger || target,
         start: opts.start || "top 86%",
         once: true,
-        invalidateOnRefresh: true,
       },
     });
   };
@@ -627,22 +626,4 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 
-  // Refresh ScrollTrigger positions once fonts & images finish settling
-  window.addEventListener(
-    "load",
-    () => {
-      ScrollTrigger.refresh();
-    },
-    { once: true }
-  );
-
-  let resizeRefreshTimer;
-  window.addEventListener(
-    "resize",
-    () => {
-      window.clearTimeout(resizeRefreshTimer);
-      resizeRefreshTimer = window.setTimeout(() => ScrollTrigger.refresh(), 140);
-    },
-    { passive: true }
-  );
 });
