@@ -1,16 +1,23 @@
 <?php
 if (!defined('ABSPATH')) { exit; }
 
-function alify_acf_rekey($value, $suffix) {
-    if (!is_array($value)) { return $value; }
+function alify_acf_collect_keys($value,$suffix,&$map) {
+    if (!is_array($value)) { return; }
+    if (isset($value['key']) && is_string($value['key'])) { $map[$value['key']]=$value['key'] . '_' . sanitize_key($suffix); }
+    foreach ($value as $item) { if (is_array($item)) { alify_acf_collect_keys($item,$suffix,$map); } }
+}
+function alify_acf_rewrite_keys($value,$map) {
+    if (!is_array($value)) { return is_string($value) && isset($map[$value]) ? $map[$value] : $value; }
     $result=array();
     foreach ($value as $key=>$item) {
-        if ($key==='key' && is_string($item)) { $result[$key]=$item . '_' . sanitize_key($suffix); continue; }
-        $child=is_array($item) ? alify_acf_rekey($item,$suffix) : $item;
-        $new_key=(is_string($key) && strpos($key,'layout_alify_')===0 && is_array($child) && !empty($child['key'])) ? $child['key'] : $key;
-        $result[$new_key]=$child;
+        $new_key=is_string($key) && isset($map[$key]) ? $map[$key] : $key;
+        $result[$new_key]=alify_acf_rewrite_keys($item,$map);
     }
     return $result;
+}
+function alify_acf_rekey($value, $suffix) {
+    $map=array(); alify_acf_collect_keys($value,$suffix,$map);
+    return alify_acf_rewrite_keys($value,$map);
 }
 
 function alify_acf_fields() {
@@ -30,13 +37,25 @@ function alify_acf_fields() {
     }
 
     $section_layouts = array(
-        'legacy_html' => array('Imported Original Section (editable HTML)','Use this to keep the original static section intact; build new content with the structured layouts below.', array(
-            array('key'=>'field_alify_legacy_class','label'=>'Original section classes','name'=>'legacy_classes','type'=>'text'),
-            array('key'=>'field_alify_legacy_id','label'=>'Original section ID','name'=>'legacy_id','type'=>'text'),
-            array('key'=>'field_alify_legacy_aria','label'=>'Original accessible label','name'=>'legacy_aria_label','type'=>'text'),
-            array('key'=>'field_alify_legacy_labelledby','label'=>'Original accessible label reference','name'=>'legacy_aria_labelledby','type'=>'text'),
-            array('key'=>'field_alify_legacy_html','label'=>'Section markup','name'=>'html','type'=>'wysiwyg','tabs'=>'all','toolbar'=>'full','media_upload'=>1),
+        'legacy_elements' => array('Imported Section — individually editable content','The original layout is preserved. Edit each text, link, image, alt text, placeholder, or accessible label in its own row below; do not edit the read-only markup field.', array(
+            array('key'=>'field_alify_legacy_class','label'=>'Section CSS classes','name'=>'legacy_classes','type'=>'text'),
+            array('key'=>'field_alify_legacy_id','label'=>'Section ID / anchor','name'=>'legacy_id','type'=>'text'),
+            array('key'=>'field_alify_legacy_aria','label'=>'Accessible label','name'=>'legacy_aria_label','type'=>'text'),
+            array('key'=>'field_alify_legacy_labelledby','label'=>'Accessible label reference','name'=>'legacy_aria_labelledby','type'=>'text'),
+            array('key'=>'field_alify_legacy_markup','label'=>'Preserved layout markup (do not edit)','name'=>'legacy_markup','type'=>'textarea','rows'=>6,'readonly'=>1,'new_lines'=>'','instructions'=>'Layout and classes are retained from the original design. Use the fields below to change content.'),
+            array('key'=>'field_alify_legacy_elements','label'=>'Individual content fields','name'=>'legacy_elements','type'=>'repeater','layout'=>'block','button_label'=>'Add content element','collapsed'=>'field_alify_element_label','sub_fields'=>array(
+                array('key'=>'field_alify_element_label','label'=>'Element / original content preview','name'=>'element_label','type'=>'text'),
+                array('key'=>'field_alify_element_token','label'=>'Internal element reference (do not change)','name'=>'element_token','type'=>'text','readonly'=>1),
+                array('key'=>'field_alify_element_secondary_token','label'=>'Internal secondary reference (do not change)','name'=>'secondary_token','type'=>'text','readonly'=>1,'conditional_logic'=>array(array(array('field'=>'field_alify_element_type','operator'=>'==','value'=>'link')),array(array('field'=>'field_alify_element_type','operator'=>'==','value'=>'image')))),
+                array('key'=>'field_alify_element_type','label'=>'Element kind','name'=>'element_type','type'=>'select','choices'=>array('text'=>'Text','link'=>'Link URL','image'=>'Image','attribute'=>'Accessible label / placeholder / other text'),'ui'=>1),
+                array('key'=>'field_alify_element_text','label'=>'Text / attribute value','name'=>'text_value','type'=>'textarea','rows'=>3,'conditional_logic'=>array(array(array('field'=>'field_alify_element_type','operator'=>'==','value'=>'text')),array(array('field'=>'field_alify_element_type','operator'=>'==','value'=>'attribute')))),
+                array('key'=>'field_alify_element_link','label'=>'Link destination (internal or external)','name'=>'link_value','type'=>'link','return_format'=>'array','conditional_logic'=>array(array(array('field'=>'field_alify_element_type','operator'=>'==','value'=>'link')))),
+                array('key'=>'field_alify_element_image','label'=>'Replace image (optional; leave empty to keep original)','name'=>'image_value','type'=>'image','return_format'=>'id','preview_size'=>'thumbnail','conditional_logic'=>array(array(array('field'=>'field_alify_element_type','operator'=>'==','value'=>'image')))),
+                array('key'=>'field_alify_element_asset_url','label'=>'Original / fallback asset URL','name'=>'asset_url','type'=>'url','conditional_logic'=>array(array(array('field'=>'field_alify_element_type','operator'=>'==','value'=>'image')))),
+                array('key'=>'field_alify_element_alt','label'=>'Image alt text','name'=>'alt_value','type'=>'text','conditional_logic'=>array(array(array('field'=>'field_alify_element_type','operator'=>'==','value'=>'image')))),
+            )),
         )),
+
         'hero' => array('Hero Section', array(
             array('key'=>'field_alify_hero_eyebrow','label'=>'Eyebrow','name'=>'eyebrow','type'=>'text'),
             array('key'=>'field_alify_hero_title','label'=>'Heading','name'=>'heading','type'=>'textarea','rows'=>2,'required'=>1),
@@ -172,7 +191,29 @@ function alify_acf_fields() {
         array('key'=>'field_alify_form_reply','label'=>'Reply-to email (optional)','name'=>'form_reply_to','type'=>'email'),
         array('key'=>'field_alify_form_success','label'=>'Default success message','name'=>'form_success_message','type'=>'text','default_value'=>'Thanks — your message has been received.'),
         array('key'=>'field_alify_form_redirect','label'=>'Thank-you page','name'=>'form_thank_you_page','type'=>'post_object','post_type'=>array('page'),'return_format'=>'id','ui'=>1),
-        array('key'=>'field_alify_form_fields','label'=>'Per-form template settings','name'=>'form_templates','type'=>'repeater','layout'=>'row','button_label'=>'Configure form','sub_fields'=>array(array('key'=>'field_alify_form_tpl_type','label'=>'Form','name'=>'form_type','type'=>'select','choices'=>array('contact'=>'Contact','project'=>'Start a project','booking'=>'Book a call','newsletter'=>'Newsletter'),'required'=>1),array('key'=>'field_alify_form_tpl_recipient','label'=>'Recipient override','name'=>'recipient','type'=>'email'),array('key'=>'field_alify_form_tpl_subject','label'=>'Email subject','name'=>'subject','type'=>'text'),array('key'=>'field_alify_form_tpl_success','label'=>'Success message','name'=>'success_message','type'=>'text'),array('key'=>'field_alify_form_tpl_extras','label'=>'Additional custom field labels (template edit needed to render)','name'=>'extra_field_labels','type'=>'text'))),
+        array('key'=>'field_alify_form_fields','label'=>'Per-form templates, fields & settings','name'=>'form_templates','type'=>'repeater','layout'=>'block','button_label'=>'Configure form','collapsed'=>'field_alify_form_tpl_type','sub_fields'=>array(
+            array('key'=>'field_alify_form_tpl_type','label'=>'Form template','name'=>'form_type','type'=>'select','choices'=>array('contact'=>'Contact','project'=>'Start a project','booking'=>'Book a call','newsletter'=>'Newsletter'),'required'=>1),
+            array('key'=>'field_alify_form_tpl_recipient','label'=>'Recipient override','name'=>'recipient','type'=>'email'),
+            array('key'=>'field_alify_form_tpl_subject','label'=>'Notification subject','name'=>'subject','type'=>'text'),
+            array('key'=>'field_alify_form_tpl_success','label'=>'Success message','name'=>'success_message','type'=>'text'),
+            array('key'=>'field_alify_form_tpl_name_label','label'=>'Name field label','name'=>'name_label','type'=>'text'),array('key'=>'field_alify_form_tpl_email_label','label'=>'Email field label','name'=>'email_label','type'=>'text'),
+            array('key'=>'field_alify_form_tpl_company_label','label'=>'Company field label','name'=>'company_label','type'=>'text'),array('key'=>'field_alify_form_tpl_phone_label','label'=>'Phone field label','name'=>'phone_label','type'=>'text'),
+            array('key'=>'field_alify_form_tpl_message_label','label'=>'Message field label','name'=>'message_label','type'=>'text'),array('key'=>'field_alify_form_tpl_service_label','label'=>'Service field label','name'=>'service_interest_label','type'=>'text'),
+            array('key'=>'field_alify_form_tpl_budget_label','label'=>'Budget field label','name'=>'budget_label','type'=>'text'),array('key'=>'field_alify_form_tpl_timeline_label','label'=>'Timeline field label','name'=>'timeline_label','type'=>'text'),
+            array('key'=>'field_alify_form_tpl_date_label','label'=>'Meeting date field label','name'=>'meeting_date_label','type'=>'text'),array('key'=>'field_alify_form_tpl_submit_label','label'=>'Submit button label','name'=>'submit_label','type'=>'text'),
+            array('key'=>'field_alify_form_tpl_budget_options','label'=>'Budget choices (one per line)','name'=>'budget_options','type'=>'textarea','rows'=>5),
+            array('key'=>'field_alify_form_tpl_show_company','label'=>'Show company field','name'=>'show_company','type'=>'true_false','ui'=>1,'default_value'=>1),array('key'=>'field_alify_form_tpl_show_phone','label'=>'Show phone field','name'=>'show_phone','type'=>'true_false','ui'=>1,'default_value'=>0),
+            array('key'=>'field_alify_form_tpl_show_message','label'=>'Show message field','name'=>'show_message','type'=>'true_false','ui'=>1,'default_value'=>1),array('key'=>'field_alify_form_tpl_show_service','label'=>'Show service interest field','name'=>'show_service_interest','type'=>'true_false','ui'=>1,'default_value'=>1),
+            array('key'=>'field_alify_form_tpl_show_budget','label'=>'Show budget field','name'=>'show_budget','type'=>'true_false','ui'=>1,'default_value'=>1),array('key'=>'field_alify_form_tpl_show_timeline','label'=>'Show timeline field','name'=>'show_timeline','type'=>'true_false','ui'=>1,'default_value'=>1),
+            array('key'=>'field_alify_form_tpl_show_date','label'=>'Show meeting date field','name'=>'show_meeting_date','type'=>'true_false','ui'=>1,'default_value'=>1),array('key'=>'field_alify_form_tpl_require_name','label'=>'Require name field','name'=>'require_name','type'=>'true_false','ui'=>1,'default_value'=>1),array('key'=>'field_alify_form_tpl_require_message','label'=>'Require message field','name'=>'require_message','type'=>'true_false','ui'=>1,'default_value'=>1),
+            array('key'=>'field_alify_form_tpl_custom_fields','label'=>'Additional individual fields','name'=>'additional_fields','type'=>'repeater','layout'=>'row','button_label'=>'Add a form field','sub_fields'=>array(
+                array('key'=>'field_alify_form_custom_key','label'=>'Field key (lowercase, no spaces)','name'=>'field_key','type'=>'text'),array('key'=>'field_alify_form_custom_label','label'=>'Field label','name'=>'label','type'=>'text'),
+                array('key'=>'field_alify_form_custom_type','label'=>'Input type','name'=>'field_type','type'=>'select','choices'=>array('text'=>'Text','email'=>'Email','tel'=>'Phone','date'=>'Date','textarea'=>'Long text','select'=>'Select list'),'default_value'=>'text'),
+                array('key'=>'field_alify_form_custom_placeholder','label'=>'Placeholder','name'=>'placeholder','type'=>'text'),array('key'=>'field_alify_form_custom_required','label'=>'Required field','name'=>'required','type'=>'true_false','ui'=>1),
+                array('key'=>'field_alify_form_custom_options','label'=>'Select choices (one per line)','name'=>'options','type'=>'textarea','rows'=>4),
+            )),
+        )),
+
     );
     acf_add_local_field_group(array('key'=>'group_alify_form_options','title'=>__('Central Form Settings','alify'),'fields'=>$form_fields,'location'=>array(array(array('param'=>'options_page','operator'=>'==','value'=>'alify-forms'))),'active'=>true));
 

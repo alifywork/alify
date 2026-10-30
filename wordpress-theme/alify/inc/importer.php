@@ -101,6 +101,82 @@ class Alify_Static_Import_Command extends WP_CLI_Command {
         }
         return $sections;
     }
+    private $element_counter=0;
+    private function make_token() { $this->element_counter++; return '@@ALIFY_' . str_pad((string)$this->element_counter,5,'0',STR_PAD_LEFT) . '@@'; }
+    private function asset_url($url) {
+        if (!$url || preg_match('~^(?:https?:)?//|^(?:data:|blob:)~i',$url)) { return $url; }
+        $path=parse_url($url,PHP_URL_PATH); $path=rawurldecode((string)$path); $path=preg_replace('~^(?:\\./|\\.\\./)+~','',$path); $path=ltrim($path,'/');
+        if (strpos($path,'assets/')===0) { return ALIFY_URI . '/' . $path; }
+        return $url;
+    }
+    private function internal_url($url) {
+        if (!$url || preg_match('~^(?:https?:)?//|^(?:mailto:|tel:|sms:|data:)~i',$url) || $url[0]==='#') { return $url; }
+        $parts=parse_url($url); $path=$parts['path'] ?? '';
+        if (strtolower(pathinfo($path,PATHINFO_EXTENSION))!=='html') { return $url; }
+        $key=ltrim(preg_replace('~^(?:\\./|\\.\\./)+~','',$path),'/');
+        if (isset($this->content_map[$key])) { $mapped=$this->content_map[$key]; }
+        else { $slug=basename($key,'.html'); $mapped=home_url('/' . ($slug==='index'?'':$slug . '/')); }
+        if (!empty($parts['query'])) { $mapped=add_query_arg(wp_parse_args($parts['query']),$mapped); }
+        if (!empty($parts['fragment'])) { $mapped.='#' . $parts['fragment']; }
+        return $mapped;
+    }
+    private function add_element(&$elements,$type,$label,$text='',$extra=array()) {
+        $token=$this->make_token();
+        $clean_label=wp_strip_all_tags($label); $clean_label=function_exists('mb_substr') ? mb_substr($clean_label,0,120) : substr($clean_label,0,120);
+        $row=array('element_label'=>$clean_label,'element_token'=>$token,'secondary_token'=>'','element_type'=>$type,'text_value'=>$text,'link_value'=>array(),'image_value'=>0,'asset_url'=>'','alt_value'=>'');
+        foreach ($extra as $key=>$value) { $row[$key]=$value; }
+        $elements[]=$row;
+        return $token;
+    }
+    private function node_label($node,$value='') {
+        $tag=$node->parentNode && $node->parentNode instanceof DOMElement ? strtoupper($node->parentNode->tagName) : 'TEXT';
+        $sample=trim(preg_replace('/\\s+/u',' ',wp_strip_all_tags($value ?: $node->nodeValue)));
+        if (function_exists('mb_substr')) { $sample=mb_substr($sample,0,65); } else { $sample=substr($sample,0,65); }
+        return $tag . ': ' . $sample;
+    }
+    private function extract_node_fields($node,$dom,&$elements) {
+        if ($node instanceof DOMText) {
+            $parent=strtolower($node->parentNode ? $node->parentNode->nodeName : '');
+            $text=$node->nodeValue;
+            if (in_array($parent,array('script','style'),true) || trim($text)==='' || strpos($text,'[alify_form ')!==false) { return; }
+            $token=$this->add_element($elements,'text',$this->node_label($node,$text),$text);
+            $node->nodeValue=$token;
+            return;
+        }
+        if (!($node instanceof DOMElement)) { return; }
+        $tag=strtolower($node->tagName);
+        if ($tag==='a' && $node->hasAttribute('href')) {
+            $old=$node->getAttribute('href'); $link_text=trim(preg_replace('/\\s+/u',' ',$node->textContent));
+            $target=$node->getAttribute('target');
+            $token=$this->add_element($elements,'link','Link URL: ' . ($link_text ?: $old),'',array('link_value'=>array('url'=>$this->internal_url($old),'title'=>$link_text,'target'=>$target)));
+            $entry_index=count($elements)-1; $secondary=$this->make_token(); $elements[$entry_index]['secondary_token']=$secondary;
+            $node->setAttribute('href',$token); if ($node->hasAttribute('target')) { $node->setAttribute('target',$secondary); }
+        }
+        if ($tag==='img' && $node->hasAttribute('src')) {
+            $src=$node->getAttribute('src'); $alt=$node->getAttribute('alt');
+            $token=$this->add_element($elements,'image','Image: ' . ($alt ?: basename(parse_url($src,PHP_URL_PATH) ?: $src)),'',array('asset_url'=>$this->asset_url($src),'alt_value'=>$alt));
+            $entry_index=count($elements)-1; $secondary=$this->make_token(); $elements[$entry_index]['secondary_token']=$secondary;
+            $node->setAttribute('src',$token); $node->setAttribute('alt',$secondary);
+        }
+        if ($node->hasAttribute('style')) {
+            $style=$node->getAttribute('style');
+            $style=preg_replace_callback('~url\\(\\s*(["\\\']?)([^)"\\\']+)\\1\\s*\\)~i',function($m) use (&$elements) {
+                $url=trim($m[2]); if (preg_match('~^(?:https?:)?//|^(?:data:|blob:)~i',$url)) { return $m[0]; }
+                $token=$this->add_element($elements,'image','Background image: ' . basename(parse_url($url,PHP_URL_PATH) ?: $url),'',array('asset_url'=>$this->asset_url($url)));
+                return 'url("' . $token . '")';
+            },$style);
+            $node->setAttribute('style',$style);
+        }
+        $attribute_names=array('title','placeholder','aria-label','alt');
+        foreach ($attribute_names as $attribute) {
+            if ($tag==='img' && $attribute==='alt') { continue; }
+            if (!$node->hasAttribute($attribute)) { continue; }
+            $value=$node->getAttribute($attribute); $token=$this->add_element($elements,'attribute',strtoupper($tag) . ' ' . $attribute . ': ' . $value,$value);
+            $node->setAttribute($attribute,$token);
+        }
+        $children=array(); foreach ($node->childNodes as $child) { $children[]=$child; }
+        foreach ($children as $child) { $this->extract_node_fields($child,$dom,$elements); }
+    }
     private function node_inner_html($node,$dom) { $html=''; foreach ($node->childNodes as $child) { $html.=$dom->saveHTML($child); } return $html; }
     private function replace_forms_with_shortcodes($section,$dom,$file) {
         $type=$file==='start-project' ? 'project' : ($file==='book-call' ? 'booking' : 'contact');
@@ -129,7 +205,11 @@ class Alify_Static_Import_Command extends WP_CLI_Command {
             $rows=array();
             foreach ($this->section_nodes($mains->item(0)) as $section) {
                 $this->replace_forms_with_shortcodes($section,$dom,$file);
-                $rows[]=array('acf_fc_layout'=>'legacy_html','hide_section'=>0,'legacy_classes'=>$section->getAttribute('class'),'legacy_id'=>$section->getAttribute('id'),'legacy_aria_label'=>$section->getAttribute('aria-label'),'legacy_aria_labelledby'=>$section->getAttribute('aria-labelledby'),'html'=>$this->rewrite_urls($this->node_inner_html($section,$dom)));
+                $this->element_counter=0; $elements=array();
+                $children=array(); foreach ($section->childNodes as $child) { $children[]=$child; }
+                foreach ($children as $child) { $this->extract_node_fields($child,$dom,$elements); }
+                $markup=$this->rewrite_urls($this->node_inner_html($section,$dom));
+                $rows[]=array('acf_fc_layout'=>'legacy_elements','hide_section'=>0,'legacy_classes'=>$section->getAttribute('class'),'legacy_id'=>$section->getAttribute('id'),'legacy_aria_label'=>$section->getAttribute('aria-label'),'legacy_aria_labelledby'=>$section->getAttribute('aria-labelledby'),'legacy_markup'=>$markup,'legacy_elements'=>$elements);
             }
             if (!$rows) { continue; }
             if (isset($this->archive_map[$slug])) {

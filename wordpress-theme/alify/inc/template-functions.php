@@ -24,12 +24,33 @@ function alify_render_sections($field_name = 'page_sections', $post_id = false) 
         the_row();
         if (get_sub_field('hide_section')) { continue; }
         $layout = get_row_layout();
-        if ($layout === 'legacy_html') {
-            $legacy_class = trim((string)get_sub_field('legacy_classes'));
-            $legacy_id = get_sub_field('legacy_id');
-            $legacy_label = get_sub_field('legacy_aria_label');
-            $legacy_labelledby = get_sub_field('legacy_aria_labelledby');
-            echo '<section class="alify-imported-section ' . esc_attr($legacy_class) . '"' . ($legacy_id ? ' id="' . esc_attr($legacy_id) . '"' : '') . ($legacy_label ? ' aria-label="' . esc_attr($legacy_label) . '"' : '') . ($legacy_labelledby ? ' aria-labelledby="' . esc_attr($legacy_labelledby) . '"' : '') . '>' . do_shortcode(wp_kses_post(get_sub_field('html'))) . '</section>';
+        if ($layout === 'legacy_elements') {
+            $legacy_class=trim((string)get_sub_field('legacy_classes'));
+            $legacy_id=get_sub_field('legacy_id');
+            $legacy_label=get_sub_field('legacy_aria_label');
+            $legacy_labelledby=get_sub_field('legacy_aria_labelledby');
+            $markup=(string)get_sub_field('legacy_markup');
+            $tokens=array(); $elements=get_sub_field('legacy_elements');
+            if (is_array($elements)) {
+                foreach ($elements as $element) {
+                    $token=$element['element_token'] ?? ''; if (!$token) { continue; }
+                    $type=$element['element_type'] ?? 'text'; $value=''; $second=$element['secondary_token'] ?? '';
+                    if ($type==='link') {
+                        $link=$element['link_value'] ?? array(); $value=is_array($link) ? ($link['url'] ?? '') : '';
+                        if ($second) { $tokens[$second]=esc_attr(is_array($link) ? ($link['target'] ?? '') : ''); }
+                        $value=esc_url($value);
+                    } elseif ($type==='image') {
+                        $image_id=(int)($element['image_value'] ?? 0);
+                        $value=$image_id ? wp_get_attachment_image_url($image_id,'full') : ($element['asset_url'] ?? '');
+                        $value=esc_url($value);
+                        if ($second) { $tokens[$second]=esc_attr($element['alt_value'] ?? ''); }
+                    } elseif ($type==='attribute') { $value=esc_attr($element['text_value'] ?? ''); }
+                    else { $value=esc_html($element['text_value'] ?? ''); }
+                    $tokens[$token]=$value;
+                }
+            }
+            $markup=$tokens ? strtr($markup,$tokens) : $markup;
+            echo '<section class="alify-imported-section ' . esc_attr($legacy_class) . '"' . ($legacy_id ? ' id="' . esc_attr($legacy_id) . '"' : '') . ($legacy_label ? ' aria-label="' . esc_attr($legacy_label) . '"' : '') . ($legacy_labelledby ? ' aria-labelledby="' . esc_attr($legacy_labelledby) . '"' : '') . '>' . do_shortcode(wp_kses_post($markup)) . '</section>';
             continue;
         }
         $classes = alify_section_class($layout);
@@ -133,7 +154,7 @@ function alify_sections_contains_hero($post_id) {
     foreach ($rows as $row) {
         if (!empty($row['hide_section'])) { continue; }
         if (($row['acf_fc_layout'] ?? '')==='hero') { return true; }
-        if (($row['acf_fc_layout'] ?? '')==='legacy_html' && preg_match('/(^|\\s)[^\\s]*hero[^\\s]*(\\s|$)/i',(string)($row['legacy_classes'] ?? ''))) { return true; }
+        if (($row['acf_fc_layout'] ?? '')==='legacy_elements' && preg_match('/(^|\\s)[^\\s]*hero[^\\s]*(\\s|$)/i',(string)($row['legacy_classes'] ?? ''))) { return true; }
     }
     return false;
 }

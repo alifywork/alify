@@ -17,7 +17,7 @@ A self-contained custom WordPress theme converted from the ALIFY static website.
 4. Set **Settings → Permalinks → Post name** (pretty permalinks are required for the short service URLs) and click **Save Changes** once, then create/assign menus if you did not use the importer.
 5. Fill in **ALIFY Options**: Global Theme Settings, Forms & Email Settings, Global SEO Settings, and the individual Home/About/Services/Industries/Case Studies/Work/Blog/Testimonials/FAQ/Pricing option screens.
 
-Gutenberg is disabled on this site by design. Page body content is edited through the ACF Flexible Content field; each section has a hide/unhide toggle. The reusable structured layouts are available for new content. Imported legacy sections are also retained as editable WYSIWYG HTML sections to preserve the original visual design and interactions; replace them gradually with structured layouts if you want finer-grained fields.
+Gutenberg is disabled on this site by design. Page body content is edited through the ACF Flexible Content field; each section has a hide/unhide toggle. The reusable structured layouts are available for new content. Imported legacy sections preserve the original markup and interactions, while each text node, link destination, image, alt text, placeholder, and accessible label is represented by its own editable ACF row/field. The preserved markup is read-only and serves only as the design skeleton.
 
 ## Import the existing static site once
 

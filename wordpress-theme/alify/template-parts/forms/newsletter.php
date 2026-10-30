@@ -5,7 +5,8 @@
     <input type="hidden" name="action" value="alify_submit"><input type="hidden" name="alify_form_type" value="newsletter"><input type="hidden" name="source_page" value="<?php echo esc_url(get_permalink()); ?>">
     <?php wp_nonce_field('alify_form_newsletter','alify_nonce'); ?>
     <p class="alify-honeypot" aria-hidden="true"><label>Leave this field empty<input type="text" name="website_url" tabindex="-1" autocomplete="off"></label></p>
-    <label><?php esc_html_e('Email address','alify'); ?><input name="email" type="email" autocomplete="email" required></label>
-    <button class="btn btn-primary" type="submit"><?php esc_html_e('Subscribe','alify'); ?></button>
+    <label><?php echo esc_html(alify_form_setting('newsletter','email_label',__('Email address','alify'))); ?><input name="email" type="email" autocomplete="email" required></label>
+    <?php alify_render_extra_form_fields('newsletter'); ?>
+    <button class="btn btn-primary" type="submit"><?php echo esc_html(alify_form_setting('newsletter','submit_label',__('Subscribe','alify'))); ?></button>
   </form>
 </div>
