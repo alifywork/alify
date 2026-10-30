@@ -473,8 +473,25 @@ a.footer-contact-value:hover {
 }
 
 @media (max-width: 767.98px) {
+  /* Reserve room for the fixed WhatsApp / call dock so it cannot cover the
+     footer's back-to-top control when the page is scrolled to the bottom. */
+  .footer-bottom {
+    padding-bottom: 82px;
+  }
+
   .footer-bottom-right {
     justify-content: flex-start;
+    flex-wrap: nowrap;
+    gap: 10px;
+  }
+
+  .footer-legal-link {
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .back-to-top-btn {
+    flex: 0 0 40px;
   }
 }
 
