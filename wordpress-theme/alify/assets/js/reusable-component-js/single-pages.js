@@ -401,6 +401,9 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   };
 
+  const projectPermalink = (slug) => (window.AlifyProjectUrls || {})[slug] || `work-single.html?project=${encodeURIComponent(slug)}`;
+  const caseStudyPermalink = (slug) => (window.AlifyCaseStudyUrls || {})[slug] || `case-study-single.html?case=${encodeURIComponent(slug)}`;
+
   const renderRelatedProjectCard = (slug) => {
     const p = PROJECTS[slug] || PROJECTS["finpulse-platform"];
     const chips = p.chips
@@ -426,12 +429,12 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="project-panel-bottom">
             <span class="project-client-label">${p.kicker}</span>
             <h3 class="project-panel-title">
-              <a href="work-single.html?project=${p.slug}">${p.title}</a>
+              <a href="${projectPermalink(p.slug)}">${p.title}</a>
             </h3>
             <p class="project-panel-desc">${p.desc}</p>
             <div class="project-panel-footer">
               <div class="project-deliverable-chips">${chips}</div>
-              <a href="work-single.html?project=${p.slug}" class="project-cta-btn">
+              <a href="${projectPermalink(p.slug)}" class="project-cta-btn">
                 <span class="project-cta-pill">View Project</span>
                 <span class="project-cta-circle" aria-hidden="true">
                   <i class="fa-solid fa-arrow-up project-cta-arrow"></i>
@@ -627,7 +630,7 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     };
 
-    const slug = params.get("service") || "web-development";
+    const slug = params.get("service") || ((window.AlifyCurrentItem || {}).type === "service" ? window.AlifyCurrentItem.slug : "") || "web-development";
     const srv = SERVICES[slug] || SERVICES["web-development"];
 
     document.title = `${srv.title} — Services | ALIFY`;
@@ -654,7 +657,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const bgEl = document.getElementById("srvBannerBg");
     if (bgEl) bgEl.style.backgroundImage = `url('${srv.bg}')`;
     const heroBg = document.getElementById("innerHeroBg");
-    if (heroBg && params.get("service")) heroBg.style.backgroundImage = `url('${srv.bg}')`;
+    if (heroBg) heroBg.style.backgroundImage = `url('${srv.bg}')`;
     setTxt("srvBannerPill", srv.title);
 
     const statsEl = document.getElementById("srvBannerStats");
@@ -950,7 +953,7 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     };
 
-    const slug = params.get("industry") || "fintech";
+    const slug = params.get("industry") || ((window.AlifyCurrentItem || {}).type === "industry" ? window.AlifyCurrentItem.slug : "") || "fintech";
     const ind = INDUSTRIES[slug] || INDUSTRIES.fintech;
 
     document.title = `${ind.title} — Industries | ALIFY`;
@@ -977,7 +980,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const bgEl = document.getElementById("indBannerBg");
     if (bgEl) bgEl.style.backgroundImage = `url('${ind.bg}')`;
     const heroBg = document.getElementById("innerHeroBg");
-    if (heroBg && params.get("industry")) heroBg.style.backgroundImage = `url('${ind.bg}')`;
+    if (heroBg) heroBg.style.backgroundImage = `url('${ind.bg}')`;
     setTxt("indBannerPill", ind.title);
 
     const statsEl = document.getElementById("indBannerStats");
@@ -1049,7 +1052,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // ------------------------------------------------------------------------
   const workRoot = document.getElementById("workSingleRoot");
   if (workRoot) {
-    const slug = params.get("project") || "finpulse-platform";
+    const slug = params.get("project") || ((window.AlifyCurrentItem || {}).type === "project" ? window.AlifyCurrentItem.slug : "") || "finpulse-platform";
     const proj = PROJECTS[slug] || PROJECTS["finpulse-platform"];
 
     document.title = `${proj.shortTitle} — Work | ALIFY`;
@@ -1081,7 +1084,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const heroFrame = document.getElementById("workHeroFrame");
     if (heroFrame) heroFrame.style.backgroundImage = `url('${proj.bg}')`;
     const heroBg = document.getElementById("innerHeroBg");
-    if (heroBg && params.get("project")) heroBg.style.backgroundImage = `url('${proj.bg}')`;
+    if (heroBg) heroBg.style.backgroundImage = `url('${proj.bg}')`;
 
     setTxt("workStoryBrief", proj.brief);
     setTxt("workStoryCraft", proj.craft);
@@ -1347,7 +1350,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const csLink = document.getElementById("workMatchingCaseLink");
     if (csLink) {
-      csLink.setAttribute("href", `case-study-single.html?case=${proj.caseId}`);
+      csLink.setAttribute("href", caseStudyPermalink(proj.caseId));
     }
 
     const otherSlugs = Object.keys(PROJECTS)
@@ -1529,7 +1532,7 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     };
 
-    const caseId = params.get("case") || "cs-finpulse";
+    const caseId = params.get("case") || ((window.AlifyCurrentItem || {}).type === "case" ? window.AlifyCurrentItem.slug : "") || "cs-finpulse";
     const cs = CASES[caseId] || CASES["cs-finpulse"];
 
     document.title = `${cs.client} Case Study — ALIFY`;
@@ -1584,7 +1587,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const visEl = document.getElementById("csChapterVisual");
     if (visEl) visEl.style.backgroundImage = `url('${cs.bg}')`;
     const heroBg = document.getElementById("innerHeroBg");
-    if (heroBg && params.get("case")) heroBg.style.backgroundImage = `url('${cs.bg}')`;
+    if (heroBg) heroBg.style.backgroundImage = `url('${cs.bg}')`;
 
     setTxt("csCh1", cs.ch1);
     setTxt("csCh2", cs.ch2);

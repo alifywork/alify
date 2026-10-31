@@ -1,8 +1,9 @@
 # ALIFY Website
 
-This repository contains both the original static ALIFY site and its custom WordPress theme conversion.
+This repository contains the custom WordPress theme conversion of the ALIFY website.
 
-- **Static source:** standalone HTML pages and shared `assets/` at the repository root.
-- **WordPress theme:** `wordpress-theme/alify/` — self-contained theme code and a local copy of the assets.
+- **Theme package:** `wordpress-theme/alify/` — templates, local assets, ACF Pro configuration, content types, form handling, navigation, and native SEO.
+- **Bundled migration source:** `wordpress-theme/alify/import-source/` — the original 22 static HTML pages used for the guarded first-activation import.
+- **Installable ZIP:** `wordpress-theme/alify-install.zip` (generated from the theme folder).
 
-The WordPress theme requires ACF Pro, disables Gutenberg, defines ALIFY content types and templates, provides theme/archive/form/SEO options, and includes a WP-CLI importer for migrating the existing static-page sections into ACF flexible content. See [`wordpress-theme/alify/README.md`](wordpress-theme/alify/README.md) for installation, migration, content model, and URL setup instructions.
+See [`wordpress-theme/alify/README.md`](wordpress-theme/alify/README.md) for requirements, installation, import, field organization, content model, and URL setup.

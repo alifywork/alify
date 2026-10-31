@@ -7,15 +7,15 @@ A self-contained custom WordPress theme converted from the ALIFY static website.
 - WordPress 6.4+
 - PHP 7.4+
 - ACF Pro (required for the editable sections and options pages)
-- WP-CLI and PHP DOM extension only if you want to run the static-content importer
+- PHP DOM extension and ACF Pro are required for the automatic first-activation content import (the same requirements apply to the optional WP-CLI re-import).
 
 ## Install
 
 1. Upload the `alify` folder to `wp-content/themes/` (or zip this folder and upload it through **Appearance → Themes → Add New → Upload Theme**).
 2. Install and activate ACF Pro.
-3. Activate **ALIFY Studio**. The ACF field groups are registered in theme PHP; there is no JSON sync step.
-4. Set **Settings → Permalinks → Post name** (pretty permalinks are required for the short service URLs) and click **Save Changes** once, then create/assign menus if you did not use the importer.
-5. Fill in **ALIFY Options**: Global Theme Settings, Forms & Email Settings, Global SEO Settings, and the individual Home/About/Services/Industries/Case Studies/Work/Blog/Testimonials/FAQ/Pricing option screens.
+3. Activate **ALIFY Studio** with ACF Pro active. The theme registers its ACF field groups in PHP and automatically imports the bundled 22-page static source once on first activation. The import is guarded against repeat activation; if prerequisites are missing, fix them and rerun the CLI command below.
+4. Set **Settings → Permalinks → Post name** (pretty permalinks are required for the short service URLs) and click **Save Changes** once.
+5. Review the imported pages, all source-backed service/industry/work/case-study/blog entries, menus, and the separate **ALIFY Options** screens for theme settings, forms, SEO, archives, and the 404 page.
 
 Gutenberg is disabled on this site by design. Page body content is edited through the ACF Flexible Content field; each section has a hide/unhide toggle. The reusable structured layouts are available for new content. Imported legacy sections preserve the original markup and interactions, while each text node, link destination, image, alt text, placeholder, and accessible label is represented by its own editable ACF row/field. The preserved markup is read-only and serves only as the design skeleton.
 
@@ -33,7 +33,7 @@ Then run the importer from a WordPress installation with this theme active and A
 wp alify import-static --source=/absolute/path/to/alify
 ```
 
-The importer creates/updates the main pages, the existing sample single entries (service, industry, case study, project, and blog post), imports each top-level `<main><section>` as an ACF legacy section, rewrites local asset references and `.html` internal links, replaces legacy forms with the matching native form template, imports page/archive SEO text, sets the front page and posts page, and creates/assigns starter Primary/Footer/Legal menus. Review the imported content, menu hierarchy, links, fields, and SEO in staging before launch. Run the importer only once on a clean site or after taking a database backup; it updates matching slugs and overwrites the imported ACF section rows.
+The importer creates/updates the main pages and all records found in the source service, industry, project, case-study, and blog catalogs; imports each top-level `<main><section>` as individual ACF content fields; rewrites local asset references and query-string detail links to the matching short post permalinks; replaces legacy forms with the matching native form template; imports page/archive SEO text; sets the front page and posts page; and creates/assigns starter Primary/Footer/Legal menus. The bundled importer duplicates the original section structure onto the imported single records, and the legacy single-page controller selects the matching source catalog record from each WordPress permalink. Review the imported content, menu hierarchy, links, fields, and SEO in staging before launch. The importer updates matching slugs and overwrites imported ACF section rows; back up the database before manually rerunning it.
 
 The source audit files are intentionally left untouched in the repository root. This theme lives at `wordpress-theme/alify/`.
 

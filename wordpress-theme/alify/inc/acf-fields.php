@@ -133,12 +133,13 @@ function alify_acf_fields() {
     }
     acf_add_local_field_group(array(
         'key'=>'group_alify_page_sections','title'=>__('Page Sections & Internal Links','alify'),
-        'fields'=>array(array('key'=>'field_alify_sections','label'=>__('Page sections (drag to reorder; each section can be hidden)','alify'),'name'=>'page_sections','type'=>'flexible_content','button_label'=>__('Add section','alify'),'layouts'=>$layouts,'min'=>0)),
+        'fields'=>array(array('key'=>'field_alify_page_content_tab','label'=>__('Page Content & Sections','alify'),'type'=>'tab','placement'=>'top','endpoint'=>0),array('key'=>'field_alify_sections','label'=>__('Page sections (drag to reorder; each section can be hidden)','alify'),'name'=>'page_sections','type'=>'flexible_content','button_label'=>__('Add section','alify'),'layouts'=>$layouts,'min'=>0)),
         'location'=>array(array(array('param'=>'post_type','operator'=>'==','value'=>'page')),array(array('param'=>'post_type','operator'=>'==','value'=>'post')),array(array('param'=>'post_type','operator'=>'==','value'=>'alify_service')),array(array('param'=>'post_type','operator'=>'==','value'=>'alify_industry')),array(array('param'=>'post_type','operator'=>'==','value'=>'alify_case_study')),array(array('param'=>'post_type','operator'=>'==','value'=>'alify_project')),array(array('param'=>'post_type','operator'=>'==','value'=>'alify_testimonial')),array(array('param'=>'post_type','operator'=>'==','value'=>'alify_faq'))),
         'position'=>'acf_after_title','style'=>'seamless','active'=>true,
     ));
 
     $seo_fields = array(
+        array('key'=>'field_alify_seo_tab','label'=>__('Page / Single SEO','alify'),'type'=>'tab','placement'=>'top','endpoint'=>0),
         array('key'=>'field_alify_seo_title','label'=>'SEO title','name'=>'seo_title','type'=>'text','instructions'=>'Leave blank to use the WordPress title. Recommended maximum: about 60 characters.'),
         array('key'=>'field_alify_seo_desc','label'=>'Meta description','name'=>'seo_description','type'=>'textarea','rows'=>3,'instructions'=>'Write a unique, useful summary. Recommended maximum: about 160 characters.'),
         array('key'=>'field_alify_seo_canonical','label'=>'Canonical URL override','name'=>'seo_canonical','type'=>'url'),
@@ -148,10 +149,11 @@ function alify_acf_fields() {
         array('key'=>'field_alify_seo_og_image','label'=>'Social share image','name'=>'seo_og_image','type'=>'image','return_format'=>'array','preview_size'=>'medium'),
         array('key'=>'field_alify_seo_schema','label'=>'Schema type','name'=>'seo_schema_type','type'=>'select','choices'=>array('WebPage'=>'Web page','Article'=>'Article','Service'=>'Service','Product'=>'Product','FAQPage'=>'FAQ page','ContactPage'=>'Contact page'),'default_value'=>'WebPage','ui'=>1),
     );
-    acf_add_local_field_group(array('key'=>'group_alify_seo','title'=>__('ALIFY SEO (no SEO plugin required)','alify'),'fields'=>$seo_fields,'location'=>array(array(array('param'=>'post_type','operator'=>'==','value'=>'page')),array(array('param'=>'post_type','operator'=>'==','value'=>'post')),array(array('param'=>'post_type','operator'=>'==','value'=>'alify_service')),array(array('param'=>'post_type','operator'=>'==','value'=>'alify_industry')),array(array('param'=>'post_type','operator'=>'==','value'=>'alify_case_study')),array(array('param'=>'post_type','operator'=>'==','value'=>'alify_project')),array(array('param'=>'post_type','operator'=>'==','value'=>'alify_testimonial')),array(array('param'=>'post_type','operator'=>'==','value'=>'alify_faq'))),'position'=>'side','active'=>true));
+    acf_add_local_field_group(array('key'=>'group_alify_seo','title'=>__('ALIFY SEO (no SEO plugin required)','alify'),'fields'=>$seo_fields,'location'=>array(array(array('param'=>'post_type','operator'=>'==','value'=>'page')),array(array('param'=>'post_type','operator'=>'==','value'=>'post')),array(array('param'=>'post_type','operator'=>'==','value'=>'alify_service')),array(array('param'=>'post_type','operator'=>'==','value'=>'alify_industry')),array(array('param'=>'post_type','operator'=>'==','value'=>'alify_case_study')),array(array('param'=>'post_type','operator'=>'==','value'=>'alify_project')),array(array('param'=>'post_type','operator'=>'==','value'=>'alify_testimonial')),array(array('param'=>'post_type','operator'=>'==','value'=>'alify_faq'))),'position'=>'normal','active'=>true));
     acf_add_local_field_group(array('key'=>'group_alify_term_seo','title'=>__('ALIFY SEO','alify'),'fields'=>alify_acf_rekey($seo_fields,'service_taxonomy'),'location'=>array(array(array('param'=>'taxonomy','operator'=>'==','value'=>'alify_service_category')),array(array('param'=>'taxonomy','operator'=>'==','value'=>'alify_industry_category'))),'position'=>'normal','active'=>true));
 
     $content_fields = array(
+        array('key'=>'field_alify_cpt_content_tab','label'=>__('Single Content & Relationships','alify'),'type'=>'tab','placement'=>'top','endpoint'=>0),
         array('key'=>'field_alify_item_summary','label'=>'Listing summary / excerpt','name'=>'summary','type'=>'textarea','rows'=>3),
         array('key'=>'field_alify_item_eyebrow','label'=>'Eyebrow','name'=>'eyebrow','type'=>'text'),
         array('key'=>'field_alify_item_icon','label'=>'Icon class (optional)','name'=>'icon_class','type'=>'text'),
@@ -169,7 +171,9 @@ function alify_acf_fields() {
     acf_add_local_field_group(array('key'=>'group_alify_cpt_content','title'=>__('Content Details & Internal Linking','alify'),'fields'=>$content_fields,'location'=>array(array(array('param'=>'post_type','operator'=>'==','value'=>'alify_service')),array(array('param'=>'post_type','operator'=>'==','value'=>'alify_industry')),array(array('param'=>'post_type','operator'=>'==','value'=>'alify_case_study')),array(array('param'=>'post_type','operator'=>'==','value'=>'alify_project')),array(array('param'=>'post_type','operator'=>'==','value'=>'alify_testimonial')),array(array('param'=>'post_type','operator'=>'==','value'=>'alify_faq'))),'active'=>true));
 
     $global_fields = array(
+        array('key'=>'field_alify_brand_tab','label'=>__('Brand & Header','alify'),'type'=>'tab','placement'=>'top','endpoint'=>0),
         array('key'=>'field_alify_logo','label'=>'Logo','name'=>'logo','type'=>'image','return_format'=>'array','preview_size'=>'medium'),
+        array('key'=>'field_alify_footer_contact_tab','label'=>__('Footer & Contact','alify'),'type'=>'tab','placement'=>'top','endpoint'=>0),
         array('key'=>'field_alify_footer_text','label'=>'Footer description','name'=>'footer_description','type'=>'textarea','rows'=>3),
         array('key'=>'field_alify_email','label'=>'Contact email','name'=>'contact_email','type'=>'email'),array('key'=>'field_alify_phone','label'=>'Phone','name'=>'phone','type'=>'text'),
         array('key'=>'field_alify_address','label'=>'Address','name'=>'address','type'=>'textarea','rows'=>2),
@@ -186,11 +190,13 @@ function alify_acf_fields() {
     acf_add_local_field_group(array('key'=>'group_alify_theme_options','title'=>__('Header, Footer & Brand','alify'),'fields'=>$global_fields,'location'=>array(array(array('param'=>'options_page','operator'=>'==','value'=>'alify-theme'))),'active'=>true));
 
     $form_fields = array(
+        array('key'=>'field_alify_forms_delivery_tab','label'=>__('Delivery & Central Entries','alify'),'type'=>'tab','placement'=>'top','endpoint'=>0),
         array('key'=>'field_alify_form_recipient','label'=>'Notification recipient','name'=>'form_recipient','type'=>'email'),
         array('key'=>'field_alify_form_from','label'=>'Notification from name','name'=>'form_from_name','type'=>'text','default_value'=>'ALIFY Website'),
         array('key'=>'field_alify_form_reply','label'=>'Reply-to email (optional)','name'=>'form_reply_to','type'=>'email'),
         array('key'=>'field_alify_form_success','label'=>'Default success message','name'=>'form_success_message','type'=>'text','default_value'=>'Thanks — your message has been received.'),
         array('key'=>'field_alify_form_redirect','label'=>'Thank-you page','name'=>'form_thank_you_page','type'=>'post_object','post_type'=>array('page'),'return_format'=>'id','ui'=>1),
+        array('key'=>'field_alify_forms_templates_tab','label'=>__('Separate Form Templates','alify'),'type'=>'tab','placement'=>'top','endpoint'=>0),
         array('key'=>'field_alify_form_fields','label'=>'Per-form templates, fields & settings','name'=>'form_templates','type'=>'repeater','layout'=>'block','button_label'=>'Configure form','collapsed'=>'field_alify_form_tpl_type','sub_fields'=>array(
             array('key'=>'field_alify_form_tpl_type','label'=>'Form template','name'=>'form_type','type'=>'select','choices'=>array('contact'=>'Contact','project'=>'Start a project','booking'=>'Book a call','newsletter'=>'Newsletter'),'required'=>1),
             array('key'=>'field_alify_form_tpl_recipient','label'=>'Recipient override','name'=>'recipient','type'=>'email'),
@@ -218,6 +224,7 @@ function alify_acf_fields() {
     acf_add_local_field_group(array('key'=>'group_alify_form_options','title'=>__('Central Form Settings','alify'),'fields'=>$form_fields,'location'=>array(array(array('param'=>'options_page','operator'=>'==','value'=>'alify-forms'))),'active'=>true));
 
     $global_seo = array(
+        array('key'=>'field_alify_default_meta_tab','label'=>__('Organization & Default SEO','alify'),'type'=>'tab','placement'=>'top','endpoint'=>0),
         array('key'=>'field_alify_org_name','label'=>'Organization name','name'=>'organization_name','type'=>'text','default_value'=>'ALIFY'),
         array('key'=>'field_alify_org_type','label'=>'Organization schema type','name'=>'organization_schema_type','type'=>'select','choices'=>array('Organization'=>'Organization','ProfessionalService'=>'Professional service','LocalBusiness'=>'Local business'),'default_value'=>'Organization','ui'=>1),
         array('key'=>'field_alify_org_logo','label'=>'Organization logo','name'=>'organization_logo','type'=>'image','return_format'=>'array','preview_size'=>'medium'),
@@ -232,12 +239,14 @@ function alify_acf_fields() {
         acf_add_local_field_group(array(
             'key'=>'group_alify_archive_' . str_replace('-', '_', $slug),'title'=>__($title, 'alify'),
             'fields'=>array(
+                array('key'=>'field_alify_archive_content_tab_' . str_replace('-', '_', $slug),'label'=>__('Archive Content & Sections','alify'),'type'=>'tab','placement'=>'top','endpoint'=>0),
                 array('key'=>'field_alify_archive_title_' . str_replace('-', '_', $slug),'label'=>'Page title','name'=>str_replace('-','_',$slug) . '_archive_title','type'=>'text'),
                 array('key'=>'field_alify_archive_intro_' . str_replace('-', '_', $slug),'label'=>'Intro','name'=>str_replace('-','_',$slug) . '_archive_intro','type'=>'wysiwyg','tabs'=>'all','toolbar'=>'basic','media_upload'=>0),
                 array('key'=>'field_alify_archive_sections_' . str_replace('-', '_', $slug),'label'=>'Sections (hide any section or reorder)','name'=>str_replace('-','_',$slug) . '_sections','type'=>'flexible_content','button_label'=>'Add section','layouts'=>alify_acf_rekey($layouts, $slug)),
                 array('key'=>'field_alify_archive_dynamic_' . str_replace('-', '_', $slug),'label'=>'Show automatic content-type listing (hide imported card section first)','name'=>str_replace('-','_',$slug) . '_show_dynamic_listing','type'=>'true_false','ui'=>1,'default_value'=>0),
                 array('key'=>'field_alify_archive_hide_header_' . str_replace('-', '_', $slug),'label'=>'Hide site header on this archive','name'=>str_replace('-','_',$slug) . '_hide_header','type'=>'true_false','ui'=>1),
                 array('key'=>'field_alify_archive_hide_footer_' . str_replace('-', '_', $slug),'label'=>'Hide site footer on this archive','name'=>str_replace('-','_',$slug) . '_hide_footer','type'=>'true_false','ui'=>1),
+                array('key'=>'field_alify_archive_seo_tab_' . str_replace('-', '_', $slug),'label'=>__('Archive SEO & Social','alify'),'type'=>'tab','placement'=>'top','endpoint'=>0),
                 array('key'=>'field_alify_archive_seo_title_' . str_replace('-', '_', $slug),'label'=>'SEO title','name'=>str_replace('-','_',$slug) . '_seo_title','type'=>'text'),
                 array('key'=>'field_alify_archive_seo_desc_' . str_replace('-', '_', $slug),'label'=>'Meta description','name'=>str_replace('-','_',$slug) . '_seo_description','type'=>'textarea','rows'=>3),
                 array('key'=>'field_alify_archive_seo_canonical_' . str_replace('-', '_', $slug),'label'=>'Canonical URL override','name'=>str_replace('-','_',$slug) . '_seo_canonical','type'=>'url'),

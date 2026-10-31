@@ -5,6 +5,8 @@
 // 3. Single Blog Dynamic Post Loader + Synchronized Sticky TOC & Sidebar Scroll
 // ==========================================================================
 
+const alifyBlogPermalink = (slug) => (window.AlifyBlogUrls || {})[slug] || `blog-single.html?post=${encodeURIComponent(slug)}`;
+
 const ALIFY_BLOG_POSTS = {
   "scalable-design-systems": {
     title: "Scalable Design Systems: How Modern Teams Ship UI 3x Faster",
@@ -564,7 +566,7 @@ function initSingleBlogPage() {
   if (!articleContainer || !tocList) return;
 
   const params = new URLSearchParams(window.location.search);
-  const slug = params.get("post");
+  const slug = params.get("post") || ((window.AlifyCurrentItem || {}).type === "post" ? window.AlifyCurrentItem.slug : "");
 
   if (slug && ALIFY_BLOG_POSTS[slug]) {
     const post = ALIFY_BLOG_POSTS[slug];
@@ -790,7 +792,7 @@ function initSingleBlogPage() {
         return `
           <div class="col-12 col-md-6 col-lg-4 blog-grid-col">
             <article class="blog-card">
-              <a href="blog-single.html?post=${relSlug}" class="blog-card-media">
+              <a href="${alifyBlogPermalink(relSlug)}" class="blog-card-media">
                 <span class="blog-card-category">${rp.category}</span>
                 <img
                   src="${rp.image}"
@@ -811,11 +813,11 @@ function initSingleBlogPage() {
                   </span>
                 </div>
                 <h3 class="blog-card-title">
-                  <a href="blog-single.html?post=${relSlug}">${rp.title}</a>
+                  <a href="${alifyBlogPermalink(relSlug)}">${rp.title}</a>
                 </h3>
                 <p class="blog-card-excerpt">${excerpt}</p>
                 <div class="blog-card-footer">
-                  <a href="blog-single.html?post=${relSlug}" class="blog-read-more">
+                  <a href="${alifyBlogPermalink(relSlug)}" class="blog-read-more">
                     <span class="blog-read-more-pill">Read More</span>
                     <span class="blog-read-more-circle" aria-hidden="true">
                       <i class="fa-solid fa-arrow-up blog-read-more-arrow"></i>

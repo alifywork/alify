@@ -1,7 +1,13 @@
 <?php
-if (!defined('ABSPATH') || !defined('WP_CLI') || !WP_CLI) { return; }
+if (!defined('ABSPATH')) { return; }
 
-class Alify_Static_Import_Command extends WP_CLI_Command {
+if (class_exists('WP_CLI_Command')) {
+    abstract class Alify_Static_Import_Base extends WP_CLI_Command {}
+} else {
+    abstract class Alify_Static_Import_Base {}
+}
+
+class Alify_Static_Import_Command extends Alify_Static_Import_Base {
     private $source;
     private $content_map=array();
     private $archive_map=array('home'=>'home','404'=>'not-found','services'=>'services','industries'=>'industries','case-studies'=>'case-studies','work'=>'work','blog'=>'blog','testimonials'=>'testimonials','faq'=>'faq','pricing'=>'pricing');
@@ -16,15 +22,24 @@ class Alify_Static_Import_Command extends WP_CLI_Command {
      *     wp alify import-static --source=/path/to/alify
      */
     public function __invoke($args,$assoc_args) {
-        if (!class_exists('DOMDocument') || !function_exists('update_field')) { WP_CLI::error('DOM and ACF Pro are required for import.'); }
-        $source=isset($assoc_args['source']) ? realpath($assoc_args['source']) : realpath(dirname(ALIFY_DIR,2));
-        if (!$source || !is_dir($source) || !file_exists($source . '/index.html')) { WP_CLI::error('Cannot find index.html in source directory.'); }
+        $source=isset($assoc_args['source']) ? $assoc_args['source'] : realpath(dirname(ALIFY_DIR,2));
+        if (!$this->run_import($source)) { WP_CLI::error($this->last_error); }
+        WP_CLI::success('Static pages and original sections have been imported as ACF flexible-content rows. Review each page, SEO panel, menus, and internal links before going live.');
+    }
+
+    public $last_error = '';
+
+    /** Run the same migration from WP-CLI or the one-time theme activation hook. */
+    public function run_import($source) {
+        if (!class_exists('DOMDocument') || !function_exists('update_field')) { $this->last_error='DOM and ACF Pro are required for import.'; return false; }
+        $source=realpath($source);
+        if (!$source || !is_dir($source) || !file_exists($source . '/index.html')) { $this->last_error='Cannot find index.html in source directory.'; return false; }
         $this->source=$source;
         $this->create_pages();
         $this->create_content_items();
         $this->migrate_sections();
         $this->set_site_pages();
-        WP_CLI::success('Static pages and original sections have been imported as ACF flexible-content rows. Review each page, SEO panel, menus, and internal links before going live.');
+        return true;
     }
 
     private function read_document($file) {
@@ -59,7 +74,7 @@ class Alify_Static_Import_Command extends WP_CLI_Command {
         $data=array('post_type'=>$type,'post_title'=>wp_strip_all_tags($title),'post_name'=>$slug,'post_status'=>$status);
         if ($existing) { $data['ID']=$existing->ID; $id=wp_update_post($data,true); }
         else { $id=wp_insert_post($data,true); }
-        if (is_wp_error($id)) { WP_CLI::warning($id->get_error_message()); return 0; }
+        if (is_wp_error($id)) { if (defined('WP_CLI') && WP_CLI) { WP_CLI::warning($id->get_error_message()); } else { error_log('ALIFY import: ' . $id->get_error_message()); } return 0; }
         return (int)$id;
     }
     private function create_pages() {
@@ -71,25 +86,62 @@ class Alify_Static_Import_Command extends WP_CLI_Command {
             elseif ($id) { $this->migrate_seo($path,$id); $this->content_map[$file . '.html']=get_permalink($id); }
         }
     }
-    private function create_content_items() {
-        $items=array(
-            array('file'=>'service-single','type'=>'alify_service','slug'=>'web-design-development','term'=>'Design'),
-            array('file'=>'industry-single','type'=>'alify_industry','slug'=>'fintech-digital-banking'),
-            array('file'=>'case-study-single','type'=>'alify_case_study','slug'=>'finpulse-ai'),
-            array('file'=>'work-single','type'=>'alify_project','slug'=>'finpulse-ai-platform'),
-            array('file'=>'blog-single','type'=>'post','slug'=>'scalable-design-systems'),
-        );
-        foreach ($items as $item) {
-            $path=$this->source . '/' . $item['file'] . '.html'; if (!file_exists($path)) { continue; }
-            $id=$this->upsert($item['type'],$this->page_title($path),$item['slug']);
-            if (!$id) { continue; }
-            $this->migrate_seo($path,$id);
-            if (!empty($item['term'])) {
-                $term=term_exists($item['term'],'alify_service_category');
-                if (!$term) { $term=wp_insert_term($item['term'],'alify_service_category',array('slug'=>'design')); }
-                if (!is_wp_error($term)) { wp_set_object_terms($id,array((int)(is_array($term)?$term['term_id']:$term)),'alify_service_category'); }
+    private $cpt_ids=array();
+
+    /** Read the source site's plain static catalogs so every query-driven detail gets a real WP record. */
+    private function extract_catalog($file,$constant,$indent) {
+        $path=ALIFY_DIR . '/assets/js/reusable-component-js/' . $file;
+        if (!is_readable($path)) { return array(); }
+        $lines=file($path,FILE_IGNORE_NEW_LINES);
+        $start=false; $records=array(); $current=null;
+        foreach ($lines as $line) {
+            if (!$start) { if (strpos($line,'const ' . $constant . ' = {')!==false) { $start=true; } continue; }
+            if (preg_match('/^\s{0,4}\};\s*$/',$line)) { break; }
+            $key_pattern='/^\s{' . (int)$indent . '}(?:"([^"]+)"|([a-z][a-z0-9-]*)):\s*\{/';
+            if (preg_match($key_pattern,$line,$match)) {
+                if ($current) { $records[]=$current; }
+                $current=array('slug'=>!empty($match[1])?$match[1]:$match[2],'title'=>'','summary'=>'');
+                continue;
             }
-            $this->content_map[$item['file'] . '.html']=get_permalink($id);
+            if (!$current) { continue; }
+            if (preg_match('/^\s+title:\s*"([^"\\]*(?:\\.[^"\\]*)*)"/',$line,$match) && $current['title']==='') { $current['title']=stripcslashes($match[1]); }
+            if (preg_match('/^\s+(?:desc|summary|lead):\s*"([^"\\]*(?:\\.[^"\\]*)*)"/',$line,$match) && $current['summary']==='') { $current['summary']=stripcslashes($match[1]); }
+        }
+        if ($current) { $records[]=$current; }
+        foreach ($records as &$record) { if (!$record['title']) { $record['title']=ucwords(str_replace(array('-','_'),' ',$record['slug'])); } }
+        unset($record);
+        return $records;
+    }
+
+    private function create_content_items() {
+        $catalogs=array(
+            array('file'=>'service-single','type'=>'alify_service','source'=>'single-pages.js','constant'=>'SERVICES','indent'=>6,'query'=>'service'),
+            array('file'=>'industry-single','type'=>'alify_industry','source'=>'single-pages.js','constant'=>'INDUSTRIES','indent'=>6,'query'=>'industry'),
+            array('file'=>'work-single','type'=>'alify_project','source'=>'single-pages.js','constant'=>'PROJECTS','indent'=>4,'query'=>'project'),
+            array('file'=>'case-study-single','type'=>'alify_case_study','source'=>'single-pages.js','constant'=>'CASES','indent'=>6,'query'=>'case'),
+            array('file'=>'blog-single','type'=>'post','source'=>'blog.js','constant'=>'ALIFY_BLOG_POSTS','indent'=>2,'query'=>'post'),
+        );
+        foreach ($catalogs as $catalog) {
+            $template=$this->source . '/' . $catalog['file'] . '.html';
+            if (!file_exists($template)) { continue; }
+            foreach ($this->extract_catalog($catalog['source'],$catalog['constant'],$catalog['indent']) as $record) {
+                $id=$this->upsert($catalog['type'],$record['title'],$record['slug']);
+                if (!$id) { continue; }
+                $this->cpt_ids[$catalog['file']][]=$id;
+                if ($catalog['type']==='alify_service') {
+                    $service_term=term_exists('Services','alify_service_category');
+                    if (!$service_term) { $service_term=wp_insert_term('Services','alify_service_category',array('slug'=>'services')); }
+                    if (!is_wp_error($service_term)) { wp_set_object_terms($id,array((int)(is_array($service_term)?$service_term['term_id']:$service_term)),'alify_service_category'); }
+                }
+                if (function_exists('update_field')) {
+                    update_field('summary',$record['summary'],$id);
+                    update_field('seo_title',$record['title'] . ' | ALIFY',$id);
+                    if ($record['summary']) { update_field('seo_description',wp_trim_words($record['summary'],28,''),$id); }
+                }
+                $permalink=get_permalink($id);
+                $this->content_map[$catalog['file'] . '.html?' . $catalog['query'] . '=' . $record['slug']]=$permalink;
+                $this->content_map[$catalog['file'] . '.html']=$permalink;
+            }
         }
     }
     private function section_nodes($main) {
@@ -114,9 +166,11 @@ class Alify_Static_Import_Command extends WP_CLI_Command {
         $parts=parse_url($url); $path=$parts['path'] ?? '';
         if (strtolower(pathinfo($path,PATHINFO_EXTENSION))!=='html') { return $url; }
         $key=ltrim(preg_replace('~^(?:\\./|\\.\\./)+~','',$path),'/');
-        if (isset($this->content_map[$key])) { $mapped=$this->content_map[$key]; }
+        $query_key=$key . (!empty($parts['query']) ? '?' . $parts['query'] : '');
+        if (isset($this->content_map[$query_key])) { $mapped=$this->content_map[$query_key]; }
+        elseif (isset($this->content_map[$key])) { $mapped=$this->content_map[$key]; }
         else { $slug=basename($key,'.html'); $mapped=home_url('/' . ($slug==='index'?'':$slug . '/')); }
-        if (!empty($parts['query'])) { $mapped=add_query_arg(wp_parse_args($parts['query']),$mapped); }
+        if (!empty($parts['query']) && !isset($this->content_map[$query_key])) { $mapped=add_query_arg(wp_parse_args($parts['query']),$mapped); }
         if (!empty($parts['fragment'])) { $mapped.='#' . $parts['fragment']; }
         return $mapped;
     }
@@ -219,14 +273,14 @@ class Alify_Static_Import_Command extends WP_CLI_Command {
                 if ($file==='404') { $this->migrate_seo($path,0,'not-found'); }
                 $page=get_page_by_path($slug,OBJECT,'page'); if ($page) { $this->content_map[$file . '.html']=get_permalink($page); }
             } else {
-                $target=$this->target_for_file($file);
-                if ($target) { update_field('page_sections',$rows,$target); }
+                $targets=!empty($this->cpt_ids[$file]) ? $this->cpt_ids[$file] : array($this->target_for_file($file));
+                foreach ($targets as $target) { if ($target) { update_field('page_sections',$rows,$target); } }
             }
-            WP_CLI::log(sprintf('Imported %d sections from %s.html',$rows ? count($rows) : 0,$file));
+            if (defined('WP_CLI') && WP_CLI) { WP_CLI::log(sprintf('Imported %d sections from %s.html',$rows ? count($rows) : 0,$file)); }
         }
     }
     private function target_for_file($file) {
-        $map=array('index'=>'home','service-single'=>'web-design-development','industry-single'=>'fintech-digital-banking','case-study-single'=>'finpulse-ai','work-single'=>'finpulse-ai-platform','blog-single'=>'scalable-design-systems');
+        $map=array('index'=>'home','service-single'=>'web-development','industry-single'=>'fintech-digital-banking','case-study-single'=>'finpulse-ai','work-single'=>'finpulse-ai-platform','blog-single'=>'scalable-design-systems');
         if (isset($map[$file])) {
             $type=array('service-single'=>'alify_service','industry-single'=>'alify_industry','case-study-single'=>'alify_case_study','work-single'=>'alify_project','blog-single'=>'post');
             $post=get_page_by_path($map[$file],OBJECT,$type[$file]); return $post ? (int)$post->ID : 0;
@@ -277,4 +331,21 @@ class Alify_Static_Import_Command extends WP_CLI_Command {
         $this->set_site_menus();
     }
 }
-WP_CLI::add_command('alify import-static','Alify_Static_Import_Command');
+
+if (defined('WP_CLI') && WP_CLI) {
+    WP_CLI::add_command('alify import-static','Alify_Static_Import_Command');
+}
+
+/** Import bundled source pages on first activation only; failed prerequisites remain retryable. */
+function alify_import_bundled_source_on_activation() {
+    if (get_option('alify_static_import_completed')) { return; }
+    $source=ALIFY_DIR . '/import-source';
+    if (!is_readable($source . '/index.html')) { return; }
+    $importer=new Alify_Static_Import_Command();
+    if ($importer->run_import($source)) {
+        update_option('alify_static_import_completed',time(),false);
+        return;
+    }
+    error_log('ALIFY automatic import skipped: ' . $importer->last_error);
+}
+add_action('after_switch_theme','alify_import_bundled_source_on_activation');
