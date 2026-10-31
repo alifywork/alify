@@ -8,7 +8,10 @@ if (!defined('ABSPATH') || !defined('WP_CLI') || !WP_CLI) { exit(1); }
 $errors=array();
 $expected_pages=array('home','about','services','industries','case-studies','work','blog','testimonials','faq','pricing','contact','book-call','start-project','privacy-policy','terms-of-service','thank-you');
 foreach ($expected_pages as $slug) {
-    if (!get_page_by_path($slug,OBJECT,'page')) { $errors[]='Missing page: ' . $slug; }
+    $page=get_page_by_path($slug,OBJECT,'page');
+    if (!$page) { $errors[]='Missing page: ' . $slug; continue; }
+    $expected_template='templates/pages/' . $slug . '.php';
+    if (get_page_template_slug($page->ID)!==$expected_template) { $errors[]='Wrong page template for ' . $slug . ': expected ' . $expected_template; }
 }
 $expected_types=array('alify_service'=>8,'alify_industry'=>9,'alify_project'=>6,'alify_case_study'=>6,'post'=>6,'alify_testimonial'=>12,'alify_faq'=>20);
 foreach ($expected_types as $type=>$expected) {

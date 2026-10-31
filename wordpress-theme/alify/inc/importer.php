@@ -41,7 +41,12 @@ class Alify_Static_Import_Command extends Alify_Static_Import_Base {
         $this->set_site_pages();
         $required_pages=array('home','about','services','industries','case-studies','work','blog','testimonials','faq','pricing','contact','book-call','start-project','privacy-policy','terms-of-service','thank-you');
         $missing=array();
-        foreach ($required_pages as $slug) { if (!get_page_by_path($slug,OBJECT,'page')) { $missing[]=$slug; } }
+        foreach ($required_pages as $slug) {
+            $page=get_page_by_path($slug,OBJECT,'page');
+            if (!$page) { $missing[]=$slug; continue; }
+            $expected_template='templates/pages/' . $slug . '.php';
+            if (get_page_template_slug($page->ID)!==$expected_template) { $missing[]=$slug . ' (template)'; }
+        }
         if ($missing) { $this->last_error='Some pages could not be created: ' . implode(', ',$missing); return false; }
         if (count($this->catalog_items)+$this->extra_items_imported!==67) { $this->last_error='The full catalog import did not complete (expected 67 single records).'; return false; }
         return true;
@@ -82,11 +87,16 @@ class Alify_Static_Import_Command extends Alify_Static_Import_Base {
         if (is_wp_error($id)) { if (defined('WP_CLI') && WP_CLI) { WP_CLI::warning($id->get_error_message()); } else { error_log('ALIFY import: ' . $id->get_error_message()); } return 0; }
         return (int)$id;
     }
+    private function assign_page_template($post_id,$slug) {
+        $template='templates/pages/' . sanitize_key($slug) . '.php';
+        if ($post_id && file_exists(ALIFY_DIR . '/' . $template)) { update_post_meta($post_id,'_wp_page_template',$template); }
+    }
     private function create_pages() {
         $files=array('index'=>'home','about'=>'about','services'=>'services','industries'=>'industries','case-studies'=>'case-studies','work'=>'work','blog'=>'blog','testimonials'=>'testimonials','faq'=>'faq','pricing'=>'pricing','contact'=>'contact','book-call'=>'book-call','start-project'=>'start-project','privacy-policy'=>'privacy-policy','terms-of-service'=>'terms-of-service','thank-you'=>'thank-you');
         foreach ($files as $file=>$slug) {
             $path=$this->source . '/' . $file . '.html'; if (!file_exists($path)) { continue; }
             $id=$this->upsert('page',$this->page_title($path),$slug);
+            if ($id) { $this->assign_page_template($id,$slug); }
             if ($id && in_array($slug,$this->archive_map,true)) { $this->migrate_seo($path,0,$slug); $this->content_map[$file . '.html']=home_url('/' . ($slug==='home'?'':$slug . '/') ); }
             elseif ($id) { $this->migrate_seo($path,$id); $this->content_map[$file . '.html']=get_permalink($id); }
         }

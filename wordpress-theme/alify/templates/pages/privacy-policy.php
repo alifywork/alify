@@ -1,0 +1,11 @@
+<?php
+/**
+ * Template Name: ALIFY — Privacy Policy
+ * Template Post Type: page
+ */
+if (!defined('ABSPATH')) { exit; }
+get_header();
+if (have_posts()) : while (have_posts()) : the_post();
+    get_template_part('template-parts/pages/content');
+endwhile; endif;
+get_footer();
