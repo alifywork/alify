@@ -88,6 +88,77 @@ class Alify_Static_Import_Command extends Alify_Static_Import_Base {
     }
     private $cpt_ids=array();
 
+    private function element_has_class($node,$class) {
+        if (!($node instanceof DOMElement)) { return false; }
+        $classes=preg_split('/\\s+/',trim($node->getAttribute('class')));
+        return in_array($class,$classes,true);
+    }
+    private function descendants_with_class($root,$class) {
+        $matches=array(); if (!($root instanceof DOMElement)) { return $matches; }
+        foreach ($root->getElementsByTagName('*') as $node) { if ($this->element_has_class($node,$class)) { $matches[]=$node; } }
+        return $matches;
+    }
+    private function text_in_class($root,$class) {
+        $nodes=$this->descendants_with_class($root,$class);
+        return $nodes ? trim(preg_replace('/\\s+/u',' ',$nodes[0]->textContent)) : '';
+    }
+    private function service_categories_from_source() {
+        $path=$this->source . '/services.html'; $dom=$this->read_document($path); if (!$dom) { return array(); }
+        $map=array();
+        foreach ($this->descendants_with_class($dom->getElementsByTagName('body')->item(0),'service-grid-col') as $card) {
+            $category=sanitize_title($card->getAttribute('data-category')); if (!$category) { continue; }
+            foreach ($card->getElementsByTagName('a') as $link) {
+                $url=$link->getAttribute('href'); $parts=parse_url($url); $path_part=$parts['path'] ?? '';
+                if (basename($path_part)!=='service-single.html') { continue; }
+                $query=wp_parse_args($parts['query'] ?? ''); if (!empty($query['service'])) { $map[sanitize_title($query['service'])]=$category; break; }
+            }
+        }
+        return $map;
+    }
+    private function import_testimonial_faq_items() {
+        $testimonial_path=$this->source . '/testimonials.html'; $dom=$this->read_document($testimonial_path);
+        if ($dom) {
+            foreach ($this->descendants_with_class($dom->getElementsByTagName('body')->item(0),'testimonial-grid-col') as $card) {
+                $client=$this->text_in_class($card,'testimonial-author-name'); $role=$this->text_in_class($card,'testimonial-author-role');
+                $quote=$this->text_in_class($card,'testimonial-quote'); $slug=sanitize_title($client ?: $quote);
+                if (!$slug || !$quote) { continue; }
+                $id=$this->upsert('alify_testimonial',$client ?: $slug,$slug); if (!$id) { continue; }
+                $summary=wp_trim_words($quote,28,''); wp_update_post(array('ID'=>$id,'post_excerpt'=>$summary));
+                update_field('client_name',$client,$id); update_field('client_role',$role,$id); update_field('quote',$quote,$id); update_field('summary',$summary,$id);
+                update_field('rating',$this->text_in_class($card,'testimonial-rating-score'),$id);
+                update_field('key_result',$this->text_in_class($card,'testimonial-outcome-pill'),$id);
+                update_field('service_label',$this->text_in_class($card,'testimonial-service-tag'),$id);
+                update_field('testimonial_category',sanitize_title($card->getAttribute('data-category')),$id);
+                $avatar=$this->text_in_class($card,'testimonial-avatar');
+                preg_match('/[A-Z]{1,3}/',$avatar,$initials); update_field('avatar_initials',$initials[0] ?? '',$id);
+                update_field('verified',(bool)$this->descendants_with_class($card,'testimonial-verified-badge'),$id);
+                update_field('seo_title',($client ?: 'Client') . ' Testimonial | ALIFY',$id);
+                if ($summary) { update_field('seo_description',wp_trim_words($summary,28,''),$id); }
+                update_field('seo_schema_type','Article',$id);
+            }
+        }
+        $faq_path=$this->source . '/faq.html'; $dom=$this->read_document($faq_path);
+        if ($dom) {
+            foreach ($this->descendants_with_class($dom->getElementsByTagName('body')->item(0),'faq-item') as $item) {
+                $question=$this->text_in_class($item,'faq-question-text'); $answer_nodes=$this->descendants_with_class($item,'faq-answer-body');
+                $answer=$answer_nodes ? $this->node_inner_html($answer_nodes[0],$dom) : '';
+                if (!$question || !$answer) { continue; }
+                $slug=sanitize_title($question); $id=$this->upsert('alify_faq',$question,$slug); if (!$id) { continue; }
+                $category=''; $ancestor=$item->parentNode;
+                while ($ancestor && $ancestor instanceof DOMElement) {
+                    if ($this->element_has_class($ancestor,'faq-hub-group')) { $category=$this->text_in_class($ancestor,'faq-hub-group-title'); break; }
+                    $ancestor=$ancestor->parentNode;
+                }
+                update_field('answer',$answer,$id); update_field('faq_category',$category,$id);
+                update_field('faq_number',$this->text_in_class($item,'faq-num'),$id);
+                $faq_summary=wp_trim_words(wp_strip_all_tags($answer),30,'');
+                wp_update_post(array('ID'=>$id,'post_excerpt'=>$faq_summary));
+                update_field('seo_title',$question . ' | ALIFY FAQ',$id);
+                update_field('seo_description',wp_trim_words(wp_strip_all_tags($answer),28,''),$id);
+                update_field('seo_schema_type','FAQPage',$id);
+            }
+        }
+    }
     private function catalog_source_data() {
         $path=$this->source . '/catalog-content.json';
         if (!is_readable($path)) { $path=ALIFY_DIR . '/import-source/catalog-content.json'; }
@@ -151,6 +222,7 @@ class Alify_Static_Import_Command extends Alify_Static_Import_Base {
             array('family'=>'posts','file'=>'blog-single','type'=>'post','query'=>'post'),
         );
         $data=$this->catalog_source_data(); $this->catalog_items=array();
+        $service_categories=$this->service_categories_from_source();
         foreach ($catalogs as $catalog) {
             $template=$this->source . '/' . $catalog['file'] . '.html';
             if (!file_exists($template)) { continue; }
@@ -162,9 +234,20 @@ class Alify_Static_Import_Command extends Alify_Static_Import_Base {
                 $this->cpt_ids[$catalog['file']][]=$id;
                 $this->catalog_items[]=array_merge($catalog,array('id'=>$id,'slug'=>$slug,'record'=>$record));
                 if ($catalog['type']==='alify_service') {
-                    $service_term=term_exists('Services','alify_service_category');
-                    if (!$service_term) { $service_term=wp_insert_term('Services','alify_service_category',array('slug'=>'services')); }
-                    if (!is_wp_error($service_term)) { wp_set_object_terms($id,array((int)(is_array($service_term)?$service_term['term_id']:$service_term)),'alify_service_category'); }
+                    $category_slug=$service_categories[$slug] ?? 'services';
+                    $category_labels=array('engineering'=>'Engineering','design'=>'Design','growth'=>'Growth','services'=>'Services');
+                    $category_name=$category_labels[$category_slug] ?? ucwords(str_replace('-',' ',$category_slug));
+                    $service_term=term_exists($category_slug,'alify_service_category');
+                    if (!$service_term) { $service_term=wp_insert_term($category_name,'alify_service_category',array('slug'=>$category_slug)); }
+                    if (!is_wp_error($service_term)) {
+                        $term_id=(int)(is_array($service_term)?$service_term['term_id']:$service_term);
+                        wp_set_object_terms($id,array($term_id),'alify_service_category',false);
+                        $term_object=get_term($term_id,'alify_service_category');
+                        if ($term_object && !is_wp_error($term_object)) {
+                            if (!get_field('seo_title',$term_object)) { update_field('seo_title',$category_name . ' Web Design & Development Services | ALIFY',$term_object); }
+                            if (!get_field('seo_description',$term_object)) { update_field('seo_description','Explore ALIFY ' . strtolower($category_name) . ' services, capabilities, and delivery details.',$term_object); }
+                        }
+                    }
                 }
                 $permalink=get_permalink($id);
                 $this->content_map[$catalog['file'] . '.html?' . $catalog['query'] . '=' . $slug]=$permalink;
@@ -178,7 +261,10 @@ class Alify_Static_Import_Command extends Alify_Static_Import_Base {
             wp_update_post(array('ID'=>$id,'post_excerpt'=>wp_trim_words(wp_strip_all_tags($summary),45,'')));
             update_field('seo_title',($record['title'] ?? get_the_title($id)) . ' | ALIFY',$id);
             if ($summary) { update_field('seo_description',wp_trim_words(wp_strip_all_tags($summary),28,''),$id); }
+            $schema=array('services'=>'Service','industries'=>'WebPage','projects'=>'Article','case_studies'=>'Article','posts'=>'Article');
+            if (isset($schema[$item['family']])) { update_field('seo_schema_type',$schema[$item['family']],$id); }
         }
+        $this->import_testimonial_faq_items();
     }
     private $catalog_items=array();
     private function section_nodes($main) {
