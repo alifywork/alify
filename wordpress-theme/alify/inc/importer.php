@@ -485,7 +485,9 @@ function alify_import_bundled_source_on_activation() {
     return false;
 }
 add_action('after_switch_theme','alify_import_bundled_source_on_activation');
-// after_switch_theme may run before the new theme's init hooks; retry safely on the next admin request.
+// Run at the end of init on the first request using the new theme: CPTs, taxonomies and ACF are ready then.
+add_action('init','alify_import_bundled_source_on_activation',99);
+// Retain an admin retry for hosts where the activation request did not load all prerequisites.
 add_action('admin_init','alify_import_bundled_source_on_activation',20);
 
 function alify_retry_bundled_import_action() {
