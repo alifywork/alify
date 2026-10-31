@@ -88,62 +88,99 @@ class Alify_Static_Import_Command extends Alify_Static_Import_Base {
     }
     private $cpt_ids=array();
 
-    /** Read the source site's plain static catalogs so every query-driven detail gets a real WP record. */
-    private function extract_catalog($file,$constant,$indent) {
-        $path=ALIFY_DIR . '/assets/js/reusable-component-js/' . $file;
+    private function catalog_source_data() {
+        $path=$this->source . '/catalog-content.json';
+        if (!is_readable($path)) { $path=ALIFY_DIR . '/import-source/catalog-content.json'; }
         if (!is_readable($path)) { return array(); }
-        $lines=file($path,FILE_IGNORE_NEW_LINES);
-        $start=false; $records=array(); $current=null;
-        foreach ($lines as $line) {
-            if (!$start) { if (strpos($line,'const ' . $constant . ' = {')!==false) { $start=true; } continue; }
-            if (preg_match('/^\s{0,4}\};\s*$/',$line)) { break; }
-            $key_pattern='/^\s{' . (int)$indent . '}(?:"([^"]+)"|([a-z][a-z0-9-]*)):\s*\{/';
-            if (preg_match($key_pattern,$line,$match)) {
-                if ($current) { $records[]=$current; }
-                $current=array('slug'=>!empty($match[1])?$match[1]:$match[2],'title'=>'','summary'=>'');
-                continue;
-            }
-            if (!$current) { continue; }
-            if (preg_match('/^\s+title:\s*"([^"\\]*(?:\\.[^"\\]*)*)"/',$line,$match) && $current['title']==='') { $current['title']=stripcslashes($match[1]); }
-            if (preg_match('/^\s+(?:desc|summary|lead):\s*"([^"\\]*(?:\\.[^"\\]*)*)"/',$line,$match) && $current['summary']==='') { $current['summary']=stripcslashes($match[1]); }
-        }
-        if ($current) { $records[]=$current; }
-        foreach ($records as &$record) { if (!$record['title']) { $record['title']=ucwords(str_replace(array('-','_'),' ',$record['slug'])); } }
-        unset($record);
-        return $records;
+        $data=json_decode(file_get_contents($path),true);
+        return is_array($data)?$data:array();
     }
-
+    private function related_post_ids($slugs,$type) {
+        $ids=array();
+        foreach ((array)$slugs as $slug) { $post=get_page_by_path(sanitize_title($slug),OBJECT,$type); if ($post) { $ids[]=(int)$post->ID; } }
+        return $ids;
+    }
+    private function catalog_asset_urls($value) {
+        if (is_array($value)) { foreach ($value as $key=>$item) { $value[$key]=$this->catalog_asset_urls($item); } return $value; }
+        if (is_string($value) && strpos($value,'assets/')===0) { return ALIFY_URI . '/' . $value; }
+        return $value;
+    }
+    private function catalog_fields($family,$record) {
+        $fields=$record;
+        unset($fields['slug']);
+        if ($family==='projects') { unset($fields['caseId'],$fields['shortTitle'],$fields['gallery2']); $fields['short_title']=$record['shortTitle'] ?? ''; $fields['gallery_2']=$record['gallery2'] ?? ''; }
+        if ($family==='posts') { unset($fields['readTime']); $fields['read_time']=$record['readTime'] ?? ''; }
+        if ($family==='services') {
+            $fields['tags']=array_map(function($value){return array('tags_tag'=>$value);},$record['tags'] ?? array());
+            $fields['stats']=array_map(function($row){return array('stats_value'=>$row[0] ?? '', 'stats_label'=>$row[1] ?? '');},$record['stats'] ?? array());
+            $fields['deliverables']=array_map(function($row){return array('deliverables_icon'=>$row[0] ?? '', 'deliverables_title'=>$row[1] ?? '', 'deliverables_text'=>$row[2] ?? '');},$record['deliverables'] ?? array());
+            $fields['stack']=array_map(function($value){return array('stack_item'=>$value);},$record['stack'] ?? array());
+            $fields['related']=$this->related_post_ids($record['related'] ?? array(),'alify_project');
+        } elseif ($family==='industries') {
+            $fields['tags']=array_map(function($value){return array('tags_tag'=>$value);},$record['tags'] ?? array());
+            $fields['stats']=array_map(function($row){return array('stats_value'=>$row[0] ?? '', 'stats_label'=>$row[1] ?? '');},$record['stats'] ?? array());
+            $fields['challenges']=array_map(function($row){return array('challenges_issue'=>$row[0] ?? '', 'challenges_impact'=>$row[1] ?? '', 'challenges_solution'=>$row[2] ?? '');},$record['challenges'] ?? array());
+            $fields['solutions']=array_map(function($value){return array('solutions_solution'=>$value);},$record['solutions'] ?? array());
+            $fields['related']=$this->related_post_ids($record['related'] ?? array(),'alify_project');
+        } elseif ($family==='projects') {
+            $fields['chips']=array_map(function($value){return array('chips_chip'=>$value);},$record['chips'] ?? array());
+            $fields['outcomes']=array_map(function($row){return array('outcomes_value'=>$row[0] ?? '', 'outcomes_label'=>$row[1] ?? '');},$record['outcomes'] ?? array());
+            $fields['gallery']=array_map(function($row){return array('gallery_src'=>$row['src'] ?? '', 'gallery_tag'=>$row['tag'] ?? '', 'gallery_title'=>$row['title'] ?? '', 'gallery_caption'=>$row['caption'] ?? '');},$record['gallery'] ?? array());
+            $case=get_page_by_path(sanitize_title($record['caseId'] ?? ''),OBJECT,'alify_case_study');
+            $fields['case_id']=$case?(int)$case->ID:0;
+        } elseif ($family==='case_studies') {
+            $fields['kpis']=array_map(function($row){return array('kpis_value'=>$row[0] ?? '', 'kpis_label'=>$row[1] ?? '');},$record['kpis'] ?? array());
+            $fields['benchmarks']=array_map(function($row){return array('benchmarks_label'=>$row[0] ?? '', 'benchmarks_before'=>$row[1] ?? '', 'benchmarks_after'=>$row[2] ?? '');},$record['benchmarks'] ?? array());
+            $fields['related']=$this->related_post_ids($record['related'] ?? array(),'alify_project');
+        } elseif ($family==='posts') {
+            $fields['tags']=array_map(function($value){return array('tags_tag'=>$value);},$record['tags'] ?? array());
+            $fields['sections']=array_map(function($section){
+                return array('section_id'=>$section['id'] ?? '', 'section_heading'=>$section['heading'] ?? '',
+                    'section_paragraphs'=>array_map(function($paragraph){return array('paragraph_text'=>$paragraph);},$section['paragraphs'] ?? array()),
+                    'section_bullets'=>array_map(function($bullet){return array('bullet_text'=>$bullet);},$section['bullets'] ?? array()));
+            },$record['sections'] ?? array());
+        }
+        return $this->catalog_asset_urls($fields);
+    }
     private function create_content_items() {
         $catalogs=array(
-            array('file'=>'service-single','type'=>'alify_service','source'=>'single-pages.js','constant'=>'SERVICES','indent'=>6,'query'=>'service'),
-            array('file'=>'industry-single','type'=>'alify_industry','source'=>'single-pages.js','constant'=>'INDUSTRIES','indent'=>6,'query'=>'industry'),
-            array('file'=>'work-single','type'=>'alify_project','source'=>'single-pages.js','constant'=>'PROJECTS','indent'=>4,'query'=>'project'),
-            array('file'=>'case-study-single','type'=>'alify_case_study','source'=>'single-pages.js','constant'=>'CASES','indent'=>6,'query'=>'case'),
-            array('file'=>'blog-single','type'=>'post','source'=>'blog.js','constant'=>'ALIFY_BLOG_POSTS','indent'=>2,'query'=>'post'),
+            array('family'=>'services','file'=>'service-single','type'=>'alify_service','query'=>'service'),
+            array('family'=>'industries','file'=>'industry-single','type'=>'alify_industry','query'=>'industry'),
+            array('family'=>'projects','file'=>'work-single','type'=>'alify_project','query'=>'project'),
+            array('family'=>'case_studies','file'=>'case-study-single','type'=>'alify_case_study','query'=>'case'),
+            array('family'=>'posts','file'=>'blog-single','type'=>'post','query'=>'post'),
         );
+        $data=$this->catalog_source_data(); $this->catalog_items=array();
         foreach ($catalogs as $catalog) {
             $template=$this->source . '/' . $catalog['file'] . '.html';
             if (!file_exists($template)) { continue; }
-            foreach ($this->extract_catalog($catalog['source'],$catalog['constant'],$catalog['indent']) as $record) {
-                $id=$this->upsert($catalog['type'],$record['title'],$record['slug']);
+            foreach (($data[$catalog['family']] ?? array()) as $slug=>$record) {
+                $record['slug']=$slug;
+                $title=$record['title'] ?? ucwords(str_replace('-',' ',$slug));
+                $id=$this->upsert($catalog['type'],$title,$slug);
                 if (!$id) { continue; }
                 $this->cpt_ids[$catalog['file']][]=$id;
+                $this->catalog_items[]=array_merge($catalog,array('id'=>$id,'slug'=>$slug,'record'=>$record));
                 if ($catalog['type']==='alify_service') {
                     $service_term=term_exists('Services','alify_service_category');
                     if (!$service_term) { $service_term=wp_insert_term('Services','alify_service_category',array('slug'=>'services')); }
                     if (!is_wp_error($service_term)) { wp_set_object_terms($id,array((int)(is_array($service_term)?$service_term['term_id']:$service_term)),'alify_service_category'); }
                 }
-                if (function_exists('update_field')) {
-                    update_field('summary',$record['summary'],$id);
-                    update_field('seo_title',$record['title'] . ' | ALIFY',$id);
-                    if ($record['summary']) { update_field('seo_description',wp_trim_words($record['summary'],28,''),$id); }
-                }
                 $permalink=get_permalink($id);
-                $this->content_map[$catalog['file'] . '.html?' . $catalog['query'] . '=' . $record['slug']]=$permalink;
+                $this->content_map[$catalog['file'] . '.html?' . $catalog['query'] . '=' . $slug]=$permalink;
                 $this->content_map[$catalog['file'] . '.html']=$permalink;
             }
         }
+        foreach ($this->catalog_items as $item) {
+            $record=$item['record']; $id=$item['id'];
+            foreach ($this->catalog_fields($item['family'],$record) as $name=>$value) { update_field($name,$value,$id); }
+            $summary=$record['desc'] ?? ($record['summary'] ?? ($record['lead'] ?? ''));
+            wp_update_post(array('ID'=>$id,'post_excerpt'=>wp_trim_words(wp_strip_all_tags($summary),45,'')));
+            update_field('seo_title',($record['title'] ?? get_the_title($id)) . ' | ALIFY',$id);
+            if ($summary) { update_field('seo_description',wp_trim_words(wp_strip_all_tags($summary),28,''),$id); }
+        }
     }
+    private $catalog_items=array();
     private function section_nodes($main) {
         $sections=array();
         foreach ($main->getElementsByTagName('section') as $section) {

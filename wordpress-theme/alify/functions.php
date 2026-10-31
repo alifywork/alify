@@ -9,6 +9,7 @@ define('ALIFY_URI', get_template_directory_uri());
 require_once ALIFY_DIR . '/inc/theme-setup.php';
 require_once ALIFY_DIR . '/inc/post-types.php';
 require_once ALIFY_DIR . '/inc/acf-fields.php';
+require_once ALIFY_DIR . '/inc/catalog-content.php';
 require_once ALIFY_DIR . '/inc/seo.php';
 require_once ALIFY_DIR . '/inc/forms.php';
 require_once ALIFY_DIR . '/inc/template-functions.php';

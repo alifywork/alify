@@ -569,7 +569,7 @@ function initSingleBlogPage() {
   const slug = params.get("post") || ((window.AlifyCurrentItem || {}).type === "post" ? window.AlifyCurrentItem.slug : "");
 
   if (slug && ALIFY_BLOG_POSTS[slug]) {
-    const post = ALIFY_BLOG_POSTS[slug];
+    const post = { ...(ALIFY_BLOG_POSTS[slug]), ...(window.AlifyCurrentItemData || {}) };
     document.title = `${post.title} — ALIFY`;
 
     const bcCurrent = document.getElementById("blogSingleBreadcrumbCurrent");
@@ -786,7 +786,7 @@ function initSingleBlogPage() {
 
     relatedGrid.innerHTML = chosenSlugs
       .map((relSlug) => {
-        const rp = ALIFY_BLOG_POSTS[relSlug];
+        const rp = { ...(ALIFY_BLOG_POSTS[relSlug] || {}), ...((window.AlifyBlogCatalog || {})[relSlug] || {}) };
         const excerpt =
           rp.lead.length > 142 ? `${rp.lead.slice(0, 139).trim()}...` : rp.lead;
         return `

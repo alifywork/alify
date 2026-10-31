@@ -83,19 +83,29 @@ function alify_enqueue_assets() {
     foreach ($scripts as $i => $file) {
         wp_enqueue_script('alify-script-' . $i, $base . 'js/' . $file, array('alify-bootstrap', 'alify-gsap', 'alify-scrolltrigger'), ALIFY_VERSION, true);
     }
-    $project_urls=array();
-    foreach (get_posts(array('post_type'=>'alify_project','numberposts'=>-1,'post_status'=>'publish')) as $project) { $project_urls[$project->post_name]=get_permalink($project); }
+    $project_urls=array(); $project_catalog=array();
+    foreach (get_posts(array('post_type'=>'alify_project','numberposts'=>-1,'post_status'=>'publish')) as $project) {
+        $project_urls[$project->post_name]=get_permalink($project);
+        if (function_exists('alify_catalog_frontend_data')) { $project_catalog[$project->post_name]=alify_catalog_frontend_data($project->ID); }
+    }
     wp_localize_script('alify-script-0','AlifyProjectUrls',$project_urls);
+    wp_localize_script('alify-script-0','AlifyProjectCatalog',$project_catalog);
     $case_urls=array();
     foreach (get_posts(array('post_type'=>'alify_case_study','numberposts'=>-1,'post_status'=>'publish')) as $case) { $case_urls[$case->post_name]=get_permalink($case); }
     wp_localize_script('alify-script-0','AlifyCaseStudyUrls',$case_urls);
-    $blog_urls=array();
-    foreach (get_posts(array('post_type'=>'post','numberposts'=>-1,'post_status'=>'publish')) as $post) { $blog_urls[$post->post_name]=get_permalink($post); }
+    $blog_urls=array(); $blog_catalog=array();
+    foreach (get_posts(array('post_type'=>'post','numberposts'=>-1,'post_status'=>'publish')) as $post) {
+        $blog_urls[$post->post_name]=get_permalink($post);
+        if (function_exists('alify_catalog_frontend_data')) { $blog_catalog[$post->post_name]=alify_catalog_frontend_data($post->ID); }
+    }
     wp_localize_script('alify-script-0','AlifyBlogUrls',$blog_urls);
+    wp_localize_script('alify-script-0','AlifyBlogCatalog',$blog_catalog);
     $detail_type=get_post_type();
     if (is_singular(array('alify_service','alify_industry','alify_project','alify_case_study','post'))) {
         $type_map=array('alify_service'=>'service','alify_industry'=>'industry','alify_project'=>'project','alify_case_study'=>'case','post'=>'post');
-        wp_localize_script('alify-script-0','AlifyCurrentItem',array('type'=>$type_map[$detail_type] ?? '', 'slug'=>get_post_field('post_name',get_queried_object_id())));
+        $current_id=get_queried_object_id();
+        wp_localize_script('alify-script-0','AlifyCurrentItem',array('type'=>$type_map[$detail_type] ?? '', 'slug'=>get_post_field('post_name',$current_id)));
+        wp_localize_script('alify-script-0','AlifyCurrentItemData',function_exists('alify_catalog_frontend_data') ? alify_catalog_frontend_data($current_id) : array());
         wp_enqueue_script('alify-single-detail',$base . 'js/reusable-component-js/single-pages.js',array('alify-bootstrap','alify-gsap','alify-scrolltrigger'),ALIFY_VERSION,true);
     }
 }

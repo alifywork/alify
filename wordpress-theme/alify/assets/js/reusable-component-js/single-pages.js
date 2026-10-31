@@ -405,7 +405,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const caseStudyPermalink = (slug) => (window.AlifyCaseStudyUrls || {})[slug] || `case-study-single.html?case=${encodeURIComponent(slug)}`;
 
   const renderRelatedProjectCard = (slug) => {
-    const p = PROJECTS[slug] || PROJECTS["finpulse-platform"];
+    const p = { ...(PROJECTS[slug] || PROJECTS["finpulse-platform"]), ...((window.AlifyProjectCatalog || {})[slug] || {}) };
     const chips = p.chips
       .map((c) => `<span class="project-chip">${c}</span>`)
       .join("");
@@ -631,7 +631,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const slug = params.get("service") || ((window.AlifyCurrentItem || {}).type === "service" ? window.AlifyCurrentItem.slug : "") || "web-development";
-    const srv = SERVICES[slug] || SERVICES["web-development"];
+    const srv = { ...(SERVICES[slug] || SERVICES["web-development"]), ...(window.AlifyCurrentItemData || {}) };
 
     document.title = `${srv.title} — Services | ALIFY`;
     const setTxt = (id, val) => {
@@ -954,7 +954,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const slug = params.get("industry") || ((window.AlifyCurrentItem || {}).type === "industry" ? window.AlifyCurrentItem.slug : "") || "fintech";
-    const ind = INDUSTRIES[slug] || INDUSTRIES.fintech;
+    const ind = { ...(INDUSTRIES[slug] || INDUSTRIES.fintech), ...(window.AlifyCurrentItemData || {}) };
 
     document.title = `${ind.title} — Industries | ALIFY`;
     const setTxt = (id, val) => {
@@ -1053,7 +1053,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const workRoot = document.getElementById("workSingleRoot");
   if (workRoot) {
     const slug = params.get("project") || ((window.AlifyCurrentItem || {}).type === "project" ? window.AlifyCurrentItem.slug : "") || "finpulse-platform";
-    const proj = PROJECTS[slug] || PROJECTS["finpulse-platform"];
+    const proj = { ...(PROJECTS[slug] || PROJECTS["finpulse-platform"]), ...(window.AlifyCurrentItemData || {}) };
 
     document.title = `${proj.shortTitle} — Work | ALIFY`;
     const setTxt = (id, val) => {
@@ -1533,7 +1533,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const caseId = params.get("case") || ((window.AlifyCurrentItem || {}).type === "case" ? window.AlifyCurrentItem.slug : "") || "cs-finpulse";
-    const cs = CASES[caseId] || CASES["cs-finpulse"];
+    const cs = { ...(CASES[caseId] || CASES["cs-finpulse"]), ...(window.AlifyCurrentItemData || {}) };
 
     document.title = `${cs.client} Case Study — ALIFY`;
     const setTxt = (id, val) => {
