@@ -39,6 +39,11 @@ class Alify_Static_Import_Command extends Alify_Static_Import_Base {
         $this->create_content_items();
         $this->migrate_sections();
         $this->set_site_pages();
+        $required_pages=array('home','about','services','industries','case-studies','work','blog','testimonials','faq','pricing','contact','book-call','start-project','privacy-policy','terms-of-service','thank-you');
+        $missing=array();
+        foreach ($required_pages as $slug) { if (!get_page_by_path($slug,OBJECT,'page')) { $missing[]=$slug; } }
+        if ($missing) { $this->last_error='Some pages could not be created: ' . implode(', ',$missing); return false; }
+        if (count($this->catalog_items)+$this->extra_items_imported!==67) { $this->last_error='The full catalog import did not complete (expected 67 single records).'; return false; }
         return true;
     }
 
@@ -123,6 +128,7 @@ class Alify_Static_Import_Command extends Alify_Static_Import_Base {
                 $quote=$this->text_in_class($card,'testimonial-quote'); $slug=sanitize_title($client ?: $quote);
                 if (!$slug || !$quote) { continue; }
                 $id=$this->upsert('alify_testimonial',$client ?: $slug,$slug); if (!$id) { continue; }
+                $this->extra_items_imported++;
                 $summary=wp_trim_words($quote,28,''); wp_update_post(array('ID'=>$id,'post_excerpt'=>$summary));
                 update_field('client_name',$client,$id); update_field('client_role',$role,$id); update_field('quote',$quote,$id); update_field('summary',$summary,$id);
                 update_field('rating',$this->text_in_class($card,'testimonial-rating-score'),$id);
@@ -144,6 +150,7 @@ class Alify_Static_Import_Command extends Alify_Static_Import_Base {
                 $answer=$answer_nodes ? $this->node_inner_html($answer_nodes[0],$dom) : '';
                 if (!$question || !$answer) { continue; }
                 $slug=sanitize_title($question); $id=$this->upsert('alify_faq',$question,$slug); if (!$id) { continue; }
+                $this->extra_items_imported++;
                 $category=''; $ancestor=$item->parentNode;
                 while ($ancestor && $ancestor instanceof DOMElement) {
                     if ($this->element_has_class($ancestor,'faq-hub-group')) { $category=$this->text_in_class($ancestor,'faq-hub-group-title'); break; }
@@ -221,7 +228,7 @@ class Alify_Static_Import_Command extends Alify_Static_Import_Base {
             array('family'=>'case_studies','file'=>'case-study-single','type'=>'alify_case_study','query'=>'case'),
             array('family'=>'posts','file'=>'blog-single','type'=>'post','query'=>'post'),
         );
-        $data=$this->catalog_source_data(); $this->catalog_items=array();
+        $data=$this->catalog_source_data(); $this->catalog_items=array(); $this->extra_items_imported=0;
         $service_categories=$this->service_categories_from_source();
         foreach ($catalogs as $catalog) {
             $template=$this->source . '/' . $catalog['file'] . '.html';
@@ -267,6 +274,7 @@ class Alify_Static_Import_Command extends Alify_Static_Import_Base {
         $this->import_testimonial_faq_items();
     }
     private $catalog_items=array();
+    private $extra_items_imported=0;
     private function section_nodes($main) {
         $sections=array();
         foreach ($main->getElementsByTagName('section') as $section) {
@@ -461,14 +469,43 @@ if (defined('WP_CLI') && WP_CLI) {
 
 /** Import bundled source pages on first activation only; failed prerequisites remain retryable. */
 function alify_import_bundled_source_on_activation() {
-    if (get_option('alify_static_import_completed')) { return; }
+    if (get_option('alify_static_import_completed')) { return true; }
+    // Never import until WordPress has registered the CPTs/taxonomies and ACF field groups.
+    if (!did_action('init') || !post_type_exists('alify_service') || !did_action('acf/init')) { return false; }
     $source=ALIFY_DIR . '/import-source';
-    if (!is_readable($source . '/index.html')) { return; }
+    if (!is_readable($source . '/index.html')) { return false; }
     $importer=new Alify_Static_Import_Command();
     if ($importer->run_import($source)) {
         update_option('alify_static_import_completed',time(),false);
-        return;
+        delete_transient('alify_import_last_error');
+        return true;
     }
+    set_transient('alify_import_last_error',$importer->last_error,DAY_IN_SECONDS);
     error_log('ALIFY automatic import skipped: ' . $importer->last_error);
+    return false;
 }
 add_action('after_switch_theme','alify_import_bundled_source_on_activation');
+// after_switch_theme may run before the new theme's init hooks; retry safely on the next admin request.
+add_action('admin_init','alify_import_bundled_source_on_activation',20);
+
+function alify_retry_bundled_import_action() {
+    if (!current_user_can('manage_options')) { wp_die(esc_html__('You are not allowed to run this import.','alify')); }
+    check_admin_referer('alify_retry_static_import');
+    delete_transient('alify_import_last_error');
+    $complete=alify_import_bundled_source_on_activation();
+    $url=add_query_arg('alify_import_status',$complete?'complete':'failed',admin_url('edit.php?post_type=page'));
+    wp_safe_redirect($url); exit;
+}
+add_action('admin_post_alify_retry_static_import','alify_retry_bundled_import_action');
+
+function alify_import_admin_notice() {
+    if (!current_user_can('manage_options')) { return; }
+    $status=isset($_GET['alify_import_status']) ? sanitize_key(wp_unslash($_GET['alify_import_status'])) : '';
+    if ($status==='complete') { echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__('ALIFY static pages and content were imported. Review the Pages and content-type screens.','alify') . '</p></div>'; return; }
+    if (get_option('alify_static_import_completed')) { return; }
+    $error=get_transient('alify_import_last_error');
+    $message=$error ? sprintf(__('ALIFY import is waiting: %s','alify'),$error) : __('ALIFY page import has not completed yet. Confirm ACF Pro and PHP DOM are active, then retry.','alify');
+    $url=wp_nonce_url(admin_url('admin-post.php?action=alify_retry_static_import'),'alify_retry_static_import');
+    echo '<div class="notice notice-warning"><p>' . esc_html($message) . ' <a class="button button-primary" href="' . esc_url($url) . '">' . esc_html__('Retry ALIFY import','alify') . '</a></p></div>';
+}
+add_action('admin_notices','alify_import_admin_notice');

@@ -13,7 +13,7 @@ A self-contained custom WordPress theme converted from the ALIFY static website.
 
 1. Upload the `alify` folder to `wp-content/themes/` (or zip this folder and upload it through **Appearance → Themes → Add New → Upload Theme**).
 2. Install and activate ACF Pro.
-3. Activate **ALIFY Studio** with ACF Pro active. The theme registers its ACF field groups in PHP and automatically imports the bundled 22-page static source once on first activation. The import is guarded against repeat activation; if prerequisites are missing, fix them and rerun the CLI command below.
+3. Activate **ALIFY Studio** with ACF Pro active. The theme imports the bundled source once after WordPress CPTs and ACF field groups are ready, then retries on the next admin request if the activation hook ran too early. If a prerequisite is missing, wp-admin shows an import-status notice and a **Retry ALIFY import** action; the WP-CLI fallback is also available below.
 4. Set **Settings → Permalinks → Post name** (pretty permalinks are required for the short service URLs) and click **Save Changes** once.
 5. Review the imported pages, all source-backed service/industry/work/case-study/blog entries, menus, and the separate **ALIFY Options** screens for theme settings, forms, SEO, archives, and the 404 page.
 
