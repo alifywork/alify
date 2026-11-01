@@ -15,7 +15,31 @@ foreach ($expected_pages as $slug) {
     if (get_page_template_slug($page->ID)!==$expected_template) { $errors[]='Wrong page template for ' . $slug . ': expected ' . $expected_template; }
     if (!in_array($expected_template,$available_templates,true)) { $errors[]='WordPress did not discover page template: ' . $expected_template; }
 }
+$home_page=get_page_by_path('home',OBJECT,'page');
+$blog_page=get_page_by_path('blog',OBJECT,'page');
+if ($home_page && (int)get_option('page_on_front')!== (int)$home_page->ID) { $errors[]='Home page is not configured as the static front page.'; }
+if ($blog_page && (int)get_option('page_for_posts')!== (int)$blog_page->ID) { $errors[]='Blog page is not configured as the posts index.'; }
+if (!is_file(get_template_directory() . '/front-page.php') || !is_file(get_template_directory() . '/home.php')) { $errors[]='WordPress front-page/posts-index hierarchy templates are missing.'; }
 $expected_types=array('alify_service'=>8,'alify_industry'=>9,'alify_project'=>6,'alify_case_study'=>6,'post'=>6,'alify_testimonial'=>12,'alify_faq'=>20);
+// These collection routes belong to named ACF page templates, not competing CPT archive rewrites.
+foreach (array('alify_service','alify_industry','alify_project','alify_case_study','alify_testimonial','alify_faq') as $type) {
+    $object=get_post_type_object($type);
+    if ($object && $object->has_archive) { $errors[]='Disable the duplicate CPT archive for ' . $type . '; its collection is a named ACF page.'; }
+}
+$service_type=get_post_type_object('alify_service');
+if ($service_type && $service_type->rewrite!==false) { $errors[]='Service CPT must disable generic rewrites and use category-based routes only.'; }
+$service_sample=get_posts(array('post_type'=>'alify_service','post_status'=>'publish','numberposts'=>1));
+if ($service_sample) {
+    $service_terms=get_the_terms($service_sample[0]->ID,'alify_service_category');
+    $service_url=get_permalink($service_sample[0]);
+    $service_path=trim((string)parse_url($service_url,PHP_URL_PATH),'/');
+    $service_segments=explode('/',$service_path);
+    $has_category_path=false;
+    if ($service_terms && !is_wp_error($service_terms)) {
+        foreach ($service_terms as $term) { if (in_array($term->slug,$service_segments,true)) { $has_category_path=true; break; } }
+    }
+    if (!$has_category_path || parse_url($service_url,PHP_URL_QUERY) || strpos($service_path,'service-category')!==false) { $errors[]='Service permalinks must contain a service category path and omit the service-category segment.'; }
+}
 foreach ($expected_types as $type=>$expected) {
     $actual=(int)(new WP_Query(array('post_type'=>$type,'post_status'=>'publish','posts_per_page'=>1,'fields'=>'ids')))->found_posts;
     if ($actual<$expected) { $errors[]=sprintf('%s records: need at least %d, found %d',$type,$expected,$actual); }
@@ -45,16 +69,13 @@ if (function_exists('get_field')) {
     if (!get_field('home_sections','option')) { $errors[]='Home page ACF sections are missing.'; }
 } else { $errors[]='ACF Pro is not active.'; }
 if (!get_option('alify_static_import_completed')) { $errors[]='Automatic static import completion flag is missing.'; }
-if (!function_exists('get_field')) { $errors[]='ACF Pro is not active.'; }
-elseif (!get_field('home_sections','option')) { $errors[]='Home page ACF sections are missing.'; }
 $locations=get_theme_mod('nav_menu_locations',array());
 foreach (array('primary','footer','legal') as $location) {
     if (empty($locations[$location])) { $errors[]='Menu location is not assigned: ' . $location; }
 }
 $service_terms=get_terms(array('taxonomy'=>'alify_service_category','hide_empty'=>false,'fields'=>'slugs'));
-if (!is_wp_error($service_terms)) {
-    foreach (array('design','engineering','growth') as $slug) { if (!in_array($slug,$service_terms,true)) { $errors[]='Missing service category: ' . $slug; } }
-}
+if (is_wp_error($service_terms)) { $errors[]='Could not read service categories: ' . $service_terms->get_error_message(); }
+else { foreach (array('design','engineering','growth') as $slug) { if (!in_array($slug,$service_terms,true)) { $errors[]='Missing service category: ' . $slug; } } }
 if (!get_option('permalink_structure')) { $errors[]='Pretty permalinks are not enabled.'; }
 
 WP_CLI::log('ALIFY installation verification');

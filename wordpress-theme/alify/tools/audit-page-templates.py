@@ -19,6 +19,11 @@ def main():
     slugs = set(re.findall(r"=>\s*'([a-z0-9-]+)'", mapping.group(1)))
     if slugs != EXPECTED:
         raise SystemExit(f"Importer page map differs: missing={sorted(EXPECTED-slugs)}, extra={sorted(slugs-EXPECTED)}")
+    post_types = (THEME / "inc" / "post-types.php").read_text(encoding="utf-8")
+    if "'has_archive' => false" not in post_types:
+        raise SystemExit("Collection CPTs must not compete with the named ACF archive pages")
+    if "'rewrite' => false" not in post_types:
+        raise SystemExit("Service CPT generic rewrites must stay disabled for category-based short URLs")
     errors = []
     names = set()
     for slug in sorted(EXPECTED):
@@ -34,7 +39,10 @@ def main():
             errors.append(f"Duplicate template label: {name.group(1).strip()}")
         else:
             names.add(name.group(1).strip())
-        if "template-parts/pages/content" not in source:
+        if slug == "home":
+            if "alify_render_sections('home_sections','option')" not in source:
+                errors.append("Home template does not render the imported ACF homepage sections")
+        elif "template-parts/pages/content" not in source:
             errors.append(f"Template does not use the ACF page renderer: {slug}")
     if errors:
         print("Page template audit failed:\n- " + "\n- ".join(errors))

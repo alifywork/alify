@@ -5,7 +5,7 @@ function alify_register_content_types() {
     register_post_type('alify_service', array(
         'labels' => array('name' => __('Services', 'alify'), 'singular_name' => __('Service', 'alify'), 'add_new_item' => __('Add Service', 'alify')),
         'public' => true, 'has_archive' => false, 'hierarchical' => true,
-        'rewrite' => array('slug' => '', 'with_front' => false, 'hierarchical' => true),
+        'rewrite' => false,
         'menu_icon' => 'dashicons-admin-tools', 'show_in_rest' => false,
         'supports' => array('title', 'thumbnail', 'page-attributes'),
     ));
@@ -35,7 +35,7 @@ function alify_register_content_types() {
     foreach ($types as $type => $config) {
         register_post_type($type, array(
             'labels' => array('name' => __($config[0], 'alify'), 'singular_name' => __($config[1], 'alify'), 'add_new_item' => sprintf(__('Add %s', 'alify'), $config[1])),
-            'public' => true, 'has_archive' => $config[2], 'hierarchical' => false,
+            'public' => true, 'has_archive' => false, 'hierarchical' => false,
             'rewrite' => array('slug' => $config[2], 'with_front' => false),
             'menu_icon' => $config[3], 'show_in_rest' => false,
             'supports' => array('title', 'thumbnail', 'page-attributes'),
