@@ -100,7 +100,9 @@ function alify_handle_form_submission() {
     if ($from_email) { $headers[]='From: ' . sanitize_text_field($from_name) . ' <' . $from_email . '>'; }
     $reply_to=get_field('form_reply_to','option') ?: ($fields['email'] ?? '');
     if ($reply_to && is_email($reply_to)) { $headers[]='Reply-To: ' . sanitize_email($reply_to); }
-    wp_mail($recipient,$subject,$body,$headers);
+    $notification_accepted=wp_mail($recipient,$subject,$body,$headers);
+    update_post_meta($entry_id,'_alify_notification_status',$notification_accepted ? 'accepted' : 'failed');
+    update_post_meta($entry_id,'_alify_notification_attempted',current_time('mysql'));
     $redirect_id = get_field('form_thank_you_page','option');
     $redirect = $redirect_id ? get_permalink($redirect_id) : (wp_get_referer() ?: home_url('/'));
     wp_safe_redirect(add_query_arg('form','success',$redirect));
@@ -109,10 +111,14 @@ function alify_handle_form_submission() {
 add_action('admin_post_nopriv_alify_submit','alify_handle_form_submission');
 add_action('admin_post_alify_submit','alify_handle_form_submission');
 
-function alify_submission_columns($columns) { return array('cb'=>$columns['cb'],'title'=>__('Entry','alify'),'alify_form'=>__('Form','alify'),'date'=>__('Received','alify')); }
+function alify_submission_columns($columns) { return array('cb'=>$columns['cb'],'title'=>__('Entry','alify'),'alify_form'=>__('Form','alify'),'alify_notification'=>__('Notification','alify'),'date'=>__('Received','alify')); }
 add_filter('manage_alify_submission_posts_columns','alify_submission_columns');
 function alify_submission_column_content($column,$post_id) {
     if ($column==='alify_form') { echo esc_html(ucfirst(get_post_meta($post_id,'_alify_form_type',true))); }
+    if ($column==='alify_notification') {
+        $status=get_post_meta($post_id,'_alify_notification_status',true);
+        echo esc_html($status==='accepted' ? __('Accepted by mailer','alify') : ($status==='failed' ? __('Mailer failed','alify') : __('Not attempted','alify')));
+    }
 }
 add_action('manage_alify_submission_posts_custom_column','alify_submission_column_content',10,2);
 function alify_submission_meta_box() { add_meta_box('alify-submission-data',__('Submission Details','alify'),'alify_submission_meta_box_render','alify_submission','normal','high'); }
@@ -123,4 +129,9 @@ function alify_submission_meta_box_render($post) {
     echo '<table class="widefat striped"><tbody>';
     foreach ($data as $key=>$value) { echo '<tr><th>' . esc_html(ucfirst(str_replace('_',' ',$key))) . '</th><td>' . nl2br(esc_html($value)) . '</td></tr>'; }
     echo '</tbody></table><p><strong>' . esc_html__('Form:','alify') . '</strong> ' . esc_html(get_post_meta($post->ID,'_alify_form_type',true)) . '</p>';
+    $mail_status=get_post_meta($post->ID,'_alify_notification_status',true);
+    $mail_label=$mail_status==='accepted' ? __('Accepted by mailer','alify') : ($mail_status==='failed' ? __('Mailer failed','alify') : __('Not attempted','alify'));
+    echo '<p><strong>' . esc_html__('Notification status:','alify') . '</strong> ' . esc_html($mail_label) . '</p>';
+    $attempted=get_post_meta($post->ID,'_alify_notification_attempted',true);
+    if ($attempted) { echo '<p><strong>' . esc_html__('Notification attempt:','alify') . '</strong> ' . esc_html($attempted) . '</p>'; }
 }

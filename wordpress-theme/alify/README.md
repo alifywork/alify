@@ -43,7 +43,7 @@ The source audit files are intentionally left untouched in the repository root. 
 - **Services**: `alify_service` CPT, hierarchical; `alify_service_category` taxonomy.
 - **Industries**: `alify_industry` CPT and hierarchical industry taxonomy.
 - **Case Studies, Work/Projects, Testimonials, FAQs**: separate CPTs with their own archive/single templates.
-- **Forms**: Contact, Project, Booking, and Newsletter have independent PHP templates in `template-parts/forms/`. Entries are stored centrally under **Form Entries** in wp-admin; recipient, subject, and success message can be configured per form in ALIFY Options.
+- **Forms**: Contact, Project, Booking, and Newsletter have independent PHP templates in `template-parts/forms/`. Entries are stored centrally under **Form Entries** in wp-admin; recipient, subject, and success message can be configured per form in ALIFY Options. Each entry records whether `wp_mail()` accepted or failed the notification attempt and its timestamp (acceptance does not guarantee inbox delivery).
 - **Menus**: Primary, Footer, and Legal menu locations; the mobile drawer shares the Primary menu.
 - **Archive content**: archive sections and SEO settings live on their ALIFY Options subpages. The dynamic CPT listing can be enabled per archive; hide the imported legacy cards section first to avoid duplicates.
 - **SEO**: per-page/post/CPT and service-taxonomy title, description, canonical, noindex, social title/description/image, and schema type; global default description/social image and Organization schema. Core WordPress XML sitemaps remain enabled.
