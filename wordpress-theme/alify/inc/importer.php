@@ -58,6 +58,30 @@ class Alify_Static_Import_Command extends Alify_Static_Import_Base {
         return true;
     }
 
+    /** Repair deleted page shells/templates without rerunning the content migration or overwriting edits. */
+    public function repair_missing_pages($source) {
+        $source=realpath($source);
+        if (!$source || !is_dir($source)) { return false; }
+        $this->source=$source;
+        $files=array('index'=>'home','about'=>'about','services'=>'services','industries'=>'industries','case-studies'=>'case-studies','work'=>'work','blog'=>'blog','testimonials'=>'testimonials','faq'=>'faq','pricing'=>'pricing','contact'=>'contact','book-call'=>'book-call','start-project'=>'start-project','privacy-policy'=>'privacy-policy','terms-of-service'=>'terms-of-service','thank-you'=>'thank-you');
+        foreach ($files as $file=>$slug) {
+            $page=get_page_by_path($slug,OBJECT,'page');
+            if (!$page) {
+                $path=$source . '/' . $file . '.html';
+                $title=is_file($path) ? $this->page_title($path) : ucwords(str_replace('-',' ',$slug));
+                $id=$this->upsert('page',$title,$slug);
+                if (!$id) { return false; }
+                $page=get_post($id);
+            }
+            if ($page) { $this->assign_page_template($page->ID,$slug); }
+        }
+        $home=get_page_by_path('home',OBJECT,'page');
+        if ($home && !get_option('page_on_front')) { update_option('show_on_front','page'); update_option('page_on_front',$home->ID); }
+        $blog=get_page_by_path('blog',OBJECT,'page');
+        if ($blog && !get_option('page_for_posts')) { update_option('page_for_posts',$blog->ID); }
+        return true;
+    }
+
     private function read_document($file) {
         if (!class_exists('DOMDocument')) { return null; }
         $html=file_get_contents($file); if ($html===false) { return null; }
@@ -493,7 +517,10 @@ if (defined('WP_CLI') && WP_CLI) {
 
 /** Import bundled source pages on first activation only; failed prerequisites remain retryable. */
 function alify_import_bundled_source_on_activation() {
-    if (get_option('alify_static_import_completed')) { return true; }
+    if (get_option('alify_static_import_completed')) {
+        $repairer=new Alify_Static_Import_Command();
+        return $repairer->repair_missing_pages(ALIFY_DIR . '/import-source');
+    }
     // Wait for WordPress post types; page shells can be created even if ACF/DOM is unavailable.
     if (!did_action('init') || !post_type_exists('alify_service')) { return false; }
     $source=ALIFY_DIR . '/import-source';
