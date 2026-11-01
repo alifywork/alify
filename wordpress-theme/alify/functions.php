@@ -2,7 +2,7 @@
 /** ALIFY Studio theme bootstrap. */
 if (!defined('ABSPATH')) { exit; }
 
-define('ALIFY_VERSION', '1.0.1');
+define('ALIFY_VERSION', '1.0.2');
 define('ALIFY_DIR', get_template_directory());
 define('ALIFY_URI', get_template_directory_uri());
 

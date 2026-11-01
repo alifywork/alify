@@ -7,17 +7,17 @@ A self-contained custom WordPress theme converted from the ALIFY static website.
 - WordPress 6.4+
 - PHP 7.4+
 - ACF Pro (required for the editable sections and options pages)
-- PHP DOM extension and ACF Pro are required for the automatic first-activation content import (the same requirements apply to the optional WP-CLI re-import).
+- ACF Pro is required for editable sections and options; PHP DOM is required for full source-section/content import. The importer seeds the WordPress page records even when either full-import prerequisite is missing, then reports the missing requirement and retries on admin requests.
 
 ## Install
 
 1. Upload the `alify` folder to `wp-content/themes/` (or zip this folder and upload it through **Appearance → Themes → Add New → Upload Theme**).
 2. Install and activate ACF Pro.
-3. Activate **ALIFY Studio** with ACF Pro active. The theme imports the bundled source once after WordPress CPTs and ACF field groups are ready, then retries on the next admin request if the activation hook ran too early. If a prerequisite is missing, wp-admin shows an import-status notice and a **Retry ALIFY import** action; the WP-CLI fallback is also available below.
+3. Activate **ALIFY Studio**. The theme creates the WordPress page records first; once WordPress CPTs, ACF field groups, and PHP DOM are ready, it imports the editable sections and collections. If a full-import prerequisite is missing, it shows an admin notice with the reason and a **Retry ALIFY import** action. ACF Pro is required to edit/render the imported sections; the WP-CLI fallback is also available below.
 4. Set **Settings → Permalinks → Post name** (pretty permalinks are required for the short service URLs) and click **Save Changes** once.
 5. Review the imported pages, all source-backed service/industry/work/case-study/blog entries, menus, and the separate **ALIFY Options** screens for theme settings, forms, SEO, archives, and the 404 page.
 
-Gutenberg is disabled on this site by design. Each of the 16 imported static pages receives its matching named WordPress page template under `templates/pages/` (the home page still uses WordPress’s `front-page.php` hierarchy); the shared page renderer uses that page’s own ACF sections/options. CPT singles and archives have their own template files. Page body content is edited through the ACF Flexible Content field; each section has a hide/unhide toggle. The reusable structured layouts are available for new content. Imported legacy sections preserve the original markup and interactions, while each text node, link destination, image, alt text, placeholder, and accessible label is represented by its own editable ACF row/field. The preserved markup is read-only and serves only as the design skeleton.
+Gutenberg is disabled on this site by design. Each of the 16 imported static pages receives its matching named WordPress page template under `templates/pages/` (the home page still uses WordPress’s `front-page.php` hierarchy); the shared page renderer uses that page’s own ACF sections/options. CPT singles and archives have their own template files. Page body content is edited through the ACF Flexible Content field; each section has a hide/unhide toggle. The reusable structured layouts are available for new content. Imported legacy sections preserve the original markup, safe inline background-image styling, and interactions, while each text node, link destination, image, alt text, placeholder, and accessible label is represented by its own editable ACF row/field. The preserved markup is read-only and serves only as the design skeleton.
 
 ## Import the existing static site once
 

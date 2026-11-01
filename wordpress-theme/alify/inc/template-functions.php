@@ -18,6 +18,14 @@ function alify_link_markup($link, $class = 'btn btn-primary') {
 }
 function alify_section_class($name) { return 'alify-section alify-section-' . sanitize_html_class($name); }
 
+/** Keep the source site's inline background images while filtering CSS through WordPress' safe-style sanitizer. */
+function alify_kses_legacy_markup($markup) {
+    $allowed=wp_kses_allowed_html('post');
+    foreach ($allowed as &$attributes) { if (is_array($attributes)) { $attributes['style']=true; } }
+    unset($attributes);
+    return wp_kses($markup,$allowed);
+}
+
 function alify_render_sections($field_name = 'page_sections', $post_id = false) {
     if (!function_exists('have_rows') || !have_rows($field_name, $post_id)) { return; }
     while (have_rows($field_name, $post_id)) {
@@ -50,7 +58,7 @@ function alify_render_sections($field_name = 'page_sections', $post_id = false) 
                 }
             }
             $markup=$tokens ? strtr($markup,$tokens) : $markup;
-            echo '<section class="alify-imported-section ' . esc_attr($legacy_class) . '"' . ($legacy_id ? ' id="' . esc_attr($legacy_id) . '"' : '') . ($legacy_label ? ' aria-label="' . esc_attr($legacy_label) . '"' : '') . ($legacy_labelledby ? ' aria-labelledby="' . esc_attr($legacy_labelledby) . '"' : '') . '>' . do_shortcode(wp_kses_post($markup)) . '</section>';
+            echo '<section class="alify-imported-section ' . esc_attr($legacy_class) . '"' . ($legacy_id ? ' id="' . esc_attr($legacy_id) . '"' : '') . ($legacy_label ? ' aria-label="' . esc_attr($legacy_label) . '"' : '') . ($legacy_labelledby ? ' aria-labelledby="' . esc_attr($legacy_labelledby) . '"' : '') . '>' . do_shortcode(alify_kses_legacy_markup($markup)) . '</section>';
             continue;
         }
         $classes = alify_section_class($layout);

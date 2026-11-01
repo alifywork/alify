@@ -31,11 +31,17 @@ class Alify_Static_Import_Command extends Alify_Static_Import_Base {
 
     /** Run the same migration from WP-CLI or the one-time theme activation hook. */
     public function run_import($source) {
-        if (!class_exists('DOMDocument') || !function_exists('update_field')) { $this->last_error='DOM and ACF Pro are required for import.'; return false; }
         $source=realpath($source);
         if (!$source || !is_dir($source) || !file_exists($source . '/index.html')) { $this->last_error='Cannot find index.html in source directory.'; return false; }
         $this->source=$source;
+        // Seed the actual WordPress pages first so missing optional prerequisites never leave the site empty.
         $this->create_pages();
+        $this->set_front_and_posts_pages();
+        $missing=array();
+        if (!function_exists('update_field')) { $missing[]='ACF Pro'; }
+        elseif (!did_action('acf/init')) { $missing[]='initialized ACF field groups'; }
+        if (!class_exists('DOMDocument')) { $missing[]='the PHP DOM extension'; }
+        if ($missing) { $this->last_error='Pages were created, but full content import requires ' . implode(' and ',$missing) . '. Enable the missing requirement(s), then retry the ALIFY import.'; return false; }
         $this->create_content_items();
         $this->migrate_sections();
         $this->set_site_pages();
@@ -53,6 +59,7 @@ class Alify_Static_Import_Command extends Alify_Static_Import_Base {
     }
 
     private function read_document($file) {
+        if (!class_exists('DOMDocument')) { return null; }
         $html=file_get_contents($file); if ($html===false) { return null; }
         $dom=new DOMDocument('1.0','UTF-8'); $previous=libxml_use_internal_errors(true);
         $dom->loadHTML('<?xml encoding="utf-8" ?>' . $html,LIBXML_NONET|LIBXML_NOWARNING|LIBXML_NOERROR);
@@ -60,11 +67,12 @@ class Alify_Static_Import_Command extends Alify_Static_Import_Base {
         return $dom;
     }
     private function page_title($file) {
-        $dom=$this->read_document($file); if (!$dom) { return basename($file,'.html'); }
+        $dom=$this->read_document($file); if (!$dom) { $slug=basename($file,'.html'); return $slug==='index' ? __('Home','alify') : ucwords(str_replace('-',' ',$slug)); }
         $nodes=$dom->getElementsByTagName('h1'); if ($nodes->length) { return trim($nodes->item(0)->textContent); }
         $nodes=$dom->getElementsByTagName('title'); return $nodes->length ? trim($nodes->item(0)->textContent) : basename($file,'.html');
     }
     private function migrate_seo($file,$post_id=0,$option_key='') {
+        if (!function_exists('update_field')) { return; }
         $dom=$this->read_document($file); if (!$dom) { return; }
         $title=''; $description=''; $canonical=''; $og_title=''; $og_description='';
         foreach ($dom->getElementsByTagName('title') as $node) { $title=trim($node->textContent); break; }
@@ -465,10 +473,16 @@ class Alify_Static_Import_Command extends Alify_Static_Import_Base {
         $this->populate_menu_if_empty($legal,array(array('page','privacy-policy'),array('page','terms-of-service')));
         set_theme_mod('nav_menu_locations',array('primary'=>$primary,'footer'=>$footer,'legal'=>$legal));
     }
+    private function set_front_and_posts_pages() {
+        $home=get_page_by_path('home',OBJECT,'page');
+        if ($home) { update_option('show_on_front','page'); update_option('page_on_front',$home->ID); }
+        $blog=get_page_by_path('blog',OBJECT,'page');
+        if ($blog) { update_option('page_for_posts',$blog->ID); }
+    }
     private function set_site_pages() {
-        $home=get_page_by_path('home',OBJECT,'page'); if ($home) { update_option('show_on_front','page'); update_option('page_on_front',$home->ID); }
-        $blog=get_page_by_path('blog',OBJECT,'page'); if ($blog) { update_option('page_for_posts',$blog->ID); }
-        $thank=get_page_by_path('thank-you',OBJECT,'page'); if ($thank && function_exists('update_field')) { update_field('form_thank_you_page',$thank->ID,'option'); }
+        $this->set_front_and_posts_pages();
+        $thank=get_page_by_path('thank-you',OBJECT,'page');
+        if ($thank && function_exists('update_field')) { update_field('form_thank_you_page',$thank->ID,'option'); }
         $this->set_site_menus();
     }
 }
@@ -480,8 +494,8 @@ if (defined('WP_CLI') && WP_CLI) {
 /** Import bundled source pages on first activation only; failed prerequisites remain retryable. */
 function alify_import_bundled_source_on_activation() {
     if (get_option('alify_static_import_completed')) { return true; }
-    // Never import until WordPress has registered the CPTs/taxonomies and ACF field groups.
-    if (!did_action('init') || !post_type_exists('alify_service') || !did_action('acf/init')) { return false; }
+    // Wait for WordPress post types; page shells can be created even if ACF/DOM is unavailable.
+    if (!did_action('init') || !post_type_exists('alify_service')) { return false; }
     $source=ALIFY_DIR . '/import-source';
     if (!is_readable($source . '/index.html')) { return false; }
     $importer=new Alify_Static_Import_Command();

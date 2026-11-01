@@ -39,8 +39,12 @@ def main():
     source_files = list((THEME / "import-source").glob("*.html"))
     source_files += list((THEME / "assets").rglob("*.css"))
     source_files += list((THEME / "assets").rglob("*.js"))
+    legacy_renderer = (THEME / "inc" / "template-functions.php").read_text(encoding="utf-8")
+    inline_background_count = 0
     for source in source_files:
         text = source.read_text(encoding="utf-8", errors="replace")
+        if source.parent == THEME / "import-source":
+            inline_background_count += len(re.findall(r"style\s*=\s*(['\"]).*?background-image\s*:", text, re.I | re.S))
         for match in re.finditer(r"(?:assets/)[A-Za-z0-9_./@%+~-]+", text):
             ref = match.group(0).split("?")[0].split("#")[0]
             if not (THEME / ref).is_file():
@@ -52,11 +56,13 @@ def main():
                     continue
                 if not (source.parent / ref.split("?")[0].split("#")[0]).resolve().is_file():
                     errors.append(f"Missing CSS URL {ref} in {source.relative_to(THEME)}")
+    if inline_background_count and ("function alify_kses_legacy_markup" not in legacy_renderer or "$attributes['style']=true" not in legacy_renderer):
+        errors.append(f"The renderer must sanitize and preserve {inline_background_count} source inline background-image styles.")
 
     if errors:
         print("Theme asset audit failed:\n- " + "\n- ".join(sorted(set(errors))))
         raise SystemExit(1)
-    print(f"Theme asset audit passed: {len(styles)} stylesheets and {len(scripts)} scripts exist; local assets resolve.")
+    print(f"Theme asset audit passed: {len(styles)} stylesheets, {len(scripts)} scripts and {inline_background_count} source inline backgrounds are covered; local assets resolve.")
 
 
 if __name__ == "__main__":

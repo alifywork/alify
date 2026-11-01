@@ -19,6 +19,12 @@ def main():
     slugs = set(re.findall(r"=>\s*'([a-z0-9-]+)'", mapping.group(1)))
     if slugs != EXPECTED:
         raise SystemExit(f"Importer page map differs: missing={sorted(EXPECTED-slugs)}, extra={sorted(slugs-EXPECTED)}")
+    importer = (THEME / "inc" / "importer.php").read_text(encoding="utf-8")
+    run_import = re.search(r"public function run_import\(\$source\) \{(.*?)\n    \}", importer, re.S)
+    if not run_import or run_import.group(1).find("$this->create_pages();") > run_import.group(1).find("$missing=array();"):
+        raise SystemExit("The importer must create page shells before checking optional content-import prerequisites")
+    if "|| !did_action('acf/init')" in importer:
+        raise SystemExit("Page creation must not be blocked while ACF initializes")
     post_types = (THEME / "inc" / "post-types.php").read_text(encoding="utf-8")
     if "'has_archive' => false" not in post_types:
         raise SystemExit("Collection CPTs must not compete with the named ACF archive pages")
