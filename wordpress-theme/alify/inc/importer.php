@@ -16,13 +16,13 @@ class Alify_Static_Import_Command extends Alify_Static_Import_Base {
      *
      * ## OPTIONS
      * [--source=<path>]
-     * : Directory containing the original static HTML files and assets. Defaults to the repository root.
+     * : Directory containing the source HTML files and catalog JSON. Defaults to the bundled theme source.
      *
      * ## EXAMPLES
      *     wp alify import-static --source=/path/to/alify
      */
     public function __invoke($args,$assoc_args) {
-        $source=isset($assoc_args['source']) ? $assoc_args['source'] : realpath(dirname(ALIFY_DIR,2));
+        $source=isset($assoc_args['source']) ? $assoc_args['source'] : ALIFY_DIR . '/import-source';
         if (!$this->run_import($source)) { WP_CLI::error($this->last_error); }
         WP_CLI::success('Static pages and original sections have been imported as ACF flexible-content rows. Review each page, SEO panel, menus, and internal links before going live.');
     }
